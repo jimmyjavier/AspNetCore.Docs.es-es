@@ -5,17 +5,17 @@ description: Comprenda los modelos de hospedaje Blazor WebAssembly y de Servidor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/18/2020
+ms.date: 03/31/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: e6ce2be53c35268854e0e8d408b649a8c6ef497e
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0dfc991f76acb227ce9ea27a07fbae50571f0117
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78646805"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80471829"
 ---
 # <a name="aspnet-core-opno-locblazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
 
@@ -58,6 +58,8 @@ También hay desventajas en el hospedaje Blazor WebAssembly:
 * El tamaño de descarga es mayor y las aplicaciones tardan más tiempo en cargarse.
 * La compatibilidad con las herramientas y el tiempo de ejecución de .NET está menos desarrollada. Por ejemplo, existen limitaciones en la compatibilidad y la depuración de [.NET Standard](/dotnet/standard/net-standard).
 
+El modelo de aplicación hospedada en Blazor admite los [contenedores de Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Haga clic con el botón derecho en el proyecto de servidor en Visual Studio y seleccione **Agregar** > **Compatibilidad con Docker**.
+
 ## <a name="opno-locblazor-server"></a>Servidor de Blazor
 
 Con el modelo de hospedaje Servidor de Blazor, la aplicación se ejecuta en el servidor desde una aplicación ASP.NET Core. Las actualizaciones de la interfaz de usuario, el control de eventos y las llamadas de JavaScript se controlan mediante una conexión [SignalR](xref:signalr/introduction).
@@ -71,7 +73,7 @@ La aplicación ASP.NET Core hace referencia a la clase `Startup` de la aplicaci�
 * Servicios del lado servidor.
 * La aplicación a la canalización de administración de solicitudes.
 
-El script &dagger; de `blazor.server.js` establece la conexión del cliente. Es responsabilidad de la aplicación conservar y restaurar el estado de la aplicación según sea necesario (por ejemplo, en caso de que se pierda una conexión de red).
+El script `blazor.server.js` establece la conexión del cliente. Es responsabilidad de la aplicación conservar y restaurar el estado de la aplicación según sea necesario (por ejemplo, en caso de que se pierda una conexión de red). El script `blazor.server.js` se sirve desde un recurso incrustado en el marco de trabajo compartido de ASP.NET Core.
 
 El modelo de hospedaje Servidor de Blazor ofrece varias ventajas:
 
@@ -88,7 +90,7 @@ También hay desventajas en el hospedaje Servidor de Blazor:
 * En el caso de aplicaciones con muchos usuarios, la escalabilidad supone un reto. El servidor debe administrar varias conexiones de cliente y controlar el estado del cliente.
 * Se necesita un servidor ASP.NET Core para atender la aplicación. Los escenarios de implementación sin servidor no son posibles (por ejemplo, para servir a la aplicación desde una red CDN).
 
-&dagger;El script de `blazor.server.js` se sirve desde un recurso incrustado en el marco compartido de ASP.NET Core.
+El modelo de la aplicación del servidor de Blazor admite los [contenedores de Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Haga clic con el botón derecho en el proyecto en Visual Studio y seleccione **Agregar** > **Compatibilidad con Docker**.
 
 ### <a name="comparison-to-server-rendered-ui"></a>Comparación con la interfaz de usuario representada por el servidor
 

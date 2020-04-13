@@ -7,10 +7,10 @@ ms.author: jamesnk
 ms.date: 01/09/2020
 uid: grpc/versioning
 ms.openlocfilehash: 9bd76009ba28a1abef25a98686afea6753d4a8f4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78649361"
 ---
 # <a name="versioning-grpc-services"></a>Control de versiones de servicios gRPC
@@ -20,7 +20,7 @@ Por [James Newton-King](https://twitter.com/jamesnk)
 Las nuevas características agregadas a una aplicación pueden requerir que los servicios gRPC que se proporcionan a los clientes cambien y, en ocasiones, que lo hagan de forma inesperada y repentina. Si cambian los servicios gRPC:
 
 * Se debe tener en cuenta cómo afectan los cambios a los clientes.
-* Se debe implementar una estrategia de control de versiones para admitir cambios.
+* Se debe implementar una estrategia de control de versiones para admitir los cambios.
 
 ## <a name="backwards-compatibility"></a>Compatibilidad con versiones anteriores
 

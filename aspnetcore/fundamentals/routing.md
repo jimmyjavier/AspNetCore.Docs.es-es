@@ -5,14 +5,14 @@ description: Descubra cómo el enrutamiento de ASP.NET Core es responsable de ha
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/25/2020
+ms.date: 4/1/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 2ebba716de90f142a66cf7619b5a4b0c77684bd4
-ms.sourcegitcommit: 0c62042d7d030ec5296c73bccd9f9b961d84496a
+ms.openlocfilehash: 5742ac6879ce46e01247ddd2f8bfe3e3b8a2a02a
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/25/2020
-ms.locfileid: "80270451"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80751146"
 ---
 # <a name="routing-in-aspnet-core"></a>Enrutamiento en ASP.NET Core
 
@@ -580,7 +580,7 @@ La restricción anterior se aplica en el código siguiente:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet&highlight=6,13)]
 
-El método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs) se incluye en la [descarga de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) y se usa para mostrar la información de enrutamiento.
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 La implementación de `MyCustomConstraint` impide que `0` se aplique a un parámetro de ruta:
 
@@ -984,6 +984,8 @@ Como ejemplo de esta instrucción, considere la posibilidad de usar el middlewar
 * Solicitudes que no coinciden con un punto de conexión.
 
 Esto hace que el middleware de autorización sea útil fuera del contexto del enrutamiento. El middleware de autorización se puede usar para la programación de middleware tradicional.
+
+[!INCLUDE[](~/includes/dbg-route.md)]
 
 ::: moniker-end
 
@@ -1626,7 +1628,7 @@ El sistema de enrutamiento tiene las características siguientes:
 * Una respuesta puede usar el enrutamiento para generar direcciones URL (por ejemplo, para el redireccionamiento o los vínculos) en función de la información de ruta. De este modo, se evita codificar de forma rígida las direcciones URL, lo que facilita el mantenimiento.
 * La generación de direcciones URL se basa en rutas, que admiten la extensibilidad arbitraria. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> ofrece métodos para generar direcciones URL.
 <!-- fix [middleware](xref:fundamentals/middleware/index) -->
-La clase <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> conecta el enrutamiento a la canalización `[middleware](xref:fundamentals/middleware/index)`. [ASP.NET Core MVC](xref:mvc/overview) agrega enrutamiento a la canalización de middleware como parte de su configuración y controla el enrutamiento en las aplicaciones de MVC y Razor Pages. Para obtener información sobre cómo usar el enrutamiento como componente independiente, vea la sección [Uso de software intermedio de enrutamiento](#use-routing-middleware).
+La clase <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> conecta el enrutamiento a la canalización de [software intermedio](xref:fundamentals/middleware/index). [ASP.NET Core MVC](xref:mvc/overview) agrega enrutamiento a la canalización de middleware como parte de su configuración y controla el enrutamiento en las aplicaciones de MVC y Razor Pages. Para obtener información sobre cómo usar el enrutamiento como componente independiente, vea la sección [Uso de software intermedio de enrutamiento](#use-routing-middleware).
 
 ### <a name="url-matching"></a>Coincidencia de dirección URL
 
@@ -1980,6 +1982,5 @@ La generación de vínculos solo genera un vínculo para esta ruta si se proporc
 ## <a name="complex-segments"></a>Segmentos complejos
 
 Los segmentos complejos (por ejemplo, `[Route("/x{token}y")]`), se procesan buscando coincidencias de literales de derecha a izquierda de un modo no expansivo. Consulte [este código](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) para obtener una explicación detallada de cómo se comparan los segmentos complejos. El [código de ejemplo](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) no se usa en ASP.NET Core, pero proporciona una buena explicación de los segmentos complejos.
-
 
 ::: moniker-end

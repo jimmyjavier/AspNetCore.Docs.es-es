@@ -5,17 +5,17 @@ description: Cree una aplicación de chat que use ASP.NET Core SignalR con Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/31/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 605cf8ebd3e85586f3e479c815f0b9902ce5a91a
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: c4843dc282e1978b39738e206ecc79ded87fcff9
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083387"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80306567"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Uso de ASP.NET Core SignalR con Blazor WebAssembly
 
@@ -58,10 +58,10 @@ Al final de este tutorial, tendrá una aplicación de chat funcional.
 
 ## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Creación de un proyecto de aplicación de Blazor WebAssembly hospedado
 
-Instale la plantilla de [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly). El paquete [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tiene una versión preliminar, mientras que Blazor WebAssembly se encuentra en versión preliminar. En un shell de comandos, ejecute el siguiente comando:
+Si no usa Visual Studio versión 16.6 Preview 2 o posterior, instale la plantilla [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly). El paquete [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tiene una versión preliminar, mientras que Blazor WebAssembly se encuentra en versión preliminar. En un shell de comandos, ejecute el siguiente comando:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
 ```
 
 Siga las instrucciones para su elección de herramientas:

@@ -1,131 +1,150 @@
 ---
-title: Depuración de Blazor en ASP.NET Core
+title: Depuración de WebAssembly de Blazor en ASP.NET Core
 author: guardrex
 description: Obtenga información sobre cómo depurar aplicaciones Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/16/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 1b0035af48b82807a6ae14835a41a1ecbef06bb6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: eaa67d63f6d15249885d78d3de197ae53e73f072
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78648317"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80381867"
 ---
-# <a name="debug-aspnet-core-blazor"></a>Depuración de Blazor en ASP.NET Core
+# <a name="debug-aspnet-core-opno-locblazor-webassembly"></a>Depuración de WebAssembly de Blazor en ASP.NET Core
 
 [Daniel Roth](https://github.com/danroth27)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Existe *compatibilidad temprana* con la depuración de WebAssembly de Blazor mediante las herramientas de desarrollo del explorador en exploradores basados en Chromium (Chrome o Edge). Hay trabajos en curso para:
+Las aplicaciones de Blazor WebAssembly se pueden depurar con las herramientas de desarrollo del explorador en exploradores basados en Chromium (Edge/Chrome).  También puede depurar la aplicación con Visual Studio o Visual Studio Code.
 
-* Habilitar la depuración de forma completa en Visual Studio.
-* Habilitar la depuración en Visual Studio Code.
-
-Las funcionalidades del depurador son limitadas. Entre los escenarios disponibles se incluyen los siguientes:
+Entre los escenarios disponibles se incluyen los siguientes:
 
 * Establecimiento y eliminación de puntos de interrupción.
-* Examen (`F10`) del código una vez o reanudación (`F8`) de la ejecución del código.
-* En la pantalla *Variables locales*, observe los valores de las variables locales de tipo `int`, `string` y `bool`.
+* Ejecute la aplicación con compatibilidad de depuración en Visual Studio y Visual Studio Code (compatibilidad con <kbd>F5</kbd>).
+* Un solo paso (<kbd>F10</kbd>) por el código.
+* Reanude la ejecución de código con <kbd>F8</kbd> en un explorador o con <kbd>F5</kbd> en Visual Studio o Visual Studio Code.
+* En la pantalla *Variables locales*, observe los valores de las variables locales.
 * Vea la pila de llamadas, incluidas las cadenas de llamadas que van desde JavaScript hasta .NET y desde .NET a JavaScript.
 
-*No* puede:
+Por ahora, *no puede*:
 
-* Observar los valores de las variables locales que no sean de tipo `int`, `string` o `bool`.
-* Observar los valores de ninguna propiedad de clase o campos.
-* Mantener el puntero sobre las variables para ver sus valores.
-* Evaluar expresiones en la consola.
-* Ejecutar llamadas asincrónicas paso a paso.
-* Realizar la mayoría del resto de escenarios de depuración convencionales.
+* Inspeccionar las matrices.
+* Mover el puntero para inspeccionar a los miembros.
+* Depurar paso a paso por instrucciones o para salir del código administrado.
+* Tener compatibilidad total para inspeccionar tipos de valor.
+* Interrumpir las operaciones ante excepciones no controladas.
+* Alcanzar puntos de interrupción durante el inicio de la aplicación.
+* Depurar una aplicación con un trabajo de servicio.
 
-El desarrollo de otros escenarios de depuración es un enfoque en curso del equipo de ingeniería.
+Seguiremos mejorando la experiencia de depuración en las próximas versiones.
 
 ## <a name="prerequisites"></a>Requisitos previos
 
 La depuración requiere cualquiera de los exploradores siguientes:
 
+* Microsoft Edge (versión 80 o posterior)
 * Google Chrome (versión 70 o posterior)
-* Versión preliminar de Microsoft Edge ([canal de desarrollo de Edge](https://www.microsoftedgeinsider.com))
 
-## <a name="procedure"></a>Procedimiento
+## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitación de la depuración para Visual Studio y Visual Studio Code
 
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+La depuración está habilitada de manera automática para los proyectos nuevos que se crean con la plantilla de proyecto de Blazor WebAssembly de ASP.NET Core 3.2 Preview 3 o posterior.
 
-> [!WARNING]
-> La compatibilidad con la depuración en Visual Studio se encuentra en una fase temprana de desarrollo. Actualmente no se admite la depuración con **F5**.
+Para habilitar la depuración de una aplicación de Blazor WebAssembly existente, actualice el archivo *launchSettings.json* del proyecto de inicio para incluir la propiedad `inspectUri` siguiente en cada perfil de inicio:
 
-1. Ejecute una aplicación WebAssembly de Blazor en la configuración `Debug` sin depurar (**Ctrl**+**F5** en lugar de **F5**).
-1. Abra las propiedades de depuración de la aplicación (la última entrada del menú **Depurar**) y copie la **dirección URL de la aplicación** HTTP. Vaya a la dirección HTTP (no a la dirección HTTPS) de la aplicación mediante un explorador basado en Chromium (Edge Beta o Chrome).
-1. Coloque el foco del teclado en la aplicación en la ventana del explorador, no en el panel de herramientas para desarrolladores. Para este procedimiento es recomendable mantener cerrado el panel de herramientas para desarrolladores. Una vez iniciada la depuración, puede volver a abrirlo.
-1. Seleccione el siguiente método abreviado de teclado específico de Blazor:
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
+```
 
-   * `Shift+Alt+D` en Windows
-   * `Shift+Cmd+D` en macOS
+Una vez que lo actualice, el archivo *launchSettings.json* debe ser similar a este ejemplo:
 
-   Si recibe un mensaje en el que se indica que **no se puede encontrar la pestaña del explorador depurable**, vea [Habilitación de la depuración remota](#enable-remote-debugging).
-   
-   Después de habilitar la depuración remota:
-   
-   1\. Se abre una nueva ventana del explorador. Cierre la ventana anterior.
+[!code-json[](debug/launchSettings.json?highlight=14,22)]
 
-   2\. Coloque el foco del teclado en la aplicación en la ventana del explorador.
+La propiedad `inspectUri`:
 
-   3\. Seleccione el método abreviado de teclado específico de Blazor en la nueva ventana del explorador: `Shift+Alt+D` en Windows o `Shift+Cmd+D` en macOS.
+* Permite que el IDE detecte que la aplicación es una aplicación de Blazor WebAssembly.
+* Indica a la infraestructura de depuración de scripts que se conecte al explorador a través del proxy de depuración de Blazor.
 
-   4\. Se abre la pestaña **DevTools** en el explorador. **Vuelva a seleccionar la pestaña de la aplicación en la ventana del explorador.**
+## <a name="visual-studio"></a>Programa para la mejora
 
-   Para adjuntar la aplicación a Visual Studio, vea la sección [Asociación al proceso en Visual Studio](#attach-to-process-in-visual-studio).
+Para depurar una aplicación de Blazor WebAssembly en Visual Studio:
 
-# <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli/)
+1. Asegúrese de haber [instalado la versión preliminar más reciente de Visual Studio 2019 16.6](https://visualstudio.com/preview) (Preview 2 o posterior).
+1. Cree una nueva aplicación de Blazor WebAssembly hospedada por ASP.NET Core.
+1. Presione <kbd>F5</kbd> para ejecutar la aplicación en el depurador.
+1. Establezca un punto de interrupción en *Counter.razor* en el método `IncrementCount`.
+1. Vaya a la pestaña **Contador** y seleccione el botón para alcanzar el punto de interrupción:
 
-1. Ejecute una aplicación WebAssembly de Blazor en la configuración `Debug` y pase la opción `--configuration Debug` al comando [dotnet run](/dotnet/core/tools/dotnet-run) `dotnet run --configuration Debug`.
-1. Vaya a la aplicación en la dirección URL HTTP que se muestra en la ventana del shell.
-1. Coloque el foco del teclado en la aplicación, no en el panel de herramientas para desarrolladores. Para este procedimiento es recomendable mantener cerrado el panel de herramientas para desarrolladores. Una vez iniciada la depuración, puede volver a abrirlo.
-1. Seleccione el siguiente método abreviado de teclado específico de Blazor:
+   ![Depuración del contador](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-counter.png)
 
-   * `Shift+Alt+D` en Windows
-   * `Shift+Cmd+D` en macOS
+1. Revise el valor del campo `currentCount` en la ventana de variables locales:
 
-   Si recibe un mensaje en el que se indica que **no se puede encontrar la pestaña del explorador depurable**, vea [Habilitación de la depuración remota](#enable-remote-debugging).
-   
-   Después de habilitar la depuración remota:
-   
-   1\. Se abre una nueva ventana del explorador. Cierre la ventana anterior.
+   ![Vista de las variables locales](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-locals.png)
 
-   2\. Coloque el foco del teclado en la aplicación en la ventana del explorador, no en el panel de herramientas para desarrolladores.
+1. Presione <kbd>F5</kbd> para continuar la ejecución.
 
-   3\. Seleccione el método abreviado de teclado específico de Blazor en la nueva ventana del explorador: `Shift+Alt+D` en Windows o `Shift+Cmd+D` en macOS.
+Al depurar la aplicación de Blazor WebAssembly, también puede depurar el código del servidor:
 
----
+1. Establezca un punto de interrupción en la página *FetchData.razor* en `OnInitializedAsync`.
+1. Establezca un punto de interrupción en `WeatherForecastController` en el método de acción `Get`.
+1. Vaya a la pestaña **Capturar datos** para alcanzar el primer punto de recuperación en el componente `FetchData` justo antes de que emita una solicitud HTTP al servidor:
 
-## <a name="enable-remote-debugging"></a>Habilitar la depuración remota
+   ![Depuración de captura de datos](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-fetch-data.png)
 
-Si la depuración remota está deshabilitada, Chrome genera una página de error en la que se indica que **no se puede encontrar la pestaña del explorador depurable**. La página de error contiene instrucciones para ejecutar Chrome con el puerto de depuración abierto para que el proxy de depuración de Blazor se pueda conectar a la aplicación. *Cierre todas las instancias de Chrome* y reinicie dicho explorador como se ha indicado.
+1. Presione <kbd>F5</kbd> para continuar la ejecución y, luego, alcance el punto de interrupción en el servidor en `WeatherForecastController`:
 
-## <a name="debug-the-app"></a>Depurar la aplicación
+   ![Depuración del servidor](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
-Una vez que Chrome se ejecute con la depuración remota habilitada, el método abreviado de teclado de depuración abre una nueva pestaña del depurador. Tras unos instantes, en la pestaña **Orígenes** se mostrará una lista de los ensamblados .NET en la aplicación. Expanda cada ensamblado y busque los archivos de origen *.cs*/ *.razor* disponibles para la depuración. Establezca puntos de interrupción, vuelva a la pestaña de la aplicación y los puntos de interrupción se alcanzarán cuando se ejecute el código. Una vez que se haya alcanzado un punto de interrupción, examine el código una vez (`F10`) o reanude (`F8`) la ejecución del código con normalidad.
+1. Vuelva a presionar <kbd>F5</kbd> para permitir que la ejecución continúe y vea la tabla de pronóstico meteorológico representada.
+
+## <a name="visual-studio-code"></a>Visual Studio Code
+
+Para depurar una aplicación de Blazor WebAssembly en Visual Studio Code:
+ 
+1. Instale la [extensión de C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) y la extensión del [depurador de JavaScript (nocturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` establecido en `true`.
+
+   ![Extensiones](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
+
+   ![Depurador JS en versión preliminar](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
+
+1. Abra una aplicación de Blazor WebAssembly existente con la depuración habilitada.
+
+   * Si recibe la notificación siguiente que indica que se requiere una configuración adicional para habilitar la depuración, confirme que tiene instaladas las extensiones correctas y habilitada la depuración de JavaScript en versión preliminar y, luego, recargue la ventana:
+
+     ![Se requiere configuración adicional](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+
+   * Una notificación ofrece agregar los recursos necesarios a la aplicación para realizar la compilación y la depuración. Seleccione **Sí**:
+
+     ![Agregar los recursos necesarios](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
+
+1. Iniciar la aplicación en el depurador es un proceso de dos pasos:
+
+   1\. **En primer lugar**, inicie la aplicación con la configuración de inicio **Inicio de .NET Core (independiente de Blazor)** .
+
+   2\. **Una vez que la aplicación se inicia**, inicie el explorador con la configuración de inicio **Blazor WebAssembly de depuración de .NET Core en Chrome** (requiere Chrome). Para usar Edge en lugar de Chrome, cambie el `type` de la configuración de inicio en *.vscode/launch.json* de `pwa-chrome` a `pwa-msedge`.
+
+1. Establezca el punto de interrupción en el método `IncrementCount` en el componente `Counter` y seleccione el botón para alcanzar el punto de interrupción:
+
+   ![Depuración del contenedor en VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
+
+## <a name="debug-in-the-browser"></a>Depuración en el explorador
+
+1. Ejecute una compilación de depuración de la aplicación en el entorno de desarrollo.
+
+1. Presione <kbd>Mayús</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>.
+
+1. El explorador se debe ejecutar con la depuración remota habilitada. Si la depuración remota está deshabilitada, se genera una página de error en la que se indica que **no se puede encontrar la pestaña del explorador depurable**. La página de error contiene instrucciones para ejecutar el explorador con el puerto de depuración abierto para que el proxy de depuración de Blazor se pueda conectar a la aplicación. *Cierre todas las instancias del explorador* y reinicie el explorador, tal como se indica.
+
+Una vez que el explorador se ejecute con la depuración remota habilitada, el método abreviado de teclado de depuración abre una nueva pestaña del depurador. Tras unos instantes, en la pestaña **Orígenes** se mostrará una lista de los ensamblados .NET en la aplicación. Expanda cada ensamblado y busque los archivos de origen *.cs*/ *.razor* disponibles para la depuración. Establezca puntos de interrupción, vuelva a la pestaña de la aplicación y los puntos de interrupción se alcanzarán cuando se ejecute el código. Una vez que se haya alcanzado un punto de interrupción, examine el código una vez (<kbd>F10</kbd>) o reanude (<kbd>F8</kbd>) la ejecución del código con normalidad.
 
 Blazor proporciona un proxy de depuración que implementa el [protocolo Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/) y aumenta el protocolo con información específica de .NET. Cuando se presiona el método abreviado de teclado de depuración, Blazor apunta a Chrome DevTools en el proxy. El proxy se conecta a la ventana del explorador que se quiere depurar (de ahí la necesidad de habilitar la depuración remota).
-
-## <a name="attach-to-process-in-visual-studio"></a>Asociación al proceso en Visual Studio
-
-La asociación al proceso de la aplicación en Visual Studio es un escenario de depuración *temporal* para WebAssembly de Blazor mientras la depuración **F5** se encuentre en fase de desarrollo.
-
-Para asociar el proceso de la aplicación en ejecución a Visual Studio:
-
-1. En Visual Studio, seleccione **Depurar** > **Asociar al proceso**.
-1. En **Tipo de conexión**, seleccione **WebSocket con protocolo Chrome DevTools (sin autenticación)** .
-1. En **Destino de la conexión**, pegue la dirección HTTP (no la dirección HTTPS) de la aplicación.
-1. Seleccione **Actualizar** para actualizar las entradas en **Procesos disponibles**.
-1. Seleccione el proceso del explorador que se va a depurar y, después, **Adjuntar**.
-1. En el cuadro de diálogo **Seleccionar tipo de código**, seleccione el tipo de código del explorador específico al que se va a asociar (Edge o Chrome) y, después, seleccione **Aceptar**.
 
 ## <a name="browser-source-maps"></a>Mapas de origen del explorador
 

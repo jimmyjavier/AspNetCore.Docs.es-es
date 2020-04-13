@@ -5,17 +5,17 @@ description: Obtenga información sobre las plantillas de aplicación de Blazor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: acfa4b8a42cbd310c6fc6dc973573578e94ef999
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 71a9d9eee8637dda0b3cecac82ff96a0c3bfedb5
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78649451"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80320975"
 ---
 # <a name="aspnet-core-opno-locblazor-templates"></a>Plantillas de Blazor de ASP.NET Core
 
@@ -58,18 +58,17 @@ Los siguientes archivos y carpetas componen una aplicación Blazor generada a pa
     * Descarga el runtime de .NET, la aplicación y las dependencias de la aplicación.
     * Inicializa el runtime para ejecutar la aplicación.
 
-* *Pages/_Host.cshtml* (servidor Blazor): página raíz de la aplicación implementada como una aplicación de Razor Pages:
-  * Cuando se solicita inicialmente cualquier página de la aplicación, esta página se representa y se devuelve en la respuesta.
-  * Se carga el archivo JavaScript `_framework/blazor.server.js`, que configura la conexión de SignalR en tiempo real entre el explorador y el servidor.
-  * La página Host especifica dónde se va a representar el componente `App` raíz (*App.razor*).
-
 * *App.razor*: componente raíz de la aplicación que configura el enrutamiento del lado cliente mediante el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>. El componente `Router` intercepta la navegación del explorador y representa la página que coincide con la dirección solicitada.
 
-* Carpeta *Pages*: contiene los componentes o páginas enrutables ( *.razor*) que componen la aplicación Blazor. La ruta de cada página se especifica usando la directiva [`@page`](xref:mvc/views/razor#page). La plantilla incluye los siguientes componentes:
-  * `Index` (*Index.razor*): implementa la página principal.
+* Carpeta *Pages*: contiene las páginas o componentes enrutables ( *.razor*) que conforman la aplicación de Blazor y la página raíz de Razor de una aplicación de Blazor Server. La ruta de cada página se especifica usando la directiva [`@page`](xref:mvc/views/razor#page). En la plantilla se incluye lo siguiente:
+  * *_Host.cshtml* (Blazor Server): la página raíz de la aplicación implementada como una aplicación de Razor Pages:
+    * Cuando se solicita inicialmente cualquier página de la aplicación, esta página se representa y se devuelve en la respuesta.
+    * Se carga el archivo JavaScript `_framework/blazor.server.js`, que configura la conexión de SignalR en tiempo real entre el explorador y el servidor.
+    * La página Host especifica dónde se va a representar el componente `App` raíz (*App.razor*).
   * `Counter` (*Counter.razor*): implementa la página Counter (Contador).
   * `Error` (*Error.razor*, solo aplicación de servidor Blazor): se representa cuando se produce una excepción no controlada en la aplicación.
   * `FetchData` (*FetchData.razor*): implementa la página Fetch data (Recuperar datos).
+  * `Index` (*Index.razor*): implementa la página principal.
 
 * Carpeta *Shared*: contiene otros componentes de interfaz de usuario ( *.razor*) que la aplicación usa:
   * `MainLayout` (*MainLayout.razor*): componente de diseño de la aplicación.

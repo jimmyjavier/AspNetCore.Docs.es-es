@@ -5,17 +5,17 @@ description: Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 04/06/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: ea2c625f424447209a362cdc58bdb18be061e47f
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: f364d94085d175fde5596c222ef21852c0106ec1
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511358"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80751122"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedaje e implementación de ASP.NET CoreBlazor WebAssembly
 
@@ -93,6 +93,22 @@ Cuando se publica un proyecto de Blazor, se crea un archivo *web.config* con la 
 * Se establecen reglas del módulo URL Rewrite:
   * Proporcionar el subdirectorio donde residen los recursos estáticos de la aplicación (*wwwroot/{RUTA SOLICITADA}* ).
   * Crear el enrutamiento de reserva de SPA para que las solicitudes de recursos que no sean archivos se redirijan al documento predeterminado de la aplicación en su carpeta de recursos estáticos (*wwwroot/index.html*).
+  
+#### <a name="use-a-custom-webconfig"></a>Uso de un archivo web.config personalizado
+
+Para usar un archivo *web.config* personalizado:
+
+1. Coloque el archivo *web.config* personalizado en la raíz de la carpeta del proyecto.
+1. Agregue el destino siguiente al archivo del proyecto ( *.csproj*):
+
+   ```xml
+   <Target Name="CopyWebConfigOnPublish" AfterTargets="Publish">
+     <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
+   </Target>
+   ```
+   
+> [!NOTE]
+> Usar la propiedad `<IsWebConfigTransformDisabled>` de MSBuild establecida en `true` no se admite en las aplicaciones de Blazor WebAssembly [porque es para las aplicaciones de ASP.NET Core implementadas en IIS](xref:host-and-deploy/iis/index#webconfig-file). Para más información, consulte el artículo [Copia del destino necesaria para proporcionar el archivo web.config de Blazor WASM personalizado (dotnet/aspnetcore #20569)](https://github.com/dotnet/aspnetcore/issues/20569).
 
 #### <a name="install-the-url-rewrite-module"></a>Instalación del módulo URL Rewrite
 

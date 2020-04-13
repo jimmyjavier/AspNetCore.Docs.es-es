@@ -8,12 +8,12 @@ ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 8935e665dfd5d8f9afa002f475c202ec0f0ee657
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2dff64f1f2d67b8a1e676acf6cf131b684099750
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78650795"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80405878"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparación entre los servicios gRPC y las API HTTP
 
@@ -94,6 +94,9 @@ En la actualidad no es posible llamar directamente a un servicio gRPC desde un e
 [gRPC-Web](https://grpc.io/docs/tutorials/basic/web.html) es una tecnología adicional del equipo de gRPC que proporciona compatibilidad limitada con gRPC en el explorador. gRPC-Web consta de dos partes: un cliente de JavaScript que admite todos los exploradores modernos y un proxy gRPC-Web en el servidor. El cliente gRPC-Web llama al proxy y este reenviará las solicitudes a gRPC al servidor gRPC.
 
 No todas las características de gRPC son compatibles con gRPC-Web. No se admite el streaming de cliente y bidireccional, y existe compatibilidad limitada para el streaming de servidor.
+
+> [!TIP]
+> .NET Core tiene compatibilidad experimental para gRPC-Web. Visite <xref:grpc/browser> para más información.
 
 ### <a name="not-human-readable"></a>No es legible por el usuario
 
