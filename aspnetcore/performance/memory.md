@@ -4,89 +4,89 @@ author: rick-anderson
 description: Obtenga información sobre cómo se administra la memoria en ASP.NET Core y cómo funciona el recolector de elementos no utilizados (GC).
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 4/05/2019
 uid: performance/memory
-ms.openlocfilehash: 0ae367e954e21e2f696a3b292fa64f1d2dba98ec
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b2af9cb567cdb1d7b2d0942601fcc3ebd999a5d9
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654725"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440953"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Administración de memoria y recolección de elementos no utilizados (GC) en ASP.NET Core
 
 Por [Sébastien Ros](https://github.com/sebastienros) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-La administración de memoria es compleja, incluso en un marco administrado como .NET. Analizar y comprender los problemas de memoria puede ser desafiante. Este artículo:
+La administración de memoria es compleja, incluso en un marco administrado como .NET. Analizar y comprender los problemas de memoria puede ser un desafío. Este artículo:
 
-* Estaba motivada por muchos problemas de *pérdida de memoria* y el *GC no funciona* . La mayoría de estos problemas se debieron a no comprender cómo funciona el consumo de memoria en .NET Core o no comprender cómo se mide.
-* Muestra el uso de memoria problemático y sugiere enfoques alternativos.
+* Fue motivado por muchas fugas de *memoria* y *GC no problemas de trabajo.* La mayoría de estos problemas se debieron a no comprender cómo funciona el consumo de memoria en .NET Core o a no comprender cómo se mide.
+* Muestra el uso problemático de la memoria y sugiere enfoques alternativos.
 
 ## <a name="how-garbage-collection-gc-works-in-net-core"></a>Cómo funciona la recolección de elementos no utilizados (GC) en .NET Core
 
-El GC asigna segmentos del montón donde cada segmento es un intervalo de memoria contiguo. Los objetos colocados en el montón se clasifican en una de estas tres generaciones: 0, 1 o 2. La generación determina la frecuencia con la que el GC intenta liberar memoria en los objetos administrados a los que la aplicación ya no hace referencia. Las generaciones con números inferiores son GC con más frecuencia.
+El GC asigna segmentos de montón donde cada segmento es un rango contiguo de memoria. Los objetos colocados en el montón se clasifican en una de 3 generaciones: 0, 1 o 2. La generación determina la frecuencia con la que el GC intenta liberar memoria en objetos administrados a los que ya no hace referencia la aplicación. Las generaciones numeradas más bajas son GC'd con más frecuencia.
 
-Los objetos se mueven de una generación a otra en función de su duración. A medida que los objetos viven más tiempo, se mueven a una generación superior. Como se mencionó anteriormente, las generaciones mayores son menos a menudo. Los objetos de corta duración siempre permanecen en la generación 0. Por ejemplo, los objetos a los que se hace referencia durante la vida de una solicitud Web son de corta duración. Los [Singleton](xref:fundamentals/dependency-injection#service-lifetimes) de nivel de aplicación generalmente migran a la generación 2.
+Los objetos se mueven de una generación a otra en función de su duración. A medida que los objetos viven más tiempo, se mueven a una generación superior. Como se mencionó anteriormente, las generaciones superiores son GC'd menos a menudo. Los objetos vividos a corto plazo siempre permanecen en la generación 0. Por ejemplo, los objetos a los que se hace referencia durante la vida de una solicitud web son de corta duración. Los [singletons](xref:fundamentals/dependency-injection#service-lifetimes) de nivel de aplicación generalmente migran a la generación 2.
 
 Cuando se inicia una aplicación ASP.NET Core, el GC:
 
-* Reserva memoria para los segmentos de montón iniciales.
+* Reserva algo de memoria para los segmentos de montón iniciales.
 * Confirma una pequeña parte de la memoria cuando se carga el tiempo de ejecución.
 
-Las asignaciones de memoria anteriores se realizan por motivos de rendimiento. La ventaja de rendimiento procede de los segmentos del montón en la memoria contigua.
+Las asignaciones de memoria anteriores se realizan por motivos de rendimiento. La ventaja de rendimiento proviene de segmentos de montón en memoria contigua.
 
-### <a name="call-gccollect"></a>Llame a GC. Impuesto
+### <a name="call-gccollect"></a>Llama a GC. Recoger
 
 Llamando a [GC. Recopilar](xref:System.GC.Collect*) explícitamente:
 
-* **No** debe realizarse en las aplicaciones de ASP.net Core de producción.
-* Resulta útil para investigar pérdidas de memoria.
-* Al investigar, comprueba que el GC ha quitado todos los objetos pendientes de la memoria, por lo que se puede medir la memoria.
+* **No** debe realizarse mediante la producción ASP.NET aplicaciones principales.
+* Es útil cuando se investigan pérdidas de memoria.
+* Al investigar, comprueba que el GC ha quitado todos los objetos colgantes de la memoria para que se pueda medir la memoria.
 
 ## <a name="analyzing-the-memory-usage-of-an-app"></a>Analizar el uso de memoria de una aplicación
 
 Las herramientas dedicadas pueden ayudar a analizar el uso de memoria:
 
-- Recuento de referencias de objeto
-- Medir la cantidad de impacto que el GC tiene en el uso de CPU
-- Medir el espacio de memoria usado para cada generación
+- Recuento de referencias a objetos
+- Medición de cuánto impacto tiene el GC en el uso de la CPU
+- Medición del espacio de memoria utilizado para cada generación
 
-Use las siguientes herramientas para analizar el uso de memoria:
+Utilice las siguientes herramientas para analizar el uso de memoria:
 
-* [dotnet-Trace](/dotnet/core/diagnostics/dotnet-trace): puede usarse en equipos de producción.
+* [traza de puntos](/dotnet/core/diagnostics/dotnet-trace): Se puede utilizar en máquinas de producción.
 * [Analizar el uso de memoria sin el depurador de Visual Studio](/visualstudio/profiling/memory-usage-without-debugging2)
 * [Análisis del uso de memoria en Visual Studio](/visualstudio/profiling/memory-usage)
 
 ### <a name="detecting-memory-issues"></a>Detección de problemas de memoria
 
-Se puede usar el administrador de tareas para hacerse una idea de la cantidad de memoria que está usando una aplicación de ASP.NET. El valor de memoria del administrador de tareas:
+El Administrador de tareas se puede usar para hacerse una idea de la cantidad de memoria que usa una aplicación ASP.NET. El valor de memoria del Administrador de tareas:
 
-* Representa la cantidad de memoria que utiliza el proceso ASP.NET.
+* Representa la cantidad de memoria que usa el proceso de ASP.NET.
 * Incluye los objetos vivos de la aplicación y otros consumidores de memoria, como el uso de memoria nativa.
 
-Si el valor de memoria del administrador de tareas aumenta indefinidamente y nunca se reduce, la aplicación tiene una pérdida de memoria. En las secciones siguientes se muestran y explican varios patrones de uso de memoria.
+Si el valor de memoria del Administrador de tareas aumenta indefinidamente y nunca se aplana, la aplicación tiene una pérdida de memoria. En las secciones siguientes se muestran y se explican varios patrones de uso de memoria.
 
-## <a name="sample-display-memory-usage-app"></a>Ejemplo de aplicación de uso de memoria de muestra
+## <a name="sample-display-memory-usage-app"></a>Ejemplo de aplicación de uso de memoria de pantalla
 
-La [aplicación de ejemplo MemoryLeak](https://github.com/sebastienros/memoryleak) está disponible en github. La aplicación MemoryLeak:
+La aplicación de [ejemplo MemoryLeak](https://github.com/sebastienros/memoryleak) está disponible en GitHub. La aplicación MemoryLeak:
 
-* Incluye un controlador de diagnóstico que recopila datos de GC y memoria en tiempo real de la aplicación.
-* Tiene una página de índice que muestra los datos de memoria y GC. La página de índice se actualiza cada segundo.
+* Incluye un controlador de diagnóstico que recopila memoria en tiempo real y datos DE GC para la aplicación.
+* Tiene una página de índice que muestra la memoria y los datos de GC. La página Index se actualiza cada segundo.
 * Contiene un controlador de API que proporciona varios patrones de carga de memoria.
-* No es una herramienta compatible; sin embargo, se puede usar para mostrar patrones de uso de memoria de ASP.NET Core aplicaciones.
+* No es una herramienta compatible, sin embargo, se puede utilizar para mostrar patrones de uso de memoria de ASP.NET aplicaciones principales.
 
-Ejecute MemoryLeak. La memoria asignada aumenta lentamente hasta que se produce un GC. La memoria aumenta porque la herramienta asigna el objeto personalizado para capturar los datos. La siguiente imagen muestra la página de índice de MemoryLeak cuando se produce un GC de gen. 0. El gráfico muestra 0 RPS (solicitudes por segundo) porque no se ha llamado a ningún punto de conexión de API del controlador de API.
+Ejecute MemoryLeak. La memoria asignada aumenta lentamente hasta que se produce un GC. La memoria aumenta porque la herramienta asigna un objeto personalizado para capturar datos. La siguiente imagen muestra la página MemoryLeak Index cuando se produce un GC Gen 0. El gráfico muestra 0 RPS (solicitudes por segundo) porque no se ha llamado a ningún punto de conexión de API del controlador de API.
 
 ![gráfico anterior](memory/_static/0RPS.png)
 
 El gráfico muestra dos valores para el uso de memoria:
 
-- Asignado: la cantidad de memoria ocupada por los objetos administrados
-- Espacio de [trabajo](/windows/win32/memory/working-set): el conjunto de páginas del espacio de direcciones virtuales del proceso residente actualmente en la memoria física. El espacio de trabajo mostrado es el mismo valor que se muestra en el administrador de tareas.
+- Asignado: la cantidad de memoria ocupada por objetos gestionados
+- Conjunto de [trabajo:](/windows/win32/memory/working-set)el conjunto de páginas en el espacio de direcciones virtuales del proceso que residen actualmente en la memoria física. El conjunto de trabajo que se muestra es el mismo valor que muestra el Administrador de tareas.
 
 ### <a name="transient-objects"></a>Objetos transitorios
 
-La API siguiente crea una instancia de cadena de 10 KB y la devuelve al cliente. En cada solicitud, se asigna un nuevo objeto en la memoria y se escribe en la respuesta. Las cadenas se almacenan como caracteres UTF-16 en .NET, por lo que cada carácter ocupa 2 bytes en la memoria.
+La siguiente API crea una instancia string de 10 KB y la devuelve al cliente. En cada solicitud, se asigna un nuevo objeto en la memoria y se escribe en la respuesta. Las cadenas se almacenan como caracteres UTF-16 en .NET, por lo que cada carácter toma 2 bytes en memoria.
 
 ```csharp
 [HttpGet("bigstring")]
@@ -96,40 +96,40 @@ public ActionResult<string> GetBigString()
 }
 ```
 
-El siguiente gráfico se genera con una carga relativamente pequeña en para mostrar cómo las asignaciones de memoria se ven afectadas por el GC.
+El siguiente gráfico se genera con una carga relativamente pequeña para mostrar cómo las asignaciones de memoria se ven afectadas por el GC.
 
 ![gráfico anterior](memory/_static/bigstring.png)
 
-En el gráfico anterior se muestra:
+El gráfico anterior muestra:
 
-* 4K RPS (solicitudes por segundo).
+* 4K RPS (Solicitudes por segundo).
 * Las colecciones de GC de generación 0 se producen aproximadamente cada dos segundos.
-* El espacio de trabajo es constante de aproximadamente 500 MB.
-* La CPU es del 12%.
-* El consumo de memoria y la versión (a través de GC) son estables.
+* El conjunto de trabajo es constante en aproximadamente 500 MB.
+* CPU es 12%.
+* El consumo y la liberación de memoria (a través de GC) es estable.
 
-El siguiente gráfico se toma en el rendimiento máximo que puede controlar el equipo.
+El siguiente gráfico se toma al rendimiento máximo que puede controlar la máquina.
 
 ![gráfico anterior](memory/_static/bigstring2.png)
 
-En el gráfico anterior se muestra:
+El gráfico anterior muestra:
 
 * 22K RPS
 * Las colecciones de GC de generación 0 se producen varias veces por segundo.
-* Las colecciones de la generación 1 se desencadenan porque la aplicación ha asignado significativamente más memoria por segundo.
-* El espacio de trabajo es constante de aproximadamente 500 MB.
-* La CPU es del 33%.
-* El consumo de memoria y la versión (a través de GC) son estables.
-* CPU (33%) no se ha utilizado en exceso, por lo que la recolección de elementos no utilizados puede mantener un gran número de asignaciones.
+* Las colecciones de generación 1 se desencadenan porque la aplicación asignó significativamente más memoria por segundo.
+* El conjunto de trabajo es constante en aproximadamente 500 MB.
+* CPU es 33%.
+* El consumo y la liberación de memoria (a través de GC) es estable.
+* La CPU (33%) no se utiliza en exceso, por lo tanto, la recolección de elementos no utilizados puede mantenerse al día con un gran número de asignaciones.
 
-### <a name="workstation-gc-vs-server-gc"></a>GC de estación de trabajo frente a GC de servidor
+### <a name="workstation-gc-vs-server-gc"></a>Workstation GC vs. Server GC
 
 El recolector de elementos no utilizados de .NET tiene dos modos diferentes:
 
-* **GC de estación de trabajo**: optimizado para el escritorio.
-* **GC del servidor**. El GC predeterminado para ASP.NET Core aplicaciones. Optimizado para el servidor.
+* **Workstation GC**: Optimizado para el escritorio.
+* **Server GC**. El GC predeterminado para las aplicaciones ASP.NET Core. Optimizado para el servidor.
 
-El modo GC se puede establecer explícitamente en el archivo de proyecto o en el archivo *runtimeConfig. JSON* de la aplicación publicada. El marcado siguiente muestra el establecimiento de `ServerGarbageCollection` en el archivo de proyecto:
+El modo GC se puede establecer explícitamente en el archivo de proyecto o en el archivo *runtimeconfig.json* de la aplicación publicada. El marcado siguiente `ServerGarbageCollection` muestra la configuración en el archivo de proyecto:
 
 ```xml
 <PropertyGroup>
@@ -137,27 +137,33 @@ El modo GC se puede establecer explícitamente en el archivo de proyecto o en el
 </PropertyGroup>
 ```
 
-Cambiar `ServerGarbageCollection` en el archivo de proyecto requiere que se vuelva a generar la aplicación.
+Cambiar `ServerGarbageCollection` en el archivo de proyecto requiere que la aplicación se vuelva a generar.
 
-**Nota:** La recolección de elementos **no** utilizados de servidor no está disponible en equipos con un solo núcleo. Para más información, consulte <xref:System.Runtime.GCSettings.IsServerGC>.
+**Nota:** La recolección de elementos no utilizados del servidor **no** está disponible en equipos con un solo núcleo. Para obtener más información, vea <xref:System.Runtime.GCSettings.IsServerGC>.
 
-En la imagen siguiente se muestra el perfil de memoria en un 5.000 RPS mediante el GC de la estación de trabajo.
+La siguiente imagen muestra el perfil de memoria bajo un RPS 5K mediante la GC de la estación de trabajo.
 
 ![gráfico anterior](memory/_static/workstation.png)
 
 Las diferencias entre este gráfico y la versión del servidor son significativas:
 
-- El espacio de trabajo desciende de 500 MB a 70 MB.
-- El GC realiza colecciones de la generación 0 varias veces por segundo en lugar de cada dos segundos.
-- GC desciende de 300 MB a 10 MB.
+- El conjunto de trabajo cae de 500 MB a 70 MB.
+- El GC genera 0 colecciones varias veces por segundo en lugar de cada dos segundos.
+- GC cae de 300 MB a 10 MB.
 
-En un entorno de servidor Web típico, el uso de CPU es más importante que la memoria, por lo que el GC del servidor es mejor. Si la utilización de la memoria es alta y el uso de la CPU es relativamente bajo, el GC de la estación de trabajo puede ser más eficaz. Por ejemplo, alta densidad que hospeda varias aplicaciones web en las que la memoria es escasa.
+En un entorno de servidor web típico, el uso de CPU es más importante que la memoria, por lo tanto, el GC del servidor es mejor. Si la utilización de memoria es alta y el uso de la CPU es relativamente bajo, el GC de la estación de trabajo pudo ser más eficaz. Por ejemplo, alta densidad alojando varias aplicaciones web donde la memoria es escasa.
 
-### <a name="persistent-object-references"></a>Referencias de objeto persistentes
+<a name="sc"></a>
 
-El GC no puede liberar objetos a los que se hace referencia. Los objetos a los que se hace referencia pero que ya no se necesitan producen una pérdida de memoria. Si la aplicación asigna objetos con frecuencia y no puede liberarlos después de que ya no se necesiten, el uso de memoria aumentará con el tiempo.
+### <a name="gc-using-docker-and-small-containers"></a>GC con Docker y contenedores pequeños
 
-La API siguiente crea una instancia de cadena de 10 KB y la devuelve al cliente. La diferencia con el ejemplo anterior es que un miembro estático hace referencia a esta instancia, lo que significa que nunca está disponible para la recolección.
+Cuando se ejecutan varias aplicaciones en contenedores en un equipo, Workstation GC puede ser más anterior que Server GC. Para obtener más información, consulte [Ejecución con GC de servidor en un contenedor pequeño](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) y Ejecución con GC de servidor en un escenario de contenedor pequeño Parte 1 – Límite duro para el [montón](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/)de GC .
+
+### <a name="persistent-object-references"></a>Referencias a objetos persistentes
+
+El GC no puede liberar objetos a los que se hace referencia. Los objetos a los que se hace referencia pero que ya no son necesarios provocan una pérdida de memoria. Si la aplicación asigna objetos con frecuencia y no los libera después de que ya no se necesitan, el uso de memoria aumentará con el tiempo.
+
+La siguiente API crea una instancia string de 10 KB y la devuelve al cliente. La diferencia con el ejemplo anterior es que un miembro estático hace referencia a esta instancia, lo que significa que nunca está disponible para su recopilación.
 
 ```csharp
 private static ConcurrentBag<string> _staticStrings = new ConcurrentBag<string>();
@@ -174,23 +180,23 @@ public ActionResult<string> GetStaticString()
 El código anterior:
 
 * Es un ejemplo de una pérdida de memoria típica.
-* Con llamadas frecuentes, hace que la memoria de la aplicación aumente hasta que el proceso se bloquee con una excepción `OutOfMemory`.
+* Con las llamadas frecuentes, hace que la memoria `OutOfMemory` de la aplicación aumente hasta que el proceso se bloquee con una excepción.
 
 ![gráfico anterior](memory/_static/eternal.png)
 
 En la imagen anterior:
 
-* La prueba de carga del punto de conexión de `/api/staticstring` produce un aumento lineal en la memoria.
-* El GC intenta liberar memoria a medida que aumenta la presión de memoria, llamando a una colección de generación 2.
-* El GC no puede liberar la memoria perdida. La asignación y el espacio de trabajo aumentan con el tiempo.
+* Las pruebas `/api/staticstring` de carga del punto de conexión provocan un aumento lineal de la memoria.
+* El GC intenta liberar memoria a medida que crece la presión de memoria, llamando a una colección de generación 2.
+* El GC no puede liberar la memoria filtrada. El conjunto asignado y de trabajo aumenta con el tiempo.
 
-Algunos escenarios, como el almacenamiento en caché, requieren que las referencias de objeto se mantengan hasta que la presión de memoria obliga a que se liberen. La clase <xref:System.WeakReference> se puede usar para este tipo de código de almacenamiento en caché. Un objeto de `WeakReference` se recopila bajo presión de memoria. La implementación predeterminada de <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> usa `WeakReference`.
+Algunos escenarios, como el almacenamiento en caché, requieren que se mantengan las referencias a objetos hasta que la presión de memoria obligue a liberarlas. La <xref:System.WeakReference> clase se puede utilizar para este tipo de código de almacenamiento en caché. Un `WeakReference` objeto se recopila bajo presiones de memoria. La implementación <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> `WeakReference`predeterminada de uses .
 
 ### <a name="native-memory"></a>Memoria nativa
 
-Algunos objetos .NET Core se basan en la memoria nativa. El GC **no** puede recopilar memoria nativa. El objeto .NET que usa memoria nativa debe liberarlo mediante código nativo.
+Algunos objetos de .NET Core dependen de la memoria nativa. La memoria nativa **no** puede ser recopilada por el GC. El objeto .NET con memoria nativa debe liberarlo mediante código nativo.
 
-.NET proporciona la interfaz de <xref:System.IDisposable> para permitir que los desarrolladores liberen memoria nativa. Incluso si no se llama a <xref:System.IDisposable.Dispose*>, las clases implementadas correctamente llaman a `Dispose` cuando se ejecuta el [finalizador](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
+.NET proporciona <xref:System.IDisposable> la interfaz para permitir que los desarrolladores liberen memoria nativa. Incluso <xref:System.IDisposable.Dispose*> si no se llama, `Dispose` las clases implementadas correctamente llaman cuando se ejecuta el [finalizador.](/dotnet/csharp/programming-guide/classes-and-structs/destructors)
 
 Observe el código siguiente:
 
@@ -205,42 +211,42 @@ public void GetFileProvider()
 
 [PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) es una clase administrada, por lo que cualquier instancia se recopilará al final de la solicitud.
 
-La siguiente imagen muestra el perfil de memoria al invocar la API de `fileprovider` continuamente.
+La siguiente imagen muestra el perfil `fileprovider` de memoria al invocar la API continuamente.
 
 ![gráfico anterior](memory/_static/fileprovider.png)
 
-En el gráfico anterior se muestra un problema obvio con la implementación de esta clase, ya que sigue aumentando el uso de memoria. Se trata de un problema conocido del que se está realizando [el seguimiento en este problema](https://github.com/dotnet/aspnetcore/issues/3110).
+El gráfico anterior muestra un problema obvio con la implementación de esta clase, ya que sigue aumentando el uso de memoria. Este es un problema conocido que se está rastreando en [este problema.](https://github.com/dotnet/aspnetcore/issues/3110)
 
-La misma fuga podría producirse en el código de usuario, mediante una de las siguientes acciones:
+La misma fuga podría ocurrir en el código de usuario, por uno de los siguientes:
 
-* No se libera correctamente la clase.
-* Olvidar invocar el método `Dispose`de los objetos dependientes que se deben desechar.
+* No liberar la clase correctamente.
+* Olvidarse de `Dispose`invocar el método de los objetos dependientes que se deben eliminar.
 
 ### <a name="large-objects-heap"></a>Montón de objetos grandes
 
-Los ciclos gratuitos y de asignación de memoria frecuentes pueden fragmentar la memoria, especialmente cuando se asignan grandes fragmentos de memoria. Los objetos se asignan en bloques de memoria contiguos. Para mitigar la fragmentación, cuando el GC libera memoria, trys para desfragmentarla. Este proceso se denomina **compactación**. La compactación implica mover objetos. Mover objetos grandes impone una reducción del rendimiento. Por esta razón, el GC crea una zona de memoria especial para objetos _grandes_ , denominada [montón de objetos grandes](/dotnet/standard/garbage-collection/large-object-heap) (montón). Los objetos que tienen más de 85.000 bytes (aproximadamente 83 KB) son:
+La asignación de memoria frecuente o los ciclos libres pueden fragmentar la memoria, especialmente cuando se asignan grandes fragmentos de memoria. Los objetos se asignan en bloques contiguos de memoria. Para mitigar la fragmentación, cuando el GC libera memoria, intenta desfragmentarla. Este proceso se denomina **compactación**. La compactación implica mover objetos. Mover objetos grandes impone una penalización de rendimiento. Por esta razón, el GC crea una zona de memoria especial para objetos _grandes,_ denominada montón de [objetos grandes](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Los objetos que son mayores que 85.000 bytes (aproximadamente 83 KB) son:
 
-* Se coloca en el montón.
+* Colocado en la LOH.
 * No compactado.
-* Recopilados durante la generación 2 GC.
+* Recolectado durante la generación de 2 GCs.
 
-Cuando el montón está lleno, el GC desencadenará una recolección de la generación 2. Recopilaciones de generación 2:
+Cuando el LOH está lleno, el GC desencadenará una colección de generación 2. Colecciones de generación 2:
 
-* Son intrínsecamente lentas.
-* Además, incurre en el costo de desencadenar una colección en todas las demás generaciones.
+* Son intrínsecamente lentos.
+* Además, incurrir en el costo de desencadenar una colección en todas las demás generaciones.
 
-El siguiente código compacta el montón inmediatamente:
+El código siguiente compacta el LOH inmediatamente:
 
 ```csharp
 GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
 GC.Collect();
 ```
 
-Consulte <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> para obtener información sobre cómo compactar el montón de datos.
+Consulte <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> para obtener información sobre la compactación del LOH.
 
-En los contenedores con .NET Core 3,0 y versiones posteriores, el montón de base de los se compacta automáticamente.
+En los contenedores que usan .NET Core 3.0 y versiones posteriores, el LOH se compacta automáticamente.
 
-La siguiente API que muestra este comportamiento:
+La siguiente API que ilustra este comportamiento:
 
 ```csharp
 [HttpGet("loh/{size=85000}")]
@@ -250,48 +256,48 @@ public int GetLOH1(int size)
 }
 ```
 
-En el gráfico siguiente se muestra el perfil de memoria de la llamada al punto de conexión `/api/loh/84975`, en la carga máxima:
+El siguiente gráfico muestra el `/api/loh/84975` perfil de memoria de llamar al punto de conexión, bajo carga máxima:
 
 ![gráfico anterior](memory/_static/loh1.png)
 
-En el gráfico siguiente se muestra el perfil de memoria de llamar al extremo `/api/loh/84976`, asignando *solo un byte más*:
+El siguiente gráfico muestra el `/api/loh/84976` perfil de memoria de llamar al punto de conexión, asignando *solo un byte más:*
 
 ![gráfico anterior](memory/_static/loh2.png)
 
-Nota: la estructura de `byte[]` tiene bytes de sobrecarga. Por eso 84.976 bytes desencadena el límite de 85.000.
+Nota: `byte[]` La estructura tiene bytes de sobrecarga. Es por eso que 84.976 bytes desencadena el límite de 85.000.
 
-Comparar los dos gráficos anteriores:
+Comparación de los dos gráficos anteriores:
 
-* El espacio de trabajo es similar en ambos escenarios, aproximadamente 450 MB.
-* El bajo solicitudes de montón (84.975 bytes) muestra principalmente colecciones de la generación 0.
-* Las solicitudes de montón superior generan recolecciones de la generación 2. Las colecciones de generación 2 son costosas. Se necesita más CPU y el rendimiento se reduce casi el 50%.
+* El conjunto de trabajo es similar para ambos escenarios, alrededor de 450 MB.
+* Las solicitudes SUB LOH (84.975 bytes) muestran principalmente las colecciones de generación 0.
+* Las solicitudes de sobre LOH generan colecciones de generación constante 2. Las colecciones de generación 2 son caras. Se requiere más CPU y el rendimiento disminuye casi un 50%.
 
-Los objetos temporales grandes son especialmente problemáticos, ya que provocan GC de la segunda generación.
+Los objetos grandes temporales son particularmente problemáticos porque causan gén2 GCs.
 
-Para obtener el máximo rendimiento, se debe minimizar el uso de objetos grandes. Si es posible, divida los objetos grandes. Por ejemplo, el middleware de [almacenamiento en caché de respuesta](xref:performance/caching/response) de ASP.net Core divide las entradas de la memoria caché en bloques inferiores a 85.000 bytes.
+Para obtener el máximo rendimiento, se debe minimizar el uso de objetos grandes. Si es posible, divida objetos grandes. Por ejemplo, el middleware [de almacenamiento en caché](xref:performance/caching/response) de respuestas en ASP.NET Core divide las entradas de caché en bloques de menos de 85.000 bytes.
 
-En los siguientes vínculos se muestra el enfoque ASP.NET Core para mantener objetos bajo el límite de montón:
+Los vínculos siguientes muestran el enfoque ASP.NET Core para mantener los objetos por debajo del límite loH:
 
-* [ResponseCaching/streams/StreamUtilities. CS](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
-* [ResponseCaching/MemoryResponseCache. CS](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
+* [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
+* [ResponseCaching/MemoryResponseCache.cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
 Para más información, consulte:
 
-* [Montón de objetos grandes descubierto](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
+* [Montón de objetos grandes descubiertos](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Montón de objetos grandes](/dotnet/standard/garbage-collection/large-object-heap)
 
 ### <a name="httpclient"></a>HttpClient
 
-El uso incorrecto de <xref:System.Net.Http.HttpClient> puede producir una pérdida de recursos. Recursos del sistema, como conexiones de bases de datos, sockets, identificadores de archivo, etc.:
+El <xref:System.Net.Http.HttpClient> uso incorrecto puede provocar una fuga de recursos. Recursos del sistema, como conexiones de base de datos, sockets, identificadores de archivos, etc.:
 
 * Son más escasos que la memoria.
-* Son más problemáticas cuando se pierden la memoria.
+* Son más problemáticos cuando se pierden que la memoria.
 
-Los desarrolladores de .NET experimentados saben llamar a <xref:System.IDisposable.Dispose*> en objetos que implementan <xref:System.IDisposable>. No desechar objetos que implementan `IDisposable` suele producir pérdida de memoria o de recursos del sistema perdidos.
+Los desarrolladores experimentados <xref:System.IDisposable.Dispose*> de .NET <xref:System.IDisposable>saben llamar a objetos que implementan . No eliminar objetos `IDisposable` que implementan normalmente da como resultado memoria con pérdida o recursos del sistema filtrados.
 
-`HttpClient` implementa `IDisposable`, pero **no** debe desecharse en cada invocación. En su lugar, se debe reutilizar `HttpClient`.
+`HttpClient`implementos `IDisposable`, pero **no** deben eliminarse en cada invocación. Más `HttpClient` bien, debe ser reutilizado.
 
-El siguiente punto de conexión crea y desecha una nueva instancia de `HttpClient` en cada solicitud:
+El siguiente punto de conexión `HttpClient` crea y elimina una nueva instancia en cada solicitud:
 
 ```csharp
 [HttpGet("httpclient1")]
@@ -305,7 +311,7 @@ public async Task<int> GetHttpClient1(string url)
 }
 ```
 
-Bajo carga, se registran los siguientes mensajes de error:
+En la carga, se registran los siguientes mensajes de error:
 
 ```
 fail: Microsoft.AspNetCore.Server.Kestrel[13]
@@ -319,9 +325,9 @@ System.Net.Http.HttpRequestException: Only one usage of each socket address
     CancellationToken cancellationToken)
 ```
 
-Aunque se eliminen las instancias de `HttpClient`, la conexión de red real tarda algún tiempo en publicarse en el sistema operativo. Al crear continuamente nuevas conexiones, se produce el agotamiento de los _puertos_ . Cada conexión de cliente requiere su propio puerto de cliente.
+Aunque las `HttpClient` instancias se eliminan, la conexión de red real tarda algún tiempo en ser liberada por el sistema operativo. Al crear continuamente nuevas conexiones, se produce el agotamiento de _los puertos._ Cada conexión de cliente requiere su propio puerto de cliente.
 
-Una manera de evitar el agotamiento del puerto es reutilizar la misma instancia de `HttpClient`:
+Una manera de prevenir el agotamiento `HttpClient` del puerto es reutilizar la misma instancia:
 
 ```csharp
 private static readonly HttpClient _httpClient = new HttpClient();
@@ -334,27 +340,27 @@ public async Task<int> GetHttpClient2(string url)
 }
 ```
 
-La instancia de `HttpClient` se libera cuando se detiene la aplicación. Este ejemplo muestra que no se deben eliminar todos los recursos descartados después de cada uso.
+La `HttpClient` instancia se libera cuando se detiene la aplicación. Este ejemplo muestra que no todos los recursos desechables deben eliminarse después de cada uso.
 
-Vea lo siguiente para obtener una mejor manera de controlar la duración de una instancia de `HttpClient`:
+Consulte lo siguiente para obtener una mejor `HttpClient` manera de controlar la duración de una instancia:
 
 * [HttpClient y administración de la duración](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
-* [Blog de factoría de HTTPClient](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
+* [Blog de fábrica HTTPClient](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### <a name="object-pooling"></a>Agrupación de objetos
 
-En el ejemplo anterior se mostró cómo se puede hacer que la instancia de `HttpClient` sea estática y reutilizada por todas las solicitudes. La reutilización evita quedarse sin recursos.
+En el ejemplo `HttpClient` anterior se muestra cómo se puede hacer estática y reutilizar la instancia por todas las solicitudes. La reutilización impide quedarse sin recursos.
 
 Agrupación de objetos:
 
-* Usa el patrón de reutilización.
+* Utiliza el patrón de reutilización.
 * Está diseñado para objetos que son caros de crear.
 
-Un grupo es una colección de objetos previamente inicializados que se pueden reservar y liberar entre subprocesos. Los grupos pueden definir reglas de asignación como límites, tamaños predefinidos o tasa de crecimiento.
+Un grupo es una colección de objetos inicializados previamente que se pueden reservar y liberar entre subprocesos. Los grupos pueden definir reglas de asignación como límites, tamaños predefinidos o tasa de crecimiento.
 
-El paquete NuGet [Microsoft. Extensions. ObjectPool](https://www.nuget.org/packages/Microsoft.Extensions.ObjectPool/) contiene clases que ayudan a administrar estos grupos.
+El paquete NuGet [Microsoft.Extensions.ObjectPool](https://www.nuget.org/packages/Microsoft.Extensions.ObjectPool/) contiene clases que ayudan a administrar dichos grupos.
 
-El siguiente punto de conexión de API crea una instancia de un búfer `byte` que se rellena con números aleatorios en cada solicitud:
+El siguiente punto de `byte` conexión de API crea una instancia de un búfer que se rellena con números aleatorios en cada solicitud:
 
 ```csharp
         [HttpGet("array/{size}")]
@@ -368,25 +374,25 @@ El siguiente punto de conexión de API crea una instancia de un búfer `byte` qu
         }
 ```
 
-En el siguiente gráfico se muestra la llamada a la API anterior con carga moderada:
+En la siguiente pantalla de gráfico se muestra la llamada a la API anterior con carga moderada:
 
 ![gráfico anterior](memory/_static/array.png)
 
-En el gráfico anterior, las recopilaciones de generación 0 se producen aproximadamente una vez por segundo.
+En el gráfico anterior, las colecciones de generación 0 se producen aproximadamente una vez por segundo.
 
-El código anterior se puede optimizar agrupando el búfer de `byte` mediante [ArrayPool\<t >](xref:System.Buffers.ArrayPool`1). Una instancia estática se reutiliza en todas las solicitudes.
+El código anterior se puede optimizar `byte` agrupando el búfer mediante [ArrayPool\<T>](xref:System.Buffers.ArrayPool`1). Una instancia estática se reutiliza entre las solicitudes.
 
-Lo que es diferente con este enfoque es que la API devuelve un objeto agrupado. Esto significa:
+Lo que es diferente con este enfoque es que un objeto agrupado se devuelve desde la API. Eso significa:
 
-* El objeto está fuera del control tan pronto como se devuelve desde el método.
+* El objeto está fuera del control tan pronto como se vuelve del método.
 * No se puede liberar el objeto.
 
 Para configurar la eliminación del objeto:
 
-* Encapsula la matriz agrupada en un objeto descartable.
-* Registre el objeto agrupado con [HttpContext. Response. RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
+* Encapsular la matriz agrupada en un objeto desechable.
+* Registre el objeto agrupado con [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
 
-`RegisterForDispose` se encargará de llamar a `Dispose`en el objeto de destino para que solo se libere cuando se complete la solicitud HTTP.
+`RegisterForDispose`se encargará `Dispose`de llamar al objeto de destino para que solo se libere cuando se complete la solicitud HTTP.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
@@ -420,15 +426,15 @@ public byte[] GetPooledArray(int size)
 }
 ```
 
-Al aplicar la misma carga que la versión no agrupada, se obtiene el siguiente gráfico:
+La aplicación de la misma carga que la versión no agrupada da como resultado el siguiente gráfico:
 
 ![gráfico anterior](memory/_static/pooledarray.png)
 
-La diferencia principal son los bytes asignados y, como consecuencia, muchas menos de la generación 0.
+La diferencia principal es los bytes asignados y, como consecuencia, mucho menos las colecciones de generación 0.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
 * [Recolección de elementos no utilizados](/dotnet/standard/garbage-collection/)
-* [Descripción de los distintos modos de GC con el visualizador de simultaneidad](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
-* [Montón de objetos grandes descubierto](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
+* [Comprender los diferentes modos de GC con el visualizador de simultaneidad](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
+* [Montón de objetos grandes descubiertos](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Montón de objetos grandes](/dotnet/standard/garbage-collection/large-object-heap)
