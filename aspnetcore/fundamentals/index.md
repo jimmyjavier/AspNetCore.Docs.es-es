@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 uid: fundamentals/index
-ms.openlocfilehash: da2b42a7cf5d116a36d1dd9fa586d40ab31fc52d
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: c675644d8480ef7a5290045067e6cec2ea6f4764
+ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417650"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81384058"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceptos básicos de ASP.NET Core
 
@@ -205,7 +205,7 @@ La raíz del contenido es la ruta de acceso base para:
   * Archivos de datos ( *.db*)
 * La [raíz web](#web-root), por lo general la carpeta *wwwroot*.
 
-Durante el desarrollo, la raíz del contenido tiene como valor predeterminado el directorio raíz del proyecto. Este directorio también es la ruta de acceso base para los archivos de contenido de la aplicación y la [raíz web](#web-root). Especifique una raíz de contenido diferente estableciendo su ruta de acceso al [compilar el host](#host). Para obtener más información, vea [Raíz del contenido](xref:fundamentals/host/generic-host#contentrootpath-1).
+Durante el desarrollo, la raíz del contenido tiene como valor predeterminado el directorio raíz del proyecto. Este directorio también es la ruta de acceso base para los archivos de contenido de la aplicación y la [raíz web](#web-root). Especifique una raíz de contenido diferente estableciendo su ruta de acceso al [compilar el host](#host). Para obtener más información, vea [Raíz del contenido](xref:fundamentals/host/generic-host#contentroot).
 
 ## <a name="web-root"></a>Raíz web
 
@@ -215,7 +215,7 @@ La raíz web es la ruta de acceso base para los archivos de recursos estáticos 
 * JavaScript ( *.js*)
 * Imágenes ( *.png*, *.jpg*)
 
-De manera predeterminada, los archivos estáticos solo se sirven desde el directorio raíz web y sus subdirectorios. La ruta de acceso raíz web se establece de manera predeterminada en *{raíz del contenido}/wwwroot*. Para especificar otra raíz web, establezca su ruta de acceso al [compilar el host](#host). Para obtener más información, vea [Raíz web](xref:fundamentals/host/generic-host#webroot-1).
+De manera predeterminada, los archivos estáticos solo se sirven desde el directorio raíz web y sus subdirectorios. La ruta de acceso raíz web se establece de manera predeterminada en *{raíz del contenido}/wwwroot*. Para especificar otra raíz web, establezca su ruta de acceso al [compilar el host](#host). Para obtener más información, vea [Raíz web](xref:fundamentals/host/generic-host#webroot).
 
 Evite la publicación de archivos en *wwwroot* con el [\<Content> elemento de proyecto](/visualstudio/msbuild/common-msbuild-project-items#content) en el archivo de proyecto. En el ejemplo siguiente se impide la publicación de contenido en *wwwroot/local* y sus subdirectorios:
 
