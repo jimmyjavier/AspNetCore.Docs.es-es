@@ -4,14 +4,14 @@ author: rick-anderson
 description: Obtén información sobre cómo CORS como estándar para permitir o rechazar solicitudes entre orígenes en una aplicación ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 04/17/2020
 uid: security/cors
-ms.openlocfilehash: e7731fd967c206679ac93209fdb84f40367bea37
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 56a339d9018f619af38aecc6f4c2ff40c3c43d2f
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440914"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642702"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Habilitar solicitudes entre orígenes (CORS) en ASP.NET Core
 
@@ -30,7 +30,7 @@ Uso compartido de recursos entre [orígenes](https://www.w3.org/TR/cors/) (CORS)
 * Permite que un servidor permita explícitamente algunas solicitudes entre orígenes mientras rechaza otras.
 * Es más seguro y flexible que las técnicas anteriores, como [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[Ver o descargar código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebAPI) ( cómo[descargar](xref:index#how-to-download-a-sample))
+[Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebAPI) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
 ## <a name="same-origin"></a>Mismo origen
 
@@ -71,7 +71,7 @@ CORS Middleware controla las solicitudes entre orígenes. El código siguiente a
 El código anterior:
 
 * Establece el nombre `_myAllowSpecificOrigins`de la directiva en . El nombre de la directiva es arbitrario.
-* Llama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> al método de `_myAllowSpecificOrigins` extensión y especifica la directiva CORS. `UseCors`agrega el middleware CORS.
+* Llama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> al método de `_myAllowSpecificOrigins` extensión y especifica la directiva CORS. `UseCors`agrega el middleware CORS. La llamada `UseCors` a ser `UseRouting`colocada `UseAuthorization`después de , pero antes . Para obtener más información, consulte Pedido de [Middleware](xref:fundamentals/middleware/index#middleware-order).
 * Llamadas <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> con una [expresión lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). La expresión <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> lambda toma un objeto. [Las opciones](#cors-policy-options)de `WithOrigins`configuración, como , se describen más adelante en este artículo.
 * Habilita `_myAllowSpecificOrigins` la directiva CORS para todos los extremos del controlador. Consulte Enrutamiento de [puntos](#ecors) de conexión para aplicar una directiva CORS a puntos de conexión específicos.
 
@@ -135,7 +135,7 @@ El atributo [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) p
 El `[EnableCors]` atributo se puede aplicar a:
 
 * Página de Razor`PageModel`
-* Controller
+* Controlador
 * Método de acción del controlador
 
 Se pueden aplicar diferentes directivas a controladores, `[EnableCors]` modelos de página o métodos de acción con el atributo. Cuando `[EnableCors]` el atributo se aplica a un controlador, modelo de página o método de acción y CORS está habilitado en middleware, se aplican ***ambas*** directivas. ***Se recomienda no combinar directivas. Use el*** `[EnableCors]` ***atributo o middleware, no ambos en la misma aplicación.***
@@ -627,7 +627,7 @@ Uso compartido de recursos entre [orígenes](https://www.w3.org/TR/cors/) (CORS)
 * Permite que un servidor permita explícitamente algunas solicitudes entre orígenes mientras rechaza otras.
 * Es más seguro y flexible que las técnicas anteriores, como [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[Ver o descargar código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample) ( cómo[descargar](xref:index#how-to-download-a-sample))
+[Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
 ## <a name="same-origin"></a>Mismo origen
 
@@ -705,7 +705,7 @@ Se `[EnableCors]` utiliza para especificar `[EnableCors("{Policy String}")]` la 
 El `[EnableCors]` atributo se puede aplicar a:
 
 * Página de Razor`PageModel`
-* Controller
+* Controlador
 * Método de acción del controlador
 
 Puede aplicar diferentes directivas al controlador/modelo de `[EnableCors]` página/acción con el atributo. Cuando `[EnableCors]` el atributo se aplica a un método de acción/modelo de página/controladores/páginas y CORS está habilitado en middleware, se aplican ***ambas*** directivas. Se recomienda ***no*** combinar directivas. Utilice `[EnableCors]` el atributo o middleware, ***no ambos**. Cuando `[EnableCors]`utilice , **no** defina una directiva predeterminada.

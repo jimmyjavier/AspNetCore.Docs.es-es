@@ -4,18 +4,18 @@ author: ardalis
 description: Obtenga información sobre cómo dar formato a datos de respuesta en ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 12/05/2019
+ms.date: 04/17/2020
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 908016720ade67a02ebe30d1dcb7929ad7592270
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 392e4905126ffb6801cc55055f1d511f5fa99dd1
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653045"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642707"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Aplicación de formato a datos de respuesta en ASP.NET Core Web API
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT) y [Steve Smith](https://ardalis.com/)
+De [Rick Anderson](https://twitter.com/RickAndMSFT) y [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC tiene compatibilidad para formatear datos de respuesta. Se pueden formatear los datos de respuesta con formatos específicos o en respuesta al formato solicitado por el cliente.
 
@@ -25,13 +25,13 @@ ASP.NET Core MVC tiene compatibilidad para formatear datos de respuesta. Se pued
 
 Algunos tipos de resultado de acción son específicos de un formato determinado, como <xref:Microsoft.AspNetCore.Mvc.JsonResult> y <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Las acciones pueden devolver resultados con un formato determinado, independientemente de las preferencias del cliente. Por ejemplo, la devolución de `JsonResult` devuelve datos con formato JSON. Al devolver `ContentResult` o una cadena se devuelven datos de cadena con formato de texto sin formato.
 
-No se requiere una acción para devolver ningún tipo específico. ASP.NET Core admite cualquier valor devuelto de objeto.  Los resultados de acciones que devuelven objetos que no son tipos <xref:Microsoft.AspNetCore.Mvc.IActionResult> se serializan con la implementación <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> correspondiente. Para más información, consulte <xref:web-api/action-return-types>.
+No se requiere una acción para devolver ningún tipo específico. ASP.NET Core admite cualquier valor devuelto de objeto.  Los resultados de acciones que devuelven objetos que no son tipos <xref:Microsoft.AspNetCore.Mvc.IActionResult> se serializan con la implementación <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> correspondiente. Para obtener más información, vea <xref:web-api/action-return-types>.
 
 El método auxiliar integrado <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> devuelve datos con formato JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
 La descarga de ejemplo devuelve la lista de autores. Con las herramientas para desarrolladores del explorador F12 o [Postman](https://www.getpostman.com/tools) con el código anterior:
 
-* Se muestra el encabezado de respuesta que contiene **Content-Type:** `application/json; charset=utf-8`.
+* Se muestra el encabezado de respuesta que contiene **content-type:** `application/json; charset=utf-8`.
 * Se muestran los encabezados de solicitud. Por ejemplo, el encabezado `Accept`. El código anterior omite el encabezado `Accept`.
 
 Para devolver datos con formato de texto sin formato, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> y el método del asistente <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content>:
@@ -67,7 +67,7 @@ Devolución de un tipo de objeto:
 
 En el código anterior, una solicitud de un alias de autor válido devuelve una respuesta `200 OK` con los datos del autor. Una solicitud de un alias no válido devuelve una respuesta `204 No Content`.
 
-### <a name="the-accept-header"></a>Encabezado Accept
+### <a name="the-accept-header"></a>El encabezado Accept
 
 La *negociación* de contenido se lleva a cabo cuando en la solicitud aparece un encabezado `Accept`. Cuando una solicitud contiene un encabezado Accept, ASP.NET Core:
 
@@ -128,10 +128,10 @@ Las características para los formateadores basados en `System.Text.Json` pueden
 services.AddControllers().AddJsonOptions(options =>
 {
     // Use the default property (Pascal) casing.
-    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
 
     // Configure a custom converter.
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -170,7 +170,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
     // Configure a custom converter
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.SerializerSettings.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -206,11 +206,11 @@ Cuando se usa el código anterior, los métodos de controlador deben devolver el
 
 ### <a name="specify-a-format"></a>Especificación de un formato
 
-Para restringir los formatos de respuesta, aplique el filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute). Al igual que la mayoría de los [filtros](xref:mvc/controllers/filters), `[Produces]` puede aplicarse a la acción, el controlador o el ámbito global:
+Para restringir los formatos [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) de respuesta, aplique el filtro. Al igual `[Produces]` que la mayoría de los [filtros](xref:mvc/controllers/filters), se puede aplicar en la acción, controlador o ámbito global:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-El filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) anterior:
+El [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filtro anterior:
 
 * Obliga a que todas las acciones dentro del controlador devuelvan respuestas con formato JSON.
 * Si se configuran otros formateadores y el cliente especifica un formato diferente, se devuelve JSON.
@@ -246,7 +246,7 @@ La asignación de la ruta de acceso de la solicitud debe especificarse en la rut
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
-Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El atributo [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) comprueba la existencia del valor de formato en `RouteData` y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
+Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) atributo comprueba la existencia del valor `RouteData` de formato en el y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
 
 |           Enrutar        |             Formateador              |
 |------------------------|------------------------------------|
