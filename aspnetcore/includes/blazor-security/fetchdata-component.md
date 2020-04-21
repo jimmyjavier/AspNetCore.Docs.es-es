@@ -38,7 +38,7 @@ Si se produjo un error en la solicitud porque el token no se pudo aprovisionar s
         {
             httpClient.DefaultRequestHeaders.Add("Authorization", 
                 $"Bearer {token.Value}");
-            forecasts = await httpClient.GetJsonAsync<WeatherForecast[]>(
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         else
