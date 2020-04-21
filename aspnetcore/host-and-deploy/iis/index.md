@@ -5,16 +5,27 @@ description: Obtenga información sobre cómo hospedar aplicaciones de ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 04/17/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: e4da57001ad369a8df87c7e0887772e3d75c032d
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 77f07ba89de4449c6d13006a5fd61499cb5cdfc0
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511228"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642745"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedaje de ASP.NET Core en Windows con IIS
+
+<!-- 
+
+    NOTE FOR 5.0
+    
+    When making the 5.0 version of this topic, remove the Hosting Bundle
+    direct download section from the (new) <5.0 & >2.2 version and modify 
+    the text and heading for the *Earlier versions of the installer* 
+    section. See the 2.2 version for an example.
+    
+-->
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -250,9 +261,9 @@ Descargue al instalador mediante el vínculo siguiente:
 Para obtener una versión anterior del instalador:
 
 1. Vaya a la página [Descarga de .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Haga clic en la versión de .NET Core que necesite.
+1. Seleccione la versión de .NET Core que quiera.
 1. En la columna **Run apps - Runtime** (Ejecutar aplicaciones - Runtime), busque la fila de la versión del runtime de .NET Core que quiera instalar.
-1. Descargue el instalador mediante el vínculo **Runtime & Hosting Bundle** (Runtime y conjunto de hospedaje).
+1. Descargue el instalador mediante el vínculo del **conjunto de hospedaje**.
 
 > [!WARNING]
 > Algunos instaladores contienen versiones que han alcanzado el final del ciclo de vida (EOL) y ya no son compatibles con Microsoft. Para obtener más información, consulte la [política de soporte técnico](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -846,20 +857,12 @@ Instale el *conjunto de hospedaje de .NET Core* en el sistema de hospedaje. El l
 >
 > Si el conjunto de hospedaje se instala después de hacer lo propio con la versión de 64 bits (x64) de .NET Core, es posible que los SDK no estén disponibles ([No se ha detectado ningún SDK de .NET Core](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Para resolver el problema, consulte <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="direct-download-current-version"></a>Descarga directa (versión actual)
-
-Descargue al instalador mediante el vínculo siguiente:
-
-[Instalador del conjunto de hospedaje de .NET Core actual (descarga directa)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### <a name="earlier-versions-of-the-installer"></a>Versiones anteriores del instalador
-
-Para obtener una versión anterior del instalador:
+### <a name="download"></a>Descargar
 
 1. Vaya a la página [Descarga de .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Haga clic en la versión de .NET Core que necesite.
+1. Seleccione la versión de .NET Core que quiera.
 1. En la columna **Run apps - Runtime** (Ejecutar aplicaciones - Runtime), busque la fila de la versión del runtime de .NET Core que quiera instalar.
-1. Descargue el instalador mediante el vínculo **Runtime & Hosting Bundle** (Runtime y conjunto de hospedaje).
+1. Descargue el instalador mediante el vínculo del **conjunto de hospedaje**.
 
 > [!WARNING]
 > Algunos instaladores contienen versiones que han alcanzado el final del ciclo de vida (EOL) y ya no son compatibles con Microsoft. Para obtener más información, consulte la [política de soporte técnico](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -1422,20 +1425,12 @@ Instale el *conjunto de hospedaje de .NET Core* en el sistema de hospedaje. El l
 >
 > Si el conjunto de hospedaje se instala después de hacer lo propio con la versión de 64 bits (x64) de .NET Core, es posible que los SDK no estén disponibles ([No se ha detectado ningún SDK de .NET Core](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Para resolver el problema, consulte <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="direct-download-current-version"></a>Descarga directa (versión actual)
-
-Descargue al instalador mediante el vínculo siguiente:
-
-[Instalador del conjunto de hospedaje de .NET Core actual (descarga directa)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### <a name="earlier-versions-of-the-installer"></a>Versiones anteriores del instalador
-
-Para obtener una versión anterior del instalador:
+### <a name="download"></a>Descargar
 
 1. Vaya a la página [Descarga de .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Haga clic en la versión de .NET Core que necesite.
+1. Seleccione la versión de .NET Core que quiera.
 1. En la columna **Run apps - Runtime** (Ejecutar aplicaciones - Runtime), busque la fila de la versión del runtime de .NET Core que quiera instalar.
-1. Descargue el instalador mediante el vínculo **Runtime & Hosting Bundle** (Runtime y conjunto de hospedaje).
+1. Descargue el instalador mediante el vínculo del **conjunto de hospedaje**.
 
 > [!WARNING]
 > Algunos instaladores contienen versiones que han alcanzado el final del ciclo de vida (EOL) y ya no son compatibles con Microsoft. Para obtener más información, consulte la [política de soporte técnico](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
