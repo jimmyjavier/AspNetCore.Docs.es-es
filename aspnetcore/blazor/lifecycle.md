@@ -5,17 +5,17 @@ description: Obtenga información sobre cómo usar los métodos de ciclo de vida
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 831f575afa6ce11d06c016d43ecd1bb59d09eab6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218913"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791465"
 ---
 # <a name="aspnet-core-opno-locblazor-lifecycle"></a>Ciclo de vida de ASP.NET Core Blazor
 
@@ -141,7 +141,7 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-`OnAfterRender`No se llama a `OnAfterRenderAsync` y  *al representarse previamente en el servidor.*
+*No se llama a `OnAfterRender` y `OnAfterRenderAsync` al representarse previamente en el servidor.*
 
 Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con IDisposable](#component-disposal-with-idisposable).
 
@@ -213,7 +213,7 @@ Para obtener información sobre cómo controlar los errores durante la ejecució
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Reconexión con estado después de la representación previa
 
-En una aplicación Blazor Server, cuando `RenderMode` es `ServerPrerendered`, el componente se representa inicialmente de forma estática como parte de la página. Una vez que el explorador vuelve a establecer una conexión con el servidor, el componente se representa *otra vez* y el componente ahora es interactivo. Si el método de ciclo de vida [OnInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) para inicializar el componente está presente, el método se ejecuta *dos veces*:
+En una aplicación Blazor Server, cuando `RenderMode` es `ServerPrerendered`, el componente se representa inicialmente de forma estática como parte de la página. Una vez que el explorador vuelve a establecer una conexión con el servidor, el componente se representa *otra vez* y el componente ahora es interactivo. Si el método de ciclo de vida [OnInitialized{Async}](#component-initialization-methods) para inicializar el componente está presente, el método se ejecuta *dos veces*:
 
 * Cuando el componente se representa previamente de forma estática.
 * Después de establecerse la conexión con el servidor.

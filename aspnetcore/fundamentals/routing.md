@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 5742ac6879ce46e01247ddd2f8bfe3e3b8a2a02a
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 0fc89ccf15c14c67f284a7084a21159af300a195
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751146"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277228"
 ---
 # <a name="routing-in-aspnet-core"></a>Enrutamiento en ASP.NET Core
 
@@ -454,6 +454,8 @@ El uso de una plantilla suele ser el método de enrutamiento más sencillo. Las 
 
 Los segmentos complejos se procesan mediante la búsqueda de coincidencias de delimitadores literales de derecha a izquierda de un modo [no expansivo](#greedy). Por ejemplo, `[Route("/a{b}c{d}")]` es un segmento complejo.
 Los segmentos complejos funcionan de una manera determinada que se debe entender para usarlos correctamente. En el ejemplo de esta sección se muestra por qué los segmentos complejos solo funcionan bien cuando el texto del delimitador no aparece dentro de los valores de los parámetros. En casos más complejos es necesario usar una [expresión regular](/dotnet/standard/base-types/regular-expressions) y extraer los valores de forma manual.
+
+[!INCLUDE[](~/includes/regex.md)]
 
 Este es un resumen de los pasos que realiza el enrutamiento con la plantilla `/a{b}c{d}` y la ruta de dirección URL `/abcd`. `|` se usa para ayudar a visualizar cómo funciona el algoritmo:
 

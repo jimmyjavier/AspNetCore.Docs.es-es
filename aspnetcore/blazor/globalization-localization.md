@@ -5,17 +5,17 @@ description: Obtenga información sobre cómo poner los componentes de Razor a d
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 04/14/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: aba62fa7b6285c8ba884652694f1ea3e3a66ed18
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1b0db66b23c0caffc6b7c4e4af723c020609612a
+ms.sourcegitcommit: d5d45d84fe488427d418de770000f7df44a08370
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78644897"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81539666"
 ---
 # <a name="aspnet-core-opno-locblazor-globalization-and-localization"></a>Globalización y localización de Blazor de ASP.NET Core
 
@@ -60,6 +60,18 @@ Los siguientes tipos de campo tienen requisitos de formato específicos y no se 
 
 ## <a name="localization"></a>Localización
 
+### <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+
+Las aplicaciones de Blazor WebAssembly establecen la referencia cultural mediante la [preferencia de idioma](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages) del usuario.
+
+Para configurar explícitamente la referencia cultural, establezca `CultureInfo.DefaultThreadCurrentCulture` y `CultureInfo.DefaultThreadCurrentUICulture` en `Program.Main`.
+
+De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones WebAssembly de Blazor quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Para obtener más información e instrucciones sobre cómo controlar el comportamiento del enlazador, vea <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
+
+Si bien la referencia cultural que Blazor selecciona de manera predeterminada puede ser suficiente para la mayoría de los usuarios, considere la posibilidad de ofrecer una manera para que los usuarios especifiquen su configuración regional preferida. Para una aplicación de ejemplo de Blazor WebAssembly con un selector de referencia cultural, consulte la aplicación de ejemplo de localización [LocSample](https://github.com/pranavkm/LocSample).
+
+### <a name="opno-locblazor-server"></a>Servidor de Blazor
+
 Las aplicaciones de servidor Blazor se localizan usando un [middleware de localización](xref:fundamentals/localization#localization-middleware). El middleware selecciona la referencia cultural adecuada según los usuarios que solicitan recursos de la aplicación.
 
 La referencia cultural se puede establecer con uno de los siguientes métodos:
@@ -69,11 +81,7 @@ La referencia cultural se puede establecer con uno de los siguientes métodos:
 
 Para obtener más información y ejemplos, vea <xref:fundamentals/localization>.
 
-### <a name="configure-the-linker-for-internationalization-opno-locblazor-webassembly"></a>Configuración del enlazador para la internacionalización (WebAssembly de Blazor)
-
-De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones WebAssembly de Blazor quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Para obtener más información e instrucciones sobre cómo controlar el comportamiento del enlazador, vea <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
-
-### <a name="cookies"></a>Cookies
+#### <a name="cookies"></a>Cookies
 
 Una cookie de referencia cultural de localización puede conservar la referencia cultural del usuario. La cookie se crea a través del método `OnGet` de la página host de la aplicación (*Pages/Host.cshtml.cs*). El middleware de localización lee la cookie en solicitudes posteriores para establecer la referencia cultural del usuario. 
 
@@ -81,7 +89,7 @@ El uso de una cookie garantiza que la conexión WebSocket puede propagar correct
 
 Se puede usar cualquier técnica para asignar una referencia cultural si la referencia cultural se conserva en una cookie de localización. Si la aplicación ya tiene un esquema de localización establecido para ASP.NET Core del lado servidor, siga usando la infraestructura de localización existente de la aplicación y establezca la cookie de cultura de localización en el esquema de la aplicación.
 
-En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree un archivo *Pages/Host.cshtml.cs* con el siguiente contenido en la aplicación de servidor Blazor:
+En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree un archivo *Pages/_Host.cshtml.cs* con el contenido siguiente en la aplicación de Blazor Server:
 
 ```csharp
 public class HostModel : PageModel
@@ -107,9 +115,9 @@ La aplicación controla la localización en la siguiente secuencia de eventos:
 1. El middleware de localización lee la cookie y asigna la referencia cultural.
 1. La sesión del servidor Blazor comienza con la referencia cultural correcta.
 
-### <a name="provide-ui-to-choose-the-culture"></a>Especificación de una interfaz de usuario para elegir la referencia cultural
+#### <a name="provide-ui-to-choose-the-culture"></a>Especificación de una interfaz de usuario para elegir la referencia cultural
 
-Para especificar una interfaz de usuario que permita a los usuarios seleccionar una referencia cultural, se recomienda usar un *método basado en el redireccionamiento*. El proceso es similar a lo que ocurre en una aplicación web cuando un usuario intenta acceder a un recurso seguro; esto es, se redirige al usuario a una página de inicio de sesión y, después, se le redirige nuevamente de vuelta al recurso original. 
+Para especificar una interfaz de usuario que permita a los usuarios seleccionar una referencia cultural, se recomienda usar un *método basado en el redireccionamiento*. El proceso es similar a lo que ocurre en una aplicación web cuando un usuario intenta acceder a un recurso seguro. El usuario se redirige a una página de inicio de sesión y, a continuación, se redirige de vuelta al recurso original. 
 
 La aplicación conserva la referencia cultural seleccionada por el usuario a través de un redireccionamiento a un controlador. Este controlador establece la referencia cultural seleccionada del usuario en una cookie y redirige al usuario de nuevo al URI original.
 
@@ -154,7 +162,7 @@ El siguiente componente muestra un ejemplo sobre cómo realizar el redireccionam
     private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
-        var uri = new Uri(NavigationManager.Uri())
+        var uri = new Uri(NavigationManager.Uri)
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";

@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: df41f296e9c4e1eff6e31d45b29ec30ee1e20cf4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d7ee3e42d320d35c2aaff6e097203c45289ec5b1
+ms.sourcegitcommit: fbdb8b9ab5a52656384b117ff6e7c92ae070813c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646559"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81228132"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Implementación de una aplicación en App Service
 
@@ -85,7 +85,7 @@ Para implementar la aplicación, debe crear una [aplicación web](/azure/app-ser
 
     b. Cree un grupo de recursos. Los grupos de recursos proporcionan un medio para agregar recursos de Azure para administrarlos como un grupo.
 
-    ```azure-cli
+    ```azurecli
     az group create --location centralus --name AzureTutorial
     ```
 
@@ -93,25 +93,25 @@ Para implementar la aplicación, debe crear una [aplicación web](/azure/app-ser
 
     c. Cree un plan de App Service en el nivel S1. Un plan de App Service es una agrupación de aplicaciones web que comparten el mismo plan de tarifa. El nivel S1 no es gratuito, pero es necesario para la característica de espacios de ensayo.
 
-    ```azure-cli
+    ```azurecli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
     d. Cree el recurso de la aplicación web con el plan de App Service en el mismo grupo de recursos.
 
-    ```azure-cli
+    ```azurecli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
     ```
 
     e. Cree las credenciales de implementación. Estas credenciales de implementación se aplican a todas las aplicaciones web de su suscripción. No utilice caracteres especiales en el nombre de usuario.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Configure la aplicación web para que acepte implementaciones de Git local y muestre la *dirección URL de implementación de Git*. **Tenga en cuenta esta dirección URL como referencia más adelante**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
@@ -170,13 +170,13 @@ Las ranuras de implementación admiten el almacenamiento provisional de los camb
 
     a. Cree una ranura de implementación con el nombre *almacenamiento provisional*.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
     b. Configure el espacio de ensayo para usar la implementación de Git local y obtener la dirección URL de implementación de **almacenamiento provisional**. **Tenga en cuenta esta dirección URL como referencia más adelante**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
@@ -216,7 +216,7 @@ Las ranuras de implementación admiten el almacenamiento provisional de los camb
 
 7. En Cloud Shell, intercambie el espacio de ensayo verificado o preparado a producción.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
