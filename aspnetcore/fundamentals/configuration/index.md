@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
 uid: fundamentals/configuration/index
-ms.openlocfilehash: d76ca78bc988f859b4e99752a0e88735e1df1d82
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 506f01ace72d6e915c0f3ebdaae5b4a3328a79b9
+ms.sourcegitcommit: e72a58d6ebde8604badd254daae8077628f9d63e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80501327"
+ms.lasthandoff: 04/10/2020
+ms.locfileid: "81007163"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuración en ASP.NET Core
 
@@ -311,7 +311,7 @@ Las claves de configuración:
 * Claves jerárquicas
   * Dentro de la API de configuración, un separador de dos puntos (`:`) funciona en todas las plataformas.
   * En las variables de entorno, puede que un separador de dos puntos no funcione en todas las plataformas. Todas las plataformas admiten un carácter de subrayado doble, `__`, que se convierte automáticamente en un signo de dos puntos `:`.
-  * En Azure Key Vault, las claves jerárquicas usan `--` como separador. Escriba código para reemplazar `--` por `:` cuando los secretos se carguen en la configuración de la aplicación.
+  * En Azure Key Vault, las claves jerárquicas usan `--` como separador. El [proveedor de configuración de Azure Key Vault](xref:security/key-vault-configuration) reemplaza automáticamente `--` con `:` cuando los secretos se cargan en la configuración de la aplicación.
 * <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> admite enlazar matrices a objetos con los índices de matriz en las claves de configuración. El enlace de matriz se describe en la sección [Enlace de una matriz a una clase](#boa).
 
 Los valores de configuración:

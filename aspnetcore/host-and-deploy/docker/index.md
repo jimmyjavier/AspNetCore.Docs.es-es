@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
 uid: host-and-deploy/docker/index
-ms.openlocfilehash: cb5f774db5fab46a57f8ca4bbbca148f20f371ba
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 78eb6f467c7e779e1bf998e8ac8e917a90895db9
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644537"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440732"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Hospedar ASP.NET Core en contenedores de Docker
 
@@ -39,3 +39,5 @@ Obtenga información sobre cómo usar la extensión de herramientas de contenedo
 
 [Configurar ASP.NET Core para trabajar con servidores proxy y equilibradores de carga](xref:host-and-deploy/proxy-load-balancer)  
 Podría ser necesario realizar una configuración adicional para las aplicaciones hospedadas detrás de servidores proxy y equilibradores de carga. El proceso de pasar solicitudes a través de un proxy suele ocultar información de la solicitud original, como la dirección IP de cliente y el esquema. Podría ser necesario reenviar manualmente a la aplicación cierta información de la solicitud.
+
+[GC mediante Docker y contenedores pequeños](xref:performance/memory#sc) Trata de la selección de GC con contenedores pequeños.
