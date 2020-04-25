@@ -1,6 +1,6 @@
 ## <a name="usermanager-and-signinmanager"></a>UserManager y SignInManager
 
-Establezca el tipo de notificación de identificador de usuario cuando requiera una aplicación de servidor:
+Establezca el tipo de notificaciones de identificador de usuario cuando una aplicación de servidor requiera:
 
 * <xref:Microsoft.AspNetCore.Identity.UserManager%601>o <xref:Microsoft.AspNetCore.Identity.SignInManager%601> en un punto de conexión de API.
 * <xref:Microsoft.AspNetCore.Identity.IdentityUser>detalles, como el nombre del usuario, la dirección de correo electrónico o la hora de finalización del bloqueo.
@@ -12,7 +12,7 @@ services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-A `WeatherForecastController` continuación <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> se `Get` registra el momento en que se llama al método:
+Lo siguiente `WeatherForecastController` registra el <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> cuando se `Get` llama al método:
 
 ```csharp
 using System;
@@ -23,10 +23,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using BlazorAppIdentityServer.Server.Models;
-using BlazorAppIdentityServer.Shared;
+using {APP NAMESPACE}.Server.Models;
+using {APP NAMESPACE}.Shared;
 
-namespace BlazorAppIdentityServer.Server.Controllers
+namespace {APP NAMESPACE}.Server.Controllers
 {
     [Authorize]
     [ApiController]
