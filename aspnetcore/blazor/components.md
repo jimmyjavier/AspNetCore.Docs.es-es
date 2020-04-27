@@ -5,21 +5,21 @@ description: Obtenga información sobre cómo crear y usar componentes de Razor,
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2020
+ms.date: 04/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: bc1d07aef9cd60b89343a034168daa6754f4421b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4434636992cb2506ef6525996690946f97c43764
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80306508"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791486"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creación y uso de componentes de Razor de ASP.NET Core
 
-Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.com/danroth27)
+Por [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) y [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -141,6 +141,9 @@ En el siguiente ejemplo de la aplicación de muestra, `ParentComponent` establec
 *Pages/ParentComponent.razor*:
 
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
+
+> [!WARNING]
+> No cree componentes que escriban en sus propios *parámetros de componente*; en su lugar, use un campo privado. Para más información, consulte la sección [No crear componentes que escriban en sus propias propiedades de parámetro](#dont-create-components-that-write-to-their-own-parameter-properties).
 
 ## <a name="child-content"></a>Contenido secundario
 
@@ -400,7 +403,7 @@ Considere el ejemplo siguiente:
 
 El contenido de la colección `People` puede cambiar porque se inserten, eliminen o reordenen entradas. Cuando el componente se representa, el componente `<DetailsEditor>` puede cambiar para recibir diferentes valores de parámetro `Details`. Esto puede hacer que se genere una nueva representación más compleja de lo esperado. En algunos casos, la nueva representación puede producir diferencias de comportamiento visibles, como la pérdida de foco de un elemento.
 
-El proceso de asignación se puede controlar con el atributo de directiva `@key`. `@key` hace que el algoritmo de comparación de componentes garantice la conservación de elementos o componentes en función del valor de la clave:
+El proceso de asignación se puede controlar con el atributo de directiva [`@key`](xref:mvc/views/razor#key). `@key` hace que el algoritmo de comparación de componentes garantice la conservación de elementos o componentes en función del valor de la clave:
 
 ```csharp
 @foreach (var person in People)
@@ -453,6 +456,99 @@ Por lo general, lo lógico es proporcionar uno de los siguientes tipos de valor 
 * Identificadores únicos (por ejemplo, los valores de clave principal de tipo `int`, `string` o `Guid`).
 
 Asegúrese de que los valores usados en `@key` no entran en conflicto. Si se detectan valores en conflicto en el mismo elemento primario, Blazor produce una excepción porque no puede asignar de forma determinista elementos o componentes antiguos a nuevos elementos o componentes. Use exclusivamente valores distintos, como instancias de objeto o valores de clave principal.
+
+## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>No crear componentes que escriban en sus propias propiedades de parámetro
+
+Los parámetros se sobrescriben en las condiciones siguientes:
+
+* El contenido de un componente secundario se representa con un `RenderFragment`.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> se llama en el componente principal.
+
+Los parámetros se restablecen porque el componente principal se vuelve a representar cuando se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> y se suministran valores de parámetro nuevos al componente secundario.
+
+Considere el componente `Expander` siguiente que:
+
+* Representa el contenido secundario.
+* Alterna la visualización del contenido secundario con un parámetro de componente.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @Expanded)
+
+    @if (Expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void Toggle()
+    {
+        Expanded = !Expanded;
+    }
+}
+```
+
+El componente `Expander` se agrega a un componente principal que podría llamar a `StateHasChanged`:
+
+```razor
+<Expander Expanded="true">
+    <h1>Hello, world!</h1>
+</Expander>
+
+<Expander Expanded="true" />
+
+<button @onclick="@(() => StateHasChanged())">
+    Call StateHasChanged
+</button>
+```
+
+Al principio, los componentes `Expander` se comportan de manera independiente cuando se alternan sus propiedades de `Expanded`. Los componentes secundarios mantienen sus estados según lo previsto. Cuando se llama a `StateHasChanged` en el componente principal, el parámetro `Expanded` del primer componente secundario se restablece nuevamente en su valor inicial (`true`). No se restablece el valor `Expanded` del segundo componente de `Expander`, porque no se representa ningún contenido secundario en el segundo componente.
+
+Para mantener el estado en el escenario anterior, use un *campo privado* en el componente `Expander` para mantener su estado de alternancia.
+
+El componente `Expander` siguiente:
+
+* Acepta el valor del parámetro de componente `Expanded` del componente principal.
+* Asigna el valor del parámetro de componente a un *campo privado* (`_expanded`) en el [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Usa el campo privado para mantener su estado de alternancia interno.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @_expanded)
+
+    @if (_expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool _expanded;
+
+    protected override void OnInitialized()
+    {
+        _expanded = Expanded;
+    }
+
+    private void Toggle()
+    {
+        _expanded = !_expanded;
+    }
+}
+```
 
 ## <a name="partial-class-support"></a>Compatibilidad parcial de clases
 
