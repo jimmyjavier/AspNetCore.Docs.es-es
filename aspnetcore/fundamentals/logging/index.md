@@ -5,14 +5,14 @@ description: Obtenga información sobre cómo usar la plataforma de registro pro
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/17/2020
+ms.date: 4/23/2020
 uid: fundamentals/logging/index
-ms.openlocfilehash: b897d0d775da62a11f01a64f39b47b6c5abebc8b
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: 7be8cef3377132ed43efde209db67401d7bdb6dc
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791563"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110920"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Registros en .NET Core y ASP.NET Core
 
@@ -165,7 +165,9 @@ Si necesita configurar un servicio que dependa de `ILogger<T>`, puede hacerlo si
 
 El código resaltado anterior es un elemento `Func` que se ejecuta la primera vez que el contenedor de inserción de dependencias necesita crear una instancia de `MyService`. Puede acceder a cualquiera de los servicios registrados de esta forma.
 
-### <a name="create-logs-in-blazor-webassembly"></a>Creación de registros en WebAssembly de Blazor
+### <a name="create-logs-in-blazor"></a>Creación de registros en Blazor
+
+#### <a name="blazor-webassembly"></a>WebAssembly de Blazor
 
 Configure los registros en las aplicaciones de WebAssembly de Blazor con la propiedad `WebAssemblyHostBuilder.Logging` en `Program.Main`:
 
@@ -181,6 +183,63 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 ```
 
 La propiedad `Logging` es del tipo <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, de modo que todos los métodos de extensión disponibles en <xref:Microsoft.Extensions.Logging.ILoggingBuilder> también lo están en `Logging`.
+
+#### <a name="log-in-razor-components"></a>Registros en componentes de Razor
+
+Los registradores respetan la configuración de inicio de la aplicación.
+
+La directiva `using` para <xref:Microsoft.Extensions.Logging> es necesaria con el fin de permitir las finalizaciones de IntelliSense para las API, como <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> y <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
+
+El ejemplo siguiente muestra el registro con <xref:Microsoft.Extensions.Logging.ILogger> en componentes de Razor:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILogger<Counter> logger;
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
+
+El ejemplo siguiente muestra el registro con <xref:Microsoft.Extensions.Logging.ILoggerFactory> en componentes de Razor:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILoggerFactory LoggerFactory
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        var logger = LoggerFactory.CreateLogger<Counter>();
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
 
 ### <a name="no-asynchronous-logger-methods"></a>No hay métodos de registrador asincrónicos
 
