@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/26/2020
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 943ea30c2e4887638f69b6dcdb7e323bcee40240
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4e990329b7ebcfc9cbbff8a3c9895604a22461d3
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405976"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661695"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserción de dependencias en ASP.NET Core
 
@@ -196,7 +196,7 @@ Los servicios de duración transitoria (<xref:Microsoft.Extensions.DependencyInj
 Los servicios de duración con ámbito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) se crean una vez por solicitud del cliente (conexión).
 
 > [!WARNING]
-> Si usa un servicio con ámbito en un middleware, inserte el servicio en el método `Invoke` o `InvokeAsync`. No lo inserte a través de la inserción de constructores, porque ello hace que el servicio se comporte como un singleton. Para obtener más información, vea <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> Si usa un servicio con ámbito en un middleware, inserte el servicio en el método `Invoke` o `InvokeAsync`. No lo inserte a través de la [inserción de constructores](xref:mvc/controllers/dependency-injection#constructor-injection), porque ello hace que el servicio se comporte como un singleton. Para obtener más información, vea <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Singleton
 
@@ -261,9 +261,9 @@ Los servicios se pueden resolver mediante dos mecanismos:
 
 Los constructores pueden aceptar argumentos que no se proporcionan mediante la inserción de dependencias, pero los argumentos deben asignar valores predeterminados.
 
-Cuando se resuelven los servicios mediante `IServiceProvider` o `ActivatorUtilities`, la inserción del constructor requiere un constructor *público*.
+Cuando se resuelven los servicios mediante `IServiceProvider` o `ActivatorUtilities`, la [inserción del constructor](xref:mvc/controllers/dependency-injection#constructor-injection) requiere un constructor *público*.
 
-Cuando se resuelven los servicios mediante `ActivatorUtilities`, la inserción del constructor requiere que exista solo un constructor aplicable. Se admiten las sobrecargas de constructor, pero solo puede existir una sobrecarga cuyos argumentos pueda cumplir la inserción de dependencias.
+Cuando se resuelven los servicios mediante `ActivatorUtilities`, la [inserción del constructor](xref:mvc/controllers/dependency-injection#constructor-injection) requiere que exista solo un constructor aplicable. Se admiten las sobrecargas de constructor, pero solo puede existir una sobrecarga cuyos argumentos pueda cumplir la inserción de dependencias.
 
 ## <a name="entity-framework-contexts"></a>Contextos de Entity Framework
 
@@ -733,7 +733,7 @@ Los servicios de duración transitoria (<xref:Microsoft.Extensions.DependencyInj
 Los servicios de duración con ámbito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) se crean una vez por solicitud del cliente (conexión).
 
 > [!WARNING]
-> Si usa un servicio con ámbito en un middleware, inserte el servicio en el método `Invoke` o `InvokeAsync`. No lo inserte a través de la inserción de constructores, porque ello hace que el servicio se comporte como un singleton. Para obtener más información, vea <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> Si usa un servicio con ámbito en un middleware, inserte el servicio en el método `Invoke` o `InvokeAsync`. No lo inserte a través de la [inserción de constructores](xref:mvc/controllers/dependency-injection#constructor-injection), porque ello hace que el servicio se comporte como un singleton. Para obtener más información, vea <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Singleton
 
@@ -798,9 +798,9 @@ Los servicios se pueden resolver mediante dos mecanismos:
 
 Los constructores pueden aceptar argumentos que no se proporcionan mediante la inserción de dependencias, pero los argumentos deben asignar valores predeterminados.
 
-Cuando se resuelven los servicios mediante `IServiceProvider` o `ActivatorUtilities`, la inserción del constructor requiere un constructor *público*.
+Cuando se resuelven los servicios mediante `IServiceProvider` o `ActivatorUtilities`, la [inserción del constructor](xref:mvc/controllers/dependency-injection#constructor-injection) requiere un constructor *público*.
 
-Cuando se resuelven los servicios mediante `ActivatorUtilities`, la inserción del constructor requiere que exista solo un constructor aplicable. Se admiten las sobrecargas de constructor, pero solo puede existir una sobrecarga cuyos argumentos pueda cumplir la inserción de dependencias.
+Cuando se resuelven los servicios mediante `ActivatorUtilities`, la [inserción del constructor](xref:mvc/controllers/dependency-injection#constructor-injection) requiere que exista solo un constructor aplicable. Se admiten las sobrecargas de constructor, pero solo puede existir una sobrecarga cuyos argumentos pueda cumplir la inserción de dependencias.
 
 ## <a name="entity-framework-contexts"></a>Contextos de Entity Framework
 

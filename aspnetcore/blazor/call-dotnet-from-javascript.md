@@ -5,17 +5,17 @@ description: Obtenga información sobre cómo invocar métodos de .NET desde fun
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 04/07/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: dbf44fe7923998c65119e42d97c304890fa95523
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e2344dd15efd243a405373b6cf0362f28b48173a
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218796"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80976955"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-opno-locblazor"></a>Llamada a métodos de .NET desde funciones de JavaScript en ASP.NET Core Blazor
 
@@ -274,7 +274,7 @@ En el ejemplo siguiente:
 
 * El componente `JSInterop` contiene varios componentes `ListItem`.
 * Cada componente `ListItem` consta de un mensaje y un botón.
-* Cuando se selecciona un botón de componente `ListItem`, el método `ListItem` de ese objeto `UpdateMessage` cambia el texto del elemento de lista y oculta el botón.
+* Cuando se selecciona un botón de componente `ListItem`, el método `UpdateMessage` de ese objeto `ListItem` cambia el texto del elemento de lista y oculta el botón.
 
 *MessageUpdateInvokeHelper.cs*:
 
@@ -359,6 +359,18 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 ```
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+
+## <a name="avoid-circular-object-references"></a>Evitar referencias de objetos circulares
+
+Los objetos que contienen referencias circulares no se pueden serializar en el cliente para:
+
+* Llamadas de método .NET.
+* Llamadas de método JavaScript desde C# cuando el tipo de valor devuelto tiene referencias circulares.
+
+Para más información, consulte los problemas siguientes:
+
+* [Circular references are not supported, take two )](https://github.com/dotnet/aspnetcore/issues/20525) (No se admiten las referencias circulares, toma dos) (dotnet/aspnetcore #20525
+* [Proposal: Add mechanism to handle circular references when serializing](https://github.com/dotnet/runtime/issues/30820) (Propuesta: agregar un mecanismo para controlar las referencias circulares al serializar) (dotnet/runtime #30820)
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

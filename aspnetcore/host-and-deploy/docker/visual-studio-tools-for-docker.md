@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: 0e6747a3de220b97cc7a84f9cd42b0da54b57ee9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ba79f0af8192ad9e8b263d4304ccc0df36c50f00
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649325"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440758"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Herramientas de contenedor de Visual Studio con ASP.NET Core
 
@@ -26,7 +26,7 @@ En Visual Studio 2017 y versiones posteriores, se pueden compilar, depurar y eje
 
 ## <a name="installation-and-setup"></a>Instalación y configuración
 
-Para instalar Docker, primero revise la información de [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) (Docker para Windows: Información antes de realizar la instalación). A continuación, instale [Docker para Windows](https://docs.docker.com/docker-for-windows/install/).
+Para instalar Docker, primero revise la información de [Docker Desktop for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) (Docker Desktop para Windows: información previa a la instalación). A continuación, instale [Docker para Windows](https://docs.docker.com/docker-for-windows/install/).
 
 Las **[unidades compartidas](https://docs.docker.com/docker-for-windows/#shared-drives)** de Docker para Windows deben configurarse para admitir la asignación y la depuración de volúmenes. Haga clic con el botón derecho en el icono de Docker de la bandeja del sistema, y seleccione **Configuración** y **Unidades compartidas**. Seleccione la unidad donde los archivos se almacenan en Docker. Haga clic en **Aplicar**.
 
@@ -84,7 +84,7 @@ El *Dockerfile* anterior se basa en la imagen [microsoft/aspnetcore](https://hub
 
 Visual Studio 2017, versiones 15.7 o anteriores, es compatible con [Docker Compose](https://docs.docker.com/compose/overview/) como única solución de orquestación de contenedores. Los artefactos de Docker Compose se agregan mediante **Agregar** > **Compatibilidad con Docker**.
 
-Visual Studio 2017, versiones 15.8 o posteriores, permite agregar una solución de orquestación de forma manual. Haga clic con el botón derecho en el **Explorador de soluciones** y seleccione **Agregar** > **Compatibilidad con el orquestador de contenedores**. Hay dos opciones: [Docker Compose](#docker-compose) y [Service Fabric](#service-fabric).
+Visual Studio 2017, versiones 15.8 o posteriores, permite agregar una solución de orquestación de forma manual. Haga clic con el botón derecho en el **Explorador de soluciones** y seleccione **Agregar** > **Compatibilidad con el orquestador de contenedores**. Se ofrecen dos opciones diferentes: [Docker Compose](#docker-compose) y [Service Fabric](#service-fabric).
 
 ### <a name="docker-compose"></a>Docker Compose
 
@@ -227,14 +227,15 @@ A partir de .NET Core 2.1, las imágenes `microsoft/aspnetcore-build` y `microso
 ::: moniker-end
 
 > [!NOTE]
-> El comando `docker images` devuelve imágenes de intermediario con los nombres de repositorio y las etiquetas identificados como *\<ninguno >* (no mencionado anteriormente). Estas imágenes sin nombre son creadas por el [Dockerfile](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) de *compilación de varias fases*. Mejoran la eficacia de la compilación de la imagen final y solo se vuelven a compilar las capas necesarias cuando se producen cambios. Cuando las imágenes de intermediario ya no sean necesarias, elimínelas mediante el comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
+> El comando `docker images` devuelve imágenes de intermediario con los nombres de repositorio y las etiquetas identificados como *\<ninguno >* (no mencionado anteriormente). Estas imágenes sin nombre son creadas por el *Dockerfile* de [compilación de varias fases](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Mejoran la eficacia de la compilación de la imagen final y solo se vuelven a compilar las capas necesarias cuando se producen cambios. Cuando las imágenes de intermediario ya no sean necesarias, elimínelas mediante el comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
 
 Podría esperarse que la imagen de producción o versión fuera más pequeña que la imagen *dev*. Debido a la asignación de volumen, el depurador y la aplicación se han ejecutado desde la máquina local y no dentro del contenedor. La imagen *más reciente* ha empaquetado el código de aplicación necesario para ejecutar la aplicación en un equipo host. Por tanto, la diferencia es el tamaño del código de aplicación.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
 * [Desarrollo de contenedores con Visual Studio](/visualstudio/containers)
-* [Azure Service Fabric: Preparación del entorno de desarrollo en Windows](/azure/service-fabric/service-fabric-get-started)
+* [Azure Service Fabric: Preparación del entorno de desarrollo](/azure/service-fabric/service-fabric-get-started)
 * [Implementación de una aplicación .NET de un contenedor de Windows en Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
 * [Troubleshoot Visual Studio development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors) (Solución de problemas de desarrollo de Visual Studio con Docker)
 * [Visual Studio Container Tools GitHub repository](https://github.com/Microsoft/DockerTools) (Repositorio de GitHub de herramientas de contenedor de Visual Studio)
+* [GC mediante Docker y contenedores pequeños](xref:performance/memory#sc)

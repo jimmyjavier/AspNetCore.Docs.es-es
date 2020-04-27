@@ -5,17 +5,17 @@ description: Obtenga información sobre cómo depurar aplicaciones Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: eaa67d63f6d15249885d78d3de197ae53e73f072
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7273ae3d240de0b59a58069fdcc1880247379751
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80381867"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661606"
 ---
 # <a name="debug-aspnet-core-opno-locblazor-webassembly"></a>Depuración de WebAssembly de Blazor en ASP.NET Core
 
@@ -55,7 +55,7 @@ La depuración requiere cualquiera de los exploradores siguientes:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitación de la depuración para Visual Studio y Visual Studio Code
 
-La depuración está habilitada de manera automática para los proyectos nuevos que se crean con la plantilla de proyecto de Blazor WebAssembly de ASP.NET Core 3.2 Preview 3 o posterior.
+La depuración está habilitada de manera automática para los proyectos nuevos que se crean con la plantilla de proyecto de WebAssembly de Blazor de ASP.NET Core 3.2 Preview 3 o posterior ([la versión actual es 3.2 Preview 4](xref:blazor/get-started)).
 
 Para habilitar la depuración de una aplicación de Blazor WebAssembly existente, actualice el archivo *launchSettings.json* del proyecto de inicio para incluir la propiedad `inspectUri` siguiente en cada perfil de inicio:
 
@@ -103,6 +103,8 @@ Al depurar la aplicación de Blazor WebAssembly, también puede depurar el códi
    ![Depuración del servidor](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
 1. Vuelva a presionar <kbd>F5</kbd> para permitir que la ejecución continúe y vea la tabla de pronóstico meteorológico representada.
+
+<a id="vscode"></a>
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 

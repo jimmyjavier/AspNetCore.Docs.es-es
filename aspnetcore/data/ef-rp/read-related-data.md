@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: d244ce1527486466bcbc6557ec35869aa206bc4f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0835dbf6b5434e4224d9f56ea3335df4b5d9e119
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645593"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277332"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Lectura de datos relacionados (6 de 8)
 
@@ -136,6 +136,8 @@ El método `OnGetAsync` carga los datos relacionados con el método `Include`. E
 En el código siguiente se cargan los datos relacionados con el método `Select`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
+
+El código anterior no devuelve ningún tipo de entidad, por lo que no se realiza ningún seguimiento. Para más información sobre el seguimiento de EF, consulte [Consultas de seguimiento frente a consultas de no seguimiento](/ef/core/querying/tracking).
 
 El `CourseViewModel`:
 

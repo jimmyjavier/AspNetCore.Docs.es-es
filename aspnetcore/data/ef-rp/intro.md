@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 uid: data/ef-rp/intro
-ms.openlocfilehash: 94783aa9014aef4c5f775fc8f36a2c3a7715e4b6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 07faf5e596e7ea8b134d13caa0259c1e9d74ff1b
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645803"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661614"
 ---
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas de Razor con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8
 
@@ -159,7 +159,7 @@ Un alumno se puede inscribir en cualquier número de cursos y un curso puede ten
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
-La propiedad `ID` se convierte en la columna de clave principal de la tabla de base de datos que se corresponde a esta clase. De forma predeterminada, EF Core interpreta como la clave principal una propiedad que se denomine `ID` o `classnameID`. Por tanto, el nombre que se reconoce de forma automática para la clave principal de la clase `Student` es `StudentID`.
+La propiedad `ID` se convierte en la columna de clave principal de la tabla de base de datos que se corresponde a esta clase. De forma predeterminada, EF Core interpreta como la clave principal una propiedad que se denomine `ID` o `classnameID`. Por tanto, el nombre que se reconoce de forma automática para la clave principal de la clase `Student` es `StudentID`. Para más información, consulte [EF Core: claves](/ef/core/modeling/keys?tabs=data-annotations).
 
 La propiedad `Enrollments` es una [propiedad de navegación](/ef/core/modeling/relationships). Las propiedades de navegación contienen otras entidades relacionadas con esta entidad. En este caso, la propiedad `Enrollments` de una entidad `Student` contiene todas las entidades `Enrollment` que están relacionadas con esa instancia de Student. Por ejemplo, si una fila Student de la base de datos tiene dos filas Enrollment relacionadas, la propiedad de navegación `Enrollments` contiene esas dos entidades Enrollment. 
 

@@ -9,12 +9,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 1a4efcd4e9e3296e9c208f1419bc86734951b0c1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4886673a9b16b8be8d9a0b0d5c7002a91760544e
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511527"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80976981"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novedades de ASP.NET Core 3.0
 

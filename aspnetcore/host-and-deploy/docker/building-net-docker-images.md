@@ -6,18 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 31161d6841986cb0bd8080468e5d523d59400490
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ced0cb7cbeed1b8811813a70035c2e0b42c3e35a
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405923"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440784"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Imágenes de Docker para ASP.NET Core
 
 En este tutorial se muestra cómo ejecutar una aplicación ASP.NET Core en contenedores de Docker.
 
-En este tutorial, hizo lo siguiente:
+En este tutorial ha:
 > [!div class="checklist"]
 > * Obtener información sobre las imágenes de Microsoft .NET Core Docker
 > * Descargará una aplicación de ejemplo de ASP.NET Core
@@ -142,7 +142,7 @@ Vaya a la carpeta de archivos de Docker en `dotnet-docker/samples/aspnetapp`.
 
 * Copie la dirección IPv4 (por ejemplo, 172.29.245.43) del contenedor y péguela en la barra de direcciones del explorador para probar la aplicación.
 
-## <a name="build-and-deploy-manually"></a>Realizará compilaciones e implementaciones manualmente
+## <a name="build-and-deploy-manually"></a>Compilaciones e implementaciones manuales
 
 En algunos escenarios, puede que quiera implementar una aplicación en un contenedor mediante la copia de los archivos de aplicación que son necesarios en tiempo de ejecución. En esta sección se muestra cómo realizar una implementación manual.
 
@@ -262,7 +262,8 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Ejemplo de Docker de ASP.NET Core](https://github.com/dotnet/dotnet-docker) (el usado en este tutorial).
 * [Configurar ASP.NET Core para trabajar con servidores proxy y equilibradores de carga](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker) (Trabajo con Visual Studio Docker Tools)
-* [Depuración con Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
+* [Depuración con Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
+* [GC mediante Docker y contenedores pequeños](xref:performance/memory#sc)
 
 ## <a name="next-steps"></a>Pasos siguientes
 

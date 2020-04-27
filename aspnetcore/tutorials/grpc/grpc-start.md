@@ -3,14 +3,14 @@ title: Creación de un servidor y un cliente gRPC en ASP.NET Core
 author: juntaoluo
 description: En este tutorial se le mostrará cómo crear un servicio gRPC y un cliente gRPC en ASP.NET Core. Aprenda a crear un proyecto de servicio gRPC, edite un archivo proto y agregue una llamada de streaming dúplex.
 ms.author: johluo
-ms.date: 12/05/2019
+ms.date: 04/08/2020
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 0cedeb021427455c3f60a8a8cc36b52794a055bc
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2bbd40b4b89af170dae40b8a5277749d6bcd5faf
+ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650303"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "80994625"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Crear un servidor y un cliente gRPC en ASP.NET Core
 
@@ -298,7 +298,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 > [!NOTE]
-> El código de este artículo requiere el certificado de desarrollo de .NET Core HTTPS para proteger el servicio gRPC. Si se produce un error con el mensaje `The remote certificate is invalid according to the validation procedure.` en el cliente, el certificado de desarrollo no es de confianza. Para instrucciones sobre cómo corregir este problema, consulte [Confiar en el certificado de desarrollo de ASP.NET Core HTTPS en Windows y macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+> El código de este artículo requiere el certificado de desarrollo de .NET Core HTTPS para proteger el servicio gRPC. Si el cliente gRPC de .NET genera un error con el mensaje `The remote certificate is invalid according to the validation procedure.` o `The SSL connection could not be established.`, el certificado de desarrollo no es de confianza. Para corregir este problema, consulte [Llamada a un servicio gRPC con un certificado no válido o que no es de confianza](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 

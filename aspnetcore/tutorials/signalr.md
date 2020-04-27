@@ -8,12 +8,12 @@ ms.date: 11/21/2019
 no-loc:
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: 55ebdbfa4556deca74a6cdf0638307425cd1a01a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 869eb325ee95a78e4b16c61c5b0573bb094292e3
+ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650615"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "80994615"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Tutorial: Introducción a SignalR de ASP.NET Core
 
@@ -320,7 +320,7 @@ Al final, tendrá una aplicación de chat funcional: ![Aplicación de ejemplo de
 
 ## <a name="add-the-signalr-client-library"></a>Agregar la biblioteca cliente de SignalR   
 
-La biblioteca de servidor de SignalR se incluye en el metapaquete `Microsoft.AspNetCore.App`. La biblioteca cliente de JavaScript no se incluye automáticamente en el proyecto. En este tutorial, usará el Administrador de bibliotecas (LibMan) para obtener la biblioteca cliente de *unpkg*. unpkg es una red de entrega de contenido (CDN) que puede entregar todo lo que encuentre en npm, el administrador de paquetes de Node.js.    
+La biblioteca de servidor de SignalR se incluye en el metapaquete `Microsoft.AspNetCore.App`. La biblioteca cliente de JavaScript no se incluye automáticamente en el proyecto. En este tutorial, usará el Administrador de bibliotecas (LibMan) para obtener la biblioteca cliente de *unpkg*. unpkg es una red de entrega de contenido (CDN) que puede entregar todo lo que encuentre en npm, el administrador de paquetes de Node.js. 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)  
 

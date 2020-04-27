@@ -4,14 +4,14 @@ author: scottaddie
 description: Obtenga información sobre cómo optimizar recursos estáticos en una aplicación web de ASP.NET Core aplicando técnicas de unión y minimización.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 04/15/2020
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: a7a5c40d6c31c4416212c02c1b491dd794f2a1d3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 670ac6a96c3affd2b2ac699836f536aea7d85ff3
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646787"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488694"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Unión y minimización de recursos estáticos en ASP.NET Core
 
@@ -63,7 +63,7 @@ Los exploradores son bastante detallados con respecto a los encabezados de solic
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Elección de una estrategia de unión y minimización
 
-Las plantillas de proyecto de MVC y Razor Pages proporcionan una solución para la unión y la minimización lista para su uso que consta de un archivo de configuración JSON. Las herramientas de terceros, como el ejecutor de tareas [Grunt](xref:client-side/using-grunt), realizan las mismas tareas con un poco más de complejidad. Una herramienta de terceros es una buena opción cuando el flujo de trabajo de desarrollo requiere un procesamiento más allá de la unión y la minimización, como la detección de errores y la optimización de imágenes. Mediante el uso de la unión y la minimización en tiempo de diseño, los archivos minimizados se crean con anterioridad a la implementación de la aplicación. La unión y la minimización antes de la implementación proporcionan la ventaja de reducir la carga del servidor. Sin embargo, es importante reconocer que la unión y la minimización en tiempo de diseño aumentan la complejidad de la compilación y solo funcionan con archivos estáticos.
+Las plantillas de proyecto de MVC y Razor Pages proporcionan una solución para la unión y la minificación que consta de un archivo de configuración JSON. Las herramientas de terceros, como el ejecutor de tareas [Grunt](xref:client-side/using-grunt), realizan las mismas tareas con un poco más de complejidad. Una herramienta de terceros es una buena opción cuando el flujo de trabajo de desarrollo requiere un procesamiento más allá de la unión y la minimización, como la detección de errores y la optimización de imágenes. Mediante el uso de la unión y la minimización en tiempo de diseño, los archivos minimizados se crean con anterioridad a la implementación de la aplicación. La unión y la minimización antes de la implementación proporcionan la ventaja de reducir la carga del servidor. Sin embargo, es importante reconocer que la unión y la minimización en tiempo de diseño aumentan la complejidad de la compilación y solo funcionan con archivos estáticos.
 
 ## <a name="configure-bundling-and-minification"></a>Configuración de la unión y la minimización
 
@@ -95,109 +95,6 @@ Las opciones de configuración incluyen lo siguiente:
 * `includeInProject`: marca que indica si se van a agregar los archivos generados al archivo del proyecto. **opcional**, *valor predeterminado: false*
 * `sourceMap`: marca que indica si se debe generar un mapa de origen para el archivo unido. **opcional**, *valor predeterminado: false*
 * `sourceMapRootPath`: ruta de acceso raíz para almacenar el archivo de asignación de origen generado.
-
-## <a name="build-time-execution-of-bundling-and-minification"></a>Ejecución en tiempo de compilación de la unión y la minimización
-
-El paquete NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) permite la ejecución de la unión y la minimización en tiempo de compilación. El paquete inserta [destinos de MSBuild](/visualstudio/msbuild/msbuild-targets) que se ejecutan en tiempo de compilación y de limpieza. El proceso de compilación analiza el archivo *bundleconfig.json* para generar los archivos de salida en función de la configuración definida.
-
-> [!NOTE]
-> BuildBundlerMinifier pertenece a un proyecto impulsado por la comunidad en GitHub para el que Microsoft no proporciona soporte técnico. Las incidencias se deben notificar [aquí](https://github.com/madskristensen/BundlerMinifier/issues).
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-Agregue el paquete *BuildBundlerMinifier* al proyecto.
-
-Compile el proyecto. En la ventana de salida aparece lo siguiente:
-
-```console
-1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Begin processing bundleconfig.json
-1>  Minified wwwroot/css/site.min.css
-1>  Minified wwwroot/js/site.min.js
-1>Bundler: Done processing bundleconfig.json
-1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-```
-
-Limpie el proyecto. En la ventana de salida aparece lo siguiente:
-
-```console
-1>------ Clean started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Cleaning output from bundleconfig.json
-1>Bundler: Done cleaning output file from bundleconfig.json
-========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
-```
-
-# <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli)
-
-Agregue el paquete *BuildBundlerMinifier* al proyecto:
-
-```dotnetcli
-dotnet add package BuildBundlerMinifier
-```
-
-Si se usa ASP.NET Core 1.x, restaure el paquete recientemente agregado:
-
-```dotnetcli
-dotnet restore
-```
-
-Compile el proyecto:
-
-```dotnetcli
-dotnet build
-```
-
-Aparece lo siguiente:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-    Bundler: Begin processing bundleconfig.json
-    Bundler: Done processing bundleconfig.json
-    BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-```
-
-Limpie el proyecto:
-
-```dotnetcli
-dotnet clean
-```
-
-Aparece el siguiente resultado:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-  Bundler: Cleaning output from bundleconfig.json
-  Bundler: Done cleaning output file from bundleconfig.json
-```
-
----
-
-## <a name="ad-hoc-execution-of-bundling-and-minification"></a>Ejecución ad hoc de la unión y la minimización
-
-Es posible ejecutar las tareas de unión y minimización ad hoc, sin necesidad de compilar el proyecto. Agregue el paquete NuGet [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) al proyecto:
-
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
-
-> [!NOTE]
-> BundlerMinifier.Core pertenece a un proyecto impulsado por la comunidad en GitHub para el que Microsoft no proporciona soporte técnico. Las incidencias se deben notificar [aquí](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Este paquete amplía la CLI de .NET Core para incluir la herramienta *dotnet-bundle*. El comando siguiente se puede ejecutar en la ventana de la Consola del Administrador de paquetes (PMC) o en un shell de comandos:
-
-```dotnetcli
-dotnet bundle
-```
-
-> [!IMPORTANT]
-> El Administrador de paquetes NuGet agrega dependencias al archivo *.csproj como nodos de `<PackageReference />`. El comando `dotnet bundle` se registra con la CLI de .NET Core solo cuando se utiliza un nodo de `<DotNetCliToolReference />`. Modifique el archivo *.csproj en consecuencia.
 
 ## <a name="add-files-to-workflow"></a>Incorporación de archivos al flujo de trabajo
 
@@ -258,32 +155,7 @@ La etiqueta `environment` siguiente representa los archivos CSS unidos y minimiz
 
 Hay casos en los que el flujo de trabajo de unión y minimización de una aplicación requiere un procesamiento adicional. Entre los ejemplos se incluyen la optimización de imágenes, la limpieza de memoria caché y el procesamiento de recursos de red CDN. Para cumplir estos requisitos, se puede convertir el flujo de trabajo de unión y minimización para usar Gulp.
 
-### <a name="use-the-bundler--minifier-extension"></a>Uso de la extensión Bundler & Minifier
-
-La extensión [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) de Visual Studio controla la conversión a Gulp.
-
-> [!NOTE]
-> La extensión Bundler & Minifier pertenece a un proyecto impulsado por la comunidad en GitHub para el que Microsoft no proporciona soporte técnico. Las incidencias se deben notificar [aquí](https://github.com/madskristensen/BundlerMinifier/issues).
-
-En el Explorador de soluciones, haga clic con el botón derecho en el archivo *bundleconfig.json* y seleccione **Bundler & Minifier** > **Convertir a Gulp...** :
-
-![Elemento de menú contextual Convertir a Gulp](../client-side/bundling-and-minification/_static/convert-to-gulp.png)
-
-Los archivos *gulpfile.js* y *package.json* se agregan al proyecto. Se instalan los paquetes [npm](https://www.npmjs.com/) compatibles que se muestran en la sección `devDependencies` del archivo *package.json*.
-
-Ejecute el comando siguiente en la ventana de la PMC para instalar la CLI de Gulp como una dependencia global:
-
-```console
-npm i -g gulp-cli
-```
-
-El archivo *gulpfile.js* lee el archivo *bundleconfig.json* para las entradas, salidas y configuraciones.
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-12&highlight=10)]
-
-### <a name="convert-manually"></a>Conversión de forma manual
-
-Si Visual Studio y/o la extensión Bundler & Minifier no están disponibles, haga la conversión manualmente.
+### <a name="manually-convert-the-bundling-and-minification-workflow-to-use-gulp"></a>Conversión manual del flujo de unión y minificación para usar Gulp
 
 Agregue un archivo *package.json*, con el elemento `devDependencies` siguiente, a la raíz del proyecto:
 

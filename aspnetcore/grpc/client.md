@@ -4,14 +4,14 @@ author: jamesnk
 description: Obtenga información sobre cómo llamar a servicios gRPC con el cliente gRPC de .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/21/2019
+ms.date: 04/21/2020
 uid: grpc/client
-ms.openlocfilehash: 6a6a649f7194354b16f3d67160be02428cc01170
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: aefa52a5c4c66178c5978aebd4cd9b00559c7f54
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650807"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791548"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Llamada a servicios gRPC con el cliente .NET
 
@@ -50,7 +50,7 @@ Rendimiento y uso de canales y clientes:
 * Varios subprocesos pueden usar de forma segura un canal y los clientes creados a partir del canal.
 * Los clientes creados a partir del canal pueden realizar varias llamadas simultáneas.
 
-`GrpcChannel.ForAddress` no es la única opción para crear un cliente gRPC. Si va a llamar a servicios gRPC desde una aplicación ASP.NET Core, considere la posibilidad de usar la [integración de fábrica de cliente de gRPC](xref:grpc/clientfactory). La integración de gRPC con `HttpClientFactory` ofrece una alternativa centralizada a la creación de clientes gRPC.
+`GrpcChannel.ForAddress` no es la única opción para crear un cliente gRPC. Si llama a servicios gRPC desde una aplicación ASP.NET Core, considere la posibilidad de usar la [integración de fábrica de cliente de gRPC](xref:grpc/clientfactory). La integración de gRPC con `HttpClientFactory` ofrece una alternativa centralizada a la creación de clientes gRPC.
 
 > [!NOTE]
 > Se requiere configuración adicional para [llamar a servicios gRPC no seguros con el cliente de .NET](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
@@ -62,7 +62,7 @@ Rendimiento y uso de canales y clientes:
 
 Una llamada gRPC se inicia mediante la llamada a un método en el cliente. El cliente gRPC controlará la serialización de mensajes y dirigirá la llamada gRPC al servicio correcto.
 
-gRPC tiene distintos tipos de métodos. La forma de usar el cliente para realizar una llamada gRPC depende del tipo de método al que se llame. Los tipos de métodos gRPC son los siguientes:
+gRPC tiene distintos tipos de métodos. La forma en que se utiliza el cliente para hacer una llamada gRPC depende del tipo de método llamado. Los tipos de métodos gRPC son los siguientes:
 
 * Unario
 * Streaming de servidor
@@ -92,48 +92,45 @@ Una llamada de streaming de servidor comienza con el envío de un mensaje de sol
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
-using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+while (await call.ResponseStream.MoveNext())
 {
-    while (await call.ResponseStream.MoveNext())
-    {
-        Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
-        // "Greeting: Hello World" is written multiple times
-    }
+    Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
+    // "Greeting: Hello World" is written multiple times
 }
 ```
 
-Si usa C# 8 o una versión posterior, se puede usar la sintaxis de `await foreach` para leer los mensajes. El método de extensión `IAsyncStreamReader<T>.ReadAllAsync()` lee todos los mensajes de la secuencia de respuesta:
+Al usar C# 8 o una versión posterior, se puede usar la sintaxis de `await foreach` para leer los mensajes. El método de extensión `IAsyncStreamReader<T>.ReadAllAsync()` lee todos los mensajes de la secuencia de respuesta:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
-using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+await foreach (var response in call.ResponseStream.ReadAllAsync())
 {
-    await foreach (var response in call.ResponseStream.ReadAllAsync())
-    {
-        Console.WriteLine("Greeting: " + response.Message);
-        // "Greeting: Hello World" is written multiple times
-    }
+    Console.WriteLine("Greeting: " + response.Message);
+    // "Greeting: Hello World" is written multiple times
 }
 ```
 
 ### <a name="client-streaming-call"></a>Llamada de streaming de cliente
 
-Una llamada de streaming de cliente comienza *sin* el envío de un mensaje por parte del cliente. El cliente puede elegir enviar mensajes con `RequestStream.WriteAsync`. Cuando el cliente ha terminado de enviar mensajes se debe llamar a `RequestStream.CompleteAsync` para notificar al servicio. La llamada finaliza cuando el servicio devuelve un mensaje de respuesta.
+Una llamada de streaming de cliente comienza *sin* el envío de un mensaje por parte del cliente. El cliente puede elegir enviar mensajes con `RequestStream.WriteAsync`. Cuando el cliente ha terminado de enviar mensajes, se debe llamar a `RequestStream.CompleteAsync` para notificar al servicio. La llamada finaliza cuando el servicio devuelve un mensaje de respuesta.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
-using (var call = client.AccumulateCount())
-{
-    for (var i = 0; i < 3; i++)
-    {
-        await call.RequestStream.WriteAsync(new CounterRequest { Count = 1 });
-    }
-    await call.RequestStream.CompleteAsync();
+using var call = client.AccumulateCount();
 
-    var response = await call;
-    Console.WriteLine($"Count: {response.Count}");
-    // Count: 3
+for (var i = 0; i < 3; i++)
+{
+    await call.RequestStream.WriteAsync(new CounterRequest { Count = 1 });
 }
+await call.RequestStream.CompleteAsync();
+
+var response = await call;
+Console.WriteLine($"Count: {response.Count}");
+// Count: 3
 ```
 
 ### <a name="bi-directional-streaming-call"></a>Llamada de streaming bidireccional
@@ -141,38 +138,98 @@ using (var call = client.AccumulateCount())
 Una llamada de streaming bidireccional comienza *sin* el envío de un mensaje por parte del cliente. El cliente puede elegir enviar mensajes con `RequestStream.WriteAsync`. Se puede acceder a los mensajes transmitidos desde el servicio con `ResponseStream.MoveNext()` o `ResponseStream.ReadAllAsync()`. La llamada de streaming bidireccional se completa cuando `ResponseStream` no tiene más mensajes.
 
 ```csharp
-using (var call = client.Echo())
+var client = new Echo.EchoClient(channel);
+using var call = client.Echo();
+
+Console.WriteLine("Starting background task to receive messages");
+var readTask = Task.Run(async () =>
 {
-    Console.WriteLine("Starting background task to receive messages");
-    var readTask = Task.Run(async () =>
+    await foreach (var response in call.ResponseStream.ReadAllAsync())
     {
-        await foreach (var response in call.ResponseStream.ReadAllAsync())
-        {
-            Console.WriteLine(response.Message);
-            // Echo messages sent to the service
-        }
-    });
+        Console.WriteLine(response.Message);
+        // Echo messages sent to the service
+    }
+});
 
-    Console.WriteLine("Starting to send messages");
-    Console.WriteLine("Type a message to echo then press enter.");
-    while (true)
+Console.WriteLine("Starting to send messages");
+Console.WriteLine("Type a message to echo then press enter.");
+while (true)
+{
+    var result = Console.ReadLine();
+    if (string.IsNullOrEmpty(result))
     {
-        var result = Console.ReadLine();
-        if (string.IsNullOrEmpty(result))
-        {
-            break;
-        }
-
-        await call.RequestStream.WriteAsync(new EchoMessage { Message = result });
+        break;
     }
 
-    Console.WriteLine("Disconnecting");
-    await call.RequestStream.CompleteAsync();
-    await readTask;
+    await call.RequestStream.WriteAsync(new EchoMessage { Message = result });
 }
+
+Console.WriteLine("Disconnecting");
+await call.RequestStream.CompleteAsync();
+await readTask;
 ```
 
 Durante una llamada de streaming bidireccional, el cliente y el servicio se pueden enviar mensajes entre sí en cualquier momento. La mejor lógica de cliente para interactuar con una llamada bidireccional varía en función de la lógica del servicio.
+
+## <a name="access-grpc-trailers"></a>Acceso a los finalizadores gRPC
+
+Las llamadas gRPC pueden devolver finalizadores gRPC. Los finalizadores gRPC se usan para proporcionar metadatos de nombre y valor sobre una llamada. Los finalizadores proporcionan una funcionalidad similar a los encabezados HTTP, pero se reciben al final de la llamada.
+
+Los finalizadores gRPC son accesibles mediante `GetTrailers()`, que devuelve una colección de metadatos. Los finalizadores se devuelven una vez que se completa la respuesta, por lo que debe esperar todos los mensajes de respuesta antes de acceder a ellos.
+
+Las llamadas de streaming unarias y de cliente deben esperar `ResponseAsync` antes de llamar a `GetTrailers()`:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+var response = await call.ResponseAsync;
+
+Console.WriteLine("Greeting: " + response.Message);
+// Greeting: Hello World
+
+var trailers = call.GetTrailers();
+var myValue = trailers.First(e => e.Key == "my-trailer-name");
+```
+
+Las llamadas de streaming bidireccionales y de servidor deben terminar de esperar la secuencia de respuesta antes de llamar a `GetTrailers()`:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+await foreach (var response in call.ResponseStream.ReadAllAsync())
+{
+    Console.WriteLine("Greeting: " + response.Message);
+    // "Greeting: Hello World" is written multiple times
+}
+
+var trailers = call.GetTrailers();
+var myValue = trailers.First(e => e.Key == "my-trailer-name");
+```
+
+También se puede acceder a los finalizadores gRPC desde `RpcException`. Un servicio puede devolver los finalizadores junto con un estado de gRPC que no sea correcto. En esta situación, los finalizadores se recuperan de la excepción que genera el cliente de gRPC:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+string myValue = null;
+
+try
+{
+    using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+    var response = await call.ResponseAsync;
+
+    Console.WriteLine("Greeting: " + response.Message);
+    // Greeting: Hello World
+
+    var trailers = call.GetTrailers();
+    myValue = trailers.First(e => e.Key == "my-trailer-name");
+}
+catch (RpcException ex)
+{
+    var trailers = ex.Trailers;
+    myValue = trailers.First(e => e.Key == "my-trailer-name");
+}
+```
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

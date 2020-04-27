@@ -4,14 +4,14 @@ author: jamesnk
 description: Obtenga información sobre cómo configurar servicios gRPC en ASP.NET Core a los que se puede llamar desde aplicaciones del explorador usando gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/16/2020
+ms.date: 04/15/2020
 uid: grpc/browser
-ms.openlocfilehash: 3beeffc26ffd3c2dc85bfc22a46d97d5fd78d3d0
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: a20e604488b1fb919f18932599ba690bfa308f0c
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649421"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440771"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Uso de gRPC en aplicaciones de explorador
 
@@ -28,6 +28,15 @@ Por [James Newton-King](https://twitter.com/jamesnk)
 > Deje sus comentarios en [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) para asegurarnos de que creamos algo que gusta a los desarrolladores y los hace productivos.
 
 No se puede llamar a un servicio HTTP/2 gRPC desde una aplicación basada en el explorador. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) es un protocolo que permite a las aplicaciones de explorador de JavaScript y Blazor llamar a servicios gRPC. En este artículo se explica cómo usar gRPC-Web en .NET Core.
+
+## <a name="grpc-web-in-aspnet-core-vs-envoy"></a>gRPC-Web en ASP.NET Core frente a Envoy
+
+Hay dos opciones para agregar gRPC-Web a una aplicación de ASP.NET Core:
+
+* Compatibilidad con gRPC-Web junto con HTTP/2 gRPC en ASP.NET Core. Esta opción usa el middleware que el paquete `Grpc.AspNetCore.Web` proporciona.
+* Use la compatibilidad con gRPC-Web del [proxy de Envoy](https://www.envoyproxy.io/) para traducir gRPC-Web a HTTP/2 gRPC. A continuación, la llamada traducida se reenvía a la aplicación ASP.NET Core.
+
+Cada enfoque tiene ventajas y desventajas. Si ya usa Envoy como proxy en el entorno de la aplicación, puede que tenga sentido usarlo para proporcionar compatibilidad con gRPC-Web. Si desea una solución sencilla para gRPC-Web que solo requiera ASP.NET Core, `Grpc.AspNetCore.Web` es una buena elección.
 
 ## <a name="configure-grpc-web-in-aspnet-core"></a>Configuración de gRPC-Web en ASP.NET Core
 
@@ -48,6 +57,11 @@ El código anterior:
 Opcionalmente, configure todos los servicios para que admitan gRPC-Web agregando `services.AddGrpcWeb(o => o.GrpcWebEnabled = true);` a ConfigureServices.
 
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=6,13)]
+
+> [!NOTE]
+> Hay un problema conocido que hace que gRPC-Web genere un error cuando está [hospedado en Http.sys](xref:fundamentals/servers/httpsys) en .NET Core 3.x.
+>
+> Una solución alternativa para que gRPC-Web funcione en Http.sys está disponible [aquí](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
 
 ### <a name="grpc-web-and-cors"></a>gRPC-Web y CORS
 
@@ -95,7 +109,7 @@ El código anterior:
 `GrpcWebHandler` presenta las siguientes opciones de configuración cuando se crea:
 
 * **InnerHandler**: elemento <xref:System.Net.Http.HttpMessageHandler> subyacente que realiza la solicitud HTTP de gRPC, por ejemplo, `HttpClientHandler`.
-* **Modo**: tipo de enumeración que especifica si el elemento `Content-Type` de la solicitud HTTP de gRPC es `application/grpc-web` o `application/grpc-web-text`.
+* **Modo**: tipo de enumeración que especifica si el `Content-Type` de la solicitud HTTP gRPC es `application/grpc-web` o `application/grpc-web-text`.
     * `GrpcWebMode.GrpcWeb` configura el contenido que se va a enviar sin codificación. Valor predeterminado.
     * `GrpcWebMode.GrpcWebText` configura el contenido para que tenga codificación Base64. Esto es necesario en las llamadas de streaming de servidor en los exploradores.
 * **HttpVersion**: elemento `Version` del protocolo HTTP que se usa para establecer [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) en la solicitud HTTP de gRPC subyacente. gRPC-Web no requiere que haya una versión específica y no invalida el valor predeterminado a menos que así se especifique.
