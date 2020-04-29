@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 uid: mvc/models/validation
-ms.openlocfilehash: cf6b77de78f2c5dda48ffcd8ac1f9ed2f8d28bd7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652517"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205896"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validación de modelos en ASP.NET Core MVC y Razor Pages
 
@@ -49,16 +49,16 @@ Los atributos de validación permiten especificar reglas de validación para las
 
 Estos son algunos de los atributos de validación integrados:
 
-* `[CreditCard]`: valida que la propiedad tiene un formato de tarjeta de crédito.
-* `[Compare]`: valida que coinciden dos propiedades en un modelo.
-* `[EmailAddress]`: valida que la propiedad tiene un formato de correo electrónico.
-* `[Phone]`: valida que la propiedad tiene un formato de número de teléfono.
-* `[Range]`: valida que el valor de la propiedad se encuentra dentro de un intervalo especificado.
-* `[RegularExpression]`: valida que el valor de propiedad coincide con una expresión regular especificada.
-* `[Required]`: valida que el campo no sea NULL. Consulte el [atributo `[Required]`](#required-attribute) para obtener más información sobre el comportamiento de este atributo.
-* `[StringLength]`: valida que un valor de propiedad de cadena no supere un límite de longitud especificado.
-* `[Url]`: valida que la propiedad tiene un formato de dirección URL.
-* `[Remote]`: valida la entrada en el cliente mediante una llamada a un método de acción en el servidor. Consulte el [atributo `[Remote]`](#remote-attribute) para obtener más información sobre el comportamiento de este atributo.
+* `[CreditCard]`: Valida que la propiedad tiene un formato de tarjeta de crédito.
+* `[Compare]`: Valida que dos propiedades de un modelo coincidan.
+* `[EmailAddress]`: Valida que la propiedad tiene un formato de correo electrónico.
+* `[Phone]`: Valida que la propiedad tiene un formato de número de teléfono.
+* `[Range]`: Valida que el valor de la propiedad se encuentra dentro de un intervalo especificado.
+* `[RegularExpression]`: Valida que el valor de propiedad coincide con una expresión regular especificada.
+* `[Required]`: Valida que el campo no sea NULL. Vea [ `[Required]` el atributo](#required-attribute) para obtener más información sobre el comportamiento de este atributo.
+* `[StringLength]`: Valida que un valor de propiedad de cadena no supera un límite de longitud especificado.
+* `[Url]`: Valida que la propiedad tiene un formato de dirección URL.
+* `[Remote]`: Valida la entrada en el cliente mediante una llamada a un método de acción en el servidor. Vea [ `[Remote]` el atributo](#remote-attribute) para obtener más información sobre el comportamiento de este atributo.
 
 En el espacio de nombres [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) encontrará una lista completa de atributos de validación.
 
@@ -78,7 +78,7 @@ Internamente, los atributos llaman a `String.Format` con un marcador de posició
 
 Cuando se aplica a una propiedad `Name`, el mensaje de error creado por el código anterior sería "La longitud del nombre debe estar entre 6 y 8".
 
-Para averiguar qué parámetros se pasan a `String.Format` para el mensaje de error de un atributo determinado, vea el [código fuente de DataAnnotations](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+Para averiguar qué parámetros se pasan a `String.Format` para el mensaje de error de un atributo determinado, vea el [código fuente de DataAnnotations](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
 ## <a name="required-attribute"></a>Atributo [Required]
 
@@ -376,7 +376,7 @@ Otras opciones para deshabilitar la validación del lado cliente:
 * Convierta en comentario la referencia a `_ValidationScriptsPartial` en todos los archivos *.cshtml*.
 * Quite el contenido del archivo *Pages\Shared\_ValidationScriptsPartial.cshtml*.
 
-El enfoque anterior no impedirá la validación del lado cliente de la biblioteca de clases de Razor de identidad de ASP.NET Core. Para más información, consulte <xref:security/authentication/scaffold-identity>.
+El enfoque anterior no impedirá la validación del lado cliente de la biblioteca de clases de Razor de identidad de ASP.NET Core. Para obtener más información, vea <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
@@ -417,16 +417,16 @@ Los atributos de validación permiten especificar reglas de validación para las
 
 Entre los atributos de validación integrados se incluyen:
 
-* `[CreditCard]`: valida que la propiedad tiene un formato de tarjeta de crédito.
-* `[Compare]`: valida que coinciden dos propiedades en un modelo. Por ejemplo, el archivo *Register.cshtml.cs* usa `[Compare]` para validar que ambas contraseñas escritas coincidan. [Identidad de scaffolding](xref:security/authentication/scaffold-identity) para ver el código del Registro.
-* `[EmailAddress]`: valida que la propiedad tiene un formato de correo electrónico.
-* `[Phone]`: valida que la propiedad tiene un formato de número de teléfono.
-* `[Range]`: valida que el valor de la propiedad se encuentra dentro de un intervalo especificado.
-* `[RegularExpression]`: valida que el valor de propiedad coincide con una expresión regular especificada.
-* `[Required]`: valida que el campo no sea NULL. Consulte el [atributo `[Required]`](#required-attribute) para obtener más información sobre el comportamiento de este atributo.
-* `[StringLength]`: valida que un valor de propiedad de cadena no supere un límite de longitud especificado.
-* `[Url]`: valida que la propiedad tiene un formato de dirección URL.
-* `[Remote]`: valida la entrada en el cliente mediante una llamada a un método de acción en el servidor. Consulte el [atributo `[Remote]`](#remote-attribute) para obtener más información sobre el comportamiento de este atributo.
+* `[CreditCard]`: Valida que la propiedad tiene un formato de tarjeta de crédito.
+* `[Compare]`: Valida que dos propiedades de un modelo coincidan. Por ejemplo, el archivo *Register.cshtml.cs* usa `[Compare]` para validar que ambas contraseñas escritas coincidan. [Identidad de scaffolding](xref:security/authentication/scaffold-identity) para ver el código del Registro.
+* `[EmailAddress]`: Valida que la propiedad tiene un formato de correo electrónico.
+* `[Phone]`: Valida que la propiedad tiene un formato de número de teléfono.
+* `[Range]`: Valida que el valor de la propiedad se encuentra dentro de un intervalo especificado.
+* `[RegularExpression]`: Valida que el valor de propiedad coincide con una expresión regular especificada.
+* `[Required]`: Valida que el campo no sea NULL. Vea [ `[Required]` el atributo](#required-attribute) para obtener más información sobre el comportamiento de este atributo.
+* `[StringLength]`: Valida que un valor de propiedad de cadena no supera un límite de longitud especificado.
+* `[Url]`: Valida que la propiedad tiene un formato de dirección URL.
+* `[Remote]`: Valida la entrada en el cliente mediante una llamada a un método de acción en el servidor. Vea [ `[Remote]` el atributo](#remote-attribute) para obtener más información sobre el comportamiento de este atributo.
 
 Cuando se usa el atributo `[RegularExpression]` con la validación del lado cliente, la regex se ejecuta en JavaScript en el cliente. Esto significa que se usará el comportamiento de coincidencia de [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior). Para más información, consulte [este problema de GitHub](https://github.com/dotnet/corefx/issues/42487).
 
