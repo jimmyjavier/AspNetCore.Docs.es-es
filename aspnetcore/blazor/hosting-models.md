@@ -10,14 +10,14 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 0dfc991f76acb227ce9ea27a07fbae50571f0117
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 48f5b09199091b2b55974010a2b0715c28eb1bae
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80471829"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205974"
 ---
-# <a name="aspnet-core-opno-locblazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
+# <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
 
 Por [Daniel Roth](https://github.com/danroth27)
 
@@ -29,7 +29,7 @@ Para crear un proyecto para los modelos de hospedaje descritos en este artículo
 
 Para la configuración avanzada, vea <xref:blazor/hosting-model-configuration>.
 
-## <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+## <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 El modelo de hospedaje principal de Blazor se está ejecutando del lado cliente en el explorador en WebAssembly. La aplicación Blazor, sus dependencias y el entorno de ejecución de .NET se descargan en el explorador. La aplicación se ejecuta directamente en el subproceso de interfaz de usuario del explorador. Las actualizaciones de la interfaz de usuario y el control de eventos se producen en el mismo proceso. Los recursos de la aplicación se implementan como archivos estáticos en un servidor o servicio web capaz de servir contenido estático a los clientes.
 
@@ -60,7 +60,7 @@ También hay desventajas en el hospedaje Blazor WebAssembly:
 
 El modelo de aplicación hospedada en Blazor admite los [contenedores de Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Haga clic con el botón derecho en el proyecto de servidor en Visual Studio y seleccione **Agregar** > **Compatibilidad con Docker**.
 
-## <a name="opno-locblazor-server"></a>Servidor de Blazor
+## <a name="blazor-server"></a>Servidor de Blazor
 
 Con el modelo de hospedaje Servidor de Blazor, la aplicación se ejecuta en el servidor desde una aplicación ASP.NET Core. Las actualizaciones de la interfaz de usuario, el control de eventos y las llamadas de JavaScript se controlan mediante una conexión [SignalR](xref:signalr/introduction).
 
@@ -115,7 +115,7 @@ Una actualización de la interfaz de usuario en Blazor se desencadena mediante l
 
 El gráfico se vuelve a representar y se calcula una *diff* (diferencia) de interfaz de usuario. Esta diferencia es el conjunto más pequeño de ediciones DOM necesarias para actualizar la interfaz de usuario en el cliente. La diferencia se envía al cliente en un formato binario y se aplica mediante el explorador.
 
-Se desecha un componente después de que el usuario salga de él en el cliente. Mientras que un usuario interactúa con un componente, el estado del componente (servicios, recursos) debe mantenerse en la memoria del servidor. Dado que el servidor puede mantener el estado de muchos componentes simultáneamente, el agotamiento de la memoria es una preocupación que se debe abordar. Para obtener instrucciones sobre cómo crear una aplicación Servidor de Blazor con el fin de garantizar el mejor uso de la memoria del servidor, vea <xref:security/blazor/server>.
+Se desecha un componente después de que el usuario salga de él en el cliente. Mientras que un usuario interactúa con un componente, el estado del componente (servicios, recursos) debe mantenerse en la memoria del servidor. Dado que el servidor puede mantener el estado de muchos componentes simultáneamente, el agotamiento de la memoria es una preocupación que se debe abordar. Para obtener instrucciones sobre cómo crear una aplicación Servidor de Blazor con el fin de garantizar el mejor uso de la memoria del servidor, vea <xref:security/blazor/server/threat-mitigation>.
 
 ### <a name="circuits"></a>Circuitos
 
@@ -133,12 +133,12 @@ La latencia de la interfaz de usuario es el tiempo que tarda desde una acción i
 
 En el caso de una aplicación de línea de negocio que esté limitada a una red corporativa privada, los efectos en las percepciones del usuario sobre la latencia debido a la latencia de red suelen ser imperceptibles. En el caso de una aplicación implementada a través de Internet, es posible que los usuarios perciban la latencia, especialmente si los usuarios están ampliamente distribuidos geográficamente.
 
-El uso de memoria también puede contribuir a la latencia de la aplicación. El aumento del uso de memoria tiene como resultado la recolección frecuente de elementos no utilizados o la paginación de memoria en el disco. Ambas consecuencias degradan el rendimiento de la aplicación y, por lo tanto, aumentan la latencia de la interfaz de usuario. Para obtener más información, vea <xref:security/blazor/server>.
+El uso de memoria también puede contribuir a la latencia de la aplicación. El aumento del uso de memoria tiene como resultado la recolección frecuente de elementos no utilizados o la paginación de memoria en el disco. Ambas consecuencias degradan el rendimiento de la aplicación y, por lo tanto, aumentan la latencia de la interfaz de usuario.
 
 Las aplicaciones Servidor de Blazor deben optimizarse para minimizar la latencia de la interfaz de usuario mediante la reducción de la latencia de red y el uso de memoria. Para obtener información acerca de cómo medir la latencia de red, vea <xref:host-and-deploy/blazor/server#measure-network-latency>. Para obtener más información sobre SignalR y Blazor, vea lo siguiente:
 
 * <xref:host-and-deploy/blazor/server>
-* <xref:security/blazor/server>
+* <xref:security/blazor/server/threat-mitigation>
 
 ### <a name="connection-to-the-server"></a>Conexión al servidor
 

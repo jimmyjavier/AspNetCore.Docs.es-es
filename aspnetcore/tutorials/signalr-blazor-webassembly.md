@@ -5,17 +5,17 @@ description: Cree una aplicación de chat que use ASP.NET Core SignalR con Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: c4843dc282e1978b39738e206ecc79ded87fcff9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 78c5fbb8b91b934bcb34525672e9e26b6a95290e
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80306567"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82111154"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Uso de ASP.NET Core SignalR con Blazor WebAssembly
 
@@ -61,7 +61,7 @@ Al final de este tutorial, tendrá una aplicación de chat funcional.
 Si no usa Visual Studio versión 16.6 Preview 2 o posterior, instale la plantilla [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly). El paquete [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tiene una versión preliminar, mientras que Blazor WebAssembly se encuentra en versión preliminar. En un shell de comandos, ejecute el siguiente comando:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
 ```
 
 Siga las instrucciones para su elección de herramientas:
@@ -168,7 +168,7 @@ En el proyecto **BlazorSignalRApp.Server**, cree una carpeta de *Hubs* (plural) 
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a>Agregar servicios de SignalR y un punto de conexión para el concentrador de SignalR
+## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>Agregar servicios y un punto de conexión para el concentrador de SignalR
 
 1. En el proyecto **BlazorSignalRApp.Server**, abra el archivo *Startup.cs*.
 
@@ -178,15 +178,13 @@ En el proyecto **BlazorSignalRApp.Server**, cree una carpeta de *Hubs* (plural) 
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Agregue los servicios de SignalR a `Startup.ConfigureServices`:
+1. Agregue los servicios de middleware de compresión de respuesta y SignalR a `Startup.ConfigureServices`:
 
-   ```csharp
-   services.AddSignalR();
-   ```
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. En `Startup.Configure` entre los puntos de conexión de la ruta del controlador predeterminada y la reserva del lado cliente, agregue un punto de conexión para el concentrador:
+1. En `Startup.Configure` entre los puntos de conexión de los controladores y la reserva del lado cliente, agregue un punto de conexión para el concentrador:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
 
 ## <a name="add-razor-component-code-for-chat"></a>Agregar código de componente de Razor para el chat
 
@@ -202,7 +200,7 @@ En el proyecto **BlazorSignalRApp.Server**, cree una carpeta de *Hubs* (plural) 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. En **Explorador de soluciones**, seleccione el proyecto **BlazorSignalRApp.Server**. Presione **CTRL+F5** para ejecutar la aplicación sin depurar.
+1. En **Explorador de soluciones**, seleccione el proyecto **BlazorSignalRApp.Server**. Presione <kbd>F5</kbd> para ejecutar la aplicación con depuración o <kbd>Ctrl</kbd>+<kbd>F5</kbd> para ejecutarla sin depuración.
 
 1. Copie la dirección URL de la barra de direcciones, abra otra instancia o pestaña del explorador, y pegue la dirección URL en la barra de direcciones.
 
@@ -214,7 +212,13 @@ En el proyecto **BlazorSignalRApp.Server**, cree una carpeta de *Hubs* (plural) 
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Seleccione **Depurar** > **Ejecutar sin depuración** en la barra de herramientas.
+1. Cuando VS Code ofrece crear un perfil de inicio para la aplicación de servidor ( *.vscode/launch.json*), la entrada `program` es similar a la siguiente para apuntar al ensamblado de la aplicación (`{APPLICATION NAME}.Server.dll`):
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
+   ```
+
+1. Presione <kbd>F5</kbd> para ejecutar la aplicación con depuración o <kbd>Ctrl</kbd>+<kbd>F5</kbd> para ejecutarla sin depuración.
 
 1. Copie la dirección URL de la barra de direcciones, abra otra instancia o pestaña del explorador, y pegue la dirección URL en la barra de direcciones.
 
@@ -226,7 +230,7 @@ En el proyecto **BlazorSignalRApp.Server**, cree una carpeta de *Hubs* (plural) 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-1. En la barra lateral **Solución**, seleccione el proyecto **BlazorSignalRApp.Server**. En el menú, seleccione **Ejecutar** > **Iniciar sin depuración**.
+1. En la barra lateral **Solución**, seleccione el proyecto **BlazorSignalRApp.Server**. Presione <kbd>⌘</kbd>+<kbd>↩</kbd>** para ejecutar la aplicación con depuración o <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> para ejecutarla sin depuración.
 
 1. Copie la dirección URL de la barra de direcciones, abra otra instancia o pestaña del explorador, y pegue la dirección URL en la barra de direcciones.
 
