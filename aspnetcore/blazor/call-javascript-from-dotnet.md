@@ -10,14 +10,14 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 0c6b6a0a8f88fa912523e7772fcd84ef4ce3b4ff
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 380a14177d4bb8fa3de63a3c1cd9a39aeab13db3
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977020"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205987"
 ---
-# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-opno-locblazor"></a>Llamada a funciones de JavaScript con métodos de .NET en Blazor de ASP.NET Core
+# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Llamada a funciones de JavaScript con métodos de .NET en Blazor de ASP.NET Core
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
 
@@ -149,7 +149,7 @@ La aplicación de ejemplo incluye un componente para mostrar la interoperabilida
 
 Las funciones de JavaScript que devuelven [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) o [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) se llaman con `IJSRuntime.InvokeVoidAsync`.
 
-## <a name="detect-when-a-opno-locblazor-server-app-is-prerendering"></a>Detección de cuándo se está obteniendo una representación previa de una aplicación de servidor Blazor
+## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Detección de cuándo se está obteniendo una representación previa de una aplicación de servidor Blazor
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
@@ -458,7 +458,7 @@ La interoperabilidad de JS puede no funcionar debido a errores de red y debe tr
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-Para más información sobre el agotamiento de recursos, vea <xref:security/blazor/server>.
+Para más información sobre el agotamiento de recursos, vea <xref:security/blazor/server/threat-mitigation>.
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
 

@@ -10,14 +10,14 @@ no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/server
-ms.openlocfilehash: 866bb348180c872d8ab20787283cfb7217183a8d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 380bbab8898b4fbeab4efa514b17b807accbb1ac
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79025424"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205870"
 ---
-# <a name="host-and-deploy-opno-locblazor-server"></a>Hospedaje e implementación de Blazor Server
+# <a name="host-and-deploy-blazor-server"></a>Hospedaje e implementación de Blazor Server
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) y [Daniel Roth](https://github.com/danroth27)
 
@@ -36,7 +36,7 @@ Se requiere un servidor web que pueda hospedar una aplicación ASP.NET Core. Vis
 Planee una implementación para hacer el mejor uso de la infraestructura disponible para una aplicación Blazor Server. Consulte los siguientes recursos para abordar la escalabilidad de las aplicaciones Blazor Server:
 
 * [Aspectos básicos de las aplicaciones Blazor Server](xref:blazor/hosting-models#blazor-server)
-* <xref:security/blazor/server>
+* <xref:security/blazor/server/threat-mitigation>
 
 ### <a name="deployment-server"></a>Servidor de implementación
 
@@ -45,17 +45,17 @@ A la hora de considerar la escalabilidad de un solo servidor (escalado vertical)
 * Número de circuitos activos que un servidor puede admitir.
 * Latencia de la interfaz de usuario en el cliente.
 
-Para obtener instrucciones sobre la creación de aplicaciones Blazor Server seguras y escalables, consulte <xref:security/blazor/server>.
+Para obtener instrucciones sobre la creación de aplicaciones Blazor Server seguras y escalables, consulte <xref:security/blazor/server/threat-mitigation>.
 
 Cada circuito utiliza aproximadamente 250 KB de memoria para una aplicación mínima de estilo *Hola mundo*. El tamaño de un circuito depende del código de la aplicación y de los requisitos de mantenimiento del estado asociados a cada componente. Se recomienda que mida la demanda de recursos durante el desarrollo de la aplicación y la infraestructura, pero la línea de base siguiente puede ser un punto de partida para planear el destino de implementación: Si espera que la aplicación admita 5000 usuarios simultáneos, considere la posibilidad de presupuestar al menos 1,3 GB de memoria del servidor en la aplicación (o ~273 KB por usuario).
 
-### <a name="opno-locsignalr-configuration"></a>Configuración de SignalR
+### <a name="signalr-configuration"></a>Configuración de SignalR
 
 Las aplicaciones Blazor Server usan ASP.NET Core SignalR para comunicarse con el explorador. Las [SignalRcondiciones de hospedaje y escalabilidad de ](xref:signalr/publish-to-azure-web-app) se aplican a las aplicaciones Blazor Server.
 
 Blazor funciona mejor cuando se usa WebSockets como transporte de SignalR debido a su menor latencia, confiabilidad y [seguridad](xref:signalr/security). SignalR usa el sondeo largo cuando WebSockets no está disponible o cuando la aplicación está configurada explícitamente para usarlo. Al implementar en Azure App Service, configure la aplicación para usar WebSockets en la configuración de Azure Portal del servicio. Para más información sobre la configuración de la aplicación para Azure App Service, consulte las [SignalRdirectrices de publicación de](xref:signalr/publish-to-azure-web-app).
 
-#### <a name="azure-opno-locsignalr-service"></a>Azure SignalR Service
+#### <a name="azure-signalr-service"></a>Azure SignalR Service
 
 Se recomienda usar [Azure SignalR Service](/azure/azure-signalr) para las aplicaciones Blazor Server. El servicio permite el escalado vertical de una aplicación Blazor Server a un gran número de conexiones SignalR simultáneas. Además, los centros de datos de alto rendimiento y alcance global del servicio SignalR son de gran ayuda a la hora de reducir la latencia ocasionada por la geografía. Para configurar una aplicación (y, opcionalmente, aprovisionarla) Azure SignalR Service, realice estos pasos:
 

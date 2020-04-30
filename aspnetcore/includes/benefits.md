@@ -18,5 +18,5 @@ ASP.NET Core ofrece las siguientes ventajas:
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
   * [Docker](xref:host-and-deploy/docker/index)
-* [Control de versiones en paralelo](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level).
+* [Control de versiones en paralelo](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
 * Herramientas que simplifican el desarrollo web moderno.
