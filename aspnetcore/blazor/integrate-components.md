@@ -1,21 +1,21 @@
 ---
 title: Integración de componentes Razor de ASP.NET Core en aplicaciones Razor Pages y MVC
 author: guardrex
-description: Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor.
+description: Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: cf6056e0985d5433bddecac8dd183ca3f4c2af5b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4e2103b7e8b65478808093d7a31e8cfe29b04984
+ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218939"
+ms.lasthandoff: 04/29/2020
+ms.locfileid: "82558919"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integración de componentes Razor de ASP.NET Core en aplicaciones Razor Pages y MVC
 
@@ -23,7 +23,14 @@ Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.co
 
 Los componentes Razor se pueden integrar en aplicaciones de Razor Pages y MVC. Cuando se representa la página o la vista, los componentes se pueden representar previamente al mismo tiempo.
 
-## <a name="prepare-the-app-to-use-components-in-pages-and-views"></a>Preparación de la aplicación para usar componentes en páginas y vistas
+Después de [preparar la aplicación](#prepare-the-app), use las instrucciones que aparecen en las secciones siguientes en función de los requisitos de la aplicación:
+
+* Componentes enrutable &ndash; Para los componentes que se pueden enrutar directamente desde las solicitudes del usuario. Siga estas instrucciones cuando los visitantes puedan hacer una solicitud HTTP en el explorador para un componente con una directiva [`@page`](xref:mvc/views/razor#page).
+  * [Uso de componentes enrutables en una aplicación Razor Pages](#use-routable-components-in-a-razor-pages-app).
+  * [Uso de componentes enrutables en una aplicación MVC](#use-routable-components-in-an-mvc-app).
+* [Representación de componentes a partir de una página o vista](#render-components-from-a-page-or-view) &ndash; Para los componentes que no se pueden enrutar directamente desde las solicitudes del usuario. Siga estas instrucciones cuando la aplicación inserte componentes en páginas y vistas existentes con el [asistente de etiquetas de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+
+## <a name="prepare-the-app"></a>Preparación de la aplicación
 
 Una aplicación Razor Pages o MVC existente puede integrar componentes Razor en páginas y vistas:
 
@@ -66,7 +73,7 @@ Una aplicación Razor Pages o MVC existente puede integrar componentes Razor en 
    services.AddServerSideBlazor();
    ```
 
-1. En `Startup.Configure`, agregue el punto de conexión de Blazor Hub a `app.UseEndpoints`:
+1. En `Startup.Configure`, agregue el punto de conexión del centro Blazor a `app.UseEndpoints`:
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -80,7 +87,7 @@ Una aplicación Razor Pages o MVC existente puede integrar componentes Razor en 
 
 Para admitir componentes Razor enrutables en aplicaciones Razor Pages, haga lo siguiente:
 
-1. Siga las instrucciones de la sección [Preparación de la aplicación para usar componentes en páginas y vistas](#prepare-the-app-to-use-components-in-pages-and-views).
+1. Siga las instrucciones que aparecen en la sección [Preparación de la aplicación](#prepare-the-app).
 
 1. Agregue un archivo *App.razor* a la raíz del proyecto con el contenido siguiente:
 
@@ -113,6 +120,19 @@ Para admitir componentes Razor enrutables en aplicaciones Razor Pages, haga lo s
 
    Los componentes usan el archivo compartido *_Layout.cshtml* para su diseño.
 
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configura si el componente `App`:
+
+   * Se representa previamente en la página.
+   * Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario.
+
+   | Modo de representación | Descripción |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación de Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación de Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación de Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación de Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
+
+   Para más información sobre el asistente de etiquetas de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
 1. Agregue una ruta de prioridad baja para la página *_Host.cshtml* a la configuración del punto de conexión en `Startup.Configure`:
 
    ```csharp
@@ -134,7 +154,7 @@ Para admitir componentes Razor enrutables en aplicaciones Razor Pages, haga lo s
    ...
    ```
 
-   Para obtener más información sobre los espacios de nombres, vea la sección [Espacios de nombres de componentes](#component-namespaces).
+Para obtener más información sobre los espacios de nombres, vea la sección [Espacios de nombres de componentes](#component-namespaces).
 
 ## <a name="use-routable-components-in-an-mvc-app"></a>Uso de componentes enrutables en una aplicación MVC
 
@@ -142,7 +162,7 @@ Para admitir componentes Razor enrutables en aplicaciones Razor Pages, haga lo s
 
 Para admitir componentes Razor enrutables en aplicaciones MVC, haga lo siguiente:
 
-1. Siga las instrucciones de la sección [Preparación de la aplicación para usar componentes en páginas y vistas](#prepare-the-app-to-use-components-in-pages-and-views).
+1. Siga las instrucciones que aparecen en la sección [Preparación de la aplicación](#prepare-the-app).
 
 1. Agregue un archivo *App.razor* a la raíz del proyecto con el contenido siguiente:
 
@@ -173,6 +193,19 @@ Para admitir componentes Razor enrutables en aplicaciones MVC, haga lo siguiente
    ```
 
    Los componentes usan el archivo compartido *_Layout.cshtml* para su diseño.
+   
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configura si el componente `App`:
+
+   * Se representa previamente en la página.
+   * Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario.
+
+   | Modo de representación | Descripción |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación de Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
+
+   Para más información sobre el asistente de etiquetas de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 1. Agregue una acción al controlador de inicio:
 
@@ -204,7 +237,62 @@ Para admitir componentes Razor enrutables en aplicaciones MVC, haga lo siguiente
    ...
    ```
 
-   Para obtener más información sobre los espacios de nombres, vea la sección [Espacios de nombres de componentes](#component-namespaces).
+Para obtener más información sobre los espacios de nombres, vea la sección [Espacios de nombres de componentes](#component-namespaces).
+
+## <a name="render-components-from-a-page-or-view"></a>Representación de componentes a partir de una página o vista
+
+*Esta sección pertenece a la adición de componentes a páginas o vistas, donde los componentes no son enrutables directamente desde las solicitudes del usuario.*
+
+Para representar un componente a partir de una página o vista, use el [asistente de etiquetas de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+
+### <a name="render-stateful-interactive-components"></a>Representación de componentes interactivos con estado
+
+Los componentes interactivos con estado se pueden agregar a una página o vista de Razor.
+
+Cuando se representa la página o la vista:
+
+* El componente se representa previamente con la página o la vista.
+* Se pierde el estado inicial del componente que se usa para la representación previa.
+* Cuando se establece la conexión SignalR, se crea un estado del componente.
+
+La página de Razor siguiente representa un componente `Counter`:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Para obtener más información, vea <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+### <a name="render-noninteractive-components"></a>Representación de componentes no interactivos
+
+En la siguiente página de Razor, el componente `Counter` se representa de forma estática con un valor inicial que se especifica mediante un formulario. Como el componente se representa de forma estática, no es interactivo:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<form>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
+</form>
+
+<component type="typeof(Counter)" render-mode="Static" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Para obtener más información, vea <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Espacios de nombres de componentes
 
@@ -219,16 +307,4 @@ Al usar una carpeta personalizada para contener los componentes de la aplicació
 
 El archivo *_ViewImports.cshtml* se encuentra en la carpeta *Pages* de una aplicación Razor Pages o en la carpeta *Views* de una aplicación MVC.
 
-Para obtener más información, consulta <xref:blazor/components#import-components>.
-
-## <a name="render-components-from-a-page-or-view"></a>Representación de componentes a partir de una página o vista
-
-*Esta sección pertenece a la adición de componentes a páginas o vistas, donde los componentes no son enrutables directamente desde las solicitudes del usuario.*
-
-Para representar un componente a partir de una página o vista, use el [asistente de etiquetas de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-
-Para obtener más información sobre cómo se representan los componentes, el estado del componente y el Asistente de etiquetas `Component`, vea los artículos siguientes:
-
-* <xref:blazor/hosting-models>
-* <xref:blazor/hosting-model-configuration>
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+Para obtener más información, vea <xref:blazor/components#import-components>.
