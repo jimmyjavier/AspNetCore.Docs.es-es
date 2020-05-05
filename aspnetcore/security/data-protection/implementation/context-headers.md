@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre los detalles de implementación de ASP.NET Core encabezados de contexto de protección de datos.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 518423f5df93924d3df144994e4beb1755cd0bfc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 381cc137d1de87e87f36c3b32a6a551a318ed3cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654581"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776960"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Encabezados de contexto en ASP.NET Core
 
@@ -20,9 +26,9 @@ ms.locfileid: "78654581"
 
 En el sistema de protección de datos, una "clave" hace referencia a un objeto que puede proporcionar servicios de cifrado autenticados. Cada clave se identifica mediante un identificador único (un GUID) y incluye información algorítmica y material Entropic. Está previsto que cada clave lleve una entropía única, pero el sistema no puede aplicar esto, y también tenemos que tener en cuenta a los desarrolladores que podrían cambiar el anillo de claves manualmente modificando la información algorítmica de una clave existente en el anillo de claves. Para alcanzar los requisitos de seguridad dados estos casos, el sistema de protección de datos tiene un concepto de [agilidad criptográfica](https://www.microsoft.com/en-us/research/publication/cryptographic-agility-and-its-relation-to-circular-encryption/), que permite usar de forma segura un único valor de Entropic en varios algoritmos criptográficos.
 
-La mayoría de los sistemas que admiten la agilidad criptográfica lo hacen mediante la inclusión de información de identificación sobre el algoritmo dentro de la carga. El OID del algoritmo suele ser un buen candidato para esto. Sin embargo, un problema en el que se produjo es que hay varias maneras de especificar el mismo algoritmo: "AES" (CNG) y las clases administradas AES, AesManaged, AesCryptoServiceProvider, AesCng y RijndaelManaged (determinados parámetros) son realmente las mismas. y es necesario mantener una asignación de todos ellos en el OID correcto. Si un desarrollador desea proporcionar un algoritmo personalizado (o incluso otra implementación de AES!), deberá indicarnos su OID. Este paso de registro adicional hace que la configuración del sistema sea especialmente complicada.
+La mayoría de los sistemas que admiten la agilidad criptográfica lo hacen mediante la inclusión de información de identificación sobre el algoritmo dentro de la carga. El OID del algoritmo suele ser un buen candidato para esto. Sin embargo, un problema en el que se produjo es que hay varias maneras de especificar el mismo algoritmo: "AES" (CNG) y las clases administradas AES, AesManaged, AesCryptoServiceProvider, AesCng y RijndaelManaged (determinados parámetros específicos) son realmente lo mismo, y es necesario mantener una asignación de todos ellos al OID correcto. Si un desarrollador desea proporcionar un algoritmo personalizado (o incluso otra implementación de AES!), deberá indicarnos su OID. Este paso de registro adicional hace que la configuración del sistema sea especialmente complicada.
 
-Volviendo atrás, decidimos que estamos llegando al problema de la dirección equivocada. Un OID le indica cuál es el algoritmo, pero realmente no le interesa. Si necesitamos usar un único valor de Entropic de forma segura en dos algoritmos diferentes, no es necesario saber cuáles son los algoritmos realmente. Lo que realmente nos importa es cómo se comportan. Todos los algoritmos de cifrado de bloques simétricos decentes son también una fuerte permutación pseudoaleatorio (PRP): corregir las entradas (clave, modo de encadenamiento, IV, texto sin formato) y la salida de texto cifrado con una probabilidad abrumadora distinta de cualquier otro cifrado de bloques simétricos el algoritmo proporcionó las mismas entradas. Del mismo modo, cualquier función hash con clave decente es también una sólida función pseudoaleatorios (PRF) y, si se especifica un conjunto de entrada fijo, su salida será muy distinta de cualquier otra función hash con clave.
+Volviendo atrás, decidimos que estamos llegando al problema de la dirección equivocada. Un OID le indica cuál es el algoritmo, pero realmente no le interesa. Si necesitamos usar un único valor de Entropic de forma segura en dos algoritmos diferentes, no es necesario saber cuáles son los algoritmos realmente. Lo que realmente nos importa es cómo se comportan. Los algoritmos de cifrado de bloques simétricos decentes también son una permutación pseudoaleatorio (PRP) segura: corrija las entradas (clave, modo de encadenamiento, IV, texto no cifrado) y la salida de texto cifrado con una probabilidad abrumadora distinta de cualquier otro algoritmo de cifrado de bloques simétricos con las mismas entradas. Del mismo modo, cualquier función hash con clave decente es también una sólida función pseudoaleatorios (PRF) y, si se especifica un conjunto de entrada fijo, su salida será muy distinta de cualquier otra función hash con clave.
 
 Usamos este concepto de Strong PRPs y PRFs para crear un encabezado de contexto. Este encabezado de contexto actúa esencialmente como una huella digital estable en los algoritmos que se usan en una operación determinada y proporciona la agilidad criptográfica necesaria para el sistema de protección de datos. Este encabezado es reproducible y se usa más adelante como parte del [proceso de derivación de subclaves](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). Hay dos maneras diferentes de compilar el encabezado de contexto en función de los modos de funcionamiento de los algoritmos subyacentes.
 
@@ -50,7 +56,7 @@ Idealmente, podríamos pasar todos los vectores de cero para K_E y K_H. Sin emba
 
 En su lugar, usamos NIST SP800-108 KDF en modo de contador (consulte [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) con una clave, etiqueta y contexto de longitud cero y HMACSHA512 como el PRF subyacente. Derivaremos | K_E | + | K_H | bytes de salida y, a continuación, descomponer el resultado en K_E y K_H ellos mismos. Matemáticamente, esto se representa como se indica a continuación.
 
-( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")
+(K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, Key = "", Label = "", context = "")
 
 ### <a name="example-aes-192-cbc--hmacsha256"></a>Ejemplo: AES-192-CBC + HMACSHA256
 
@@ -168,7 +174,7 @@ K_E = SP800_108_CTR (PRF = HMACSHA512, Key = "", Label = "", context = "")
 
 En primer lugar, deje K_E = SP800_108_CTR (PRF = HMACSHA512, clave = "", Label = "", context = ""), donde | K_E | = 256 bits.
 
-K_E := 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8
+K_E: = 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8
 
 A continuación, calcule la etiqueta de autenticación de Enc_GCM (K_E, nonce, "") para AES-256-GCM dado nonce = 096 y K_E como se indicó anteriormente.
 

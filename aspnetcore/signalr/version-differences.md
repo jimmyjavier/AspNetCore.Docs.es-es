@@ -1,19 +1,23 @@
 ---
-title: Diferencias entre SignalR y ASP.NET Core SignalR
+title: Diferencias entre SignalR y ASP.net CoreSignalR
 author: bradygaster
-description: Diferencias entre SignalR y ASP.NET Core SignalR
+description: Diferencias entre SignalR y ASP.net CoreSignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: cca9a0cb0c46fc25eb5d1f7127d31fd3ab92f0b4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 58d134ae971bace178561322f1c8a6351432be03
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653537"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772584"
 ---
 # <a name="differences-between-aspnet-signalr-and-aspnet-core-signalr"></a>Diferencias entre ASP.NET Signalr y ASP.NET Core Signalr
 
@@ -39,7 +43,7 @@ ASP.NET Core Signalr no es compatible con clientes o servidores para ASP.NET Sig
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | Paquete NuGet de servidor | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft. AspNetCore. app](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.net Core)<br>[Microsoft. AspNetCore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
-| Paquetes NuGet de cliente | [Microsoft. AspNet.SignalR. Nº](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet.SignalR. ASPX](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore.SignalR. Nº](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
+| Paquetes NuGet de cliente | [Microsoft. AspNet. SignalR. Nº](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR. ASPX](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR. Nº](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | Paquete NPM de cliente de JavaScript | [signalr](https://www.npmjs.com/package/signalr) | [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) |
 | Cliente de Java | [Repositorio de github](https://github.com/SignalR/java-client) (desusado)  | Paquete Maven [com. Microsoft. signalr](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
 | Tipo de aplicación de servidor | ASP.NET (System. Web) o Self-host OWIN | ASP.NET Core |
@@ -55,7 +59,7 @@ ASP.NET Core Signalr no es compatible con clientes o servidores para ASP.NET Sig
 
 En ASP.NET SignalR:
 
-* De forma predeterminada, SignalR intenta volver a conectarse al servidor si se quita la conexión. 
+* De forma predeterminada SignalR , intenta volver a conectarse al servidor si se quita la conexión. 
 
 En ASP.NET Core SignalR:
 
@@ -79,7 +83,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ::: moniker range="< aspnetcore-3.0"
 
-Antes de ASP.NET Core 3,0, SignalR no es compatible con las reconexiones automáticas. Si el cliente está desconectado, el usuario debe iniciar explícitamente una nueva conexión para volver a conectarse. En ASP.NET SignalR, SignalR intenta volver a conectarse al servidor si se quita la conexión.
+Antes de ASP.NET Core 3,0, SignalR no es compatible con las reconexiones automáticas. Si el cliente está desconectado, el usuario debe iniciar explícitamente una nueva conexión para volver a conectarse. En ASP.net SignalR, SignalR intenta volver a conectarse al servidor si se quita la conexión.
 
 ::: moniker-end
 
@@ -89,13 +93,13 @@ ASP.NET Core SignalR admite JSON, así como un nuevo protocolo binario basado en
 
 ### <a name="transports"></a>Transportes
 
-El transporte de tramas Forever no se admite en ASP.NET Core SignalR.
+El transporte de tramas Forever no se SignalRadmite en ASP.net Core.
 
 ## <a name="differences-on-the-server"></a>Diferencias en el servidor
 
-Las bibliotecas del lado del servidor de ASP.NET Core SignalR se incluyen en [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), que se usa en la plantilla de **aplicación Web de ASP.net Core** para proyectos de Razor y MVC.
+Las bibliotecas SignalR del lado servidor de ASP.net Core se incluyen en [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), que se usa en la plantilla de **aplicación Web ASP.net Core** para los Razor proyectos de y MVC.
 
-ASP.NET Core SignalR es un middleware ASP.NET Core. Se debe configurar llamando a <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> en `Startup.ConfigureServices`.
+ASP.NET Core SignalR es un middleware ASP.net Core. Se debe configurar llamando a <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> en. `Startup.ConfigureServices`
 
 ```csharp
 services.AddSignalR()
@@ -103,7 +107,7 @@ services.AddSignalR()
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Para configurar el enrutamiento, asigne rutas a los concentradores dentro de la llamada al método <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> en el método `Startup.Configure`.
+Para configurar el enrutamiento, asigne rutas a los concentradores dentro de <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> la `Startup.Configure` llamada al método en el método.
 
 ```csharp
 app.UseRouting();
@@ -118,7 +122,7 @@ app.UseEndpoints(endpoints =>
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Para configurar el enrutamiento, asigne rutas a los concentradores dentro de la llamada al método <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A> en el método `Startup.Configure`.
+Para configurar el enrutamiento, asigne rutas a los concentradores dentro de <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A> la `Startup.Configure` llamada al método en el método.
 
 ```csharp
 app.UseSignalR(routes =>
@@ -131,7 +135,7 @@ app.UseSignalR(routes =>
 
 ### <a name="sticky-sessions"></a>Sesiones permanentes
 
-El modelo ampliación para ASP.NET SignalR permite a los clientes volver a conectarse y enviar mensajes a cualquier servidor de la granja. En ASP.NET Core SignalR, el cliente debe interactuar con el mismo servidor mientras dure la conexión. En el caso de ampliación con Redis, eso significa que se requieren sesiones permanentes. En el caso de ampliación con el [servicio Azure SignalR](/azure/azure-signalr/), las sesiones permanentes no son necesarias porque el servicio administra las conexiones a los clientes.
+El modelo ampliación para ASP.NET SignalR permite a los clientes volver a conectarse y enviar mensajes a cualquier servidor de la granja. En ASP.NET Core SignalR, el cliente debe interactuar con el mismo servidor mientras dure la conexión. En el caso de ampliación con Redis, eso significa que se requieren sesiones permanentes. En el caso de ampliación con el [servicio de Azure SignalR ](/azure/azure-signalr/), las sesiones permanentes no son necesarias porque el servicio administra las conexiones a los clientes.
 
 ### <a name="single-hub-per-connection"></a>Un solo concentrador por conexión
 
@@ -139,11 +143,11 @@ En ASP.NET Core SignalR, se ha simplificado el modelo de conexión. Las conexion
 
 ### <a name="streaming"></a>Streaming
 
-ASP.NET Core SignalR ahora admite el [streaming de datos](xref:signalr/streaming) del concentrador al cliente.
+ASP.NET Core SignalR ahora admite el [streaming de datos](xref:signalr/streaming) desde el concentrador al cliente.
 
-### <a name="state"></a>State
+### <a name="state"></a>Estado
 
-Se ha quitado la capacidad de pasar el estado arbitrario entre los clientes y el concentrador (a menudo denominado `HubState`), así como la compatibilidad con los mensajes de progreso. En este momento no hay ningún homólogo de servidores proxy de concentrador.
+Se ha quitado la capacidad de pasar el estado arbitrario entre los clientes `HubState`y el concentrador (a menudo denominado), así como la compatibilidad con los mensajes de progreso. En este momento no hay ningún homólogo de servidores proxy de concentrador.
 
 ### <a name="persistentconnection-removal"></a>Eliminación de PersistentConnection
 
@@ -151,23 +155,23 @@ En ASP.NET Core SignalR, se ha quitado la clase [PersistentConnection](https://d
 
 ### <a name="globalhost"></a>Host global
 
-ASP.NET Core tiene la inserción de dependencias (DI) integrada en el marco de trabajo. Los servicios pueden usar DI para acceder a [HubContext](xref:signalr/hubcontext). El objeto `GlobalHost` que se usa en el SignalR ASP.NET para obtener una `HubContext` no existe en ASP.NET Core SignalR.
+ASP.NET Core tiene la inserción de dependencias (DI) integrada en el marco de trabajo. Los servicios pueden usar DI para acceder a [HubContext](xref:signalr/hubcontext). El `GlobalHost` objeto que se usa en ASP.net SignalR para obtener `HubContext` no existe en ASP.net Core SignalR.
 
 ### <a name="hubpipeline"></a>HubPipeline
 
-ASP.NET Core SignalR no es compatible con los módulos de `HubPipeline`.
+ASP.NET Core SignalR no es compatible con `HubPipeline` los módulos de.
 
 ## <a name="differences-on-the-client"></a>Diferencias en el cliente
 
 ### <a name="typescript"></a>TypeScript
 
-El cliente de SignalR de ASP.NET Core está escrito en [TypeScript](https://www.typescriptlang.org/). Puede escribir en JavaScript o TypeScript cuando se usa el [cliente de JavaScript](xref:signalr/javascript-client).
+El cliente SignalR de ASP.net Core está escrito en [TypeScript](https://www.typescriptlang.org/). Puede escribir en JavaScript o TypeScript cuando se usa el [cliente de JavaScript](xref:signalr/javascript-client).
 
 ### <a name="the-javascript-client-is-hosted-at-npm"></a>El cliente de JavaScript se hospeda en NPM
 
 ::: moniker range=">= aspnetcore-3.0"
 
-En las versiones de ASP.NET, el cliente de JavaScript se obtuvo a través de un paquete NuGet en Visual Studio. En las versiones de ASP.NET Core, el paquete NPM de [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) contiene las bibliotecas de JavaScript. Este paquete no está incluido en la plantilla de **aplicación Web de ASP.net Core** . Use NPM para obtener e instalar el paquete de `@microsoft/signalr` NPM.
+En las versiones de ASP.NET, el cliente de JavaScript se obtuvo a través de un paquete NuGet en Visual Studio. En las versiones ASP.NET Core, el [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) paquete NPM contiene las bibliotecas de JavaScript. Este paquete no está incluido en la plantilla de **aplicación Web de ASP.net Core** . Use NPM para obtener e instalar el `@microsoft/signalr` paquete NPM.
 
 ```console
 npm init -y
@@ -178,7 +182,7 @@ npm install @microsoft/signalr
 
 ::: moniker range="<= aspnetcore-2.2"
 
-En las versiones de ASP.NET, el cliente de JavaScript se obtuvo a través de un paquete NuGet en Visual Studio. En las versiones de ASP.NET Core, el paquete NPM de [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) contiene las bibliotecas de JavaScript. Este paquete no está incluido en la plantilla de **aplicación Web de ASP.net Core** . Use NPM para obtener e instalar el paquete de `@aspnet/signalr` NPM.
+En las versiones de ASP.NET, el cliente de JavaScript se obtuvo a través de un paquete NuGet en Visual Studio. En las versiones ASP.NET Core, el [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) paquete NPM contiene las bibliotecas de JavaScript. Este paquete no está incluido en la plantilla de **aplicación Web de ASP.net Core** . Use NPM para obtener e instalar el `@aspnet/signalr` paquete NPM.
 
 ```console
 npm init -y
@@ -193,13 +197,13 @@ La dependencia de jQuery se ha quitado, pero los proyectos todavía pueden usar 
 
 ### <a name="internet-explorer-support"></a>Compatibilidad con Internet Explorer
 
-ASP.NET Core SignalR requiere Microsoft Internet Explorer 11 o posterior (ASP.NET SignalR compatible con Microsoft Internet Explorer 8 y versiones posteriores).
+ASP.NET Core SignalR requiere Microsoft Internet Explorer 11 o posterior (ASP.net SignalR compatible con Microsoft Internet Explorer 8 y versiones posteriores).
 
 ### <a name="javascript-client-method-syntax"></a>Sintaxis del método de cliente JavaScript
 
 ::: moniker range=">= aspnetcore-3.0"
 
-La sintaxis de JavaScript ha cambiado de la versión ASP.NET de SignalR. En lugar de usar el objeto de `$connection`, cree una conexión mediante la API de [HubConnectionBuilder](/javascript/api/@aspnet/signalr/hubconnectionbuilder) .
+La sintaxis de JavaScript ha cambiado con respecto a la SignalRversión de ASP.net de. En lugar de usar `$connection` el objeto, cree una conexión mediante la API de [HubConnectionBuilder](/javascript/api/@aspnet/signalr/hubconnectionbuilder) .
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -213,7 +217,7 @@ Use el método on para especificar los métodos [de](/javascript/api/@microsoft/
 
 ::: moniker range="<= aspnetcore-2.2"
 
-La sintaxis de JavaScript ha cambiado de la versión ASP.NET de SignalR. En lugar de usar el objeto de `$connection`, cree una conexión mediante la API de [HubConnectionBuilder](/javascript/api/@microsoft/signalr/hubconnectionbuilder) .
+La sintaxis de JavaScript ha cambiado con respecto a la SignalRversión de ASP.net de. En lugar de usar `$connection` el objeto, cree una conexión mediante la API de [HubConnectionBuilder](/javascript/api/@microsoft/signalr/hubconnectionbuilder) .
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -255,9 +259,9 @@ Los proxies de concentrador ya no se generan automáticamente. En su lugar, el n
 
 ### <a name="net-and-other-clients"></a>.NET y otros clientes
 
-[Microsoft. AspNetCore.SignalR. ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)El paquete NuGet de cliente contiene las bibliotecas de cliente de .net para ASP.NET Core SignalR.
+[Microsoft. AspNetCoreSignalR.. ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)El paquete NuGet de cliente contiene las bibliotecas de cliente SignalRde .net para ASP.net Core.
 
-Use el <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder> para crear y compilar una instancia de una conexión a un concentrador.
+Utilice <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder> para crear y compilar una instancia de una conexión a un concentrador.
 
 ```csharp
 connection = new HubConnectionBuilder()
@@ -267,17 +271,17 @@ connection = new HubConnectionBuilder()
 
 ## <a name="scaleout-differences"></a>Diferencias de ampliación
 
-ASP.NET SignalR admite SQL Server y Redis. ASP.NET Core SignalR admite el servicio Azure SignalR y Redis.
+ASP.NET SignalR admite SQL Server y Redis. ASP.NET Core SignalR admite el SignalR servicio de Azure y Redis.
 
 ### <a name="aspnet"></a>ASP.NET
 
-* [SignalR ampliación con Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
-* [SignalR ampliación con Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
-* [SignalR ampliación con SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+* [SignalRAmpliación con Azure Service Bus](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalRAmpliación con Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalRAmpliación con SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
 
 ### <a name="aspnet-core"></a>ASP.NET Core
 
-* [Servicio Azure SignalR](/azure/azure-signalr/)
+* [Servicio SignalR de Azure](/azure/azure-signalr/)
 * [Backplane de Redis](xref:signalr/redis-backplane)
 
 ## <a name="additional-resources"></a>Recursos adicionales

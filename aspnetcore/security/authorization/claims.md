@@ -4,19 +4,25 @@ author: rick-anderson
 description: Obtenga información sobre cómo agregar comprobaciones de notificaciones para la autorización en una aplicación ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: e289851aafcbc7e3b3f60ab9fbe4b182a78bdf8a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: de8ab915e6a8529c7401f89fad067ec33d5d0713
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652973"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774423"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Autorización basada en notificaciones en ASP.NET Core
 
 <a name="security-authorization-claims-based"></a>
 
-Cuando se crea una identidad, se le puede asignar una o varias notificaciones emitidas por una entidad de confianza. Una demanda es un par de valor de nombre que representa lo que es el sujeto, no lo que puede hacer el sujeto. Por ejemplo, puede tener una licencia de controlador, emitida por una entidad de licencia de conducción local. La licencia de su controlador tiene su fecha de nacimiento. En este caso, el nombre de la demanda sería `DateOfBirth`, el valor de la demanda sería su fecha de nacimiento, por ejemplo `8th June 1970` y el emisor sería la entidad de la licencia de conducción. La autorización basada en notificaciones, en su forma más simple, comprueba el valor de una notificación y permite el acceso a un recurso en función de ese valor. Por ejemplo, si desea tener acceso a un club nocturno, el proceso de autorización podría ser:
+Cuando se crea una identidad, se le puede asignar una o varias notificaciones emitidas por una entidad de confianza. Una demanda es un par de valor de nombre que representa lo que es el sujeto, no lo que puede hacer el sujeto. Por ejemplo, puede tener una licencia de controlador, emitida por una entidad de licencia de conducción local. La licencia de su controlador tiene su fecha de nacimiento. En este caso, el nombre de la `DateOfBirth`demanda sería, el valor de la demanda sería su fecha de nacimiento `8th June 1970` , por ejemplo, y el emisor sería la autoridad de la licencia de conducción. La autorización basada en notificaciones, en su forma más simple, comprueba el valor de una notificación y permite el acceso a un recurso en función de ese valor. Por ejemplo, si desea tener acceso a un club nocturno, el proceso de autorización podría ser:
 
 El responsable de seguridad de la puerta evaluaría el valor de la demanda de la fecha de nacimiento y si confía en el emisor (la entidad de la licencia de conducción) antes de concederle acceso.
 
@@ -24,11 +30,11 @@ Una identidad puede contener varias notificaciones con varios valores y puede co
 
 ## <a name="adding-claims-checks"></a>Agregar comprobaciones de notificaciones
 
-Las comprobaciones de autorización basadas en notificaciones son declarativas: el desarrollador las inserta en el código, en un controlador o una acción dentro de un controlador, especificando las notificaciones que el usuario actual debe poseer y, opcionalmente, el valor que debe tener la notificación para tener acceso al recurso solicitado. Los requisitos de las notificaciones están basados en directivas, el desarrollador debe compilar y registrar una directiva que exprese los requisitos de las notificaciones.
+Las comprobaciones de autorización basadas en notificaciones son declarativas: el desarrollador las inserta en el código, en un controlador o en una acción dentro de un controlador, especificando las notificaciones que el usuario actual debe poseer y, opcionalmente, el valor que debe tener la notificación para tener acceso al recurso solicitado. Los requisitos de las notificaciones están basados en directivas, el desarrollador debe compilar y registrar una directiva que exprese los requisitos de las notificaciones.
 
 El tipo más sencillo de la Directiva de notificaciones busca la presencia de una demanda y no comprueba el valor.
 
-En primer lugar, debe compilar y registrar la Directiva. Esto se produce como parte de la configuración del servicio de autorización, que normalmente participa en `ConfigureServices()` en el archivo *Startup.CS* .
+En primer lugar, debe compilar y registrar la Directiva. Esto se produce como parte de la configuración del servicio de autorización, que normalmente participa `ConfigureServices()` en el archivo *Startup.CS* .
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -63,9 +69,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-En este caso, la Directiva de `EmployeeOnly` comprueba la presencia de una demanda de `EmployeeNumber` en la identidad actual.
+En este caso, `EmployeeOnly` la Directiva comprueba la presencia de una `EmployeeNumber` demanda en la identidad actual.
 
-A continuación, aplique la Directiva mediante la propiedad `Policy` del atributo `AuthorizeAttribute` para especificar el nombre de la Directiva;
+A continuación, aplique la Directiva mediante `Policy` la propiedad del `AuthorizeAttribute` atributo para especificar el nombre de la Directiva;
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -75,7 +81,7 @@ public IActionResult VacationBalance()
 }
 ```
 
-El atributo `AuthorizeAttribute` se puede aplicar a un controlador completo; en este caso, solo se permitirá el acceso a cualquier acción del controlador a las identidades que coincidan con la Directiva.
+El `AuthorizeAttribute` atributo se puede aplicar a un controlador completo; en este caso, solo se permitirá el acceso a cualquier acción del controlador a las identidades que coincidan con la Directiva.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -87,7 +93,7 @@ public class VacationController : Controller
 }
 ```
 
-Si tiene un controlador que está protegido por el `AuthorizeAttribute` atributo, pero desea permitir el acceso anónimo a determinadas acciones, aplique el atributo `AllowAnonymousAttribute`.
+Si tiene un controlador que está protegido por el `AuthorizeAttribute` atributo, pero desea permitir el acceso anónimo a determinadas acciones, aplique el `AllowAnonymousAttribute` atributo.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -163,6 +169,6 @@ public class SalaryController : Controller
 }
 ```
 
-En el ejemplo anterior, cualquier identidad que cumpla la Directiva de `EmployeeOnly` puede tener acceso a la acción de `Payslip` a medida que se aplica la Directiva en el controlador. Sin embargo, para poder llamar a la acción de `UpdateSalary` la identidad debe cumplir *tanto* la directiva de `EmployeeOnly` como la directiva de `HumanResources`.
+En el ejemplo anterior, cualquier identidad que cumpla la `EmployeeOnly` Directiva puede tener acceso `Payslip` a la acción, ya que esa Directiva se aplica en el controlador. Sin embargo, para poder llamar `UpdateSalary` a la acción, la identidad debe `EmployeeOnly` cumplir la directiva `HumanResources` *y la Directiva* .
 
 Si desea directivas más complicadas, como tomar una demanda de fecha de nacimiento, calcular una edad a partir de ella y comprobar la edad es 21 o anterior, debe escribir [controladores de directivas personalizados](xref:security/authorization/policies).

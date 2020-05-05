@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: d9beae68cc869b665ff5d2b6cf34f120406098dc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653033"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777103"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Prueba de las API web HTTP REPL
 
@@ -29,14 +35,14 @@ Se admiten los siguientes [verbos HTTP](https://github.com/microsoft/api-guideli
 * [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
-* [OPTIONS](#test-http-options-requests)
+* [Opciones](#test-http-options-requests)
 * [PATCH](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
 Para continuar, [vea o descargue la API web de muestra de ASP.NET Core ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([cómo descargar](xref:index#how-to-download-a-sample)).
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 * [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
@@ -365,8 +371,8 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 De forma predeterminada, HTTP REPL tiene un conjunto de rutas de acceso relativas que usa para buscar el documento de Swagger al ejecutar el comando `connect` sin la opción `--swagger`. Estas rutas de acceso relativas se combinan con las rutas de acceso raíz y base especificadas en el comando `connect`. Las rutas de acceso relativas predeterminadas son:
 
-- *swagger.json*
-- *swagger/v1/swagger.json*
+- *Swagger. JSON*
+- *Swagger/v1/Swagger. JSON*
 - */swagger.json*
 - */swagger/v1/swagger.json*
 
@@ -554,7 +560,7 @@ Se trata del parámetro de ruta, si existe, que espera el método de acción del
 
 Para emitir una solicitud HTTP PUT, realice lo siguiente:
 
-1. *Opcional*: Ejecute el comando `get` para ver los datos antes de modificarlos:
+1. *Opcional*: Ejecute el `get` comando para ver los datos antes de modificarlos:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -616,7 +622,7 @@ Para emitir una solicitud HTTP PUT, realice lo siguiente:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita un comando `get` para ver las modificaciones. Por ejemplo, si ha escrito "Cherry" en el editor de texto, un elemento `get` devuelve lo siguiente:
+1. *Opcional*: emita un `get` comando para ver las modificaciones. Por ejemplo, si ha escrito "Cherry" en el editor de texto, un elemento `get` devuelve lo siguiente:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -667,7 +673,7 @@ Se trata del parámetro de ruta, si existe, que espera el método de acción del
 
 Para emitir una solicitud HTTP DELETE, realice lo siguiente:
 
-1. *Opcional*: Ejecute el comando `get` para ver los datos antes de modificarlos:
+1. *Opcional*: Ejecute el `get` comando para ver los datos antes de modificarlos:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -707,7 +713,7 @@ Para emitir una solicitud HTTP DELETE, realice lo siguiente:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita un comando `get` para ver las modificaciones. En este ejemplo, un elemento `get` devuelve lo siguiente:
+1. *Opcional*: emita un `get` comando para ver las modificaciones. En este ejemplo, un elemento `get` devuelve lo siguiente:
 
     ```console
     https://localhost:5001/fruits~ get

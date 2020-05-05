@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo acceder a los puntos de extensión
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/gdpr
-ms.openlocfilehash: 2ccba780ba81bd805d08c9b898617387a879bed3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 68f8ebaafd1aaa725ef1ff41f2ffa9f605e49f7f
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652241"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776329"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Compatibilidad con Reglamento general de protección de datos de la Unión Europea (RGPD) en ASP.NET Core
 
@@ -35,7 +41,7 @@ Para habilitar la característica de consentimiento de cookies predeterminada, c
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Agregue el archivo *\_CookieConsentPartial. cshtml* al proyecto:
+* Agregue el * \_archivo CookieConsentPartial. cshtml* al proyecto:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
@@ -46,7 +52,7 @@ Para habilitar la característica de consentimiento de cookies predeterminada, c
 ::: moniker range="= aspnetcore-2.2"
 
 * Las plantillas de proyecto incluyen puntos de extensión y marcado stub que puede reemplazar con la Directiva de privacidad y uso de cookies.
-* Una característica de consentimiento de cookies le permite solicitar (y realizar un seguimiento) el consentimiento de los usuarios para almacenar información personal. Si un usuario no ha dado su consentimiento a la recopilación de datos y la aplicación tiene [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) establecido en `true`, no se envían cookies no esenciales al explorador.
+* Una característica de consentimiento de cookies le permite solicitar (y realizar un seguimiento) el consentimiento de los usuarios para almacenar información personal. Si un usuario no ha dado su consentimiento a la recopilación de datos y [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) la aplicación tiene `true`CheckConsentNeeded establecido en, las cookies no esenciales no se envían al explorador.
 * Las cookies se pueden marcar como esenciales. Las cookies esenciales se envían al explorador incluso cuando el usuario no ha dado su consentimiento y el seguimiento está deshabilitado.
 * [TempData y las cookies de sesión](#tempdata) no funcionan cuando el seguimiento está deshabilitado.
 * La página de [Administración de identidades](#pd) proporciona un vínculo para descargar y eliminar los datos de usuario.
@@ -59,9 +65,9 @@ La [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/live/
 
 Los proyectos de Razor Pages y MVC creados con las plantillas de proyecto incluyen la siguiente compatibilidad con RGPD:
 
-* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) y [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) se establecen en la clase `Startup`.
-* La\_[vista parcial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)de *CookieConsentPartial. cshtml* . En este archivo se incluye un botón **Aceptar** . Cuando el usuario hace clic en el botón **Aceptar** , se proporciona el consentimiento para almacenar las cookies.
-* La página *pages/privacy. cshtml* o views */Home/privacy. cshtml* proporciona una página para detallar la Directiva de privacidad de su sitio. El archivo *\_CookieConsentPartial. cshtml* genera un vínculo a la página de privacidad.
+* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) y [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) se establecen en la `Startup` clase.
+* [Vista parcial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)de * \_CookieConsentPartial. cshtml* . En este archivo se incluye un botón **Aceptar** . Cuando el usuario hace clic en el botón **Aceptar** , se proporciona el consentimiento para almacenar las cookies.
+* La página *pages/privacy. cshtml* o views */Home/privacy. cshtml* proporciona una página para detallar la Directiva de privacidad de su sitio. El * \_archivo CookieConsentPartial. cshtml* genera un vínculo a la página de privacidad.
 * En el caso de las aplicaciones creadas con cuentas de usuario individuales, la página Administrar proporciona vínculos para descargar y eliminar los [datos personales](#pd)de los usuarios.
 
 ### <a name="cookiepolicyoptions-and-usecookiepolicy"></a>CookiePolicyOptions y UseCookiePolicy
@@ -70,20 +76,20 @@ Los proyectos de Razor Pages y MVC creados con las plantillas de proyecto incluy
 
 [!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
 
-Se llama a [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) en `Startup.Configure`:
+[UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) Se llama a UseCookiePolicy `Startup.Configure`en:
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
-### <a name="_cookieconsentpartialcshtml-partial-view"></a>\_vista parcial de CookieConsentPartial. cshtml
+### <a name="_cookieconsentpartialcshtml-partial-view"></a>\_Vista parcial de CookieConsentPartial. cshtml
 
-La\_vista parcial de *CookieConsentPartial. cshtml* :
+La vista parcial de * \_CookieConsentPartial. cshtml* :
 
 [!code-html[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Este:
 
-* Obtiene el estado de seguimiento del usuario. Si la aplicación está configurada para requerir el consentimiento, el usuario debe dar su consentimiento antes de que se pueda realizar el seguimiento de las cookies. Si se requiere el consentimiento, el panel de consentimiento de cookies se fija en la parte superior de la barra de navegación creada por el archivo *\_layout. cshtml* .
-* Proporciona un elemento de `<p>` HTML para resumir la Directiva de uso de cookies y privacidad.
+* Obtiene el estado de seguimiento del usuario. Si la aplicación está configurada para requerir el consentimiento, el usuario debe dar su consentimiento antes de que se pueda realizar el seguimiento de las cookies. Si se requiere el consentimiento, el panel de consentimiento de cookies se fija en la parte superior de la barra de navegación creada por el * \_archivo layout. cshtml* .
+* Proporciona un elemento `<p>` HTML para resumir la privacidad y la Directiva de uso de cookies.
 * Proporciona un vínculo a la página de privacidad o vista donde puede obtener detalles de la Directiva de privacidad del sitio.
 
 ## <a name="essential-cookies"></a>Cookies esenciales
@@ -96,7 +102,7 @@ Si no se ha proporcionado el consentimiento para almacenar las cookies, solo se 
 
 ### <a name="tempdata-provider-and-session-state-cookies-arent-essential"></a>Las cookies del proveedor TempData y del estado de sesión no son esenciales
 
-La cookie del [proveedor TempData](xref:fundamentals/app-state#tempdata) no es esencial. Si el seguimiento está deshabilitado, el proveedor TempData no funciona. Para habilitar el proveedor TempData cuando el seguimiento está deshabilitado, marque la cookie TempData como esencial en `Startup.ConfigureServices`:
+La cookie del [proveedor TempData](xref:fundamentals/app-state#tempdata) no es esencial. Si el seguimiento está deshabilitado, el proveedor TempData no funciona. Para habilitar el proveedor TempData cuando el seguimiento está deshabilitado, marque la cookie TempData `Startup.ConfigureServices`como esencial en:
 
 [!code-csharp[Main](gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
 
@@ -116,9 +122,9 @@ Seleccione el nombre de usuario y, a continuación, seleccione **datos personale
 
 Notas:
 
-* Para generar el código `Account/Manage`, consulte [scaffolding Identity](xref:security/authentication/scaffold-identity).
+* Para generar el `Account/Manage` código, vea [scaffolding Identity](xref:security/authentication/scaffold-identity).
 * Los vínculos de **eliminación** y **descarga** solo actúan sobre los datos de identidad predeterminados. Las aplicaciones que crean datos de usuario personalizados deben extenderse para eliminar o descargar los datos de usuario personalizados. Para obtener más información, vea [Agregar, descargar y eliminar datos de usuario personalizados a Identity](xref:security/authentication/add-user-data).
-* Los tokens guardados para el usuario que se almacenan en la tabla de base de datos de identidad `AspNetUserTokens` se eliminan cuando se elimina el usuario mediante el comportamiento de eliminación en cascada debido a la [clave externa](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
+* Los tokens guardados para el usuario que se almacenan en la `AspNetUserTokens` tabla de la base de datos de identidad se eliminan cuando se elimina el usuario mediante el comportamiento de eliminación en cascada debido a la [clave externa](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
 * La [autenticación de proveedor externo](xref:security/authentication/social/index), como Facebook y Google, no está disponible antes de que se acepte la Directiva de cookies.
 
 ::: moniker-end

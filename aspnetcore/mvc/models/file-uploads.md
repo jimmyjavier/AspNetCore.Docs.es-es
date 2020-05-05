@@ -5,14 +5,20 @@ description: Cómo usar el enlace de modelos y el streaming para cargar archivos
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2020
+ms.date: 05/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: e25da0b3867181a16a4636768f36c148a152dd23
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: 0da9e124b884337c63dd91b06df60ef7ca89cf3e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661734"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774137"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carga de archivos en ASP.NET Core
 
@@ -24,7 +30,7 @@ ASP.NET Core admite la carga de uno o varios archivos mediante el enlace de mod
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Consideraciones sobre la seguridad
+## <a name="security-considerations"></a>Consideraciones de seguridad
 
 Tenga precaución al proporcionar a los usuarios la capacidad de cargar archivos en un servidor. Es posible que los atacantes intenten lo siguiente:
 
@@ -36,9 +42,9 @@ Estos son algunos de los pasos de seguridad con los que se reduce la probabilida
 
 * Cargue los archivos a un área de carga de archivos dedicada, preferiblemente una unidad que no sea de sistema. Una ubicación dedicada facilita la imposición de restricciones de seguridad en los archivos cargados. Deshabilite la ejecución de los permisos en la ubicación de carga de archivos.&dagger;
 * Los archivos cargados **no** se deben persistir en el mismo árbol de directorio que la aplicación.&dagger;
-* Use un nombre de archivo seguro determinado por la aplicación. No utilice un nombre de archivo proporcionado por el usuario o el nombre de archivo que no sea de confianza del archivo cargado. &dagger; HTML codificar el nombre de archivo que no es de confianza al mostrarlo. Por ejemplo, al registrar el nombre de archivo o mostrarlo en la interfaz de usuario (Razor codifica de forma automática la salida HTML).
+* Use un nombre de archivo seguro determinado por la aplicación. No use un nombre de archivo proporcionado por el usuario o el nombre de archivo que no es de confianza del archivo cargado. &dagger; HTML codifica el nombre de archivo que no es de confianza al mostrarlo. Por ejemplo, registrando el nombre de archivo o mostrándoseRazor en la interfaz de usuario (la salida codifica automáticamente html).
 * Permita solo las extensiones de archivo aprobadas para la especificación de diseño de la aplicación.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
-* Compruebe que las comprobaciones del lado cliente se realizan en el servidor. &dagger; Las comprobaciones del lado del cliente son fáciles de eludir.
+* Compruebe que las comprobaciones del lado cliente se realizan en el servidor. &dagger; Las comprobaciones del lado cliente son fáciles de eludir.
 * Compruebe el tamaño de un archivo cargado. Establezca un límite de tamaño máximo para evitar cargas grandes.&dagger;
 * Cuando un archivo cargado con el mismo nombre no deba sobrescribir los archivos, vuelva a comprobar el nombre de archivo en la base de datos o en el almacenamiento físico antes de cargarlo.
 * **Ejecute un detector de virus o malware en el contenido cargado antes de que se almacene el archivo.**
@@ -83,7 +89,7 @@ Las opciones de almacenamiento comunes para los archivos incluyen:
   * Los servicios suelen ofrecer una escalabilidad y resistencia mejoradas sobre las soluciones locales que normalmente están sujetas a únicos puntos de error.
   * Los servicios pueden tener un costo menor en escenarios de infraestructura de almacenamiento de gran tamaño.
 
-  Para obtener más información, vea [Inicio rápido: usar .NET para crear un blob en](/azure/storage/blobs/storage-quickstart-blobs-dotnet)el almacenamiento de objetos.
+  Para obtener más información, vea [Inicio rápido: usar .net para crear un BLOB en el almacenamiento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
 
 ## <a name="file-upload-scenarios"></a>Escenarios de carga de archivos
 
@@ -113,7 +119,7 @@ El streaming de archivos grandes se describe en la sección [Carga de archivos d
 
 Para cargar archivos pequeños, se puede usar un formulario de varias partes o construir una solicitud POST con JavaScript.
 
-En el ejemplo siguiente se muestra el uso de un formulario de Razor Pages para cargar un archivo único (*Pages/BufferedSingleFileUploadPhysical.cshtml* en la aplicación de ejemplo):
+En el ejemplo siguiente se muestra el uso Razor de un formulario de páginas para cargar un único archivo (*pages/BufferedSingleFileUploadPhysical. cshtml* en la aplicación de ejemplo):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -228,7 +234,7 @@ Es posible acceder a archivos individuales cargados en el servidor a través del
 >
 > Los ejemplos proporcionados hasta ahora no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones sobre la seguridad](#security-considerations)
+> * [Consideraciones de seguridad](#security-considerations)
 > * [Validación](#validation)
 
 Al cargar archivos mediante el enlace de modelos y <xref:Microsoft.AspNetCore.Http.IFormFile>, el método de acción puede aceptar:
@@ -340,7 +346,7 @@ public class BufferedSingleFileUploadDb
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Http.IFormFile> se puede usar directamente como un parámetro de método de acción o como una propiedad de modelo enlazado. En el ejemplo anterior se utiliza una propiedad de modelo enlazado.
 
-`FileUpload` se usa en el formulario de Razor Pages:
+`FileUpload` Se utiliza en el Razor formulario de páginas:
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -399,7 +405,7 @@ El ejemplo anterior es similar a un escenario que se muestra en la aplicación d
 >
 > Los ejemplos proporcionados no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones sobre la seguridad](#security-considerations)
+> * [Consideraciones de seguridad](#security-considerations)
 > * [Validación](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carga de archivos de gran tamaño con streaming
@@ -414,7 +420,7 @@ El `DisableFormValueModelBindingAttribute` se usa para deshabilitar el enlace de
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-En la aplicación de ejemplo, `GenerateAntiforgeryTokenCookieAttribute` y `DisableFormValueModelBindingAttribute` se aplican como filtros a los modelos de aplicación de la página de `/StreamedSingleFileUploadDb` y `/StreamedSingleFileUploadPhysical` en `Startup.ConfigureServices` con las [convenciones de Razor Pages](xref:razor-pages/razor-pages-conventions):
+En la aplicación de ejemplo `GenerateAntiforgeryTokenCookieAttribute` , `DisableFormValueModelBindingAttribute` y se aplican como filtros a los modelos de `/StreamedSingleFileUploadDb` aplicación `/StreamedSingleFileUploadPhysical` de `Startup.ConfigureServices` página de y en mediante [ Razor las convenciones de páginas](xref:razor-pages/razor-pages-conventions):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=8-11,17-20)]
 
@@ -502,7 +508,7 @@ Para obtener firmas de archivo adicionales, consulte la [base de datos de firmas
 
 Nunca use un nombre de archivo proporcionado por el cliente para guardar un archivo en el almacenamiento físico. Cree un nombre de archivo seguro para el archivo con [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) o [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) para crear una ruta de acceso completa (incluido el nombre de archivo) para el almacenamiento temporal.
 
-Razor codifica automáticamente en HTML los valores de propiedad para mostrarlos. El código siguiente es seguro de usar:
+RazorHTML codifica automáticamente los valores de propiedad para la presentación. El código siguiente es seguro de usar:
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {
@@ -514,7 +520,7 @@ Razor codifica automáticamente en HTML los valores de propiedad para mostrarlos
 }
 ```
 
-Fuera de Razor, siempre use <xref:System.Net.WebUtility.HtmlEncode*> al contenido del nombre de archivo de una solicitud de un usuario.
+Fuera de Razor, el <xref:System.Net.WebUtility.HtmlEncode*> contenido del nombre de archivo siempre procedente de la solicitud de un usuario.
 
 Muchas implementaciones deben incluir una comprobación de que el archivo existe; de lo contrario, el archivo se sobrescribe por un archivo con el mismo nombre. Proporcione lógica adicional para satisfacer las especificaciones de la aplicación.
 
@@ -557,7 +563,7 @@ if (formFile.Length > _fileSizeLimit)
 
 ### <a name="match-name-attribute-value-to-parameter-name-of-post-method"></a>Coincidencia del valor de atributo de nombre con el nombre del parámetro del método POST
 
-En los formularios que no son de Razor que realizan la operación POST en los datos de formulario o usan directamente `FormData` de JavaScript, el nombre especificado en el elemento del formulario o `FormData` debe coincidir con el nombre del parámetro en la acción del controlador.
+En los queRazor no son formularios y que envían datos de formulario `FormData` directamente, el nombre especificado en el elemento del formulario o `FormData` deben coincidir con el nombre del parámetro en la acción del controlador.
 
 En el ejemplo siguiente:
 
@@ -579,7 +585,7 @@ En el ejemplo siguiente:
 
 Use un nombre coincidente para el parámetro del método de C# (`battlePlans`):
 
-* Para un método de control de páginas de Razor Pages denominado `Upload`:
+* Para un Razor método de controlador de página `Upload`de páginas denominado:
 
   ```csharp
   public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> battlePlans)
@@ -610,7 +616,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> se utiliza para establecer el <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> para una sola página o acción.
 
-En una aplicación de Razor Pages, aplique el filtro con una [convención](xref:razor-pages/razor-pages-conventions) en `Startup.ConfigureServices`:
+En una Razor aplicación de páginas, aplique el filtro con [convention](xref:razor-pages/razor-pages-conventions) una Convención `Startup.ConfigureServices`en:
 
 ```csharp
 services.AddRazorPages()
@@ -627,7 +633,7 @@ services.AddRazorPages()
     });
 ```
 
-En una aplicación de Razor Pages o una aplicación MVC, aplique el filtro al método de acción o al modelo de página:
+En una Razor aplicación de páginas o en una aplicación MVC, aplique el filtro al método de acción o modelo de página:
 
 ```csharp
 // Set the limit to 256 MB
@@ -658,7 +664,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> se usa para establecer el valor de [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) de una sola página o acción.
 
-En una aplicación de Razor Pages, aplique el filtro con una [convención](xref:razor-pages/razor-pages-conventions) en `Startup.ConfigureServices`:
+En una Razor aplicación de páginas, aplique el filtro con [convention](xref:razor-pages/razor-pages-conventions) una Convención `Startup.ConfigureServices`en:
 
 ```csharp
 services.AddRazorPages()
@@ -675,7 +681,7 @@ services.AddRazorPages()
     });
 ```
 
-En una aplicación de Razor Pages o una aplicación MVC, aplique el filtro al método de acción o a la clase de control de página:
+En una Razor aplicación pages o MVC, aplique el filtro a la clase de controlador de páginas o al método de acción:
 
 ```csharp
 // Handle requests up to 50 MB
@@ -686,7 +692,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-También `RequestSizeLimitAttribute` se puede aplicar [`@attribute`](xref:mvc/views/razor#attribute) mediante la directiva Razor:
+También `RequestSizeLimitAttribute` se puede aplicar mediante la [`@attribute`](xref:mvc/views/razor#attribute) Razor Directiva:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -753,7 +759,7 @@ ASP.NET Core admite la carga de uno o varios archivos mediante el enlace de mod
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Consideraciones sobre la seguridad
+## <a name="security-considerations"></a>Consideraciones de seguridad
 
 Tenga precaución al proporcionar a los usuarios la capacidad de cargar archivos en un servidor. Es posible que los atacantes intenten lo siguiente:
 
@@ -765,9 +771,9 @@ Estos son algunos de los pasos de seguridad con los que se reduce la probabilida
 
 * Cargue los archivos a un área de carga de archivos dedicada, preferiblemente una unidad que no sea de sistema. Una ubicación dedicada facilita la imposición de restricciones de seguridad en los archivos cargados. Deshabilite la ejecución de los permisos en la ubicación de carga de archivos.&dagger;
 * Los archivos cargados **no** se deben persistir en el mismo árbol de directorio que la aplicación.&dagger;
-* Use un nombre de archivo seguro determinado por la aplicación. No utilice un nombre de archivo proporcionado por el usuario o el nombre de archivo que no sea de confianza del archivo cargado. &dagger; HTML codificar el nombre de archivo que no es de confianza al mostrarlo. Por ejemplo, al registrar el nombre de archivo o mostrarlo en la interfaz de usuario (Razor codifica de forma automática la salida HTML).
+* Use un nombre de archivo seguro determinado por la aplicación. No use un nombre de archivo proporcionado por el usuario o el nombre de archivo que no es de confianza del archivo cargado. &dagger; HTML codifica el nombre de archivo que no es de confianza al mostrarlo. Por ejemplo, registrando el nombre de archivo o mostrándoseRazor en la interfaz de usuario (la salida codifica automáticamente html).
 * Permita solo las extensiones de archivo aprobadas para la especificación de diseño de la aplicación.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
-* Compruebe que las comprobaciones del lado cliente se realizan en el servidor. &dagger; Las comprobaciones del lado del cliente son fáciles de eludir.
+* Compruebe que las comprobaciones del lado cliente se realizan en el servidor. &dagger; Las comprobaciones del lado cliente son fáciles de eludir.
 * Compruebe el tamaño de un archivo cargado. Establezca un límite de tamaño máximo para evitar cargas grandes.&dagger;
 * Cuando un archivo cargado con el mismo nombre no deba sobrescribir los archivos, vuelva a comprobar el nombre de archivo en la base de datos o en el almacenamiento físico antes de cargarlo.
 * **Ejecute un detector de virus o malware en el contenido cargado antes de que se almacene el archivo.**
@@ -812,7 +818,7 @@ Las opciones de almacenamiento comunes para los archivos incluyen:
   * Los servicios suelen ofrecer una escalabilidad y resistencia mejoradas sobre las soluciones locales que normalmente están sujetas a únicos puntos de error.
   * Los servicios pueden tener un costo menor en escenarios de infraestructura de almacenamiento de gran tamaño.
 
-  Para obtener más información, vea [Inicio rápido: usar .NET para crear un blob en](/azure/storage/blobs/storage-quickstart-blobs-dotnet)el almacenamiento de objetos. En el tema se muestra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, pero se puede usar <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> para guardar un <xref:System.IO.FileStream> en el almacenamiento de blobs cuando se trabaja con un <xref:System.IO.Stream>.
+  Para obtener más información, vea [Inicio rápido: usar .net para crear un BLOB en el almacenamiento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet). En el tema se muestra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, pero se puede usar <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> para guardar un <xref:System.IO.FileStream> en el almacenamiento de blobs cuando se trabaja con un <xref:System.IO.Stream>.
 
 ## <a name="file-upload-scenarios"></a>Escenarios de carga de archivos
 
@@ -842,7 +848,7 @@ El streaming de archivos grandes se describe en la sección [Carga de archivos d
 
 Para cargar archivos pequeños, se puede usar un formulario de varias partes o construir una solicitud POST con JavaScript.
 
-En el ejemplo siguiente se muestra el uso de un formulario de Razor Pages para cargar un archivo único (*Pages/BufferedSingleFileUploadPhysical.cshtml* en la aplicación de ejemplo):
+En el ejemplo siguiente se muestra el uso Razor de un formulario de páginas para cargar un único archivo (*pages/BufferedSingleFileUploadPhysical. cshtml* en la aplicación de ejemplo):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -957,7 +963,7 @@ Es posible acceder a archivos individuales cargados en el servidor a través del
 >
 > Los ejemplos proporcionados hasta ahora no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones sobre la seguridad](#security-considerations)
+> * [Consideraciones de seguridad](#security-considerations)
 > * [Validación](#validation)
 
 Al cargar archivos mediante el enlace de modelos y <xref:Microsoft.AspNetCore.Http.IFormFile>, el método de acción puede aceptar:
@@ -1069,7 +1075,7 @@ public class BufferedSingleFileUploadDb
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Http.IFormFile> se puede usar directamente como un parámetro de método de acción o como una propiedad de modelo enlazado. En el ejemplo anterior se utiliza una propiedad de modelo enlazado.
 
-`FileUpload` se usa en el formulario de Razor Pages:
+`FileUpload` Se utiliza en el Razor formulario de páginas:
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1128,7 +1134,7 @@ El ejemplo anterior es similar a un escenario que se muestra en la aplicación d
 >
 > Los ejemplos proporcionados no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones sobre la seguridad](#security-considerations)
+> * [Consideraciones de seguridad](#security-considerations)
 > * [Validación](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carga de archivos de gran tamaño con streaming
@@ -1143,7 +1149,7 @@ El `DisableFormValueModelBindingAttribute` se usa para deshabilitar el enlace de
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-En la aplicación de ejemplo, `GenerateAntiforgeryTokenCookieAttribute` y `DisableFormValueModelBindingAttribute` se aplican como filtros a los modelos de aplicación de la página de `/StreamedSingleFileUploadDb` y `/StreamedSingleFileUploadPhysical` en `Startup.ConfigureServices` con las [convenciones de Razor Pages](xref:razor-pages/razor-pages-conventions):
+En la aplicación de ejemplo `GenerateAntiforgeryTokenCookieAttribute` , `DisableFormValueModelBindingAttribute` y se aplican como filtros a los modelos de `/StreamedSingleFileUploadDb` aplicación `/StreamedSingleFileUploadPhysical` de `Startup.ConfigureServices` página de y en mediante [ Razor las convenciones de páginas](xref:razor-pages/razor-pages-conventions):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
@@ -1231,7 +1237,7 @@ Para obtener firmas de archivo adicionales, consulte la [base de datos de firmas
 
 Nunca use un nombre de archivo proporcionado por el cliente para guardar un archivo en el almacenamiento físico. Cree un nombre de archivo seguro para el archivo con [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) o [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) para crear una ruta de acceso completa (incluido el nombre de archivo) para el almacenamiento temporal.
 
-Razor codifica automáticamente en HTML los valores de propiedad para mostrarlos. El código siguiente es seguro de usar:
+RazorHTML codifica automáticamente los valores de propiedad para la presentación. El código siguiente es seguro de usar:
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {
@@ -1243,7 +1249,7 @@ Razor codifica automáticamente en HTML los valores de propiedad para mostrarlos
 }
 ```
 
-Fuera de Razor, siempre use <xref:System.Net.WebUtility.HtmlEncode*> al contenido del nombre de archivo de una solicitud de un usuario.
+Fuera de Razor, el <xref:System.Net.WebUtility.HtmlEncode*> contenido del nombre de archivo siempre procedente de la solicitud de un usuario.
 
 Muchas implementaciones deben incluir una comprobación de que el archivo existe; de lo contrario, el archivo se sobrescribe por un archivo con el mismo nombre. Proporcione lógica adicional para satisfacer las especificaciones de la aplicación.
 
@@ -1286,7 +1292,7 @@ if (formFile.Length > _fileSizeLimit)
 
 ### <a name="match-name-attribute-value-to-parameter-name-of-post-method"></a>Coincidencia del valor de atributo de nombre con el nombre del parámetro del método POST
 
-En los formularios que no son de Razor que realizan la operación POST en los datos de formulario o usan directamente `FormData` de JavaScript, el nombre especificado en el elemento del formulario o `FormData` debe coincidir con el nombre del parámetro en la acción del controlador.
+En los queRazor no son formularios y que envían datos de formulario `FormData` directamente, el nombre especificado en el elemento del formulario o `FormData` deben coincidir con el nombre del parámetro en la acción del controlador.
 
 En el ejemplo siguiente:
 
@@ -1308,7 +1314,7 @@ En el ejemplo siguiente:
 
 Use un nombre coincidente para el parámetro del método de C# (`battlePlans`):
 
-* Para un método de control de páginas de Razor Pages denominado `Upload`:
+* Para un Razor método de controlador de página `Upload`de páginas denominado:
 
   ```csharp
   public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> battlePlans)
@@ -1339,7 +1345,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> se utiliza para establecer el <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> para una sola página o acción.
 
-En una aplicación de Razor Pages, aplique el filtro con una [convención](xref:razor-pages/razor-pages-conventions) en `Startup.ConfigureServices`:
+En una Razor aplicación de páginas, aplique el filtro con [convention](xref:razor-pages/razor-pages-conventions) una Convención `Startup.ConfigureServices`en:
 
 ```csharp
 services.AddMvc()
@@ -1357,7 +1363,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-En una aplicación de Razor Pages o una aplicación MVC, aplique el filtro al método de acción o al modelo de página:
+En una Razor aplicación de páginas o en una aplicación MVC, aplique el filtro al método de acción o modelo de página:
 
 ```csharp
 // Set the limit to 256 MB
@@ -1385,7 +1391,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> se usa para establecer el valor de [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) de una sola página o acción.
 
-En una aplicación de Razor Pages, aplique el filtro con una [convención](xref:razor-pages/razor-pages-conventions) en `Startup.ConfigureServices`:
+En una Razor aplicación de páginas, aplique el filtro con [convention](xref:razor-pages/razor-pages-conventions) una Convención `Startup.ConfigureServices`en:
 
 ```csharp
 services.AddMvc()
@@ -1403,7 +1409,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-En una aplicación de Razor Pages o una aplicación MVC, aplique el filtro al método de acción o a la clase de control de página:
+En una Razor aplicación pages o MVC, aplique el filtro a la clase de controlador de páginas o al método de acción:
 
 ```csharp
 // Handle requests up to 50 MB
@@ -1472,6 +1478,7 @@ Los ejemplos de este tema se basan en <xref:System.IO.MemoryStream> para almacen
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
+* [Agotamiento de la solicitud de conexión HTTP](xref:fundamentals/servers/kestrel#http-connection-request-draining)
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) (Carga de archivos sin restricciones)
-* [Seguridad de Azure: marco de seguridad: validación de entrada ? Mitigaciones](/azure/security/azure-security-threat-modeling-tool-input-validation)
-* [Patrones de diseño de nube de Azure: patrón de clave de Valet](/azure/architecture/patterns/valet-key)
+* [Seguridad de Azure: marco de seguridad: validación de entrada | Mitigaciones](/azure/security/azure-security-threat-modeling-tool-input-validation)
+* [Patrones de diseño en la nube de Azure: patrón de clave valet](/azure/architecture/patterns/valet-key)

@@ -4,13 +4,19 @@ author: ardalis
 description: Obtenga información sobre cómo ASP.NET Core admite la inserción de dependencias en las vistas de MVC.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 6241bb8e262f64e2e30721bc5fe6f8f1be84b60d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: aee4152bed50576f087862142e7ce9f261c7da19
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651479"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775458"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Inserción de dependencias en vistas de ASP.NET Core
 
@@ -104,6 +110,6 @@ Como puede ver, los campos predeterminados incluyen `Html`, `Component` y `Url` 
 
 Si quiere ampliar los servicios existentes, simplemente puede usar esta técnica al heredar o encapsular la implementación existente con la suya propia.
 
-## <a name="see-also"></a>Consulte también
+## <a name="see-also"></a>Vea también
 
 * Blog de Simon Timms: [Getting Lookup Data Into Your View](https://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/) (Obtener datos de búsqueda en la vista)

@@ -4,20 +4,26 @@ author: rick-anderson
 description: Obtenga información sobre IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer y el generador de nivel superior.
 ms.author: riande
 ms.date: 08/11/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/extensibility/core-crypto
-ms.openlocfilehash: a5f651e3313cc579b995b45905826a5bffcc241c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c63cc124e1893f23c18581841194fa66848a2a1e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653549"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776427"
 ---
 # <a name="core-cryptography-extensibility-in-aspnet-core"></a>Extensibilidad de criptografía básica en ASP.NET Core
 
 <a name="data-protection-extensibility-core-crypto"></a>
 
 >[!WARNING]
-> Tipos que implementan cualquiera de las interfaces siguientes deben ser seguro para subprocesos para varios de los llamadores.
+> Los tipos que implementan cualquiera de las interfaces siguientes deben ser seguros para subprocesos para varios llamadores.
 
 <a name="data-protection-extensibility-core-crypto-iauthenticatedencryptor"></a>
 
@@ -120,7 +126,7 @@ La principal diferencia entre IAuthenticatedEncryptor y IAuthenticatedEncryptorD
 
 El descriptor se puede serializar a través de su rutina ExportToXml. Esta rutina devuelve un XmlSerializedDescriptorInfo que contiene dos propiedades: la representación de XElement del descriptor y el tipo que representa una [IAuthenticatedEncryptorDescriptorDeserializer](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer) que se puede usar para restablecer Este descriptor según el XElement correspondiente.
 
-El descriptor serializado puede contener información confidencial, como material de clave criptográfica. El sistema de protección de datos tiene compatibilidad integrada para cifrar la información antes de que se conserve en el almacenamiento. Para aprovechar esto, el descriptor debe marcar el elemento que contiene información confidencial con el nombre de atributo "requiresEncryption" (xmlns "<http://schemas.asp.net/2015/03/dataProtection>"), el valor "true".
+El descriptor serializado puede contener información confidencial, como material de clave criptográfica. El sistema de protección de datos tiene compatibilidad integrada para cifrar la información antes de que se conserve en el almacenamiento. Para aprovechar esto, el descriptor debe marcar el elemento que contiene información confidencial con el nombre de atributo "requiresEncryption" (xmlns<http://schemas.asp.net/2015/03/dataProtection>""), el valor "true".
 
 >[!TIP]
 > Hay una API auxiliar para establecer este atributo. Llame al método de extensión XElement. MarkAsRequiresEncryption () ubicado en el espacio de nombres Microsoft. AspNetCore. Cryptography. AuthenticatedEncryption. ConfigurationModel.
@@ -139,9 +145,9 @@ El método ImportFromXml toma el XElement devuelto por [IAuthenticatedEncryptorD
 
 Los tipos que implementan IAuthenticatedEncryptorDescriptorDeserializer deben tener uno de los dos constructores públicos siguientes:
 
-* .ctor(IServiceProvider)
+* . ctor (IServiceProvider)
 
-* .ctor()
+* . ctor ()
 
 > [!NOTE]
 > El IServiceProvider pasado al constructor puede ser null.

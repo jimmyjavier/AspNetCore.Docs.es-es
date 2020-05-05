@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo usar el almacenamiento en caché d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 91358e2553d09c5e7366ba7a2301a798ad921d69
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 3e4bb9980c94f36319cf9b17e65a35ba0f77824e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651401"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776082"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Almacenamiento en caché de respuestas en ASP.NET Core
 
@@ -23,13 +29,13 @@ El almacenamiento en caché de respuestas reduce el número de solicitudes que u
 
 El [atributo ResponseCache](#responsecache-attribute) participa en el establecimiento de encabezados de caché de respuesta. Los clientes y los servidores proxy intermedios deben respetar los encabezados para almacenar en caché las respuestas en la [especificación de almacenamiento en caché HTTP 1,1](https://tools.ietf.org/html/rfc7234).
 
-Para el almacenamiento en caché del lado servidor que sigue la especificación HTTP 1,1 Caching, utilice el [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware). El middleware puede usar las propiedades de <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> para influir en el comportamiento del almacenamiento en caché del servidor.
+Para el almacenamiento en caché del lado servidor que sigue la especificación HTTP 1,1 Caching, utilice el [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware). El middleware puede usar las <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> propiedades para influir en el comportamiento del almacenamiento en caché del servidor.
 
 ## <a name="http-based-response-caching"></a>Almacenamiento en caché de respuesta basada en HTTP
 
 La [especificación HTTP 1,1 Caching](https://tools.ietf.org/html/rfc7234) describe el comportamiento de las memorias caché de Internet. El encabezado HTTP principal usado para el almacenamiento en caché es [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), que se usa para especificar *directivas*de caché. Las directivas controlan el comportamiento de almacenamiento en caché a medida que las solicitudes proceden de los clientes a los servidores y, a medida que las respuestas, vuelven desde los servidores a los clientes. Las solicitudes y respuestas se desplazan a través de servidores proxy y los servidores proxy también deben cumplir con la especificación de almacenamiento en caché HTTP 1,1.
 
-En la tabla siguiente se muestran las directivas de `Cache-Control` comunes.
+En `Cache-Control` la tabla siguiente se muestran las directivas comunes.
 
 | Directiva                                                       | Acción |
 | --------------------------------------------------------------- | ------ |
@@ -43,55 +49,55 @@ En la tabla siguiente se muestran otros encabezados de caché que desempeñan un
 
 | Encabezado                                                     | Función |
 | ---------------------------------------------------------- | -------- |
-| [Edad](https://tools.ietf.org/html/rfc7234#section-5.1)     | Una estimación de la cantidad de tiempo en segundos transcurrido desde que se generó la respuesta o se validó correctamente en el servidor de origen. |
+| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | Una estimación de la cantidad de tiempo en segundos transcurrido desde que se generó la respuesta o se validó correctamente en el servidor de origen. |
 | [Expira](https://tools.ietf.org/html/rfc7234#section-5.3) | Hora a partir de la cual la respuesta se considera obsoleta. |
-| [Omiti](https://tools.ietf.org/html/rfc7234#section-5.4)  | Existe por compatibilidad con versiones anteriores de caché HTTP/1.0 para establecer el comportamiento de `no-cache`. Si el encabezado `Cache-Control` está presente, se omite el encabezado de `Pragma`. |
-| [Variaciones](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Especifica que no se debe enviar una respuesta almacenada en caché a menos que todos los campos de encabezado `Vary` coincidan en la solicitud original de la respuesta almacenada en caché y la nueva solicitud. |
+| [Omiti](https://tools.ietf.org/html/rfc7234#section-5.4)  | Existe por compatibilidad con versiones anteriores de caché HTTP/1.0 para `no-cache` establecer el comportamiento. Si el `Cache-Control` encabezado está presente, se `Pragma` omite el encabezado. |
+| [Variaciones](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Especifica que no se debe enviar una respuesta almacenada en caché a menos `Vary` que todos los campos de encabezado coincidan en la solicitud original de la respuesta almacenada en caché y la nueva solicitud. |
 
 ## <a name="http-based-caching-respects-request-cache-control-directives"></a>El almacenamiento en caché basado en HTTP respeta las directivas de control de caché de solicitudes
 
-La [especificación HTTP 1,1 Caching del encabezado Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) requiere una memoria caché para respetar un encabezado de `Cache-Control` válido enviado por el cliente. Un cliente puede realizar solicitudes con un valor de encabezado `no-cache` y forzar al servidor a generar una nueva respuesta para cada solicitud.
+La [especificación HTTP 1,1 Caching del encabezado Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) requiere una memoria caché para respetar un `Cache-Control` encabezado válido enviado por el cliente. Un cliente puede realizar solicitudes con un `no-cache` valor de encabezado y obligar al servidor a generar una nueva respuesta para cada solicitud.
 
-El cumplimiento de los encabezados de solicitud de `Cache-Control` de cliente siempre tiene sentido si se tiene en cuenta el objetivo del almacenamiento en caché de HTTP. En la especificación oficial, el almacenamiento en caché está pensado para reducir la latencia y la sobrecarga de red que supone satisfacer las solicitudes a través de una red de clientes, servidores proxy y servidores. No es necesariamente una manera de controlar la carga en un servidor de origen.
+Tener en cuenta siempre `Cache-Control` los encabezados de solicitud de cliente tiene sentido si tiene en cuenta el objetivo del almacenamiento en caché de http. En la especificación oficial, el almacenamiento en caché está pensado para reducir la latencia y la sobrecarga de red que supone satisfacer las solicitudes a través de una red de clientes, servidores proxy y servidores. No es necesariamente una manera de controlar la carga en un servidor de origen.
 
-No hay ningún control de desarrollador sobre este comportamiento de almacenamiento en caché cuando se usa el [middleware de almacenamiento en caché de respuesta](xref:performance/caching/middleware) , ya que el middleware se adhiere a la especificación oficial de almacenamiento en caché. [Las mejoras planeadas en el middleware](https://github.com/dotnet/AspNetCore/issues/2612) son una oportunidad para configurar el middleware para omitir el encabezado de `Cache-Control` de una solicitud al decidir si se va a dar servicio a una respuesta almacenada en caché. Las mejoras planeadas proporcionan una oportunidad para controlar mejor la carga del servidor.
+No hay ningún control de desarrollador sobre este comportamiento de almacenamiento en caché cuando se usa el [middleware de almacenamiento en caché de respuesta](xref:performance/caching/middleware) , ya que el middleware se adhiere a la especificación oficial de almacenamiento en caché. [Las mejoras planeadas en el middleware son la](https://github.com/dotnet/AspNetCore/issues/2612) oportunidad de configurar el middleware para omitir el `Cache-Control` encabezado de una solicitud al decidir si se va a dar servicio a una respuesta almacenada en caché. Las mejoras planeadas proporcionan una oportunidad para controlar mejor la carga del servidor.
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>Otra tecnología de almacenamiento en caché en ASP.NET Core
 
-### <a name="in-memory-caching"></a>Almacenamiento en caché en memoria
+### <a name="in-memory-caching"></a>Almacenamiento caché en memoria
 
 El almacenamiento en caché en memoria utiliza la memoria del servidor para almacenar los datos en caché. Este tipo de almacenamiento en caché es adecuado para un solo servidor o para varios servidores que usan *sesiones permanentes*. Las sesiones permanentes significan que las solicitudes de un cliente siempre se enrutan al mismo servidor para su procesamiento.
 
-Para más información, consulte <xref:performance/caching/memory>.
+Para obtener más información, vea <xref:performance/caching/memory>.
 
 ### <a name="distributed-cache"></a>Caché distribuida
 
 Use una caché distribuida para almacenar los datos en memoria cuando la aplicación se hospeda en una granja de servidores o en la nube. La memoria caché se comparte entre los servidores que procesan las solicitudes. Un cliente puede enviar una solicitud controlada por cualquier servidor del grupo si están disponibles los datos almacenados en caché del cliente. ASP.NET Core funciona con memorias caché distribuidas SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)y [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) .
 
-Para más información, consulte <xref:performance/caching/distributed>.
+Para obtener más información, vea <xref:performance/caching/distributed>.
 
-### <a name="cache-tag-helper"></a>Aplicación auxiliar de etiquetas de caché
+### <a name="cache-tag-helper"></a>Asistente de etiquetas de caché
 
 Almacene en caché el contenido de una vista de MVC o una página de Razor con la aplicación auxiliar de etiquetas de caché. La aplicación auxiliar de etiquetas de caché usa el almacenamiento en caché en memoria para almacenar los datos.
 
-Para más información, consulte <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.
+Para obtener más información, vea <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.
 
 ### <a name="distributed-cache-tag-helper"></a>Asistente de etiquetas de caché distribuida
 
 Almacene en caché el contenido de una vista de MVC o una página de Razor en escenarios de granja de servidores web o nube distribuida con la aplicación auxiliar de etiquetas de caché distribuida. La aplicación auxiliar de etiquetas de caché distribuida usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)o [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) para almacenar los datos.
 
-Para más información, consulte <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
+Para obtener más información, vea <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 
 ## <a name="responsecache-attribute"></a>Atributo ResponseCache
 
-En el <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> se especifican los parámetros necesarios para establecer los encabezados adecuados en el almacenamiento en caché de respuestas.
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> Especifica los parámetros necesarios para establecer los encabezados adecuados en el almacenamiento en caché de respuestas.
 
 > [!WARNING]
 > Deshabilite el almacenamiento en caché para el contenido que contiene información de los clientes autenticados. El almacenamiento en caché solo debe estar habilitado para el contenido que no cambia en función de la identidad de un usuario o de si un usuario ha iniciado sesión.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> varía la respuesta almacenada por los valores de la lista especificada de claves de consulta. Cuando se proporciona un solo valor de `*`, el middleware varía las respuestas de todos los parámetros de la cadena de consulta de solicitud.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>cambia la respuesta almacenada por los valores de la lista especificada de claves de consulta. Cuando se proporciona un valor `*` único de, el middleware varía las respuestas de todos los parámetros de la cadena de consulta de solicitud.
 
-El [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware) debe estar habilitado para establecer la propiedad <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>. De lo contrario, se produce una excepción en tiempo de ejecución. No hay un encabezado HTTP correspondiente para la propiedad <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>. La propiedad es una característica de HTTP administrada por middleware de almacenamiento en caché de respuestas. Para que el middleware atienda una respuesta almacenada en caché, la cadena de consulta y el valor de la cadena de consulta deben coincidir con una solicitud anterior. Por ejemplo, considere la secuencia de solicitudes y los resultados que se muestran en la tabla siguiente.
+El [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware) debe <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> estar habilitado para establecer la propiedad. De lo contrario, se produce una excepción en tiempo de ejecución. No hay un encabezado HTTP correspondiente para la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> propiedad. La propiedad es una característica de HTTP administrada por middleware de almacenamiento en caché de respuestas. Para que el middleware atienda una respuesta almacenada en caché, la cadena de consulta y el valor de la cadena de consulta deben coincidir con una solicitud anterior. Por ejemplo, considere la secuencia de solicitudes y los resultados que se muestran en la tabla siguiente.
 
 | Solicitud                          | Resultado                    |
 | -------------------------------- | ------------------------- |
@@ -101,15 +107,15 @@ El [middleware de almacenamiento en caché de respuestas](xref:performance/cachi
 
 El servidor devuelve la primera solicitud y la almacena en caché en middleware. El middleware devuelve la segunda solicitud porque la cadena de consulta coincide con la solicitud anterior. La tercera solicitud no está en la caché de middleware porque el valor de la cadena de consulta no coincide con una solicitud anterior.
 
-El <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> se utiliza para configurar y crear (mediante <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) una `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. El `ResponseCacheFilter` realiza el trabajo de actualizar los encabezados HTTP y las características correspondientes de la respuesta. El filtro:
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> Se utiliza para configurar y crear (mediante <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) un `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. El `ResponseCacheFilter` realiza el trabajo de actualizar los encabezados HTTP y las características correspondientes de la respuesta. El filtro:
 
 * Quita todos los encabezados existentes para `Vary`, `Cache-Control`y `Pragma`.
-* Escribe los encabezados adecuados en función de las propiedades establecidas en el <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>.
-* Actualiza la característica HTTP de almacenamiento en caché de respuesta si se establece <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>.
+* Escribe los encabezados adecuados en función de las propiedades establecidas en <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>.
+* Actualiza la característica HTTP de almacenamiento en <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> caché de respuestas si está establecida.
 
 ### <a name="vary"></a>Variaciones
 
-Este encabezado solo se escribe cuando se establece la propiedad <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader>. Propiedad establecida en el valor de la propiedad `Vary`. En el ejemplo siguiente se usa la propiedad <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader>:
+Este encabezado solo se escribe cuando se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> establece la propiedad. Propiedad establecida en el `Vary` valor de la propiedad. En el ejemplo siguiente se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> usa la propiedad:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache1.cshtml.cs?name=snippet)]
 
@@ -122,14 +128,14 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>Nostore y Location. None
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> invalida la mayoría de las demás propiedades. Cuando esta propiedad se establece en `true`, el encabezado de `Cache-Control` se establece en `no-store`. Si <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> se establece en `None`:
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>invalida la mayoría de las demás propiedades. Cuando esta propiedad se establece en `true`, el `Cache-Control` encabezado se establece en `no-store`. Si <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> está establecido en `None`:
 
 * `Cache-Control` se establece en `no-store,no-cache`.
 * `Pragma` se establece en `no-cache`.
 
 Si <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> es `false` y <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> es `None`, `Cache-Control`y `Pragma` se establecen en `no-cache`.
 
-Normalmente, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> se establece en `true` para las páginas de error. La página Cache2 de la aplicación de ejemplo genera encabezados de respuesta que indican al cliente que no almacene la respuesta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>normalmente se establece en `true` para las páginas de error. La página Cache2 de la aplicación de ejemplo genera encabezados de respuesta que indican al cliente que no almacene la respuesta.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -142,17 +148,17 @@ Pragma: no-cache
 
 ### <a name="location-and-duration"></a>Ubicación y duración
 
-Para habilitar el almacenamiento en caché, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> debe establecerse en un valor positivo y <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> debe ser `Any` (valor predeterminado) o `Client`. El marco de trabajo establece el encabezado de `Cache-Control` en el valor de ubicación seguido del `max-age` de la respuesta.
+Para habilitar el almacenamiento <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> en caché, debe establecerse en un <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> valor positivo y `Any` debe ser (el valor `Client`predeterminado) o. El marco `max-age` de trabajo `Cache-Control` establece el encabezado en el valor de ubicación seguido del de la respuesta.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>opciones de `Any` y `Client` traducen en `Cache-Control` los valores de encabezado de `public` y `private`, respectivamente. Como se indicó en la sección [nostore y Location. None](#nostore-and-locationnone) , si se establece <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> en `None`, se establecen los encabezados `Cache-Control` y `Pragma` en `no-cache`.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>las opciones de `Any` y `Client` traducen `Cache-Control` en valores de `public` encabezado `private`de y, respectivamente. Como se indicó en la sección [nostore y Location. None](#nostore-and-locationnone) , <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> si `None` se establece `Cache-Control` en `Pragma` , los encabezados `no-cache`y se establecen en.
 
-`Location.Any` (`Cache-Control` establecida en `public`) indica que el *cliente o cualquier proxy intermedio* puede almacenar en caché el valor, incluido el [middleware de almacenamiento en](xref:performance/caching/middleware)caché de las respuestas.
+`Location.Any`(`Cache-Control` establecido en `public`) indica que el *cliente o cualquier proxy intermedio* puede almacenar en caché el valor, incluido el [middleware de almacenamiento en](xref:performance/caching/middleware)caché de las respuestas.
 
-`Location.Client` (`Cache-Control` establecida en `private`) indica que *solo el cliente* puede almacenar en caché el valor. Ninguna caché intermedia debe almacenar en caché el valor, incluido el [middleware de almacenamiento en](xref:performance/caching/middleware)caché de las respuestas.
+`Location.Client`(`Cache-Control` establecido en `private`) indica que *solo el cliente* puede almacenar en caché el valor. Ninguna caché intermedia debe almacenar en caché el valor, incluido el [middleware de almacenamiento en](xref:performance/caching/middleware)caché de las respuestas.
 
 Los encabezados de control de caché simplemente proporcionan instrucciones a los clientes y los proxies intermediarios cuando y cómo almacenar en caché las respuestas. No hay ninguna garantía de que los clientes y los servidores proxy cumplan la [especificación de almacenamiento en caché HTTP 1,1](https://tools.ietf.org/html/rfc7234). El [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware) sigue siempre las reglas de almacenamiento en caché establecidas por la especificación.
 
-En el ejemplo siguiente se muestra el modelo de página Cache3 de la aplicación de ejemplo y los encabezados generados por el establecimiento de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> y la salida del valor de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> predeterminado:
+En el ejemplo siguiente se muestra el modelo de página Cache3 de la aplicación de ejemplo y los encabezados <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> generados estableciendo y <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> saliendo del valor predeterminado:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache3.cshtml.cs?name=snippet)]
 
@@ -164,23 +170,23 @@ Cache-Control: public,max-age=10
 
 ### <a name="cache-profiles"></a>Perfiles de caché
 
-En lugar de duplicar la configuración de la caché de respuesta en muchos atributos de acción del controlador, los perfiles de caché se pueden configurar como opciones al configurar MVC/Razor Pages en `Startup.ConfigureServices`. Los valores que se encuentran en un perfil de caché al que se hace referencia se utilizan como valores predeterminados por el <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> y se reemplazan por las propiedades especificadas en el atributo.
+En lugar de duplicar la configuración de la caché de respuestas en muchos atributos de acción del controlador, los perfiles de caché se puedenRazor configurar como `Startup.ConfigureServices`opciones al configurar MVC/páginas en. Los valores que se encuentran en un perfil de caché al que se hace referencia se <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> utilizan como valores predeterminados de y se reemplazan por las propiedades especificadas en el atributo.
 
-Configure un perfil de caché. En el ejemplo siguiente se muestra un perfil de caché de 30 segundos en el `Startup.ConfigureServices`de la aplicación de ejemplo:
+Configure un perfil de caché. En el ejemplo siguiente se muestra un perfil de caché de 30 segundos en `Startup.ConfigureServices`la aplicación de ejemplo:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
-El modelo de página Cache4 de la aplicación de ejemplo hace referencia al perfil de caché de `Default30`:
+El modelo de página Cache4 de la aplicación de `Default30` ejemplo hace referencia al perfil de caché:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache4.cshtml.cs?name=snippet)]
 
-El <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> se puede aplicar a:
+Se <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> puede aplicar a:
 
-* Los controladores de páginas de Razor (clases) &ndash; atributos no se pueden aplicar a los métodos de controlador.
+* RazorLos atributos de los controladores de &ndash; página (clases) no se pueden aplicar a los métodos de controlador.
 * Controladores MVC (clases).
-* Las acciones de MVC (métodos) &ndash; atributos de nivel de método reemplazan a los valores especificados en los atributos de nivel de clase.
+* Los atributos de nivel de &ndash; método de las acciones de MVC (métodos) reemplazan a los valores especificados en los atributos de nivel de clase.
 
-El encabezado resultante aplicado a la respuesta de la página Cache4 por el perfil de caché de `Default30`:
+El encabezado resultante aplicado a la respuesta de la página Cache4 `Default30` por el perfil de caché:
 
 ```
 Cache-Control: public,max-age=30

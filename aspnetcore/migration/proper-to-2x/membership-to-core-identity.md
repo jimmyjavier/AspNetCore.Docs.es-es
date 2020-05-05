@@ -1,17 +1,23 @@
 ---
-title: Migración de la autenticación de pertenencia de ASP.NET a ASP.NET Core identidad 2,0
+title: Migración de la autenticación de pertenencia de ASP.NET a ASP.NET Core 2,0Identity
 author: isaac2004
-description: Obtenga información sobre cómo migrar aplicaciones existentes de ASP.NET mediante la autenticación de pertenencia a ASP.NET Core identidad 2,0.
+description: Obtenga información sobre cómo migrar aplicaciones existentes de ASP.NET mediante la autenticación de Identitypertenencia a ASP.net Core 2,0.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: 3b708da13ff9f2887eee87ea17844312a4fe1b8d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b5205ef69943f3744bba8381701008369dd0843c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651839"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774514"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-identity"></a>Migración de la autenticación de pertenencia de ASP.NET a ASP.NET Core identidad 2,0
 
@@ -40,12 +46,12 @@ La manera más rápida de ver el esquema de ASP.NET Core identidad 2,0 es crear 
 1. Cree un nuevo proyecto de **aplicación Web de ASP.net Core** llamado *CoreIdentitySample*.
 1. Seleccione **ASP.NET Core 2,0** en la lista desplegable y, a continuación, seleccione **aplicación web**. Esta plantilla genera una aplicación [Razor pages](xref:razor-pages/index) . Antes de hacer clic en **Aceptar**, haga clic en **cambiar autenticación**.
 1. Elija **las cuentas de usuario individuales** para las plantillas de identidad. Por último, haga clic en **Aceptar**y en **Aceptar**. Visual Studio crea un proyecto mediante la plantilla de identidad de ASP.NET Core.
-1. Seleccione **herramientas** > **Administrador de paquetes NuGet** > **consola del administrador de paquetes** para abrir la ventana de la consola del administrador de **paquetes** (PMC).
-1. Vaya a la raíz del proyecto en PMC y ejecute el comando [Entity Framework (EF) Core](/ef/core) `Update-Database`.
+1. Seleccione **herramientas** > administrador de**paquetes** > NuGet**consola del administrador** de paquetes para abrir la ventana de la consola del administrador de **paquetes** (PMC).
+1. Vaya a la raíz del proyecto en PMC y ejecute el comando de [Entity Framework (EF) Core](/ef/core) `Update-Database` .
 
     ASP.NET Core identidad 2,0 usa EF Core para interactuar con la base de datos que almacena los datos de autenticación. Para que la aplicación recién creada funcione, debe haber una base de datos para almacenar estos datos. Después de crear una nueva aplicación, la manera más rápida de inspeccionar el esquema en un entorno de base de datos es crear la base de datos mediante [migraciones de EF Core](/ef/core/managing-schemas/migrations/). Este proceso crea una base de datos, ya sea localmente o en cualquier otro lugar, que imite ese esquema. Revise la documentación anterior para obtener más información.
 
-    EF Core comandos usan la cadena de conexión para la base de datos especificada en *appSettings. JSON*. La siguiente cadena de conexión tiene como destino una base de datos en *localhost* denominada *asp-net-Core-Identity*. En esta configuración, EF Core se configura para utilizar la cadena de conexión `DefaultConnection`.
+    EF Core comandos usan la cadena de conexión para la base de datos especificada en *appSettings. JSON*. La siguiente cadena de conexión tiene como destino una base de datos en *localhost* denominada *asp-net-Core-Identity*. En esta configuración, EF Core se configura para utilizar la `DefaultConnection` cadena de conexión.
 
     ```json
     {
@@ -55,9 +61,9 @@ La manera más rápida de ver el esquema de ASP.NET Core identidad 2,0 es crear 
     }
     ```
 
-1. Seleccione **ver** > **Explorador de objetos de SQL Server**. Expanda el nodo correspondiente al nombre de la base de datos especificado en la propiedad `ConnectionStrings:DefaultConnection` de *appSettings. JSON*.
+1. Seleccione **Ver** > **Explorador de objetos de SQL Server**. Expanda el nodo correspondiente al nombre de la base de `ConnectionStrings:DefaultConnection` datos especificado en la propiedad de *appSettings. JSON*.
 
-    El comando `Update-Database` creó la base de datos especificada con el esquema y los datos necesarios para la inicialización de la aplicación. En la imagen siguiente se muestra la estructura de tabla que se crea con los pasos anteriores.
+    El `Update-Database` comando creó la base de datos especificada con el esquema y los datos necesarios para la inicialización de la aplicación. En la imagen siguiente se muestra la estructura de tabla que se crea con los pasos anteriores.
 
     ![Tablas de identidad](identity/_static/identity-tables.png)
 
@@ -67,7 +73,7 @@ Existen sutiles diferencias en las estructuras de tabla y los campos de pertenen
 
 ### <a name="users"></a>Usuarios
 
-|*<br>de identidad (DBO. AspNetUsers*        ||*<br>de pertenencia (DBO. aspnet_Users/DBO. aspnet_Membership)*||
+|*Identidad<br>(DBO. AspNetUsers*        ||*Pertenencia<br>(dbo. aspnet_Users/dbo. aspnet_Membership)*||
 |----------------------------------------|-----------------------------------------------------------|
 |**Nombre del campo**                 |**Tipo**|**Nombre del campo**                                    |**Tipo**|
 |`Id`                           |string  |`aspnet_Users.UserId`                             |string  |
@@ -83,7 +89,7 @@ Existen sutiles diferencias en las estructuras de tabla y los campos de pertenen
 
 ### <a name="roles"></a>Roles
 
-|*<br>de identidad (DBO. AspNetRoles)*        ||*<br>de pertenencia (DBO. aspnet_Roles)*||
+|*Identidad<br>(DBO. AspNetRoles)*        ||*Pertenencia<br>(dbo. aspnet_Roles)*||
 |----------------------------------------|-----------------------------------|
 |**Nombre del campo**                 |**Tipo**|**Nombre del campo**   |**Tipo**         |
 |`Id`                           |string  |`RoleId`         | string          |
@@ -92,7 +98,7 @@ Existen sutiles diferencias en las estructuras de tabla y los campos de pertenen
 
 ### <a name="user-roles"></a>Roles de usuario
 
-|*<br>de identidad (DBO. AspNetUserRoles*||*<br>de pertenencia (DBO. aspnet_UsersInRoles)*||
+|*Identidad<br>(DBO. AspNetUserRoles*||*Pertenencia<br>(dbo. aspnet_UsersInRoles)*||
 |------------------------------------|------------------------------------------|
 |**Nombre del campo**           |**Tipo**  |**Nombre del campo**|**Tipo**                   |
 |`RoleId`                 |string    |`RoleId`      |string                     |
@@ -187,15 +193,15 @@ IF @@ERROR <> 0
 COMMIT TRANSACTION MigrateUsersAndRoles
 ```
 
-Después de completar el script anterior, la aplicación de identidad de ASP.NET Core creada anteriormente se rellena con usuarios de pertenencia. Los usuarios deben cambiar sus contraseñas antes de iniciar sesión.
+Después de completar el script anterior, la aplicación Identity ASP.net Core creada anteriormente se rellena con usuarios de pertenencia. Los usuarios deben cambiar sus contraseñas antes de iniciar sesión.
 
 > [!NOTE]
-> Si el sistema de pertenencia tuviera usuarios con nombres de usuario que no coincidían con su dirección de correo electrónico, se requieren cambios en la aplicación que se creó anteriormente para dar cabida a este. La plantilla predeterminada espera que `UserName` y `Email` sean iguales. En situaciones en las que son diferentes, el proceso de inicio de sesión debe modificarse para usar `UserName` en lugar de `Email`.
+> Si el sistema de pertenencia tuviera usuarios con nombres de usuario que no coincidían con su dirección de correo electrónico, se requieren cambios en la aplicación que se creó anteriormente para dar cabida a este. La plantilla predeterminada espera `UserName` y `Email` para ser la misma. En situaciones en las que son diferentes, el proceso de inicio de sesión debe modificarse `UserName` para usar en `Email`lugar de.
 
-En el `PageModel` de la página de inicio de sesión, que se encuentra en *Pages\Account\Login.cshtml.CS*, quite el atributo `[EmailAddress]` de la propiedad *email* . Cambie el nombre por *nombre de usuario*. Esto requiere un cambio siempre que se mencione `EmailAddress`, en la *vista* y *PageModel*. El resultado será similar al siguiente:
+En la `PageModel` página de inicio de sesión, que se encuentra en *Pages\Account\Login.cshtml.CS*, quite el `[EmailAddress]` atributo de la propiedad *email* . Cambie el nombre por *nombre de usuario*. Esto requiere un cambio siempre `EmailAddress` que se mencione, en la *vista* y *PageModel*. El resultado será similar al siguiente:
 
  ![Inicio de sesión fijo](identity/_static/fixed-login.png)
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-En este tutorial, ha aprendido cómo trasladar a los usuarios de la pertenencia de SQL a ASP.NET Core identidad 2,0. Para obtener más información sobre ASP.NET Core identidad, vea [Introducción a la identidad](xref:security/authentication/identity).
+En este tutorial, ha aprendido cómo trasladar a los usuarios de la pertenencia Identityde SQL a ASP.net Core 2,0. Para obtener más información sobre IdentityASP.net Core, vea [Introducción Identitya ](xref:security/authentication/identity).

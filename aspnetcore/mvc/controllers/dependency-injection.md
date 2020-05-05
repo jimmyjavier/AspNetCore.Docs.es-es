@@ -4,13 +4,19 @@ author: ardalis
 description: Obtenga información sobre cómo los controladores de ASP.NET Core MVC solicitan sus dependencias explícitamente a través de sus constructores por medio de la inserción de dependencias en ASP.NET Core.
 ms.author: riande
 ms.date: 02/24/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 202b62d4b30c5c61c407abdc8509a2a75e181cb6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: a7df6a5fa2d49efc332c4684ea8192f143cdebf5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652157"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775705"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Inserción de dependencias en controladores en ASP.NET Core
 

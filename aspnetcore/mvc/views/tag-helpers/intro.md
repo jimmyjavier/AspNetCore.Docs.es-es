@@ -5,13 +5,19 @@ description: Obtenga información sobre qué son los asistentes de etiquetas y c
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 15f94fd1c619e9f69c5783f664eafc9ca28f86f9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 7298e514938e8285a1e42afad0f2f71375e2781d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652859"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776479"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Asistentes de etiquetas en ASP.NET Core
 
@@ -19,17 +25,17 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="what-are-tag-helpers"></a>Qué son los asistentes de etiquetas
 
-Los asistentes de etiquetas permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor. Por ejemplo, la aplicación auxiliar `ImageTagHelper` integrada puede anexar un número de versión al nombre de imagen. Cada vez que la imagen cambia, el servidor genera una nueva versión única para la imagen, lo que garantiza que los clientes puedan obtener la imagen actual (en lugar de una imagen obsoleta almacenada en caché). Hay muchos asistentes de etiquetas integradas para tareas comunes (como la creación de formularios, vínculos, carga de activos, etc.) y existen muchos más a disposición en repositorios públicos de GitHub y como paquetes NuGet. Los asistentes de etiquetas se crean en C# y tienen como destino elementos HTML en función del nombre de elemento, el nombre de atributo o la etiqueta principal. Por ejemplo, la aplicación auxiliar `LabelTagHelper` integrada puede tener como destino el elemento HTML `<label>` cuando se aplican atributos `LabelTagHelper`. Si está familiarizado con las [asistentes de HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), los asistentes de etiquetas reducen las transiciones explícitas entre HTML y C# en las vistas de Razor. En muchos casos, los asistentes de HTML proporcionan un método alternativo para un asistente de etiquetas específico, pero es importante tener en cuenta que los asistentes de etiquetas no reemplazan a los asistentes de HTML y que no hay un asistente de etiquetas para cada asistente de HTML. En [Comparación entre los asistentes de etiquetas y los asistentes de HTML](#tag-helpers-compared-to-html-helpers) se explican las diferencias con más detalle.
+Las aplicaciones auxiliares de etiquetas permiten que el código del lado servidor participe en la creación y Razor representación de elementos HTML en archivos. Por ejemplo, la aplicación auxiliar `ImageTagHelper` integrada puede anexar un número de versión al nombre de imagen. Cada vez que la imagen cambia, el servidor genera una nueva versión única para la imagen, lo que garantiza que los clientes puedan obtener la imagen actual (en lugar de una imagen obsoleta almacenada en caché). Hay muchos asistentes de etiquetas integradas para tareas comunes (como la creación de formularios, vínculos, carga de activos, etc.) y existen muchos más a disposición en repositorios públicos de GitHub y como paquetes NuGet. Los asistentes de etiquetas se crean en C# y tienen como destino elementos HTML en función del nombre de elemento, el nombre de atributo o la etiqueta principal. Por ejemplo, la aplicación auxiliar `LabelTagHelper` integrada puede tener como destino el elemento HTML `<label>` cuando se aplican atributos `LabelTagHelper`. Si está familiarizado con las [aplicaciones auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), las aplicaciones auxiliares de etiquetas reducen las transiciones explícitas entre Razor HTML y C# en las vistas. En muchos casos, los asistentes de HTML proporcionan un método alternativo para un asistente de etiquetas específico, pero es importante tener en cuenta que los asistentes de etiquetas no reemplazan a los asistentes de HTML y que no hay un asistente de etiquetas para cada asistente de HTML. En [Comparación entre los asistentes de etiquetas y los asistentes de HTML](#tag-helpers-compared-to-html-helpers) se explican las diferencias con más detalle.
 
 ## <a name="what-tag-helpers-provide"></a>¿Qué proporcionan los asistentes de etiquetas?
 
-**Una experiencia de desarrollo compatible con HTML** La mayor parte del marcado de Razor con asistentes de etiquetas es similar a HTML estándar. Los diseñadores de front-end familiarizados con HTML, CSS y JavaScript pueden editar Razor sin tener que aprender la sintaxis Razor de C#.
+**Una experiencia de desarrollo compatible con HTML** En su mayor parte, Razor el marcado con aplicaciones auxiliares de etiquetas es similar a HTML estándar. Los diseñadores de front-end que no son conformes con HTML/CSS Razor /JavaScript pueden Razor editar sin tener que aprender la sintaxis de C#.
 
-**Un entorno de IntelliSense enriquecido para crear marcado HTML y Razor** Este es un marcado contraste con los asistentes de HTML, el método anterior para la creación en el lado servidor de marcado en vistas de Razor. En [Comparación entre los asistentes de etiquetas y los asistentes de HTML](#tag-helpers-compared-to-html-helpers) se explican las diferencias con más detalle. En [Compatibilidad de IntelliSense con asistentes de etiquetas](#intellisense-support-for-tag-helpers) se explica el entorno de IntelliSense. Incluso los desarrolladores que tienen experiencia con la sintaxis Razor de C# son más productivos cuando usan asistentes de etiquetas que al escribir marcado de Razor de C#.
+**Un completo entorno de IntelliSense para crear HTML Razor y marcado** esto está en contraste con las aplicaciones auxiliares HTML, el enfoque anterior para la creación del marcado en el Razor servidor en las vistas. En [Comparación entre los asistentes de etiquetas y los asistentes de HTML](#tag-helpers-compared-to-html-helpers) se explican las diferencias con más detalle. En [Compatibilidad de IntelliSense con asistentes de etiquetas](#intellisense-support-for-tag-helpers) se explica el entorno de IntelliSense. Incluso los desarrolladores con Razor experiencia en c# son más productivos mediante aplicaciones auxiliares de etiquetas Razor que escribir marcado en c#.
 
-**Una forma de ser más productivo y generar código más sólido, confiable y fácil de mantener con información que solo está disponible en el servidor** Por ejemplo, lo habitual a la hora de actualizar las imágenes era cambiar el nombre de la imagen cuando se modificaba. Las imágenes debían almacenarse en caché de forma activa por motivos de rendimiento y, a menos que se cambiase el nombre de una imagen, se corría el riesgo de que los clientes obtuviesen una copia obsoleta. Antes, después de editar una imagen, era necesario cambiarle el nombre y actualizar todas las referencias a la imagen en la aplicación web. No solo se trata de una gran cantidad de trabajo, sino que también es propenso a errores (puede omitir una referencia, escribir accidentalmente la cadena equivocada, etc.). El `ImageTagHelper` integrado puede hacerlo automáticamente. `ImageTagHelper` puede anexar un número de versión al nombre de la imagen, por lo que cada vez que la imagen cambia, el servidor genera automáticamente una nueva versión única de la imagen. Esto garantiza que los clientes obtengan la imagen actual. Esta solidez y ahorro de trabajo se consiguen de forma gratuita mediante el uso de `ImageTagHelper`.
+**Una forma de ser más productivo y generar código más sólido, confiable y fácil de mantener con información que solo está disponible en el servidor** Por ejemplo, lo habitual a la hora de actualizar las imágenes era cambiar el nombre de la imagen cuando se modificaba. Las imágenes debían almacenarse en caché de forma activa por motivos de rendimiento y, a menos que se cambiase el nombre de una imagen, se corría el riesgo de que los clientes obtuviesen una copia obsoleta. Antes, después de editar una imagen, era necesario cambiarle el nombre y actualizar todas las referencias a la imagen en la aplicación web. No solo se trata de una gran cantidad de trabajo, sino que también es propenso a errores (puede omitir una referencia, escribir accidentalmente la cadena equivocada, etc.). El integrado `ImageTagHelper` puede hacer esto automáticamente. `ImageTagHelper` puede anexar un número de versión al nombre de la imagen, por lo que cada vez que la imagen cambia, el servidor genera automáticamente una nueva versión única de la imagen. Esto garantiza que los clientes obtengan la imagen actual. Esta solidez y ahorro de trabajo se consiguen de forma gratuita mediante el uso de `ImageTagHelper`.
 
-La mayoría de los asistentes de etiquetas integradas tienen como destino elementos HTML estándar y proporcionan atributos del lado servidor del elemento. Por ejemplo, el elemento `<input>` que muchas vistas usan en la carpeta *Views/Account* contiene el atributo `asp-for`. Este atributo extrae el nombre de la propiedad de modelo especificada en el HTML representado. Pensemos en una vista de Razor con el siguiente modelo:
+La mayoría de los asistentes de etiquetas integradas tienen como destino elementos HTML estándar y proporcionan atributos del lado servidor del elemento. Por ejemplo, el elemento `<input>` que muchas vistas usan en la carpeta *Views/Account* contiene el atributo `asp-for`. Este atributo extrae el nombre de la propiedad de modelo especificada en el HTML representado. Considere una Razor vista con el siguiente modelo:
 
 ```csharp
 public class Movie
@@ -42,13 +48,13 @@ public class Movie
 }
 ```
 
-El siguiente marcado de Razor:
+El marcado Razor siguiente:
 
 ```cshtml
 <label asp-for="Movie.Title"></label>
 ```
 
-Genera el siguiente código HTML:
+Se genera el siguiente código HTML:
 
 ```html
 <label for="Movie_Title">Title</label>
@@ -89,7 +95,7 @@ Para agregar un asistente de etiquetas a una vista con un FQN, agregue primero e
 @addTagHelper AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers
 ```
 
-Como se ha mencionado anteriormente, al agregar la directiva `@addTagHelper` al archivo *Views/_ViewImports.cshtml* el asistente de etiquetas se pone a disposición de todos los archivos de vista del directorio *Views* y los subdirectorios. Puede usar la directiva `@addTagHelper` en archivos de vista específicos si quiere exponer el asistente de etiquetas solo a esas vistas.
+Como se mencionó anteriormente, la `@addTagHelper` adición de la Directiva al archivo *views/_ViewImports. cshtml* hace que la aplicación auxiliar de etiquetas esté disponible para todos los archivos de vista del directorio *views* y los subdirectorios. Puede usar la directiva `@addTagHelper` en archivos de vista específicos si quiere exponer el asistente de etiquetas solo a esas vistas.
 
 <a name="remove-razor-directives-label"></a>
 
@@ -151,7 +157,7 @@ El código anterior se puede escribir como:
 
 ## <a name="intellisense-support-for-tag-helpers"></a>Compatibilidad de IntelliSense con asistentes de etiquetas
 
-Cuando se crea una aplicación web ASP.NET Core en Visual Studio, se agrega el paquete NuGet "Microsoft.AspNetCore.Razor.Tools". Este es el paquete que agrega las herramientas de los asistentes de etiquetas.
+Al crear una nueva ASP.NET Core aplicación web en Visual Studio, se agrega el paquete NuGet "Microsoft. AspNetCore. Razor. Herramientas ". Este es el paquete que agrega las herramientas de los asistentes de etiquetas.
 
 Considere la posibilidad de escribir un elemento HTML `<label>`. En cuanto escriba `<l` en el editor de Visual Studio, IntelliSense mostrará elementos coincidentes:
 
@@ -191,19 +197,19 @@ IntelliSense muestra las propiedades y los métodos disponibles para el modelo e
 
 ## <a name="tag-helpers-compared-to-html-helpers"></a>Comparación entre los asistentes de etiquetas y los asistentes de HTML
 
-Los asistentes de etiquetas se asocian a elementos HTML en las vistas de Razor, mientras que los [asistentes de HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) se invocan como métodos intercalados con HTML en las vistas de Razor. Observe el siguiente marcado de Razor, que crea una etiqueta HTML con la clase CSS "caption":
+Las aplicaciones auxiliares de etiquetas se asocian Razor a elementos HTML en las vistas, mientras que las [aplicaciones auxiliares html](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) se invocan Razor como métodos intercalados con HTML en las vistas. Considere el siguiente Razor marcado, que crea una etiqueta HTML con la clase CSS "Caption":
 
 ```cshtml
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
 ```
 
-El símbolo de arroba (`@`) le indica a Razor que este es el inicio del código. Los dos parámetros siguientes ("FirstName" y "First Name:") son cadenas, por lo que [IntelliSense](/visualstudio/ide/using-intellisense) no sirve de ayuda. El último argumento:
+El símbolo de`@`arroba () Razor indica que se trata del inicio del código. Los dos parámetros siguientes ("FirstName" y "First Name:") son cadenas, por lo que [IntelliSense](/visualstudio/ide/using-intellisense) no sirve de ayuda. El último argumento:
 
 ```cshtml
 new {@class="caption"}
 ```
 
-Es un objeto anónimo que se usa para representar atributos. Dado que `class` es una palabra clave reservada en C#, use el símbolo `@` para forzar a C# a interpretar `@class=` como un símbolo (nombre de propiedad). Para un diseñador de front-end (es decir, alguien familiarizado con HTML, CSS, JavaScript y otras tecnologías de cliente, pero desconocedor de C# y Razor), la mayor parte de la línea le resulta ajena. Es necesario crear toda la línea sin ayuda de IntelliSense.
+Es un objeto anónimo que se usa para representar atributos. Dado que `class` es una palabra clave reservada en C#, use el símbolo `@` para forzar a C# a interpretar `@class=` como un símbolo (nombre de propiedad). En el diseñador de front-end (alguien familiarizado con HTML/CSS/JavaScript y otras tecnologías de cliente, pero no Razorestá familiarizado con C# y), la mayor parte de la línea es externa. Es necesario crear toda la línea sin ayuda de IntelliSense.
 
 Si usa `LabelTagHelper`, se puede escribir el mismo marcado de la manera siguiente:
 
@@ -217,7 +223,7 @@ Con la versión del asistente de etiquetas, en cuanto escriba `<l` en el editor 
 
 IntelliSense le ayuda a escribir toda la línea.
 
-En la imagen de código siguiente se muestra la parte Form de la vista de Razor *Views/Account/Register.cshtml* generada a partir de la plantilla de MVC de ASP.NET 4.5.x incluida con Visual Studio.
+En la imagen de código siguiente se muestra la parte del formulario de la vista *views/Account/Register. cshtml* Razor generada a partir de la plantilla MVC de ASP.net 4.5. x incluida con Visual Studio.
 
 ![imagen](intro/_static/regCS.png)
 
@@ -261,7 +267,7 @@ El editor de Visual Studio le ayuda a escribir **todo** el marcado en el método
 
 ## <a name="customizing-the-tag-helper-element-font"></a>Personalizar la fuente de elemento de asistentes de etiquetas
 
-Puede personalizar la fuente y el color en **Herramientas** > **Opciones** > **Entorno** > **Fuentes y colores**:
+Puede personalizar la fuente y la coloración desde **herramientas** > **Opciones** > **entorno** > **fuentes y colores**:
 
 ![imagen](intro/_static/fontoptions2.png)
 

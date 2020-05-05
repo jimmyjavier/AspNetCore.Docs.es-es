@@ -1,25 +1,31 @@
 ---
 title: Validación de modelos en ASP.NET Core MVC
 author: rick-anderson
-description: Obtenga información sobre la validación de modelos en ASP.NET Core MVC y Razor Pages.
+description: Obtenga información sobre la validación de modelos en Razor ASP.net Core MVC y páginas.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: a0f7c070514de26ae007526a5587c13d26d1eb1b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205896"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777181"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validación de modelos en ASP.NET Core MVC y Razor Pages
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validación del modelo en ASP.NET Core MVC Razor y páginas
 
 ::: moniker range=">= aspnetcore-3.0"
 
 De [Kirk Larkin](https://github.com/serpent5)
 
-En este artículo se explica cómo validar la entrada del usuario en una aplicación ASP.NET Core MVC o Razor Pages.
+En este artículo se explica cómo validar los datos proporcionados por el Razor usuario en una aplicación ASP.net Core MVC o pages.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample)).
 
@@ -27,7 +33,7 @@ En este artículo se explica cómo validar la entrada del usuario en una aplicac
 
 El estado del modelo representa los errores que proceden de dos subsistemas: el enlace de modelos y la validación de modelos. Los errores que se originan del [enlace de modelos](model-binding.md) suelen ser errores de conversión de datos. Por ejemplo, se escribe una "x" en un campo numérico entero. La validación del modelo se produce después del enlace de modelos y notifica los errores en los que los datos no cumplen las reglas de negocio. Por ejemplo, se especifica un 0 en un campo que espera una clasificación entre 1 y 5.
 
-Tanto el enlace como la validación de modelos se producen antes de la ejecución de una acción de controlador o un método de controlador de Razor Pages. En el caso de las aplicaciones web, la aplicación es responsable de inspeccionar `ModelState.IsValid` y reaccionar de manera apropiada. Normalmente, las aplicaciones web vuelven a mostrar la página con un mensaje de error:
+Tanto el enlace de modelos como la validación de modelos se producen antes de la ejecución Razor de una acción de controlador o un método de controlador de páginas. En el caso de las aplicaciones web, la aplicación es responsable de inspeccionar `ModelState.IsValid` y reaccionar de manera apropiada. Normalmente, las aplicaciones web vuelven a mostrar la página con un mensaje de error:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
@@ -367,7 +373,7 @@ Este método para representar atributos `data-` en HTML es lo que usa el atribut
 
 ## <a name="disable-client-side-validation"></a>Deshabilitación de la validación del lado cliente
 
-El código siguiente deshabilita la validación de cliente en Razor Pages:
+El código siguiente deshabilita la validación de Razor cliente en las páginas:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableClientValidation&highlight=2-5)]
 
@@ -376,7 +382,7 @@ Otras opciones para deshabilitar la validación del lado cliente:
 * Convierta en comentario la referencia a `_ValidationScriptsPartial` en todos los archivos *.cshtml*.
 * Quite el contenido del archivo *Pages\Shared\_ValidationScriptsPartial.cshtml*.
 
-El enfoque anterior no impedirá la validación del lado cliente de la biblioteca de clases de Razor de identidad de ASP.NET Core. Para obtener más información, vea <xref:security/authentication/scaffold-identity>.
+El enfoque anterior no impedirá la validación del Identity Razor lado cliente de ASP.net Core biblioteca de clases. Para obtener más información, vea <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
@@ -387,7 +393,7 @@ El enfoque anterior no impedirá la validación del lado cliente de la bibliotec
 
 ::: moniker range="< aspnetcore-3.0"
 
-En este artículo se explica cómo validar la entrada del usuario en una aplicación ASP.NET Core MVC o Razor Pages.
+En este artículo se explica cómo validar los datos proporcionados por el Razor usuario en una aplicación ASP.net Core MVC o pages.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([cómo descargarlo](xref:index#how-to-download-a-sample)).
 
@@ -395,7 +401,7 @@ En este artículo se explica cómo validar la entrada del usuario en una aplicac
 
 El estado del modelo representa los errores que proceden de dos subsistemas: el enlace de modelos y la validación de modelos. Los errores que se originan en el [enlace de modelos](model-binding.md) suelen ser errores de conversión de datos (por ejemplo, se especifica una "x" en un campo que espera un entero). La validación de modelos se produce después de enlace de modelos y notifica errores cuando los datos no se ajustan a las reglas de negocios (por ejemplo, se especifica un 0 en un campo que espera una clasificación entre 1 y 5).
 
-Tanto el enlace como la validación de modelos se producen antes de la ejecución de una acción de controlador o un método de controlador de Razor Pages. En el caso de las aplicaciones web, la aplicación es responsable de inspeccionar `ModelState.IsValid` y reaccionar de manera apropiada. Normalmente, las aplicaciones web vuelven a mostrar la página con un mensaje de error:
+Tanto el enlace de modelos como la validación se producen antes de la ejecución de Razor una acción de controlador o un método de controlador de páginas. En el caso de las aplicaciones web, la aplicación es responsable de inspeccionar `ModelState.IsValid` y reaccionar de manera apropiada. Normalmente, las aplicaciones web vuelven a mostrar la página con un mensaje de error:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
@@ -418,7 +424,7 @@ Los atributos de validación permiten especificar reglas de validación para las
 Entre los atributos de validación integrados se incluyen:
 
 * `[CreditCard]`: Valida que la propiedad tiene un formato de tarjeta de crédito.
-* `[Compare]`: Valida que dos propiedades de un modelo coincidan. Por ejemplo, el archivo *Register.cshtml.cs* usa `[Compare]` para validar que ambas contraseñas escritas coincidan. [Identidad de scaffolding](xref:security/authentication/scaffold-identity) para ver el código del Registro.
+* `[Compare]`: Valida que dos propiedades de un modelo coincidan. Por ejemplo, el archivo *Register.cshtml.cs* usa `[Compare]` para validar que ambas contraseñas escritas coincidan. [Scaffolding Identity ](xref:security/authentication/scaffold-identity) para ver el código de registro.
 * `[EmailAddress]`: Valida que la propiedad tiene un formato de correo electrónico.
 * `[Phone]`: Valida que la propiedad tiene un formato de número de teléfono.
 * `[Range]`: Valida que el valor de la propiedad se encuentra dentro de un intervalo especificado.
@@ -742,7 +748,7 @@ El código siguiente deshabilita la validación de cliente en las vistas de MVC:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup2.cs?name=snippet_DisableClientValidation)]
 
-Y en Razor Pages:
+Y en Razor las páginas:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 

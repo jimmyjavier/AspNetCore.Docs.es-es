@@ -6,25 +6,31 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 269be9ece674b39d03cb50720f4fb182c565a639
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: d3207969dfbeb9a81e0da88f38a38c6889bbfba9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651971"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775874"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Asistente de etiquetas parciales en ASP.NET Core
 
 Por [Scott Addie](https://github.com/scottaddie)
 
-Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
 ## <a name="overview"></a>Información general
 
-El asistente de etiquetas parciales sirve para representar una [vista parcial](xref:mvc/views/partial) en las páginas de Razor y las aplicaciones MVC. Tenga en cuenta lo siguiente:
+La aplicación auxiliar de etiquetas parciales se usa para representar una [vista parcial](xref:mvc/views/partial) en Razor páginas y aplicaciones MVC. Tenga en cuenta lo siguiente:
 
 * Es necesario ASP.NET Core 2.1 o una versión posterior.
 * Es una alternativa a la [sintaxis del asistente de HTML](xref:mvc/views/partial#reference-a-partial-view).
@@ -63,7 +69,7 @@ La vista parcial se enlaza a la propiedad `Product` del modelo de página asocia
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
-## <a name="model"></a>model
+## <a name="model"></a>modelo
 
 El atributo `model` asigna una instancia de modelo para pasarla a la vista parcial. El atributo `model` no se puede usar con el atributo [for](#for).
 

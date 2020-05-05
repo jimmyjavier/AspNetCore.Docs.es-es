@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 8fc68f2303bfcf16d279b829ab9441a80119f1bb
-ms.sourcegitcommit: 755952496316fdb0923689109b536b609ce525ee
+ms.openlocfilehash: 12a39ccfefdcaec6251a9804011aefde3bbae7b2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82643081"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776674"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compresión de respuesta en ASP.NET Core
 

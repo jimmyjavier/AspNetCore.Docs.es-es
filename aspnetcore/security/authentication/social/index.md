@@ -5,13 +5,19 @@ description: En este tutorial se muestra cómo crear una aplicación de ASP.NET 
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: c698edbd85d665509366287b1dcad08e276e71cc
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 880aeea4dce5f5ae6533a3293067d89f98587e72
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644819"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777155"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticación con Facebook, Google y proveedores externos en ASP.NET Core
 
@@ -114,4 +120,4 @@ Para crear una contraseña e iniciar sesión con el correo electrónico establec
 * Consulte [esta incidencia de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/10563) para obtener información sobre cómo personalizar los botones de inicio de sesión.
 * En este artículo se introdujo la autenticación externa y se explicaron los requisitos previos necesarios para agregar inicios de sesión externos a la aplicación de ASP.NET Core.
 * Páginas de referencia específicas del proveedor para configurar los inicios de sesión para los proveedores requeridos por la aplicación.
-* Le recomendamos que conserve los datos adicionales sobre el usuario y sus tokens de acceso y actualización. Para obtener más información, consulta <xref:security/authentication/social/additional-claims>.
+* Le recomendamos que conserve los datos adicionales sobre el usuario y sus tokens de acceso y actualización. Para obtener más información, vea <xref:security/authentication/social/additional-claims>.

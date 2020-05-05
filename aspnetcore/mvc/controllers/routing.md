@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre cómo ASP.NET Core MVC usa el middleware de enrutamiento para encontrar direcciones URL de las solicitudes entrantes y asignarlas a acciones.
 ms.author: riande
 ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 974a5e7653f2b71b124a96650733ff460e60637a
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 4208ef8fb7a9b10621f214f79679ff8d7fd83996
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206117"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775029"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Enrutar a acciones de controlador de ASP.NET Core
 
@@ -147,7 +153,7 @@ La mayoría de las aplicaciones deben elegir un esquema de enrutamiento básico 
 
 * Asigne automáticamente un valor de **pedido** a sus puntos de conexión en función del orden en que se invocan.
 
-Enrutamiento de puntos de conexión en ASP.NET Core 3,0 y versiones posteriores:
+Enrutamiento de puntos de conexión en ASP.NET Core 3.0 y versiones posteriores:
 
 * No tiene un concepto de rutas.
 * No proporciona garantías de ordenación para la ejecución de la extensibilidad, todos los puntos de conexión se procesan a la vez.
@@ -185,7 +191,7 @@ El ejemplo anterior:
 
 > [!WARNING]
 > En ASP.NET Core 3,0 y versiones posteriores, el enrutamiento no:
-> * Defina un concepto denominado *Route*. `UseRouting`agrega la coincidencia de rutas a la canalización de middleware. El `UseRouting` middleware examina el conjunto de puntos de conexión definidos en la aplicación y selecciona la mejor coincidencia de punto de conexión en función de la solicitud.
+> * Defina un concepto denominado *Route*. `UseRouting` agrega coincidencia de rutas a la canalización de middleware. El `UseRouting` middleware examina el conjunto de puntos de conexión definidos en la aplicación y selecciona la mejor coincidencia de punto de conexión en función de la solicitud.
 > * Proporcione garantías sobre el orden de ejecución de la extensibilidad, como <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> o <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
 >Consulte [enrutamiento](xref:fundamentals/routing) para obtener material de referencia sobre el enrutamiento.
@@ -195,7 +201,9 @@ El ejemplo anterior:
 ### <a name="conventional-routing-order"></a>Orden de enrutamiento convencional
 
 El enrutamiento convencional solo coincide con una combinación de acción y controlador que se define en la aplicación. Esto se ha diseñado para simplificar los casos en los que las rutas convencionales se superponen.
-Agregar rutas mediante <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>y <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> asigna automáticamente un valor de pedido a sus puntos de conexión en función del orden en el que se invocan. Las coincidencias de una ruta que aparece antes tienen una prioridad más alta. El enrutamiento convencional depende del orden. En general, las rutas con áreas deben colocarse anteriormente ya que son más específicas que las rutas sin un área. Las [rutas convencionales dedicadas](#dcr) con todos los parámetros `{*article}` de ruta como pueden hacer que una ruta sea demasiado [expansiva](xref:fundamentals/routing#greedy), lo que significa que coincide con las direcciones URL que desea que coincidan con otras rutas. Coloque las rutas expansivas más adelante en la tabla de rutas para evitar coincidencias expansivas.
+Agregar rutas mediante <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>y <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> asigna automáticamente un valor de pedido a sus puntos de conexión en función del orden en el que se invocan. Las coincidencias de una ruta que aparece antes tienen una prioridad más alta. El enrutamiento convencional depende del orden. En general, las rutas con áreas deben colocarse anteriormente ya que son más específicas que las rutas sin un área. Las [rutas convencionales dedicadas](#dcr) con parámetros de ruta Catch `{*article}` -All como pueden hacer que una ruta sea demasiado [expansiva](xref:fundamentals/routing#greedy), lo que significa que coincide con las direcciones URL que desea que coincidan con otras rutas. Coloque las rutas expansivas más adelante en la tabla de rutas para evitar coincidencias expansivas.
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 <a name="best"></a>
 
@@ -463,7 +471,7 @@ Con el código anterior, `/home` ejecuta el `HomeController.Index` punto de cone
 * El código anterior es un ejemplo o un diseño de enrutamiento deficiente. Se usó para ilustrar la `Order` propiedad.
 * La `Order` propiedad solo resuelve la ambigüedad, no se puede encontrar una coincidencia con esa plantilla. Sería mejor quitar la `[Route("Home")]` plantilla.
 
-Consulte [Razor pages convenciones de enrutamiento y aplicación: orden de ruta](xref:razor-pages/razor-pages-conventions#route-order) para obtener información sobre el orden de las rutas con Razor pages.
+Vea [ Razor páginas ruta y convenciones de aplicación: orden de ruta](xref:razor-pages/razor-pages-conventions#route-order) para obtener información sobre Razor el orden de las rutas con las páginas.
 
 En algunos casos, se devuelve un error HTTP 500 con rutas ambiguas. Utilice el [registro](xref:fundamentals/logging/index) para ver qué extremos produjeron `AmbiguousMatchException`el.
 
@@ -713,7 +721,7 @@ Si se agrega `{ d = Donovan }` el valor:
 
 Podría esperar que se produzca este problema con la ruta `{controller}/{action}/{id?}`predeterminada. Este problema es raro en la práctica `Url.Action` porque siempre especifica `controller` explícitamente `action` un valor de y.
 
-Varias sobrecargas de [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) toman un objeto de valores de ruta para proporcionar valores para los parámetros `controller` de `action`ruta distintos de y. El objeto Route Values se usa con `id`frecuencia con. Por ejemplo, `Url.Action("Buy", "Products", new { id = 17 })`. Objeto de valores de ruta:
+Varias sobrecargas de [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) toman un objeto de valores de ruta para proporcionar valores para los parámetros `controller` de `action`ruta distintos de y. El objeto Route Values se usa con `id`frecuencia con. Por ejemplo: `Url.Action("Buy", "Products", new { id = 17 })`. Objeto de valores de ruta:
 
 * Por Convención suele ser un objeto de tipo anónimo.
 * Puede ser un `IDictionary<>` o un [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).
@@ -744,13 +752,13 @@ En el código anterior se mostró la generación de una dirección URL pasando e
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
 
-El siguiente archivo Razor genera un vínculo HTML al `Destination_Route`:
+El archivo Razor siguiente genera un vínculo HTML a `Destination_Route`:
 
 [!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-razor"></a>Generar direcciones URL en HTML y Razor
+### <a name="generate-urls-in-html-and-razor"></a>Generar direcciones URL en HTML yRazor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>proporciona los <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> métodos [HTML. BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) y [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) para generar `<form>` los `<a>` elementos y, respectivamente. Estos métodos usan el método [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) para generar una dirección URL y aceptan argumentos similares. Los métodos `Url.RouteUrl` complementarios de `HtmlHelper` son `Html.BeginRouteForm` y `Html.RouteLink`, cuya funcionalidad es similar.
 
@@ -1212,7 +1220,7 @@ Las rutas de atributo pueden configurar un orden mediante la propiedad `Order` d
 > [!TIP]
 > Evite depender de `Order`. Si su espacio de direcciones URL requiere unos valores de orden explícitos para un enrutamiento correcto, es probable que también sea confuso para los clientes. Por lo general, el enrutamiento mediante atributos seleccionará la ruta correcta con la coincidencia de dirección URL. Si el orden predeterminado que se usa para la generación de direcciones URL no funciona, normalmente es más sencillo utilizar el nombre de ruta como una invalidación que aplicar la propiedad `Order`.
 
-El enrutamiento del controlador de MVC y el enrutamiento de Razor Pages comparten una implementación. La información sobre el orden de la ruta de los temas de Razor Pages se encuentra disponible en [Convenciones de aplicación y de ruta de Razor Pages: Orden de la ruta](xref:razor-pages/razor-pages-conventions#route-order).
+RazorEl enrutamiento de páginas y el enrutamiento del controlador de MVC comparten una implementación de. La información sobre el orden de Razor la ruta en los temas de las páginas está disponible en [ Razor las páginas ruta y convenciones de aplicación: orden de ruta](xref:razor-pages/razor-pages-conventions#route-order).
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 

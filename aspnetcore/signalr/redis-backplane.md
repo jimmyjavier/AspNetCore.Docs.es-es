@@ -1,35 +1,39 @@
 ---
 title: Backplane de Redis para el escalado horizontal de ASP.NET Core SignalR
 author: bradygaster
-description: Aprenda a configurar un backplane de Redis para habilitar el escalado horizontal de una aplicación de SignalR de ASP.NET Core.
+description: Aprenda a configurar un backplane de Redis para habilitar el escalado horizontal de una aplicación ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: 0461fc6a212ba78111bc2054cca74951721c5820
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 6068890f4089a13add05bf8cf8009367e343adce
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652667"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775354"
 ---
-# <a name="set-up-a-redis-backplane-for-aspnet-core-opno-locsignalr-scale-out"></a>Configuración de un backplane de Redis para el escalado horizontal de ASP.NET Core SignalR
+# <a name="set-up-a-redis-backplane-for-aspnet-core-signalr-scale-out"></a>Configuración de un backplane de Redis para ASP.NET Core SignalR la escalabilidad horizontal
 
 Por [Andrew Stanton-enfermera](https://twitter.com/anurse), [Brady transgastor](https://twitter.com/bradygaster)y [Tom Dykstra](https://github.com/tdykstra),
 
-En este artículo se explican los aspectos específicos de SignalRde la configuración de un servidor de [Redis](https://redis.io/) para usar para escalar horizontalmente una aplicación ASP.net Core SignalR.
+En este artículo SignalRse explican los aspectos específicos de la configuración de un servidor de [Redis](https://redis.io/) para usar SignalR para escalar horizontalmente una aplicación ASP.net Core.
 
 ## <a name="set-up-a-redis-backplane"></a>Configuración de un backplane de Redis
 
 * Implementar un servidor de Redis.
 
   > [!IMPORTANT] 
-  > Para su uso en producción, se recomienda un backplane de Redis solo cuando se ejecuta en el mismo centro de datos que la aplicación SignalR. De lo contrario, la latencia de red degrada el rendimiento. Si la aplicación de SignalR se ejecuta en la nube de Azure, se recomienda Azure SignalR Service en lugar de un backplane de Redis. Puede usar el servicio de Azure Redis Cache para entornos de desarrollo y pruebas.
+  > Para su uso en producción, se recomienda un backplane de Redis solo cuando se ejecuta en el mismo centro de datos SignalR que la aplicación. De lo contrario, la latencia de red degrada el rendimiento. Si la SignalR aplicación se ejecuta en la nube de Azure, se recomienda SignalR el servicio de Azure en lugar de un backplane de Redis. Puede usar el servicio de Azure Redis Cache para entornos de desarrollo y pruebas.
 
-  Para obtener más información, consulte los siguientes recursos:
+  Para obtener más información, vea los siguientes recursos:
 
   * <xref:signalr/scale>
   * [Documentación de Redis](https://redis.io/)
@@ -37,8 +41,8 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
 
 ::: moniker range="= aspnetcore-2.1"
 
-* En la aplicación SignalR, instale el paquete NuGet `Microsoft.AspNetCore.SignalR.Redis`.
-* En el método `Startup.ConfigureServices`, llame a `AddRedis` después `AddSignalR`:
+* En la SignalR aplicación, instale el `Microsoft.AspNetCore.SignalR.Redis` paquete NuGet.
+* En el `Startup.ConfigureServices` método, llame `AddRedis` a `AddSignalR`después de:
 
   ```csharp
   services.AddSignalR().AddRedis("<your_Redis_connection_string>");
@@ -48,7 +52,7 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
  
   La mayoría de las opciones se pueden establecer en la cadena de conexión o en el objeto [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) . Las opciones especificadas en `ConfigurationOptions` invalidan las definidas en la cadena de conexión.
 
-  En el ejemplo siguiente se muestra cómo establecer opciones en el objeto `ConfigurationOptions`. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
+  En el ejemplo siguiente se muestra cómo establecer opciones en `ConfigurationOptions` el objeto. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
 
   ```csharp
   services.AddSignalR()
@@ -63,24 +67,24 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
 
 ::: moniker range="= aspnetcore-2.2"
 
-* En la aplicación SignalR, instale uno de los siguientes paquetes NuGet:
+* En la SignalR aplicación, instale uno de los siguientes paquetes NuGet:
 
-  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`: depende de StackExchange. Redis 2. X.X. Este es el paquete recomendado para ASP.NET Core 2,2 y versiones posteriores.
-  * `Microsoft.AspNetCore.SignalR.Redis`: depende de StackExchange. Redis 1. X.X. Este paquete no está incluido en ASP.NET Core 3,0 y versiones posteriores.
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`-Depende de StackExchange. Redis 2. X.X. Este es el paquete recomendado para ASP.NET Core 2,2 y versiones posteriores.
+  * `Microsoft.AspNetCore.SignalR.Redis`-Depende de StackExchange. Redis 1. X.X. Este paquete no está incluido en ASP.NET Core 3,0 y versiones posteriores.
 
-* En el método `Startup.ConfigureServices`, llame a <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* En el `Startup.ConfigureServices` método, llame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>a:
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
 
- Al usar `Microsoft.AspNetCore.SignalR.Redis`, llame a <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
+ Al utilizar `Microsoft.AspNetCore.SignalR.Redis`, llame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>a.
 
 * Configure las opciones según sea necesario:
  
   La mayoría de las opciones se pueden establecer en la cadena de conexión o en el objeto [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) . Las opciones especificadas en `ConfigurationOptions` invalidan las definidas en la cadena de conexión.
 
-  En el ejemplo siguiente se muestra cómo establecer opciones en el objeto `ConfigurationOptions`. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
+  En el ejemplo siguiente se muestra cómo establecer opciones en `ConfigurationOptions` el objeto. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
 
   ```csharp
   services.AddSignalR()
@@ -89,7 +93,7 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
     });
   ```
 
- Al usar `Microsoft.AspNetCore.SignalR.Redis`, llame a <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
+ Al utilizar `Microsoft.AspNetCore.SignalR.Redis`, llame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>a.
 
   En el código anterior, `options.Configuration` se inicializa con lo que se haya especificado en la cadena de conexión.
 
@@ -99,11 +103,11 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* En la aplicación SignalR, instale el siguiente paquete de NuGet:
+* En la SignalR aplicación, instale el siguiente paquete de NuGet:
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* En el método `Startup.ConfigureServices`, llame a <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* En el `Startup.ConfigureServices` método, llame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>a:
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
@@ -113,7 +117,7 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
  
   La mayoría de las opciones se pueden establecer en la cadena de conexión o en el objeto [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) . Las opciones especificadas en `ConfigurationOptions` invalidan las definidas en la cadena de conexión.
 
-  En el ejemplo siguiente se muestra cómo establecer opciones en el objeto `ConfigurationOptions`. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
+  En el ejemplo siguiente se muestra cómo establecer opciones en `ConfigurationOptions` el objeto. En este ejemplo se agrega un prefijo de canal para que varias aplicaciones puedan compartir la misma instancia de Redis, tal y como se explica en el paso siguiente.
 
   ```csharp
   services.AddSignalR()
@@ -128,9 +132,9 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
 
 ::: moniker-end
 
-* Si usa un servidor de Redis para varias SignalR aplicaciones, use un prefijo de canal diferente para cada aplicación SignalR.
+* Si usa un servidor de Redis para varias SignalR aplicaciones, use un prefijo de canal diferente para SignalR cada aplicación.
 
-  La configuración de un prefijo de canal aísla una SignalR aplicación de otras que usan prefijos de canal diferentes. Si no asigna prefijos diferentes, un mensaje enviado desde una aplicación a todos sus clientes irá a todos los clientes de todas las aplicaciones que usan el servidor de Redis como un backplane.
+  La configuración de un prefijo de canal SignalR aísla una aplicación de otras que usan prefijos de canal diferentes. Si no asigna prefijos diferentes, un mensaje enviado desde una aplicación a todos sus clientes irá a todos los clientes de todas las aplicaciones que usan el servidor de Redis como un backplane.
 
 * Configure el software de equilibrio de carga de la granja de servidores para sesiones permanentes. Estos son algunos ejemplos de documentación sobre cómo hacerlo:
 
@@ -141,15 +145,15 @@ En este artículo se explican los aspectos específicos de SignalRde la configur
 
 ## <a name="redis-server-errors"></a>Errores del servidor de Redis
 
-Cuando un servidor de Redis deja de funcionar, SignalR produce excepciones que indican que los mensajes no se entregarán. Algunos mensajes de excepción típicos:
+Cuando un servidor de Redis deja de SignalR funcionar, produce excepciones que indican que los mensajes no se entregarán. Algunos mensajes de excepción típicos:
 
 * *Error al escribir el mensaje*
 * *No se pudo invocar el método de concentrador ' MethodName '*
 * *Error en la conexión a Redis*
 
-SignalR no almacena en búfer los mensajes para enviarlos cuando el servidor vuelve a realizar la copia de seguridad. Los mensajes enviados mientras el servidor de Redis está inactivo se pierden.
+SignalRno almacena en búfer los mensajes para enviarlos cuando el servidor vuelve a copia de seguridad. Los mensajes enviados mientras el servidor de Redis está inactivo se pierden.
 
-SignalR se vuelve a conectar automáticamente cuando vuelve a estar disponible el servidor de Redis.
+SignalRse vuelve a conectar automáticamente cuando el servidor de Redis está disponible de nuevo.
 
 ### <a name="custom-behavior-for-connection-failures"></a>Comportamiento personalizado para errores de conexión
 

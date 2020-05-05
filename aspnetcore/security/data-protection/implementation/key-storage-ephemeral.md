@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre los detalles de implementación de los ASP.NET Core proveedores de protección de datos efímeros.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-storage-ephemeral
-ms.openlocfilehash: e4b0014ab3bdbf90b91383e8a33102f94faa8153
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 22a332230e15256dc33fd1d06f2da3ea8d34d3bc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654017"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776895"
 ---
 # <a name="ephemeral-data-protection-providers-in-aspnet-core"></a>Proveedores de protección de datos efímeros en ASP.NET Core
 
@@ -18,9 +24,9 @@ ms.locfileid: "78654017"
 
 Hay escenarios en los que una aplicación necesita un `IDataProtectionProvider`throwaway. Por ejemplo, el desarrollador podría estar experimentando en una aplicación de consola única o la propia aplicación es transitoria (se trata de un proyecto de prueba unitaria o de script). Para admitir estos escenarios, el paquete [Microsoft. AspNetCore. PROTECCION](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) incluye un tipo `EphemeralDataProtectionProvider`. Este tipo proporciona una implementación básica de `IDataProtectionProvider` cuyo repositorio de claves se mantiene únicamente en memoria y no se escribe en ningún almacén de respaldo.
 
-Cada instancia de `EphemeralDataProtectionProvider` utiliza su propia clave maestra única. Por lo tanto, si una `IDataProtector` raíz en un `EphemeralDataProtectionProvider` genera una carga protegida, esa carga útil solo puede desprotegerse mediante una `IDataProtector` equivalente (dada la misma cadena de [propósito](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-consumer-apis-purposes) ) cuya raíz se encuentra en la misma instancia de `EphemeralDataProtectionProvider`.
+Cada instancia de `EphemeralDataProtectionProvider` utiliza su propia clave maestra única. Por lo tanto, `IDataProtector` si un objeto cuya `EphemeralDataProtectionProvider` raíz se encuentra en genera una carga protegida, esa carga solo puede desprotegerse `IDataProtector` mediante un equivalente (dado la misma cadena de [propósito](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-consumer-apis-purposes) ) que `EphemeralDataProtectionProvider` se ha modificado en la misma instancia.
 
-En el ejemplo siguiente se muestra cómo crear una instancia de un `EphemeralDataProtectionProvider` y usarlo para proteger y desproteger los datos.
+En el ejemplo siguiente se muestra cómo `EphemeralDataProtectionProvider` crear una instancia de y utilizarla para proteger y desproteger los datos.
 
 ```csharp
 using System;
