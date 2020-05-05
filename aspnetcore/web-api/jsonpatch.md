@@ -5,13 +5,19 @@ description: Aprenda a administrar solicitudes JSON Patch en una API web ASP.NET
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: be4115e870dac818aeb6b1e65ddfb21e89d9cf25
-ms.sourcegitcommit: 9675db7bf4b67ae269f9226b6f6f439b5cce4603
+ms.openlocfilehash: 3a78fa268cce8cff10fedf5814d61ce0e5faaf4b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2020
-ms.locfileid: "80625881"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766672"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch en la API web de ASP.NET Core
 
@@ -23,10 +29,10 @@ En este artículo se explica cómo administrar solicitudes JSON Patch en una API
 
 ## <a name="package-installation"></a>Instalación del paquete
 
-Para habilitar la compatibilidad con revisiones JSON en la aplicación, siga estos pasos:
+Para habilitar la compatibilidad con la revisión de JSON en la aplicación, complete los pasos siguientes:
 
 1. Instalar el paquete NuGet [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/).
-1. Actualice el método `Startup.ConfigureServices` del <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>proyecto para llamar a . Por ejemplo:
+1. Actualice el método del `Startup.ConfigureServices` proyecto para llamar <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>a. Por ejemplo:
 
     ```csharp
     services
@@ -40,13 +46,13 @@ Para habilitar la compatibilidad con revisiones JSON en la aplicación, siga est
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>JSON Patch, AddNewtonsoftJson y System.Text.Json
+## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Revisión de JSON, AddNewtonsoftJson y System. Text. JSON
 
-`AddNewtonsoftJson`reemplaza los `System.Text.Json`formateadores de entrada y salida basados en base utilizados para dar formato a **todo** el contenido JSON. Para agregar compatibilidad con `Newtonsoft.Json`JSON Patch mediante , sin modificar los `Startup.ConfigureServices` demás formateadores, actualice el método del proyecto de la siguiente manera:
+`AddNewtonsoftJson`reemplaza los `System.Text.Json`formateadores de entrada y salida basados en que se usan para dar formato a **todo** el contenido JSON. Para agregar compatibilidad con la revisión de `Newtonsoft.Json`JSON mediante, sin modificar los otros formateadores, actualice el método del `Startup.ConfigureServices` proyecto como se indica a continuación:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
-El código anterior requiere `Microsoft.AspNetCore.Mvc.NewtonsoftJson` el paquete `using` y las instrucciones siguientes:
+El código anterior requiere el `Microsoft.AspNetCore.Mvc.NewtonsoftJson` paquete y las siguientes `using` instrucciones:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
 
@@ -56,9 +62,9 @@ Los métodos PUT y [PATCH](https://tools.ietf.org/html/rfc5789) se usan para act
 
 ## <a name="json-patch"></a>JSON Patch
 
-[JSON Patch](https://tools.ietf.org/html/rfc6902) es un formato para especificar las actualizaciones que se aplicarán a un recurso. Un documento JSON Patch tiene una matriz de *operaciones*. Cada operación identifica un tipo determinado de cambio. Algunos ejemplos de estos cambios son agregar un elemento de matriz o reemplazar un valor de propiedad.
+[JSON Patch](https://tools.ietf.org/html/rfc6902) es un formato para especificar las actualizaciones que se aplicarán a un recurso. Un documento JSON Patch tiene una matriz de *operaciones*. Cada operación identifica un tipo de cambio determinado. Algunos ejemplos de estos cambios incluyen agregar un elemento de matriz o reemplazar un valor de propiedad.
 
-Por ejemplo, los siguientes documentos JSON representan un recurso, un documento de revisión JSON para el recurso y el resultado de aplicar las operaciones Patch.
+Por ejemplo, los siguientes documentos JSON representan un recurso, un documento de revisión JSON para el recurso y el resultado de aplicar las operaciones patch.
 
 ### <a name="resource-example"></a>Ejemplo de recursos
 
@@ -98,13 +104,13 @@ Este es el recurso después de aplicar el documento JSON Patch anterior:
 }
 ```
 
-Los cambios realizados mediante la aplicación de un documento de revisión JSON a un recurso son atómicos. Si se produce un error en cualquier operación de la lista, no se aplica ninguna operación de la lista.
+Los cambios realizados al aplicar un documento de revisión de JSON a un recurso son atómicos. Si se produce un error en cualquier operación de la lista, no se aplica ninguna operación en la lista.
 
 ## <a name="path-syntax"></a>Sintaxis de path
 
-La propiedad [path](https://tools.ietf.org/html/rfc6901) de un objeto de operación tiene barras inversas entre niveles. Por ejemplo, `"/address/zipCode"`.
+La propiedad [path](https://tools.ietf.org/html/rfc6901) de un objeto de operación tiene barras inversas entre niveles. Por ejemplo: `"/address/zipCode"`.
 
-Para especificar elementos de matriz se usan índices de base cero. El primer elemento de la matriz `addresses` estaría en `/addresses/0`. Para `add` finales de una matriz, utilice`-`un guión ( `/addresses/-`) en lugar de un número de índice: .
+Para especificar elementos de matriz se usan índices de base cero. El primer elemento de la matriz `addresses` estaría en `/addresses/0`. Hasta `add` el final de una matriz, use un guion (`-`) en lugar de un número de índice `/addresses/-`:.
 
 ### <a name="operations"></a>Operaciones
 
@@ -119,7 +125,7 @@ En la siguiente tabla se muestran las operaciones admitidas, como se ha definido
 | `copy`    | Lo mismo que `add` al destino mediante el valor del origen. |
 | `test`    | Devuelve el código de estado correcto si el valor en `path` = al `value` proporcionado.|
 
-## <a name="json-patch-in-aspnet-core"></a>Parche JSON en ASP.NET Core
+## <a name="json-patch-in-aspnet-core"></a>Revisión de JSON en ASP.NET Core
 
 La implementación de ASP.NET Core de JSON Patch se proporciona en el paquete NuGet [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/).
 
@@ -135,7 +141,7 @@ Este es un ejemplo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
-Este código de la aplicación `Customer` de ejemplo funciona con el siguiente modelo:
+Este código de la aplicación de ejemplo funciona con el `Customer` siguiente modelo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Customer.cs?name=snippet_Customer)]
 
@@ -163,7 +169,7 @@ En el ejemplo anterior del método de acción, se llama a una sobrecarga de `App
 
 ### <a name="dynamic-objects"></a>Objetos dinámicos
 
-En el siguiente ejemplo de método de acción se muestra cómo aplicar una revisión a un objeto dinámico:
+En el ejemplo de método de acción siguiente se muestra cómo aplicar una revisión a un objeto dinámico:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
@@ -188,7 +194,7 @@ El siguiente documento de revisión de ejemplo establece el valor de `CustomerNa
     * Si la propiedad acepta valores NULL: la establece en null.
     * Si la propiedad es distinta de null, la establece en `default<T>`.
 
-El siguiente documento `CustomerName` de revisión `Orders[0]`de ejemplo se establece en null y elimina:
+En el documento de revisión de `CustomerName` ejemplo siguiente se establece en `Orders[0]`NULL y se elimina:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
@@ -196,7 +202,7 @@ El siguiente documento `CustomerName` de revisión `Orders[0]`de ejemplo se esta
 
 Esta operación es funcionalmente igual que `remove` seguida de `add`.
 
-El siguiente documento de revisión de `Orders[0]`ejemplo `Order` establece el valor de `CustomerName` y se reemplaza por un nuevo objeto:
+En el siguiente documento de revisión de ejemplo se `CustomerName` establece el `Orders[0]`valor de y `Order` se reemplaza por un nuevo objeto:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
@@ -246,7 +252,7 @@ Para probar el ejemplo, ejecute la aplicación y envíe solicitudes HTTP con la 
 * Dirección URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`
 * Método HTTP: `PATCH`
 * Encabezado: `Content-Type: application/json-patch+json`
-* Cuerpo: copie y pegue uno de los ejemplos de documentos de revisión JSON de la carpeta del proyecto *JSON.*
+* Cuerpo: Copie y pegue uno de los ejemplos de documentos de revisión de JSON de la carpeta de proyecto *JSON* .
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
@@ -314,7 +320,7 @@ Los cambios realizados mediante la aplicación de un documento JSON Patch a un r
 
 ## <a name="path-syntax"></a>Sintaxis de path
 
-La propiedad [path](https://tools.ietf.org/html/rfc6901) de un objeto de operación tiene barras inversas entre niveles. Por ejemplo, `"/address/zipCode"`.
+La propiedad [path](https://tools.ietf.org/html/rfc6901) de un objeto de operación tiene barras inversas entre niveles. Por ejemplo: `"/address/zipCode"`.
 
 Para especificar elementos de matriz se usan índices de base cero. El primer elemento de la matriz `addresses` estaría en `/addresses/0`. Para usar `add` al final de una matriz, use un guion (-) en lugar de un número de índice: `/addresses/-`.
 
@@ -458,7 +464,7 @@ Para probar el ejemplo, ejecute la aplicación y envíe solicitudes HTTP con la 
 * Dirección URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`
 * Método HTTP: `PATCH`
 * Encabezado: `Content-Type: application/json-patch+json`
-* Cuerpo: copie y pegue uno de los ejemplos de documentos de revisión JSON de la carpeta del proyecto *JSON.*
+* Cuerpo: Copie y pegue uno de los ejemplos de documentos de revisión de JSON de la carpeta de proyecto *JSON* .
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

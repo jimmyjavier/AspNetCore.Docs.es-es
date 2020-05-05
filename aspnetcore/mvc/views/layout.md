@@ -4,27 +4,33 @@ author: ardalis
 description: Obtenga información sobre cómo usar diseños comunes, compartir directivas y ejecutar código común antes de representar vistas en una aplicación ASP.NET Core.
 ms.author: riande
 ms.date: 07/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: db8c6c30397593c1a8375ebc800c1c0e34d241cb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655049"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766490"
 ---
 # <a name="layout-in-aspnet-core"></a>Diseño en ASP.NET Core
 
 Por [Steve Smith](https://ardalis.com/) y [Dave Brock](https://twitter.com/daveabrock)
 
-Las páginas y las vistas a menudo comparten elementos visuales y elementos mediante programación. En este artículo se muestra cómo:
+Las páginas y las vistas a menudo comparten elementos visuales y elementos mediante programación. En este artículo se explica cómo:
 
 * Usar diseños comunes.
 * Compartir directivas.
 * Ejecutar código común antes de representar páginas o vistas.
 
-En este documento se analizan los diseños para los dos enfoques distintos para ASP.NET Core MVC: Razor Pages y controladores con vistas. Para este tema, las diferencias son mínimas:
+En este documento se describen los diseños de los dos enfoques diferentes para ASP.NET Core MVC Razor : páginas y controladores con vistas. Para este tema, las diferencias son mínimas:
 
-* Razor Pages está en la carpeta *Páginas*.
+* RazorLas páginas se encuentran en la carpeta *pages* .
 * Los controladores con vistas usan una carpeta *Vistas* para las vistas.
 
 ## <a name="what-is-a-layout"></a>Qué es un diseño
@@ -37,7 +43,7 @@ Las estructuras HTML comunes, como los scripts y las hojas de estilos también s
 
 Por convención, el diseño predeterminado para una aplicación ASP.NET Core se denomina *_Layout.cshtml*. Los archivos de diseño para los nuevos proyectos de ASP.NET Core creados con las plantillas son:
 
-* Razor Pages: *Pages/Shared/_Layout.cshtml*
+* RazorPáginas: *pages/Shared/_Layout. cshtml*
 
   ![Carpeta Pages del Explorador de soluciones](layout/_static/rp-web-project-views.png)
 
@@ -53,11 +59,11 @@ Este código muestra el archivo de diseño para un proyecto creado mediante plan
 
 ## <a name="specifying-a-layout"></a>Especificar un diseño
 
-Las vistas de Razor tienen una propiedad `Layout`. Las vistas individuales especifican un diseño al configurar esta propiedad:
+Razorlas vistas tienen `Layout` una propiedad. Las vistas individuales especifican un diseño al configurar esta propiedad:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
-El diseño especificado puede usar una ruta de acceso completa (por ejemplo, */Pages/Shared/_Layout.cshtml* o */Views/Shared/_Layout.cshtml*) o un nombre parcial (ejemplo: `_Layout`). Cuando se proporciona un nombre parcial, el motor de vista de Razor busca el archivo de diseño mediante su proceso de detección estándar. Primero se busca la carpeta donde existe el método de controlador (o controlador), seguida de la carpeta *Shared*. Este proceso de detección es idéntico al que se usa para detectar [vistas parciales](xref:mvc/views/partial#partial-view-discovery).
+El diseño especificado puede usar una ruta de acceso completa (por ejemplo, */Pages/Shared/_Layout.cshtml* o */Views/Shared/_Layout.cshtml*) o un nombre parcial (ejemplo: `_Layout`). Cuando se proporciona un nombre parcial, el Razor motor de vistas busca el archivo de diseño mediante su proceso de detección estándar. Primero se busca la carpeta donde existe el método de controlador (o controlador), seguida de la carpeta *Shared*. Este proceso de detección es idéntico al que se usa para detectar [vistas parciales](xref:mvc/views/partial#partial-view-discovery).
 
 De forma predeterminada, todos los diseños deben llamar a `RenderBody`. Cada vez que se realiza la llamada a `RenderBody`, se representa el contenido de la vista.
 
@@ -73,9 +79,9 @@ Opcionalmente, un diseño puede hacer referencia a una o varias *secciones* medi
 @RenderSection("Scripts", required: false)
 ```
 
-Si no se encuentra una sección obligatoria, se produce una excepción. Las vistas individuales especifican el contenido que se va a representar dentro de una sección con la sintaxis `@section` de Razor. Si una página o una vista define una sección, se debe representar (o se producirá un error).
+Si no se encuentra una sección obligatoria, se produce una excepción. Las vistas individuales especifican el contenido que se va a representar dentro de `@section` Razor una sección mediante la sintaxis. Si una página o una vista define una sección, se debe representar (o se producirá un error).
 
-Ejemplo de definición de `@section` en una vista de Razor Pages:
+Una definición `@section` de ejemplo Razor en la vista páginas:
 
 ```html
 @section Scripts {
@@ -93,23 +99,23 @@ El marcado siguiente usa el [asistente de etiquetas parcial](xref:mvc/views/tag-
 }
 ```
 
-El marcado anterior se ha generado mediante la [identidad de scaffolding](xref:security/authentication/scaffold-identity).
+El marcado anterior se generó mediante [scaffolding Identity ](xref:security/authentication/scaffold-identity).
 
 Las secciones definidas en una vista o una vista solo están disponibles en su página de diseño inmediato. No se puede hacer referencia a ellas desde líneas de código parcialmente ejecutadas, componentes de vista u otros elementos del sistema de vistas.
 
 ### <a name="ignoring-sections"></a>Omitir secciones
 
-De forma predeterminada, el cuerpo y todas las secciones de una página de contenido deben representarse mediante la página de diseño. Para cumplir con esto, el motor de vistas de Razor comprueba si el cuerpo y cada sección se han representado.
+De forma predeterminada, el cuerpo y todas las secciones de una página de contenido deben representarse mediante la página de diseño. El Razor motor de vistas exige esto mediante el seguimiento de si se han representado el cuerpo y cada sección.
 
 Para indicar al motor de vistas que pase por alto el cuerpo o las secciones, llame a los métodos `IgnoreBody` y `IgnoreSection`.
 
-El cuerpo y todas las secciones de una página de Razor deben representarse o pasarse por alto.
+El cuerpo y todas las secciones de Razor una página deben representarse o pasarse por alto.
 
 <a name="viewimports"></a>
 
 ## <a name="importing-shared-directives"></a>Importar directivas compartidas
 
-Las vistas y las páginas pueden utilizar directivas de Razor para importar espacios de nombres y usar la [inserción de dependencias](dependency-injection.md). Se pueden especificar varias directivas compartidas por muchas vistas en un archivo *_ViewImports.cshtml* común. El archivo `_ViewImports` es compatible con estas directivas:
+Las vistas y las páginas Razor pueden utilizar directivas para importar espacios de nombres y usar la [inserción de dependencias](dependency-injection.md). Se pueden especificar varias directivas compartidas por muchas vistas en un archivo *_ViewImports.cshtml* común. El archivo `_ViewImports` es compatible con estas directivas:
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -119,7 +125,7 @@ Las vistas y las páginas pueden utilizar directivas de Razor para importar espa
 * `@inherits`
 * `@inject`
 
-El archivo no es compatible con otras características de Razor, como las funciones y las definiciones de sección.
+El archivo no es compatible Razor con otras características, como las funciones y las definiciones de la sección.
 
 Archivo `_ViewImports.cshtml` de ejemplo:
 
@@ -155,4 +161,4 @@ Un archivo *_ViewStart.cshtml* de ejemplo:
 
 El archivo anterior especifica que todas las vistas usarán el diseño *_Layout.cshtml*.
 
-*_ViewStart.cshtml* y *_ViewImports.cshtml* normalmente **no** se colocan en la carpeta */Pages/Shared* (o  */Views/Shared*). Las versiones de nivel de aplicación de estos archivos deben colocarse directamente en la carpeta */Pages* (o */Views*).
+*_ViewStart.cshtml* y *_ViewImports.cshtml* normalmente **no** se colocan en la carpeta */Pages/Shared* (o * /Views/Shared*). Las versiones de nivel de aplicación de estos archivos deben colocarse directamente en la carpeta */Pages* (o */Views*).
