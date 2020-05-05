@@ -5,13 +5,19 @@ description: Descubra los atributos del asistente de etiquetas delimitadoras de 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 6bfbad39115c7823b5677d3c52ca64cfb0683037
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653783"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773970"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Asistente de etiquetas delimitadoras en ASP.NET Core
 
@@ -19,7 +25,7 @@ De [Peter Kellner](https://peterkellner.net) y [Scott Addie](https://github.com/
 
 El [asistente de etiquetas delimitadoras](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) mejora la etiqueta delimitadora de código HTML estándar (`<a ... ></a>`) agregando nuevos atributos. Por convención, los nombres de atributo tienen el prefijo `asp-`. El valor de atributo `href` del elemento delimitador representado se determina mediante los valores de los atributos `asp-`.
 
-Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -41,7 +47,7 @@ El código HTML generado:
 <a href="/Speaker">All Speakers</a>
 ```
 
-Si el atributo `asp-controller` está especificado y `asp-action` no lo está, el valor `asp-action` predeterminado es la acción del controlador asociada a la vista que se está ejecutando. Si se omite `asp-action` en el marcado anterior y se usa el asistente de etiquetas delimitadoras en la vista *Index* de *HomeController* ( */Home*), el código HTML generado es el siguiente:
+Si el atributo `asp-controller` está especificado y `asp-action` no lo está, el valor `asp-action` predeterminado es la acción del controlador asociada a la vista que se está ejecutando. Si se omite `asp-action` en el marcado anterior y se usa el asistente de etiquetas delimitadoras en la vista *Index* de *HomeController* (*/Home*), el código HTML generado es el siguiente:
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -133,13 +139,13 @@ El asistente de etiquetas delimitadoras genera una ruta directamente a esa acci�
 <a href="/Speaker/Evaluations">Speaker Evaluations</a>
 ```
 
-Si además de `asp-controller` se especifica `asp-action` o `asp-route`, la ruta generada puede no ser la esperada. Para evitar un conflicto de ruta, no se debe usar `asp-route` con los atributos `asp-controller` y `asp-action`.
+Si además de `asp-route` se especifica `asp-controller` o `asp-action`, la ruta generada puede no ser la esperada. Para evitar un conflicto de ruta, no se debe usar `asp-route` con los atributos `asp-controller` y `asp-action`.
 
 ### <a name="asp-all-route-data"></a>asp-all-route-data
 
 El atributo [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) permite crear un diccionario de pares clave-valor. La clave es el nombre del parámetro, mientras que el valor es el valor del parámetro.
 
-En el ejemplo siguiente se inicializa un diccionario y se pasa a una vista de Razor. Los datos también se podrían pasar con el modelo.
+En el ejemplo siguiente, se inicializa un diccionario y se pasa a una Razor vista. Los datos también se podrían pasar con el modelo.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAllRouteData)]
 
@@ -173,9 +179,9 @@ Las etiquetas hash son útiles al crear aplicaciones del lado cliente. Por ejemp
 
 El atributo [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) establece el nombre de área que se usa para establecer la ruta adecuada. En el siguiente ejemplo se muestra cómo el atributo `asp-area` provoca una reasignación de rutas.
 
-#### <a name="usage-in-razor-pages"></a>Uso en Razor Pages
+#### <a name="usage-in-razor-pages"></a>Uso en Razor páginas
 
-Se admiten áreas de Razor Pages en ASP.NET Core 2.1 o versiones posteriores.
+RazorLas áreas de páginas se admiten en ASP.NET Core 2,1 o posterior.
 
 Tenga en cuenta la siguiente jerarquía de directorios:
 
@@ -184,12 +190,12 @@ Tenga en cuenta la siguiente jerarquía de directorios:
   * **Áreas**
     * **Sesiones**
       * **Páginas**
-        * *\_ViewStart.cshtml*
-        * *Index.cshtml*
+        * *\_ViewStart. cshtml*
+        * *Index. cshtml*
         * *Index.cshtml.cs*
   * **Páginas**
 
-El marcado para hacer referencia a la página Razor *Índice* del área *Sesiones* es:
+El marcado para hacer referencia a la página de *Índice* Razor del área de *sesiones* es:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -200,7 +206,7 @@ El código HTML generado:
 ```
 
 > [!TIP]
-> Para admitir áreas en una aplicación de Razor Pages, realice una de las siguientes acciones en `Startup.ConfigureServices`:
+> Para admitir áreas en una Razor aplicación de páginas, realice una de las siguientes `Startup.ConfigureServices`acciones en:
 >
 > * Establezca la [versión de compatibilidad](xref:mvc/compatibility-version) en 2.1 o posterior.
 > * Establezca la propiedad [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) en `true`:
@@ -220,8 +226,8 @@ Tenga en cuenta la siguiente jerarquía de directorios:
       * **Vistas**
         * **Inicio**
           * *AboutBlog.cshtml*
-          * *Index.cshtml*
-        * *\_ViewStart.cshtml*
+          * *Index. cshtml*
+        * *\_ViewStart. cshtml*
   * **Controladores**
 
 Al establecer `asp-area` en "Blogs", el directorio *Areas/Blogs* se prefija en las rutas de los controladores y vistas asociados de esta etiqueta delimitadora. El marcado para hacer referencia a la vista *AboutBlog* es:
@@ -267,9 +273,9 @@ El código HTML generado:
 
 ### <a name="asp-page"></a>asp-page
 
-El atributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) se usa con las páginas de Razor. Úselo para establecer el valor del atributo `href` de una etiqueta delimitadora en una página específica. La dirección URL se crea al prefijar el nombre de la página con una barra diagonal ("/").
+El atributo [asp-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) se usa con Razor las páginas. Úselo para establecer el valor del atributo `href` de una etiqueta delimitadora en una página específica. La dirección URL se crea al prefijar el nombre de la página con una barra diagonal ("/").
 
-En el ejemplo siguiente se señala a la página de Razor de asistentes:
+El siguiente ejemplo señala a la Razor página de asistentes:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -291,7 +297,7 @@ El código HTML generado:
 
 ### <a name="asp-page-handler"></a>asp-page-handler
 
-El atributo [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) se usa con las páginas de Razor. Está diseñado para crear un vínculo con controladores de página específicos.
+El atributo [asp-Page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) se usa Razor con las páginas. Está diseñado para crear un vínculo con controladores de página específicos.
 
 Observe el siguiente controlador de página:
 

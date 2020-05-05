@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/27/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/threat-mitigation
-ms.openlocfilehash: 9a5e313153e5c5c17fc723cc9768c49ffd828007
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 2c87e6cef5a16b394b03dac1635f18d09593eb94
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206345"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774189"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Guía de mitigación de amenazas para ASP.NET Core servidor increíblemente
 
@@ -94,7 +97,7 @@ De forma predeterminada, no hay ningún límite en cuanto al número de conexion
 
 Los ataques por denegación de servicio (DoS) implican a un cliente que hace que el servidor agote uno o más de sus recursos, lo que hace que la aplicación no esté disponible. Las aplicaciones de servidor increíbles incluyen algunos límites predeterminados y se basan en otros límites de ASP.NET Core y Signalr para protegerse frente a ataques de DoS:
 
-| Límite de aplicación de servidor de extraordinarias                            | Descripción | Valor predeterminado |
+| Límite de aplicación de servidor de extraordinarias                            | Descripción | Default |
 | ------------------------------------------------------- | ----------- | ------- |
 | `CircuitOptions.DisconnectedCircuitMaxRetained`         | Número máximo de circuitos desconectados que un servidor determinado contiene en la memoria a la vez. | 100 |
 | `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Cantidad máxima de tiempo que un circuito desconectado se mantiene en la memoria antes de que se detenga. | 3 minutos |
@@ -102,7 +105,7 @@ Los ataques por denegación de servicio (DoS) implican a un cliente que hace que
 | `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches` | Número máximo de lotes de representación no confirmados el servidor mantiene en memoria por circuito en un momento dado para admitir una reconexión sólida. Después de alcanzar el límite, el servidor deja de generar nuevos lotes de representación hasta que el cliente ha confirmado uno o varios lotes. | 10 |
 
 
-| Límite de signalr y ASP.NET Core             | Descripción | Valor predeterminado |
+| Límite de signalr y ASP.NET Core             | Descripción | Default |
 | ------------------------------------------ | ----------- | ------- |
 | `CircuitOptions.MaximumReceiveMessageSize` | Tamaño del mensaje para un mensaje individual. | 32 KB |
 
@@ -144,7 +147,7 @@ No confíe en llamadas de JavaScript a métodos de .NET. Cuando un método .NET 
   * Evite pasar datos proporcionados por el usuario en parámetros a llamadas de JavaScript. Si pasar datos en parámetros es absolutamente necesario, asegúrese de que el código de JavaScript controla el paso de los datos sin introducir vulnerabilidades de [scripting entre sitios (XSS)](#cross-site-scripting-xss) . Por ejemplo, no escriba los datos proporcionados por el usuario en el Document Object Model (DOM) `innerHTML` estableciendo la propiedad de un elemento. Considere la posibilidad de usar la Directiva de seguridad de `eval` [contenido (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para deshabilitar y otras primitivas de JavaScript no seguras.
 * Evite implementar la distribución personalizada de las invocaciones de .NET sobre la implementación de distribución del marco. Exponer métodos .NET en el explorador es un escenario avanzado, no recomendado para el desarrollo Blazor general.
 
-### <a name="events"></a>Eventos
+### <a name="events"></a>Events
 
 Los eventos proporcionan un punto de entrada Blazor a una aplicación de servidor. Las mismas reglas para proteger los puntos de conexión de las aplicaciones web se aplican Blazor al control de eventos en las aplicaciones de servidor. Un cliente malintencionado puede enviar cualquier dato que desee enviar como carga para un evento.
 
@@ -342,9 +345,9 @@ Además de las medidas de seguridad que implementa el marco, el desarrollador de
 
 Para que exista una vulnerabilidad de XSS, la aplicación debe incorporar los datos proporcionados por el usuario en la página representada. BlazorLos componentes de servidor ejecutan un paso en tiempo de compilación en el que el marcado de un archivo *. Razor* se transforma en una lógica de C# de procedimientos. En tiempo de ejecución, la lógica de C# crea un *árbol de representación* que describe los elementos, el texto y los componentes secundarios. Esto se aplica al DOM del explorador a través de una secuencia de instrucciones de JavaScript (o se serializa a HTML en el caso de la representación previa):
 
-* Los datos proporcionados por el usuario a través de sintaxis Razor `@someStringValue`normal (por ejemplo,) no exponen una vulnerabilidad de XSS porque la sintaxis Razor se agrega al Dom a través de comandos que solo pueden escribir texto. Aunque el valor incluya el marcado HTML, el valor se muestra como texto estático. Al prerepresentar, la salida está codificada en HTML, que también muestra el contenido como texto estático.
+* Los datos proporcionados por el Razor usuario mediante la sintaxis normal `@someStringValue`(por ejemplo,) no exponen una vulnerabilidad de XSS porque la Razor sintaxis se agrega al Dom a través de comandos que solo pueden escribir texto. Aunque el valor incluya el marcado HTML, el valor se muestra como texto estático. Al prerepresentar, la salida está codificada en HTML, que también muestra el contenido como texto estático.
 * No se permiten etiquetas de script y no deben incluirse en el árbol de representación de componentes de la aplicación. Si se incluye una etiqueta de script en el marcado de un componente, se genera un error en tiempo de compilación.
-* Los autores de componentes pueden crear componentes en C# sin usar Razor. El autor del componente es responsable de usar las API correctas al emitir la salida. Por ejemplo, use `builder.AddContent(0, someUserSuppliedString)` y *Not* `builder.AddMarkupContent(0, someUserSuppliedString)`, ya que el último podría crear una vulnerabilidad XSS.
+* Los autores de componentes pueden crear componentes en C# Razorsin usar. El autor del componente es responsable de usar las API correctas al emitir la salida. Por ejemplo, use `builder.AddContent(0, someUserSuppliedString)` y *Not* `builder.AddMarkupContent(0, someUserSuppliedString)`, ya que el último podría crear una vulnerabilidad XSS.
 
 Como parte de la protección contra ataques XSS, considere la posibilidad de implementar mitigaciones XSS, como la [Directiva de seguridad de contenido (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
 

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 7b6a7328deb8718a2a1c67c104cec359a4f13497
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 530ce2d2a7f67f549f6d188a0c571a5d58518377
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653057"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776251"
 ---
 # <a name="use-web-api-analyzers"></a>Uso de analizadores de API web
 
@@ -48,7 +54,7 @@ Instale el paquete de NuGet [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 En la ventana **Consola del Administrador de paquetes**:
-  * Vaya a **ver** > **otra** consola del **administrador de paquetes**de Windows >.
+  * Vaya a **Vista** > **Otras ventanas** > **Consola del Administrador de paquetes**.
   * Vaya al directorio en el que esté el archivo *ApiConventions.csproj*.
   * Ejecute el comando siguiente:
 
@@ -58,8 +64,8 @@ En la ventana **Consola del Administrador de paquetes**:
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Haga clic con el botón secundario en la carpeta *Packages* en **Panel de solución** > **agregar paquetes.** ...
-* Establezca el menú desplegable **Origen** de la ventana **Agregar paquetes** en "nuget.org".
+* Haga clic con el botón secundario en la carpeta *paquetes* en **Panel de solución** > **agregar paquetes..**..
+* Establezca la lista desplegable **origen** de la ventana **agregar paquetes** en "Nuget.org".
 * En el cuadro de búsqueda, escriba "Microsoft.AspNetCore.Mvc.Api.Analyzers".
 * Seleccione el paquete "Microsoft.AspNetCore.Mvc.Api.Analyzers" en el panel de resultados y haga clic en **Agregar paquete**.
 

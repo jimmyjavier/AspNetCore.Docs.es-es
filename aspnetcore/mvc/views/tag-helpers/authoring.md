@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo crear asistentes de etiquetas en A
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 43bd4eccfc06d27ade5de0e3387247a753609336
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653183"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775094"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Crear asistentes de etiquetas en ASP.NET Core
 
@@ -27,7 +33,7 @@ Un asistente de etiquetas es una clase que implementa la interfaz `ITagHelper`. 
 
 1. Cree un proyecto de ASP.NET Core denominado **AuthoringTagHelpers**. No necesita autenticación para este proyecto.
 
-1. Cree una carpeta para almacenar los asistentes de etiquetas denominada *TagHelpers*. La carpeta *TagHelpers* *no* es necesaria, pero es una convención razonable. Ahora vamos a empezar a escribir algunos asistentes de etiquetas simples.
+1. Cree una carpeta para almacenar los asistentes de etiquetas denominada *TagHelpers*. La carpeta *TagHelpers**no* es necesaria, pero es una convención razonable. Ahora vamos a empezar a escribir algunos asistentes de etiquetas simples.
 
 ## <a name="a-minimal-tag-helper"></a>Asistente de etiquetas mínima
 
@@ -49,7 +55,7 @@ Es decir, una etiqueta delimitadora lo convierte en un vínculo de correo electr
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Los asistentes de etiquetas usan una convención de nomenclatura que tiene como destino los elementos de la clase raíz (menos la parte *TagHelper* del nombre de clase). En este ejemplo, el nombre raíz de **EmailTagHelper** es *email*, por lo que el destino será la etiqueta `<email>`. Esta convención de nomenclatura debería funcionar para la mayoría de los asistentes de etiquetas. Más adelante veremos cómo invalidarla.
+   * Los asistentes de etiquetas usan una convención de nomenclatura que tiene como destino los elementos de la clase raíz (menos la parte *TagHelper* del nombre de clase). En este ejemplo, el nombre de raíz de **EmailTagHelper** es *email*, por `<email>` lo que se usará la etiqueta como destino. Esta convención de nomenclatura debería funcionar para la mayoría de los asistentes de etiquetas. Más adelante veremos cómo invalidarla.
 
    * La clase `EmailTagHelper` se deriva de `TagHelper`. La clase `TagHelper` proporciona métodos y propiedades para escribir asistentes de etiquetas.
 
@@ -65,11 +71,11 @@ Es decir, una etiqueta delimitadora lo convierte en un vínculo de correo electr
    public class Email : TagHelper
    ```
 
-1. Para hacer que la clase `EmailTagHelper` esté disponible para todas nuestras vistas de Razor, agregue la directiva `addTagHelper` al archivo *Views/_ViewImports.cshtml*:
+1. Para que la `EmailTagHelper` clase esté disponible para todas Razor nuestras vistas, agregue `addTagHelper` la directiva al archivo *views/_ViewImports. cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
-   El código anterior usa la sintaxis de comodines para especificar que todos los asistentes de etiquetas del ensamblado estarán disponibles. La primera cadena después de `@addTagHelper` especifica el asistente de etiquetas que se va a cargar (use "*" para todos los asistentes de etiquetas), mientras que la segunda cadena "AuthoringTagHelpers" especifica el ensamblado en el que se encuentra el asistente de etiquetas. Además, tenga en cuenta que la segunda línea incluye las aplicaciones auxiliares de etiquetas de ASP.NET Core MVC que usan la sintaxis de caracteres comodín (esas aplicaciones auxiliares se describen en [Introducción a las aplicaciones auxiliares de etiquetas](intro.md)). Es la `@addTagHelper` Directiva que hace que la aplicación auxiliar de etiquetas esté disponible para la vista de Razor. Como alternativa, puede proporcionar el nombre completo (FQN) de un asistente de etiquetas como se muestra a continuación:
+   El código anterior usa la sintaxis de comodines para especificar que todos los asistentes de etiquetas del ensamblado estarán disponibles. La primera cadena después de `@addTagHelper` especifica el asistente de etiquetas que se va a cargar (use "*" para todos los asistentes de etiquetas), mientras que la segunda cadena "AuthoringTagHelpers" especifica el ensamblado en el que se encuentra el asistente de etiquetas. Además, tenga en cuenta que la segunda línea incluye las aplicaciones auxiliares de etiquetas de ASP.NET Core MVC que usan la sintaxis de caracteres comodín (esas aplicaciones auxiliares se describen en [Introducción a las aplicaciones auxiliares de etiquetas](intro.md)). Se trata de `@addTagHelper` la Directiva que hace que la aplicación auxiliar de etiquetas Razor esté disponible para la vista. Como alternativa, puede proporcionar el nombre completo (FQN) de un asistente de etiquetas como se muestra a continuación:
 
 ```csharp
 @using AuthoringTagHelpers
@@ -92,7 +98,7 @@ Para agregar un asistente de etiquetas a una vista con un FQN, agregue primero e
 
 ## <a name="setattribute-and-setcontent"></a>SetAttribute y SetContent
 
-En esta sección, actualizaremos `EmailTagHelper` para que cree una etiqueta delimitadora válida para correo electrónico. Lo actualizaremos para que tome información de una vista de Razor (en forma de atributo `mail-to`) y la use al generar el delimitador.
+En esta sección, actualizaremos `EmailTagHelper` para que cree una etiqueta delimitadora válida para correo electrónico. Lo actualizaremos para tomar información de una Razor vista (en forma de `mail-to` atributo) y usarla en la generación del delimitador.
 
 Actualice la clase `EmailTagHelper` con lo siguiente:
 
@@ -157,7 +163,7 @@ En esta sección, escribiremos un asistente de correo electrónico asincrónico.
 
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
-1. Ejecute la aplicación. Puede usar el explorador que prefiera para inspeccionar el origen y comprobar el marcado.
+1. Ejecutar la aplicación. Puede usar el explorador que prefiera para inspeccionar el origen y comprobar el marcado.
 
    El atributo `[HtmlTargetElement]` anterior solo tiene como destino el marcado HTML que proporciona el nombre de atributo "bold". El asistente de etiquetas no ha modificado el elemento `<bold>`.
 
@@ -193,7 +199,7 @@ También puede usar `[HtmlTargetElement]` para cambiar el nombre del elemento de
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Como se ha indicado anteriormente, los asistentes de etiquetas convierten las propiedades y nombres de clase de C# con grafía Pascal para asistentes de etiquetas en [grafía kebab](https://wiki.c2.com/?KebabCase). Por tanto, para usar `WebsiteInformationTagHelper` en Razor, deberá escribir `<website-information />`.
+   * Como se ha indicado anteriormente, los asistentes de etiquetas convierten las propiedades y nombres de clase de C# con grafía Pascal para asistentes de etiquetas en [grafía kebab](https://wiki.c2.com/?KebabCase). Por lo tanto, para `WebsiteInformationTagHelper` usar Razoren, escribirá `<website-information />`.
 
    * No está identificando de manera explícita el elemento de destino con el atributo `[HtmlTargetElement]`, por lo que el destino será el valor predeterminado de `website-information`. Si ha aplicado el atributo siguiente (tenga en cuenta que no tiene grafía kebab, pero coincide con el nombre de clase):
 
@@ -207,7 +213,7 @@ También puede usar `[HtmlTargetElement]` para cambiar el nombre del elemento de
    [HtmlTargetElement("Website-Information")]
    ```
 
-   * Los elementos que son de autocierre no tienen contenido. En este ejemplo, el marcado de Razor usará una etiqueta de autocierre, pero el asistente de etiquetas creará un elemento [section](https://www.w3.org/TR/html5/sections.html#the-section-element) (que no es de autocierre, y el contenido se escribirá dentro del elemento `section`). Por tanto, debe establecer `TagMode` en `StartTagAndEndTag` para escribir la salida. Como alternativa, puede convertir en comentario la línea donde se establece `TagMode` y escribir marcado con una etiqueta de cierre. (Más adelante en este tutorial se proporciona marcado de ejemplo).
+   * Los elementos que son de autocierre no tienen contenido. En este ejemplo, el Razor marcado usará una etiqueta de autocierre, pero la aplicación auxiliar de etiquetas creará un elemento [section](https://www.w3.org/TR/html5/sections.html#the-section-element) (que no se cierra automáticamente y está escribiendo contenido dentro del `section` elemento). Por tanto, debe establecer `TagMode` en `StartTagAndEndTag` para escribir la salida. Como alternativa, puede convertir en comentario la línea donde se establece `TagMode` y escribir marcado con una etiqueta de cierre. (Más adelante en este tutorial se proporciona marcado de ejemplo).
 
    * El signo de dólar `$` de la línea siguiente usa una [cadena interpolada](/dotnet/csharp/language-reference/keywords/interpolated-strings):
 
@@ -220,11 +226,11 @@ También puede usar `[HtmlTargetElement]` para cambiar el nombre del elemento de
    [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
-   > En el marcado de Razor que se muestra a continuación:
+   > En el Razor marcado que se muestra a continuación:
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razor sabe que el atributo `info` es una clase, no una cadena, y usted quiere escribir código de C#. Todos los atributos de asistentes de etiquetas que no sean una cadena deben escribirse sin el carácter `@`.
+   > Razorsabe que `info` el atributo es una clase, no una cadena, y desea escribir código de C#. Todos los atributos de asistentes de etiquetas que no sean una cadena deben escribirse sin el carácter `@`.
 
 1. Ejecute la aplicación y vaya a la vista About para ver la información del sitio web.
 
@@ -281,7 +287,7 @@ Dado que estos dos asistentes están estrechamente relacionados y tal vez las re
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs?highlight=15-34&range=7-34)]
 
-1. Ejecute la aplicación. Observe que el texto www se representa como un vínculo, a diferencia del texto HTTP. Si coloca un punto de interrupción en ambas clases, verá que la clase del asistente de etiquetas HTTP se ejecuta primero. El problema es que la salida del asistente de etiquetas se almacena en caché y, cuando se ejecuta el asistente de etiquetas WWW, sobrescribe la salida almacenada en caché desdel asistente de etiquetas HTTP. Más adelante en el tutorial veremos cómo se controla el orden en el que se ejecutan los asistentes de etiquetas. Corregiremos el código con lo siguiente:
+1. Ejecutar la aplicación. Observe que el texto www se representa como un vínculo, a diferencia del texto HTTP. Si coloca un punto de interrupción en ambas clases, verá que la clase del asistente de etiquetas HTTP se ejecuta primero. El problema es que la salida del asistente de etiquetas se almacena en caché y, cuando se ejecuta el asistente de etiquetas WWW, sobrescribe la salida almacenada en caché desdel asistente de etiquetas HTTP. Más adelante en el tutorial veremos cómo se controla el orden en el que se ejecutan los asistentes de etiquetas. Corregiremos el código con lo siguiente:
 
    [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10,21,22,26&range=8-37)]
 

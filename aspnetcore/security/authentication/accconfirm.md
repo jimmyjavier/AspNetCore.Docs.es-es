@@ -1,18 +1,24 @@
 ---
-title: Confirmación de la cuenta y recuperación de la contraseña en ASP.NET Core
+title: Confirmación de las cuentas y recuperación de contraseñas en ASP.NET Core
 author: rick-anderson
 description: Obtenga información sobre cómo crear una aplicación ASP.NET Core con confirmación por correo electrónico y restablecimiento de contraseña.
 ms.author: riande
 ms.date: 03/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 3a6b0501d507929c9929207a7bb871b3b81b7cb8
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: b7856a3004cfc76acfb485ff8f1fadf87f5aa904
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511631"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777116"
 ---
-# <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmación de la cuenta y recuperación de la contraseña en ASP.NET Core
+# <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmación de las cuentas y recuperación de contraseñas en ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com/Ponant)y [Joe Audette](https://twitter.com/joeaudette)
 
@@ -32,7 +38,7 @@ Vea [este archivo PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partner
 
 ::: moniker range="> aspnetcore-2.2"
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 [SDK de .NET Core 3.0 o versiones posteriores](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -46,11 +52,11 @@ cd WebPWrecover
 dotnet run
 ```
 
-Ejecute la aplicación, seleccione el vínculo **registrar** y registre un usuario. Una vez registrado, se le redirigirá a la página para `/Identity/Account/RegisterConfirmation` que contiene un vínculo para simular la confirmación de correo electrónico:
+Ejecute la aplicación, seleccione el vínculo **registrar** y registre un usuario. Una vez registrado, se le redirigirá `/Identity/Account/RegisterConfirmation` a la página a que contiene un vínculo para simular la confirmación de correo electrónico:
 
-* Seleccione el vínculo `Click here to confirm your account`.
+* Seleccione el `Click here to confirm your account` vínculo.
 * Seleccione el vínculo de **Inicio de sesión** e inicie sesión con las mismas credenciales.
-* Seleccione el vínculo de `Hello YourEmail@provider.com!`, que le redirigirá a la página de `/Identity/Account/Manage/PersonalData`.
+* Seleccione el `Hello YourEmail@provider.com!` vínculo, que le redirigirá a la `/Identity/Account/Manage/PersonalData` página.
 * Seleccione la pestaña **datos personales** de la izquierda y, a continuación, seleccione **eliminar**.
 
 ### <a name="configure-an-email-provider"></a>Configuración de un proveedor de correo electrónico
@@ -63,7 +69,7 @@ Cree una clase para capturar la clave de correo electrónico segura. Para este e
 
 #### <a name="configure-sendgrid-user-secrets"></a>Configuración de secretos de usuario de SendGrid
 
-Establezca el `SendGridUser` y `SendGridKey` con la [herramienta de administración de secretos](xref:security/app-secrets). Por ejemplo:
+Establezca `SendGridUser` y `SendGridKey` con la [herramienta de administrador de secretos](xref:security/app-secrets). Por ejemplo:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -72,9 +78,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-En Windows, el administrador de secretos almacena pares de clave y valor en un archivo *Secrets. JSON* en el directorio de `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>`.
+En Windows, el administrador de secretos almacena pares de clave/valor en un archivo *Secrets. JSON* en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
 
-El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se ha quitado el valor de `SendGridKey`.
+El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se `SendGridKey` ha quitado el valor.
 
 ```json
 {
@@ -89,7 +95,7 @@ Para obtener más información, vea el [patrón de opciones](xref:fundamentals/c
 
 En este tutorial se muestra cómo agregar notificaciones por correo electrónico a través de [SendGrid](https://sendgrid.com/), pero puede enviar correo electrónico mediante SMTP y otros mecanismos.
 
-Instale el paquete NuGet de `SendGrid`:
+Instale el `SendGrid` paquete NuGet:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -119,10 +125,10 @@ Para implementar `IEmailSender`, cree *Services/EmailSender. CS* con código sim
 
 ### <a name="configure-startup-to-support-email"></a>Configurar el inicio para admitir correo electrónico
 
-Agregue el código siguiente al método `ConfigureServices` del archivo *Startup.CS* :
+Agregue el código siguiente al `ConfigureServices` método en el archivo *Startup.CS* :
 
 * Agregue `EmailSender` como un servicio transitorio.
-* Registre la instancia de configuración de `AuthMessageSenderOptions`.
+* Registre la `AuthMessageSenderOptions` instancia de configuración.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
@@ -130,7 +136,7 @@ Agregue el código siguiente al método `ConfigureServices` del archivo *Startup
 
 Ejecute la aplicación web y pruebe el flujo de recuperación de la contraseña y la confirmación de la cuenta.
 
-* Ejecute la aplicación y registrar un nuevo usuario
+* Ejecutar la aplicación y registrar un nuevo usuario
 * Compruebe su correo electrónico para el vínculo de confirmación de la cuenta. Consulte [depurar correo electrónico](#debug) si no recibe el correo electrónico.
 * Haga clic en el vínculo para confirmar el correo electrónico.
 * Inicie sesión con su correo electrónico y contraseña.
@@ -161,7 +167,7 @@ Los tokens de usuario de identidad integrados (consulte [AspNetCore/src/Identity
 
 La duración predeterminada del token de [los tokens de usuario de identidad](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) es [un día](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). En esta sección se muestra cómo cambiar la duración del token de correo electrónico.
 
-Agregue un [DataProtectorTokenProvider personalizado\<TUser >](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) y <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Agregue un [DataProtectorTokenProvider\<de TUser personalizado>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) y: <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -179,8 +185,8 @@ Consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 Si no consigue que el correo electrónico funcione:
 
-* Establezca un punto de interrupción en `EmailSender.Execute` para comprobar `SendGridClient.SendEmailAsync` se llama a.
-* Cree una [aplicación de consola para enviar correo electrónico](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) mediante código similar a `EmailSender.Execute`.
+* Establezca un punto de `EmailSender.Execute` interrupción en `SendGridClient.SendEmailAsync` para comprobar que se llama a.
+* Cree una [aplicación de consola para enviar correo electrónico](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) mediante código `EmailSender.Execute`similar a.
 * Revise la página [actividad de correo electrónico](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Compruebe la carpeta de correo no deseado.
 * Pruebe otro alias de correo electrónico en un proveedor de correo electrónico diferente (Microsoft, Yahoo, gmail, etc.).
@@ -217,7 +223,7 @@ La habilitación de la confirmación de cuenta en un sitio con usuarios bloquea 
 
 ::: moniker range="> aspnetcore-2.0 < aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 [SDK de .NET Core 2,2 o posterior](https://dotnet.microsoft.com/download/dotnet-core)
 
@@ -239,11 +245,11 @@ dotnet run
 
 ## <a name="test-new-user-registration"></a>Prueba del nuevo registro de usuario
 
-Ejecute la aplicación, seleccione el vínculo **registrar** y registre un usuario. En este momento, la única validación en el correo electrónico es con el [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) atributo. Después de enviar el registro, ha iniciado sesión en la aplicación. Más adelante en el tutorial, se actualiza el código para que los nuevos usuarios no puedan iniciar sesión hasta que se valide su correo electrónico.
+Ejecute la aplicación, seleccione el vínculo **registrar** y registre un usuario. En este momento, la única validación en el correo electrónico es con [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) el atributo. Después de enviar el registro, ha iniciado sesión en la aplicación. Más adelante en el tutorial, se actualiza el código para que los nuevos usuarios no puedan iniciar sesión hasta que se valide su correo electrónico.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
-Tenga en cuenta que el campo de `EmailConfirmed` de la tabla es `False`.
+Tenga en cuenta que `EmailConfirmed` el campo `False`de la tabla es.
 
 Es posible que desee usar este correo electrónico de nuevo en el paso siguiente cuando la aplicación envíe un correo electrónico de confirmación. Haga clic con el botón derecho en la fila y seleccione **eliminar**. Al eliminar el alias de correo electrónico, se facilitan los pasos siguientes.
 
@@ -251,15 +257,15 @@ Es posible que desee usar este correo electrónico de nuevo en el paso siguiente
 
 ## <a name="require-email-confirmation"></a>Requerir confirmación de correo electrónico
 
-Se recomienda confirmar el correo electrónico de un nuevo registro de usuario. La confirmación por correo electrónico ayuda a comprobar que no está suplantando a otra persona (es decir, que no se han registrado con el correo electrónico de otro usuario). Supongamos que tiene un foro de discusión y desea evitar que "yli@example.com" se registre como "nolivetto@contoso.com". Sin confirmación por correo electrónico, "nolivetto@contoso.com" podría recibir correo electrónico no deseado de la aplicación. Supongamos que el usuario se registró accidentalmente como "ylo@example.com" y no detectó la falta de ortografía de "Yli". No podrán usar la recuperación de contraseña porque la aplicación no tiene el correo electrónico correcto. La confirmación por correo electrónico proporciona una protección limitada de bots. La confirmación por correo electrónico no proporciona protección contra usuarios malintencionados con muchas cuentas de correo electrónico.
+Se recomienda confirmar el correo electrónico de un nuevo registro de usuario. La confirmación por correo electrónico ayuda a comprobar que no está suplantando a otra persona (es decir, que no se han registrado con el correo electrónico de otro usuario). Supongamos que tiene un foro de discusión y desea evitar queyli@example.com"" se registre como "nolivetto@contoso.com". Sin confirmación por correo electróniconolivetto@contoso.com, "" podría recibir correo electrónico no deseado de la aplicación. Supongamos que el usuario se registró accidentalmente como "ylo@example.com" y no detectó la falta de ortografía de "Yli". No podrán usar la recuperación de contraseña porque la aplicación no tiene el correo electrónico correcto. La confirmación por correo electrónico proporciona una protección limitada de bots. La confirmación por correo electrónico no proporciona protección contra usuarios malintencionados con muchas cuentas de correo electrónico.
 
 Por lo general, querrá evitar que los nuevos usuarios publiquen datos en el sitio Web antes de que tengan un correo electrónico confirmado.
 
-Actualice `Startup.ConfigureServices` para requerir un correo electrónico confirmado:
+Actualización `Startup.ConfigureServices` para requerir un correo electrónico confirmado:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;` impide que los usuarios registrados inicien sesión hasta que se confirme su correo electrónico.
+`config.SignIn.RequireConfirmedEmail = true;`impide que los usuarios registrados inicien sesión hasta que se confirme su correo electrónico.
 
 ### <a name="configure-email-provider"></a>Configurar proveedor de correo electrónico
 
@@ -271,16 +277,16 @@ Cree una clase para capturar la clave de correo electrónico segura. Para este e
 
 #### <a name="configure-sendgrid-user-secrets"></a>Configuración de secretos de usuario de SendGrid
 
-Establezca el `SendGridUser` y `SendGridKey` con la [herramienta de administración de secretos](xref:security/app-secrets). Por ejemplo:
+Establezca `SendGridUser` y `SendGridKey` con la [herramienta de administrador de secretos](xref:security/app-secrets). Por ejemplo:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-En Windows, el administrador de secretos almacena pares de clave y valor en un archivo *Secrets. JSON* en el directorio de `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>`.
+En Windows, el administrador de secretos almacena pares de clave/valor en un archivo *Secrets. JSON* en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
 
-El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se ha quitado el valor de `SendGridKey`.
+El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se `SendGridKey` ha quitado el valor.
 
 ```json
 {
@@ -295,7 +301,7 @@ Para obtener más información, vea el [patrón de opciones](xref:fundamentals/c
 
 En este tutorial se muestra cómo agregar notificaciones por correo electrónico a través de [SendGrid](https://sendgrid.com/), pero puede enviar correo electrónico mediante SMTP y otros mecanismos.
 
-Instale el paquete NuGet de `SendGrid`:
+Instale el `SendGrid` paquete NuGet:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -325,16 +331,16 @@ Para implementar `IEmailSender`, cree *Services/EmailSender. CS* con código sim
 
 ### <a name="configure-startup-to-support-email"></a>Configurar el inicio para admitir correo electrónico
 
-Agregue el código siguiente al método `ConfigureServices` del archivo *Startup.CS* :
+Agregue el código siguiente al `ConfigureServices` método en el archivo *Startup.CS* :
 
 * Agregue `EmailSender` como un servicio transitorio.
-* Registre la instancia de configuración de `AuthMessageSenderOptions`.
+* Registre la `AuthMessageSenderOptions` instancia de configuración.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=15-99)]
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Habilitar la confirmación de la cuenta y la recuperación de la contraseña
 
-La plantilla tiene el código para la confirmación de la cuenta y la recuperación de la contraseña. Busque el método `OnPostAsync` en *areas/Identity/pages/Account/Register. cshtml. CS*.
+La plantilla tiene el código para la confirmación de la cuenta y la recuperación de la contraseña. Busque el `OnPostAsync` método en *areasIdentity//pages/Account/Register.cshtml.CS*.
 
 Evite que los usuarios recién registrados inicien sesión automáticamente al comentar la siguiente línea:
 
@@ -350,7 +356,7 @@ El método complete se muestra con la línea resaltada:
 
 Ejecute la aplicación web y pruebe el flujo de recuperación de la contraseña y la confirmación de la cuenta.
 
-* Ejecute la aplicación y registrar un nuevo usuario
+* Ejecutar la aplicación y registrar un nuevo usuario
 * Compruebe su correo electrónico para el vínculo de confirmación de la cuenta. Consulte [depurar correo electrónico](#debug) si no recibe el correo electrónico.
 * Haga clic en el vínculo para confirmar el correo electrónico.
 * Inicie sesión con su correo electrónico y contraseña.
@@ -358,7 +364,7 @@ Ejecute la aplicación web y pruebe el flujo de recuperación de la contraseña 
 
 ### <a name="view-the-manage-page"></a>Ver la página administrar
 
-Seleccione el nombre de usuario en el explorador: ![ventana del explorador con el nombre de usuario](accconfirm/_static/un.png)
+Seleccione el nombre de usuario en el explorador ![: ventana del explorador con el nombre de usuario](accconfirm/_static/un.png)
 
 La página Administrar se muestra con la pestaña **perfil** seleccionada. El **correo electrónico** muestra una casilla que indica que se ha confirmado el correo electrónico.
 
@@ -381,13 +387,13 @@ El siguiente código cambia el tiempo de espera de todos los tokens de protecci�
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-Los tokens de usuario de identidad integrados (consulte [AspNetCore/src/Identity/Extensions. Core/src/TokenOptions. CS](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) tienen un [tiempo de espera de un día](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+Los tokens Identity de usuario integrados (consulte [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.CS](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) tienen un [tiempo de espera](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs)de un día.
 
 ### <a name="change-the-email-token-lifespan"></a>Cambiar la duración del token de correo electrónico
 
-La duración predeterminada del token de [los tokens de usuario de identidad](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) es [un día](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). En esta sección se muestra cómo cambiar la duración del token de correo electrónico.
+La duración predeterminada del token [de Identity los tokens de usuario](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) es de [un día](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). En esta sección se muestra cómo cambiar la duración del token de correo electrónico.
 
-Agregue un [DataProtectorTokenProvider personalizado\<TUser >](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) y <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Agregue un [DataProtectorTokenProvider\<de TUser personalizado>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) y: <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -405,8 +411,8 @@ Consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 Si no consigue que el correo electrónico funcione:
 
-* Establezca un punto de interrupción en `EmailSender.Execute` para comprobar `SendGridClient.SendEmailAsync` se llama a.
-* Cree una [aplicación de consola para enviar correo electrónico](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) mediante código similar a `EmailSender.Execute`.
+* Establezca un punto de `EmailSender.Execute` interrupción en `SendGridClient.SendEmailAsync` para comprobar que se llama a.
+* Cree una [aplicación de consola para enviar correo electrónico](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) mediante código `EmailSender.Execute`similar a.
 * Revise la página [actividad de correo electrónico](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Compruebe la carpeta de correo no deseado.
 * Pruebe otro alias de correo electrónico en un proveedor de correo electrónico diferente (Microsoft, Yahoo, gmail, etc.).
