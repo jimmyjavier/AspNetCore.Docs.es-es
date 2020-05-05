@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: 7e29be22717f0b97fc115ac036cc54e333bed4e2
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: a6aac53008e634e87b18bd34b3d2babdad74ae50
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651611"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776147"
 ---
 # <a name="share-authentication-cookies-among-aspnet-apps"></a>Compartir cookies de autenticación entre aplicaciones ASP.NET
 
@@ -22,25 +28,25 @@ Los sitios web a menudo se componen de aplicaciones web individuales que trabaja
 
 En los ejemplos siguientes:
 
-* El nombre de la cookie de autenticación se establece en un valor común de `.AspNet.SharedCookie`.
-* La `AuthenticationType` se establece en `Identity.Application` explícitamente o de forma predeterminada.
-* Se usa un nombre de aplicación común para permitir que el sistema de protección de datos comparta claves de protección de datos (`SharedCookieApp`).
-* `Identity.Application` se utiliza como esquema de autenticación. Sea cual sea el esquema que se use, se debe usar de forma coherente *dentro y entre* las aplicaciones de cookies compartidas, ya sea como esquema predeterminado o mediante su configuración explícita. El esquema se usa al cifrar y descifrar las cookies, por lo que se debe usar un esquema coherente entre las aplicaciones.
+* El nombre de la cookie de autenticación se establece en un `.AspNet.SharedCookie`valor común de.
+* `AuthenticationType` Se establece en `Identity.Application` explícitamente o de forma predeterminada.
+* Se usa un nombre de aplicación común para habilitar el sistema de protección de datos para compartir las`SharedCookieApp`claves de protección de datos ().
+* `Identity.Application`se utiliza como esquema de autenticación. Sea cual sea el esquema que se use, se debe usar de forma coherente *dentro y entre* las aplicaciones de cookies compartidas, ya sea como esquema predeterminado o mediante su configuración explícita. El esquema se usa al cifrar y descifrar las cookies, por lo que se debe usar un esquema coherente entre las aplicaciones.
 * Se utiliza una ubicación de almacenamiento de [claves de protección de datos](xref:security/data-protection/implementation/key-management) común.
   * En ASP.NET Core aplicaciones, <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> se usa para establecer la ubicación de almacenamiento de la clave.
-  * En .NET Framework aplicaciones, el middleware de autenticación de cookies usa una implementación de <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` proporciona servicios de protección de datos para el cifrado y descifrado de los datos de carga de la cookie de autenticación. La instancia de `DataProtectionProvider` está aislada del sistema de protección de datos usado por otras partes de la aplicación. [DataProtectionProvider. Create (System. IO. DirectoryInfo, Action\<IDataProtectionBuilder >)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) acepta un <xref:System.IO.DirectoryInfo> para especificar la ubicación del almacenamiento de la clave de protección de datos.
-* `DataProtectionProvider` requiere el paquete NuGet [Microsoft. AspNetCore. bioprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) :
+  * En .NET Framework aplicaciones, el middleware de autenticación de cookies <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>usa una implementación de. `DataProtectionProvider`proporciona servicios de protección de datos para el cifrado y descifrado de los datos de carga de la cookie de autenticación. La `DataProtectionProvider` instancia está aislada del sistema de protección de datos usado por otras partes de la aplicación. [DataProtectionProvider. Create (System. IO. DirectoryInfo, Action\<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) acepta <xref:System.IO.DirectoryInfo> para especificar la ubicación del almacenamiento de la clave de protección de datos.
+* `DataProtectionProvider`requiere el paquete NuGet [Microsoft. AspNetCore. bioprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) :
   * En ASP.NET Core aplicaciones 2. x, haga referencia al [metapaquete Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
   * En .NET Framework aplicaciones, agregue una referencia de paquete a [Microsoft. AspNetCore. desproteccion. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
-* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> establece el nombre común de la aplicación.
+* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>establece el nombre común de la aplicación.
 
-## <a name="share-authentication-cookies-with-aspnet-core-identity"></a>Compartir cookies de autenticación con ASP.NET Core identidad
+## <a name="share-authentication-cookies-with-aspnet-core-identity"></a>Compartir cookies de autenticación con ASP.NET CoreIdentity
 
-Al usar ASP.NET Core identidad:
+Al usar ASP.NET Core Identity:
 
-* Las claves de protección de datos y el nombre de la aplicación se deben compartir entre las aplicaciones. Se proporciona una ubicación de almacenamiento de claves común al método <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> en los ejemplos siguientes. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> para configurar un nombre común de la aplicación compartida (`SharedCookieApp` en los ejemplos siguientes). Para más información, consulte <xref:security/data-protection/configuration/overview>.
-* Use el método de extensión <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> para configurar el servicio de protección de datos para las cookies.
-* El tipo de autenticación predeterminado es `Identity.Application`.
+* Las claves de protección de datos y el nombre de la aplicación se deben compartir entre las aplicaciones. Se proporciona una ubicación de almacenamiento de claves común <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> al método en los ejemplos siguientes. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> para configurar un nombre común de aplicación compartida`SharedCookieApp` (en los ejemplos siguientes). Para obtener más información, vea <xref:security/data-protection/configuration/overview>.
+* Use el <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> método de extensión para configurar el servicio de protección de datos para las cookies.
+* El tipo de autenticación predeterminado `Identity.Application`es.
 
 En `Startup.ConfigureServices`:
 
@@ -54,9 +60,9 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## <a name="share-authentication-cookies-without-aspnet-core-identity"></a>Compartir cookies de autenticación sin ASP.NET Core identidad
+## <a name="share-authentication-cookies-without-aspnet-core-identity"></a>Compartir cookies de autenticación sin ASP.NET CoreIdentity
 
-Al usar cookies directamente sin ASP.NET Core identidad, configure la protección de datos y la autenticación en `Startup.ConfigureServices`. En el ejemplo siguiente, el tipo de autenticación se establece en `Identity.Application`:
+Al usar cookies directamente sin IdentityASP.net Core, configure la protección de `Startup.ConfigureServices`datos y la autenticación en. En el ejemplo siguiente, el tipo de autenticación se establece `Identity.Application`en:
 
 ```csharp
 services.AddDataProtection()
@@ -72,7 +78,7 @@ services.AddAuthentication("Identity.Application")
 
 ## <a name="share-cookies-across-different-base-paths"></a>Compartir cookies entre diferentes rutas de acceso base
 
-Una cookie de autenticación utiliza [HttpRequest. PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) como su [Cookie predeterminada. Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path). Si la cookie de la aplicación se debe compartir entre diferentes rutas de acceso base, se debe invalidar `Path`:
+Una cookie de autenticación utiliza [HttpRequest. PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) como su [Cookie predeterminada. Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path). Si la cookie de la aplicación se debe compartir entre diferentes rutas de `Path` acceso base, se debe invalidar:
 
 ```csharp
 services.AddDataProtection()
@@ -87,7 +93,7 @@ services.ConfigureApplicationCookie(options => {
 
 ## <a name="share-cookies-across-subdomains"></a>Compartir cookies entre subdominios
 
-Cuando hospede aplicaciones que compartan cookies entre subdominios, especifique un dominio común en la propiedad [cookie. Domain](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain) . Para compartir cookies entre aplicaciones en `contoso.com`, como `first_subdomain.contoso.com` y `second_subdomain.contoso.com`, especifique el `Cookie.Domain` como `.contoso.com`:
+Cuando hospede aplicaciones que compartan cookies entre subdominios, especifique un dominio común en la propiedad [cookie. Domain](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain) . Para compartir cookies entre aplicaciones `contoso.com`en, como `first_subdomain.contoso.com` y `second_subdomain.contoso.com`, especifique `Cookie.Domain` como `.contoso.com`:
 
 ```csharp
 options.Cookie.Domain = ".contoso.com";
@@ -95,7 +101,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## <a name="encrypt-data-protection-keys-at-rest"></a>Cifrado de claves de protección de datos en reposo
 
-En el caso de las implementaciones de producción, configure el `DataProtectionProvider` para cifrar las claves en reposo con DPAPI o con un certificado X509. Para más información, consulte <xref:security/data-protection/implementation/key-encryption-at-rest>. En el ejemplo siguiente, se proporciona una huella digital de certificado para <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
+En el caso de las implementaciones `DataProtectionProvider` de producción, configure el para cifrar las claves en reposo con DPAPI o un X509Certificate. Para obtener más información, vea <xref:security/data-protection/implementation/key-encryption-at-rest>. En el ejemplo siguiente, se proporciona una huella digital de <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>certificado para:
 
 ```csharp
 services.AddDataProtection()
@@ -106,7 +112,7 @@ services.AddDataProtection()
 
 Las aplicaciones ASP.NET 4. x que usan el middleware de autenticación de cookies Katana se pueden configurar para generar cookies de autenticación que son compatibles con el middleware de autenticación de cookies ASP.NET Core. Esto permite actualizar las aplicaciones individuales de un sitio de gran tamaño en varios pasos, a la vez que proporciona una experiencia de SSO sin problemas en todo el sitio.
 
-Cuando una aplicación usa el middleware de autenticación de cookies de Katana, llama a `UseCookieAuthentication` en el archivo *Startup.auth.CS* del proyecto. Los proyectos de aplicación Web de ASP.NET 4. x creados con Visual Studio 2013 y versiones posteriores usan el middleware de autenticación de cookies Katana de forma predeterminada. Aunque `UseCookieAuthentication` está obsoleto y no se admite para aplicaciones de ASP.NET Core, llamar a `UseCookieAuthentication` en una aplicación ASP.NET 4. x que usa el middleware de autenticación de cookies Katana es válido.
+Cuando una aplicación usa el middleware de autenticación de cookies `UseCookieAuthentication` de Katana, llama a en el archivo *Startup.auth.CS* del proyecto. Los proyectos de aplicación Web de ASP.NET 4. x creados con Visual Studio 2013 y versiones posteriores usan el middleware de autenticación de cookies Katana de forma predeterminada. Aunque `UseCookieAuthentication` está obsoleto y no se admite para las aplicaciones ASP.net Core, `UseCookieAuthentication` es válido llamar a en una aplicación ASP.net 4. x que usa el middleware de autenticación de cookies Katana.
 
 Una aplicación ASP.NET 4. x debe tener como destino .NET Framework 4.5.1 o posterior. De lo contrario, no se pueden instalar los paquetes de NuGet necesarios.
 
@@ -116,12 +122,12 @@ Confirme que los paquetes de la aplicación se actualizan a las versiones más r
 
 Busque y modifique la llamada a `UseCookieAuthentication`:
 
-* Cambie el nombre de la cookie para que coincida con el nombre usado por el middleware de autenticación de cookies ASP.NET Core (`.AspNet.SharedCookie` en el ejemplo).
-* En el ejemplo siguiente, el tipo de autenticación se establece en `Identity.Application`.
-* Proporcione una instancia de una `DataProtectionProvider` inicializada en la ubicación de almacenamiento de la clave Common Data Protection.
-* Confirme que el nombre de la aplicación se establece en el nombre de aplicación común que usan todas las aplicaciones que comparten cookies de autenticación (`SharedCookieApp` en el ejemplo).
+* Cambie el nombre de la cookie para que coincida con el nombre usado por el middleware`.AspNet.SharedCookie` de autenticación de cookies ASP.net Core (en el ejemplo).
+* En el ejemplo siguiente, el tipo de autenticación se establece `Identity.Application`en.
+* Proporcione una instancia de una `DataProtectionProvider` inicializada en la ubicación de almacenamiento de la clave de protección de datos común.
+* Confirme que el nombre de la aplicación se establece en el nombre de aplicación común que usan todas las aplicaciones que`SharedCookieApp` comparten cookies de autenticación (en el ejemplo).
 
-Si no se establece `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` y `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider`, establezca <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> en una demanda que distinga a usuarios únicos.
+Si no se `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` establece `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider`y, <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> se establece en una demanda que distingue a usuarios únicos.
 
 *App_Start/startup.auth.CS*:
 
@@ -156,7 +162,7 @@ System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
 ```
 
-Al generar una identidad de usuario, el tipo de autenticación (`Identity.Application`) debe coincidir con el tipo definido en `AuthenticationType` establecido con `UseCookieAuthentication` en *App_Start/startup.auth.CS*.
+Al generar una identidad de usuario, el tipo de`Identity.Application`autenticación () debe coincidir con `AuthenticationType` el tipo `UseCookieAuthentication` definido en establecido con en *App_Start/startup.auth.CS*.
 
 *Modelos/IdentityModels. CS*:
 
@@ -180,9 +186,9 @@ public class ApplicationUser : IdentityUser
 
 ## <a name="use-a-common-user-database"></a>Usar una base de datos de usuario común
 
-Cuando las aplicaciones usen el mismo esquema de identidad (la misma versión de la identidad), confirme que el sistema de identidad de cada aplicación señala a la misma base de datos de usuario. De lo contrario, el sistema de identidad produce errores en tiempo de ejecución cuando intenta hacer coincidir la información de la cookie de autenticación con la información de su base de datos.
+Cuando las aplicaciones usen el Identity mismo esquema (la misma Identityversión de), confirme Identity que el sistema de cada aplicación señala a la misma base de datos de usuario. De lo contrario, el sistema de identidad produce errores en tiempo de ejecución cuando intenta hacer coincidir la información de la cookie de autenticación con la información de su base de datos.
 
-Cuando el esquema de identidad es diferente entre las aplicaciones, normalmente porque las aplicaciones usan versiones de identidad diferentes, compartir una base de datos común basada en la versión más reciente de la identidad no es posible sin volver a asignar y Agregar columnas en los esquemas de identidad de la aplicación. A menudo, es más eficaz actualizar las otras aplicaciones para que usen la versión más reciente de la identidad para que las aplicaciones puedan compartir una base de datos común.
+Cuando el Identity esquema es diferente entre las aplicaciones, normalmente porque las aplicaciones usan Identity versiones diferentes, compartir una base de datos común basada en la Identity versión más reciente de no es posible sin volver a asignar y Identity Agregar columnas en los esquemas de otra aplicación. A menudo es más eficaz actualizar las otras aplicaciones para que usen la versión Identity más reciente para que las aplicaciones puedan compartir una base de datos común.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

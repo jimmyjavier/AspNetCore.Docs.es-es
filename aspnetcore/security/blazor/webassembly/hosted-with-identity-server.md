@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ffdcd30ae9ce5350113569a500e99cf8db82ad65
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: bf2298618e922df412e0742177afd390c4116388
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138616"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768133"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Protección de una Blazor aplicación hospedada en webassembly ASP.net Core con Identity Server
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Protección de una Blazor aplicación hospedada en webassembly ASP.net Core con Identity Server
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https://github.com/guardrex)
 
@@ -51,7 +54,7 @@ La `Startup` clase tiene las siguientes adiciones:
 
 * En `Startup.ConfigureServices`:
 
-  * Identidad:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -104,7 +107,7 @@ El <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigura
 
 ### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
 
-El <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar configura un esquema de directiva para la aplicación como el controlador de autenticación predeterminado. La Directiva está configurada para permitir que la identidad controle todas las solicitudes enrutadas a cualquier subruta en el espacio `/Identity`de la dirección URL de identidad. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> Controla todas las demás solicitudes. Además, este método:
+El <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar configura un esquema de directiva para la aplicación como el controlador de autenticación predeterminado. La Directiva está configurada Identity para permitir que controle todas las solicitudes enrutadas a Identity cualquier subruta de acceso en el espacio `/Identity`de la dirección URL. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> Controla todas las demás solicitudes. Además, este método:
 
 * Registra un `{APPLICATION NAME}API` recurso de API con IdentityServer con un ámbito predeterminado de `{APPLICATION NAME}API`.
 * Configura el middleware del token de portador de JWT para validar los tokens emitidos por IdentityServer para la aplicación.
@@ -115,9 +118,9 @@ En `WeatherForecastController` (*Controllers/WeatherForecastController. CS*), el
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-En `ApplicationDbContext` (*Data/ApplicationDbContext. CS*), lo mismo <xref:Microsoft.EntityFrameworkCore.DbContext> se usa en la identidad, con la excepción de que <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> se extiende para incluir el esquema de IdentityServer. La clase <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> se deriva de la clase <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+`ApplicationDbContext` En (*Data/ApplicationDbContext. CS*), lo <xref:Microsoft.EntityFrameworkCore.DbContext> mismo se usa en Identity con la excepción de que se extiende <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> para incluir el esquema de IdentityServer. La clase <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> se deriva de la clase <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
-Para obtener el control total del esquema de la base de datos, herede de una <xref:Microsoft.EntityFrameworkCore.DbContext> de las clases de identidad disponibles y configure el contexto para `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` incluir el `OnModelCreating` esquema de identidad mediante una llamada a en el método.
+Para obtener el control total del esquema de la base de datos, herede de Identity <xref:Microsoft.EntityFrameworkCore.DbContext> una de las clases disponibles y configure Identity el contexto para `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` incluir el `OnModelCreating` esquema llamando a en el método.
 
 ### <a name="oidcconfigurationcontroller"></a>OidcConfigurationController
 
@@ -185,7 +188,7 @@ El `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) se representa en el 
 
 * Para usuarios autenticados:
   * Muestra el nombre de usuario actual.
-  * Proporciona un vínculo a la página de Perfil de usuario de ASP.NET Core identidad.
+  * Proporciona un vínculo a la página de Perfil de usuario Identityen ASP.net Core.
   * Ofrece un botón para cerrar la sesión de la aplicación.
 * Para usuarios anónimos:
   * Ofrece la opción de registro.

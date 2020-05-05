@@ -5,7 +5,7 @@ El `FetchData` componente muestra cómo:
 
 La `@attribute [Authorize]` Directiva indica al sistema de autorización de webassembly increíble que el usuario debe estar autorizado para visitar este componente. La presencia del atributo en la aplicación *cliente* no impide que se llame a la API del servidor sin credenciales adecuadas. La aplicación de *servidor* también debe `[Authorize]` usar en los puntos de conexión adecuados para protegerlos correctamente.
 
-`AuthenticationService.RequestAccessToken();`se encarga de solicitar un token de acceso que se puede Agregar a la solicitud para llamar a la API. Si el token se almacena en caché o el servicio puede aprovisionar un nuevo token de acceso sin la interacción del usuario, la solicitud de token se realiza correctamente. De lo contrario, se produce un error en la solicitud de token.
+`IAccessTokenProvider.RequestAccessToken();`se encarga de solicitar un token de acceso que se puede Agregar a la solicitud para llamar a la API. Si el token se almacena en caché o el servicio puede aprovisionar un nuevo token de acceso sin la interacción del usuario, la solicitud de token se realiza correctamente. De lo contrario, se produce un `AccessTokenNotAvailableException` error en la solicitud de token, que `try-catch` se detecta en una instrucción.
 
 Para obtener el token real que se va a incluir en la solicitud, la aplicación debe comprobar que la solicitud se ha `tokenResult.TryGetToken(out var token)`realizado correctamente mediante una llamada a. 
 

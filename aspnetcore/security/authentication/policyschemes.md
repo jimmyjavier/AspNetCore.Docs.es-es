@@ -4,13 +4,19 @@ author: rick-anderson
 description: Los esquemas de directivas de autenticación facilitan el uso de un único esquema de autenticación lógica
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: f02d8e5cac20a9b60c5eddbd28253efacf682ea1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652355"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767322"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de directiva en ASP.NET Core
 
@@ -19,7 +25,7 @@ Los esquemas de directivas de autenticación facilitan que un único esquema de 
 * Es fácil reenviar cualquier acción de autenticación a otro esquema.
 * Reenviar dinámicamente según la solicitud.
 
-Todos los esquemas de autenticación que usan <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> derivadas y las [\<ciones de AuthenticationHandler asociadas >](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+Todos los esquemas de autenticación <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> que usan las [>ciones\< ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)derivadas y asociadas:
 
 * Son esquemas de directivas automáticamente en ASP.NET Core 2,1 y versiones posteriores.
 * Se puede habilitar mediante la configuración de las opciones del esquema.

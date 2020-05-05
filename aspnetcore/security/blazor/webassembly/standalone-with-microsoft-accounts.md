@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 95c16bcd8da22792b27b3aaaf8632b2206372270
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 3ea2b7632fc41e1c8ad72292e45a93e081b6edbe
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82150059"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776160"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con cuentas Microsoft
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con cuentas Microsoft
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https://github.com/guardrex)
 
@@ -31,16 +34,16 @@ Para crear una Blazor aplicación independiente webassembly que use [cuentas de 
 
    Registre una aplicación de AAD en el área de**registros de aplicaciones** de **Azure Active Directory** > del Azure Portal:
 
-   1 \. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor cliente AAD**).<br>
-   2 \. En **tipos de cuenta compatibles**, seleccione **cuentas en cualquier directorio de la organización**.<br>
+   1\. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor cliente AAD**).<br>
+   2\. En **tipos de cuenta compatibles**, seleccione **cuentas en cualquier directorio de la organización**.<br>
    3 \. Deje la lista desplegable **URI de redirección** establecida en **Web**y proporcione un URI de redireccionamiento de `https://localhost:5001/authentication/login-callback`.<br>
    4 \. Deshabilite **Permissions** > la casilla**conceder permisos Grant admin to OpenID y offline_access permisos** .<br>
    5 \. Seleccione **Registrar**.
 
    En **Authentication** > **Platform configurations**configuración > de la plataforma de autenticación**Web**:
 
-   1 \. Confirme que el **URI de redirección** de `https://localhost:5001/authentication/login-callback` está presente.<br>
-   2 \. En **concesión implícita**, active las casillas de verificación de **tokens de acceso** y **tokens de identificador**.<br>
+   1\. Confirme que el **URI de redirección** de `https://localhost:5001/authentication/login-callback` está presente.<br>
+   2\. En **concesión implícita**, active las casillas de verificación de **tokens de acceso** y **tokens de identificador**.<br>
    3 \. Los valores predeterminados restantes de la aplicación son aceptables para esta experiencia.<br>
    4 \. Seleccione el botón **Guardar**.
 
@@ -76,7 +79,7 @@ El `Microsoft.Authentication.WebAssembly.Msal` paquete agrega de manera transiti
 
 ## <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación
 
-La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el proveedor de identidades (IP).
+La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
 
 *Program.cs*:
 
@@ -171,4 +174,4 @@ Para obtener más información, consulte las siguientes secciones del artículo 
 
 * <xref:security/blazor/webassembly/additional-scenarios>
 * [Inicio rápido: Registro de una aplicación en la plataforma de identidad de Microsoft](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
-* [Inicio rápido: configurar una aplicación para exponer las API Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+* [Inicio rápido: Configuración de una aplicación para exponer las API web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)

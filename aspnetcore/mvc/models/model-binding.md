@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo funciona el enlace de modelos en A
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 19580768679f30131683717792252c03aade68f9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2e604cd1869ea077fc0465df91ec083b9db83763
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654473"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768975"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Enlace de modelos en ASP.NET Core
 
@@ -23,10 +29,10 @@ En este artículo se explica qué es el enlace de modelos, cómo funciona y cóm
 
 ## <a name="what-is-model-binding"></a>Qué es el enlace de modelos
 
-Los controladores y Razor Pages trabajan con datos procedentes de solicitudes HTTP. Por ejemplo, los datos de ruta pueden proporcionar una clave de registro y los campos de formulario publicados pueden proporcionar valores para las propiedades del modelo. La escritura de código para recuperar cada uno de estos valores y convertirlos de cadenas a tipos de .NET sería tediosa y propensa a errores. El enlace de modelos automatiza este proceso. El sistema de enlace de modelos:
+Los controladores Razor y las páginas funcionan con los datos que proceden de las solicitudes HTTP. Por ejemplo, los datos de ruta pueden proporcionar una clave de registro y los campos de formulario publicados pueden proporcionar valores para las propiedades del modelo. La escritura de código para recuperar cada uno de estos valores y convertirlos de cadenas a tipos de .NET sería tediosa y propensa a errores. El enlace de modelos automatiza este proceso. El sistema de enlace de modelos:
 
 * Recupera datos de diversos orígenes, como datos de ruta, campos de formulario y cadenas de consulta.
-* Proporciona los datos a los controladores y Razor Pages en parámetros de método y propiedades públicas.
+* Proporciona los datos a los controladores Razor y las páginas de los parámetros de método y las propiedades públicas.
 * Convierte datos de cadena en tipos de .NET.
 * Actualiza las propiedades de tipos complejos.
 
@@ -60,7 +66,7 @@ En el ejemplo anterior, los destinos de enlace de modelos son parámetros de mé
 El enlace de modelos intenta encontrar valores para los tipos de destinos siguientes:
 
 * Parámetros del método de acción de controlador al que se enruta una solicitud.
-* Parámetros del método de controlador de Razor Pages al que se enruta una solicitud. 
+* Parámetros del método Razor de control de páginas al que se enruta una solicitud. 
 * Propiedades públicas de un controlador o una clase `PageModel`, si se especifican mediante atributos.
 
 ### <a name="bindproperty-attribute"></a>Atributo [BindProperty]
@@ -98,11 +104,11 @@ Para cada parámetro o propiedad de destino, se examinan los orígenes en el ord
 
 Si el origen predeterminado no es correcto, use uno de los atributos siguientes para especificar el origen:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): obtiene valores de la cadena de consulta. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): obtiene valores de los datos de ruta.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): obtiene valores de los campos de formulario publicados.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): obtiene valores del cuerpo de la solicitud.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): obtiene valores de encabezados HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): Obtiene los valores de la cadena de consulta. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): Obtiene los valores de los datos de ruta.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): Obtiene los valores de los campos de formulario publicados.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): Obtiene valores del cuerpo de la solicitud.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): Obtiene valores de los encabezados HTTP.
 
 Estos atributos:
 
@@ -168,7 +174,7 @@ De forma predeterminada, si no se encuentra ningún valor para una propiedad de 
 * Para los tipos complejos, el enlace de modelos crea una instancia mediante el constructor predeterminado, sin establecer propiedades.
 * Las matrices se establecen en `Array.Empty<T>()`, salvo las matrices `byte[]`, que se establecen en `null`.
 
-Si el estado del modelo se debe invalidar cuando no se encuentra nada en los campos de formulario para una propiedad de modelo, use el atributo [`[BindRequired]`](#bindrequired-attribute).
+Si el estado del modelo se debe invalidar Cuando no se encuentra nada en los campos de formulario de una propiedad [`[BindRequired]`](#bindrequired-attribute) de modelo, utilice el atributo.
 
 Tenga en cuenta que este comportamiento de `[BindRequired]` se aplica al enlace de modelos desde datos de formulario publicados, no a los datos JSON o XML del cuerpo de una solicitud. Los datos del cuerpo de la solicitud se controlan mediante [formateadores de entrada](#input-formatters).
 
@@ -178,11 +184,11 @@ Si se encuentra un origen pero no se puede convertir al tipo de destino, el esta
 
 En un controlador de API que tenga el atributo `[ApiController]`, el estado de modelo no válido genera una respuesta HTTP 400 automática.
 
-En una página de Razor, se vuelve a mostrar la página con un mensaje de error:
+En una Razor página, vuelva a mostrar la página con un mensaje de error:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-La validación del lado cliente detecta la mayoría de los datos incorrectos que en otros casos se enviarían a un formulario de Razor Pages. Esta validación dificulta que se pueda desencadenar el código resaltado anterior. En la aplicación de ejemplo se incluye un botón **Submit with Invalid Date** (Enviar con fecha no válida) que agrega datos incorrectos al campo **Hire Date** (Fecha de contratación) y envía el formulario. Este botón muestra cómo funciona el código para volver a mostrar la página cuando se producen errores de conversión de datos.
+La validación del lado cliente detecta la mayoría de los datos incorrectos que de Razor otro modo se enviarían a un formulario de páginas. Esta validación dificulta que se pueda desencadenar el código resaltado anterior. En la aplicación de ejemplo se incluye un botón **Submit with Invalid Date** (Enviar con fecha no válida) que agrega datos incorrectos al campo **Hire Date** (Fecha de contratación) y envía el formulario. Este botón muestra cómo funciona el código para volver a mostrar la página cuando se producen errores de conversión de datos.
 
 Cuando el código anterior vuelve a mostrar la página, no se muestra la entrada no válida en el campo de formulario. El motivo es que la propiedad de modelo se ha establecido en NULL o en un valor predeterminado. La entrada no válida sí aparece en un mensaje de error. Pero si quiere volver a mostrar los datos incorrectos en el campo de formulario, considere la posibilidad de convertir la propiedad de modelo en una cadena y realizar la conversión de datos de forma manual.
 
@@ -198,11 +204,11 @@ Los tipos simples a los que el enlazador de modelos puede convertir las cadenas 
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
-* [Doble](xref:System.ComponentModel.DoubleConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Único](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
@@ -304,7 +310,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 El atributo `[Bind]` se puede usar para protegerse de la publicación excesiva en escenarios de *creación*. No funciona bien en escenarios de edición porque las propiedades excluidas se establecen en NULL o en un valor predeterminado en lugar de mantenerse sin cambios. Para defenderse de la publicación excesiva, se recomiendan modelos de vista en lugar del atributo `[Bind]`. Para más información, vea [Nota de seguridad sobre la publicación excesiva](xref:data/ef-mvc/crud#security-note-about-overposting).
 
-## <a name="collections"></a>Colecciones
+## <a name="collections"></a>Recopilaciones
 
 Para los destinos que son colecciones de tipos simples, el enlace de modelos busca coincidencias con *nombre_de_parámetro* o *nombre_de_propiedad*. Si no se encuentra ninguna coincidencia, busca uno de los formatos admitidos sin el prefijo. Por ejemplo:
 
@@ -486,7 +492,7 @@ El enlace de modelos se puede invocar de forma manual mediante el método <xref:
 
 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> usa proveedores de valor para obtener datos del cuerpo del formulario, la cadena de consulta y los datos de ruta. `TryUpdateModelAsync` suele ser: 
 
-* Se usa con aplicaciones de Razor Pages y MVC con controladores y vistas para evitar el exceso de publicación.
+* Se usa Razor con las páginas y las aplicaciones MVC con controladores y vistas para evitar la publicación excesiva.
 * No se usa con una API web a menos que se consuma a partir de datos de formulario, cadenas de consulta y datos de ruta. Los puntos de conexión de la API web que consumen JSON usan [formateadores de entrada](#input-formatters) para deserializar el cuerpo de la solicitud en un objeto.
 
 Para más información, consulte [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
@@ -509,10 +515,10 @@ En este artículo se explica qué es el enlace de modelos, cómo funciona y cóm
 
 ## <a name="what-is-model-binding"></a>Qué es el enlace de modelos
 
-Los controladores y Razor Pages trabajan con datos procedentes de solicitudes HTTP. Por ejemplo, los datos de ruta pueden proporcionar una clave de registro y los campos de formulario publicados pueden proporcionar valores para las propiedades del modelo. La escritura de código para recuperar cada uno de estos valores y convertirlos de cadenas a tipos de .NET sería tediosa y propensa a errores. El enlace de modelos automatiza este proceso. El sistema de enlace de modelos:
+Los controladores Razor y las páginas funcionan con los datos que proceden de las solicitudes HTTP. Por ejemplo, los datos de ruta pueden proporcionar una clave de registro y los campos de formulario publicados pueden proporcionar valores para las propiedades del modelo. La escritura de código para recuperar cada uno de estos valores y convertirlos de cadenas a tipos de .NET sería tediosa y propensa a errores. El enlace de modelos automatiza este proceso. El sistema de enlace de modelos:
 
 * Recupera datos de diversos orígenes, como datos de ruta, campos de formulario y cadenas de consulta.
-* Proporciona los datos a los controladores y Razor Pages en parámetros de método y propiedades públicas.
+* Proporciona los datos a los controladores Razor y las páginas de los parámetros de método y las propiedades públicas.
 * Convierte datos de cadena en tipos de .NET.
 * Actualiza las propiedades de tipos complejos.
 
@@ -546,7 +552,7 @@ En el ejemplo anterior, los destinos de enlace de modelos son parámetros de mé
 El enlace de modelos intenta encontrar valores para los tipos de destinos siguientes:
 
 * Parámetros del método de acción de controlador al que se enruta una solicitud.
-* Parámetros del método de controlador de Razor Pages al que se enruta una solicitud. 
+* Parámetros del método Razor de control de páginas al que se enruta una solicitud. 
 * Propiedades públicas de un controlador o una clase `PageModel`, si se especifican mediante atributos.
 
 ### <a name="bindproperty-attribute"></a>Atributo [BindProperty]
@@ -584,11 +590,11 @@ Para cada parámetro o propiedad de destino, se examinan los orígenes en el ord
 
 Si el origen predeterminado no es correcto, use uno de los atributos siguientes para especificar el origen:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): obtiene valores de la cadena de consulta. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): obtiene valores de los datos de ruta.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): obtiene valores de los campos de formulario publicados.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): obtiene valores del cuerpo de la solicitud.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): obtiene valores de encabezados HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): Obtiene los valores de la cadena de consulta. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): Obtiene los valores de los datos de ruta.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): Obtiene los valores de los campos de formulario publicados.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): Obtiene valores del cuerpo de la solicitud.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): Obtiene valores de los encabezados HTTP.
 
 Estos atributos:
 
@@ -654,7 +660,7 @@ De forma predeterminada, si no se encuentra ningún valor para una propiedad de 
 * Para los tipos complejos, el enlace de modelos crea una instancia mediante el constructor predeterminado, sin establecer propiedades.
 * Las matrices se establecen en `Array.Empty<T>()`, salvo las matrices `byte[]`, que se establecen en `null`.
 
-Si el estado del modelo se debe invalidar cuando no se encuentra nada en los campos de formulario para una propiedad de modelo, use el atributo [`[BindRequired]`](#bindrequired-attribute).
+Si el estado del modelo se debe invalidar Cuando no se encuentra nada en los campos de formulario de una propiedad [`[BindRequired]`](#bindrequired-attribute) de modelo, utilice el atributo.
 
 Tenga en cuenta que este comportamiento de `[BindRequired]` se aplica al enlace de modelos desde datos de formulario publicados, no a los datos JSON o XML del cuerpo de una solicitud. Los datos del cuerpo de la solicitud se controlan mediante [formateadores de entrada](#input-formatters).
 
@@ -664,11 +670,11 @@ Si se encuentra un origen pero no se puede convertir al tipo de destino, el esta
 
 En un controlador de API que tenga el atributo `[ApiController]`, el estado de modelo no válido genera una respuesta HTTP 400 automática.
 
-En una página de Razor, se vuelve a mostrar la página con un mensaje de error:
+En una Razor página, vuelva a mostrar la página con un mensaje de error:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-La validación del lado cliente detecta la mayoría de los datos incorrectos que en otros casos se enviarían a un formulario de Razor Pages. Esta validación dificulta que se pueda desencadenar el código resaltado anterior. En la aplicación de ejemplo se incluye un botón **Submit with Invalid Date** (Enviar con fecha no válida) que agrega datos incorrectos al campo **Hire Date** (Fecha de contratación) y envía el formulario. Este botón muestra cómo funciona el código para volver a mostrar la página cuando se producen errores de conversión de datos.
+La validación del lado cliente detecta la mayoría de los datos incorrectos que de Razor otro modo se enviarían a un formulario de páginas. Esta validación dificulta que se pueda desencadenar el código resaltado anterior. En la aplicación de ejemplo se incluye un botón **Submit with Invalid Date** (Enviar con fecha no válida) que agrega datos incorrectos al campo **Hire Date** (Fecha de contratación) y envía el formulario. Este botón muestra cómo funciona el código para volver a mostrar la página cuando se producen errores de conversión de datos.
 
 Cuando el código anterior vuelve a mostrar la página, no se muestra la entrada no válida en el campo de formulario. El motivo es que la propiedad de modelo se ha establecido en NULL o en un valor predeterminado. La entrada no válida sí aparece en un mensaje de error. Pero si quiere volver a mostrar los datos incorrectos en el campo de formulario, considere la posibilidad de convertir la propiedad de modelo en una cadena y realizar la conversión de datos de forma manual.
 
@@ -684,11 +690,11 @@ Los tipos simples a los que el enlazador de modelos puede convertir las cadenas 
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
-* [Doble](xref:System.ComponentModel.DoubleConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Único](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
@@ -790,7 +796,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 El atributo `[Bind]` se puede usar para protegerse de la publicación excesiva en escenarios de *creación*. No funciona bien en escenarios de edición porque las propiedades excluidas se establecen en NULL o en un valor predeterminado en lugar de mantenerse sin cambios. Para defenderse de la publicación excesiva, se recomiendan modelos de vista en lugar del atributo `[Bind]`. Para más información, vea [Nota de seguridad sobre la publicación excesiva](xref:data/ef-mvc/crud#security-note-about-overposting).
 
-## <a name="collections"></a>Colecciones
+## <a name="collections"></a>Recopilaciones
 
 Para los destinos que son colecciones de tipos simples, el enlace de modelos busca coincidencias con *nombre_de_parámetro* o *nombre_de_propiedad*. Si no se encuentra ninguna coincidencia, busca uno de los formatos admitidos sin el prefijo. Por ejemplo:
 

@@ -4,13 +4,19 @@ author: ardalis
 description: Conozca ASP.NET Core MVC, un marco completo para crear aplicaciones web y varias API mediante el patrón de diseño del controlador de vista de modelos.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/overview
-ms.openlocfilehash: 2911399f6ed4e14345171c908c4306b9c3e33805
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c6c7fd1d0cb7a462b3a13d5e31a50c704a00c0ef
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651671"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775471"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Información general de ASP.NET Core MVC
 
@@ -29,7 +35,7 @@ En el siguiente diagrama se muestran los tres componentes principales y cuál ha
 Con esta delineación de responsabilidades es más sencillo escalar la aplicación, porque resulta más fácil codificar, depurar y probar algo (modelo, vista o controlador) que tenga un solo trabajo. Es más difícil actualizar, probar y depurar código que tenga dependencias repartidas entre dos o más de estas tres áreas. Por ejemplo, la lógica de la interfaz de usuario tiende a cambiar con mayor frecuencia que la lógica de negocios. Si el código de presentación y la lógica de negocios se combinan en un solo objeto, un objeto que contenga lógica de negocios deberá modificarse cada vez que cambie la interfaz de usuario. A menudo esto genera errores y es necesario volver a probar la lógica de negocio después de cada cambio mínimo en la interfaz de usuario.
 
 > [!NOTE]
-> La vista y el controlador dependen del modelo. Sin embargo, el modelo no depende de la vista ni del controlador. Esta es una de las ventajas principales de la separación. Esta separación permite compilar y probar el modelo con independencia de la presentación visual.
+> La vista y el controlador dependen del modelo. Sin embargo, el modelo no depende de la vista ni del controlador.  Esta es una de las ventajas principales de la separación. Esta separación permite compilar y probar el modelo con independencia de la presentación visual.
 
 ### <a name="model-responsibilities"></a>Responsabilidades del modelo
 
@@ -37,11 +43,11 @@ El modelo en una aplicación de MVC representa el estado de la aplicación y cua
 
 ### <a name="view-responsibilities"></a>Responsabilidades de las vistas
 
-Las vistas se encargan de presentar el contenido a través de la interfaz de usuario. Usan el [motor de vistas de Razor](#razor-view-engine) para incrustar código .NET en formato HTML. Debería haber la mínima lógica entre las vistas y cualquier lógica en ellas debe estar relacionada con la presentación de contenido. Si ve que necesita realizar una gran cantidad de lógica en los archivos de vistas para mostrar datos de un modelo complejo, considere la opción de usar un [componente de vista](views/view-components.md), ViewModel, o una plantilla de vista para simplificar la vista.
+Las vistas se encargan de presentar el contenido a través de la interfaz de usuario. Usan el [ Razor motor de vistas](#razor-view-engine) para insertar código .net en el marcado HTML. Debería haber la mínima lógica entre las vistas y cualquier lógica en ellas debe estar relacionada con la presentación de contenido. Si ve que necesita realizar una gran cantidad de lógica en los archivos de vistas para mostrar datos de un modelo complejo, considere la opción de usar un [componente de vista](views/view-components.md), ViewModel, o una plantilla de vista para simplificar la vista.
 
 ### <a name="controller-responsibilities"></a>Responsabilidades del controlador
 
-Los controladores son los componentes que controlan la interacción del usuario, trabajan con el modelo y, en última instancia, seleccionan una vista para representarla. En una aplicación MVC, la vista solo muestra información; el controlador administra y responde a los datos proporcionados por el usuario y su interacción. En el patrón de MVC, el controlador es el punto de entrada inicial que se encarga de seleccionar con qué tipos de modelo trabajar y qué vistas representar (de ahí su nombre, ya que controla el modo en que la aplicación responde a una determinada solicitud).
+Los controladores son los componentes que controlan la interacción del usuario, trabajan con el modelo y, en última instancia, seleccionan una vista para representarla. En una aplicación de MVC, la vista solo muestra información; el controlador controla y responde a la interacción y los datos que introducen los usuarios. En el patrón de MVC, el controlador es el punto de entrada inicial que se encarga de seleccionar con qué tipos de modelo trabajar y qué vistas representar (de ahí su nombre, ya que controla el modo en que la aplicación responde a una determinada solicitud).
 
 > [!NOTE]
 > Los controladores no deberían complicarse con demasiadas responsabilidades. Para evitar que la lógica del controlador se vuelva demasiado compleja, saque la lógica de negocios fuera el controlador y llévela al modelo de dominio.
@@ -67,10 +73,10 @@ ASP.NET Core MVC incluye lo siguiente:
 * [Áreas](#areas)
 * [API web](#web-apis)
 * [Capacidad de prueba](#testability)
-* [Motor de vistas de Razor](#razor-view-engine)
+* [Razormotor de vista](#razor-view-engine)
 * [Vistas fuertemente tipadas](#strongly-typed-views)
 * [Asistentes de etiquetas](#tag-helpers)
-* [Componentes de vista](#view-components)
+* [Ver componentes](#view-components)
 
 ### <a name="routing"></a>Enrutamiento
 
@@ -141,7 +147,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 El marco administra los datos de la solicitud de validación en el cliente y en el servidor. La lógica de validación especificada en tipos de modelo se agrega a las vistas representadas como anotaciones discretas y se aplica en el explorador con [Validación de jQuery](https://jqueryvalidation.org/).
 
-### <a name="dependency-injection"></a>Inserción de dependencia
+### <a name="dependency-injection"></a>Inserción de dependencias
 
 ASP.NET Core tiene compatibilidad integrada con la [inserción de dependencias](../fundamentals/dependency-injection.md). En ASP.NET Core MVC, los [controladores](controllers/dependency-injection.md) pueden solicitar los servicios que necesiten a través de sus constructores, lo que les permite seguir el [principio de dependencias explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 
@@ -172,7 +178,7 @@ public class AccountController : Controller
 
 ### <a name="areas"></a>Áreas
 
-Las [áreas](controllers/areas.md) ofrecen una manera de dividir una aplicación web ASP.NET Core MVC de gran tamaño en agrupaciones funcionales más pequeñas. Un área es una estructura de MVC dentro de una aplicación. En un proyecto de MVC, los componentes lógicos como el modelo, el controlador y la vista se guardan en carpetas diferentes, y MVC usa las convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como la retirada, la facturación y la búsqueda, etc. Cada una de estas unidades tiene sus propias vistas de componentes lógicas, controladores y modelos.
+Las [áreas](controllers/areas.md) proporcionan una manera de crear particiones de una aplicación web MVC de gran ASP.net Core en agrupaciones funcionales más pequeñas. Un área es una estructura de MVC dentro de una aplicación. En un proyecto de MVC, los componentes lógicos como el modelo, el controlador y la vista se guardan en carpetas diferentes, y MVC usa las convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como la retirada, la facturación y la búsqueda, etc. Cada una de estas unidades tiene sus propias vistas de componentes lógicas, controladores y modelos.
 
 ### <a name="web-apis"></a>API web
 
@@ -186,9 +192,9 @@ Use la generación de vínculos para habilitar la compatibilidad con hipermedios
 
 Al usar interfaces e inserción de dependencias, el marco es adecuado para realizar pruebas unitarias. También incluye características (por ejemplo, un proveedor TestHost e InMemory para Entity Framework) con las que resulta muy fácil y rápido realizar [pruebas de integración](xref:test/integration-tests). Obtenga más información sobre [cómo probar la lógica del controlador](controllers/testing.md).
 
-### <a name="razor-view-engine"></a>Motor de vistas de Razor
+### <a name="razor-view-engine"></a>Razormotor de vista
 
-Las [vistas de ASP.NET Core MVC](views/overview.md) usan el [motor de vistas de Razor](views/razor.md) para representar vistas. Razor es un lenguaje de marcado de plantillas compacto, expresivo y fluido para definir vistas que usan código incrustado de C#. Razor se usa para generar dinámicamente contenido web en el servidor. Permite combinar de manera limpia el código del servidor con el código y el contenido del lado cliente.
+[ASP.net Core vistas de MVC](views/overview.md) usan el [ Razor motor de vistas](views/razor.md) para representar las vistas. Razores un lenguaje de marcado de plantilla compacto, expresivo y fluido para definir vistas mediante código C# incrustado. Razorse utiliza para generar dinámicamente contenido web en el servidor. Permite combinar de manera limpia el código del servidor con el código y el contenido del lado cliente.
 
 ```cshtml
 <ul>
@@ -198,11 +204,11 @@ Las [vistas de ASP.NET Core MVC](views/overview.md) usan el [motor de vistas de 
 </ul>
 ```
 
-Con el motor de vistas de Razor, puede definir [diseños](views/layout.md), [vistas parciales](views/partial.md) y secciones reemplazables.
+Con el Razor motor de vistas puede definir [diseños](views/layout.md), [vistas parciales](views/partial.md) y secciones reemplazables.
 
 ### <a name="strongly-typed-views"></a>Vistas fuertemente tipadas
 
-Las vistas de Razor en MVC pueden estar fuertemente tipadas en función del modelo. Los controladores pueden pasar un modelo fuertemente tipado a las vistas para que estas admitan IntelliSense y la comprobación de tipos.
+Razorlas vistas de MVC se pueden fuertemente tipadas en función del modelo. Los controladores pueden pasar un modelo fuertemente tipado a las vistas para que estas admitan IntelliSense y la comprobación de tipos.
 
 Por ejemplo, en esta vista se representa un modelo de tipo `IEnumerable<Product>`:
 
@@ -218,7 +224,7 @@ Por ejemplo, en esta vista se representa un modelo de tipo `IEnumerable<Product>
 
 ### <a name="tag-helpers"></a>Asistentes de etiquetas
 
-Los [asistentes de etiquetas](views/tag-helpers/intro.md) permiten que el código del lado servidor participe en la creación y la representación de elementos HTML en archivos de Razor. Puede usar asistentes de etiquetas para definir etiquetas personalizadas (por ejemplo, `<environment>`) o para modificar el comportamiento de etiquetas existentes (por ejemplo, `<label>`). Los asistentes de etiquetas enlazan con elementos específicos, en función del nombre del elemento y sus atributos. Proporcionan las ventajas de la representación del lado servidor, al tiempo que se mantiene una experiencia de edición HTML.
+Las [aplicaciones auxiliares de etiquetas](views/tag-helpers/intro.md) permiten que el código del lado servidor participe en la creación Razor y representación de elementos HTML en archivos. Puede usar asistentes de etiquetas para definir etiquetas personalizadas (por ejemplo, `<environment>`) o para modificar el comportamiento de etiquetas existentes (por ejemplo, `<label>`). Los asistentes de etiquetas enlazan con elementos específicos, en función del nombre del elemento y sus atributos. Proporcionan las ventajas de la representación del lado servidor, al tiempo que se mantiene una experiencia de edición HTML.
 
 Hay muchos asistentes de etiquetas integradas para tareas comunes (como la creación de formularios, vínculos, carga de activos, etc.) y existen muchos más a disposición en repositorios públicos de GitHub y como paquetes NuGet. Los asistentes de etiquetas se crean en C# y tienen como destino elementos HTML en función del nombre de elemento, el nombre de atributo o la etiqueta principal. Por ejemplo, la aplicación auxiliar de etiquetas integrada LinkTagHelper puede usarse para crear un vínculo a la acción `Login` de `AccountsController`:
 
@@ -243,7 +249,7 @@ La aplicación auxiliar de etiquetas `EnvironmentTagHelper` puede usarse para in
 </environment>
 ```
 
-Los asistentes de etiquetas ofrecen una experiencia de desarrollo compatible con HTML y un entorno de IntelliSense enriquecido para crear formato HTML y Razor. La mayoría de los asistentes de etiquetas integrados tienen como destino elementos HTML existentes y proporcionan atributos del lado servidor para el elemento.
+Las aplicaciones auxiliares de etiquetas proporcionan una experiencia de desarrollo compatible con HTML y un completo entorno de IntelliSense Razor para crear HTML y marcado. La mayoría de los asistentes de etiquetas integrados tienen como destino elementos HTML existentes y proporcionan atributos del lado servidor para el elemento.
 
 ### <a name="view-components"></a>Componentes de vista
 
@@ -253,9 +259,9 @@ Los [componentes de vista](views/view-components.md) permiten empaquetar la lóg
 
 El método <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> permite a una aplicación participar o no en los cambios de comportamiento importantes incorporados en ASP.NET Core MVC 2.1 o una versión posterior.
 
-Para más información, consulte <xref:mvc/compatibility-version>.
+Para obtener más información, vea <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [MyTested.AspNetCore.Mvc: biblioteca fluida de pruebas para ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; Biblioteca de pruebas fuertemente tipada, que ofrece una interfaz fluida para la prueba de aplicaciones MVC y de API web. (*Microsoft no realiza su mantenimiento ni su soporte técnico.* )
+* [MyTested.AspNetCore.Mvc: biblioteca fluida de pruebas para ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; Biblioteca de pruebas fuertemente tipada, que ofrece una interfaz fluida para la prueba de aplicaciones MVC y de API web. (*Microsoft no realiza su mantenimiento ni su soporte técnico.*)
 * <xref:blazor/integrate-components>

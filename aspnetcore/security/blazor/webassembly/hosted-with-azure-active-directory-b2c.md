@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: 6f049906da4a1aa87f293f5ad1af19dad44f477a
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 05068853615a63611188175d95c27f1442973a86
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82150035"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768213"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación hospedada en webassembly ASP.NET Core con Azure Active Directory B2C
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación hospedada en webassembly ASP.NET Core con Azure Active Directory B2C
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https://github.com/guardrex)
 
@@ -149,7 +152,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-### <a name="useridentityname"></a>User.Identity.Name
+### <a name="useridentityname"></a>Usuario. Identity. Name
 
 De forma predeterminada, `User.Identity.Name` no se rellena.
 
@@ -246,7 +249,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el proveedor de identidades (IP).
+La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
 
 *Program.cs*:
 

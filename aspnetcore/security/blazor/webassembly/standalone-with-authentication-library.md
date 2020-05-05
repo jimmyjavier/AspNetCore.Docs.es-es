@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 25aa7761b9c1acc72081653422e80cb004500573
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: 6907a1213a6a9089e2aed885093c2fd38f972ad0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138531"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768057"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con la biblioteca de autenticación
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con la biblioteca de autenticación
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https://github.com/guardrex)
 
@@ -53,7 +56,7 @@ Reemplace `{VERSION}` en la referencia de paquete anterior por la versión del `
 
 ## <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación
 
-La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddOidcAuthentication` servicios con el método de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el proveedor de identidades (IP).
+La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddOidcAuthentication` servicios con el método de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
 
 *Program.cs*:
 

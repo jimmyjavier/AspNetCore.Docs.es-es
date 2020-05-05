@@ -7,14 +7,18 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/12/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 7e0cd952fd152ff6adb6e0a7c56214d70d3c7b86
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: 054462c37fffd1973cbbe4f76ae4a3be5a6c1778
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558998"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767309"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configuración de ASP.NET Core SignalR
 
@@ -192,8 +196,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -333,11 +337,11 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `ClientCertificates` | Vacío | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
-| `Cookies` | Vacío | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
-| `Credentials` | Vacío | Credenciales que se van a enviar con cada solicitud HTTP. |
+| `ClientCertificates` | Empty | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
+| `Cookies` | Empty | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
+| `Credentials` | Empty | Credenciales que se van a enviar con cada solicitud HTTP. |
 | `CloseTimeout` | 5 segundos | Solo WebSockets. Cantidad máxima de tiempo que el cliente espera después de cerrarse para que el servidor confirme la solicitud de cierre. Si el servidor no reconoce el cierre dentro de este tiempo, el cliente se desconecta. |
-| `Headers` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `Headers` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 | `HttpMessageHandlerFactory` | `null` | Delegado que se puede utilizar para configurar o reemplazar el `HttpMessageHandler` utilizado para enviar solicitudes HTTP. No se usa para las conexiones WebSocket. Este delegado debe devolver un valor distinto de NULL y recibe el valor predeterminado como parámetro. Modifique la configuración de ese valor predeterminado y devuelva o devuelva una nueva `HttpMessageHandler` instancia. **Al reemplazar el controlador, asegúrese de copiar la configuración que desea conservar del controlador proporcionado; de lo contrario, las opciones configuradas (como cookies y encabezados) no se aplicarán al nuevo controlador.** |
 | `Proxy` | `null` | Proxy HTTP que se va a usar al enviar solicitudes HTTP. |
 | `UseDefaultCredentials` | `false` | Establezca este valor booleano para enviar las credenciales predeterminadas para las solicitudes HTTP y WebSockets. Esto habilita el uso de la autenticación de Windows. |
@@ -357,7 +361,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `shouldSkipNegotiate` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `withHeader` `withHeaders` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `withHeader` `withHeaders` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 
 ---
 
@@ -578,8 +582,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -719,11 +723,11 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `ClientCertificates` | Vacío | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
-| `Cookies` | Vacío | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
-| `Credentials` | Vacío | Credenciales que se van a enviar con cada solicitud HTTP. |
+| `ClientCertificates` | Empty | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
+| `Cookies` | Empty | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
+| `Credentials` | Empty | Credenciales que se van a enviar con cada solicitud HTTP. |
 | `CloseTimeout` | 5 segundos | Solo WebSockets. Cantidad máxima de tiempo que el cliente espera después de cerrarse para que el servidor confirme la solicitud de cierre. Si el servidor no reconoce el cierre dentro de este tiempo, el cliente se desconecta. |
-| `Headers` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `Headers` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 | `HttpMessageHandlerFactory` | `null` | Delegado que se puede utilizar para configurar o reemplazar el `HttpMessageHandler` utilizado para enviar solicitudes HTTP. No se usa para las conexiones WebSocket. Este delegado debe devolver un valor distinto de NULL y recibe el valor predeterminado como parámetro. Modifique la configuración de ese valor predeterminado y devuelva o devuelva una nueva `HttpMessageHandler` instancia. **Al reemplazar el controlador, asegúrese de copiar la configuración que desea conservar del controlador proporcionado; de lo contrario, las opciones configuradas (como cookies y encabezados) no se aplicarán al nuevo controlador.** |
 | `Proxy` | `null` | Proxy HTTP que se va a usar al enviar solicitudes HTTP. |
 | `UseDefaultCredentials` | `false` | Establezca este valor booleano para enviar las credenciales predeterminadas para las solicitudes HTTP y WebSockets. Esto habilita el uso de la autenticación de Windows. |
@@ -742,7 +746,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `shouldSkipNegotiate` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `withHeader` `withHeaders` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `withHeader` `withHeaders` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 
 ---
 
@@ -962,8 +966,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -1103,11 +1107,11 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `ClientCertificates` | Vacío | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
-| `Cookies` | Vacío | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
-| `Credentials` | Vacío | Credenciales que se van a enviar con cada solicitud HTTP. |
+| `ClientCertificates` | Empty | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
+| `Cookies` | Empty | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
+| `Credentials` | Empty | Credenciales que se van a enviar con cada solicitud HTTP. |
 | `CloseTimeout` | 5 segundos | Solo WebSockets. Cantidad máxima de tiempo que el cliente espera después de cerrarse para que el servidor confirme la solicitud de cierre. Si el servidor no reconoce el cierre dentro de este tiempo, el cliente se desconecta. |
-| `Headers` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `Headers` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 | `HttpMessageHandlerFactory` | `null` | Delegado que se puede utilizar para configurar o reemplazar el `HttpMessageHandler` utilizado para enviar solicitudes HTTP. No se usa para las conexiones WebSocket. Este delegado debe devolver un valor distinto de NULL y recibe el valor predeterminado como parámetro. Modifique la configuración de ese valor predeterminado y devuelva o devuelva una nueva `HttpMessageHandler` instancia. **Al reemplazar el controlador, asegúrese de copiar la configuración que desea conservar del controlador proporcionado; de lo contrario, las opciones configuradas (como cookies y encabezados) no se aplicarán al nuevo controlador.** |
 | `Proxy` | `null` | Proxy HTTP que se va a usar al enviar solicitudes HTTP. |
 | `UseDefaultCredentials` | `false` | Establezca este valor booleano para enviar las credenciales predeterminadas para las solicitudes HTTP y WebSockets. Esto habilita el uso de la autenticación de Windows. |
@@ -1126,7 +1130,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `shouldSkipNegotiate` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `withHeader` `withHeaders` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `withHeader` `withHeaders` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 
 ---
 
@@ -1451,11 +1455,11 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `ClientCertificates` | Vacío | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
-| `Cookies` | Vacío | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
-| `Credentials` | Vacío | Credenciales que se van a enviar con cada solicitud HTTP. |
+| `ClientCertificates` | Empty | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
+| `Cookies` | Empty | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
+| `Credentials` | Empty | Credenciales que se van a enviar con cada solicitud HTTP. |
 | `CloseTimeout` | 5 segundos | Solo WebSockets. Cantidad máxima de tiempo que el cliente espera después de cerrarse para que el servidor confirme la solicitud de cierre. Si el servidor no reconoce el cierre dentro de este tiempo, el cliente se desconecta. |
-| `Headers` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `Headers` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 | `HttpMessageHandlerFactory` | `null` | Delegado que se puede utilizar para configurar o reemplazar el `HttpMessageHandler` utilizado para enviar solicitudes HTTP. No se usa para las conexiones WebSocket. Este delegado debe devolver un valor distinto de NULL y recibe el valor predeterminado como parámetro. Modifique la configuración de ese valor predeterminado y devuelva o devuelva una nueva `HttpMessageHandler` instancia. **Al reemplazar el controlador, asegúrese de copiar la configuración que desea conservar del controlador proporcionado; de lo contrario, las opciones configuradas (como cookies y encabezados) no se aplicarán al nuevo controlador.** |
 | `Proxy` | `null` | Proxy HTTP que se va a usar al enviar solicitudes HTTP. |
 | `UseDefaultCredentials` | `false` | Establezca este valor booleano para enviar las credenciales predeterminadas para las solicitudes HTTP y WebSockets. Esto habilita el uso de la autenticación de Windows. |
@@ -1474,7 +1478,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `shouldSkipNegotiate` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `withHeader` `withHeaders` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `withHeader` `withHeaders` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 
 ---
 
@@ -1793,11 +1797,11 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `ClientCertificates` | Vacío | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
-| `Cookies` | Vacío | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
-| `Credentials` | Vacío | Credenciales que se van a enviar con cada solicitud HTTP. |
+| `ClientCertificates` | Empty | Colección de certificados TLS que se enviarán a las solicitudes de autenticación. |
+| `Cookies` | Empty | Colección de cookies HTTP que se enviarán con cada solicitud HTTP. |
+| `Credentials` | Empty | Credenciales que se van a enviar con cada solicitud HTTP. |
 | `CloseTimeout` | 5 segundos | Solo WebSockets. Cantidad máxima de tiempo que el cliente espera después de cerrarse para que el servidor confirme la solicitud de cierre. Si el servidor no reconoce el cierre dentro de este tiempo, el cliente se desconecta. |
-| `Headers` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `Headers` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 | `HttpMessageHandlerFactory` | `null` | Delegado que se puede utilizar para configurar o reemplazar el `HttpMessageHandler` utilizado para enviar solicitudes HTTP. No se usa para las conexiones WebSocket. Este delegado debe devolver un valor distinto de NULL y recibe el valor predeterminado como parámetro. Modifique la configuración de ese valor predeterminado y devuelva o devuelva una nueva `HttpMessageHandler` instancia. **Al reemplazar el controlador, asegúrese de copiar la configuración que desea conservar del controlador proporcionado; de lo contrario, las opciones configuradas (como cookies y encabezados) no se aplicarán al nuevo controlador.** |
 | `Proxy` | `null` | Proxy HTTP que se va a usar al enviar solicitudes HTTP. |
 | `UseDefaultCredentials` | `false` | Establezca este valor booleano para enviar las credenciales predeterminadas para las solicitudes HTTP y WebSockets. Esto habilita el uso de la autenticación de Windows. |
@@ -1816,7 +1820,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` método`withUrl` (en J
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `shouldSkipNegotiate` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio Azure Signalr. |
-| `withHeader` `withHeaders` | Vacío | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
+| `withHeader` `withHeaders` | Empty | Asignación de encabezados HTTP adicionales que se van a enviar con cada solicitud HTTP. |
 
 ---
 

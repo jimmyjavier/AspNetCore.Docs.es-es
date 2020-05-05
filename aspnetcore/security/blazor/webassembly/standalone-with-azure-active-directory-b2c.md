@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 4ccf86550a520f1d001088859ef5909041178781
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 0fb4f4176f214d6bf0c005838a0ccbe4487243f2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82149998"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767979"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con Azure Active Directory B2C
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación independiente ASP.net Core webassembly con Azure Active Directory B2C
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https://github.com/guardrex)
 
@@ -31,13 +34,13 @@ Para crear una Blazor aplicación independiente webassembly que use [Azure Activ
 
    * [Cree un inquilino](/azure/active-directory-b2c/tutorial-create-tenant) &ndash; de AAD B2C registre la siguiente información:
 
-     1 \. AAD B2C instancia (por ejemplo, `https://contoso.b2clogin.com/`, que incluye la barra diagonal final)<br>
-     2 \. AAD B2C dominio del inquilino (por ejemplo `contoso.onmicrosoft.com`,)
+     1\. AAD B2C instancia (por ejemplo, `https://contoso.b2clogin.com/`, que incluye la barra diagonal final)<br>
+     2\. AAD B2C dominio del inquilino (por ejemplo `contoso.onmicrosoft.com`,)
 
    * [Registrar una aplicación](/azure/active-directory-b2c/tutorial-register-applications) &ndash; web realice las siguientes selecciones durante el registro de la aplicación:
 
-     1 \. Establezca **aplicación web/API Web** en **sí**.<br>
-     2 \. Establezca **permitir flujo implícito** en **sí**.<br>
+     1\. Establezca **aplicación web/API Web** en **sí**.<br>
+     2\. Establezca **permitir flujo implícito** en **sí**.<br>
      3 \. Agregue una **dirección URL** de `https://localhost:5001/authentication/login-callback`respuesta de.
 
      Registre el identificador de aplicación (ID. de cliente) ( `11111111-1111-1111-1111-111111111111`por ejemplo,).
@@ -73,7 +76,7 @@ El `Microsoft.Authentication.WebAssembly.Msal` paquete agrega de manera transiti
 
 ## <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación
 
-La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el proveedor de identidades (IP).
+La compatibilidad con la autenticación de usuarios se registra en el contenedor de `AddMsalAuthentication` servicios con el método de `Microsoft.Authentication.WebAssembly.Msal` extensión proporcionado por el paquete. Este método configura todos los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
 
 *Program.cs*:
 

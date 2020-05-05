@@ -4,13 +4,19 @@ author: rick-anderson
 description: Conozca los aspectos básicos de la autorización y cómo funciona la autorización en ASP.NET Core aplicaciones.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/introduction
-ms.openlocfilehash: b5e60b3c256941fff5e54e1a02e077c34c535902
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 241ef8b00e9dcbd1983d32edcd9c1db2eaa5c687
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652337"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777532"
 ---
 # <a name="introduction-to-authorization-in-aspnet-core"></a>Introducción a la autorización en ASP.NET Core
 
@@ -20,7 +26,7 @@ La autorización se refiere al proceso que determina lo que un usuario puede hac
 
 La autorización es ortogonal e independiente de la autenticación. Sin embargo, la autorización requiere un mecanismo de autenticación. La autenticación es el proceso de determinar quién es un usuario. La autenticación puede crear una o varias identidades para el usuario actual.
 
-Para obtener más información sobre la autenticación en ASP.NET Core, vea <xref:security/authentication/index>.
+Para obtener más información acerca de la autenticación en <xref:security/authentication/index>ASP.net Core, vea.
 
 ## <a name="authorization-types"></a>Tipos de autorización
 
@@ -28,6 +34,6 @@ La autorización de ASP.NET Core proporciona un [rol](xref:security/authorizatio
 
 ## <a name="namespaces"></a>Espacios de nombres
 
-Los componentes de autorización, incluidos los atributos `AuthorizeAttribute` y `AllowAnonymousAttribute`, se encuentran en el espacio de nombres `Microsoft.AspNetCore.Authorization`.
+Los componentes de autorización, `AuthorizeAttribute` incluidos `AllowAnonymousAttribute` los atributos y, se encuentran `Microsoft.AspNetCore.Authorization` en el espacio de nombres.
 
 Consulte la documentación sobre la [autorización simple](xref:security/authorization/simple).

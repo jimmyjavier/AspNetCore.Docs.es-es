@@ -5,13 +5,19 @@ description: En este artículo se explica cómo limitar la identidad a un esquem
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: a3be2b8171c146beef7e62c8f7e55883ca5dc687
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 69b6412f249355573faa785743b124a67ecb8b9e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652985"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777519"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorizar con un esquema específico en ASP.NET Core
 
@@ -38,11 +44,11 @@ public void ConfigureServices(IServiceCollection services)
 En el código anterior, se han agregado dos controladores de autenticación: uno para las cookies y otro para el portador.
 
 >[!NOTE]
->Al especificar el esquema predeterminado, se establece la propiedad `HttpContext.User` en esa identidad. Si no se desea ese comportamiento, deshabilítelo mediante la invocación de la forma sin parámetros de `AddAuthentication`.
+>Al especificar el esquema predeterminado, se establece `HttpContext.User` la propiedad en esa identidad. Si no se desea ese comportamiento, deshabilítelo mediante la invocación del formulario sin parámetros `AddAuthentication`de.
 
 ## <a name="selecting-the-scheme-with-the-authorize-attribute"></a>Seleccionar el esquema con el atributo Authorize
 
-En el momento de la autorización, la aplicación indica el controlador que se va a usar. Seleccione el controlador con el que se autorizará la aplicación pasando una lista delimitada por comas de esquemas de autenticación a `[Authorize]`. El atributo `[Authorize]` especifica el esquema de autenticación o los esquemas que se van a usar independientemente de si se ha configurado un valor predeterminado. Por ejemplo:
+En el momento de la autorización, la aplicación indica el controlador que se va a usar. Seleccione el controlador con el que se autorizará la aplicación pasando una lista delimitada por comas de esquemas de autenticación a `[Authorize]`. El `[Authorize]` atributo especifica el esquema de autenticación o los esquemas que se van a usar independientemente de si se ha configurado un valor predeterminado. Por ejemplo:
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -81,7 +87,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-En el ejemplo anterior, la Directiva "Over18" solo se ejecuta con la identidad creada por el controlador de "portador". Use la Directiva estableciendo la propiedad `Policy` del atributo `[Authorize]`:
+En el ejemplo anterior, la Directiva "Over18" solo se ejecuta con la identidad creada por el controlador de "portador". Use la Directiva estableciendo la `[Authorize]` propiedad del `Policy` atributo:
 
 ```csharp
 [Authorize(Policy = "Over18")]
@@ -94,7 +100,7 @@ public class RegistrationController : Controller
 
 Es posible que algunas aplicaciones necesiten admitir varios tipos de autenticación. Por ejemplo, es posible que la aplicación autentique a los usuarios de Azure Active Directory y de una base de datos de usuarios. Otro ejemplo es una aplicación que autentica a los usuarios de Servicios de federación de Active Directory (AD FS) y Azure Active Directory B2C. En este caso, la aplicación debe aceptar un token de portador JWT de varios emisores.
 
-Agregue todos los esquemas de autenticación que desea aceptar. Por ejemplo, el siguiente código de `Startup.ConfigureServices` agrega dos esquemas de autenticación de portador JWT con distintos emisores:
+Agregue todos los esquemas de autenticación que desea aceptar. Por ejemplo, el código siguiente en `Startup.ConfigureServices` agrega dos esquemas de autenticación de portador JWT con distintos emisores:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -116,7 +122,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!NOTE]
-> Solo se registra una autenticación de portador de JWT con el esquema de autenticación predeterminado `JwtBearerDefaults.AuthenticationScheme`. La autenticación adicional tiene que registrarse con un esquema de autenticación único.
+> Solo se registra una autenticación de portador de JWT con el esquema `JwtBearerDefaults.AuthenticationScheme`de autenticación predeterminado. La autenticación adicional tiene que registrarse con un esquema de autenticación único.
 
 El siguiente paso consiste en actualizar la Directiva de autorización predeterminada para aceptar ambos esquemas de autenticación. Por ejemplo:
 
@@ -137,6 +143,6 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Como la Directiva de autorización predeterminada se invalida, es posible usar el atributo `[Authorize]` en los controladores. Después, el controlador acepta las solicitudes con JWT emitidos por el primer o el segundo emisor.
+Como la Directiva de autorización predeterminada se invalida, es posible usar el `[Authorize]` atributo en los controladores. Después, el controlador acepta las solicitudes con JWT emitidos por el primer o el segundo emisor.
 
 ::: moniker-end

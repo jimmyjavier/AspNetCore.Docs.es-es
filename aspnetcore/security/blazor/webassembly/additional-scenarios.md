@@ -5,17 +5,20 @@ description: Aprenda a configurar Blazor webassembly para escenarios de segurida
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: 093498c3e0d42430c66c66a0998bcc44f62d1e0d
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: e69b598431027aa540227b87dedfd091057a1af4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206156"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768174"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core más escenarios de seguridad adicionales de webassembly
 
@@ -25,45 +28,6 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-## <a name="request-additional-access-tokens"></a>Solicitar tokens de acceso adicionales
-
-La mayoría de las aplicaciones solo requieren un token de acceso para interactuar con los recursos protegidos que usan. En algunos escenarios, una aplicación podría requerir más de un token para interactuar con dos o más recursos.
-
-En el siguiente ejemplo, una aplicación necesita los ámbitos de API de Azure Active Directory adicionales (AAD) Microsoft Graph para leer los datos de usuario y enviar correo. Después de agregar los permisos de Microsoft Graph API en el portal de Azure AAD, los ámbitos adicionales se configuran en`Program.Main`la aplicación cliente (, *Program.CS*):
-
-```csharp
-builder.Services.AddMsalAuthentication(options =>
-{
-    ...
-
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/Mail.Send");
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/User.Read");
-}
-```
-
-El `IAccessTokenProvider.RequestToken` método proporciona una sobrecarga que permite a una aplicación aprovisionar un token de acceso con un conjunto determinado de ámbitos, tal como se muestra en el ejemplo siguiente:
-
-```csharp
-var tokenResult = await AuthenticationService.RequestAccessToken(
-    new AccessTokenRequestOptions
-    {
-        Scopes = new[] { "https://graph.microsoft.com/Mail.Send", 
-            "https://graph.microsoft.com/User.Read" }
-    });
-
-if (tokenResult.TryGetToken(out var token))
-{
-    ...
-}
-```
-
-`TryGetToken`Devuelve
-
-* `true`con para `token` su uso.
-* `false`Si el token no se recupera.
-
 ## <a name="attach-tokens-to-outgoing-requests"></a>Adjuntar tokens a solicitudes salientes
 
 El `AuthorizationMessageHandler` servicio se puede usar con `HttpClient` para adjuntar tokens de acceso a las solicitudes salientes. Los tokens se adquieren `IAccessTokenProvider` con el servicio existente. Si no se puede adquirir un token, `AccessTokenNotAvailableException` se produce una excepción. `AccessTokenNotAvailableException`tiene un `Redirect` método que se puede utilizar para navegar por el usuario al proveedor de identidades para adquirir un nuevo token. Se `AuthorizationMessageHandler` puede configurar con las direcciones URL autorizadas, los ámbitos y la dirección URL de `ConfigureHandler` retorno mediante el método.
@@ -71,7 +35,7 @@ El `AuthorizationMessageHandler` servicio se puede usar con `HttpClient` para ad
 En el ejemplo siguiente, `AuthorizationMessageHandler` configura `HttpClient` en `Program.Main` (*Program.CS*):
 
 ```csharp
-builder.Services.AddSingleton(sp =>
+builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
         .ConfigureHandler(
@@ -166,6 +130,156 @@ protected override async Task OnInitializedAsync()
     forecasts = await WeatherClient.GetWeatherForeacasts();
 }
 ```
+
+## <a name="request-additional-access-tokens"></a>Solicitar tokens de acceso adicionales
+
+Los tokens de acceso se pueden obtener manualmente `IAccessTokenProvider.RequestAccessToken`mediante una llamada a.
+
+En el siguiente ejemplo, una aplicación necesita los ámbitos de API de Azure Active Directory adicionales (AAD) Microsoft Graph para leer los datos de usuario y enviar correo. Después de agregar los permisos de Microsoft Graph API en el portal de Azure AAD, los ámbitos adicionales se configuran en`Program.Main`la aplicación cliente (, *Program.CS*):
+
+```csharp
+builder.Services.AddMsalAuthentication(options =>
+{
+    ...
+
+    options.ProviderOptions.AdditionalScopesToConsent.Add(
+        "https://graph.microsoft.com/Mail.Send");
+    options.ProviderOptions.AdditionalScopesToConsent.Add(
+        "https://graph.microsoft.com/User.Read");
+}
+```
+
+El `IAccessTokenProvider.RequestToken` método proporciona una sobrecarga que permite a una aplicación aprovisionar un token de acceso con un conjunto determinado de ámbitos, tal como se muestra en el ejemplo siguiente:
+
+```csharp
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+
+...
+
+var tokenResult = await TokenProvider.RequestAccessToken(
+    new AccessTokenRequestOptions
+    {
+        Scopes = new[] { "https://graph.microsoft.com/Mail.Send", 
+            "https://graph.microsoft.com/User.Read" }
+    });
+
+if (tokenResult.TryGetToken(out var token))
+{
+    ...
+}
+```
+
+`TryGetToken`Devuelve
+
+* `true`con para `token` su uso.
+* `false`Si el token no se recupera.
+
+## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient y HttpRequestMessage con las opciones de solicitud de Fetch API
+
+Cuando se ejecuta en webassembly en una aplicación de webassembly increíblemente <xref:System.Net.Http.HttpRequestMessage> brillante, [HttpClient](xref:fundamentals/http-requests) y se puede usar para personalizar las solicitudes. Por ejemplo, puede especificar el método HTTP y los encabezados de solicitud. En el ejemplo siguiente se `POST` realiza una solicitud a un punto de conexión de API de lista de tareas pendientes en el servidor y se muestra el cuerpo de la respuesta:
+
+```razor
+@page "/todorequest"
+@using System.Net.Http
+@using System.Net.Http.Headers
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+@inject IAccessTokenProvider TokenProvider
+
+<h1>ToDo Request</h1>
+
+<button @onclick="PostRequest">Submit POST request</button>
+
+<p>Response body returned by the server:</p>
+
+<p>@_responseBody</p>
+
+@code {
+    private string _responseBody;
+
+    private async Task PostRequest()
+    {
+        var requestMessage = new HttpRequestMessage()
+        {
+            Method = new HttpMethod("POST"),
+            RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
+            Content =
+                JsonContent.Create(new TodoItem
+                {
+                    Name = "My New Todo Item",
+                    IsComplete = false
+                })
+        };
+
+        var tokenResult = await TokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out var token))
+        {
+            requestMessage.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token.Value);
+
+            requestMessage.Content.Headers.TryAddWithoutValidation(
+                "x-custom-header", "value");
+
+            var response = await Http.SendAsync(requestMessage);
+            var responseStatusCode = response.StatusCode;
+
+            _responseBody = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    public class TodoItem
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public bool IsComplete { get; set; }
+    }
+}
+```
+
+En la implementación de `HttpClient` de WebAssembly de .NET se usa [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch permite configurar varias [opciones específicas de la solicitud](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
+
+Se pueden configurar opciones de solicitud de captura HTTP con los métodos de extensión `HttpRequestMessage` que se muestran en la siguiente tabla.
+
+| Método de extensión `HttpRequestMessage` | Propiedad de solicitud de captura |
+| ------------------------------------- | ---------------------- |
+| `SetBrowserRequestCredentials`        | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| `SetBrowserRequestCache`              | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| `SetBrowserRequestMode`               | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| `SetBrowserRequestIntegrity`          | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+
+Se pueden establecer más opciones usando el método de extensión `SetBrowserRequestOption`, que es más genérico.
+ 
+Normalmente, la respuesta HTTP se almacena en búfer en una aplicación webassembly increíblemente ligera para habilitar la compatibilidad con las lecturas de sincronización en el contenido de la respuesta. Para habilitar la compatibilidad con la transmisión de respuestas, use el método de extensión `SetBrowserResponseStreamingEnabled` en la solicitud.
+
+Para incluir credenciales en una solicitud entre orígenes, use el método de extensión `SetBrowserRequestCredentials`:
+
+```csharp
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+```
+
+Para obtener más información sobre las opciones de Fetch API, vea [Documentación web de MDN: WindowOrWorkerGlobalScope.fetch(): parámetros](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+
+Al enviar credenciales (cookies de autorización o encabezados) en solicitudes de CORS, la directiva de CORS debe permitir el encabezado `Authorization`.
+
+En la directiva siguiente se incluye la configuración de:
+
+* Orígenes de la solicitud (`http://localhost:5000`, `https://localhost:5001`).
+* Cualquier método (verbo).
+* Los encabezados `Content-Type` y `Authorization`. Para permitir un encabezado personalizado (por ejemplo, `x-custom-header`), enumere el encabezado al llamar a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>.
+* Las credenciales establecidas por el código JavaScript del lado cliente (la propiedad `credentials` establecida en `include`).
+
+```csharp
+app.UseCors(policy => 
+    policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+    .AllowCredentials());
+```
+
+Para obtener más información, vea <xref:security/cors> y el componente del evaluador de solicitudes HTTP de la aplicación de ejemplo (*Components/HTTPRequestTester.razor*).
 
 ## <a name="handle-token-request-errors"></a>Controlar errores de solicitudes de token
 
@@ -309,7 +423,7 @@ Durante una operación de autenticación, hay casos en los que desea guardar el 
 
 De forma predeterminada, `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la biblioteca utiliza las rutas que se muestran en la tabla siguiente para representar diferentes Estados de autenticación.
 
-| Enrutar                            | Propósito |
+| Ruta                            | Propósito |
 | -------------------------------- | ------- |
 | `authentication/login`           | Desencadena una operación de inicio de sesión. |
 | `authentication/login-callback`  | Controla el resultado de cualquier operación de inicio de sesión. |
@@ -389,7 +503,7 @@ Puede descomponer la interfaz de usuario en diferentes páginas si decide hacerl
 
 `RemoteAuthenticatorView` Tiene un fragmento que se puede utilizar por cada ruta de autenticación que se muestra en la tabla siguiente.
 
-| Enrutar                            | Fragmento                |
+| Ruta                            | Fragmento                |
 | -------------------------------- | ----------------------- |
 | `authentication/login`           | `<LoggingIn>`           |
 | `authentication/login-callback`  | `<CompletingLoggingIn>` |
@@ -483,7 +597,7 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddSingleton(new HttpClient 
+        builder.Services.AddTransient(new HttpClient 
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
         });
@@ -575,11 +689,11 @@ Autentique al usuario con un flujo de OAuth del lado cliente en el proveedor de 
 
 Configure Identity con un proveedor de inicio de sesión de terceros. Obtenga los tokens necesarios para el acceso de API de terceros y almacénelos.
 
-Cuando un usuario inicia sesión, Identity recopila los tokens de acceso y actualización como parte del proceso de autenticación. En ese momento, hay un par de enfoques disponibles para realizar llamadas API a las API de terceros.
+Cuando un usuario inicia sesión, Identity recopila tokens de acceso y actualización como parte del proceso de autenticación. En ese momento, hay un par de enfoques disponibles para realizar llamadas API a las API de terceros.
 
 #### <a name="use-a-server-access-token-to-retrieve-the-third-party-access-token"></a>Uso de un token de acceso de servidor para recuperar el token de acceso de terceros
 
-Use el token de acceso generado en el servidor para recuperar el token de acceso de terceros de un punto de conexión de la API de servidor. A partir de ahí, utilice el token de acceso de terceros para llamar directamente a los recursos de la API de terceros desde Identity en el cliente.
+Use el token de acceso generado en el servidor para recuperar el token de acceso de terceros de un punto de conexión de la API de servidor. Desde allí, use el token de acceso de terceros para llamar a recursos de API de terceros directamente Identity desde en el cliente.
 
 Este enfoque no se recomienda. Este enfoque requiere tratar el token de acceso de terceros como si se hubiera generado para un cliente público. En términos de OAuth, la aplicación pública no tiene un secreto de cliente porque no es de confianza para almacenar secretos de forma segura y el token de acceso se genera para un cliente confidencial. Un cliente confidencial es un cliente que tiene un secreto de cliente y se supone que puede almacenar secretos de forma segura.
 
