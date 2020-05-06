@@ -5,17 +5,20 @@ description: Descubra cómo hospedar e implementar aplicaciones de Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/11/2020
+ms.date: 04/30/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: ddf70da29a82d462422c1bdf74ff45b92bb10b56
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 9d57b81cd813d02a65b6d3a39c7f1a1aa8a069c7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79434270"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775172"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedaje e implementación de ASP.NET Core Blazor
 
@@ -23,7 +26,7 @@ Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.tim
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-## <a name="publish-the-app"></a>Publicación de la aplicación
+## <a name="publish-the-app"></a>Publicar la aplicación
 
 Las aplicaciones se publican para implementación en la configuración de versión.
 
@@ -32,6 +35,11 @@ Las aplicaciones se publican para implementación en la configuración de versi�
 1. Seleccione **Compilar** > **Publicar {aplicación}** en la barra de navegación.
 1. Seleccione el *destino de publicación*. Para publicar localmente, seleccione **Carpeta**.
 1. Acepte la ubicación predeterminada del campo **Elegir una carpeta** o especifique una ubicación diferente. Seleccione el botón **Publicar**.
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+1. Seleccione **Compilar** > **Publicar en carpeta**.
+1. Confirme la carpeta para recibir los recursos publicados y seleccione **Publicar**.
 
 # <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli)
 
@@ -67,7 +75,7 @@ La *ruta de acceso base de la aplicación* es la de la dirección URL raíz de l
 
 Sin especificar una configuración adicional para `CoolApp`, la subaplicación de este escenario desconoce dónde reside en el servidor. Por ejemplo, la aplicación no puede construir URL relativas correctas para sus recursos sin saber que reside en la ruta de acceso URL relativa `/CoolApp/`.
 
-Para proporcionar la configuración de la ruta de acceso base de la aplicación de Blazor de `https://www.contoso.com/CoolApp/`, el atributo `<base>` de la etiqueta `href` se establece en la ruta de acceso raíz relativa del archivo *Pages/_Host.cshtml* (servidor de Blazor) o el archivo *wwwroot/index.html* (WebAssembly de Blazor):
+Para proporcionar la configuración de la ruta de acceso base de la aplicación de Blazor de `https://www.contoso.com/CoolApp/`, el atributo `href` de la etiqueta `<base>` se establece en la ruta de acceso raíz relativa del archivo *Pages/_Host.cshtml* (servidor de Blazor) o el archivo *wwwroot/index.html* (WebAssembly de Blazor):
 
 ```html
 <base href="/CoolApp/">

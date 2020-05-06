@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 464d19bd63e1f0f06bd7d218e7644afde04a5672
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 796d7da76da6723ea996b57510da9c45ab21b3e7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644153"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775926"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedaje e implementación de ASP.NET Core
 
@@ -34,7 +40,7 @@ La carpeta *publish* contiene uno o varios archivos de ensamblado de aplicacione
 
 Se puede publicar una aplicación .NET Core como *implementación independiente* o *implementación dependiente del marco*. Si la aplicación es independiente, los archivos de ensamblado que contienen el entorno de ejecución .NET se incluyen en la carpeta *publish*. Si la aplicación es dependiente del marco, los archivos del tiempo de ejecución .NET no se incluyen porque la aplicación tiene una referencia a una versión de .NET que está instalada en el servidor. El modelo de implementación predeterminado es dependiente del marco. Para más información, vea [Implementación de aplicaciones .NET Core](/dotnet/core/deploying/).
 
-Además de los archivos *.exe* y *.dll*, la carpeta *publish* de una aplicación ASP.NET Core suele contener archivos de configuración, recursos estáticos y vistas de MVC. Para obtener más información, consulta <xref:host-and-deploy/directory-structure>.
+Además de los archivos *.exe* y *.dll*, la carpeta *publish* de una aplicación ASP.NET Core suele contener archivos de configuración, recursos estáticos y vistas de MVC. Para obtener más información, vea <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurar un administrador de procesos
 
@@ -81,11 +87,11 @@ Para obtener más información sobre la configuración del hospedaje de aplicaci
 
 ## <a name="host-on-docker"></a>Host en Docker
 
-Para obtener más información, consulta <xref:host-and-deploy/docker/index>.
+Para obtener más información, vea <xref:host-and-deploy/docker/index>.
 
 ## <a name="perform-health-checks"></a>Realización de comprobaciones de estado
 
-Use middleware de comprobación de estado para realizar comprobaciones de estado en una aplicación y sus dependencias. Para obtener más información, consulta <xref:host-and-deploy/health-checks>.
+Use middleware de comprobación de estado para realizar comprobaciones de estado en una aplicación y sus dependencias. Para obtener más información, vea <xref:host-and-deploy/health-checks>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
@@ -112,7 +118,7 @@ La carpeta *publish* contiene uno o varios archivos de ensamblado de aplicacione
 
 Se puede publicar una aplicación .NET Core como *implementación independiente* o *implementación dependiente del marco*. Si la aplicación es independiente, los archivos de ensamblado que contienen el entorno de ejecución .NET se incluyen en la carpeta *publish*. Si la aplicación es dependiente del marco, los archivos del tiempo de ejecución .NET no se incluyen porque la aplicación tiene una referencia a una versión de .NET que está instalada en el servidor. El modelo de implementación predeterminado es dependiente del marco. Para más información, vea [Implementación de aplicaciones .NET Core](/dotnet/core/deploying/).
 
-Además de los archivos *.exe* y *.dll*, la carpeta *publish* de una aplicación ASP.NET Core suele contener archivos de configuración, recursos estáticos y vistas de MVC. Para obtener más información, consulta <xref:host-and-deploy/directory-structure>.
+Además de los archivos *.exe* y *.dll*, la carpeta *publish* de una aplicación ASP.NET Core suele contener archivos de configuración, recursos estáticos y vistas de MVC. Para obtener más información, vea <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurar un administrador de procesos
 
@@ -159,7 +165,7 @@ Para obtener más información sobre la configuración del hospedaje de aplicaci
 
 ## <a name="host-on-docker"></a>Host en Docker
 
-Para obtener más información, consulta <xref:host-and-deploy/docker/index>.
+Para obtener más información, vea <xref:host-and-deploy/docker/index>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

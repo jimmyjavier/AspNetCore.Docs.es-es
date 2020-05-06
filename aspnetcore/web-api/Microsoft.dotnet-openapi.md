@@ -5,13 +5,19 @@ description: Muestra cómo usar la herramienta "Microsoft.dotnet-openapi" para a
 ms.author: rybrande
 ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 079e36511b63c186ffa7726bdb1e3c3bcbda9d34
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1924fb8ee5ac1ba8dc31d2175a336c8333c81fb2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651251"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775718"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Desarrollo de aplicaciones ASP.NET Core con herramientas de OpenAPI
 
@@ -29,7 +35,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## <a name="add"></a>Sumar
 
-Al agregar una referencia de OpenAPI mediante cualquiera de los comandos de esta página, se agrega un elemento `<OpenApiReference />` similar al siguiente al archivo *.csproj*:
+Al agregar una referencia OpenAPI mediante cualquiera de los comandos de esta página, `<OpenApiReference />` se agrega un elemento similar al siguiente al archivo *. csproj* :
 
 ```xml
 <OpenApiReference Include="openapi.json" />

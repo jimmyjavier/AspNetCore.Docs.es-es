@@ -1,20 +1,24 @@
 ---
-title: ASP.NET Core SignalR el hospedaje y el escalado de producción
+title: Hospedaje SignalR y escalado de producción ASP.net Core
 author: bradygaster
-description: Aprenda a evitar problemas de rendimiento y escalado en las aplicaciones que usan ASP.NET Core SignalR.
+description: Obtenga información sobre cómo evitar problemas de rendimiento y escalado en aplicaciones SignalRque usan ASP.net Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: 260e2f0c16288fec2e0a694d070f357529782d8d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 23ac2b1c80b9d73d6e9ac57f0ef774ac2ea54be4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655163"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775081"
 ---
 # <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hospedaje y escalado de ASP.NET Core Signalr
 
@@ -32,7 +36,7 @@ Signalr requiere que todas las solicitudes HTTP para una conexión específica s
 
 En todas las demás circunstancias (incluso cuando se usa el backplane de Redis), el entorno de servidor debe configurarse para sesiones permanentes.
 
-Para obtener instrucciones sobre la configuración de Azure App Service para Signalr, consulte <xref:signalr/publish-to-azure-web-app>.
+Para obtener instrucciones sobre la configuración de Azure App Service para Signalr, vea <xref:signalr/publish-to-azure-web-app>.
 
 ## <a name="tcp-connection-resources"></a>Recursos de conexión TCP
 
@@ -94,12 +98,12 @@ Las ventajas del servicio Azure Signalr que se han indicado anteriormente son in
   * Todos los clientes están configurados para usar **solo** WebSockets.
   * La [opción SkipNegotiation](xref:signalr/configuration#configure-additional-options) está habilitada en la configuración del cliente. 
    Una vez que se inicia una conexión en un servidor, la conexión tiene que permanecer en ese servidor.
-* Una aplicación SignalR debe escalarse horizontalmente en función del número de clientes, incluso si se envían pocos mensajes.
-* Una aplicación SignalR usa significativamente más recursos de conexión que una aplicación web sin SignalR.
+* Una SignalR aplicación debe escalarse horizontalmente en función del número de clientes aunque se envíen pocos mensajes.
+* Una SignalR aplicación usa significativamente más recursos de conexión que una aplicación Web SignalRsin.
 
 ## <a name="iis-limitations-on-windows-client-os"></a>Limitaciones de IIS en el sistema operativo de cliente Windows
 
-Windows 10 y Windows 8. x son sistemas operativos cliente. IIS en los sistemas operativos cliente tiene un límite de 10 conexiones simultáneas. las conexiones de SignalRson:
+Windows 10 y Windows 8. x son sistemas operativos cliente. IIS en los sistemas operativos cliente tiene un límite de 10 conexiones simultáneas. SignalRlas conexiones de son:
 
 * Transitorios y reestablecidos con frecuencia.
 * **No** se elimina inmediatamente cuando ya no se usa.
@@ -111,7 +115,7 @@ Las condiciones anteriores hacen que sea probable que alcance el límite de 10 c
 
 ## <a name="linux-with-nginx"></a>Linux con Nginx
 
-Establezca los encabezados `Connection` y `Upgrade` del proxy en lo siguiente para SignalR WebSockets:
+Establezca los encabezados y `Connection` `Upgrade` del proxy en lo siguiente para SignalR WebSockets:
 
 ```nginx
 proxy_set_header Upgrade $http_upgrade;
@@ -120,7 +124,7 @@ proxy_set_header Connection $connection_upgrade;
 
 Para obtener más información, vea [NGINX como proxy de WebSocket](https://www.nginx.com/blog/websocket-nginx/).
 
-## <a name="third-party-opno-locsignalr-backplane-providers"></a>Proveedores de backplane de SignalR de terceros
+## <a name="third-party-signalr-backplane-providers"></a>Proveedores de backplane SignalR de terceros
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
@@ -129,5 +133,5 @@ Para obtener más información, vea [NGINX como proxy de WebSocket](https://www.
 
 Para obtener más información, consulte los siguientes recursos:
 
-* [Documentación del servicio Azure SignalR](/azure/azure-signalr/signalr-overview)
+* [Documentación SignalR del servicio de Azure](/azure/azure-signalr/signalr-overview)
 * [Configuración de un backplane de Redis](xref:signalr/redis-backplane)

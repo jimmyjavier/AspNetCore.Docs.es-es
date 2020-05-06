@@ -4,13 +4,19 @@ author: ardalis
 description: ''
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 715a73863513870d1cbd522e75013d41830da1e7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653351"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774202"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Control de solicitudes con controladores en ASP.NET Core MVC
 
@@ -61,11 +67,11 @@ No se incluye ningún encabezado de respuesta HTTP `Content-Type`, ya que el cue
 
 Hay dos tipos de resultados en esta categoría: redireccionamiento y código de estado HTTP.
 
-* **Código de estado HTTP**
+* **Código de Estado HTTP**
 
     Este tipo devuelve un código de estado HTTP. `BadRequest`, `NotFound` y `Ok` son ejemplos de métodos del asistente de este tipo. Por ejemplo, `return BadRequest();` genera un código de estado 400 cuando se ejecuta. Cuando métodos como `BadRequest`, `NotFound` y `Ok` están sobrecargados, ya no se consideran respondedores de código de estado HTTP, dado que se lleva a cabo una negociación de contenido.
 
-* **Redireccionamiento**
+* **Redirigir**
 
     Este tipo devuelve un redireccionamiento a una acción o destino (mediante `Redirect`, `LocalRedirect`, `RedirectToAction` o `RedirectToRoute`). Por ejemplo, `return RedirectToAction("Complete", new {id = 123});` pasa un objeto anónimo y redirige a `Complete`.
 
@@ -77,7 +83,7 @@ La mayoría de los métodos del asistente de esta categoría incluye una propied
 
 Hay dos tipos de resultados en esta categoría: [vista](xref:mvc/views/overview) y [respuesta con formato](xref:web-api/advanced/formatting).
 
-* **Vista**
+* **Ver**
 
     Este tipo devuelve una vista que usa un modelo para representar HTML. Por ejemplo, `return View(customer);` pasa un modelo a la vista para el enlace de datos.
 

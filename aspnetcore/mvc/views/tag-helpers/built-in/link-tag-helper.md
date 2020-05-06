@@ -5,13 +5,19 @@ ms.author: riande
 description: Descubra los atributos del asistente de etiquetas de vínculo de ASP.NET Core y el papel que desempeña cada atributo al ampliar el comportamiento de la etiqueta de vínculo de código HTML.
 ms.custom: mvc
 ms.date: 09/24/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: d7514433bee8a138cd7d75bfd15c9798d4fd31a3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1efd7c1a63baea4312a4a01cd9cd9c7582375d97
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653303"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777359"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Asistente de etiquetas de vínculo en ASP.NET Core
 
@@ -23,7 +29,7 @@ El [asistente de etiquetas de vínculo](xref:Microsoft.AspNetCore.Mvc.TagHelpers
 
 El asistente de etiquetas de vínculo permite especificar una red CDN para el archivo CSS y una reserva cuando dicha red no está disponible. El asistente de etiquetas de vínculo proporciona la ventaja de rendimiento de una red CDN con la solidez del hospedaje local.
 
-El siguiente marcado de Razor muestra el elemento `head` de un archivo de diseño creado con la plantilla de aplicación web ASP.NET Core:
+En el Razor marcado siguiente se `head` muestra el elemento de un archivo de diseño creado con la plantilla de aplicación Web de ASP.net Core:
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
@@ -47,15 +53,15 @@ La dirección URL de una hoja de estilos CSS en la que se va a realizar la reser
 
 ### <a name="asp-fallback-test-class"></a>asp-fallback-test-class
 
-El nombre de clase definido en la hoja de estilos que se va a usar para la prueba de reserva. Para más información, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass>.
+El nombre de clase definido en la hoja de estilos que se va a usar para la prueba de reserva. Para obtener más información, vea <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass>.
 
 ### <a name="asp-fallback-test-property"></a>asp-fallback-test-property
 
-El nombre de la propiedad de CSS que se va a usar para la prueba de reserva. Para más información, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty>.
+El nombre de la propiedad de CSS que se va a usar para la prueba de reserva. Para obtener más información, vea <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty>.
 
 ### <a name="asp-fallback-test-value"></a>asp-fallback-test-value
 
-El valor de la propiedad de CSS que se va a usar para la prueba de reserva. Para más información, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
+El valor de la propiedad de CSS que se va a usar para la prueba de reserva. Para obtener más información, vea <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
