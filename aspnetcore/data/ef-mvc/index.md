@@ -4,19 +4,25 @@ author: rick-anderson
 description: ''
 ms.author: riande
 ms.date: 03/27/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/index
-ms.openlocfilehash: 9ff070022260aae597d71b2da8d342f41f0c976b
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 8e32f8261ebd33af035990e68031e3bf2719761d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644135"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773567"
 ---
 # <a name="aspnet-core-mvc-with-ef-core---tutorial-series"></a>ASP.NET Core MVC con EF Core: serie de tutoriales
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Este tutorial **no** se ha actualizado para ASP.NET Core 3.0. La versión de [Razor Pages](xref:data/ef-rp/intro) se ha actualizado. Para información sobre cuándo podría actualizarse, consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
+Este tutorial **no** se ha actualizado para ASP.NET Core 3.0. La [versión de Razor Pages](xref:data/ef-rp/intro) se ha actualizado. Para información sobre cuándo podría actualizarse, consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 ::: moniker-end
 

@@ -5,13 +5,19 @@ description: Obtenga más información sobre la autenticación en ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
-ms.openlocfilehash: 404904ecfa30d1fe7e47f0daaa423ddd6f1b06e8
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 4e47bd91ce15836035d3e8f0a8ceed264f308b22
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79434335"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768642"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Información general sobre la autenticación de ASP.NET Core
 
@@ -37,11 +43,11 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
 ```
 
-El parámetro `AddAuthentication` de `JwtBearerDefaults.AuthenticationScheme` es el nombre del esquema que se usará de forma predeterminada si no se solicita un esquema específico.
+El parámetro `JwtBearerDefaults.AuthenticationScheme` de `AddAuthentication` es el nombre del esquema que se usará de forma predeterminada si no se solicita un esquema específico.
 
 Si se usan varios esquemas, las directivas de autorización (o los atributos de autorización) pueden [especificar el esquema (o esquemas) de autenticación](xref:security/authorization/limitingidentitybyscheme) del que dependen para autenticar al usuario. En el ejemplo anterior, se podría especificar el nombre del esquema de autenticación de cookies (`CookieAuthenticationDefaults.AuthenticationScheme` de forma predeterminada, aunque se podría proporcionar otro nombre al llamar a `AddCookie`).
 
-En algunos casos, la llamada a `AddAuthentication` se realiza automáticamente mediante otros métodos de extensión. Por ejemplo, al usar [ASP.NET Core Identity](xref:security/authentication/identity), se llama a `AddAuthentication` internamente.
+En algunos casos, la llamada a `AddAuthentication` se realiza automáticamente mediante otros métodos de extensión. Por ejemplo, al usar [ASP.NET Core Identity](xref:security/authentication/identity), se llama a `AddAuthentication` internamente.
 
 Para agregar el middleware de autenticación en `Startup.Configure`, se llama al método de extensión <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> en el elemento `IApplicationBuilder` de la aplicación. La llamada a `UseAuthentication` registra el middleware que usa los esquemas de autenticación previamente registrados. Llame a `UseAuthentication` antes de registrar cualquier middleware que dependa de que los usuarios se autentiquen. Al usar el enrutamiento de punto de conexión, la llamada a `UseAuthentication` debe ir:
 

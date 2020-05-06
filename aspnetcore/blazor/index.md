@@ -8,16 +8,19 @@ ms.custom: mvc, seoapril2019
 ms.date: 03/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 6d2e95cd2ec92f97a97cb558fb39e4540450c766
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: ced3e2cc0428fccf6f0b2eba7a3f045e07002234
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405954"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771955"
 ---
-# <a name="introduction-to-aspnet-core-opno-locblazor"></a>Introducción a ASP.NET Core Blazor
+# <a name="introduction-to-aspnet-core-blazor"></a>Introducción a ASP.NET Core Blazor
 
 Por [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
 
@@ -48,11 +51,11 @@ Los componentes son clases de .NET compiladas en ensamblados de .NET que:
 * Definen la lógica de representación de la interfaz de usuario flexible.
 * Controlan acciones del usuario.
 * Se pueden anidar y reutilizar.
-* Se pueden compartir y distribuir como [bibliotecas de clases de Razor](xref:razor-pages/ui-class) o [paquetes de NuGet](/nuget/what-is-nuget).
+* Se pueden compartir y distribuir como [bibliotecas de clases de Razor](xref:razor-pages/ui-class) o [paquetes NuGet](/nuget/what-is-nuget).
 
-La clase del componente se escribe normalmente en forma de una página de marcado de [Razor](xref:mvc/views/razor) con una extensión de archivo *.razor*. Se hace referencia a los componentes de Blazor como *componentes de Razor*. Razor es una sintaxis para combinar marcado HTML con código de C# diseñada para aumentar la productividad del desarrollador. Razor le permite cambiar entre marcado HTML y C# en el mismo archivo gracias a la compatibilidad con [IntelliSense](/visualstudio/ide/using-intellisense). Razor Pages y MVC también usan Razor. A diferencia de Razor Pages y MVC, que se compilan en torno a un modelo de solicitud y respuesta, los componentes se usan específicamente en la composición y la lógica de la interfaz de usuario del lado cliente.
+La clase del componente normalmente se escribe en forma de página de marcado de [Razor](xref:mvc/views/razor) con la extensión de nombre de archivo *.razor*. Formalmente se hace referencia a los componentes de Blazor como *componentes de Razor* . Razor es una sintaxis para combinar marcado HTML con código de C# diseñada para aumentar la productividad del desarrollador. Razor le permite cambiar entre marcado HTML y C# en el mismo archivo gracias a la compatibilidad con [IntelliSense](/visualstudio/ide/using-intellisense). Razor Pages y MVC también usan Razor. A diferencia de Razor Pages y MVC, que se compilan en torno a un modelo de solicitud y respuesta, los componentes se usan específicamente en la composición y la lógica de la interfaz de usuario del lado cliente.
 
-El siguiente marcado de Razor muestra un componente (*Dialog.razor*), que se puede anidar dentro de otro componente:
+El siguiente marcado de Razor muestra un componente (*Dialog.razor*), que se puede anidar dentro de otro:
 
 ```razor
 <div>
@@ -105,7 +108,7 @@ Cuando este componente se usa en la aplicación, IntelliSense en [Visual Studio]
 
 Los componentes se representan en una representación en memoria de la especificación Document Object Model (DOM) del explorador llamada *árbol de representación*, que se usa para actualizar la interfaz de usuario de una manera eficaz y flexible.
 
-## <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+## <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -119,7 +122,7 @@ WebAssembly de ![Blazor ejecuta código de .NET en el explorador con WebAssembly
 
 Cuando se compila y ejecuta una aplicación de Blazor WebAssembly en un explorador:
 
-* Los archivos de código de C# y los archivos de Razor se compilan en ensamblados de .NET.
+* Los archivos de código C# y los archivos de Razor se compilan en ensamblados de .NET.
 * Los ensamblados y el entorno de ejecución de .NET se descargan en el explorador.
 * Blazor WebAssembly arranca el entorno de ejecución de .NET y lo configura para cargar los ensamblados de la aplicación. El entorno de ejecución de Blazor WebAssembly emplea la interoperabilidad de JavaScript para gestionar la manipulación de DOM y las llamadas API del explorador.
 
@@ -129,9 +132,9 @@ El tamaño de la aplicación publicada, su *tamaño de carga*, es un factor de r
 * Las respuestas HTTP se comprimen.
 * El entorno de ejecución .NET y los ensamblados se almacenan en caché en el explorador.
 
-## <a name="opno-locblazor-server"></a>Servidor de Blazor
+## <a name="blazor-server"></a>Servidor de Blazor
 
-Blazor separa la lógica de representación de componentes del modo en el que se aplican las actualizaciones de la interfaz de usuario. El servidor de Blazor admite el hospedaje de componentes de Razor en el servidor en una aplicación de ASP.NET Core. Las actualizaciones de la interfaz de usuario se controlan mediante una conexión de [SignalR](xref:signalr/introduction).
+Blazor separa la lógica de representación de componentes del modo en el que se aplican las actualizaciones de la interfaz de usuario. Blazor Server admite el hospedaje de componentes de Razor en el servidor de una aplicación de ASP.NET Core. Las actualizaciones de la interfaz de usuario se controlan mediante una conexión de [SignalR](xref:signalr/introduction).
 
 El entorno de ejecución controla el envío de eventos de la interfaz de usuario del explorador al servidor y, después de ejecutar los componentes, vuelve a aplicar al explorador las actualizaciones de la interfaz de usuario enviadas por el servidor.
 

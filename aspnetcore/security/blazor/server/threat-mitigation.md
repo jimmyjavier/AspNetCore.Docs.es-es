@@ -5,7 +5,7 @@ description: Obtenga información acerca de cómo mitigar las Blazor amenazas de
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/05/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/threat-mitigation
-ms.openlocfilehash: 2c87e6cef5a16b394b03dac1635f18d09593eb94
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
+ms.openlocfilehash: f43a46f53dc50cde43c88460b8bd3d6fb7a7076f
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774189"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850505"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Guía de mitigación de amenazas para ASP.NET Core servidor increíblemente
 
@@ -97,7 +97,7 @@ De forma predeterminada, no hay ningún límite en cuanto al número de conexion
 
 Los ataques por denegación de servicio (DoS) implican a un cliente que hace que el servidor agote uno o más de sus recursos, lo que hace que la aplicación no esté disponible. Las aplicaciones de servidor increíbles incluyen algunos límites predeterminados y se basan en otros límites de ASP.NET Core y Signalr para protegerse frente a ataques de DoS:
 
-| Límite de aplicación de servidor de extraordinarias                            | Descripción | Default |
+| Límite de aplicación de servidor de extraordinarias                            | Descripción | Valor predeterminado |
 | ------------------------------------------------------- | ----------- | ------- |
 | `CircuitOptions.DisconnectedCircuitMaxRetained`         | Número máximo de circuitos desconectados que un servidor determinado contiene en la memoria a la vez. | 100 |
 | `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Cantidad máxima de tiempo que un circuito desconectado se mantiene en la memoria antes de que se detenga. | 3 minutos |
@@ -105,7 +105,7 @@ Los ataques por denegación de servicio (DoS) implican a un cliente que hace que
 | `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches` | Número máximo de lotes de representación no confirmados el servidor mantiene en memoria por circuito en un momento dado para admitir una reconexión sólida. Después de alcanzar el límite, el servidor deja de generar nuevos lotes de representación hasta que el cliente ha confirmado uno o varios lotes. | 10 |
 
 
-| Límite de signalr y ASP.NET Core             | Descripción | Default |
+| Límite de signalr y ASP.NET Core             | Descripción | Valor predeterminado |
 | ------------------------------------------ | ----------- | ------- |
 | `CircuitOptions.MaximumReceiveMessageSize` | Tamaño del mensaje para un mensaje individual. | 32 KB |
 
@@ -147,7 +147,7 @@ No confíe en llamadas de JavaScript a métodos de .NET. Cuando un método .NET 
   * Evite pasar datos proporcionados por el usuario en parámetros a llamadas de JavaScript. Si pasar datos en parámetros es absolutamente necesario, asegúrese de que el código de JavaScript controla el paso de los datos sin introducir vulnerabilidades de [scripting entre sitios (XSS)](#cross-site-scripting-xss) . Por ejemplo, no escriba los datos proporcionados por el usuario en el Document Object Model (DOM) `innerHTML` estableciendo la propiedad de un elemento. Considere la posibilidad de usar la Directiva de seguridad de `eval` [contenido (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para deshabilitar y otras primitivas de JavaScript no seguras.
 * Evite implementar la distribución personalizada de las invocaciones de .NET sobre la implementación de distribución del marco. Exponer métodos .NET en el explorador es un escenario avanzado, no recomendado para el desarrollo Blazor general.
 
-### <a name="events"></a>Events
+### <a name="events"></a>Eventos
 
 Los eventos proporcionan un punto de entrada Blazor a una aplicación de servidor. Las mismas reglas para proteger los puntos de conexión de las aplicaciones web se aplican Blazor al control de eventos en las aplicaciones de servidor. Un cliente malintencionado puede enviar cualquier dato que desee enviar como carga para un evento.
 
@@ -281,7 +281,7 @@ Las instrucciones para proteger ASP.NET Core aplicaciones se aplican Blazor a la
 
 * [Registro y datos confidenciales](#logging-and-sensitive-data)
 * [Protección de la información en tránsito con HTTPS](#protect-information-in-transit-with-https)
-* [Scripting entre sitios (XSS)](#cross-site-scripting-xss))
+* [Scripting entre sitios (XSS)](#cross-site-scripting-xss)
 * [Protección entre orígenes](#cross-origin-protection)
 * [Hacer clic en el conector](#click-jacking)
 * [Redirecciones abiertas](#open-redirects)

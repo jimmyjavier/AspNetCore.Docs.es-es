@@ -5,13 +5,19 @@ description: Obtenga información sobre los conceptos básicos de autenticación
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/index
-ms.openlocfilehash: 0f8e96fb7d5246e746b95f8907745f849de60e24
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: b507832e34ac850d2bd4e80bab3066e73ea2ad95
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644033"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776518"
 ---
 # <a name="overview-of-aspnet-core-security"></a>Introducción a la seguridad de ASP.NET Core
 
@@ -19,7 +25,7 @@ ASP.NET Core permite a los desarrolladores configurar y administrar con facilida
 
 ## <a name="aspnet-core-security-features"></a>Características de seguridad de ASP.NET Core
 
-ASP.NET Core proporciona muchas herramientas y bibliotecas para proteger las aplicaciones (por ejemplo, proveedores de identidades integrados), pero puede usar servicios de identidad de terceros como Facebook, Twitter y LinkedIn. Con ASP.NET Core, puede administrar con facilidad los secretos de aplicación, que son una forma de almacenar y usar información confidencial sin tener que exponerla en el código.
+ASP.NET Core proporciona muchas herramientas y bibliotecas para proteger las aplicaciones (por ejemplo, proveedores integrados de Identity), pero puede usar servicios de identidades de terceros como Facebook, Twitter y LinkedIn. Con ASP.NET Core, puede administrar con facilidad los secretos de aplicación, que son una forma de almacenar y usar información confidencial sin tener que exponerla en el código.
 
 ## <a name="authentication-vs-authorization"></a>Autenticación frente a Autorización
 
@@ -36,4 +42,4 @@ ASP.NET Core y EF contienen características que ayudan a proteger las aplicacio
 * [Falsificación de solicitudes entre sitios. (CSRF)](xref:security/anti-request-forgery)
 * [Ataques de redireccionamiento abierto](xref:security/preventing-open-redirects)
 
-Hay más vulnerabilidades que debe tener en cuenta. Para obtener más información, consulte otros artículos de la sección **Seguridad e identidad** de la tabla de contenido.
+Hay más vulnerabilidades que debe tener en cuenta. Para obtener más información, consulte otros artículos de la sección **Seguridad e Identity** de la tabla de contenido.

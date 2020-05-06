@@ -5,13 +5,19 @@ description: Tutorial breve que crea y ejecuta una aplicación Hola mundo básic
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: getting-started
-ms.openlocfilehash: 86a0c8d017138a949fddc0356f3de548d368a4c0
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 565cde233d6fc5f085ae1709e167e73980d5c3c2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417612"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776238"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introducción a ASP.NET Core
 
@@ -93,7 +99,7 @@ dotnet watch run
 
 Después de que el shell de comandos indique que se ha iniciado la aplicación, vaya a `https://localhost:5001`.
 
-## <a name="edit-a-razor-page"></a>Editar una página de Razor
+## <a name="edit-a-razor-page"></a>Edición de una página de Razor Pages
 
 Abra *Pages/Index.cshtml* y modifique y guarde la página con el siguiente marcado resaltado:
 
