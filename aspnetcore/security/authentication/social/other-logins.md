@@ -5,13 +5,19 @@ description: Detectar proveedores de autenticación OAuth externos que funcionan
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/otherlogins
-ms.openlocfilehash: 2bc9a11d0a46e54b4206f846d187b8c1cc954f89
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c61bbef26017f14df09f8ca6f494d29f79903b6b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654461"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776466"
 ---
 # <a name="external-oauth-authentication-providers"></a>Proveedores de autenticación OAuth externos
 
@@ -23,7 +29,7 @@ La lista siguiente incluye proveedores de autenticación OAuth externos comunes 
 
 * [Instagram](https://www.instagram.com/developer/register/) ([instrucciones](https://www.instagram.com/developer/authentication/))
 
-* [Reddit](https://www.reddit.com/login?dest=https%3A%2F%2F www.reddit.com%2Fprefs%2Fapps) ([instrucciones](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))
+* [Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([instrucciones](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))
 
 * [GitHub](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([instrucciones](https://developer.github.com/v3/oauth/))
 

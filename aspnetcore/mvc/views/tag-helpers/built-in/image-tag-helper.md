@@ -5,13 +5,19 @@ description: Muestra cómo trabajar con el asistente de etiquetas de imagen.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
-ms.openlocfilehash: 964072ad276f7e3e411ee41cb03a2efb9d05c585
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e1e3566f09c44d70650fa1f21e1921e76e46d384
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653777"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777415"
 ---
 # <a name="image-tag-helper-in-aspnet-core"></a>Asistente de etiquetas de imagen en ASP.NET Core
 
@@ -26,7 +32,7 @@ Si el origen de la imagen (`src`) es un archivo estático en el servidor web del
 * Se anexa una cadena única de limpieza de caché como un parámetro de consulta al origen de la imagen.
 * Si el archivo en el servidor web del host cambia, se genera una dirección URL de solicitud única que incluye el parámetro de solicitud actualizada.
 
-Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
 
 ## <a name="image-tag-helper-attributes"></a>Atributos del asistente de etiquetas de imagen
 
@@ -46,7 +52,7 @@ En este ejemplo se usa un asistente de etiquetas de imagen:
 <img src="~/images/asplogo.png" asp-append-version="true">
 ```
 
-Si el archivo estático existe en el directorio */wwwroot/images/* , el código HTML generado es similar al siguiente (el valor hash será diferente):
+Si el archivo estático existe en el directorio */wwwroot/images/*, el código HTML generado es similar al siguiente (el valor hash será diferente):
 
 ```html
 <img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">

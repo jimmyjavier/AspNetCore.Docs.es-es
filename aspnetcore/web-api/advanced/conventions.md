@@ -6,19 +6,25 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: d49b51d11d3f14d0c3edbe1765d74fd63e3ac061
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: f74327cd5bb6a5794c90ffdd3896f2b343e175a6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651527"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774891"
 ---
 # <a name="use-web-api-conventions"></a>Uso de convenciones de API web
 
 Por [Pranav Krishnamoorthy](https://github.com/pranavkm) y [Scott Addie](https://github.com/scottaddie)
 
-ASP.NET Core 2.2 (y versiones posteriores) incluye una forma de extraer la [documentación de API](xref:tutorials/web-api-help-pages-using-swagger) común y aplicarla a varias acciones o varios controladores, e incluso a todos los controladores dentro de un ensamblado. Las convenciones de API web son un sustituto para complementar acciones individuales con [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
+ASP.NET Core 2.2 (y versiones posteriores) incluye una forma de extraer la [documentación de API](xref:tutorials/web-api-help-pages-using-swagger) común y aplicarla a varias acciones o varios controladores, e incluso a todos los controladores dentro de un ensamblado. Las convenciones de API Web son un sustituto de la decoración [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute)de acciones individuales con.
 
 Una convención permite lo siguiente:
 
@@ -35,7 +41,7 @@ En tiempo de ejecución, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> entiende la
 
 Las convenciones no se crean, y es posible que cada acción esté asociada a una única convención. Las convenciones más específicas tienen prioridad sobre las menos específicas. La selección es no determinista cuando se aplican dos o más convenciones de la misma prioridad a una acción. Las siguientes opciones existen para aplicar una convención a una acción, de la más específica a la menos específica:
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; se aplica a las acciones individuales y especifica el tipo de Convención y el método de Convención que se aplica.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash; Se aplica a acciones individuales y especifica el tipo de Convención y el método de Convención que se aplica.
 
     En el ejemplo siguiente, el método de convención `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` del tipo de convención predeterminada se aplica a la acción `Update`:
 

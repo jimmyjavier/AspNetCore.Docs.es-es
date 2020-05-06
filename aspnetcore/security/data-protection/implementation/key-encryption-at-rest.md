@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre la implementación de ASP.NET Core el cifrado de claves de protección de datos en reposo.
 ms.author: riande
 ms.date: 07/16/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: 52c3137dbe467096364b42430c92aecc7c15e313
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651635"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776934"
 ---
 # <a name="key-encryption-at-rest-in-aspnet-core"></a>Cifrado de claves en reposo en ASP.NET Core
 
@@ -23,7 +29,7 @@ De forma predeterminada, el sistema de protección de datos [emplea un mecanismo
 
 ## <a name="azure-key-vault"></a>Azure Key Vault
 
-Para almacenar claves en [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure el sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) en la clase `Startup`:
+Para almacenar claves en [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure el sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) en `Startup` la clase:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -53,7 +59,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Si se llama a `ProtectKeysWithDpapi` sin parámetros, solo la cuenta de usuario de Windows actual puede descifrar el anillo de claves guardado. Opcionalmente, puede especificar que cualquier cuenta de usuario en el equipo (no solo la cuenta de usuario actual) pueda descifrar el anillo de claves:
+Si `ProtectKeysWithDpapi` se llama a sin parámetros, solo la cuenta de usuario de Windows actual puede descifrar el anillo de claves guardado. Opcionalmente, puede especificar que cualquier cuenta de usuario en el equipo (no solo la cuenta de usuario actual) pueda descifrar el anillo de claves:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
