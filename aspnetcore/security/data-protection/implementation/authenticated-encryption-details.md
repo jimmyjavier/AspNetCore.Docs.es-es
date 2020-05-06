@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre la implementación de ASP.NET Core el cifrado autenticado de protección de datos.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/authenticated-encryption-details
-ms.openlocfilehash: 9def03e6b27e19fc34a839e923d6152e086889db
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 3066cd505781ed2ddad46626dda9d9ce35307877
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655007"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776973"
 ---
 # <a name="authenticated-encryption-details-in-aspnet-core"></a>Detalles de cifrado autenticado en ASP.NET Core
 
@@ -55,4 +61,4 @@ Los siguientes 128 bits, o 16 bytes, es el identificador de clave (80 9C 81 0C 1
 El resto contiene la carga útil y es específico del formato utilizado.
 
 > [!WARNING]
-> Todas las cargas protegidas en una clave determinada comenzarán con el mismo encabezado de 20 bytes (valor mágico, ID. de clave). Los administradores pueden usar este hecho con fines de diagnóstico aproximados cuando se genera una carga. Por ejemplo, la carga anterior corresponde a la clave {0c819c80-6619-4019-9536-53f8aaffee57}. Si después de comprobar el repositorio de claves detecta que la fecha de activación de esta clave específica era 2015-01-01 y su fecha de expiración era 2015-03-01, es razonable asumir que la carga (si no se ha manipulado) se generó dentro de esa ventana, dar o tomar un pequeño factor de Fudge en cualquier lado.
+> Todas las cargas protegidas en una clave determinada comenzarán con el mismo encabezado de 20 bytes (valor mágico, ID. de clave). Los administradores pueden usar este hecho con fines de diagnóstico aproximados cuando se genera una carga. Por ejemplo, la carga anterior corresponde a la clave {0c819c80-6619-4019-9536-53f8aaffee57}. Si después de comprobar el repositorio de claves detecta que la fecha de activación de esta clave específica era 2015-01-01 y su fecha de expiración era 2015-03-01, es razonable asumir que la carga (si no se ha manipulado) se generó dentro de esa ventana, dar o tomar un pequeño factor de Fudge en cada lado.

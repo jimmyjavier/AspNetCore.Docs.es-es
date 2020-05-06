@@ -1,18 +1,24 @@
 ---
-title: Uso compartido de controladores, vistas, Razor Pages y mucho más con los elementos de aplicación en ASP.NET Core
+title: Comparta controladores, vistas, Razor páginas, etc. con los elementos de la aplicación en ASP.net Core
 author: rick-anderson
-description: Uso compartido de controladores, vistas, Razor Pages y mucho más con los elementos de aplicación en ASP.NET Core
+description: Comparta controladores, vistas, Razor páginas, etc. con los elementos de la aplicación en ASP.net Core
 ms.author: riande
 ms.date: 11/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 0156c94bc6d0b83d0e14b8ef49468cfdf106d7e6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 68991a3df5e09b63dc52bdadae55f055a721ad3c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654815"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774410"
 ---
-# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Uso compartido de controladores, vistas, Razor Pages y mucho más con los elementos de aplicación
+# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Comparta controladores, vistas, Razor páginas, etc. con los elementos de la aplicación
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -20,9 +26,9 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, componentes de vista, aplicaciones auxiliares de etiquetas, Razor Pages, orígenes de compilación de Razor, etc. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> es un elemento de una aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
+Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares Razor de etiquetas, páginas, orígenes de compilación de Razor, etc. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> es un elemento de una aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
 
-Los [proveedores de características](#fp) trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que contenga controladores, vistas, Razor Pages, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
+Los [proveedores de características](#fp) trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que Razor contiene controladores, vistas, páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
 
 Las aplicaciones ASP.NET Core cargan características de <xref:System.Web.WebPages.ApplicationPart>. La clase <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> representa un elemento de aplicación que está respaldado por un ensamblado.
 
@@ -40,7 +46,7 @@ Los dos ejemplos de código anteriores cargan `SharedController` de un ensamblad
 
 ### <a name="include-views"></a>Inclusión de vistas
 
-Use una [biblioteca de clases de Razor](xref:razor-pages/ui-class) para incluir vistas en el ensamblado.
+Use una [ Razor biblioteca de clases](xref:razor-pages/ui-class) para incluir vistas en el ensamblado.
 
 ### <a name="prevent-loading-resources"></a>Impedimento de la carga de los recursos
 
@@ -110,9 +116,9 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, componentes de vista, aplicaciones auxiliares de etiquetas, Razor Pages, orígenes de compilación de Razor, etc. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is un elemento de aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
+Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares Razor de etiquetas, páginas, orígenes de compilación de Razor, etc. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is un elemento de aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
 
-Los *proveedores de características* trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que contenga controladores, vistas, Razor Pages, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
+Los *proveedores de características* trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que Razor contiene controladores, vistas, páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
 
 Las aplicaciones ASP.NET Core cargan características de <xref:System.Web.WebPages.ApplicationPart>. La clase <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> representa un elemento de aplicación que está respaldado por un ensamblado.
 
@@ -130,7 +136,7 @@ Los dos ejemplos de código anteriores cargan `SharedController` de un ensamblad
 
 ### <a name="include-views"></a>Inclusión de vistas
 
-Use una [biblioteca de clases de Razor](xref:razor-pages/ui-class) para incluir vistas en el ensamblado.
+Use una [ Razor biblioteca de clases](xref:razor-pages/ui-class) para incluir vistas en el ensamblado.
 
 ### <a name="prevent-loading-resources"></a>Impedimento de la carga de los recursos
 
@@ -150,7 +156,7 @@ Los proveedores de características de la aplicación examinan los elementos de 
 
 * [Controladores](/dotnet/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
 * [Asistentes de etiquetas](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
-* [Componentes de vista](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
+* [Ver componentes](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
 
 Los proveedores de características heredan de <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, donde `T` es el tipo de la característica. Los proveedores de características se pueden implementar para cualquiera de los tipos de características enumerados anteriormente. El orden de los proveedores de características en `ApplicationPartManager.FeatureProviders` puede afectar al comportamiento en tiempo de ejecución. Los proveedores agregados posteriormente pueden reaccionar ante las acciones realizadas por los proveedores agregados anteriormente.
 

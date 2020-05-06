@@ -5,13 +5,19 @@ description: Descubra vínculos a recursos para aprender a hospedar aplicaciones
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/index
-ms.openlocfilehash: 78eb6f467c7e779e1bf998e8ac8e917a90895db9
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 94996f279929f6e3837efb613c99927edbd9143e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440732"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774592"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Hospedar ASP.NET Core en contenedores de Docker
 

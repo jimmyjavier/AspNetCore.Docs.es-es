@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo usar el asistente de etiquetas de 
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: db9e1a968588410f11e5f137dfdd4542df505ebc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653309"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773947"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Asistente de etiquetas de caché en ASP.NET Core MVC
 
@@ -19,7 +25,7 @@ Por [Peter Kellner](https://peterkellner.net)
 
 El asistente de etiquetas de caché proporciona la capacidad para mejorar el rendimiento de la aplicación de ASP.NET Core al permitir almacenar en memoria caché su contenido en el proveedor de caché interno de ASP.NET Core.
 
-Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
 
 Este marcado de Razor almacena en caché la fecha actual:
 
@@ -33,11 +39,11 @@ La primera solicitud a la página que contiene el asistente de etiquetas muestra
 
 ### <a name="enabled"></a>enabled
 
-| Tipo de atributo  | Ejemplos        | Valor predeterminado |
+| Tipo de atributo  | Ejemplos        | Default |
 | --------------- | --------------- | ------- |
-| Boolean         | `true`, `false` | `true`  |
+| Booleano         | `true`, `false` | `true`  |
 
-`enabled` determina si se almacena en caché el contenido incluido por el asistente de etiquetas de caché. El valor predeterminado es `true`. Si establece en `false`, el resultado representado **no** se almacena en caché.
+`enabled` determina si se almacena en caché el contenido incluido por el asistente de etiquetas de caché. De manera predeterminada, es `true`. Si establece en `false`, el resultado representado **no** se almacena en caché.
 
 Ejemplo:
 
@@ -65,7 +71,7 @@ En este ejemplo se almacena en caché el contenido del asistente de etiquetas de
 
 ### <a name="expires-after"></a>expires-after
 
-| Tipo de atributo | Ejemplo                      | Valor predeterminado    |
+| Tipo de atributo | Ejemplo                      | Default    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 minutos |
 
@@ -139,7 +145,7 @@ En este ejemplo se supervisan los valores de `Make` y `Model`. En el ejemplo se 
 
 Ejemplo:
 
-*Startup.cs*:
+*Startup.CS*:
 
 ```csharp
 routes.MapRoute(
@@ -147,7 +153,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -173,9 +179,9 @@ En este ejemplo se supervisa la cookie asociada con ASP.NET Core Identity. Cuand
 
 ### <a name="vary-by-user"></a>vary-by-user
 
-| Tipo de atributo  | Ejemplos        | Valor predeterminado |
+| Tipo de atributo  | Ejemplos        | Default |
 | --------------- | --------------- | ------- |
-| Boolean         | `true`, `false` | `true`  |
+| Booleano         | `true`, `false` | `true`  |
 
 `vary-by-user` especifica la memoria caché se restablece o no cuando cambia el usuario que ha iniciado la sesión (o la entidad de seguridad del contexto). El usuario actual también se conoce como entidad de seguridad del contexto de solicitud y puede verse en una vista Razor mediante una referencia a `@User.Identity.Name`.
 
@@ -212,7 +218,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by="@Model">
@@ -222,7 +228,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 
 ### <a name="priority"></a>priority
 
-| Tipo de atributo      | Ejemplos                               | Valor predeterminado  |
+| Tipo de atributo      | Ejemplos                               | Default  |
 | ------------------- | -------------------------------------- | -------- |
 | `CacheItemPriority` | `High`, `Low`, `NeverRemove`, `Normal` | `Normal` |
 

@@ -1,18 +1,24 @@
 ---
-title: Duración y administración de claves de protección de datos en ASP.NET Core
+title: Administración y duración de las claves de protección de datos en ASP.NET Core
 author: rick-anderson
 description: Más información sobre la duración y la administración de claves de protección de datos en ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: 2f022a4c7519485fe629ce47c27d214c8c27d5bc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1db5177230fd4076af080e208f094ce4d6537c62
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655073"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777454"
 ---
-# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Duración y administración de claves de protección de datos en ASP.NET Core
+# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Administración y duración de las claves de protección de datos en ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -31,14 +37,14 @@ La aplicación intenta detectar su entorno operativo y controlar la configuraci�
 
    1. Vaya a la carpeta *%windir%/system32/inetsrv/config*.
    1. Abra el archivo *applicationHost.config*.
-   1. Busque el elemento `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>`.
+   1. Busque el elemento `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>` .
    1. Confirme que el atributo `setProfileEnvironment` no está presente, que adopta de forma predeterminada el valor `true`, o establezca explícitamente el valor del atributo en `true`.
 
 1. Si la aplicación se hospeda en IIS, las claves se conservan en el registro HKLM en una clave del registro especial que solo se agregan en la cuenta de proceso de trabajo. Las claves se cifran en reposo con DPAPI.
 
 1. Si ninguna de estas condiciones coincide, las claves no se conservan fuera del proceso actual. Cuando el proceso se cierra, se pierden todas las claves generadas.
 
-El desarrollador está siempre en control total y puede invalidar cómo y dónde se almacenan las claves. Las tres primeras opciones anteriores deben proporcionar buenos valores predeterminados para la mayoría de las aplicaciones, de forma similar a como ASP.NET **\<machineKey >** rutinas de generación automática han funcionado en el pasado. La opción final de reserva es el único escenario que requiere que el desarrollador especifique la [configuración](xref:security/data-protection/configuration/overview) por adelantado si desea la persistencia de la clave, pero esta reserva solo se produce en situaciones excepcionales.
+El desarrollador está siempre en control total y puede invalidar cómo y dónde se almacenan las claves. Las tres primeras opciones anteriores deben proporcionar buenos valores predeterminados para la mayoría de las aplicaciones, de forma similar a como ASP.net ** \<machineKey>** rutinas de generación automática han funcionado en el pasado. La opción final de reserva es el único escenario que requiere que el desarrollador especifique la [configuración](xref:security/data-protection/configuration/overview) por adelantado si desea la persistencia de la clave, pero esta reserva solo se produce en situaciones excepcionales.
 
 Al hospedar en un contenedor de Docker, las claves deben conservarse en una carpeta que sea un volumen de Docker (un volumen compartido o un volumen montado en host que persista más allá de la duración del contenedor) o en un proveedor externo, como [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) o [Redis](https://redis.io/). Un proveedor externo también es útil en escenarios de granjas de servidores Web si las aplicaciones no pueden tener acceso a un volumen de red compartido (consulte [PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem) para obtener más información).
 

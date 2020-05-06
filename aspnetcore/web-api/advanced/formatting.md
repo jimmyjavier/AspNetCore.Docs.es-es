@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo dar formato a datos de respuesta e
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 392e4905126ffb6801cc55055f1d511f5fa99dd1
-ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
+ms.openlocfilehash: 22787b20879c3739ee8a8d74c7a39e7cf8f4d5b0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/18/2020
-ms.locfileid: "81642707"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774241"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Aplicación de formato a datos de respuesta en ASP.NET Core Web API
 
@@ -206,11 +212,11 @@ Cuando se usa el código anterior, los métodos de controlador deben devolver el
 
 ### <a name="specify-a-format"></a>Especificación de un formato
 
-Para restringir los formatos [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) de respuesta, aplique el filtro. Al igual `[Produces]` que la mayoría de los [filtros](xref:mvc/controllers/filters), se puede aplicar en la acción, controlador o ámbito global:
+Para restringir los formatos de respuesta, [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) aplique el filtro. Al igual [Filters](xref:mvc/controllers/filters)que la `[Produces]` mayoría de los filtros, se pueden aplicar en el ámbito de la acción, el controlador o global:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-El [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filtro anterior:
+El filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) anterior:
 
 * Obliga a que todas las acciones dentro del controlador devuelvan respuestas con formato JSON.
 * Si se configuran otros formateadores y el cliente especifica un formato diferente, se devuelve JSON.
@@ -246,9 +252,9 @@ La asignación de la ruta de acceso de la solicitud debe especificarse en la rut
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
-Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) atributo comprueba la existencia del valor `RouteData` de formato en el y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
+Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) atributo comprueba la existencia del valor de formato en `RouteData` y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
 
-|           Enrutar        |             Formateador              |
+|           Ruta        |             Formateador              |
 |------------------------|------------------------------------|
 |   `/api/products/5`    |    Formateador de salida predeterminado    |
 | `/api/products/5.json` | Formateador JSON (si está configurado) |

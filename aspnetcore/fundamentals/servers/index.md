@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: d46793ef54c99fe609b5983c5a658fb7b20032fa
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 74affbb7d18d80e2e55714df100d820aed2ce427
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644699"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776186"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementaciones de servidores web en ASP.NET Core
 
@@ -53,7 +59,7 @@ Cuando se usa [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-arc
 * En el mismo proceso que el proceso de trabajo de IIS (el [modelo de hospedaje dentro de proceso](#hosting-models)) con el servidor HTTP de IIS. La configuración recomendada es *En proceso*.
 * En un proceso distinto al del proceso de trabajo de IIS (el [modelo de hospedaje fuera de proceso](#hosting-models)) con el [servidor Kestrel](#kestrel).
 
-El [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) es un módulo nativo de IIS que controla las solicitudes de IIS nativas entre IIS y el servidor de IIS en proceso o Kestrel. Para obtener más información, consulta <xref:host-and-deploy/aspnet-core-module>.
+El [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) es un módulo nativo de IIS que controla las solicitudes de IIS nativas entre IIS y el servidor de IIS en proceso o Kestrel. Para obtener más información, vea <xref:host-and-deploy/aspnet-core-module>.
 
 ## <a name="hosting-models"></a>Modelos de hospedaje
 
@@ -128,7 +134,7 @@ Para información sobre cómo usar Apache en Linux como servidor proxy inverso p
 
 ## <a name="httpsys"></a>HTTP.sys
 
-Si las aplicaciones ASP.NET Core se ejecutan en Windows, HTTP.sys es una alternativa a Kestrel. Suele recomendarse Kestrel para un rendimiento óptimo. HTTP.sys se puede usar en escenarios en los que la aplicación se expone a Internet y las funcionalidades necesarias son compatibles con HTTP.sys pero no con Kestrel. Para obtener más información, consulta <xref:fundamentals/servers/httpsys>.
+Si las aplicaciones ASP.NET Core se ejecutan en Windows, HTTP.sys es una alternativa a Kestrel. Suele recomendarse Kestrel para un rendimiento óptimo. HTTP.sys se puede usar en escenarios en los que la aplicación se expone a Internet y las funcionalidades necesarias son compatibles con HTTP.sys pero no con Kestrel. Para obtener más información, vea <xref:fundamentals/servers/httpsys>.
 
 ![HTTP.sys se comunica directamente con Internet](httpsys/_static/httpsys-to-internet.png)
 
@@ -146,7 +152,7 @@ Se puede usar `IServerAddressesFeature` para averiguar a qué puerto se ha enlaz
 
 ## <a name="custom-servers"></a>Servidores personalizados
 
-Si los servidores integrados no cumplen los requisitos de la aplicación, se puede crear una implementación de servidor personalizado. En la [guía de Open Web Interface for .NET (OWIN)](xref:fundamentals/owin) se muestra cómo escribir una implementación de [ basada en ](https://github.com/Bobris/Nowin)Nowin<xref:Microsoft.AspNetCore.Hosting.Server.IServer>. Solo las interfaces de la característica que usa la aplicación requieren implementación, aunque como mínimo se debe admitir <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature> y <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>.
+Si los servidores integrados no cumplen los requisitos de la aplicación, se puede crear una implementación de servidor personalizado. En la [guía de Open Web Interface for .NET (OWIN)](xref:fundamentals/owin) se muestra cómo escribir una implementación de <xref:Microsoft.AspNetCore.Hosting.Server.IServer> basada en [Nowin](https://github.com/Bobris/Nowin). Solo las interfaces de la característica que usa la aplicación requieren implementación, aunque como mínimo se debe admitir <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature> y <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>.
 
 ## <a name="server-startup"></a>Inicio del servidor
 
@@ -174,14 +180,14 @@ Un archivo *launchSettings.json* proporciona la configuración al iniciar una ap
   * Plataforma de destino: .NET Core 2.2 o posterior
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 o posterior
-  * Plataforma de destino: no aplicable a implementaciones de HTTP.sys.
+  * Marco de destino: No aplicable a implementaciones de HTTP.sys.
 * [IIS (en proceso)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 o posterior; IIS 10 o posterior
   * Plataforma de destino: .NET Core 2.2 o posterior
 * [IIS (fuera de proceso)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 o posterior; IIS 10 o posterior
   * Las conexiones de servidor perimetral de acceso público usan HTTP/2, pero la conexión de proxy inverso a Kestrel usa HTTP/1.1.
-  * Plataforma de destino: no aplicable a implementaciones fuera de proceso de IIS.
+  * Marco de destino: No aplicable a implementaciones fuera de proceso de IIS.
 
 &dagger;Kestrel tiene compatibilidad limitada para HTTP/2 en Windows Server 2012 R2 y Windows 8.1. La compatibilidad es limitada porque la lista de conjuntos de cifrado TLS admitidos y disponibles en estos sistemas operativos está limitada. Se puede requerir un certificado generado mediante Elliptic Curve Digital Signature Algorithm (ECDSA) para proteger las conexiones TLS.
 
@@ -191,11 +197,11 @@ Un archivo *launchSettings.json* proporciona la configuración al iniciar una ap
 
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 o posterior
-  * Plataforma de destino: no aplicable a implementaciones de HTTP.sys.
+  * Marco de destino: No aplicable a implementaciones de HTTP.sys.
 * [IIS (fuera de proceso)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 o posterior; IIS 10 o posterior
   * Las conexiones de servidor perimetral de acceso público usan HTTP/2, pero la conexión de proxy inverso a Kestrel usa HTTP/1.1.
-  * Plataforma de destino: no aplicable a implementaciones fuera de proceso de IIS.
+  * Marco de destino: No aplicable a implementaciones fuera de proceso de IIS.
 
 ::: moniker-end
 
