@@ -5,25 +5,31 @@ description: Descubra cómo los asistentes de etiquetas integradas de ASP.NET Co
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/Index
-ms.openlocfilehash: f19cfa5b843bde8a8633ce778562707e566bebb9
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 2caf4a20302fa4d94b5eab7f814d7e22b048fbc8
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644429"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777402"
 ---
-# <a name="aspnet-core-built-in-tag-helpers"></a><span data-ttu-id="7229f-103">Asistentes de etiquetas integradas de ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="7229f-103">ASP.NET Core built-in Tag Helpers</span></span>
+# <a name="aspnet-core-built-in-tag-helpers"></a><span data-ttu-id="8fc2c-103">Asistentes de etiquetas integradas de ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="8fc2c-103">ASP.NET Core built-in Tag Helpers</span></span>
 
-<span data-ttu-id="7229f-104">Por [Peter Kellner](https://peterkellner.net)</span><span class="sxs-lookup"><span data-stu-id="7229f-104">By [Peter Kellner](https://peterkellner.net)</span></span>
+<span data-ttu-id="8fc2c-104">Por [Peter Kellner](https://peterkellner.net)</span><span class="sxs-lookup"><span data-stu-id="8fc2c-104">By [Peter Kellner](https://peterkellner.net)</span></span>
 
-<span data-ttu-id="7229f-105">Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.</span><span class="sxs-lookup"><span data-stu-id="7229f-105">For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.</span></span>
+<span data-ttu-id="8fc2c-105">Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.</span><span class="sxs-lookup"><span data-stu-id="8fc2c-105">For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.</span></span>
 
-<span data-ttu-id="7229f-106">Hay Asistentes de etiquetas integradas que no se muestran en este documento.</span><span class="sxs-lookup"><span data-stu-id="7229f-106">There are built-in Tag Helpers which aren't listed in this document.</span></span> <span data-ttu-id="7229f-107">El motor de visualización [Razor](xref:mvc/views/razor) usa internamente los Asistentes de etiquetas que no se muestran.</span><span class="sxs-lookup"><span data-stu-id="7229f-107">The unlisted Tag Helpers are used internally by the [Razor](xref:mvc/views/razor) view engine.</span></span> <span data-ttu-id="7229f-108">El Asistente de etiqueta para el carácter `~` (tilde) no se muestra.</span><span class="sxs-lookup"><span data-stu-id="7229f-108">The Tag Helper for the `~` (tilde) character is unlisted.</span></span> <span data-ttu-id="7229f-109">El Asistente de etiqueta de tilde se amplía hasta la ruta de acceso raíz del sitio web.</span><span class="sxs-lookup"><span data-stu-id="7229f-109">The tilde Tag Helper expands to the root path of the website.</span></span>
+<span data-ttu-id="8fc2c-106">Hay Asistentes de etiquetas integradas que no se muestran en este documento.</span><span class="sxs-lookup"><span data-stu-id="8fc2c-106">There are built-in Tag Helpers which aren't listed in this document.</span></span> <span data-ttu-id="8fc2c-107">El motor de visualización de [Razor](xref:mvc/views/razor) usa internamente los asistentes de etiquetas que no se muestran.</span><span class="sxs-lookup"><span data-stu-id="8fc2c-107">The unlisted Tag Helpers are used internally by the [Razor](xref:mvc/views/razor) view engine.</span></span> <span data-ttu-id="8fc2c-108">El Asistente de etiqueta para el carácter `~` (tilde) no se muestra.</span><span class="sxs-lookup"><span data-stu-id="8fc2c-108">The Tag Helper for the `~` (tilde) character is unlisted.</span></span> <span data-ttu-id="8fc2c-109">El Asistente de etiqueta de tilde se amplía hasta la ruta de acceso raíz del sitio web.</span><span class="sxs-lookup"><span data-stu-id="8fc2c-109">The tilde Tag Helper expands to the root path of the website.</span></span>
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 
-## <a name="additional-resources"></a><span data-ttu-id="7229f-110">Recursos adicionales</span><span class="sxs-lookup"><span data-stu-id="7229f-110">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="8fc2c-110">Recursos adicionales</span><span class="sxs-lookup"><span data-stu-id="8fc2c-110">Additional resources</span></span>
 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/th-components>
