@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: e8a1959a8fc05ea59362bb5824181a9d2e418811
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 75d9a66eb25201c2993b8f922754b8aa7ab84615
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218874"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771173"
 ---
-# <a name="aspnet-core-opno-locblazor-state-management"></a>Administración de estado de Blazor en ASP.NET Core
+# <a name="aspnet-core-blazor-state-management"></a>Administración de estado de Blazor en ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -34,7 +37,7 @@ Entre los ejemplos de estado que se mantiene para el circuito de un usuario se i
 > [!NOTE]
 > En este artículo se aborda la persistencia de estado en aplicaciones del servidor Blazor. Las aplicaciones WebAssembly de Blazor pueden aprovechar las ventajas de la [persistencia de estado del cliente en el explorador](#client-side-in-the-browser) pero requieren soluciones personalizadas o paquetes de terceros más allá del ámbito de este artículo.
 
-## <a name="opno-locblazor-circuits"></a>Circuitos de Blazor
+## <a name="blazor-circuits"></a>Circuitos de Blazor
 
 Si un usuario experimenta una pérdida de conexión de red temporal, Blazor intenta volver a conectar al usuario con su circuito original para poder seguir usando la aplicación. Sin embargo, no siempre es posible volver a conectar a un usuario con su circuito original en la memoria del servidor:
 

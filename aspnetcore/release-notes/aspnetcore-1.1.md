@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre las nuevas características de ASP.NET Core 1.1.
 ms.author: riande
 ms.date: 12/18/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-1.1
-ms.openlocfilehash: df9fd6bda00ac5f5516f40507001463fd7d0b92e
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c3317c8ff905d1c7a9c9d9019d18cbebad92edaf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651149"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775848"
 ---
 # <a name="whats-new-in-aspnet-core-11"></a>Novedades de ASP.NET Core 1.1
 

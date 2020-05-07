@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo llamar a servicios gRPC con el cli
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 04/21/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/client
-ms.openlocfilehash: aefa52a5c4c66178c5978aebd4cd9b00559c7f54
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: c554ce9702a9f2b2efeabbfdf0d1319ca4161a1c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791548"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774735"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Llamada a servicios gRPC con el cliente .NET
 

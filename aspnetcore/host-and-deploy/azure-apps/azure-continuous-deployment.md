@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo crear una aplicación web de ASP.N
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
-ms.openlocfilehash: 3b344505739bb4292ed1683c73ff314b6e4e01e9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0b9f5f15403c7d18d68a41baa2a59582cf039f44
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648113"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850570"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Implementación continua en Azure con Visual Studio y Git con ASP.NET Core
 
@@ -24,7 +30,7 @@ En este tutorial se muestra cómo crear una aplicación web de ASP.NET Core con 
 Vea también [Creación de la primera canalización con Azure Pipelines](/azure/devops/pipelines/get-started-yaml), donde se explica cómo configurar un flujo de trabajo de entrega continua (CD) para [Azure App Service](/azure/app-service/app-service-web-overview) mediante Azure DevOps Services. Azure Pipelines, un servicio de Azure DevOps Services, simplifica la configuración de una canalización de implementación sólida para publicar actualizaciones de aplicaciones hospedadas en Azure App Service. La canalización se puede configurar desde Azure Portal para crear y ejecutar pruebas, implementarlas en un espacio de ensayo y luego implementarlas en un entorno de producción.
 
 > [!NOTE]
-> Para realizar este tutorial, necesita una cuenta de Microsoft Azure. Para obtener una, [active las ventajas de suscriptor de MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) o [regístrese para una prueba gratuita](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+> Para realizar este tutorial, necesita una cuenta de Microsoft Azure. Para obtener una, [active las ventajas de suscriptor de MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) o [regístrese para una prueba gratuita](https://azure.microsoft.com/free/dotnet/?WT.mc_id=A261C142F).
 
 ## <a name="prerequisites"></a>Requisitos previos
 
