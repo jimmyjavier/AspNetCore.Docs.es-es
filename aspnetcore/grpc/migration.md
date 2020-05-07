@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo migrar una aplicación gRPC existe
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/25/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/migration
-ms.openlocfilehash: 451171a041f7bbb3711babd73d2fa2e245aadd28
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1846195cc43aec703333e69f66380ddcabcf2ad4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649373"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768827"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migración de servicios gRPC de C-core a ASP.NET Core
 

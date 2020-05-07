@@ -5,19 +5,22 @@ description: Descubra cómo Blazor de ASP.NET Core administra las excepciones no
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/29/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 4fdaf7fb90d126b8f7f029aac3af49eec3b69e74
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7eefc988da275c0efccd97958d04e76f04e7cad4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80382280"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772118"
 ---
-# <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Control de errores en aplicaciones Blazor de ASP.NET Core
+# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Control de errores en aplicaciones Blazor de ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -80,7 +83,7 @@ Los estilos incluidos en las plantillas de Blazor (*wwwroot/css/site.css*) ocult
 }
 ```
 
-## <a name="how-a-opno-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Cómo reacciona una aplicación de servidor Blazor a las excepciones no controladas
+## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Cómo reacciona una aplicación de servidor Blazor a las excepciones no controladas
 
 Servidor Blazor es un marco con estado. Mientras los usuarios interactúan con una aplicación, mantienen una conexión con el servidor, lo que se denomina *circuito*. El circuito contiene instancias de componentes activas, además de muchos otros aspectos del estado, como:
 
@@ -113,6 +116,8 @@ Si se produce una excepción no controlada, la excepción se registra en las ins
 Durante el desarrollo, Blazor normalmente envía los detalles completos de las excepciones a la consola del explorador para ayudar en la depuración. En producción, los errores detallados en la consola del explorador están deshabilitados de forma predeterminada, lo que significa que los errores no se envían a los clientes, pero los detalles completos de la excepción se siguen registrando en el lado del servidor. Para obtener más información, vea <xref:fundamentals/error-handling>.
 
 Debe decidir qué incidentes registrar y el nivel de gravedad de los incidentes registrados. Es posible que los usuarios hostiles puedan desencadenar errores deliberadamente. Por ejemplo, no registre un incidente de un error en el que se proporcione un valor `ProductId` desconocido en la dirección URL de un componente que muestra los detalles del producto. No todos los errores se deben tratar como incidentes de alta gravedad para el registro.
+
+Para obtener más información, vea <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## <a name="places-where-errors-may-occur"></a>Lugares donde se pueden producir errores
 
@@ -214,7 +219,7 @@ Para obtener más información, vea los artículos siguientes:
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="opno-locblazor-server-prerendering"></a>Representación previa de servidor Blazor
+### <a name="blazor-server-prerendering"></a>Representación previa de servidor Blazor
 
 Se puede realizar la representación previa de los componentes de Blazor mediante el [asistente de etiquetas de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para que su marcado HTML representado se devuelva como parte de la solicitud HTTP inicial del usuario. El funcionamiento es el siguiente:
 

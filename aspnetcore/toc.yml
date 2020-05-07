@@ -665,6 +665,8 @@
       uid: test/razor-pages-tests
     - name: Controladores de pruebas
       uid: mvc/controllers/testing
+    - name: Middleware de pruebas
+      uid: test/middleware
     - name: Depuración remota
       href: /visualstudio/debugger/remote-debugging-azure
     - name: Depuración de instantáneas

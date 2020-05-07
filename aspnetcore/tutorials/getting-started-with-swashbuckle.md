@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo agregar Swashbuckle a un proyecto 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: da848ef9c5fa85f5186d1b6f0a6111d8c8d069c4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6e4d80afa1c38344321ad45031ff21fec71ae0a4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648239"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776726"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introducción a Swashbuckle y ASP.NET Core
 

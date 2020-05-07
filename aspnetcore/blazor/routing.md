@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/routing
-ms.openlocfilehash: 87579c88a37e0258921e199db2b5d8c7627f5499
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 017fd4d3ab45b75355dabb400ff0e5cbf7009d82
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218900"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771225"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Enrutamiento de Blazor de ASP.NET Core
 
@@ -232,7 +235,7 @@ El siguiente componente navega al componente `Counter` de la aplicación cuando 
 El componente siguiente controla un evento de cambio de ubicación. El método `HandleLocationChanged` se desenlaza cuando el marco llama a `Dispose`. Al desenlazar el método se permite la recolección de elementos no utilizados del componente.
 
 ```razor
-@implement IDisposable
+@implements IDisposable
 @inject NavigationManager NavigationManager
 
 ...

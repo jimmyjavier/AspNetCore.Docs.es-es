@@ -5,13 +5,19 @@ description: Conozca los conceptos básicos a la hora de escribir servicios gRPC
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 6107704a4b4d9c629a7abe907efd5b1932019130
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c14ae1fb3c2e046ae577c63824eebb4411a6e804
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651005"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776225"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Servicios gRPC con ASP.NET Core
 

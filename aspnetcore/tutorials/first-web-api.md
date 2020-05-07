@@ -5,13 +5,19 @@ description: Aprenda a crear de una API web con ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 7418e962076fae3ebdbb25381838757b09046578
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ddc14aba14e31c5530cda14b4792736da001246a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417658"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767244"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Creación de una API web con ASP.NET Core
 
@@ -38,11 +44,11 @@ En este tutorial se crea la siguiente API:
 
 |API | Descripción | Cuerpo de la solicitud | Cuerpo de la respuesta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Obtener todas las tareas pendientes | Ninguna | Matriz de tareas pendientes|
-|GET /api/TodoItems/{id} | Obtener un elemento por identificador | None | Tarea pendiente|
-|POST /api/TodoItems | Incorporación de un nuevo elemento | Tarea pendiente | Tarea pendiente |
-|PUT /api/TodoItems/{id} | Actualizar un elemento existente &nbsp; | Tarea pendiente | None |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Eliminar un elemento &nbsp; &nbsp; | None | None|
+|`GET /api/TodoItems` | Obtener todas las tareas pendientes | Ninguna | Matriz de tareas pendientes|
+|`GET /api/TodoItems/{id}` | Obtener un elemento por identificador | None | Tarea pendiente|
+|`POST /api/TodoItems` | Incorporación de un nuevo elemento | Tarea pendiente | Tarea pendiente |
+|`PUT /api/TodoItems/{id}` | Actualizar un elemento existente &nbsp; | Tarea pendiente | None |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Eliminar un elemento &nbsp; &nbsp; | None | None|
 
 En el diagrama siguiente, se muestra el diseño de la aplicación.
 

@@ -4,13 +4,19 @@ author: rick-anderson
 description: Cómo agregar la validación a una aplicación de ASP.NET Core.
 ms.author: riande
 ms.date: 04/13/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: ecf3d011b38347eb32020df00e44d93ca789443a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6e46a4ace7c99096f1a7d47946a21fd7a5c657e7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242541"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776199"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Agregar validación a una aplicación ASP.NET Core MVC
 
@@ -73,7 +79,7 @@ La parte de la plantilla de visualización *Create.cshtml* se muestra en el marc
 
 Los métodos de acción utilizan el marcado anterior para mostrar el formulario inicial y para volver a mostrarlo en caso de error.
 
-El [asistente de etiquetas de entrada](xref:mvc/views/working-with-forms) usa los atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) y genera los atributos HTML necesarios para la validación de jQuery en el lado cliente. El [asistente de etiquetas de validación](xref:mvc/views/working-with-forms#the-validation-tag-helpers) muestra errores de validación. Para más información, vea [Validación](xref:mvc/models/validation).
+El [asistente de etiquetas de entrada](xref:mvc/views/working-with-forms) usa los atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) y genera los atributos HTML necesarios para la validación de jQuery en el lado cliente. El [asistente de etiquetas de validación](xref:mvc/views/working-with-forms#the-validation-tag-helpers) muestra errores de validación. Para más información, vea [Introduction to model validation in ASP.NET Core MVC](xref:mvc/models/validation) (Introducción a la validación de modelos en ASP.NET Core MVC).
 
 Lo realmente bueno de este enfoque es que ni el controlador ni la plantilla de vista `Create` saben que las reglas de validación actuales se están aplicando ni conocen los mensajes de error específicos que se muestran. Las reglas de validación y las cadenas de error solo se especifican en la clase `Movie`. Estas mismas reglas de validación se aplican automáticamente a la vista `Edit` y a cualquier otra vista de plantillas creada que edite el modelo.
 
@@ -98,11 +104,11 @@ public DateTime ReleaseDate { get; set; }
 
 El valor `ApplyFormatInEditMode` especifica que el formato se debe aplicar también cuando el valor se muestra en un cuadro de texto para su edición. En algunos campos este comportamiento puede no ser conveniente. Por poner un ejemplo, es probable que con valores de moneda no se quiera que el símbolo de la divisa se incluya en el cuadro de texto editable.
 
-El atributo `DisplayFormat` puede usarse por sí solo, pero normalmente se recomienda usar el atributo `DataType`. El atributo `DataType` transmite la semántica de los datos en contraposición a cómo se representan en una pantalla y ofrece las siguientes ventajas que no proporciona DisplayFormat:
+El atributo `DisplayFormat` puede usarse por sí solo, pero normalmente se recomienda usar el atributo `DataType`. El atributo `DataType` transmite la semántica de los datos en contraposición a cómo se representa en una pantalla y ofrece las siguientes ventajas que no proporciona DisplayFormat:
 
 * El explorador puede habilitar características de HTML5 (por ejemplo, mostrar un control de calendario, el símbolo de moneda adecuado según la configuración regional, vínculos de correo electrónico, etc.).
 
-* De forma predeterminada, el explorador presenta los datos con el formato correcto en función de la configuración regional.
+* De manera predeterminada, el explorador representa los datos con el formato correcto según la configuración regional.
 
 * El atributo `DataType` puede habilitar MVC para que elija la plantilla de campo adecuada para representar los datos (`DisplayFormat`, si se usa por sí solo, usa la plantilla de cadena).
 
@@ -111,7 +117,7 @@ El atributo `DisplayFormat` puede usarse por sí solo, pero normalmente se recom
 >
 > `[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]`
 
-Debe deshabilitar la validación de fechas de jQuery para usar el atributo `Range` con `DateTime`. Por lo general no se recomienda compilar fechas fijas en los modelos, así que se desaconseja el empleo del atributo `Range` y `DateTime`.
+Debe deshabilitar la validación de fechas de jQuery para usar el atributo `Range` con `DateTime`. Por lo general no se recomienda compilar fechas fijas en los modelos, así que desaconseja usar el atributo `Range` y `DateTime`.
 
 El código siguiente muestra la combinación de atributos en una línea:
 

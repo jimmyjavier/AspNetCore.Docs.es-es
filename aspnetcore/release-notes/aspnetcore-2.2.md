@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 54d3f1e7b0c94d69781c052694305a389a675019
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 3b510c7f4788a59145ef16720276fc7e4560f07e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977176"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774150"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novedades de ASP.NET Core 2.2
 
@@ -81,7 +85,7 @@ En versiones anteriores de ASP.NET Core, IIS actuaba como un proxy inverso. En l
 
 Para obtener más información, consulte [Modelo de hospedaje en proceso](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
-## <a name="opno-locsignalr-java-client"></a>Cliente de Java para SignalR
+## <a name="signalr-java-client"></a>Cliente de Java para SignalR
 
 ASP.NET Core 2.2 presenta un cliente de Java para SignalR. Este cliente admite la conexión a una instancia de ASP.NET Core SignalR Server desde código de Java, incluidas las aplicaciones Android.
 

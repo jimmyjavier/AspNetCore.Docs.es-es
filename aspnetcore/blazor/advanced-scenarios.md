@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 5edbbe36e8389bac0335594b1e4331aee1c02867
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 9f1e5ea4d883a027f40ac0eccc7a9bba1435139d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647417"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767205"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Escenarios avanzados de ASP.NET Core Blazor
 
@@ -218,7 +221,7 @@ Este es un ejemplo trivial. En casos más realistas con estructuras complejas y 
 * Si los números de secuencia están codificados, el algoritmo de diferencia solo requiere que los números de secuencia aumenten de valor. El valor inicial y los intervalos son irrelevantes. Una opción legítima es usar el número de línea de código como el número de secuencia, o comenzar a partir de cero y aumentar en unos o cientos (o cualquier intervalo preferido). 
 * Blazor utiliza los números de secuencia, mientras que otros marcos de la interfaz de usuario de diferencia de árboles no. La comparación es mucho más rápida cuando se utilizan números de secuencia y la ventaja de Blazor es un paso de compilación que trata los números de secuencia automáticamente para desarrolladores que crean archivos *.razor*.
 
-## <a name="perform-large-data-transfers-in-opno-locblazor-server-apps"></a>Realización de transferencias de datos grandes en aplicaciones Blazor Server
+## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Realización de transferencias de datos grandes en aplicaciones Blazor Server
 
 En algunos escenarios, se deben transferir cantidades grandes de datos entre JavaScript y Blazor. Normalmente, se producen transferencias de datos grandes cuando:
 

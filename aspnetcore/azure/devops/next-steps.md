@@ -5,13 +5,19 @@ description: Rutas de aprendizaje adicionales para DevOps con ASP.NET Core y Azu
 ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: azure/devops/next-steps
-ms.openlocfilehash: a775dc42551a43bcce72b5f9ca364ed00b1dc4e6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 92401d45d36dd3b93d175e08a8fa8697217ca7c7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647435"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766529"
 ---
 # <a name="next-steps"></a>Pasos siguientes
 
@@ -29,7 +35,7 @@ Además del hospedaje web y DevOps, Azure cuenta con una amplia variedad de serv
 
 [Cosmos DB](/azure/cosmos-db/) es un servicio de base de datos NoSQL multimodelo distribuido globalmente. Hay disponibles varias API, entre las que se incluyen la API de SQL (anteriormente denominada DocumentDB), Cassandra y MongoDB.
 
-## <a name="identity"></a>Identidad
+## Identity
 
 [Azure Active Directory](/azure/active-directory/) y [Azure Active Directory B2C](/azure/active-directory-b2c/) son servicios de identidad. Azure Active Directory está diseñado para escenarios empresariales y permite colaboración Azure AD B2B (de negocio a negocio), mientras que la finalidad de Azure Active Directory B2C son los escenarios de negocio a cliente, incluida la información de inicio de sesión de redes sociales.
 
