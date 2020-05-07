@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo recopilar diagnósticos de la apli
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 131144bf7a2c637eb2c1a1d5c54990dd4d429502
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 15f68ced99bdaea9ce53db801a4b2a3bfef2f8dd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417513"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774683"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Registro y diagnóstico en gRPC en .NET
 
@@ -148,7 +154,7 @@ El cliente gRPC de .NET usa `HttpClient` para realizar llamadas de gRPC. Aunque 
 
 ### <a name="collecting-tracing"></a>Recopilación del seguimiento
 
-La forma más fácil de usar `DiagnosticSource` consiste en configurar una biblioteca de telemetría como [OpenTelemetry](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) o [Application Insights](https://github.com/open-telemetry/opentelemetry-dotnet) en la aplicación. La biblioteca procesará información sobre las llamadas a gRPC junto a otra telemetría de la aplicación.
+La forma más fácil de usar `DiagnosticSource` consiste en configurar una biblioteca de telemetría como [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) o [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) en la aplicación. La biblioteca procesará información sobre las llamadas a gRPC junto a otra telemetría de la aplicación.
 
 El seguimiento se puede ver en un servicio administrado como Application Insights, o bien puede elegir ejecutar un sistema de seguimiento distribuido propio. OpenTelemetry admite la exportación de datos de seguimiento a [Jaeger](https://www.jaegertracing.io/) y [Zipkin](https://zipkin.io/).
 
@@ -165,7 +171,7 @@ Las métricas son una representación de medidas de datos a lo largo de interval
 
 Las métricas de servicios gRPC se notifican en el origen del evento `Grpc.AspNetCore.Server`.
 
-| Name                      | Description                   |
+| NOMBRE                      | Descripción                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Total de llamadas                   |
 | `current-calls`           | Llamadas actuales                 |
@@ -181,7 +187,7 @@ ASP.NET Core también proporciona sus propias métricas en el origen del evento 
 
 Las métricas de clientes gRPC se notifican en el origen del evento `Grpc.Net.Client`.
 
-| Name                      | Description                   |
+| NOMBRE                      | Descripción                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Total de llamadas                   |
 | `current-calls`           | Llamadas actuales                 |
