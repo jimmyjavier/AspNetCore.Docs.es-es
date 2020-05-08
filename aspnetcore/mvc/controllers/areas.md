@@ -66,7 +66,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
         * HomeController.cs
         * ManageController.cs
       * Vistas
-        * Página principal
+        * Inicio
           * Index.cshtml
         * Administrar
           * Index.cshtml
@@ -75,7 +75,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
       * Controladores
         * HomeController.cs
       * Vistas
-        * Página principal
+        * Inicio
           * Index.cshtml
 
 Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos de vista tienen que usar esta estructura de carpetas. La detección de vista busca un archivo de vista de área coincidente en el orden siguiente:
@@ -268,7 +268,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
         * HomeController.cs
         * ManageController.cs
       * Vistas
-        * Página principal
+        * Inicio
           * Index.cshtml
         * Administrar
           * Index.cshtml
@@ -277,7 +277,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
       * Controladores
         * HomeController.cs
       * Vistas
-        * Página principal
+        * Inicio
           * Index.cshtml
 
 Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos de vista tienen que usar esta estructura de carpetas. La detección de vista busca un archivo de vista de área coincidente en el orden siguiente:

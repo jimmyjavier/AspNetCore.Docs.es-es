@@ -170,7 +170,7 @@ A la hora de decidir <xref:Microsoft.Extensions.Caching.Distributed.IDistributed
 
 * Infraestructura existente
 * Requisitos de rendimiento
-* Coste
+* Costo
 * Experiencia del equipo
 
 Las soluciones de almacenamiento en caché suelen basarse en el almacenamiento en memoria para proporcionar una recuperación rápida de los datos almacenados en memoria caché, pero la memoria es un recurso limitado y se amplía de forma costosa. Almacene solo los datos usados habitualmente en una memoria caché.
@@ -340,7 +340,7 @@ A la hora de decidir <xref:Microsoft.Extensions.Caching.Distributed.IDistributed
 
 * Infraestructura existente
 * Requisitos de rendimiento
-* Coste
+* Costo
 * Experiencia del equipo
 
 Las soluciones de almacenamiento en caché suelen basarse en el almacenamiento en memoria para proporcionar una recuperación rápida de los datos almacenados en memoria caché, pero la memoria es un recurso limitado y se amplía de forma costosa. Almacene solo los datos usados habitualmente en una memoria caché.
@@ -516,7 +516,7 @@ A la hora de decidir <xref:Microsoft.Extensions.Caching.Distributed.IDistributed
 
 * Infraestructura existente
 * Requisitos de rendimiento
-* Coste
+* Costo
 * Experiencia del equipo
 
 Las soluciones de almacenamiento en caché suelen basarse en el almacenamiento en memoria para proporcionar una recuperación rápida de los datos almacenados en memoria caché, pero la memoria es un recurso limitado y se amplía de forma costosa. Almacene solo los datos usados habitualmente en una memoria caché.
