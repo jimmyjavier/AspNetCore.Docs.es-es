@@ -5,7 +5,7 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/06/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 3a2f3bdd194b9153c5d59af7adfad3a3c8c56b23
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: aaae2b755d6d6e74db0cb7676820d01964c2add4
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776043"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976810"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Protección de una Blazor aplicación hospedada en webassembly ASP.NET Core con Azure Active Directory
 
@@ -93,7 +93,7 @@ En **permisos de API**:
 1. Abra la lista de **API** .
 1. Habilite el acceso a la API (por ejemplo `API.Access`,).
 1. Seleccione **Agregar permisos**.
-1. Seleccione el botón **conceder contenido de administración para {nombre de inquilino}** . Seleccione **Sí** para confirmar la acción.
+1. Seleccione el botón **conceder contenido de administración para {nombre de inquilino}** . Seleccione **Sí** para confirmar.
 
 Registre el identificador de aplicación de la aplicación *cliente* (identificador de cliente) `33333333-3333-3333-3333-333333333333`(por ejemplo,).
 
@@ -156,7 +156,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Configuración de la aplicación
+### <a name="app-settings"></a>Configuración de aplicaciones
 
 El archivo *appSettings. JSON* contiene las opciones para configurar el controlador de portador JWT que se usa para validar los tokens de acceso.
 
@@ -354,5 +354,6 @@ Ejecute la aplicación desde el proyecto de servidor. Al usar Visual Studio, sel
 ## <a name="additional-resources"></a>Recursos adicionales
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* <xref:security/blazor/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Documentación de la plataforma de identidad de Microsoft](/azure/active-directory/develop/)

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 0da9e124b884337c63dd91b06df60ef7ca89cf3e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b613ccd8df65e41b86793466a0ed5dc7bf7e8772
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774137"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976758"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carga de archivos en ASP.NET Core
 
@@ -30,7 +30,7 @@ ASP.NET Core admite la carga de uno o varios archivos mediante el enlace de mod
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Consideraciones de seguridad
+## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
 Tenga precaución al proporcionar a los usuarios la capacidad de cargar archivos en un servidor. Es posible que los atacantes intenten lo siguiente:
 
@@ -234,7 +234,7 @@ Es posible acceder a archivos individuales cargados en el servidor a través del
 >
 > Los ejemplos proporcionados hasta ahora no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones de seguridad](#security-considerations)
+> * [Consideraciones sobre la seguridad](#security-considerations)
 > * [Validación](#validation)
 
 Al cargar archivos mediante el enlace de modelos y <xref:Microsoft.AspNetCore.Http.IFormFile>, el método de acción puede aceptar:
@@ -405,7 +405,7 @@ El ejemplo anterior es similar a un escenario que se muestra en la aplicación d
 >
 > Los ejemplos proporcionados no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones de seguridad](#security-considerations)
+> * [Consideraciones sobre la seguridad](#security-considerations)
 > * [Validación](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carga de archivos de gran tamaño con streaming
@@ -454,7 +454,7 @@ La clase `FileHelpers` de la aplicación de ejemplo muestra varias comprobacione
 >
 > **No implemente nunca de manera indiscriminada el código de seguridad en una aplicación sin abordar estos requisitos.**
 
-### <a name="content-validation"></a>Validación del contenido
+### <a name="content-validation"></a>Validación de contenido
 
 **Use una API de detección de virus/malware de terceros en el contenido cargado.**
 
@@ -759,7 +759,7 @@ ASP.NET Core admite la carga de uno o varios archivos mediante el enlace de mod
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Consideraciones de seguridad
+## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
 Tenga precaución al proporcionar a los usuarios la capacidad de cargar archivos en un servidor. Es posible que los atacantes intenten lo siguiente:
 
@@ -963,7 +963,7 @@ Es posible acceder a archivos individuales cargados en el servidor a través del
 >
 > Los ejemplos proporcionados hasta ahora no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones de seguridad](#security-considerations)
+> * [Consideraciones sobre la seguridad](#security-considerations)
 > * [Validación](#validation)
 
 Al cargar archivos mediante el enlace de modelos y <xref:Microsoft.AspNetCore.Http.IFormFile>, el método de acción puede aceptar:
@@ -1134,7 +1134,7 @@ El ejemplo anterior es similar a un escenario que se muestra en la aplicación d
 >
 > Los ejemplos proporcionados no tienen en cuenta las consideraciones de seguridad. Se proporciona información adicional en las secciones siguientes y en la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Consideraciones de seguridad](#security-considerations)
+> * [Consideraciones sobre la seguridad](#security-considerations)
 > * [Validación](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carga de archivos de gran tamaño con streaming
@@ -1183,7 +1183,7 @@ La clase `FileHelpers` de la aplicación de ejemplo muestra varias comprobacione
 >
 > **No implemente nunca de manera indiscriminada el código de seguridad en una aplicación sin abordar estos requisitos.**
 
-### <a name="content-validation"></a>Validación del contenido
+### <a name="content-validation"></a>Validación de contenido
 
 **Use una API de detección de virus/malware de terceros en el contenido cargado.**
 
@@ -1478,7 +1478,7 @@ Los ejemplos de este tema se basan en <xref:System.IO.MemoryStream> para almacen
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Agotamiento de la solicitud de conexión HTTP](xref:fundamentals/servers/kestrel#http-connection-request-draining)
+* [Agotamiento de la solicitud de conexión HTTP](xref:fundamentals/servers/kestrel#http11-request-draining)
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) (Carga de archivos sin restricciones)
 * [Seguridad de Azure: marco de seguridad: validación de entrada | Mitigaciones](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Patrones de diseño en la nube de Azure: patrón de clave valet](/azure/architecture/patterns/valet-key)
