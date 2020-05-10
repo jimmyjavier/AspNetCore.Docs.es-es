@@ -1,20 +1,26 @@
 ---
-title: Referencia de sintaxis de Razor para ASP.NET Core
+title: referencia de la sintaxis de Razor para ASP.NET Core
 author: rick-anderson
-description: Obtenga información sobre la sintaxis de marcado de Razor para insertar código basado en servidor en páginas web.
+description: Obtenga información Razor sobre la sintaxis de marcado para insertar código basado en servidor en páginas Web.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: dd5c73be56ed0dafb759df2f5ff2eac1a3b5b09e
-ms.sourcegitcommit: d03905aadf5ceac39fff17706481af7f6c130411
+ms.openlocfilehash: 3e77b25e2660688d0040d47840e47dab8f260197
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/29/2020
-ms.locfileid: "80381768"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003200"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referencia de sintaxis de Razor para ASP.NET Core
 
-Por [Rick Anderson,](https://twitter.com/RickAndMSFT) [Taylor Mullen](https://twitter.com/ntaylormullen)y [Dan Vicarel](https://github.com/Rabadash8820)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)y [dan Vicarel](https://github.com/Rabadash8820)
 
 Razor es una sintaxis de marcado para insertar código basado en servidor en páginas web. La sintaxis de Razor combina marcado de Razor, C# y HTML. Los archivos que contienen sintaxis de Razor suelen tener la extensión de archivo *.cshtml*. Razor también se encuentra en los archivos de los [componentes de Razor](xref:blazor/components) (*.razor*).
 
@@ -467,7 +473,7 @@ El bloque `@code` habilita un [componente de Razor](xref:blazor/components) para
 }
 ```
 
-Para los `@code` componentes de [`@functions`](#functions) Razor, `@functions`es un alias de . Se permite emplear más de un bloque `@code`.
+En el caso de `@code` los componentes de Razor [`@functions`](#functions) , es un `@functions`alias de y se recomienda en exceso. Se permite emplear más de un bloque `@code`.
 
 ::: moniker-end
 
@@ -633,7 +639,7 @@ Razor expone una propiedad `Model` para tener acceso al modelo que se ha pasado 
 <div>The Login Email: @Model.Email</div>
 ```
 
-La directiva `@model` especifica el tipo de la propiedad `Model`. La directiva especifica el elemento `T` en `RazorPage<T>` de la clase generada de la que se deriva la vista. Si la directiva `@model` no se especifica, la propiedad `Model` es de tipo `dynamic`. Para obtener más información, consulte [Modelos fuertemente @model tipados y la palabra clave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+La directiva `@model` especifica el tipo de la propiedad `Model`. La directiva especifica el elemento `T` en `RazorPage<T>` de la clase generada de la que se deriva la vista. Si la directiva `@model` no se especifica, la propiedad `Model` es de tipo `dynamic`. Para obtener más información, vea [modelos fuertemente tipados y @model la palabra clave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### <a name="namespace"></a>\@namespace
 
@@ -654,7 +660,7 @@ En el ejemplo de Razor Pages que se muestra en la tabla siguiente:
 
 | Página                                        | Espacio de nombres                             |
 | ------------------------------------------- | ------------------------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`                         |
+| *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
 
@@ -666,7 +672,7 @@ Si la carpeta *EvenMorePages* del ejemplo anterior tiene un archivo de importaci
 
 | Página                                        | Espacio de nombres               |
 | ------------------------------------------- | ----------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`           |
+| *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
@@ -701,7 +707,7 @@ La directiva `@using` agrega la directiva `using` de C# a la vista generada:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-En [Componentes de Razor,](xref:blazor/components) `@using` también controla qué componentes están en el ámbito.
+En [los componentes](xref:blazor/components)de `@using` Razor, también controla qué componentes están en el ámbito.
 
 ::: moniker-end
 
@@ -878,30 +884,30 @@ Hay tres directivas que pertenecen a los [asistentes de etiquetas](xref:mvc/view
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Quita los asistentes de etiquetas agregadas anteriormente desde una vista. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Especifica una cadena de prefijo de etiqueta para permitir la compatibilidad con el asistente de etiquetas y hacer explícito su uso. |
 
-## <a name="razor-reserved-keywords"></a>Palabras clave reservadas de Razor
+## <a name="razor-reserved-keywords"></a>RazorPalabras clave reservadas
 
-### <a name="razor-keywords"></a>Palabras clave de Razor
+### <a name="razor-keywords"></a>Razorpalabra
 
 * page (requiere ASP.NET Core 2.1 o una versión posterior)
-* espacio de nombres
+* namespace
 * functions
 * hereda
 * model
 * section
 * helper (no admitida en ASP.NET Core actualmente)
 
-Para hacer escape en una palabra clave de Razor, se usa `@(Razor Keyword)` (por ejemplo, `@(functions)`).
+Razorlas palabras clave se `@(Razor Keyword)` incluyen en secuencias de `@(functions)`escape (por ejemplo,).
 
-### <a name="c-razor-keywords"></a>Palabras clave C# de Razor
+### <a name="c-razor-keywords"></a>Palabras Razor clave de C#
 
-* case
+* mayúsculas y minúsculas
 * do
 * default
 * for
 * foreach
 * if
 * else
-* lock
+* bloquear
 * switch
 * probar
 * catch
@@ -909,51 +915,51 @@ Para hacer escape en una palabra clave de Razor, se usa `@(Razor Keyword)` (por 
 * using
 * while
 
-Las palabras clave C# de Razor deben tener doble escape con `@(@C# Razor Keyword)` (por ejemplo, `@(@case)`). El primer carácter `@` hace escape en el analizador Razor y el segundo `@`, en el analizador de C#.
+Las Razor palabras clave de C# deben tener un `@(@C# Razor Keyword)` doble escape con ( `@(@case)`por ejemplo,). El primero `@` convierte el analizador Razor en caracteres de escape. y el segundo `@`, en el analizador de C#.
 
-### <a name="reserved-keywords-not-used-by-razor"></a>Palabras clave reservadas no usadas en Razor
+### <a name="reserved-keywords-not-used-by-razor"></a>Palabras clave reservadas no utilizadas porRazor
 
 * clase
 
-## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspección de la clase C# de Razor generada por una vista
+## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspeccionar Razor la clase de C# generada para una vista
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Con el SDK de .NET Core 2.1 o posterior, el [SDK de Razor](xref:razor-pages/sdk) controla la compilación de los archivos de Razor. Al compilar un proyecto, el SDK de Razor genera un directorio *obj/<configuración_de_compilación>/<moniker_de_la_plataforma_de_destino>/Razor* en la raíz del proyecto. La estructura de directorios dentro del directorio *Razor* refleja la del proyecto.
+Con SDK de .net Core 2,1 o posterior, el [ Razor SDK](xref:razor-pages/sdk) controla la compilación Razor de archivos. Al compilar un proyecto Razor , el SDK genera un *build_configuration de <y de>/<Razor target_framework_moniker>/* directorio en la raíz del proyecto. La estructura de directorios dentro *Razor* del directorio refleja la estructura de directorios del proyecto.
 
-Tenga en cuenta la estructura de directorios siguiente en un proyecto de Razor Pages de ASP.NET Core 2.1 destinado a .NET Core 2.1:
+Considere la siguiente estructura de directorios en un proyecto Razor de páginas de ASP.net Core 2,1 que tiene como destino .net Core 2,1:
 
-* **Zonas/**
-  * **Administrador/**
-    * **Páginas/**
+* **Lugares**
+  * **Administrar**
+    * **Páginas**
       * *Index.cshtml*
       * *Index.cshtml.cs*
-* **Páginas/**
-  * **Compartido/**
-    * *_Layout.cshtml*
+* **Páginas**
+  * **Recurso**
+    * *_Layout. cshtml*
   * *_ViewImports.cshtml*
-  * *_ViewStart.cshtml*
+  * *_ViewStart. cshtml*
   * *Index.cshtml*
   * *Index.cshtml.cs*
 
 Al compilar el proyecto en la configuración *Depurar* se crea el directorio *obj* siguiente:
 
-* **obj/**
-  * **Depurar/**
+* **obj**
+  * **Depura**
     * **netcoreapp2.1/**
       * **Razor/**
-        * **Zonas/**
-          * **Administrador/**
-            * **Páginas/**
+        * **Lugares**
+          * **Administrar**
+            * **Páginas**
               * *Index.g.cshtml.cs*
-        * **Páginas/**
-          * **Compartido/**
+        * **Páginas**
+          * **Recurso**
             * *_Layout.g.cshtml.cs*
           * *_ViewImports.g.cshtml.cs*
           * *_ViewStart.g.cshtml.cs*
           * *Index.g.cshtml.cs*
 
-Para ver la clase generada para *Pages/Index.cshtml*, abra *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+Para ver la clase generada para *pages/index. cshtml*, Abra *obj/Debug/netcoreappRazor2.1//Pages/index.g.cshtml.CS*.
 
 ::: moniker-end
 
@@ -975,7 +981,7 @@ Establezca un punto de interrupción en la instrucción `return csharpDocument;`
 
 ## <a name="view-lookups-and-case-sensitivity"></a>Búsquedas de vistas y distinción entre mayúsculas y minúsculas
 
-El motor de vista de Razor realiza búsquedas de vistas en las que se distingue entre mayúsculas y minúsculas. Pero la búsqueda real viene determinada por el sistema de archivos subyacente:
+El Razor motor de vista realiza búsquedas con distinción de mayúsculas y minúsculas para las vistas. Pero la búsqueda real viene determinada por el sistema de archivos subyacente:
 
 * Origen basado en archivos:
   * En los sistemas operativos con sistemas de archivos que no distinguen entre mayúsculas y minúsculas (por ejemplo, Windows), las búsquedas de proveedor de archivos físicos no distinguirán mayúsculas de minúsculas. Por ejemplo, `return View("Test")` arrojará como resultados */Views/Home/Test.cshtml*, */Views/home/test.cshtml* y cualquier otra variante de mayúsculas y minúsculas.
@@ -985,10 +991,10 @@ El motor de vista de Razor realiza búsquedas de vistas en las que se distingue 
 Por tanto, se anima a todos los desarrolladores a intentar que las mayúsculas y minúsculas de los nombres de archivo y de directorio sean las mismas que las mayúsculas y minúsculas de:
 
 * Nombres de acciones, controladores y áreas.
-* Páginas de Razor.
+* RazorPáginas.
 
 La coincidencia de mayúsculas y minúsculas garantiza que las implementaciones van a encontrar sus vistas, independientemente de cuál sea el sistema de archivos subyacente.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-[Introducción a la programación web de ASP.NET mediante la sintaxis](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) de Razor proporciona muchos ejemplos de programación con sintaxis Razor.
+[La introducción a la programación web de Razor ASP.net mediante la sintaxis](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) proporciona muchos ejemplos Razor de programación con sintaxis.
