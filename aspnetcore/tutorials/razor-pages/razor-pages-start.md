@@ -1,16 +1,22 @@
 ---
 title: 'Tutorial: Introducción a Razor Pages en ASP.NET Core'
 author: rick-anderson
-description: Esta serie de tutoriales muestra cómo usar Razor Pages en ASP.NET Core. Obtenga información sobre cómo crear un modelo, generar código para Razor Pages, usar Entity Framework Core y SQL Server para el acceso a datos, agregar la funcionalidad de búsqueda, agregar validación de entrada y usar migraciones para actualizar el modelo.
+description: En esta serie de tutoriales se muestra cómo usar Razor Pages en ASP.NET Core. Aprenda a crear un modelo, generar código para Razor Pages, usar Entity Framework Core y SQL Server para el acceso a datos, agregar la funcionalidad de búsqueda, agregar validación de entrada y usar migraciones para actualizar el modelo.
 ms.author: riande
 ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646907"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774878"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introducción a Razor Pages en ASP.NET Core
 
@@ -323,9 +329,9 @@ He aquí un resumen de las principales carpetas y archivos del proyecto con los 
 
 ### <a name="pages-folder"></a>Carpeta Pages
 
-Contiene Razor Pages y los archivos auxiliares. Cada página de Razor se compone de un par de archivos:
+Contiene páginas de Razor y archivos auxiliares. Cada página de Razor consta de un par de archivos:
 
-* Archivo *.cshtml* que contiene el marcado HTML con código C# que usa la sintaxis Razor.
+* Un archivo *.cshtml* que contiene marcado HTML con código de C# que usa sintaxis de Razor.
 * Archivo *. cshtml.cs* que contiene C# código que controla los eventos de página.
 
 Los archivos auxiliares tienen nombres que comienzan con un carácter de subrayado. Por ejemplo, el archivo *_Layout.cshtml* configura los elementos de la interfaz de usuario comunes a todas las páginas. Este archivo configura el menú de navegación de la parte superior de la página y el aviso de copyright de la parte inferior de la página. Para obtener más información, vea <xref:mvc/views/layout>.

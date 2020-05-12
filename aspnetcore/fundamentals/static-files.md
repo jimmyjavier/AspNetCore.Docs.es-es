@@ -5,13 +5,19 @@ description: Aprenda a proporcionar y proteger los archivos estáticos y a confi
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 95a77defc7e98328e1f4e3615648b1d14485e51e
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f7697260e6ab29d0e9ba955dfdf0c8c81e4e1130
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647717"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775497"
 ---
 # <a name="static-files-in-aspnet-core"></a>Archivos estáticos en ASP.NET Core
 
@@ -247,7 +253,7 @@ Con el código anterior, una solicitud para un archivo con un tipo de contenido 
 ### <a name="considerations"></a>Consideraciones
 
 > [!WARNING]
-> `UseDirectoryBrowser` y `UseStaticFiles` pueden producir pérdidas de información confidencial. Se recomienda deshabilitar el examen de directorios en producción. Revise cuidadosamente los directorios que se habilitan mediante `UseStaticFiles` o `UseDirectoryBrowser`. Todo el directorio y sus subdirectorios pasan a ser accesibles públicamente. Almacene los archivos adecuados para proporcionarlos al público en un directorio dedicado, como *\<raíz_contenido>/wwwroot*. Separe estos archivos de las vistas MVC, las páginas de Razor (solo 2.x), los archivos de configuración, etc.
+> `UseDirectoryBrowser` y `UseStaticFiles` pueden producir pérdidas de información confidencial. Se recomienda deshabilitar el examen de directorios en producción. Revise cuidadosamente los directorios que se habilitan mediante `UseStaticFiles` o `UseDirectoryBrowser`. Todo el directorio y sus subdirectorios pasan a ser accesibles públicamente. Almacene los archivos adecuados para proporcionarlos al público en un directorio dedicado, como *\<raíz_contenido>/wwwroot*. Separe estos archivos de las vistas MVC, las instancias de Razor Pages (solo 2.x), los archivos de configuración, etc.
 
 * Las direcciones URL para el contenido que se expone a través de `UseDirectoryBrowser` y `UseStaticFiles` están sujetas a la distinción entre mayúsculas y minúsculas, y a restricciones de caracteres del sistema de archivos subyacente. Por ejemplo, Windows no distingue entre mayúsculas y minúsculas, pero macOS y Linux sí.
 

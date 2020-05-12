@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 02/12/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: a7280b59578ee1d96edeeccf9c9df0b0e4eb4eb8
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1fb81d5a54cf332ca473af8fbe1841813a127be7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649907"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775887"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Elección entre ASP.NET 4.x y ASP.NET Core
 
@@ -36,7 +40,7 @@ En la tabla siguiente se compara ASP.NET Core en ASP.NET 4.x.
 | ASP.NET Core | ASP.NET 4.x |
 |---|---|
 |Compilación para Windows, macOS o Linux|Compilación para Windows|
-|[Las páginas de Razor](xref:razor-pages/index) son el método recomendado para crear una interfaz de usuario web desde la aparición de ASP.NET Core 2.x. Consulte también [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api) y [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/) o [Web Pages](/aspnet/web-pages)|
+|[Razor Pages](xref:razor-pages/index) es el método recomendado para crear una interfaz de usuario web a partir de ASP.NET Core 2.x. Consulte también [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api) y [SignalR](xref:signalr/introduction).|Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/) o [Web Pages](/aspnet/web-pages)|
 |Varias versiones por equipo|Una versión por equipo|
 |Desarrollo con [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) o [Visual Studio Code](https://code.visualstudio.com/) con C# o F#|Desarrollo con [Visual Studio](https://visualstudio.microsoft.com/vs/) con C#, VB o F#|
 |Mayor rendimiento que ASP.NET 4.x|Buen rendimiento|

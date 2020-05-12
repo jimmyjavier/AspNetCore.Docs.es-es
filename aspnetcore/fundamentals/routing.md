@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 79a46cac4122728e84fa6f5acb3defa182092bec
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 2dd44a561debddac13250174a8e74dd912302d60
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206130"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850518"
 ---
 # <a name="routing-in-aspnet-core"></a>Enrutamiento en ASP.NET Core
 
@@ -348,7 +354,7 @@ Los detalles de cómo funciona la precedencia están vinculados a cómo se defin
 * Un segmento con texto literal se considera más específico que un segmento de parámetro.
 * Un segmento de parámetro con una restricción se considera más específico que uno que no la tenga.
 * Un segmento complejo se considera igual de específico que un segmento de parámetro con una restricción.
-* Los parámetros comodín son los menos específicos.
+* Los parámetros comodín son los menos específicos. Vea **comodín** en [Referencia de plantilla de ruta](#rtr) para obtener información importante sobre las rutas comodín.
 
 Vea el [código fuente en GitHub](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) para obtener una referencia de los valores exactos.
 
@@ -415,6 +421,8 @@ Asterisco `*` o asterisco doble `**`:
 * Se denominan parámetros **comodín**. Por ejemplo, `blog/{**slug}`:
   * Coincide con cualquier URI que empiece por `/blog` y después tenga cualquier valor.
   * El valor que aparece detrás de `/blog` se asigna al valor de ruta [slug](https://developer.mozilla.org/docs/Glossary/Slug).
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 Los parámetros comodín también pueden coincidir con una cadena vacía.
 
@@ -573,6 +581,8 @@ Para restringir un parámetro a un conjunto conocido de valores posibles, use un
 Se pueden crear restricciones de ruta personalizadas mediante la implementación de la interfaz <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>. La interfaz `IRouteConstraint` contiene <xref:System.Web.Routing.IRouteConstraint.Match*>, que devuelve `true` si se cumple la restricción, y `false` en caso contrario.
 
 Las restricciones de ruta personalizadas rara vez son necesarias. Antes de implementar una restricción de ruta personalizada, considere alternativas, como el enlace de modelos.
+
+En la carpeta [Constraints](https://github.com/dotnet/aspnetcore/tree/master/src/Http/Routing/src/Constraints) de ASP.NET Core se proporcionan buenos ejemplos de creación de restricciones. Por ejemplo, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
 Para usar una restricción `IRouteConstraint` personalizada, el tipo de restricción de ruta se debe registrar con el parámetro <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> de la aplicación en el contenedor de servicios. `ConstraintMap` es un diccionario que asigna claves de restricciones de ruta a implementaciones de `IRouteConstraint` que validen esas restricciones. El parámetro `ConstraintMap` de una aplicación puede actualizarse en `Startup.ConfigureServices` como parte de una llamada a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> directamente con `services.Configure<RouteOptions>`. Por ejemplo:
 

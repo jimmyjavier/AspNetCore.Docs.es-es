@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/31/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 48f5b09199091b2b55974010a2b0715c28eb1bae
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 524fd015278d1a5f784fa306f077d06b865201c4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205974"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772092"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
 
@@ -94,9 +97,9 @@ El modelo de la aplicación del servidor de Blazor admite los [contenedores de D
 
 ### <a name="comparison-to-server-rendered-ui"></a>Comparación con la interfaz de usuario representada por el servidor
 
-Una forma de entender las aplicaciones Servidor de Blazor es comprender cómo varían a partir de modelos tradicionales para la representación de la interfaz de usuario en las aplicaciones de ASP.NET Core mediante vistas de Razor o Razor Pages. Ambos modelos usan el lenguaje Razor para describir el contenido HTML, pero difieren bastante en el modo en el que se representa el marcado.
+Una forma de entender las aplicaciones Blazor Server es comprender cómo difieren de los modelos tradicionales para la representación de la interfaz de usuario de las aplicaciones de ASP.NET Core mediante vistas de Razor o Razor Pages. Ambos modelos usan el lenguaje Razor para describir el contenido HTML, pero difieren bastante en el modo de representar el marcado.
 
-Cuando se representa una Página de Razor o una vista, cada línea de código Razor emite HTML en forma de texto. Después de la representación, el servidor desecha la instancia de la página o la vista, incluido cualquier estado que se haya producido. Cuando se produce otra solicitud para la página, por ejemplo, cuando se produce un error en la validación del servidor y se muestra el resumen de la validación, ocurre lo siguiente:
+Cuando se representa una página de Razor o una vista, cada línea de código de Razor emite HTML en forma de texto. Después de la representación, el servidor desecha la instancia de la página o la vista, incluido cualquier estado que se haya producido. Cuando se produce otra solicitud para la página, por ejemplo, cuando se produce un error en la validación del servidor y se muestra el resumen de la validación, ocurre lo siguiente:
 
 * La página completa se vuelve a representar en texto HTML de nuevo.
 * Se envía la página al cliente.
@@ -106,7 +109,7 @@ Una aplicación Blazor se compone de elementos reutilizables de la interfaz de u
 * Se convierte en texto HTML (durante la representación previa&dagger;).
 * Se usa para actualizar de forma eficaz el marcado durante la representación normal.
 
-&dagger;*Representación previa*: el componente de Razor solicitado se compila en el servidor en HTML estático y se envía al cliente, donde se representa al usuario. Una vez realizada la conexión entre el cliente y el servidor, los elementos estáticos del componente representados previamente se reemplazan por elementos interactivos. La representación previa hace que la aplicación tenga más capacidad de respuesta respecto al usuario.
+&dagger;*Representación previa* &ndash; El componente de Razor solicitado se compila en el servidor en HTML estático y se envía al cliente, donde se representa al usuario. Una vez realizada la conexión entre el cliente y el servidor, los elementos estáticos del componente representados previamente se reemplazan por elementos interactivos. La representación previa hace que la aplicación tenga más capacidad de respuesta respecto al usuario.
 
 Una actualización de la interfaz de usuario en Blazor se desencadena mediante lo siguiente:
 

@@ -6,13 +6,19 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74153b9a185d382a3418dd9470ce6ca4c3c70041
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416183"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773619"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Información sobre escenarios avanzados: ASP.NET MVC con EF Core
 
@@ -93,7 +99,7 @@ Cuando se hace clic en el botón **Update**, se llama al método HttpPost y el m
 
 En el **Explorador de soluciones**, haga clic con el botón derecho en la carpeta *Views/Courses* y luego haga clic en **Agregar > Nuevo elemento**.
 
-En el cuadro de diálogo **Agregar nuevo elemento**, haga clic en **ASP.NET Core** en **Instalado** en el panel izquierdo, haga clic en **Vista de Razor** y nombre la nueva vista *UpdateCourseCredits.cshtml*.
+En el cuadro de diálogo **Agregar nuevo elemento**, haga clic en **ASP.NET Core** en **Instalado** en el panel izquierdo, haga clic en **Vista de Razor** y ponga el nombre *UpdateCourseCredits.cshtml* a la nueva vista.
 
 En *Views/Courses/UpdateCourseCredits.cshtml*, reemplace el código de plantilla con el código siguiente:
 

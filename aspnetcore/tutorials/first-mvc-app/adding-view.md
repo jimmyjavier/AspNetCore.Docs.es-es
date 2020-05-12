@@ -4,13 +4,19 @@ author: rick-anderson
 description: Agregar una vista a una aplicación sencilla de ASP.NET Core MVC
 ms.author: riande
 ms.date: 8/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 5510fb6844452571ca764e21640f0bd16444c782
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c89e0f0428fa7556fcd6b75cdfc1dd19109ec1c8
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647789"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774605"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Agregar una vista a una aplicación de ASP.NET Core MVC
 
@@ -227,7 +233,7 @@ Agregue una vista `Index` para el `HelloWorldController`.
 
 ---
 
-Reemplace el contenido del archivo de vista de Razor *Views/HelloWorld/Index.cshtml* con lo siguiente:
+Reemplace el contenido del archivo de vista de Razor *Views/HelloWorld/Index.cshtml* por el siguiente:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 

@@ -8,15 +8,19 @@ ms.custom: mvc
 ms.date: 03/20/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 138057c2ceb9ed01bdf958c01f5cf2275387df23
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79989433"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776609"
 ---
-# <a name="build-your-first-opno-locblazor-app"></a>Compilación de la primera aplicación Blazor
+# <a name="build-your-first-blazor-app"></a>Compilación de la primera aplicación Blazor
 
 Por [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
 
@@ -28,7 +32,7 @@ En este tutorial se muestra cómo crear y modificar una aplicación Blazor.
 
 1. Siga las instrucciones del artículo <xref:blazor/get-started> para crear un proyecto de Blazor en este tutorial. Denomine el proyecto *ToDoList*.
 
-1. Vaya a cada una de las tres páginas de la aplicación en la carpeta *Pages*: Home (Inicio), Counter (Contador) y Fetch data (Recuperar datos). Estas páginas se implementan mediante los archivos de componente de Razor *Index.razor*, *Counter.razor* y *FetchData.razor*.
+1. Vaya a cada una de las tres páginas de la aplicación en la carpeta *Pages*: Home (Inicio), Counter (Contador) y Fetch data (Recuperar datos). Estas páginas se implementan mediante los archivos de componentes de Razor *Index.razor*, *Counter.razor* y *FetchData.razor*.
 
 1. En la página Contador, seleccione el botón **Click me** para aumentar el contador sin una actualización de página. Para aumentar un contador en una página web suele ser necesario escribir JavaScript. Con Blazor, puede escribir C# en su lugar.
 
@@ -38,7 +42,7 @@ En este tutorial se muestra cómo crear y modificar una aplicación Blazor.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
 
-   la interfaz de usuario del componente `Counter` se define mediante HTML. La lógica de la representación dinámica (por ejemplo, bucles, instrucciones condicionales, expresiones) se agrega mediante una sintaxis de C# insertada denominada [Razor](xref:mvc/views/razor). El marcado HTML y la lógica de representación de C# se convierten en una clase de componente en tiempo de compilación. El nombre de la clase de .NET generada coincide con el nombre del archivo.
+   la interfaz de usuario del componente `Counter` se define mediante HTML. La lógica de representación dinámica (por ejemplo, bucles, condicionales, expresiones) se agrega mediante una sintaxis de C# insertada denominada [Razor](xref:mvc/views/razor). El marcado HTML y la lógica de representación de C# se convierten en una clase de componente en tiempo de compilación. El nombre de la clase de .NET generada coincide con el nombre del archivo.
 
    Los miembros de la clase de componente se definen en un bloque `@code`. En el bloque `@code`, se especifica el estado del componente (propiedades, campos) y los métodos para el tratamiento de eventos o para definir otra lógica del componente. Estos miembros se utilizan como parte de la lógica de representación del componente y para el tratamiento de eventos.
 
@@ -101,7 +105,7 @@ La directiva `@page` en la parte superior del archivo *Counter.razor* especifica
 
 ## <a name="dependency-injection"></a>Inserción de dependencias
 
-### <a name="opno-locblazor-server-experience"></a>Experiencia de Blazor Server
+### <a name="blazor-server-experience"></a>Experiencia de Blazor Server
 
 Si va a trabajar con una aplicación Blazor Server, el servicio `WeatherForecastService` se registra como [singleton](xref:fundamentals/dependency-injection#service-lifetimes) en `Startup.ConfigureServices`. Una instancia del servicio está disponible en toda la aplicación a través de la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection):
 
@@ -117,7 +121,7 @@ El componente `FetchData` usa el servicio insertado, como `ForecastService`, par
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-### <a name="opno-locblazor-webassembly-experience"></a>Experiencia de Blazor WebAssembly
+### <a name="blazor-webassembly-experience"></a>Experiencia de Blazor WebAssembly
 
 Si trabaja con una aplicación Blazor WebAssembly, se inserta `HttpClient` para obtener datos de previsión del tiempo del archivo *weather.json* de la carpeta *wwwroot/sample-data*.
 
@@ -133,7 +137,7 @@ Se usa un bucle [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-
 
 Agregue un nuevo componente a la aplicación que implemente una simple lista de tareas pendientes.
 
-1. Agregue un nuevo componente `Todo` Razor a la aplicación en la carpeta *Páginas*. En Visual Studio, haga clic con el botón derecho en la carpeta **Páginas** y seleccione **Agregar** > **Nuevo elemento** > **Componente de Razor**. Asigne el nombre *Todo.razor* al archivo del componente. En otros entornos de desarrollo, agregue un archivo en blanco denominado *Todo.razor* a la carpeta **Páginas**.
+1. Agregue un nuevo componente `Todo` de Razor a la aplicación en la carpeta *Pages*. En Visual Studio, haga clic con el botón derecho en la carpeta **Pages** y seleccione **Agregar** > **Nuevo elemento** > **Componente de Razor** . Asigne el nombre *Todo.razor* al archivo del componente. En otros entornos de desarrollo, agregue un archivo en blanco denominado *Todo.razor* a la carpeta **Páginas**.
 
 1. Proporcione el marcado inicial para el componente:
 

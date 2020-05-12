@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 5cb61d330df7e15fbd54396207792596ae018fd3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417585"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776349"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedaje de ASP.NET Core en un servicio de Windows
 
@@ -61,7 +67,7 @@ Host.CreateDefaultBuilder(args)
 Las aplicaciones de ejemplo siguientes acompañan a este tema:
 
 * Ejemplo Background Worker Service &ndash; Un ejemplo de una aplicación que no es para la web basado en la [plantilla Worker Service](#worker-service-template) que usa [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
-* Ejemplo de App Service web &ndash; Un ejemplo de aplicación web Razor Pages que se ejecuta como un servicio de Windows con [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
+* Ejemplo de App Service web &ndash; Un ejemplo de aplicación web de Razor Pages que se ejecuta como un servicio de Windows con [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
 
 Para obtener instrucciones sobre MVC, vea los artículos en <xref:mvc/overview> y <xref:migration/22-to-30>.
 
@@ -71,7 +77,7 @@ Para obtener información y consejos sobre los escenarios de implementación, co
 
 ### <a name="sdk"></a>SDK
 
-Para un servicio basado en aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
+En el caso de un servicio basado en una aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -373,7 +379,7 @@ Para obtener información y consejos sobre los escenarios de implementación, co
 
 ### <a name="sdk"></a>SDK
 
-Para un servicio basado en aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
+En el caso de un servicio basado en una aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -707,7 +713,7 @@ Para obtener información y consejos sobre los escenarios de implementación, co
 
 ### <a name="sdk"></a>SDK
 
-Para un servicio basado en aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
+En el caso de un servicio basado en una aplicación web que use los marcos Razor Pages o MVC, especifique el SDK web en el archivo de proyecto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

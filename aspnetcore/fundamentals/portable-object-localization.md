@@ -4,13 +4,19 @@ author: sebastienros
 description: En este artículo se presentan los archivos de objeto portátil y se describen los pasos para usarlos en una aplicación ASP.NET Core con el marco de trabajo de Orchard Core.
 ms.author: scaddie
 ms.date: 09/26/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: 08002564eb68bc04eebaeafed560202d0d69958a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1e544b0f504c2776c678c51bff598cf011b52610
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645335"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776056"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurar la localización de objetos portátiles en ASP.NET Core
 
@@ -83,7 +89,7 @@ Agregue el software intermedio necesario al método `Configure` de *Startup.cs*:
 
 [!code-csharp[](localization/sample/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Agregue el código siguiente a la vista de Razor de su elección. En este ejemplo se usa *About.cshtml*.
+Agregue el código siguiente a la vista de Razor que quiera. En este ejemplo se usa *About.cshtml*.
 
 [!code-cshtml[](localization/sample/POLocalization/Views/Home/About.cshtml)]
 
@@ -191,7 +197,7 @@ Las aplicaciones a menudo contienen las cadenas que se van a traducir en lugares
 
 Los servicios de localización de objetos portátiles usan el nombre de la clase completa o la vista que se usa al traducir una cadena. Esto se logra mediante el establecimiento del valor en la entrada `msgctxt`.
 
-Considere la posibilidad de realizar una adición mínima al ejemplo *fr.po* anterior. Una vista de Razor ubicada en *Views/Home/About.cshtml* se puede definir como el contexto de archivo si se establece el valor de entrada reservado `msgctxt`:
+Considere la posibilidad de realizar una adición mínima al ejemplo *fr.po* anterior. Una vista de Razor ubicada en *Views/Home/About.cshtml* se puede definir como el contexto de archivo si se establece el valor de la entrada reservado `msgctxt`:
 
 ```text
 msgctxt "Views.Home.About"

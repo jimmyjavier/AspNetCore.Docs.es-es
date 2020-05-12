@@ -1,16 +1,22 @@
 ---
-title: Páginas de Razor con scaffolding en ASP.NET Core
+title: Razor Pages con scaffolding en ASP.NET Core
 author: rick-anderson
-description: Explica las páginas de Razor generadas por la técnica scaffolding.
+description: Aquí se explican las instancias de Razor Pages generadas mediante la técnica de scaffolding.
 ms.author: riande
 ms.date: 08/17/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: cec4295a2c08c89db0975808583f41c7d09bfc88
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 22afbc729cc73427b3d04bee379534cda38b39bd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648647"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774852"
 ---
 # <a name="scaffolded-razor-pages-in-aspnet-core"></a>Páginas de Razor con scaffolding en ASP.NET Core
 

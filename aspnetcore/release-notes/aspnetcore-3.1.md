@@ -7,14 +7,17 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: f375022ad3ebdea2990f626320ef295926f88c22
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 67fc972676549a02265035c129c513f11d303d51
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648773"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774052"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Novedades de ASP.NET Core 3.1
 
@@ -24,7 +27,7 @@ En este artículo se resaltan los cambios más importantes de ASP.NET Core 3.1
 
 Ahora los componentes de Razor se generan como clases parciales. El código de un componente de Razor se puede escribir con un archivo de código subyacente definido como una clase parcial en lugar de definir todo el código del componente en un solo archivo. Para más información, vea [Compatibilidad de clases parciales](xref:blazor/components#partial-class-support).
 
-## <a name="opno-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>El Asistente de etiquetas de componente de Blazor y transferencia de parámetros a componentes de nivel superior
+## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>El Asistente de etiquetas de componente de Blazor y transferencia de parámetros a componentes de nivel superior
 
 En Blazor con ASP.NET Core 3.0, los componentes se representaban en páginas y vistas mediante una aplicación auxiliar de HTML (`Html.RenderComponentAsync`). En ASP.NET Core 3.1, un componente se representa desde una página o vista con el nuevo asistente de etiquetas de componente:
 
@@ -43,7 +46,7 @@ Por ejemplo, se puede realizar la representación previa de un componente `Count
     param-IncrementAmount="10" />
 ```
 
-Para más información, vea [Integración de componentes en aplicaciones de Razor Pages y MVC](xref:blazor/integrate-components).
+Para obtener más información, vea [Integración de componentes en aplicaciones Razor Pages y MVC](xref:blazor/integrate-components).
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Compatibilidad con las colas compartidas en HTTP.sys
 
@@ -53,9 +56,9 @@ Para más información, vea [Integración de componentes en aplicaciones de Razo
 
 ## <a name="breaking-changes-for-samesite-cookies"></a>Cambios importantes en las cookies de SameSite
 
-El comportamiento de las cookies de SameSite ha cambiado para reflejar los próximos cambios del explorador. Esto puede afectar a escenarios de autenticación como AzureAd, OpenIdConnect o WsFederation. Para obtener más información, consulta <xref:security/samesite>.
+El comportamiento de las cookies de SameSite ha cambiado para reflejar los próximos cambios del explorador. Esto puede afectar a escenarios de autenticación como AzureAd, OpenIdConnect o WsFederation. Para obtener más información, vea <xref:security/samesite>.
 
-## <a name="prevent-default-actions-for-events-in-opno-locblazor-apps"></a>Impedir acciones predeterminadas para eventos en aplicaciones Blazor
+## <a name="prevent-default-actions-for-events-in-blazor-apps"></a>Impedir acciones predeterminadas para eventos en aplicaciones Blazor
 
 Use el atributo de directiva `@on{EVENT}:preventDefault` para evitar la acción predeterminada de un evento. En el ejemplo siguiente, se impide la acción predeterminada de mostrar el carácter de la clave en el cuadro de texto:
 
@@ -65,7 +68,7 @@ Use el atributo de directiva `@on{EVENT}:preventDefault` para evitar la acción 
 
 Para más información, vea [Impedir acciones predeterminadas](xref:blazor/event-handling#prevent-default-actions).
 
-## <a name="stop-event-propagation-in-opno-locblazor-apps"></a>Detener la propagación de eventos en aplicaciones Blazor
+## <a name="stop-event-propagation-in-blazor-apps"></a>Detener la propagación de eventos en aplicaciones Blazor
 
 Use el atributo de directiva `@on{EVENT}:stopPropagation` para detener la propagación de eventos. En el ejemplo siguiente, al activar la casilla se impide que los eventos de clic del elemento `<div>` secundario se propaguen al elemento `<div>` principal:
 
@@ -85,7 +88,7 @@ Use el atributo de directiva `@on{EVENT}:stopPropagation` para detener la propag
 
 Para más información, vea [Detener la propagación de eventos](xref:blazor/event-handling#stop-event-propagation).
 
-## <a name="detailed-errors-during-opno-locblazor-app-development"></a>Errores detallados durante el desarrollo de aplicaciones Blazor
+## <a name="detailed-errors-during-blazor-app-development"></a>Errores detallados durante el desarrollo de aplicaciones Blazor
 
 Cuando una aplicación Blazor no funciona correctamente durante el desarrollo, recibir información detallada del error de la aplicación ayuda a solucionar el problema. Cuando se produce un error, en las aplicaciones Blazor se muestra una barra dorada en la parte inferior de la pantalla:
 

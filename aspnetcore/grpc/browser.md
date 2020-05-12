@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo configurar servicios gRPC en ASP.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 04/15/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/browser
-ms.openlocfilehash: a20e604488b1fb919f18932599ba690bfa308f0c
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: a74f7acb54b4601a0c30ff1a39dc30231e2b5a78
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440771"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774748"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Uso de gRPC en aplicaciones de explorador
 
@@ -91,7 +97,7 @@ Existe un cliente gRPC-Web de JavaScript. Para obtener instrucciones sobre cómo
 
 ### <a name="configure-grpc-web-with-the-net-grpc-client"></a>Configuración de gRPC-Web con el cliente gRPC de .NET
 
-El cliente gRPC de .NET se puede configurar para realizar llamadas de gRPC-Web. Esto resulta útil en las aplicaciones de [WebAssembly de Blazor](xref:blazor/index#blazor-webassembly), que se hospedan en el explorador y presentan las mismas limitaciones de HTTP que el código JavaScript. Llamar a gRPC-Web con un cliente .NET es [igual que HTTP/2 gRPC](xref:grpc/client). La única modificación es cómo se crea el canal.
+El cliente gRPC de .NET se puede configurar para realizar llamadas de gRPC-Web. Esto resulta útil en las aplicaciones de [Blazor WebAssembly](xref:blazor/index#blazor-webassembly), que se hospedan en el explorador y tienen las mismas limitaciones HTTP de código JavaScript. Llamar a gRPC-Web con un cliente .NET es [igual que HTTP/2 gRPC](xref:grpc/client). La única modificación es cómo se crea el canal.
 
 Para usar gRPC-Web:
 
@@ -115,7 +121,7 @@ El código anterior:
 * **HttpVersion**: elemento `Version` del protocolo HTTP que se usa para establecer [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) en la solicitud HTTP de gRPC subyacente. gRPC-Web no requiere que haya una versión específica y no invalida el valor predeterminado a menos que así se especifique.
 
 > [!IMPORTANT]
-> Los clientes de gRPC generados tienen métodos sincrónicos y asincrónicos para llamar a métodos unarios. Así, `SayHello` es sincrónico y `SayHelloAsync`, asincrónico. La llamada a un método sincrónico en una aplicación de WebAssembly de Blazor hará que la aplicación deje de responder. En WebAssembly de Blazor siempre se deben usar métodos asincrónicos.
+> Los clientes de gRPC generados tienen métodos sincrónicos y asincrónicos para llamar a métodos unarios. Así, `SayHello` es sincrónico y `SayHelloAsync`, asincrónico. La llamada a un método sincrónico en una aplicación de Blazor WebAssembly hace que la aplicación deje de responder. En Blazor WebAssembly, siempre se deben usar métodos asincrónicos.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

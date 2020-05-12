@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: ac667b0205f5daad395d86fbe129beb509a044a6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: afbffc752f9c184ef32c9518464a94a615828dab
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417621"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776583"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Uso de ensamblados de inicio de hospedaje en ASP.NET Core
 
@@ -94,7 +100,7 @@ Cree un inicio de hospedaje con cualquiera de los siguientes tipos de proyecto:
 
 Una mejora de inicio de hospedaje se puede proporcionar en una biblioteca de clases. La biblioteca contiene un atributo `HostingStartup`.
 
-El [código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) incluye una aplicación Razor Pages, *HostingStartupApp* y una biblioteca de clases, *HostingStartupLibrary*. La biblioteca de clases:
+El [código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) incluye una aplicación de Razor Pages, *HostingStartupApp*, y una biblioteca de clases, *HostingStartupLibrary*. La biblioteca de clases:
 
 * Contiene una clase de inicio de hospedaje, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` agrega un par de cadenas de servicio a la configuración de la aplicación mediante el proveedor de configuración en memoria ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Incluye un atributo `HostingStartup` que identifica espacio de nombres y la clase del inicio de hospedaje.
@@ -492,7 +498,7 @@ Cree un inicio de hospedaje con cualquiera de los siguientes tipos de proyecto:
 
 Una mejora de inicio de hospedaje se puede proporcionar en una biblioteca de clases. La biblioteca contiene un atributo `HostingStartup`.
 
-El [código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) incluye una aplicación Razor Pages, *HostingStartupApp* y una biblioteca de clases, *HostingStartupLibrary*. La biblioteca de clases:
+El [código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) incluye una aplicación de Razor Pages, *HostingStartupApp*, y una biblioteca de clases, *HostingStartupLibrary*. La biblioteca de clases:
 
 * Contiene una clase de inicio de hospedaje, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` agrega un par de cadenas de servicio a la configuración de la aplicación mediante el proveedor de configuración en memoria ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Incluye un atributo `HostingStartup` que identifica espacio de nombres y la clase del inicio de hospedaje.

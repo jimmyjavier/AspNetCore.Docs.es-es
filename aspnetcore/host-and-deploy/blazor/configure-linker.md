@@ -5,17 +5,20 @@ description: Aprenda a controlar al enlazador de lenguaje intermedio (IL) al cre
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 109da5ef400c3b9d64ccf3ceb33a5387ea6b5618
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: b274752b375f68cca0c0a9adf9c146bc525d9eba
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218666"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775185"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configuración del enlazador para ASP.NET Core Blazor
 
@@ -86,7 +89,7 @@ Control de la vinculación por cada ensamblado al proporcionar un archivo de con
 </linker>
 ```
 
-Para obtener más información, vea [Ejemplos de archivos XML de vínculo (repositorio mono/linker de GitHub)](https://github.com/mono/linker#link-xml-file-examples).
+Para obtener más información y ejemplos, vea [Formatos de datos (repositorio mono/linker de GitHub)](https://github.com/mono/linker/blob/master/docs/data-formats.md).
 
 ## <a name="add-an-xml-linker-configuration-file-to-a-library"></a>Adición de un archivo de configuración del enlazador XML a una biblioteca
 
@@ -106,11 +109,11 @@ En el ejemplo siguiente, el archivo *LinkerConfig.xml* se especifica como un rec
 
 De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones Blazor WebAssembly quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Al quitar estos ensamblados se minimiza el tamaño de la aplicación.
 
-Para controlar qué ensamblados de I18N se conservan, establezca la propiedad `<MonoLinkerI18NAssemblies>` de MSBuild en el archivo de proyecto:
+Para controlar qué ensamblados de I18N se conservan, establezca la propiedad `<BlazorWebAssemblyI18NAssemblies>` de MSBuild en el archivo de proyecto:
 
 ```xml
 <PropertyGroup>
-  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
+  <BlazorWebAssemblyI18NAssemblies>{all|none|REGION1,REGION2,...}</BlazorWebAssemblyI18NAssemblies>
 </PropertyGroup>
 ```
 

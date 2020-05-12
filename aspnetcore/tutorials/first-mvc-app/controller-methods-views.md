@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre cómo trabajar con métodos de controlador, vistas y DataAnnotations en ASP.NET Core.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 87b3cb2f4429157123d30274d1f12cd589c1cc99
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 444c870fcf9e866f0c382e32af174442d11d3af5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242515"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777584"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Vistas y métodos de controlador en ASP.NET Core
 
@@ -36,7 +42,7 @@ Los vínculos **Edit** (Editar), **Details** (Detalles) y **Delete** (Eliminar) 
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-Los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor. En el código anterior, `AnchorTagHelper` genera dinámicamente el valor del atributo HTML `href` a partir del identificador de ruta y el método de acción del controlador. Use **Ver código fuente** en su explorador preferido o use las herramientas de desarrollo para examinar el marcado generado. A continuación se muestra una parte del HTML generado:
+Las [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor. En el código anterior, `AnchorTagHelper` genera dinámicamente el valor del atributo HTML `href` a partir del identificador de ruta y el método de acción del controlador. Use **Ver código fuente** en su explorador preferido o use las herramientas de desarrollo para examinar el marcado generado. A continuación se muestra una parte del HTML generado:
 
 ```html
  <td>

@@ -6,21 +6,27 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 08/29/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: b473fa02e1d23f02bc5d2e15fa54ab7b1dbbb17c
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f16bc7ec61c10600fe72a763fef96987210fbe76
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650837"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776004"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Operaciones de solicitud y respuesta en ASP.NET Core
 
 Por [Justin Kotalik](https://github.com/jkotalik)
 
-En este artículo se explica cómo leer el cuerpo de la solicitud y escribir el cuerpo de respuesta. El código para estas operaciones podría ser necesario al escribir middleware. Fuera de la escritura de middleware, el código personalizado no suele ser necesario porque MVC y Razor Pages controlan las operaciones.
+En este artículo se explica cómo leer el cuerpo de la solicitud y escribir el cuerpo de respuesta. El código para estas operaciones podría ser necesario al escribir middleware. Fuera de la escritura de middleware, el código personalizado no suele ser necesario porque las operaciones se controlan mediante MVC and Razor Pages.
 
-Hay dos abstracciones para los cuerpos de solicitud y respuesta: <xref:System.IO.Stream> y <xref:System.IO.Pipelines.Pipe>. Para leer la solicitud, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) es un objeto <xref:System.IO.Stream> y `HttpRequest.BodyReader` es un objeto <xref:System.IO.Pipelines.PipeReader>. Para escribir la respuesta, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) es un objeto <xref:System.IO.Stream> y `HttpResponse.BodyWriter` es un objeto <xref:System.IO.Pipelines.PipeWriter>.
+Hay dos abstracciones para los cuerpos de solicitud y respuesta: <xref:System.IO.Stream> y <xref:System.IO.Pipelines.Pipe>. Para leer la solicitud, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) es un objeto <xref:System.IO.Stream> y `HttpRequest.BodyReader` es un objeto <xref:System.IO.Pipelines.PipeReader>. Para escribir la respuesta, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) es un objeto <xref:System.IO.Stream> y <xref:System.IO.Pipelines.PipeWriter> es un objeto `HttpResponse.BodyWriter`.
 
 Se recomienda el uso de [canalizaciones](/dotnet/standard/io/pipelines) por encima de las secuencias. Las secuencias pueden ser más fáciles de usar en el caso de algunas operaciones sencillas, pero las canalizaciones son más ventajosas para el rendimiento y son más fáciles de usar en la mayoría de los casos. ASP.NET Core está empezando a usar internamente canalizaciones en lugar de secuencias. Ejemplos:
 

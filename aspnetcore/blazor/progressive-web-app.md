@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/23/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: fe69e51aefae9c80e5bb4b78151d384ce25d41a7
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: cf31c91ddc073498d882b111b597c546e788cc98
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218952"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771564"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Compilación de aplicaciones web progresivas con WebAssembly de Blazor para ASP.NET Core
 
@@ -152,7 +155,7 @@ Para personalizar este proceso, modifique la lógica del trabajo de servicio. Ni
 
 Como se ha descrito en la sección [Estrategia de captura desde la caché](#cache-first-fetch-strategy), el trabajo de servicio predeterminado usa una estrategia *desde la caché*, lo que significa que intenta servir contenido almacenado en caché cuando esté disponible. Si no hay contenido en caché para una dirección URL determinada (por ejemplo, cuando se solicitan datos de una API de back-end), el trabajo de servicio recurre a una solicitud de red normal. La solicitud de red se realiza correctamente si se puede acceder al servidor. Esta lógica se implementa dentro de la función `onFetch` en *service-worker.published.js*.
 
-Si los componentes de Razor de la aplicación dependen de la solicitud de datos de las API de back-end y quiere proporcionar una experiencia de usuario sencilla para las solicitudes con error debido a la falta de disponibilidad de la red, implemente la lógica dentro de los componentes de la aplicación. Por ejemplo, use solicitudes `try/catch` en torno a `HttpClient`.
+Si los componentes de Razor de la aplicación dependen de la solicitud de datos a las API de back-end y quiere proporcionar una experiencia de usuario sencilla para las solicitudes erróneas por falta de disponibilidad de la red, implemente lógica en los componentes de la aplicación. Por ejemplo, use solicitudes `try/catch` en torno a `HttpClient`.
 
 ### <a name="support-server-rendered-pages"></a>Compatibilidad de las páginas representadas por el servidor
 

@@ -1,17 +1,23 @@
 ---
-title: Agregar un campo nuevo a una página de Razor en ASP.NET Core
+title: Incorporación de un campo nuevo a una página de Razor de ASP.NET Core
 author: rick-anderson
-description: Muestra cómo agregar un nuevo campo a una página de Razor con Entity Framework Core
+description: Aquí se muestra cómo agregar un nuevo campo a una página de Razor con Entity Framework Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: d34b938dbd1b512ddb167cac0c035837889cd38f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646607"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769739"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Agregar un campo nuevo a una página de Razor en ASP.NET Core
 
@@ -140,7 +146,7 @@ Ejecute la aplicación y compruebe que puede crear, editar o mostrar películas 
 
 > [!div class="step-by-step"]
 > [Anterior: Adición de búsqueda](xref:tutorials/razor-pages/search)
-> [Siguiente: Adición de una validación](xref:tutorials/razor-pages/validation)
+> [Siguiente: Adición de validación](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -263,6 +269,6 @@ Ejecute la aplicación y compruebe que puede crear, editar o mostrar películas 
 
 > [!div class="step-by-step"]
 > [Anterior: Adición de búsqueda](xref:tutorials/razor-pages/search)
-> [Siguiente: Adición de una validación](xref:tutorials/razor-pages/validation)
+> [Siguiente: Adición de validación](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end

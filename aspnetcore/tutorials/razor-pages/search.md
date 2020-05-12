@@ -1,18 +1,24 @@
 ---
-title: Agregar búsqueda a páginas de Razor de ASP.NET Core
+title: Incorporación de búsqueda a Razor Pages de ASP.NET Core
 author: rick-anderson
-description: Muestra cómo agregar la búsqueda a páginas de Razor de ASP.NET Core
+description: Aquí se muestra cómo agregar funcionalidad de búsqueda a Razor Pages de ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651047"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775003"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Agregar búsqueda a páginas de Razor de ASP.NET Core
+# <a name="add-search-to-aspnet-core-razor-pages"></a>Incorporación de búsqueda a Razor Pages de ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -68,7 +74,7 @@ Si se agrega la siguiente plantilla de ruta a la página de índice, la cadena d
 
 La restricción de ruta anterior permite buscar el título como datos de ruta (un segmento de dirección URL) en lugar de como un valor de cadena de consulta.  El elemento `?` de `"{searchString?}"` significa que se trata de un parámetro de ruta opcional.
 
-![Vista de índice con la palabra Ghost (Fantasma) agregada a la dirección URL y una lista de las películas obtenidas, con dos películas, Ghostbusters y Ghostbusters 2](search/_static/g2.png)
+![Vista de índice con la palabra Ghost (Fantasma) agregada a la dirección URL y una lista de películas devuelta con dos películas, Ghostbusters y Ghostbusters 2](search/_static/g2.png)
 
 El entorno de ejecución de ASP.NET Core usa el [enlace de modelos](xref:mvc/models/model-binding) para establecer el valor de la propiedad `SearchString` de la cadena de consulta (`?searchString=Ghost`) o de los datos de ruta (`https://localhost:5001/Movies/Ghost`). El enlace de modelos no hace distinción entre mayúsculas y minúsculas.
 
@@ -85,7 +91,7 @@ La etiqueta HTML `<form>` usa los siguientes [Asistentes de etiquetas](xref:mvc/
 
 Guarde los cambios y pruebe el filtro.
 
-![Vista de índice con la palabra Ghost (Fantasma) escrita en el cuadro de texto del filtro Title (Título)](search/_static/filter.png)
+![Vista de índice con la palabra Ghost (Fantasma) escrita en el cuadro de texto del filtro de título](search/_static/filter.png)
 
 ## <a name="search-by-genre"></a>Búsqueda por género
 
@@ -101,7 +107,7 @@ La `SelectList` de géneros se crea mediante la proyección de los distintos gé
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Agregar búsqueda por género a la página de Razor
+### <a name="add-search-by-genre-to-the-razor-page"></a>Incorporación de búsqueda por género a una página de Razor
 
 Actualice *Index.cshtml* como se indica a continuación:
 
@@ -115,7 +121,7 @@ Pruebe la aplicación al buscar por género, título de la película y ambos.
 
 > [!div class="step-by-step"]
 > [Anterior: Actualización de páginas](xref:tutorials/razor-pages/da1)
-> [Siguiente: Adición de un nuevo campo](xref:tutorials/razor-pages/new-field)
+> [Siguiente: ](xref:tutorials/razor-pages/new-field)Adición de un nuevo campo
 
 ::: moniker-end
 
@@ -170,7 +176,7 @@ Si se agrega la siguiente plantilla de ruta a la página de índice, la cadena d
 
 La restricción de ruta anterior permite buscar el título como datos de ruta (un segmento de dirección URL) en lugar de como un valor de cadena de consulta.  El elemento `?` de `"{searchString?}"` significa que se trata de un parámetro de ruta opcional.
 
-![Vista de índice con la palabra Ghost (Fantasma) agregada a la dirección URL y una lista de las películas obtenidas, con dos películas, Ghostbusters y Ghostbusters 2](search/_static/g2.png)
+![Vista de índice con la palabra Ghost (Fantasma) agregada a la dirección URL y una lista de películas devuelta con dos películas, Ghostbusters y Ghostbusters 2](search/_static/g2.png)
 
 El entorno de ejecución de ASP.NET Core usa el [enlace de modelos](xref:mvc/models/model-binding) para establecer el valor de la propiedad `SearchString` de la cadena de consulta (`?searchString=Ghost`) o de los datos de ruta (`https://localhost:5001/Movies/Ghost`). El enlace de modelos no hace distinción entre mayúsculas y minúsculas.
 
@@ -187,7 +193,7 @@ La etiqueta HTML `<form>` usa los siguientes [Asistentes de etiquetas](xref:mvc/
 
 Guarde los cambios y pruebe el filtro.
 
-![Vista de índice con la palabra Ghost (Fantasma) escrita en el cuadro de texto del filtro Title (Título)](search/_static/filter.png)
+![Vista de índice con la palabra Ghost (Fantasma) escrita en el cuadro de texto del filtro de título](search/_static/filter.png)
 
 ## <a name="search-by-genre"></a>Búsqueda por género
 
@@ -203,7 +209,7 @@ La `SelectList` de géneros se crea mediante la proyección de los distintos gé
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Agregar búsqueda por género a la página de Razor
+### <a name="add-search-by-genre-to-the-razor-page"></a>Incorporación de búsqueda por género a una página de Razor
 
 Actualice *Index.cshtml* como se indica a continuación:
 
@@ -218,6 +224,6 @@ El código anterior usa el [asistente de etiquetas de selección](xref:mvc/views
 
 > [!div class="step-by-step"]
 > [Anterior: Actualización de páginas](xref:tutorials/razor-pages/da1)
-> [Siguiente: Adición de un nuevo campo](xref:tutorials/razor-pages/new-field)
+> [Siguiente: ](xref:tutorials/razor-pages/new-field)Adición de un nuevo campo
 
 ::: moniker-end

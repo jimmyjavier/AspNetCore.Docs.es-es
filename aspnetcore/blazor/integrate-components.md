@@ -1,21 +1,24 @@
 ---
-title: Integración de componentes Razor de ASP.NET Core en aplicaciones Razor Pages y MVC
+title: Integración de componentes de Razor de ASP.NET Core en aplicaciones de Razor Pages y MVC
 author: guardrex
-description: Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones Blazor.
+description: Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: 4e2103b7e8b65478808093d7a31e8cfe29b04984
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558919"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771779"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integración de componentes Razor de ASP.NET Core en aplicaciones Razor Pages y MVC
 
@@ -247,7 +250,7 @@ Para representar un componente a partir de una página o vista, use el [asistent
 
 ### <a name="render-stateful-interactive-components"></a>Representación de componentes interactivos con estado
 
-Los componentes interactivos con estado se pueden agregar a una página o vista de Razor.
+Los componentes interactivos con estado se pueden agregar a una página de Razor o una vista.
 
 Cuando se representa la página o la vista:
 
@@ -255,7 +258,7 @@ Cuando se representa la página o la vista:
 * Se pierde el estado inicial del componente que se usa para la representación previa.
 * Cuando se establece la conexión SignalR, se crea un estado del componente.
 
-La página de Razor siguiente representa un componente `Counter`:
+La siguiente página de Razor representa un componente `Counter`:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -305,6 +308,6 @@ Al usar una carpeta personalizada para contener los componentes de la aplicació
 @using MyAppNamespace.Components
 ```
 
-El archivo *_ViewImports.cshtml* se encuentra en la carpeta *Pages* de una aplicación Razor Pages o en la carpeta *Views* de una aplicación MVC.
+El archivo *_ViewImports.cshtml* se encuentra en la carpeta *Pages* de una aplicación de Razor Pages o en la carpeta *Views* de una aplicación de MVC.
 
 Para obtener más información, vea <xref:blazor/components#import-components>.

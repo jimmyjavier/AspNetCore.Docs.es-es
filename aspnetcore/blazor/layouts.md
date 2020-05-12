@@ -8,29 +8,32 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 5b6e1c7ceb4a6e41230e31bbe379bde1bb0a8286
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5c6771dd7249bfb8280ba20e1ce75967f279971c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647927"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771590"
 ---
-# <a name="aspnet-core-opno-locblazor-layouts"></a>Diseños de ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-layouts"></a>Diseños de ASP.NET Core Blazor
 
 Por [Rainer Stropek](https://www.timecockpit.com) y [Luke Latham](https://github.com/guardrex)
 
 Algunos elementos de la aplicación, como los menús, los mensajes de copyright y los logotipos de la empresa, normalmente forman parte del diseño general de la aplicación y se usan en todos sus componentes. Copiar el código de estos elementos en todos los componentes de una aplicación no es un enfoque eficaz; cada vez que uno de los elementos requiere una actualización, se deben actualizar todos los componentes. Esta duplicación es difícil de mantener y puede dar lugar a contenido incoherente con el tiempo. Los *diseños* solucionan este problema.
 
-Técnicamente, un diseño es simplemente otro componente. El diseño se define en una plantilla de Razor o en código de C# y puede usar el [enlace de datos](xref:blazor/data-binding), la [inserción de dependencias](xref:blazor/dependency-injection) y otros escenarios de componentes.
+Técnicamente, un diseño es simplemente otro componente. Un diseño se define en una plantilla de Razor o en código de C# y puede usar el [enlace de datos](xref:blazor/data-binding), la [inserción de dependencias](xref:blazor/dependency-injection) y otros escenarios de componente.
 
 Para convertir un *componente* en un *diseño*, el componente debe:
 
 * Heredarse de `LayoutComponentBase`, que define una propiedad `Body` para el contenido representado dentro del diseño.
-* Usar la sintaxis `@Body` de Razor para especificar la ubicación en el marcado de diseño donde se representa el contenido.
+* Use la sintaxis `@Body` de Razor para especificar la ubicación en el marcado de diseño donde se representa el contenido.
 
-En el ejemplo de código siguiente se muestra la plantilla de Razor del componente de diseño *MainLayout.razor*. El diseño hereda `LayoutComponentBase` y establece `@Body` entre la barra de navegación y el pie de página:
+En el ejemplo de código siguiente se muestra la plantilla de Razor de un componente de diseño, *MainLayout.razor*. El diseño hereda `LayoutComponentBase` y establece `@Body` entre la barra de navegación y el pie de página:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
@@ -62,17 +65,17 @@ Al especificar el diseño directamente en un componente, se invalida el *diseño
 
 ## <a name="centralized-layout-selection"></a>Selección de diseño centralizada
 
-Cada una de las carpetas de una aplicación puede contener opcionalmente un archivo de plantilla denominado *_Imports.razor*. El compilador incluye las directivas especificadas en este archivo de importaciones en todas las plantillas de Razor de la misma carpeta y, de forma recurrente, en todas sus subcarpetas. Por lo tanto, un archivo *_Imports.razor* que contiene `@layout MyCoolLayout` garantiza que todos los componentes de una carpeta usen `MyCoolLayout`. No es necesario agregar continuamente `@layout MyCoolLayout` a todos los archivos *.razor* dentro de la carpeta y las subcarpetas. Las directivas `@using` también se aplican a los componentes de la misma manera.
+Cada una de las carpetas de una aplicación puede contener opcionalmente un archivo de plantilla denominado *_Imports.razor*. El compilador incluye las directivas especificadas en el archivo de importaciones de todas las plantillas de Razor de la misma carpeta y, de forma recurrente, de todas sus subcarpetas. Por lo tanto, un archivo *_Imports.razor* que contiene `@layout MyCoolLayout` garantiza que todos los componentes de una carpeta usen `MyCoolLayout`. No es necesario agregar continuamente `@layout MyCoolLayout` a todos los archivos *.razor* dentro de la carpeta y las subcarpetas. Las directivas `@using` también se aplican a los componentes de la misma manera.
 
 El siguiente archivo *_Imports.razor* importa:
 
-* `MyCoolLayout`Operador
-* Todos los componentes de Razor que estén en la misma carpeta y en todas las subcarpetas.
+* `MyCoolLayout`.
+* Todos los componentes de Razor de la misma carpeta y cualquier subcarpeta.
 * El espacio de nombres `BlazorApp1.Data` .
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
-El archivo *_Imports.razor* es similar al [archivo _ViewImports.cshtml de para las vistas y las páginas de Razor](xref:mvc/views/layout#importing-shared-directives), pero se aplica específicamente a los archivos de componentes de Razor.
+El archivo *_Imports.razor* es similar al [archivo _ViewImports.cshtml de las vistas y las páginas de Razor](xref:mvc/views/layout#importing-shared-directives), aunque se aplica específicamente a los archivos de componentes de Razor.
 
 Al especificar un diseño en *_Imports.razor*, se invalida un diseño especificado como *diseño predeterminado* para el enrutador.
 
@@ -92,9 +95,9 @@ Por último, `MasterLayout` en *MasterLayout.razor* contiene los elementos de di
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
-## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Uso compartido de un diseño de Razor Pages con componentes integrados
+## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Uso compartido de un diseño de Razor Pages con componentes integrados
 
-Si los componentes enrutables se integran en una aplicación de Razor Pages, el diseño compartido de la aplicación se puede usar con los componentes. Para obtener más información, consulta <xref:blazor/integrate-components>.
+Si los componentes enrutables se integran en una aplicación de Razor Pages, el diseño compartido de la aplicación se puede usar con los componentes. Para obtener más información, vea <xref:blazor/integrate-components>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

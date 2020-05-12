@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: e3249df4b7388beeff13fe4b4e0ff481c35725c5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 39fba5ccc99ec0ecf32df5681cfc025c52bc5469
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651017"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776440"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicio de la aplicación en ASP.NET Core
 
@@ -33,7 +39,7 @@ El tiempo de ejecución ASP.NET Core llama a `ConfigureServices` y `Configure` c
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
-El ejemplo anterior es para [Razor Pages](xref:razor-pages/index); la versión para MVC es similar.
+El ejemplo anterior corresponde a [Razor Pages](xref:razor-pages/index); la versión para MVC es similar.
 
 
 La clase `Startup` se especifica cuando se crea el [host](xref:fundamentals/index#host) de la aplicación. Habitualmente, la clase `Startup` se especifica mediante una llamada al método[WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) en el generador de host:
@@ -90,13 +96,13 @@ Las [plantillas de ASP.NET Core](/dotnet/core/tools/dotnet-new) configuran la ca
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
-El ejemplo anterior es para [Razor Pages](xref:razor-pages/index); la versión para MVC es similar.
+El ejemplo anterior corresponde a [Razor Pages](xref:razor-pages/index); la versión para MVC es similar.
 
 Cada método de extensión `Use` agrega uno o más componentes de middleware a la canalización de solicitudes. Por ejemplo, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configura [middleware](xref:fundamentals/middleware/index) para proporcionar [archivos estáticos](xref:fundamentals/static-files).
 
 Cada componente de middleware de la canalización de solicitudes es responsable de invocar al siguiente componente de la canalización o de cortocircuitar la cadena en caso de ser necesario.
 
-En la firma del método `IWebHostEnvironment` se pueden especificar servicios adicionales, como `ILoggerFactory`, `ConfigureServices`, o bien todo lo definido en `Configure`. Estos servicios adicionales se insertan si están disponibles.
+En la firma del método `Configure` se pueden especificar servicios adicionales, como `IWebHostEnvironment`, `ILoggerFactory`, o bien todo lo definido en `ConfigureServices`. Estos servicios adicionales se insertan si están disponibles.
 
 Para obtener más información sobre cómo usar `IApplicationBuilder` y el orden de procesamiento de middleware, consulte <xref:fundamentals/middleware/index>.
 
@@ -143,7 +149,7 @@ El orden de ejecución de middleware se establece según el orden de registros d
 
 ## <a name="add-configuration-at-startup-from-an-external-assembly"></a>Agregar opciones de configuración en el inicio desde un ensamblado externo
 
-Una implementación de <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite agregar mejoras a una aplicación al iniciarla a partir de un ensamblado externo fuera de la clase `Startup` de esta. Para obtener más información, consulta <xref:fundamentals/configuration/platform-specific-configuration>.
+Una implementación de <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite agregar mejoras a una aplicación al iniciarla a partir de un ensamblado externo fuera de la clase `Startup` de esta. Para obtener más información, vea <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
@@ -228,7 +234,7 @@ Cada método de extensión `Use` agrega uno o más componentes de middleware a l
 
 Cada componente de middleware de la canalización de solicitudes es responsable de invocar al siguiente componente de la canalización o de cortocircuitar la cadena en caso de ser necesario.
 
-En la firma del método `IHostingEnvironment` se pueden especificar servicios adicionales, como `ILoggerFactory` e `ConfigureServices`, o bien todo lo definido en `Configure`. Estos servicios adicionales se insertan si están disponibles.
+En la firma del método `Configure` se pueden especificar servicios adicionales, como `IHostingEnvironment` e `ILoggerFactory`, o bien todo lo definido en `ConfigureServices`. Estos servicios adicionales se insertan si están disponibles.
 
 Para obtener más información sobre cómo usar `IApplicationBuilder` y el orden de procesamiento de middleware, consulte <xref:fundamentals/middleware/index>.
 
@@ -275,7 +281,7 @@ El orden de ejecución de middleware se establece según el orden de registros d
 
 ## <a name="add-configuration-at-startup-from-an-external-assembly"></a>Agregar opciones de configuración en el inicio desde un ensamblado externo
 
-Una implementación de <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite agregar mejoras a una aplicación al iniciarla a partir de un ensamblado externo fuera de la clase `Startup` de esta. Para obtener más información, consulta <xref:fundamentals/configuration/platform-specific-configuration>.
+Una implementación de <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite agregar mejoras a una aplicación al iniciarla a partir de un ensamblado externo fuera de la clase `Startup` de esta. Para obtener más información, vea <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

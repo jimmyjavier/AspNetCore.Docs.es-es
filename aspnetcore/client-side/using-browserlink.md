@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: 19cc3c2ed91bd9e05df3c036123c78ecbf81fcc0
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 619d19ba90298b2455d4a558fea138c86a751f07
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647105"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773662"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Vínculo con exploradores en ASP.NET Core
 
@@ -25,7 +29,7 @@ Vínculo con exploradores es una característica de Visual Studio. Crea un cana
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Agregue el paquete [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) a su proyecto. Para los proyectos de Razor Pages o MVC de ASP.NET Core, habilite también la compilación en tiempo de ejecución de los archivos Razor ( *.cshtml*), tal y como se describe en <xref:mvc/views/view-compilation>. Los cambios en la sintaxis de Razor solo se aplican cuando está habilitada la compilación en tiempo de ejecución.
+Agregue el paquete [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) a su proyecto. En los proyectos de Razor Pages o MVC de ASP.NET Core, habilite también la compilación en tiempo de ejecución de los archivos de Razor ( *.cshtml*), como se explica en <xref:mvc/views/view-compilation>. Los cambios en la sintaxis de Razor solo se aplican cuando está habilitada la compilación en tiempo de ejecución.
 
 ::: moniker-end
 

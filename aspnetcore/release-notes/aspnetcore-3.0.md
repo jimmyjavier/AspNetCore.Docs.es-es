@@ -7,14 +7,17 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 4886673a9b16b8be8d9a0b0d5c7002a91760544e
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: aa0b2b51632cff729449018f9823c38cc26ce612
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80976981"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774098"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novedades de ASP.NET Core 3.0
 
@@ -35,16 +38,16 @@ Escenarios compatibles con el marco Blazor:
 * Diseños de componentes
 * Compatibilidad con la inserción de dependencias
 * Formularios y validación
-* Compilar bibliotecas de componentes con bibliotecas de clases de Razor
+* Compilación de bibliotecas de componentes con bibliotecas de clases de Razor
 * Interoperabilidad de JavaScript
 
 Para obtener más información, vea <xref:blazor/index>.
 
-### <a name="opno-locblazor-server"></a>Servidor de Blazor
+### <a name="blazor-server"></a>Servidor de Blazor
 
-Blazor separa la lógica de representación de componentes del modo en el que se aplican las actualizaciones de la interfaz de usuario. El servidor de Blazor admite el hospedaje de componentes de Razor en el servidor en una aplicación de ASP.NET Core. Las actualizaciones de la interfaz de usuario se administran mediante una conexión de SignalR. Blazor Server se admite en ASP.NET Core 3.0.
+Blazor separa la lógica de representación de componentes del modo en el que se aplican las actualizaciones de la interfaz de usuario. Blazor Server admite el hospedaje de componentes de Razor en el servidor de una aplicación de ASP.NET Core. Las actualizaciones de la interfaz de usuario se administran mediante una conexión de SignalR. Blazor Server se admite en ASP.NET Core 3.0.
 
-### <a name="opno-locblazor-webassembly-preview"></a>Blazor WebAssembly (versión preliminar)
+### <a name="blazor-webassembly-preview"></a>Blazor WebAssembly (versión preliminar)
 
 Las aplicaciones Blazor también se pueden ejecutar directamente en el explorador mediante un entorno de ejecución .NET basado en WebAssembly. Blazor WebAssembly se encuentra en versión preliminar y *no* se admite en ASP.NET Core 3.0. Blazor WebAssembly se admitirá en una versión futura de ASP.NET Core.
 
@@ -52,7 +55,7 @@ Las aplicaciones Blazor también se pueden ejecutar directamente en el explorado
 
 Las aplicaciones Blazor se crean a partir de componentes. Los componentes son fragmentos independientes de la interfaz de usuario, como una página, un cuadro de diálogo o un formulario. Los componentes son clases .NET normales que definen la lógica de representación de la interfaz de usuario y los controladores de eventos del lado cliente. Puede crear aplicaciones web interactivas enriquecidas sin JavaScript.
 
-Los componentes de Blazor normalmente se crean mediante la sintaxis de Razor, una mezcla natural de HTML y C#. Los componentes de Razor son similares a las vistas de Razor Pages y MVC en que ambos usan Razor. A diferencia de las páginas y las vistas, que se basan en un modelo de solicitud y respuesta, los componentes se usan específicamente para controlar la composición de la interfaz de usuario.
+Los componentes de Blazor normalmente se crean mediante la sintaxis de Razor, una mezcla natural de HTML y C#. Los componentes de Razor se asemejan a las vistas de Razor Pages y MVC en que ambos usan Razor. A diferencia de las páginas y las vistas, que se basan en un modelo de solicitud y respuesta, los componentes se usan específicamente para controlar la composición de la interfaz de usuario.
 
 ## <a name="grpc"></a>gRPC
 
@@ -234,7 +237,7 @@ app.UseSignalR(routes =>
 });
 ```
 
-En la versión anterior, los desarrolladores debían conectar los controladores, las páginas de Razor y los métodos Hub en distintos lugares. La conexión explícita da lugar a una serie de segmentos de enrutamiento casi idénticos:
+En la versión anterior, los desarrolladores debían conectar controladores, páginas de Razor y centros de conectividad en distintos lugares. La conexión explícita da lugar a una serie de segmentos de enrutamiento casi idénticos:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -317,14 +320,14 @@ Para agregar Json.NET a ASP.NET Core 3.0, consulte [Adición de compatibilidad c
 
 ## <a name="new-razor-directives"></a>Nuevas directivas de Razor
 
-La lista siguiente contiene las nuevas directivas de Razor:
+La lista siguiente contiene nuevas directivas de Razor:
 
 * [`@attribute`](xref:mvc/views/razor#attribute) &ndash; La directiva `@attribute` aplica el atributo especificado a la clase de la página o vista generada. Por ejemplo: `@attribute [Authorize]`.
 * [`@implements`](xref:mvc/views/razor#implements) &ndash; La directiva `@implements` implementa una interfaz para la clase generada. Por ejemplo: `@implements IDisposable`.
 
 ## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 admite la autenticación y la autorización de SPA y API web
 
-ASP.NET Core 3.0 ofrece autenticación en aplicaciones de página única (SPA) mediante la compatibilidad con la autorización de API web. La identidad de ASP.NET Core para autenticar y almacenar usuarios se combina con [IdentityServer4](https://identityserver.io/) para implementar Open ID Connect.
+ASP.NET Core 3.0 ofrece autenticación en aplicaciones de página única (SPA) mediante la compatibilidad con la autorización de API web. ASP.NET Core Identity para autenticar y almacenar usuarios se combina con [IdentityServer4](https://identityserver.io/) para implementar OpenID Connect.
 
 IdentityServer4 es un marco de OpenID Connect y OAuth 2.0 para ASP.NET Core 3.0. Habilita las características de seguridad siguientes:
 
@@ -395,14 +398,14 @@ Para obtener más información, vea <xref:security/authentication/windowsauth>.
 
 ## <a name="template-changes"></a>Cambios en la plantilla
 
-Se ha eliminado lo siguiente de las plantillas de la interfaz de usuario web (Razor Pages, MVC con el controlador y las vistas):
+Se ha eliminado lo siguiente de las plantillas de interfaz de usuario web (Razor Pages, MVC con controlador y vistas):
 
 * La interfaz de usuario de consentimiento de cookies ya no está incluida. Para habilitar la función de consentimiento de cookies en una aplicación ASP.NET Core 3.0 generada por plantillas, vea <xref:security/gdpr>.
 * Ahora se hace referencia a los scripts y los recursos estáticos relacionados como archivos locales en lugar de usar CDN. Para más información, consulte [Ahora se hace referencia a los scripts y recursos estáticos relacionados como archivos locales en lugar de usar CDN en base al entorno actual (aspnet/AspNetCore.Docs nº 14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 La plantilla de Angular se ha actualizado para usar Angular 8.
 
-De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) utiliza el desarrollo de componentes de Razor. Una nueva opción de plantilla en Visual Studio proporciona compatibilidad con plantillas para páginas y vistas. Al crear una biblioteca de clases de Razor a partir de la plantilla en un shell de comandos, pase la opción `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`).
+De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) usa el desarrollo de componentes de Razor. Una nueva opción de plantilla en Visual Studio proporciona compatibilidad con plantillas para páginas y vistas. Al crear una biblioteca de clases de Razor a partir de la plantilla en un shell de comandos, pase la opción `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`).
 
 ## <a name="generic-host"></a>Host genérico
 

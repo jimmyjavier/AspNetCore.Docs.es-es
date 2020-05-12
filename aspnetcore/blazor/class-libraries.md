@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/23/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/class-libraries
-ms.openlocfilehash: f2cc57638922bd1f6ab036adb2ed37209d14c5b0
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 57f3494fd825b6549c40f56962da2c8076e8fd51
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218771"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767101"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>Bibliotecas de clases de componentes de Razor de ASP.NET Core
 
@@ -116,7 +119,7 @@ Incluya la directiva `@using MyComponentLib1` en el archivo de nivel superior *_
 
 ## <a name="create-a-razor-components-class-library-with-static-assets"></a>Creación de una biblioteca de clases de componentes de Razor con recursos estáticos
 
-Una RCL puede incluir recursos estáticos. Los recursos estáticos están disponibles para cualquier aplicación que use la biblioteca. Para obtener más información, consulta <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+Una RCL puede incluir recursos estáticos. Los recursos estáticos están disponibles para cualquier aplicación que use la biblioteca. Para obtener más información, vea <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Compilación, empaquetado y envío de bibliotecas a NuGet
 

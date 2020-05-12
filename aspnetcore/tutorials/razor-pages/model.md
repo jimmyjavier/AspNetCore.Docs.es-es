@@ -1,16 +1,22 @@
 ---
-title: Agregar un modelo a una aplicación de páginas de Razor en ASP.NET Core
+title: Incorporación de un modelo a una aplicación de Razor Pages de ASP.NET Core
 author: rick-anderson
 description: Obtenga información sobre cómo agregar clases para administrar películas en una base de datos con Entity Framework Core (EF Core).
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 7f7c2a09b74e6007ee3ea9c038398bac54988186
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: d093d7c4dc1b355c0042f300f70a830653b168c0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488876"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769837"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Agregar un modelo a una aplicación de páginas de Razor en ASP.NET Core
 

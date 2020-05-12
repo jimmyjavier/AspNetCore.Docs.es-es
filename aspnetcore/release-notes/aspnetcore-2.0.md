@@ -5,26 +5,32 @@ description: Obtenga información sobre las nuevas características de ASP.NET C
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 5ca43bab1496aa9fda65282cbb0b1177ad8689eb
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: b1fc486633ab7c7d7bee4f8981a978747b2890da
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650861"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775822"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novedades de ASP.NET Core 2.0
 
 En este artículo se resaltan los cambios más importantes de ASP.NET Core 2.0, con vínculos a la documentación pertinente.
 
-## <a name="razor-pages"></a>Páginas de Razor
+## <a name="razor-pages"></a>Razor Pages
 
-Las páginas de Razor son una nueva característica de ASP.NET Core MVC que facilita la codificación de escenarios centrados en páginas y hace que sea más productiva.
+Razor Pages es una nueva característica de ASP.NET Core MVC que facilita la codificación de escenarios centrados en páginas y hace que sea más productiva.
 
 Para más información, vea la introducción y el tutorial:
 
-* [Introducción a las páginas de Razor](xref:razor-pages/index)
-* [Introducción a las páginas de Razor](xref:tutorials/razor-pages/razor-pages-start)
+* [Introducción a Razor Pages](xref:razor-pages/index)
+* [Primeros pasos con Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## <a name="aspnet-core-metapackage"></a>Metapaquete de ASP.NET Core
 
@@ -64,15 +70,15 @@ Hay plantillas nuevas disponibles para configurar la autenticación de aplicacio
 
 Para información sobre el estado de la documentación planeada, vea este [problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/3054).
 
-## <a name="identity-update"></a>Actualización de la identidad
+## <a name="identity-update"></a>Actualización de Identity
 
-Hemos hecho que resulte más fácil crear API web seguras mediante la identidad en ASP.NET Core 2.0. Puede adquirir tokens de acceso para obtener acceso a las API web mediante la [Biblioteca de autenticación de Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+Se ha facilitado la compilación de API web seguras mediante Identity de ASP.NET Core 2.0. Puede adquirir tokens de acceso para obtener acceso a las API web mediante la [Biblioteca de autenticación de Microsoft (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 Para más información sobre los cambios de autenticación en la versión 2.0, vea los siguientes recursos:
 
 * [Confirmación de las cuentas y recuperación de contraseñas en ASP.NET Core](xref:security/authentication/accconfirm)
 * [Habilitar la generación de códigos QR para las aplicaciones de autenticación en ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Migrar la autenticación y la identidad a ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migración de autenticación e Identity a ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="spa-templates"></a>Plantillas de SPA
 
@@ -80,7 +86,7 @@ Hay disponibles plantillas de proyectos de Single-Page Application (SPA) para An
 
 ## <a name="kestrel-improvements"></a>Mejoras en Kestrel
 
-El servidor web de Kestrel tiene nuevas características que lo hacen más adecuado como servidor con conexión a Internet. Se ha agregado una serie de opciones de configuración de restricción del servidor en la nueva propiedad `KestrelServerOptions` de la clase `Limits`. Agregue límites para:
+El servidor web de Kestrel tiene nuevas características que lo hacen más adecuado como servidor con conexión a Internet. Se ha agregado una serie de opciones de configuración de restricción del servidor en la nueva propiedad `Limits` de la clase `KestrelServerOptions`. Agregue límites para:
 
 * Las conexiones máximas de cliente
 * El tamaño máximo del cuerpo de solicitud
@@ -124,11 +130,11 @@ Para más información, vea [Preventing Cross-Site Request Forgery (XSRF/CSRF) A
 
 ## <a name="automatic-precompilation"></a>Precompilación automática
 
-La precompilación de vistas de Razor está habilitada de forma predeterminada durante la publicación, lo que reduce el tamaño de salida de la publicación y el tiempo de inicio de la aplicación.
+La precompilación de vistas de Razor se habilita de forma predeterminada durante la publicación, lo que reduce el tamaño de salida de la publicación y el tiempo de inicio de la aplicación.
 
-Para más información, vea [Precompilación y compilación de vistas de Razor en ASP.NET Core](xref:mvc/views/view-compilation).
+Para obtener más información, vea [Precompilación y compilación de vistas de Razor en ASP.NET Core](xref:mvc/views/view-compilation).
 
-## <a name="razor-support-for-c-71"></a>Compatibilidad de Razor con C# 7.1
+## <a name="razor-support-for-c-71"></a>Compatibilidad de Razor con C# 7.1
 
 El motor de vistas de Razor se ha actualizado para poder funcionar con el nuevo compilador Roslyn. Incluye compatibilidad con características de C# 7.1, como las expresiones predeterminadas, los nombres de tupla inferidos y la coincidencia de patrones con genéricos. Para usar C# 7.1 en el proyecto, agregue la siguiente propiedad al archivo del proyecto y, luego, vuelva a cargar la solución:
 
@@ -143,7 +149,7 @@ Para información sobre el estado de las características de C# 7.1, vea [el rep
 * [Perfiles de publicación de Visual Studio para el desarrollo de aplicaciones ASP.NET Core](xref:host-and-deploy/visual-studio-publish-profiles)
 * [Administración de claves](xref:security/data-protection/implementation/key-management)
 * [Configurar la autenticación de Facebook](xref:security/authentication/facebook-logins)
-* [Configuración de la autenticación de Twitter](xref:security/authentication/twitter-logins)
+* [Configurar la autenticación de Twitter](xref:security/authentication/twitter-logins)
 * [Configurar la autenticación de Google](xref:security/authentication/google-logins)
 * [Configurar la autenticación de la cuenta Microsoft](xref:security/authentication/microsoft-logins)
 
@@ -152,7 +158,7 @@ Para información sobre el estado de las características de C# 7.1, vea [el rep
 Para obtener instrucciones sobre cómo migrar aplicaciones de ASP.NET Core 1.x a ASP.NET Core 2.0, vea los siguientes recursos:
 
 * [Migración de ASP.NET Core 1.x a ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrar la autenticación y la identidad a ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migración de autenticación e Identity a ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="additional-information"></a>Información adicional
 

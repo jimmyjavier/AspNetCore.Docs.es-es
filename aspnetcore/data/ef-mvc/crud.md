@@ -6,13 +6,19 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 2aa4ef48509b9a34f3b25eb657b1ecac51c1374b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 51334370b07709a773f6acd18d302f8b3ea88290
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416165"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773593"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementación de la funcionalidad CRUD: ASP.NET MVC con EF Core
 
@@ -64,7 +70,7 @@ La última parte de la dirección URL ("?courseID=2021") es un valor de cadena d
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 ```
 
-En la página Index, las instrucciones del asistente de etiquetas crean direcciones URL de hipervínculo en la vista de Razor. En el siguiente código de Razor, el parámetro `id` coincide con la ruta predeterminada, por lo que se agrega `id` a los datos de ruta.
+En la página Index, las instrucciones de la aplicación auxiliar de etiquetas crean direcciones URL de hipervínculo en la vista de Razor. En el siguiente código de Razor, el parámetro `id` coincide con la ruta predeterminada, por lo que se agrega `id` a los datos de la ruta.
 
 ```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
@@ -76,7 +82,7 @@ Esto genera el siguiente código HTML cuando `item.ID` es 6:
 <a href="/Students/Edit/6">Edit</a>
 ```
 
-En el siguiente código de Razor, `studentID` no coincide con un parámetro en la ruta predeterminada, por lo que se agrega como una cadena de consulta.
+En el siguiente código de Razor, `studentID` no coincide con ningún parámetro de la ruta predeterminada, por lo que se agrega como una cadena de consulta.
 
 ```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>

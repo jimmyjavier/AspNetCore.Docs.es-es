@@ -4,13 +4,19 @@ author: rick-anderson
 description: Obtenga información sobre la manera en que ASP.NET Core proporciona servicios y software intermedio para la localización de contenido en diferentes idiomas y referencias culturales.
 ms.author: riande
 ms.date: 11/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 91db83eb8685c7bee5e976f386c2a12c4090b734
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 1111c0c57baf5bfd52b26b553179338100b9ba79
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440823"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776570"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalización y localización en ASP.NET Core
 
@@ -154,7 +160,7 @@ En el proyecto de ejemplo, el método `ConfigureServices` establece `ResourcesPa
 | Resources/Controllers/HomeController.fr.resx  | Ruta de acceso |
 |    |     |
 
-Los archivos de recursos que usan `@inject IViewLocalizer` en las vistas de Razor siguen un patrón similar. Para asignar un nombre al archivo de recursos de una vista, se puede usar la nomenclatura de punto o de ruta de acceso. Los archivos de recursos de la vista de Razor imitan la ruta de acceso de su archivo de vista asociado. Supongamos que establecemos `ResourcesPath` en "Resources". En ese caso, el archivo de recursos de francés asociado a la vista *Views/Home/About.cshtml* podría ser uno de los siguientes:
+Los archivos de recursos que usan `@inject IViewLocalizer` en las vistas de Razor siguen un patrón similar. Para asignar un nombre al archivo de recursos de una vista, se puede usar la nomenclatura de punto o de ruta de acceso. Los archivos de recursos de una vista de Razor imitan la ruta de acceso de su archivo de vista asociado. Supongamos que establecemos `ResourcesPath` en "Resources". En ese caso, el archivo de recursos de francés asociado a la vista *Views/Home/About.cshtml* podría ser uno de los siguientes:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -372,7 +378,7 @@ El método `SetLanguage` establece la cookie de la referencia cultural.
 
 [!code-csharp[](localization/sample/Localization/Controllers/HomeController.cs?range=57-67)]
 
-No se puede conectar el archivo *_SelectLanguagePartial.cshtml* con código de ejemplo para este proyecto. El proyecto **Localization.StarterWeb** de [GitHub](https://github.com/aspnet/entropy) tiene código para hacer fluir `RequestLocalizationOptions` a una vista parcial de Razor a través del contenedor de [inserción de dependencias](dependency-injection.md).
+No se puede conectar el archivo *_SelectLanguagePartial.cshtml* con código de ejemplo para este proyecto. El proyecto **Localization.StarterWeb** de [GitHub](https://github.com/aspnet/entropy) tiene código para enviar `RequestLocalizationOptions` a una vista parcial de Razor a través del contenedor de [inserción de dependencias](dependency-injection.md).
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Datos de ruta y cadenas de consulta de enlace de modelos
 

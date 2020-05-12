@@ -1,17 +1,23 @@
 ---
-title: Interfaz de usuario de Razor reutilizable en bibliotecas de clases con ASP.NET Core
+title: Interfaz de usuario reutilizable de Razor en bibliotecas de clases con ASP.NET Core
 author: Rick-Anderson
-description: En este artículo se explica cómo crear una interfaz de usuario de Razor reutilizable mediante el uso de vistas parciales en una biblioteca de clases en ASP.NET Core.
+description: Aquí se explica cómo crear una interfaz de usuario de Razor reutilizable mediante vistas parciales en una biblioteca de clases de ASP.NET Core.
 ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: f24dc62eba345a8a3d35143805b4966cb51832fa
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2c2a2c1e13b2d511ecf8c1c02c235192861fd486
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650987"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774280"
 ---
 # <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Creación de una interfaz de usuario reutilizable con el proyecto de biblioteca de clases de Razor en ASP.NET Core
 
@@ -359,11 +365,11 @@ dotnet run
 
 ### <a name="test-webapp1"></a>Probar WebApp1
 
-Vaya a `/MyFeature/Page1` para comprobar que la biblioteca de clases de la interfaz de usuario de Razor esté en uso.
+Vaya a `/MyFeature/Page1` para comprobar que la biblioteca de clases de la interfaz de usuario de Razor está en uso.
 
 ## <a name="override-views-partial-views-and-pages"></a>Reemplazar vistas, vistas parciales y páginas
 
-Cuando existe una vista, vista parcial o página de Razor tanto en la aplicación web como en la RCL, tendrá prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web. Por ejemplo, si agrega *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* a WebApp1, Page1 en WebApp1 prevalecerá sobre Page1 en la biblioteca de clases de Razor.
+Si existe una vista,una vista parcial o una página de Razor tanto en la aplicación web como en la RCL, tiene prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web. Por ejemplo, si agrega *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* a WebApp1, Page1 en WebApp1 prevalecerá sobre Page1 en la biblioteca de clases de Razor.
 
 En la descarga de ejemplo, cambie el nombre *WebApp1/Areas/MyFeature2* por *WebApp1/Areas/MyFeature* para comprobar la prioridad.
 

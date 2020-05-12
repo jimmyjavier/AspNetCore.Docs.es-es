@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: ceb2ad857649dcfa8d04420dcc37792495edc3ff
-ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
+ms.openlocfilehash: af2bea1b3a149ef8d80970031e939dc083d94a03
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/13/2020
-ms.locfileid: "81224029"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775900"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hospedar ASP.NET Core en Linux con Nginx
 
@@ -149,7 +155,7 @@ server {
 }
 ```
 
-Si la aplicación es una aplicación de servidor Blazor que se basa en WebSockets de SignalR, consulte <xref:host-and-deploy/blazor/server#linux-with-nginx> para obtener información sobre cómo establecer el encabezado de `Connection`.
+Si la aplicación es una aplicación Blazor Server que se basa en WebSockets de SignalR, vea <xref:host-and-deploy/blazor/server#linux-with-nginx> para obtener información sobre cómo establecer el encabezado `Connection`.
 
 Cuando no hay ninguna coincidencia de `server_name`, Nginx usa el servidor predeterminado. Si no se define ningún servidor predeterminado, el primer servidor del archivo de configuración es el servidor predeterminado. Como procedimiento recomendado, agregue un servidor predeterminado específico que devuelva un código de estado 444 en el archivo de configuración. Un ejemplo de configuración del servidor predeterminado es:
 

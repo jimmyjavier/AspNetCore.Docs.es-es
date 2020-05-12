@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: af5807b782d4acec8c7d40111dc508dfa6127057
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1f68bd5347ba1f67e56b7a2fe8914ffdaef8010c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650975"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774085"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novedades de ASP.NET Core 2.1
 
@@ -34,20 +38,20 @@ Para más información, consulte [ASP.NET CoreSignalR](xref:signalr/introduction
 
 ## <a name="razor-class-libraries"></a>Bibliotecas de clases de Razor
 
-Con ASP.NET Core 2.1 es más fácil crear e incluir una interfaz de usuario basada en Razor en una biblioteca y compartirla entre varios proyectos. El nuevo SDK de Razor permite crear archivos de Razor en un proyecto de biblioteca de clases que se puede empaquetar en un paquete NuGet. Las vistas y las páginas en las bibliotecas se detectan automáticamente y se pueden reemplazar por la aplicación. Al integrar la compilación de Razor en la versión de compilación:
+Con ASP.NET Core 2.1 es más fácil compilar e incluir una interfaz de usuario basada en Razor en una biblioteca y compartirla entre varios proyectos. El nuevo SDK de Razor permite compilar archivos de Razor en un proyecto de biblioteca de clases que se puede empaquetar en un paquete NuGet. Las vistas y las páginas en las bibliotecas se detectan automáticamente y se pueden reemplazar por la aplicación. Al integrar la compilación de Razor en la compilación:
 
 * El tiempo de inicio de la aplicación es mucho más rápido.
-* Sigue habiendo disponibles actualizaciones rápidas de las páginas y vistas de Razor en tiempo de ejecución como parte de un flujo de trabajo de desarrollo iterativo.
+* Sigue habiendo actualizaciones rápidas de páginas y vistas de Razor en tiempo de ejecución como parte de un flujo de trabajo de desarrollo iterativo.
 
-Para más información, vea [Create reusable UI using the Razor Class Library project](xref:razor-pages/ui-class) (Crear una interfaz de usuario reutilizable con el proyecto de biblioteca de clases de Razor).
+Para obtener más información, vea [Creación de una interfaz de usuario reutilizable con el proyecto de biblioteca de clases de Razor](xref:razor-pages/ui-class).
 
-## <a name="identity-ui-library--scaffolding"></a>Aplicación de scaffolding y biblioteca de interfaz de usuario de identidad
+## <a name="identity-ui-library--scaffolding"></a>Biblioteca de interfaz de usuario de Identity y scaffolding
 
-ASP.NET Core 2.1 proporciona [ASP.NET Core Identity](xref:security/authentication/identity) como un [biblioteca de clases de Razor](xref:razor-pages/ui-class). Las aplicaciones que incluyan Identity pueden aplicar el nuevo proveedor de scaffolding de Identity para agregar de forma selectiva el código fuente contenido en la biblioteca de clases de Razor (RCL) de Identidad. Puede que quiera generar código fuente que le permita modificar un código y cambiar el comportamiento; así, por ejemplo, podría indicar al proveedor de scaffolding que generara el código que se usa en el registro. Dicho código generado tendrá prioridad sobre el mismo código en el RCL de Identity.
+ASP.NET Core 2.1 proporciona [ASP.NET Core Identity](xref:security/authentication/identity) como una [biblioteca de clases de Razor](xref:razor-pages/ui-class). Las aplicaciones que incluyen Identity pueden aplicar el nuevo proveedor de scaffolding de Identity para agregar de forma selectiva el código fuente incluido en la biblioteca de clases de Razor (RCL) de Identity. Puede que quiera generar código fuente que le permita modificar un código y cambiar el comportamiento; así, por ejemplo, podría indicar al proveedor de scaffolding que generara el código que se usa en el registro. El código generado tiene prioridad sobre el mismo código de la RCL de Identity.
 
-Las aplicaciones que **no** incluyan autenticación puede aplicar el proveedor de scaffolding de Identity para agregar el paquete de RCL de Identity. Existe la posibilidad de seleccionar el código de Identity que se va a generar.
+Las aplicaciones que **no** incluyen autenticación pueden aplicar el proveedor de scaffolding de Identity para agregar el paquete de Identity de la RCL. Tiene la opción de seleccionar el código de Identity que se va a generar.
 
-Para más información, vea [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity) (Identidad de scaffold en proyectos de ASP.NET Core).
+Para obtener más información, vea [Scaffolding Identity en proyectos de ASP.NET Core](xref:security/authentication/scaffold-identity).
 
 ## <a name="https"></a>HTTPS
 
@@ -72,7 +76,7 @@ El uso de HTTPS puede exigir aún más por medio del [protocolo de Seguridad de 
 
 En un entorno de producción, HTTPS se debe configurar explícitamente. En 2.1, se ha agregado un esquema de configuración predeterminado para configurar HTTPS para Kestrel. Las aplicaciones se pueden configurar para usar:
 
-* Varios puntos de conexión (direcciones URL incluidas). Para más información, vea [Implementación del servidor web Kestrel: Configuración de punto de conexión](xref:fundamentals/servers/kestrel#endpoint-configuration).
+* Varios puntos de conexión (direcciones URL incluidas). Para más información, consulte [Kestrel web server implementation: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (Kestrel: configuración de los puntos de conexión).
 * El certificado que se va a usar para HTTPS desde un archivo en disco o desde un almacén de certificados.
 
 ## <a name="gdpr"></a>RGPD
@@ -133,7 +137,7 @@ Para más información, vea [Inicio de solicitudes HTTP](xref:fundamentals/http-
 
 ## <a name="kestrel-transport-configuration"></a>Configuración de transporte de Kestrel
 
-Desde el lanzamiento de ASP.NET Core 2.1, el transporte predeterminado de Kestrel deja de basarse en Libuv y pasa a basarse en sockets administrados. Para más información, vea [Implementación del servidor web Kestrel: Configuración de transporte](xref:fundamentals/servers/kestrel#transport-configuration).
+Desde el lanzamiento de ASP.NET Core 2.1, el transporte predeterminado de Kestrel deja de basarse en Libuv y pasa a basarse en sockets administrados. Para más información, consulte [Kestrel web server implementation: Transport configuration](xref:fundamentals/servers/kestrel#transport-configuration) (Implementación del servidor web de Kestrel: configuración de transporte).
 
 ## <a name="generic-host-builder"></a>Generador de host genérico
 
@@ -153,9 +157,9 @@ Para obtener más información, consulte:
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="razor-pages-search-for-razor-assets"></a>Búsqueda de activos de Razor en Razor Pages
+## <a name="razor-pages-search-for-razor-assets"></a>Razor Pages busca recursos de Razor
 
-En la versión 2.1, Razor Pages busca activos de Razor (como diseños y líneas de código parcialmente ejecutadas) en los siguientes directorios en el orden indicado:
+En la versión 2.1, Razor Pages busca recursos de Razor (como diseños y líneas de código parcialmente ejecutadas) en los siguientes directorios y en el orden indicado:
 
 1. Carpeta Current Pages
 1. */Pages/Shared/*
@@ -163,13 +167,13 @@ En la versión 2.1, Razor Pages busca activos de Razor (como diseños y líneas 
 
 ## <a name="razor-pages-in-an-area"></a>Razor Pages en un área
 
-Razor Pages ya admite las [áreas](xref:mvc/controllers/areas). Para ver un ejemplo de áreas, cree una aplicación web de Razor Pages con cuentas de usuario individuales. Las aplicaciones web de Razor Pages con cuentas de usuario individuales incluyen */Areas/Identity/Pages*.
+Razor Pages ya admite las [áreas](xref:mvc/controllers/areas). Para ver un ejemplo de áreas, cree una nueva aplicación web de Razor Pages con cuentas de usuario individuales. Las aplicaciones web de Razor Pages con cuentas de usuario individuales incluyen */Areas/Identity/Pages*.
 
 ## <a name="mvc-compatibility-version"></a>Versión de compatibilidad de MVC
 
 El método <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> permite a una aplicación participar o no en los cambios de comportamiento importantes incorporados en ASP.NET Core MVC 2.1 o una versión posterior.
 
-Para obtener más información, consulta <xref:mvc/compatibility-version>.
+Para obtener más información, vea <xref:mvc/compatibility-version>.
 
 ## <a name="migrate-from-20-to-21"></a>Migración de 2.0 a 2.1
 

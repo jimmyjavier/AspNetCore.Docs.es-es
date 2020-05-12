@@ -5,13 +5,19 @@ description: El comando dotnet aspnet-codegenerator aplica scaffolding a los pro
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649859"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766477"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -42,7 +48,7 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>Description
+## <a name="description"></a>Descripción
 
 El comando `dotnet aspnet-codegenerator` global ejecuta el generador de código de ASP.NET Core y el motor de scaffolding.
 
@@ -96,7 +102,7 @@ En las secciones siguientes se detallan las opciones disponibles para los genera
 
 * Área
 * Controlador
-* Identidad  
+* identidad  
 * Razorpage
 * Ver
 
@@ -127,7 +133,7 @@ En la tabla siguiente se indican las opciones para `aspnet-codegenerator` `contr
 
 En la tabla siguiente se muestran las opciones únicas para `aspnet-codegenerator controller`:
 
-| Opción               | Description|
+| Opción               | Descripción|
 | ----------------- | ------------ |
 | --controllerName o -name | El nombre del controlador. |
 | --useAsyncActions o -async | Genera acciones asincrónicas del controlador. |
@@ -176,7 +182,7 @@ En la tabla siguiente se indican las opciones para `aspnet-codegenerator` `razor
 
 En la tabla siguiente se muestran las opciones únicas para `aspnet-codegenerator razorpage`:
 
-| Opción               | Description|
+| Opción               | Descripción|
 | ----------------- | ------------ |
 |   --namespaceName o -namespace | El nombre del espacio de nombres que se usará para la clase PageModel generada. |
 | --partialView o -partial | Genera una vista parcial. Si se especifica, las opciones de diseño -l y -udl se ignoran. |
@@ -190,6 +196,6 @@ dotnet aspnet-codegenerator razorpage -h
 
 Consulte [Aplicar scaffolding al modelo de película](/aspnet/core/tutorials/razor-pages/model) para ver un ejemplo de `dotnet aspnet-codegenerator razorpage`.
 
-### <a name="identity"></a>Identidad
+### Identity
 
-Consulte [Identidad de scaffolding](/aspnet/core/security/authentication/scaffold-identity)
+Vea [Scaffolding Identity](/aspnet/core/security/authentication/scaffold-identity).

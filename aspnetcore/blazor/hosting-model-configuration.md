@@ -1,21 +1,24 @@
 ---
 title: Configuración del modelo de hospedaje de Blazor en ASP.NET Core
 author: guardrex
-description: Obtenga información sobre la configuración del modelo de hospedaje de Blazor, incluida la integración de componentes de Razor en aplicaciones Razor Pages y MVC.
+description: Obtenga información sobre la configuración del modelo de hospedaje de Blazor, incluida la integración de componentes de Razor en aplicaciones de Razor Pages y MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: c7e8d1f2dcba6432072a5cc11a6c5d78e50c2398
-ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
+ms.openlocfilehash: 17ed43a12643f067da73658bec72400acbe1be43
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159624"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772079"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Configuración del modelo de hospedaje de Blazor en ASP.NET Core
 
@@ -100,12 +103,12 @@ La propiedad `IWebAssemblyHostEnvironment.BaseAddress` se puede usar durante el 
 
 ### <a name="configuration"></a>Configuración
 
-WebAssembly de Blazor admite configuraciones procedentes de:
+Blazor WebAssembly carga la configuración de:
 
-* El [proveedor de configuración de archivos](xref:fundamentals/configuration/index#file-configuration-provider) de archivos de configuración de la aplicación de forma predeterminada:
+* Archivos de configuración de aplicaciones de forma predeterminada:
   * *wwwroot/appsettings.json*
   * *wwwroot/appsettings.{ENTORNO}.json*
-* Otros [proveedores de configuración](xref:fundamentals/configuration/index) registrados por la aplicación
+* Otros [proveedores de configuración](xref:fundamentals/configuration/index) registrados por la aplicación No todos los proveedores son adecuados para las aplicaciones Blazor WebAssembly. En [Aclaración de los proveedores de configuración para Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134) se aclara qué proveedores son compatibles con Blazor WebAssembly.
 
 > [!WARNING]
 > La configuración de una aplicación de Blazor WebAssembly es visible para los demás usuarios. **No almacene credenciales ni secretos de aplicación en la configuración.**
@@ -136,12 +139,12 @@ Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> e
 
 #### <a name="provider-configuration"></a>Configuración de proveedor
 
-En el siguiente ejemplo se usa un elemento <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> y el [proveedor de configuración de archivos](xref:fundamentals/configuration/index#file-configuration-provider) para proporcionar una configuración adicional:
+En el ejemplo siguiente se usa <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> para proporcionar configuración adicional:
 
 `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 
 ...
 
@@ -159,9 +162,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 ...
 
-builder.Configuration
-    .Add(memoryConfig)
-    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+builder.Configuration.Add(memoryConfig);
 ```
 
 Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> en un componente para acceder a los datos de configuración:
@@ -176,10 +177,10 @@ Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> e
 <h2>Wheels</h2>
 
 <ul>
-    <li>Count: @Configuration["wheels:count"]</p>
-    <li>Brand: @Configuration["wheels:brand"]</p>
-    <li>Type: @Configuration["wheels:brand:type"]</p>
-    <li>Year: @Configuration["wheels:year"]</p>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
 </ul>
 
 @code {
@@ -187,6 +188,36 @@ Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> e
     
     ...
 }
+```
+
+Para leer otros archivos de configuración de la carpeta *wwwroot* en la configuración, use `HttpClient` para obtener el contenido del archivo. Al usar este método, el registro del servicio `HttpClient` existente puede usar el cliente local creado para leer el archivo, como se muestra en el ejemplo siguiente:
+
+*wwwroot/cars.json*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
 ```
 
 #### <a name="authentication-configuration"></a>Configuración de autenticación

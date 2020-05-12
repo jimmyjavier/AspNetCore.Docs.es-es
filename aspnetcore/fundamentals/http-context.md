@@ -5,14 +5,20 @@ description: Obtenga información sobre cómo acceder a HttpContext en ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+ms.date: 5/5/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: 8a7ee180380c42ea745c91b8e6a18c1baa820220
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 716e74551b95455c99abbac58b712f013acfde56
+ms.sourcegitcommit: d4527df91f2c15bbe1cbf5a541adbea5747897aa
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647015"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82852362"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Acceso a HttpContext en ASP.NET Core
 
@@ -163,3 +169,8 @@ public class EmailController : Controller
         ...
     }
 }
+```
+
+## <a name="blazor-and-shared-state"></a>Blazor y estado compartido
+
+[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]

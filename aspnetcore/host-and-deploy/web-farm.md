@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647345"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776362"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedaje de ASP.NET Core en una granja de servidores web
 
@@ -61,7 +67,7 @@ Los escenarios siguientes no requieren configuración adicional, pero dependen d
 | Escenario | Depende de &hellip; |
 | -------- | ------------------- |
 | Autenticación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/authentication/cookie> y <xref:security/cookie-sharing>. |
-| identidad | Autenticación y configuración de base de datos.<br><br>Para obtener más información, vea <xref:security/authentication/identity>. |
+| Identity | Autenticación y configuración de base de datos.<br><br>Para obtener más información, vea <xref:security/authentication/identity>. |
 | Sesión | Protección de datos (cookies cifradas) (consulte <xref:security/data-protection/configuration/overview>) y almacenamiento en caché (consulte <xref:performance/caching/distributed>).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state). |
 | TempData | Protección de datos (cookies cifradas; consulte <xref:security/data-protection/configuration/overview>) o sesión (consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state)).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/anti-request-forgery>. |
@@ -77,7 +83,7 @@ Piense en un usuario que inicia sesión en la aplicación a través de la autent
 Cuando cualquiera de los síntomas siguientes se producen de manera **intermitente**, se suele hacer un seguimiento del problema hasta la configuración inadecuada de la protección de datos o del almacenamiento en caché para un entorno de granja de servidores web:
 
 * La autenticación se interrumpe &ndash; La cookie de autenticación está configurada de manera incorrecta o no se puede descifrar. Los inicios de sesión de OAuth (Facebook, Microsoft, Twitter) o de OpenIdConnect presentan el error "Correlation failed" (Error de correlación).
-* La autorización se interrumpe &ndash; Se pierde la identidad.
+* La autorización se interrumpe &ndash; Identity se pierde.
 * El estado de sesión pierde datos.
 * Los elementos en caché desaparecen.
 * Error de TempData.

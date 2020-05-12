@@ -1,27 +1,30 @@
 ---
 title: Globalización y localización de Blazor de ASP.NET Core
 author: guardrex
-description: Obtenga información sobre cómo poner los componentes de Razor a disposición de los usuarios en varias referencias culturales e idiomas.
+description: Aprenda a poner los componentes de Razor a disposición de los usuarios de diferentes referencias culturales e idiomas.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 1b0db66b23c0caffc6b7c4e4af723c020609612a
-ms.sourcegitcommit: d5d45d84fe488427d418de770000f7df44a08370
+ms.openlocfilehash: b39695f8b506744b4af27a1d7e09bfac9594d7ca
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81539666"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772496"
 ---
-# <a name="aspnet-core-opno-locblazor-globalization-and-localization"></a>Globalización y localización de Blazor de ASP.NET Core
+# <a name="aspnet-core-blazor-globalization-and-localization"></a>Globalización y localización de Blazor de ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.com/danroth27)
 
-Los componentes de Razor se pueden poner a disposición de los usuarios en varias referencias culturales e idiomas. Estos son los escenarios de globalización y localización de .NET disponibles:
+Los componentes de Razor se pueden poner a disposición de los usuarios de varias referencias culturales e idiomas. Estos son los escenarios de globalización y localización de .NET disponibles:
 
 * Sistema de recursos de .NET
 * Formato de fecha y número específico de la referencia cultural
@@ -60,7 +63,7 @@ Los siguientes tipos de campo tienen requisitos de formato específicos y no se 
 
 ## <a name="localization"></a>Localización
 
-### <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 Las aplicaciones de Blazor WebAssembly establecen la referencia cultural mediante la [preferencia de idioma](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages) del usuario.
 
@@ -70,7 +73,7 @@ De forma predeterminada, la configuración del enlazador de Blazor para aplicaci
 
 Si bien la referencia cultural que Blazor selecciona de manera predeterminada puede ser suficiente para la mayoría de los usuarios, considere la posibilidad de ofrecer una manera para que los usuarios especifiquen su configuración regional preferida. Para una aplicación de ejemplo de Blazor WebAssembly con un selector de referencia cultural, consulte la aplicación de ejemplo de localización [LocSample](https://github.com/pranavkm/LocSample).
 
-### <a name="opno-locblazor-server"></a>Servidor de Blazor
+### <a name="blazor-server"></a>Servidor de Blazor
 
 Las aplicaciones de servidor Blazor se localizan usando un [middleware de localización](xref:fundamentals/localization#localization-middleware). El middleware selecciona la referencia cultural adecuada según los usuarios que solicitan recursos de la aplicación.
 

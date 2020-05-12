@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: 706468d44ddabbd3a695dbb60aaf1be15fe166e2
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: c29b58eb14a7962f53f2c8c48067de2f5872fded
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558905"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774813"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Administración del estado y la sesión en ASP.NET Core
 
@@ -408,7 +412,7 @@ Métodos de extensión `ISession`:
 * [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
 * [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
 
-En el ejemplo siguiente se recupera el valor de sesión para la clave `IndexModel.SessionKeyName` (`_Name` en la aplicación de ejemplo) en una página de Razor Pages:
+En el ejemplo siguiente se recupera el valor de sesión de la clave `IndexModel.SessionKeyName` (`_Name` en la aplicación de ejemplo) de una página de Razor Pages:
 
 ```csharp
 @page

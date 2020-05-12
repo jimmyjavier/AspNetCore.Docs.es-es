@@ -6,20 +6,24 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 2dff64f1f2d67b8a1e676acf6cf131b684099750
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ab103adc20c5332f71d5f6e3348d0b14c69fce34
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405878"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774709"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparación entre los servicios gRPC y las API HTTP
 
 Por [James Newton-King](https://twitter.com/jamesnk)
 
-En este artículo se explica cómo se comparan los [servicios gRPC](https://grpc.io/docs/guides/) con las API HTTP (incluidas las [API web](xref:web-api/index) de ASP.NET Core). La tecnología que se usa para proporcionar una API para la aplicación es una decisión importante, y gRPC ofrece ventajas exclusivas en comparación con las API HTTP. En este artículo se describen las ventajas y los inconvenientes de gRPC, y se recomiendan escenarios para usar gRPC antes que otras tecnologías.
+En este artículo se realiza una comparación entre los [servicios gRPC](https://grpc.io/docs/guides/) y las API HTTP con JSON (incluidas las [API web](xref:web-api/index) de ASP.NET Core). La tecnología que se usa para proporcionar una API para la aplicación es una decisión importante, y gRPC ofrece ventajas exclusivas en comparación con las API HTTP. En este artículo se describen las ventajas y los inconvenientes de gRPC, y se recomiendan escenarios para usar gRPC antes que otras tecnologías.
 
 ## <a name="high-level-comparison"></a>Comparación general
 
@@ -46,6 +50,8 @@ gRPC está diseñado para HTTP/2, una revisión principal de HTTP que proporcion
 
 * Tramas binarias y compresión. El protocolo HTTP/2 es compacto y eficaz tanto para el envío como para la recepción.
 * Multiplexación de varias llamadas HTTP/2 a través de una única conexión TCP. La multiplexación elimina el [bloqueo de encabezado de línea](https://en.wikipedia.org/wiki/Head-of-line_blocking).
+
+HTTP/2 no es exclusivo de gRPC. Muchos tipos de solicitud, incluidas las API HTTP con JSON, pueden usar HTTP/2 y beneficiarse de sus mejoras de rendimiento.
 
 ### <a name="code-generation"></a>Generación de código
 

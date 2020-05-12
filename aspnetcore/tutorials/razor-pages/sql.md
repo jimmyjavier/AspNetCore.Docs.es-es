@@ -4,13 +4,19 @@ author: rick-anderson
 description: En este artículo se explica cómo se trabaja con una base de datos y ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 159588ec750f0ede534522aa9397fc2aefb58cd6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649517"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775614"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Trabajar con una base de datos y ASP.NET Core
 
@@ -112,7 +118,7 @@ La siguiente excepción se produce cuando no se ha ejecutado `Update-Database`:
 > `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
 > `Login failed for user 'user name'.`
 
-### <a name="test-the-app"></a>Probar la aplicación
+### <a name="test-the-app"></a>Prueba de la aplicación
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -132,7 +138,7 @@ La siguiente excepción se produce cuando no se ha ejecutado `Update-Database`:
 
 Elimine todos los registros de la base de datos (para que se ejecute el método de inicialización). Detenga e inicie la aplicación para inicializar la base de datos.
 
-La aplicación muestra los datos de inicialización.
+La aplicación muestra los datos inicializados.
 
 ---
 
@@ -141,8 +147,8 @@ En el tutorial siguiente se mejorará la presentación de los datos.
 ## <a name="additional-resources"></a>Recursos adicionales
 
 > [!div class="step-by-step"]
-> [Anterior: Páginas de Razor con scaffolding](xref:tutorials/razor-pages/page)
-> [Siguiente: Actualización de las páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Razor Pages con scaffolding](xref:tutorials/razor-pages/page)
+> [Siguiente: Actualización de páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -256,7 +262,7 @@ Una aplicación de producción no llamaría a `Database.Migrate`. Se agrega al c
 SqlException: No se puede abrir la base de datos "RazorPagesMovieContext-21" solicitada por el inicio de sesión. Error de inicio de sesión.
 Error de inicio de sesión del usuario <nombre de usuario>.
 
-### <a name="test-the-app"></a>Probar la aplicación
+### <a name="test-the-app"></a>Prueba de la aplicación
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -276,13 +282,13 @@ Error de inicio de sesión del usuario <nombre de usuario>.
 
 Elimine todos los registros de la base de datos (para que se ejecute el método de inicialización). Detenga e inicie la aplicación para inicializar la base de datos.
 
-La aplicación muestra los datos de inicialización.
+La aplicación muestra los datos inicializados.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 Elimine todos los registros de la base de datos (para que se ejecute el método de inicialización). Detenga e inicie la aplicación para inicializar la base de datos.
 
-La aplicación muestra los datos de inicialización.
+La aplicación muestra los datos inicializados.
 
 ---
 
@@ -297,7 +303,7 @@ El siguiente tutorial limpia la presentación de los datos.
 * [Versión en YouTube de este tutorial](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Anterior: Páginas de Razor con scaffolding](xref:tutorials/razor-pages/page)
-> [Siguiente: Actualización de las páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Razor Pages con scaffolding](xref:tutorials/razor-pages/page)
+> [Siguiente: Actualización de páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
