@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: a8d38f17b066a0aa9a38b1bdfea3491f733cf1bc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cdf10cd26f3eb9af386f782475eeabbda50f0df9
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776882"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153346"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Proveedores de almacenamiento de claves en ASP.NET Core
 
@@ -37,9 +37,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-`DirectoryInfo` Puede apuntar a un directorio del equipo local o a una carpeta de un recurso compartido de red. Si apunta a un directorio en el equipo local (y el escenario es que solo las aplicaciones del equipo local requieren acceso para usar este repositorio), considere la posibilidad de usar [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (en Windows) para cifrar las claves en reposo. En caso contrario, considere la posibilidad de utilizar un [certificado X. 509](xref:security/data-protection/implementation/key-encryption-at-rest) para cifrar las claves en reposo.
+`DirectoryInfo`Puede apuntar a un directorio del equipo local o a una carpeta de un recurso compartido de red. Si apunta a un directorio en el equipo local (y el escenario es que solo las aplicaciones del equipo local requieren acceso para usar este repositorio), considere la posibilidad de usar [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (en Windows) para cifrar las claves en reposo. En caso contrario, considere la posibilidad de utilizar un [certificado X. 509](xref:security/data-protection/implementation/key-encryption-at-rest) para cifrar las claves en reposo.
 
-## <a name="azure-storage"></a>Azure Storage
+## <a name="azure-storage"></a>Almacenamiento de Azure
 
 El paquete [Microsoft. AspNetCore. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) permite almacenar las claves de protección de datos en Azure BLOB Storage. Las claves se pueden compartir entre varias instancias de una aplicación Web. Las aplicaciones pueden compartir cookies de autenticación o protección CSRF entre varios servidores.
 
@@ -147,13 +147,13 @@ El paquete [Microsoft. AspNetCore. EntityFrameworkCore](https://www.nuget.org/pa
 
 Con este paquete, las claves se pueden compartir entre varias instancias de una aplicación Web.
 
-Para configurar el proveedor de EF Core, llame al método [>PersistKeysToDbContext\<TContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Para configurar el proveedor de EF Core, llame al método [ \<>PersistKeysToDbContext TContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
-El parámetro genérico, `TContext`, debe heredar de [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) e implementar [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
+El parámetro genérico, `TContext` , debe heredar de [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) e implementar [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
@@ -179,13 +179,13 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext`es el `DbContext` definido en el ejemplo de código anterior. Si utiliza un `DbContext` con un nombre diferente, sustituya el `DbContext` nombre por. `MyKeysContext`
+`MyKeysContext`es el `DbContext` definido en el ejemplo de código anterior. Si utiliza un `DbContext` con un nombre diferente, sustituya el `DbContext` nombre por `MyKeysContext` .
 
 La `DataProtectionKeys` clase o entidad adopta la estructura que se muestra en la tabla siguiente.
 
 | Propiedad o campo | Tipo CLR | Tipo de SQL              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, not null   |
+| `Id`           | `int`    | `int`, PK, `IDENTITY(1,1)` , not null   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, null |
 | `Xml`          | `string` | `nvarchar(MAX)`, null |
 

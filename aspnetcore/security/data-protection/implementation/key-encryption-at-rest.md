@@ -1,5 +1,5 @@
 ---
-title: Cifrado de claves en reposo en ASP.NET Core
+title: Cifrado de claves en reposo en Windows y Azure con ASP.NET Core
 author: rick-anderson
 description: Obtenga información sobre la implementación de ASP.NET Core el cifrado de claves de protección de datos en reposo.
 ms.author: riande
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c927c926212aeb1263d15fd3fdc753c377b2e305
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776934"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153566"
 ---
-# <a name="key-encryption-at-rest-in-aspnet-core"></a>Cifrado de claves en reposo en ASP.NET Core
+# <a name="key-encryption-at-rest-in-windows-and-azure-using-aspnet-core"></a>Cifrado de claves en reposo en Windows y Azure con ASP.NET Core
 
 De forma predeterminada, el sistema de protección de datos [emplea un mecanismo de detección](xref:security/data-protection/configuration/default-settings) para determinar cómo se deben cifrar las claves criptográficas en reposo. El desarrollador puede invalidar el mecanismo de detección y especificar manualmente cómo se deben cifrar las claves en reposo.
 
@@ -29,7 +29,7 @@ De forma predeterminada, el sistema de protección de datos [emplea un mecanismo
 
 ## <a name="azure-key-vault"></a>Azure Key Vault
 
-Para almacenar claves en [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure el sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) en `Startup` la clase:
+Para almacenar claves en [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure el sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) en la `Startup` clase:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -106,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-También hay una sobrecarga sin parámetros de `ProtectKeysWithDpapiNG`. Use este método para especificar la regla "SID = {CURRENT_ACCOUNT_SID}", donde *CURRENT_ACCOUNT_SID* es el SID de la cuenta de usuario de Windows actual:
+También hay una sobrecarga sin parámetros de `ProtectKeysWithDpapiNG` . Use este método para especificar la regla "SID = {CURRENT_ACCOUNT_SID}", donde *CURRENT_ACCOUNT_SID* es el SID de la cuenta de usuario de Windows actual:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

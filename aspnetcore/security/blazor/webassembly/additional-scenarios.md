@@ -1,11 +1,11 @@
 ---
-title: ASP.NET Core Blazor escenarios de seguridad adicionales de webassembly
+title: ASP.NET Core Blazor escenarios de seguridad adicionales de Webassembly
 author: guardrex
-description: Aprenda a configurar Blazor webassembly para escenarios de seguridad adicionales.
+description: Aprenda a configurar Blazor Webassembly para escenarios de seguridad adicionales.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: e8a088b3f1a4e0eb7d5d1c5c09ef53c4a2bd3628
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: d460f65e996f1f77136a426b03d6eb548d9e309e
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976797"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153476"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core más escenarios de seguridad adicionales de webassembly
 
@@ -30,7 +30,7 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## <a name="attach-tokens-to-outgoing-requests"></a>Adjuntar tokens a solicitudes salientes
 
-El `AuthorizationMessageHandler` servicio se puede usar con `HttpClient` para adjuntar tokens de acceso a las solicitudes salientes. Los tokens se adquieren `IAccessTokenProvider` con el servicio existente. Si no se puede adquirir un token, `AccessTokenNotAvailableException` se produce una excepción. `AccessTokenNotAvailableException`tiene un `Redirect` método que se puede utilizar para navegar por el usuario al proveedor de identidades para adquirir un nuevo token. Se `AuthorizationMessageHandler` puede configurar con las direcciones URL autorizadas, los ámbitos y la dirección URL de `ConfigureHandler` retorno mediante el método.
+El `AuthorizationMessageHandler` servicio se puede usar con `HttpClient` para adjuntar tokens de acceso a las solicitudes salientes. Los tokens se adquieren con el `IAccessTokenProvider` servicio existente. Si no se puede adquirir un token, `AccessTokenNotAvailableException` se produce una excepción. `AccessTokenNotAvailableException`tiene un `Redirect` método que se puede utilizar para navegar por el usuario al proveedor de identidades para adquirir un nuevo token. `AuthorizationMessageHandler`Se puede configurar con las direcciones URL autorizadas, los ámbitos y la dirección URL de retorno mediante el `ConfigureHandler` método.
 
 En el ejemplo siguiente, `AuthorizationMessageHandler` configura `HttpClient` en `Program.Main` (*Program.CS*):
 
@@ -52,7 +52,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Para mayor comodidad, `BaseAddressAuthorizationMessageHandler` se incluye una que está preconfigurada con la dirección base de la aplicación como una dirección URL autorizada. Las plantillas de webassembly increíblemente habilitadas para la <xref:System.Net.Http.IHttpClientFactory> autenticación ahora se usan en el proyecto de API <xref:System.Net.Http.HttpClient> de servidor `BaseAddressAuthorizationMessageHandler`para configurar una con:
+Para mayor comodidad, `BaseAddressAuthorizationMessageHandler` se incluye una que está preconfigurada con la dirección base de la aplicación como una dirección URL autorizada. Las plantillas de webassembly increíblemente habilitadas para la autenticación ahora <xref:System.Net.Http.IHttpClientFactory> se usan en el proyecto de API de servidor para configurar una <xref:System.Net.Http.HttpClient> con `BaseAddressAuthorizationMessageHandler` :
 
 ```csharp
 using System.Net.Http;
@@ -60,21 +60,23 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
+builder.Services.AddHttpClient("BlazorWithIdentity.ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+    .CreateClient("BlazorWithIdentity.ServerAPI"));
 ```
 
 Cuando el cliente se crea con `CreateClient` en el ejemplo anterior, <xref:System.Net.Http.HttpClient> se proporcionan instancias de que incluyen tokens de acceso al hacer solicitudes al proyecto de servidor.
 
-A continuación <xref:System.Net.Http.HttpClient> , se usa el configurado para hacer solicitudes autorizadas `try-catch` mediante un patrón simple. El siguiente `FetchData` componente solicita datos de previsión meteorológica:
+<xref:System.Net.Http.HttpClient>A continuación, se usa el configurado para hacer solicitudes autorizadas mediante un `try-catch` patrón simple.
+
+`FetchData`componente (*pages/FetchData. Razor*):
 
 ```csharp
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject HttpClient Http
+@inject HttpClient Client
 
 ...
 
@@ -83,7 +85,7 @@ protected override async Task OnInitializedAsync()
     try
     {
         forecasts = 
-            await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+            await Client.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
     catch (AccessTokenNotAvailableException exception)
     {
@@ -92,37 +94,36 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Como alternativa, puede definir un cliente con tipo que controle todos los problemas de adquisición de tokens y HTTP en una sola clase:
+## <a name="typed-httpclient"></a>HttpClient con tipo
 
-*WeatherClient.CS*:
+Se puede definir un cliente con tipo que controle todos los problemas de adquisición de tokens y HTTP en una sola clase.
+
+*WeatherForecastClient.CS*:
 
 ```csharp
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using static {APP ASSEMBLY}.Data;
 
-public class WeatherClient
+public class WeatherForecastClient
 {
-    private readonly HttpClient httpClient;
+    private readonly HttpClient client;
  
-    public WeatherClient(HttpClient httpClient)
+    public WeatherForecastClient(HttpClient client)
     {
-        this.httpClient = httpClient;
+        this.client = client;
     }
  
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForeacasts()
+    public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        IEnumerable<WeatherForecast> forecasts = new WeatherForecast[0];
+        var forecasts = new WeatherForecast[0];
 
         try
         {
-            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
-
-            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -134,7 +135,7 @@ public class WeatherClient
 }
 ```
 
-*Program.cs*:
+`Program.Main`(*Program.CS*):
 
 ```csharp
 using System.Net.Http;
@@ -142,29 +143,80 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient<WeatherClient>(
+builder.Services.AddHttpClient<WeatherForecastClient>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-*FetchData. Razor*:
+`FetchData`componente (*pages/FetchData. Razor*):
 
 ```razor
-@inject WeatherClient WeatherClient
+@inject WeatherForecastClient Client
 
 ...
 
 protected override async Task OnInitializedAsync()
 {
-    forecasts = await WeatherClient.GetWeatherForeacasts();
+    forecasts = await Client.GetForecastAsync();
 }
 ```
 
+## <a name="configure-the-httpclient-handler"></a>Configurar el controlador HttpClient
+
+El controlador se puede configurar aún más con <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> para las solicitudes HTTP salientes.
+
+`Program.Main`(*Program.CS*):
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
+    .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(new [] { "https://www.example.com/base" },
+        scopes: new[] { "example.read", "example.write" }));
+```
+
+## <a name="unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client"></a>Solicitudes de API Web no autenticadas o no autorizadas en una aplicación con un cliente predeterminado seguro
+
+Si, por lo general, la aplicación de webassembly es un valor predeterminado seguro <xref:System.Net.Http.HttpClient> , la aplicación también puede realizar solicitudes de API Web no autenticadas o no autorizadas mediante la configuración de una llamada <xref:System.Net.Http.HttpClient> :
+
+`Program.Main`(*Program.CS*):
+
+```csharp
+builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+El registro anterior se suma al registro predeterminado seguro existente <xref:System.Net.Http.HttpClient> .
+
+Un componente crea <xref:System.Net.Http.HttpClient> desde <xref:System.Net.Http.IHttpClientFactory> para realizar solicitudes no autenticadas o no autorizadas:
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("ServerAPI.NoAuthenticationClient");
+
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecastNoAuthentication");
+    }
+}
+```
+
+> [!NOTE]
+> El controlador de la API de servidor, `WeatherForecastNoAuthenticationController` para el ejemplo anterior, no está marcado con el [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo.
+
 ## <a name="request-additional-access-tokens"></a>Solicitar tokens de acceso adicionales
 
-Los tokens de acceso se pueden obtener manualmente `IAccessTokenProvider.RequestAccessToken`mediante una llamada a.
+Los tokens de acceso se pueden obtener manualmente mediante una llamada a `IAccessTokenProvider.RequestAccessToken` .
 
-En el siguiente ejemplo, una aplicación necesita los ámbitos de API de Azure Active Directory adicionales (AAD) Microsoft Graph para leer los datos de usuario y enviar correo. Después de agregar los permisos de Microsoft Graph API en el portal de Azure AAD, los ámbitos adicionales se configuran en`Program.Main`la aplicación cliente (, *Program.CS*):
+En el siguiente ejemplo, una aplicación necesita los ámbitos de API de Azure Active Directory adicionales (AAD) Microsoft Graph para leer los datos de usuario y enviar correo. Después de agregar los permisos de Microsoft Graph API en el portal de Azure AAD, los ámbitos adicionales se configuran en la aplicación cliente.
+
+`Program.Main`(*Program.CS*):
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -178,9 +230,11 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-El `IAccessTokenProvider.RequestToken` método proporciona una sobrecarga que permite a una aplicación aprovisionar un token de acceso con un conjunto determinado de ámbitos, tal como se muestra en el ejemplo siguiente:
+El `IAccessTokenProvider.RequestToken` método proporciona una sobrecarga que permite a una aplicación aprovisionar un token de acceso con un conjunto determinado de ámbitos.
 
-```csharp
+En un componente de Razor:
+
+```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider TokenProvider
 
@@ -201,12 +255,12 @@ if (tokenResult.TryGetToken(out var token))
 
 `TryGetToken`Devuelve
 
-* `true`con para `token` su uso.
+* `true`con `token` para su uso.
 * `false`Si el token no se recupera.
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient y HttpRequestMessage con las opciones de solicitud de Fetch API
 
-Cuando se ejecuta en webassembly en una aplicación de webassembly increíblemente <xref:System.Net.Http.HttpRequestMessage> brillante, [HttpClient](xref:fundamentals/http-requests) y se puede usar para personalizar las solicitudes. Por ejemplo, puede especificar el método HTTP y los encabezados de solicitud. En el ejemplo siguiente se `POST` realiza una solicitud a un punto de conexión de API de lista de tareas pendientes en el servidor y se muestra el cuerpo de la respuesta:
+Cuando se ejecuta en webassembly en una aplicación de webassembly increíblemente brillante, [HttpClient](xref:fundamentals/http-requests) y <xref:System.Net.Http.HttpRequestMessage> se puede usar para personalizar las solicitudes. Por ejemplo, puede especificar el método HTTP y los encabezados de solicitud. El componente siguiente realiza una `POST` solicitud a un punto de conexión de API de lista de tareas pendientes en el servidor y muestra el cuerpo de la respuesta:
 
 ```razor
 @page "/todorequest"
@@ -316,7 +370,7 @@ Cuando una aplicación de una sola página (SPA) autentica a un usuario mediante
 
 Normalmente, los tokens que emite la IP para el usuario son válidos durante breves períodos de tiempo, aproximadamente una hora, por lo que la aplicación cliente debe capturar nuevos tokens con regularidad. De lo contrario, se cerrará la sesión del usuario después de que expiren los tokens concedidos. En la mayoría de los casos, los clientes de OIDC pueden aprovisionar nuevos tokens sin necesidad de que el usuario se autentique de nuevo gracias al estado de autenticación o a la "sesión" que se mantiene dentro de la dirección IP.
 
-Hay algunos casos en los que el cliente no puede obtener un token sin la interacción del usuario, por ejemplo, cuando por alguna razón el usuario cierra la sesión explícitamente desde la dirección IP. Este escenario se produce si un usuario `https://login.microsoftonline.com` visita y cierra la sesión. En estos casos, la aplicación no sabe inmediatamente que el usuario ha cerrado la sesión. Es posible que el token que contiene el cliente ya no sea válido. Además, el cliente no puede aprovisionar un token nuevo sin la interacción del usuario después de que expire el token actual.
+Hay algunos casos en los que el cliente no puede obtener un token sin la interacción del usuario, por ejemplo, cuando por alguna razón el usuario cierra la sesión explícitamente desde la dirección IP. Este escenario se produce si un usuario visita `https://login.microsoftonline.com` y cierra la sesión. En estos casos, la aplicación no sabe inmediatamente que el usuario ha cerrado la sesión. Es posible que el token que contiene el cliente ya no sea válido. Además, el cliente no puede aprovisionar un token nuevo sin la interacción del usuario después de que expire el token actual.
 
 Estos escenarios no son específicos de la autenticación basada en tokens. Forman parte de la naturaleza de spa. Un SPA que use cookies tampoco podrá llamar a una API de servidor si se quita la cookie de autenticación.
 
@@ -332,7 +386,7 @@ Cuando la aplicación solicita un token, hay dos resultados posibles:
 
 Cuando se produce un error en una solicitud de token, debe decidir si desea guardar el estado actual antes de realizar una redirección. Existen varios enfoques con niveles crecientes de complejidad:
 
-* Almacenar el estado de la página actual en el almacenamiento de sesión. Durante `OnInitializeAsync`, compruebe si el estado se puede restaurar antes de continuar.
+* Almacenar el estado de la página actual en el almacenamiento de sesión. Durante `OnInitializeAsync` , compruebe si el estado se puede restaurar antes de continuar.
 * Agregue un parámetro de cadena de consulta y úselo como una manera de señalar la aplicación que necesita para volver a hidratar el estado guardado anteriormente.
 * Agregue un parámetro de cadena de consulta con un identificador único para almacenar los datos en el almacenamiento de sesión sin poner en peligro las colisiones con otros elementos.
 
@@ -450,7 +504,7 @@ Durante una operación de autenticación, hay casos en los que desea guardar el 
 
 ## <a name="customize-app-routes"></a>Personalización de rutas de aplicación
 
-De forma predeterminada, `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la biblioteca utiliza las rutas que se muestran en la tabla siguiente para representar diferentes Estados de autenticación.
+De forma predeterminada, la `Microsoft.AspNetCore.Components.WebAssembly.Authentication` biblioteca utiliza las rutas que se muestran en la tabla siguiente para representar diferentes Estados de autenticación.
 
 | Ruta                            | Propósito |
 | -------------------------------- | ------- |
@@ -464,9 +518,9 @@ De forma predeterminada, `Microsoft.AspNetCore.Components.WebAssembly.Authentica
 | `authentication/profile`         | Desencadena una operación para editar el perfil de usuario. |
 | `authentication/register`        | Desencadena una operación para registrar un nuevo usuario. |
 
-Las rutas que se muestran en la tabla anterior se `RemoteAuthenticationOptions<TProviderOptions>.AuthenticationPaths`pueden configurar mediante. Al establecer las opciones para proporcionar rutas personalizadas, confirme que la aplicación tiene una ruta que controla cada ruta de acceso.
+Las rutas que se muestran en la tabla anterior se pueden configurar mediante `RemoteAuthenticationOptions<TProviderOptions>.AuthenticationPaths` . Al establecer las opciones para proporcionar rutas personalizadas, confirme que la aplicación tiene una ruta que controla cada ruta de acceso.
 
-En el ejemplo siguiente, todas las rutas de acceso tienen el `/security`prefijo.
+En el ejemplo siguiente, todas las rutas de acceso tienen el prefijo `/security` .
 
 `Authentication`componente (*páginas/autenticación. Razor*):
 
@@ -498,7 +552,7 @@ builder.Services.AddApiAuthorization(options => {
 });
 ```
 
-Si el requisito requiere rutas de acceso completamente diferentes, establezca las rutas como se describió anteriormente `RemoteAuthenticatorView` y represente el con un parámetro de acción explícito:
+Si el requisito requiere rutas de acceso completamente diferentes, establezca las rutas como se describió anteriormente y represente el `RemoteAuthenticatorView` con un parámetro de acción explícito:
 
 ```razor
 @page "/register"
@@ -510,7 +564,7 @@ Puede descomponer la interfaz de usuario en diferentes páginas si decide hacerl
 
 ## <a name="customize-the-authentication-user-interface"></a>Personalización de la interfaz de usuario de autenticación
 
-`RemoteAuthenticatorView`incluye un conjunto predeterminado de partes de la interfaz de usuario para cada estado de autenticación. Cada Estado se puede personalizar pasando un personalizado `RenderFragment`. Para personalizar el texto mostrado durante el proceso de inicio de sesión inicial, `RemoteAuthenticatorView` puede cambiar el de la manera siguiente.
+`RemoteAuthenticatorView`incluye un conjunto predeterminado de partes de la interfaz de usuario para cada estado de autenticación. Cada Estado se puede personalizar pasando un personalizado `RenderFragment` . Para personalizar el texto mostrado durante el proceso de inicio de sesión inicial, puede cambiar el de la `RemoteAuthenticatorView` manera siguiente.
 
 `Authentication`componente (*páginas/autenticación. Razor*):
 
@@ -530,7 +584,7 @@ Puede descomponer la interfaz de usuario en diferentes páginas si decide hacerl
 }
 ```
 
-`RemoteAuthenticatorView` Tiene un fragmento que se puede utilizar por cada ruta de autenticación que se muestra en la tabla siguiente.
+`RemoteAuthenticatorView`Tiene un fragmento que se puede utilizar por cada ruta de autenticación que se muestra en la tabla siguiente.
 
 | Ruta                            | Fragmento                |
 | -------------------------------- | ----------------------- |
@@ -546,7 +600,7 @@ Puede descomponer la interfaz de usuario en diferentes páginas si decide hacerl
 
 ## <a name="customize-the-user"></a>Personalización del usuario
 
-Los usuarios enlazados a la aplicación se pueden personalizar. En el ejemplo siguiente, todos los usuarios autenticados reciben `amr` una demanda por cada uno de los métodos de autenticación del usuario.
+Los usuarios enlazados a la aplicación se pueden personalizar. En el ejemplo siguiente, todos los usuarios autenticados reciben una `amr` demanda por cada uno de los métodos de autenticación del usuario.
 
 Cree una clase que extienda la `RemoteUserAccount` clase:
 
@@ -561,7 +615,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Cree una fábrica que extienda `AccountClaimsPrincipalFactory<TAccount>`:
+Cree una fábrica que extienda `AccountClaimsPrincipalFactory<TAccount>` :
 
 ```csharp
 using System.Security.Claims;
@@ -760,7 +814,7 @@ Cuando un usuario inicia sesión, Identity recopila tokens de acceso y actualiza
 
 #### <a name="use-a-server-access-token-to-retrieve-the-third-party-access-token"></a>Uso de un token de acceso de servidor para recuperar el token de acceso de terceros
 
-Use el token de acceso generado en el servidor para recuperar el token de acceso de terceros de un punto de conexión de la API de servidor. Desde allí, use el token de acceso de terceros para llamar a recursos de API de terceros directamente Identity desde en el cliente.
+Use el token de acceso generado en el servidor para recuperar el token de acceso de terceros de un punto de conexión de la API de servidor. Desde allí, use el token de acceso de terceros para llamar a recursos de API de terceros directamente desde Identity en el cliente.
 
 Este enfoque no se recomienda. Este enfoque requiere tratar el token de acceso de terceros como si se hubiera generado para un cliente público. En términos de OAuth, la aplicación pública no tiene un secreto de cliente porque no es de confianza para almacenar secretos de forma segura y el token de acceso se genera para un cliente confidencial. Un cliente confidencial es un cliente que tiene un secreto de cliente y se supone que puede almacenar secretos de forma segura.
 
