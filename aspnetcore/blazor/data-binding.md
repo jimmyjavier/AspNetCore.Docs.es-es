@@ -8,20 +8,23 @@ ms.custom: mvc
 ms.date: 03/26/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/data-binding
-ms.openlocfilehash: a7b3730dad48b5bbb6134dab181051da4e3651b4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: b4951c5eb712b15db3a7c1ccd57ae01c530a23ef
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80320952"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967173"
 ---
-# <a name="aspnet-core-opno-locblazor-data-binding"></a>Enlace de datos de ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-data-binding"></a>Enlace de datos de ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.com/danroth27)
 
-Los componentes de Razor proporcionan características de enlace de datos a través de un atributo de elemento HTML denominado [`@bind`](xref:mvc/views/razor#bind) que cuenta con un valor de campo, propiedad o expresión de Razor.
+Los componentes de Razor proporcionan características de enlace de datos por medio de un atributo de elemento HTML denominado [`@bind`](xref:mvc/views/razor#bind) con un valor de campo, propiedad o expresión de Razor.
 
 En el ejemplo siguiente se enlaza la propiedad `CurrentValue` al valor del cuadro de texto:
 
@@ -63,21 +66,21 @@ También puede enlazar una propiedad o un campo con otros eventos incluyendo un 
 
 A diferencia de `onchange`, que se activa cuando el elemento pierde el foco, `oninput` se desencadena cuando cambia el valor del cuadro de texto.
 
-Use `@bind-{ATTRIBUTE}` con la sintaxis `@bind-{ATTRIBUTE}:event` para enlazar atributos de elementos que no sean `value`. En el ejemplo siguiente, el estilo del párrafo se actualiza cuando cambia el valor de `_paragraphStyle`:
+Use `@bind-{ATTRIBUTE}` con la sintaxis `@bind-{ATTRIBUTE}:event` para enlazar atributos de elementos que no sean `value`. En el ejemplo siguiente, el estilo del párrafo se actualiza cuando cambia el valor de `paragraphStyle`:
 
 ```razor
 @page "/binding-example"
 
 <p>
-    <input type="text" @bind="_paragraphStyle" />
+    <input type="text" @bind="paragraphStyle" />
 </p>
 
-<p @bind-style="_paragraphStyle" @bind-style:event="onchange">
+<p @bind-style="paragraphStyle" @bind-style:event="onchange">
     Blazorify the app!
 </p>
 
 @code {
-    private string _paragraphStyle = "color:red";
+    private string paragraphStyle = "color:red";
 }
 ```
 
@@ -124,7 +127,7 @@ El enlace de datos funciona con cadenas de formato <xref:System.DateTime> median
 }
 ```
 
-En el código anterior, el tipo de campo (`<input>`) del elemento `type` tiene como valor predeterminado `text`. `@bind:format` se admite para enlazar los siguientes tipos de .NET:
+En el código anterior, el tipo de campo (`type`) del elemento `<input>` tiene como valor predeterminado `text`. `@bind:format` se admite para enlazar los siguientes tipos de .NET:
 
 * <xref:System.DateTime?displayProperty=fullName>
 * <xref:System.DateTime?displayProperty=fullName>?
@@ -164,7 +167,7 @@ El siguiente componente secundario (`ChildComponent`) tiene un parámetro de com
 El siguiente componente primario usa:
 
 * `ChildComponent` y enlaza el parámetro `ParentYear` desde el elemento primario con el parámetro `Year` en el componente secundario.
-* El evento `onclick` se usa para desencadenar el método `ChangeTheYear`. Para obtener más información, consulta <xref:blazor/event-handling>.
+* El evento `onclick` se usa para desencadenar el método `ChangeTheYear`. Para obtener más información, vea <xref:blazor/event-handling>.
 
 ```razor
 @page "/ParentComponent"
@@ -238,7 +241,7 @@ El siguiente componente `PasswordField` (*PasswordField.razor*):
 
 * Establece el valor del elemento `<input>` en una propiedad `Password`.
 * Expone los cambios de la propiedad `Password` en un componente primario con [EventCallback](xref:blazor/event-handling#eventcallback).
-* Usa el evento `onclick` para desencadenar el método `ToggleShowPassword`. Para obtener más información, consulta <xref:blazor/event-handling>.
+* Usa el evento `onclick` para desencadenar el método `ToggleShowPassword`. Para obtener más información, vea <xref:blazor/event-handling>.
 
 ```razor
 <h1>Child Component</h1>
@@ -247,7 +250,7 @@ Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
@@ -255,7 +258,7 @@ Password:
 </button>
 
 @code {
-    private bool _showPassword;
+    private bool showPassword;
 
     [Parameter]
     public string Password { get; set; }
@@ -272,7 +275,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```
@@ -284,16 +287,16 @@ El componente `PasswordField` se usa en otro componente:
 
 <h1>Parent Component</h1>
 
-<PasswordField @bind-Password="_password" />
+<PasswordField @bind-Password="password" />
 
 @code {
-    private string _password;
+    private string password;
 }
 ```
 
 Para realizar comprobaciones o detectar errores en la contraseña en el ejemplo anterior:
 
-* Cree un campo de respaldo para `Password` (`_password` en el siguiente código de ejemplo).
+* Cree un campo de respaldo para `Password` (`password` en el siguiente código de ejemplo).
 * Realice las comprobaciones o detecte los errores en el establecedor de `Password`.
 
 El ejemplo siguiente informa de inmediato al usuario si se usa un espacio en el valor de la contraseña:
@@ -305,36 +308,36 @@ Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
     Show password
 </button>
 
-<span class="text-danger">@_validationMessage</span>
+<span class="text-danger">@validationMessage</span>
 
 @code {
-    private bool _showPassword;
-    private string _password;
-    private string _validationMessage;
+    private bool showPassword;
+    private string password;
+    private string validationMessage;
 
     [Parameter]
     public string Password
     {
-        get { return _password ?? string.Empty; }
+        get { return password ?? string.Empty; }
         set
         {
-            if (_password != value)
+            if (password != value)
             {
                 if (value.Contains(' '))
                 {
-                    _validationMessage = "Spaces not allowed!";
+                    validationMessage = "Spaces not allowed!";
                 }
                 else
                 {
-                    _password = value;
-                    _validationMessage = string.Empty;
+                    password = value;
+                    validationMessage = string.Empty;
                 }
             }
         }
@@ -352,7 +355,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```
