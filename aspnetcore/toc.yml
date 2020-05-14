@@ -27,6 +27,7 @@
     - name: Novedades de la versión 1.1
       uid: aspnetcore-1.1
 - name: Tutoriales
+  displayName: tutorial
   items:
     - name: Aplicaciones web
       items:
@@ -154,20 +155,19 @@
               uid: data/ef-mvc/inheritance
             - name: Temas avanzados
               uid: data/ef-mvc/advanced
-- name: "Tutoriales (Microsoft\_Learn)"
-  displayName: tutorial
-  items:
-    - name: Aplicaciones web
-      displayName: 'tutorial, razor, razor pages, ui'
-      href: /learn/modules/create-razor-pages-aspnet-core/
-    - name: Aplicaciones de API web
-      href: /learn/modules/build-web-api-net-core/
-    - name: Acceso a datos
-      displayName: 'tutorial, ef, entity framework'
-      href: /learn/modules/persist-data-ef-core/
-    - name: Seguridad de Web App
-      displayName: 'tutorial, identity'
-      href: /learn/modules/secure-aspnet-core-identity/
+    - name: Módulos de Microsoft Learn
+      items:
+        - name: Aplicaciones web >>
+          displayName: 'tutorial, razor, razor pages, ui'
+          href: /learn/modules/create-razor-pages-aspnet-core/
+        - name: Aplicaciones de API web >>
+          href: /learn/modules/build-web-api-net-core/
+        - name: Acceso a datos >>
+          displayName: 'tutorial, ef, entity framework'
+          href: /learn/modules/persist-data-ef-core/
+        - name: Seguridad de las aplicaciones web >>
+          displayName: 'tutorial, identity'
+          href: /learn/modules/secure-aspnet-core-identity/
 - name: Aspectos básicos
   items:
     - name: Información general
