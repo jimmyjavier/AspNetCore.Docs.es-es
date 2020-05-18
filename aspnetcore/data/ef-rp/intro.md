@@ -1,18 +1,7 @@
 ---
-title: 'Páginas de Razor con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8'
-author: rick-anderson
-description: Se muestra cómo crear una aplicación de páginas de Razor mediante Entity Framework Core
-ms.author: riande
-ms.custom: mvc, seodec18
-ms.date: 09/26/2019
-uid: data/ef-rp/intro
-ms.openlocfilehash: 07faf5e596e7ea8b134d13caa0259c1e9d74ff1b
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661614"
+title: Razor Pages con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8 author: rick-anderson description: Aquí se muestra cómo crear una aplicación de Razor Pages con Entity Framework Core ms.author: riande ms.custom: "mvc, seodec18" ms.date: 09/26/2019 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR] uid: data/ef-rp/intro
 ---
+
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas de Razor con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8
 
 Por [Tom Dykstra](https://github.com/tdykstra) y [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -65,7 +54,6 @@ Siga el vínculo de la parte superior de la página para obtener el código fuen
 
 Para ejecutar la aplicación después de descargar el proyecto completado:
 
-* Elimine tres archivos y una carpeta que contienen *SQLite* en el nombre.
 * Compile el proyecto.
 * En la Consola del administrador de paquetes (PMC), ejecute el comando siguiente:
 
@@ -83,6 +71,7 @@ Para ejecutar la aplicación después de descargar el proyecto completado:
 * Elimine *Startup.cs*, y cambie el nombre de *StartupSQLite.cs* por *Startup.cs*.
 * Elimine *appSettings.json* y cambie el nombre de *appSettingsSQLite.json* por *appSettings.json*.
 * Elimine la carpeta *Migrations* y cambie el nombre de *MigrationsSQL* por *Migrations*.
+* Realice una búsqueda global `#if SQLiteVersion` y quite `#if SQLiteVersion` y la instrucción `#endif` asociada.
 * Compile el proyecto.
 * En un símbolo del sistema en la carpeta del proyecto, ejecute los comandos siguientes:
 
@@ -367,7 +356,7 @@ Más adelante en la serie de tutoriales, eliminará la base de datos creada por 
 El método `EnsureCreated` crea una base de datos vacía. En esta sección se agrega código que rellena la base de datos con datos de prueba.
 
 Cree *Data/DbInitializer.cs* con el código siguiente:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   El código comprueba si hay alumnos en la base de datos. Si no hay ningún alumno, agrega datos de prueba a la base de datos. Crea los datos de prueba en matrices en lugar de colecciones `List<T>` para optimizar el rendimiento.
