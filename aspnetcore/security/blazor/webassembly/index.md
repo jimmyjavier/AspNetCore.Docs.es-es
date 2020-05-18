@@ -5,7 +5,7 @@ description: Obtenga información sobre cómo proteger aplicaciones WebAssemlby 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/14/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: e8ea5e6b6d7e28906e6109e6730ac25f190b4191
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 153e88bb5bd99803f0ac4a0c50213e22a3278cad
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768005"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424525"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Protección de WebAssembly de Blazor en ASP.NET Core
 
@@ -57,8 +57,22 @@ La biblioteca `Microsoft.AspNetCore.Components.WebAssembly.Authentication` ofrec
 * Cuando la aplicación WebAssembly de Blazor carga el punto de conexión de devolución de llamada de inicio de sesión (`/authentication/login-callback`), se procesa la respuesta de autenticación.
   * Si el proceso de autenticación se completa correctamente, el usuario se autentica y, opcionalmente, se devuelve a la dirección URL protegida original que haya solicitado.
   * Si por algún motivo se produce un error en el proceso de autenticación, se envía al usuario a la página de inicio de sesión con errores (`/authentication/login-failed`) y se muestra un error.
+  
+## <a name="implementation-guidance"></a>Guía de implementación
 
-## <a name="additional-resources"></a>Recursos adicionales
+Los artículos de esta *información general* ofrecen detalles sobre la autenticación de usuarios en WebAssembly de Blazor con proveedores específicos.
 
-* Los artículos de esta *información general* ofrecen detalles sobre la autenticación de usuarios en WebAssembly de Blazor con proveedores específicos.
-* <xref:security/blazor/webassembly/additional-scenarios>
+Aplicaciones WebAssembly Blazor independientes:
+
+* [Instrucciones generales para los proveedores de OIDC y la biblioteca de autenticación WebAssembly](xref:security/blazor/webassembly/standalone-with-authentication-library)
+* [Cuentas de Microsoft](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/standalone-with-azure-active-directory-b2c)
+
+Aplicaciones WebAssembly Blazor hospedadas:
+
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/hosted-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/hosted-with-azure-active-directory-b2c)
+* [Servidor de Identity](xref:security/blazor/webassembly/hosted-with-identity-server)
+
+Para obtener más información sobre la configuración, vea <xref:security/blazor/webassembly/additional-scenarios>.
