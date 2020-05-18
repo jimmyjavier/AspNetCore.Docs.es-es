@@ -1,23 +1,26 @@
 ---
 title: Ciclo de vida de ASP.NET Core Blazor
 author: guardrex
-description: Obtenga información sobre cómo usar los métodos de ciclo de vida de los componentes Razor en aplicaciones ASP.NET Core Blazor.
+description: Aprenda a usar los métodos de ciclo de vida de los componentes de Razor en aplicaciones de Blazor de ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791465"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976706"
 ---
-# <a name="aspnet-core-opno-locblazor-lifecycle"></a>Ciclo de vida de ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-lifecycle"></a>Ciclo de vida de ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.com/danroth27)
 
@@ -27,7 +30,7 @@ El marco de Blazor incluye métodos de ciclo de vida sincrónicos y asincrónico
 
 ### <a name="component-initialization-methods"></a>Métodos de inicialización de componentes
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> se invocan cuando se inicializa el componente después de haber recibido los parámetros iniciales de su componente primario. Utilice `OnInitializedAsync` cuando el componente realice una operación asincrónica y deba actualizarse al completarse la operación.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> se invocan cuando se inicializa el componente después de haber recibido los parámetros iniciales de su componente primario. Utilice `OnInitializedAsync` cuando el componente realice una operación asincrónica y deba actualizarse al completarse la operación.
 
 En el caso de una operación sincrónica, invalide `OnInitialized`:
 
@@ -60,7 +63,7 @@ Si hay algún controlador de eventos configurado, desenlácelo durante la elimin
 
 ### <a name="before-parameters-are-set"></a>Antes de establecer los parámetros
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> establece los parámetros que proporciona el elemento primario del componente en el árbol de representación:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> establece los parámetros que proporciona el elemento primario del componente en el árbol de representación:
 
 ```csharp
 public override async Task SetParametersAsync(ParameterView parameters)
@@ -81,7 +84,7 @@ Si hay algún controlador de eventos configurado, desenlácelo durante la elimin
 
 ### <a name="after-parameters-are-set"></a>Después de establecer los parámetros
 
-Se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*>:
+Se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A>:
 
 * Cuando el componente se inicializa y ha recibido su primer conjunto de parámetros de su componente primario.
 * Cuando el componente primario vuelve a representarse y proporciona lo siguiente:
@@ -109,7 +112,7 @@ Si hay algún controlador de eventos configurado, desenlácelo durante la elimin
 
 ### <a name="after-component-render"></a>Después de representar el componente
 
-Se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> una vez que un componente haya terminado la representación. En este momento, se rellenan las referencias a elementos y componentes. Use esta fase para realizar pasos de inicialización adicionales mediante el contenido representado, como la activación de bibliotecas de JavaScript de terceros que operan en los elementos DOM representados.
+Se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> una vez que un componente haya terminado la representación. En este momento, se rellenan las referencias a elementos y componentes. Use esta fase para realizar pasos de inicialización adicionales mediante el contenido representado, como la activación de bibliotecas de JavaScript de terceros que operan en los elementos DOM representados.
 
 El parámetro `firstRender` para `OnAfterRenderAsync` y `OnAfterRender`:
 
@@ -147,7 +150,7 @@ Si hay algún controlador de eventos configurado, desenlácelo durante la elimin
 
 ### <a name="suppress-ui-refreshing"></a>Supresión de la actualización de la interfaz de usuario
 
-Invalide <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*> para suprimir la actualización de la interfaz de usuario. Si la implementación devuelve `true`, la interfaz de usuario se actualiza:
+Invalide <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> para suprimir la actualización de la interfaz de usuario. Si la implementación devuelve `true`, la interfaz de usuario se actualiza:
 
 ```csharp
 protected override bool ShouldRender()
@@ -164,7 +167,7 @@ Aunque se invalide `ShouldRender`, el componente siempre se representa inicialme
 
 ## <a name="state-changes"></a>Cambios de estado
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifica al componente que su estado ha cambiado. Cuando es aplicable, la llamada a `StateHasChanged` hace que el componente se represente.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifica al componente que su estado ha cambiado. Cuando es aplicable, la llamada a `StateHasChanged` hace que el componente se represente.
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>Control de acciones asincrónicas incompletas en la representación
 
@@ -195,7 +198,7 @@ Si un componente implementa <xref:System.IDisposable>, se llama al [método Disp
 ```
 
 > [!NOTE]
-> No se admite la llamada a <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> en `Dispose`. `StateHasChanged` se puede invocar como parte de la desactivación del representador, por lo que no se admite la solicitud de actualizaciones de la interfaz de usuario en ese momento.
+> No se admite la llamada a <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> en `Dispose`. `StateHasChanged` se puede invocar como parte de la desactivación del representador, por lo que no se admite la solicitud de actualizaciones de la interfaz de usuario en ese momento.
 
 Cancele la suscripción de los controladores de eventos de .NET. En los ejemplos de [formulario de Blazor](xref:blazor/forms-validation) siguientes se muestra cómo desenlazar un controlador de eventos en el método `Dispose`:
 
@@ -231,7 +234,7 @@ En el código siguiente se muestra un elemento `WeatherForecastService` actualiz
 ```csharp
 public class WeatherForecastService
 {
-    private static readonly string[] _summaries = new[]
+    private static readonly string[] summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild",
         "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -262,7 +265,7 @@ public class WeatherForecastService
             {
                 Date = startDate.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = _summaries[rng.Next(_summaries.Length)]
+                Summary = summaries[rng.Next(summaries.Length)]
             }).ToArray();
         });
     }
@@ -274,3 +277,73 @@ Para obtener más información sobre `RenderMode`, vea <xref:blazor/hosting-mode
 ## <a name="detect-when-the-app-is-prerendering"></a>Detección de cuándo se está obteniendo una representación previa de la aplicación
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## <a name="cancelable-background-work"></a>Trabajo en segundo plano cancelable
+
+Los componentes suelen llevar a cabo un trabajo en segundo plano de ejecución prolongada, como realizar llamadas de red (<xref:System.Net.Http.HttpClient>) e interactuar con bases de datos. Es deseable detener el trabajo en segundo plano para conservar los recursos del sistema en diversas situaciones. Por ejemplo, las operaciones asincrónicas en segundo plano no se detienen automáticamente cuando un usuario navega fuera de un componente.
+
+Entre otras de las razones por las que los elementos de trabajo en segundo plano pueden requerir cancelación se incluyen las siguientes:
+
+* Una tarea en segundo plano en ejecución se inició con datos de entrada o parámetros de procesamiento incorrectos.
+* El conjunto actual de elementos de trabajo en segundo plano en ejecución debe reemplazarse por un nuevo conjunto de elementos de trabajo.
+* La prioridad de las tareas que se están ejecutando debe cambiarse.
+* La aplicación debe apagarse para volver a implementarla en el servidor.
+* Los recursos del servidor se vuelven limitados, lo que requiere la reprogramación de los elementos de trabajo en segundo plano.
+
+Para implementar un patrón de trabajo en segundo plano cancelable en un componente:
+
+* Use <xref:System.Threading.CancellationTokenSource> y <xref:System.Threading.CancellationToken>.
+* Durante la [eliminación del componente](#component-disposal-with-idisposable), y en cualquier momento en que interese cancelar mediante la cancelación manual del token, llame a [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) para indicar que se debe cancelar el trabajo en segundo plano.
+* Cuando se devuelva la llamada asincrónica, llame a <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> en el token.
+
+En el ejemplo siguiente:
+
+* `await Task.Delay(5000, cts.Token);` representa el trabajo asincrónico en segundo plano de ejecución prolongada.
+* `BackgroundResourceMethod` representa un método en segundo plano de ejecución prolongada que no debe iniciarse si se elimina `Resource` antes de llamar al método.
+
+```razor
+@implements IDisposable
+@using System.Threading
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod();
+    }
+
+    public void Dispose()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}
+```

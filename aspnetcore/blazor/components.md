@@ -1,21 +1,24 @@
 ---
 title: Creación y uso de componentes de Razor de ASP.NET Core
 author: guardrex
-description: Obtenga información sobre cómo crear y usar componentes de Razor, incluido cómo enlazar a datos, controlar eventos y administrar los ciclos de vida de los componentes.
+description: Aprenda a crear y usar componentes de Razor, lo que incluye cómo enlazar a datos, controlar eventos y administrar los ciclos de vida de los componentes.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/21/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: a9ae84c36716bfc07ae3cf86214e48ad24770401
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: a7009bf1cf99a15f3617b47a904d52f5787b9ce1
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205961"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153514"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creación y uso de componentes de Razor de ASP.NET Core
 
@@ -27,25 +30,25 @@ Las aplicaciones Blazor se crean usando *componentes*. Un componente es un fragm
 
 ## <a name="component-classes"></a>Clases de componentes
 
-Los componentes se implementan en archivos de componentes de [Razor](xref:mvc/views/razor) ( *.razor*) usando una combinación de C# y marcado HTML. Un componente en Blazor se conoce formalmente como *componente de Razor*.
+Los componentes se implementan en archivos de componentes de [Razor](xref:mvc/views/razor) ( *.razor*) mediante una combinación de C# y marcado HTML. Un componente de Blazor se conoce formalmente como *componente de Razor* .
 
 El nombre de un componente debe empezar por mayúsculas. Por ejemplo, *MyCoolComponent.razor* es válido, mientras que *myCoolComponent.razor* no.
 
-La interfaz de usuario de un componente se define mediante HTML. La lógica de la representación dinámica (por ejemplo, bucles, instrucciones condicionales, expresiones) se agrega mediante una sintaxis de C# insertada denominada [Razor](xref:mvc/views/razor). Cuando una aplicación se compila, el marcado HTML y la lógica de representación de C# se convierten en una clase de componente. El nombre de la clase generada coincide con el nombre del archivo.
+La interfaz de usuario de un componente se define mediante HTML. La lógica de representación dinámica (por ejemplo, bucles, condicionales, expresiones) se agrega mediante una sintaxis de C# insertada denominada [Razor](xref:mvc/views/razor). Cuando una aplicación se compila, el marcado HTML y la lógica de representación de C# se convierten en una clase de componente. El nombre de la clase generada coincide con el nombre del archivo.
 
 Los miembros de la clase de componente se definen en un bloque `@code`. En el bloque `@code`, el estado del componente (propiedades, campos) se especifica con métodos de control de eventos o con objeto de definir otra lógica de componente. Se permite emplear más de un bloque `@code`.
 
 Los miembros de un componente se pueden usar como parte de la lógica de representación del componente mediante expresiones de C# que comienzan por `@`. Por ejemplo, un campo de C# se representa anteponiendo el prefijo `@` al nombre del campo. En el siguiente ejemplo se evalúa y representa lo siguiente:
 
-* `_headingFontStyle` del valor de la propiedad CSS de `font-style`
-* `_headingText` del contenido del elemento `<h1>`
+* `headingFontStyle` del valor de la propiedad CSS de `font-style`
+* `headingText` del contenido del elemento `<h1>`
 
 ```razor
-<h1 style="font-style:@_headingFontStyle">@_headingText</h1>
+<h1 style="font-style:@headingFontStyle">@headingText</h1>
 
 @code {
-    private string _headingFontStyle = "italic";
-    private string _headingText = "Put on your new Blazor!";
+    private string headingFontStyle = "italic";
+    private string headingText = "Put on your new Blazor!";
 }
 ```
 
@@ -58,13 +61,19 @@ Por lo general, el espacio de nombres de un componente se deriva del espacio de 
 * El espacio de nombres del componente `Counter` es `BlazorApp.Pages`.
 * El nombre de tipo completo del componente es `BlazorApp.Pages.Counter`.
 
-Para más información, vea la sección [Importación de componentes](#import-components).
-
-Para usar una carpeta personalizada, agregue el espacio de nombres de la carpeta personalizada al componente primario o al archivo *_Imports.razor* de la aplicación. Por ejemplo, el siguiente espacio de nombres hace que los componentes incluidos en una carpeta *Components* estén disponibles cuando el espacio de nombres raíz de la aplicación es `BlazorApp`:
+En el caso de las carpetas personalizadas que contienen componentes, agregue una instrucción `using` al componente primario o al archivo *_Imports.razor* de la aplicación. En el ejemplo siguiente se ponen a disposición los componentes de la carpeta *Components*:
 
 ```razor
 @using BlazorApp.Components
 ```
+
+También se puede hacer referencia directamente a un componente:
+
+```razor
+<BlazorApp.Components.MyCoolComponent />
+```
+
+Para más información, vea la sección [Importación de componentes](#import-components).
 
 ## <a name="static-assets"></a>Recursos estáticos
 
@@ -76,13 +85,13 @@ Use una ruta de acceso relativa base (`/`) para hacer referencia a la raíz web 
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-Los componentes de Razor **no** admiten la notación de tilde de la ñ-barra diagonal (`~/`).
+Los componentes de Razor **no** admiten la notación de virgulilla-barra diagonal (`~/`).
 
 Para más información sobre cómo establecer la ruta de acceso base de una aplicación, vea <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="tag-helpers-arent-supported-in-components"></a>Las aplicaciones auxiliares de etiquetas no se admiten en los componentes
 
-Las [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) no se pueden usar en los componentes de Razor (archivos *.razor*). Para proporcionar una funcionalidad similar a la de las aplicaciones auxiliares de etiquetas en Blazor, cree un componente con la misma funcionalidad que la aplicación auxiliar de etiquetas y use el componente en su lugar.
+Las [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) no se admiten en los componentes de Razor (archivos *.razor*). Para proporcionar una funcionalidad similar a la de las aplicaciones auxiliares de etiquetas en Blazor, cree un componente con la misma funcionalidad que la aplicación auxiliar de etiquetas y use el componente en su lugar.
 
 ## <a name="use-components"></a>Uso de componentes
 
@@ -104,7 +113,7 @@ Si un componente contiene un elemento HTML cuyo nombre empieza por mayúsculas 
 
 El enrutamiento en Blazor se consigue proporcionando una plantilla de ruta a cada componente accesible en la aplicación.
 
-Cuando se compila un archivo de Razor con una directiva `@page`, la clase generada recibe un elemento <xref:Microsoft.AspNetCore.Mvc.RouteAttribute>, donde se especifica la plantilla de ruta. En tiempo de ejecución, el enrutador busca las clases de componentes con un atributo `RouteAttribute`, y representa el componente que tenga una plantilla de ruta que coincida con la dirección URL solicitada.
+Cuando se compila un archivo de Razor con una directiva `@page`, la clase generada recibe un elemento <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> que especifica la plantilla de ruta. En tiempo de ejecución, el enrutador busca las clases de componentes con un atributo `RouteAttribute`, y representa el componente que tenga una plantilla de ruta que coincida con la dirección URL solicitada.
 
 ```razor
 @page "/ParentComponent"
@@ -126,7 +135,7 @@ Los componentes pueden recibir parámetros de ruta de la plantilla de ruta propo
 
 Los parámetros opcionales no se admiten, por lo que en el ejemplo anterior se aplican dos directivas `@page`. La primera permite navegar al componente sin un parámetro, mientras que la segunda recibe el parámetro de ruta `{text}` y asigna el valor a la propiedad `Text`.
 
-Los componentes de Razor ( *.razor*) **no** admiten la sintaxis de parámetro *catch-all* (`*`/`**`), que captura la ruta de acceso a lo largo de varios límites de carpeta.
+Los componentes de Razor ( *.razor*) **no** admiten la sintaxis de parámetro *comodín* (`*`/`**`), que captura la ruta de acceso a lo largo de varios límites de carpeta.
 
 ### <a name="component-parameters"></a>Parámetros del componente
 
@@ -166,7 +175,7 @@ El elemento `ParentComponent` de la aplicación de muestra puede proporcionar co
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>Expansión de atributos y parámetros arbitrarios
 
-Los componentes pueden capturar y representar más atributos aparte de los parámetros declarados del componente. Estos atributos extra se pueden capturar en un diccionario y, después, *expandirse* en un elemento cuando el componente se represente por medio de la directiva de Razor [`@attributes`](xref:mvc/views/razor#attributes). Este escenario es útil cuando se define un componente que genera un elemento de marcado que admite diversas personalizaciones. Por ejemplo, definir atributos por separado para un elemento `<input>` que admite muchos parámetros puede ser un engorro.
+Los componentes pueden capturar y representar más atributos aparte de los parámetros declarados del componente. Los atributos adicionales se pueden capturar en un diccionario y luego *expandirse* en un elemento cuando el componente se representa por medio de la directiva de Razor [`@attributes`](xref:mvc/views/razor#attributes). Este escenario es útil cuando se define un componente que genera un elemento de marcado que admite diversas personalizaciones. Por ejemplo, definir atributos por separado para un elemento `<input>` que admite muchos parámetros puede ser un engorro.
 
 En el siguiente ejemplo, el primer elemento `<input>` (`id="useIndividualParams"`) usa parámetros de componente individuales, mientras que el segundo elemento `<input>` (`id="useAttributesDict"`) usa la expansión de atributos:
 
@@ -288,22 +297,22 @@ Las referencias de componentes son una forma de hacer referencia a una instancia
 * Defina un campo con el mismo tipo que el componente secundario.
 
 ```razor
-<MyLoginDialog @ref="_loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog _loginDialog;
+    private MyLoginDialog loginDialog;
 
     private void OnSomething()
     {
-        _loginDialog.Show();
+        loginDialog.Show();
     }
 }
 ```
 
-Cuando el componente se represente, el campo `_loginDialog` se rellena con la instancia del componente secundario `MyLoginDialog`. Tras ello, se pueden invocar métodos de .NET en la instancia del componente.
+Cuando el componente se represente, el campo `loginDialog` se rellena con la instancia del componente secundario `MyLoginDialog`. Tras ello, se pueden invocar métodos de .NET en la instancia del componente.
 
 > [!IMPORTANT]
-> La variable `_loginDialog` solo se rellena después de que el componente se represente, y su salida incluye el elemento `MyLoginDialog`. Hasta ese momento, no hay nada a lo que hacer referencia. Para manipular las referencias de componente una vez finalizada la representación del componente, use los [métodos OnAfterRenderAsync u OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> La variable `loginDialog` solo se rellena después de que el componente se represente, y su salida incluye el elemento `MyLoginDialog`. Hasta ese momento, no hay nada a lo que hacer referencia. Para manipular las referencias de componente una vez finalizada la representación del componente, use los [métodos OnAfterRenderAsync u OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 Para hacer referencias a componentes de un bucle, consulte el artículo sobre la [captura de referencias a varios componentes secundarios similares (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
@@ -314,9 +323,11 @@ Si bien la captura de referencias de componentes emplea una sintaxis similar a l
 
 ## <a name="invoke-component-methods-externally-to-update-state"></a>Invocación de métodos de componentes externamente para actualizar el estado
 
-Blazor usa un elemento `SynchronizationContext` para aplicar un único subproceso lógico de ejecución. Los [métodos de ciclo de vida](xref:blazor/lifecycle) de un componente y todas las devoluciones de llamada de eventos que Blazor genere se ejecutan en dicho elemento `SynchronizationContext`. En caso de que un componente deba actualizarse en función de un evento externo, como un temporizador u otras notificaciones, use el método `InvokeAsync`, que enviará al elemento `SynchronizationContext` de Blazor.
+Blazor usa un contexto de sincronización (`SynchronizationContext`) para aplicar un único subproceso lógico de ejecución. Los [métodos de ciclo de vida](xref:blazor/lifecycle) de un componente y todas las devoluciones de llamada de eventos que Blazor genere se ejecutan en el contexto de sincronización.
 
-Consideremos, por ejemplo, un *servicio de notificador* capaz de notificar el estado actualizado a cualquier componente de escucha:
+El contexto de sincronización del servidor de Blazor intenta emular un entorno de un solo subproceso para que coincida con el modelo WebAssembly en el explorador, que es de un solo subproceso. En todo momento, el trabajo se realiza en exactamente un subproceso, lo que da la impresión de un único subproceso lógico. Nunca se ejecutan dos operaciones simultáneamente.
+
+En caso de que un componente deba actualizarse en función de un evento externo, como un temporizador u otras notificaciones, use el método `InvokeAsync`, que enviará al contexto de sincronización de Blazor. Consideremos, por ejemplo, un *servicio de notificador* capaz de notificar el estado actualizado a cualquier componente de escucha:
 
 ```csharp
 public class NotifierService
@@ -355,10 +366,10 @@ Use el elemento `NotifierService` para actualizar un componente:
 @inject NotifierService Notifier
 @implements IDisposable
 
-<p>Last update: @_lastNotification.key = @_lastNotification.value</p>
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
 
 @code {
-    private (string key, int value) _lastNotification;
+    private (string key, int value) lastNotification;
 
     protected override void OnInitialized()
     {
@@ -369,7 +380,7 @@ Use el elemento `NotifierService` para actualizar un componente:
     {
         await InvokeAsync(() =>
         {
-            _lastNotification = (key, value);
+            lastNotification = (key, value);
             StateHasChanged();
         });
     }
@@ -381,7 +392,7 @@ Use el elemento `NotifierService` para actualizar un componente:
 }
 ```
 
-En el ejemplo anterior, `NotifierService` invoca el método de `OnNotify` del componente fuera del elemento `SynchronizationContext` de Blazor. `InvokeAsync` se utiliza para cambiar al contexto correcto y poner una representación en cola.
+En el ejemplo anterior, `NotifierService` invoca el método `OnNotify` del componente fuera del contexto de sincronización de Blazor. `InvokeAsync` se utiliza para cambiar al contexto correcto y poner una representación en cola.
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Uso de \@key para controlar la conservación de elementos y componentes
 
@@ -516,14 +527,14 @@ Para mantener el estado en el escenario anterior, use un *campo privado* en el c
 El componente `Expander` siguiente:
 
 * Acepta el valor del parámetro de componente `Expanded` del componente principal.
-* Asigna el valor del parámetro de componente a un *campo privado* (`_expanded`) en el [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Asigna el valor del parámetro de componente a un *campo privado* (`expanded`) en el [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
 * Usa el campo privado para mantener su estado de alternancia interno.
 
 ```razor
 <div @onclick="@Toggle">
-    Toggle (Expanded = @_expanded)
+    Toggle (Expanded = @expanded)
 
-    @if (_expanded)
+    @if (expanded)
     {
         @ChildContent
     }
@@ -536,16 +547,16 @@ El componente `Expander` siguiente:
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    private bool _expanded;
+    private bool expanded;
 
     protected override void OnInitialized()
     {
-        _expanded = Expanded;
+        expanded = Expanded;
     }
 
     private void Toggle()
     {
-        _expanded = !_expanded;
+        expanded = !expanded;
     }
 }
 ```
@@ -554,7 +565,7 @@ El componente `Expander` siguiente:
 
 Los componentes de Razor se generan como clases parciales. Los componentes de Razor se crean mediante cualquiera de los siguientes métodos:
 
-* Se define código de C# en un bloque [`@code`](xref:mvc/views/razor#code) con marcado HTML y código de Razor en un mismo archivo. Las plantillas de Blazor definen sus propios componentes de Razor con este método.
+* Se define código de C# en un bloque [`@code`](xref:mvc/views/razor#code) con marcado HTML y código de Razor en un solo archivo. Las plantillas de Blazor definen sus componentes de Razor con este método.
 * El código de C# se coloca en un archivo de código subyacente definido como una clase parcial.
 
 En el siguiente ejemplo se muestra el componente `Counter` predeterminado con un bloque `@code` en una aplicación generada a partir de una plantilla de Blazor. El marcado HTML, el código de Razor y el código de C# se encuentran en el mismo archivo:
@@ -566,16 +577,16 @@ En el siguiente ejemplo se muestra el componente `Counter` predeterminado con un
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -589,7 +600,7 @@ El componente `Counter` también se puede crear con un archivo de código subyac
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
@@ -601,17 +612,17 @@ namespace BlazorApp.Pages
 {
     public partial class Counter
     {
-        private int _currentCount = 0;
+        private int currentCount = 0;
 
         void IncrementCount()
         {
-            _currentCount++;
+            currentCount++;
         }
     }
 }
 ```
 
-Agregue los espacios de nombres que sean necesarios al archivo de clase parcial. Los espacios de nombres típicos utilizados por los componentes de Razor son estos:
+Agregue los espacios de nombres que sean necesarios al archivo de clase parcial. Los espacios de nombres típicos usados por los componentes de Razor incluyen:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -652,7 +663,7 @@ namespace BlazorSample
 
 ## <a name="specify-an-attribute"></a>Especificación de un atributo
 
-En los componentes de Razor se pueden especificar atributos mediante la directiva [`@attribute`](xref:mvc/views/razor#attribute). En el siguiente ejemplo se aplica el atributo `[Authorize]` a la clase del componente:
+En los componentes de Razor se pueden especificar atributos con la directiva [`@attribute`](xref:mvc/views/razor#attribute). En el siguiente ejemplo se aplica el atributo `[Authorize]` a la clase del componente:
 
 ```razor
 @page "/"
@@ -661,15 +672,15 @@ En los componentes de Razor se pueden especificar atributos mediante la directiv
 
 ## <a name="import-components"></a>Importación de componentes
 
-El espacio de nombres de un componente creado con Razor se basa en lo siguiente (por orden de prioridad):
+El espacio de nombres de un componente creado con Razor se basa en (por orden de prioridad):
 
-* Designación de [`@namespace`](xref:mvc/views/razor#namespace) en el marcado del archivo de Razor ( *.razor*) (`@namespace BlazorSample.MyNamespace`).
+* Designación [`@namespace`](xref:mvc/views/razor#namespace) del marcado del archivo de Razor ( *.razor*) (`@namespace BlazorSample.MyNamespace`).
 * Elemento `RootNamespace` del proyecto en el archivo de proyecto (`<RootNamespace>BlazorSample</RootNamespace>`).
 * Nombre del proyecto, tomado del nombre de archivo del archivo de proyecto ( *.csproj*) y la ruta de acceso de la raíz del proyecto al componente. Por ejemplo, el marco de trabajo resuelve *{RAÍZ DEL PROYECTO}/Pages/Index.razor* (*BlazorSample.csproj*) en el espacio de nombres `BlazorSample.Pages`. Los componentes de C# siguen las reglas de los enlaces de nombres. En el caso del componente `Index` de este ejemplo, los componentes en el ámbito serían todos los componentes:
   * En la misma carpeta, *Pages*.
   * Los componentes en la raíz del proyecto que no especifiquen explícitamente un espacio de nombres diferente.
 
-Los componentes definidos en un espacio de nombres diferente se incluyen en el ámbito usando la directiva [`@using`](xref:mvc/views/razor#using) de Razor.
+Los componentes definidos en otro espacio de nombres se incluyen en el ámbito mediante la directiva [`@using`](xref:mvc/views/razor#using) de Razor.
 
 Si existe otro componente, `NavMenu.razor`, en la carpeta *BlazorSample/Shared/* , dicho componente se puede usar en `Index.razor` con la siguiente instrucción `@using`:
 
@@ -738,10 +749,10 @@ Normalmente, las cadenas se representan mediante nodos de texto DOM, lo que sign
 En el siguiente ejemplo se describe cómo usar el tipo `MarkupString` para agregar un bloque de contenido HTML estático a la salida representada de un componente:
 
 ```html
-@((MarkupString)_myMarkup)
+@((MarkupString)myMarkup)
 
 @code {
-    private string _myMarkup = 
+    private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
@@ -779,7 +790,7 @@ Componente `CascadingValuesParametersLayout`:
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="_theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -789,7 +800,7 @@ Componente `CascadingValuesParametersLayout`:
 </div>
 
 @code {
-    private ThemeInfo _theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -806,7 +817,7 @@ Componente `CascadingValuesParametersTheme`:
 
 <h1>Cascading Values & Parameters</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <p>
     <button class="btn" @onclick="IncrementCount">
@@ -821,14 +832,14 @@ Componente `CascadingValuesParametersTheme`:
 </p>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -836,14 +847,14 @@ Componente `CascadingValuesParametersTheme`:
 Para poner en cascada varios valores del mismo tipo en un mismo subárbol, proporcione una cadena `Name` única en cada componente `CascadingValue` y su `CascadingParameter` correspondiente. En el siguiente ejemplo, dos componentes `CascadingValue` en cascada son instancias distintas de `MyCascadingType` por su nombre:
 
 ```razor
-<CascadingValue Value=@_parentCascadeParameter1 Name="CascadeParam1">
+<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
     <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
 
 @code {
-    private MyCascadingType _parentCascadeParameter1;
+    private MyCascadingType parentCascadeParameter1;
 
     [Parameter]
     public MyCascadingType ParentCascadeParameter2 { get; set; }
@@ -914,7 +925,7 @@ Componente `Tab`:
 
 ## <a name="razor-templates"></a>Plantillas de Razor
 
-Se pueden definir fragmentos de representación usando la sintaxis de plantilla de Razor. Las plantillas de Razor son un modo de definir un fragmento de interfaz de usuario y asumen el siguiente formato:
+Los fragmentos de representación se pueden definir mediante la sintaxis de plantilla de Razor. Las plantillas de Razor son una forma de definir un fragmento de interfaz de usuario y asumen el siguiente formato:
 
 ```razor
 @<{HTML tag}>...</{HTML tag}>
@@ -923,13 +934,13 @@ Se pueden definir fragmentos de representación usando la sintaxis de plantilla 
 En el siguiente ejemplo se muestra cómo especificar los valores `RenderFragment` y `RenderFragment<T>` y las plantillas de representación directamente en un componente. Los fragmentos de representación también se pueden pasar como argumentos a [componentes con plantilla](xref:blazor/templated-components).
 
 ```razor
-@_timeTemplate
+@timeTemplate
 
-@_petTemplate(new Pet { Name = "Rex" })
+@petTemplate(new Pet { Name = "Rex" })
 
 @code {
-    private RenderFragment _timeTemplate = @<p>The time is @DateTime.Now.</p>;
-    private RenderFragment<Pet> _petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
 
     private class Pet
     {

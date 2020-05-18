@@ -5,13 +5,19 @@ description: Obtenga información sobre cómo usar las herramientas de Visual St
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: ba79f0af8192ad9e8b263d4304ccc0df36c50f00
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 8b62e27033bf0b7c05a70050807970fe0c74e2f8
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440758"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967576"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Herramientas de contenedor de Visual Studio con ASP.NET Core
 
@@ -84,7 +90,11 @@ El *Dockerfile* anterior se basa en la imagen [microsoft/aspnetcore](https://hub
 
 Visual Studio 2017, versiones 15.7 o anteriores, es compatible con [Docker Compose](https://docs.docker.com/compose/overview/) como única solución de orquestación de contenedores. Los artefactos de Docker Compose se agregan mediante **Agregar** > **Compatibilidad con Docker**.
 
-Visual Studio 2017, versiones 15.8 o posteriores, permite agregar una solución de orquestación de forma manual. Haga clic con el botón derecho en el **Explorador de soluciones** y seleccione **Agregar** > **Compatibilidad con el orquestador de contenedores**. Se ofrecen dos opciones diferentes: [Docker Compose](#docker-compose) y [Service Fabric](#service-fabric).
+Visual Studio 2017, versiones 15.8 o posteriores, permite agregar una solución de orquestación de forma manual. Haga clic con el botón derecho en el **Explorador de soluciones** y seleccione **Agregar** > **Compatibilidad con el orquestador de contenedores**. Están disponibles las siguientes opciones: 
+
+* [Docker Compose](#docker-compose)
+* [Service Fabric](#service-fabric)
+* [Kubernetes/Helm](https://helm.sh/)
 
 ### <a name="docker-compose"></a>Docker Compose
 
