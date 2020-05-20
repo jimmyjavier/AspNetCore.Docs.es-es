@@ -1,27 +1,15 @@
 ---
-title: Aplicación de formato a datos de respuesta en ASP.NET Core Web API
-author: ardalis
-description: Obtenga información sobre cómo dar formato a datos de respuesta en ASP.NET Core Web API.
-ms.author: riande
-ms.custom: H1Hack27Feb2017
-ms.date: 04/17/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: web-api/advanced/formatting
-ms.openlocfilehash: 22787b20879c3739ee8a8d74c7a39e7cf8f4d5b0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774241"
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Aplicación de formato a datos de respuesta en ASP.NET Core Web API
 
-De [Rick Anderson](https://twitter.com/RickAndMSFT) y [Steve Smith](https://ardalis.com/)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT) y [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC tiene compatibilidad para formatear datos de respuesta. Se pueden formatear los datos de respuesta con formatos específicos o en respuesta al formato solicitado por el cliente.
 
@@ -155,7 +143,7 @@ public IActionResult Get()
 
 ### <a name="add-newtonsoftjson-based-json-format-support"></a>Adición de compatibilidad con el formato JSON basado en Newtonsoft.Json
 
-Antes de ASP.NET Core 3.0, los formateadores JSON usados de forma predeterminada son los implementados mediante el paquete `Newtonsoft.Json`. En ASP.NET Core 3.0 o posterior, los formateadores JSON predeterminados se basan en `System.Text.Json`. La compatibilidad con las características y los formateadores basados en `Newtonsoft.Json` está disponible al instalar el paquete NuGet [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) y configurarlo en `Startup.ConfigureServices`.
+Antes de ASP.NET Core 3.0, los formateadores JSON usados de forma predeterminada son los implementados mediante el paquete `Newtonsoft.Json`. En ASP.NET Core 3.0 o posterior, los formateadores JSON predeterminados se basan en `System.Text.Json`. La compatibilidad con `Newtonsoft.Json` formateadores y características basados en está disponible mediante la instalación del [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) paquete de NuGet y su configuración en `Startup.ConfigureServices` .
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
@@ -212,11 +200,11 @@ Cuando se usa el código anterior, los métodos de controlador deben devolver el
 
 ### <a name="specify-a-format"></a>Especificación de un formato
 
-Para restringir los formatos de respuesta, [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) aplique el filtro. Al igual [Filters](xref:mvc/controllers/filters)que la `[Produces]` mayoría de los filtros, se pueden aplicar en el ámbito de la acción, el controlador o global:
+Para restringir los formatos de respuesta, aplique el [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filtro. Al igual que la mayoría de los [filtros](xref:mvc/controllers/filters), `[Produces]` se pueden aplicar en el ámbito de la acción, el controlador o global:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-El filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) anterior:
+El [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filtro anterior:
 
 * Obliga a que todas las acciones dentro del controlador devuelvan respuestas con formato JSON.
 * Si se configuran otros formateadores y el cliente especifica un formato diferente, se devuelve JSON.
@@ -255,7 +243,211 @@ La asignación de la ruta de acceso de la solicitud debe especificarse en la rut
 Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) atributo comprueba la existencia del valor de formato en `RouteData` y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
 
 |           Ruta        |             Formateador              |
-|------------------------|------------------------------------|
-|   `/api/products/5`    |    Formateador de salida predeterminado    |
-| `/api/products/5.json` | Formateador JSON (si está configurado) |
-| `/api/products/5.xml`  | Formateador XML (si está configurado)  |
+|---
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+------------|---Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+-
+Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID ' ': 
+
+------------------| |   `/api/products/5`    |    Formateador de salida predeterminado | | `/api/products/5.json` | Formateador JSON (si está configurado) | | `/api/products/5.xml`  | Formateador XML (si está configurado) |

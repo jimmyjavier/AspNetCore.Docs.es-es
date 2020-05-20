@@ -1,4 +1,4 @@
-El componente de `LoginDisplay` (*Shared/LoginDisplay. Razor*) se representa en el componente `MainLayout` (*Shared/MainLayout. Razor*) y administra los comportamientos siguientes:
+El `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) se representa en el `MainLayout` componente (*Shared/MainLayout. Razor*) y administra los comportamientos siguientes:
 
 * Para usuarios autenticados:
   * Muestra el nombre de usuario actual.
@@ -14,7 +14,7 @@ El componente de `LoginDisplay` (*Shared/LoginDisplay. Razor*) se representa en 
 <AuthorizeView>
     <Authorized>
         Hello, @context.User.Identity.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginSignOut">
+        <button class="nav-link btn btn-link" @onclick="BeginLogout">
             Log out
         </button>
     </Authorized>
@@ -24,7 +24,7 @@ El componente de `LoginDisplay` (*Shared/LoginDisplay. Razor*) se representa en 
 </AuthorizeView>
 
 @code {
-    private async Task BeginSignOut(MouseEventArgs args)
+    private async Task BeginLogout(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
         Navigation.NavigateTo("authentication/logout");

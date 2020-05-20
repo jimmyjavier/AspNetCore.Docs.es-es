@@ -1,7 +1,7 @@
 ---
 title: Registro y diagnósticos en ASP.NET CoreSignalR
 author: anurse
-description: Obtenga información sobre cómo recopilar diagnósticos SignalR desde la aplicación ASP.net Core.
+description: Obtenga información sobre cómo recopilar diagnósticos desde la SignalR aplicación ASP.net Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: signalr
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 5fda458c2418c3570d55d551ce5144730afd7f85
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0dda4fb55b1e2275d9cdb2af0b55824b12121dee
+ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767231"
+ms.lasthandoff: 05/17/2020
+ms.locfileid: "83444222"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro y diagnóstico en ASP.NET Core Signalr
 
@@ -29,20 +29,20 @@ En este artículo se proporcionan instrucciones para recopilar diagnósticos de 
 ## <a name="server-side-logging"></a>Registro del lado servidor
 
 > [!WARNING]
-> Los registros del lado servidor pueden contener información confidencial de la aplicación. No publique **nunca** los registros sin procesar de las aplicaciones de producción en foros públicos como github.
+> Los registros del lado servidor pueden contener información confidencial de la aplicación. **Nunca** publique registros sin procesar de las aplicaciones de producción en foros públicos como GitHub.
 
-Como Signalr forma parte de ASP.NET Core, utiliza el sistema de registro de ASP.NET Core. En la configuración predeterminada, Signalr registra muy poca información, pero esto puede configurarse. Consulte la documentación sobre el [registro de ASP.net Core](xref:fundamentals/logging/index#configuration) para obtener más información sobre la configuración del registro de ASP.net Core.
+Como Signalr forma parte de ASP.NET Core, utiliza el sistema de registro de ASP.NET Core. En la configuración predeterminada, Signalr registra muy poca información, pero esto puede configurarse. Vea la documentación sobre el [registro de ASP.NET Core](xref:fundamentals/logging/index#configuration) para obtener más información sobre la configuración del registro de ASP.NET Core.
 
 Signalr usa dos categorías de registrador:
 
-* `Microsoft.AspNetCore.SignalR`&ndash; para los registros relacionados con los protocolos del concentrador, activar los concentradores, invocar métodos y otras actividades relacionadas con el concentrador.
-* `Microsoft.AspNetCore.Http.Connections`&ndash; para los registros relacionados con los transportes, como WebSockets, los eventos de sondeo largo y el servidor y la infraestructura de signalr de bajo nivel.
+* `Microsoft.AspNetCore.SignalR`&ndash;para los registros relacionados con los protocolos del concentrador, activar los concentradores, invocar métodos y otras actividades relacionadas con el concentrador.
+* `Microsoft.AspNetCore.Http.Connections`&ndash;para los registros relacionados con los transportes, como WebSockets, los eventos de sondeo largo y el servidor y la infraestructura de signalr de bajo nivel.
 
-Para habilitar registros detallados de Signalr, configure los dos prefijos `Debug` anteriores en el nivel del archivo *appSettings. JSON* agregando los siguientes elementos `LogLevel` a la subsección `Logging`en:
+Para habilitar registros detallados de Signalr, configure los dos prefijos anteriores en el `Debug` nivel del archivo *appSettings. JSON* agregando los siguientes elementos a la `LogLevel` subsección en `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
-También puede configurarlo en el `CreateWebHostBuilder` código del método:
+También puede configurarlo en el código del `CreateWebHostBuilder` método:
 
 [!code-csharp[](diagnostics/logging-config-code.cs?highlight=5-6)]
 
@@ -51,17 +51,17 @@ Si no está usando la configuración basada en JSON, establezca los siguientes v
 * `Logging:LogLevel:Microsoft.AspNetCore.SignalR` = `Debug`
 * `Logging:LogLevel:Microsoft.AspNetCore.Http.Connections` = `Debug`
 
-Consulte la documentación del sistema de configuración para determinar cómo especificar valores de configuración anidados. Por ejemplo, al usar variables de entorno, `_` se usan dos caracteres en lugar de `:` (por ejemplo, `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
+Consulte la documentación del sistema de configuración para determinar cómo especificar valores de configuración anidados. Por ejemplo, al usar variables de entorno, se usan dos caracteres `_` en lugar de `:` (por ejemplo, `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
-Se recomienda usar el `Debug` nivel al recopilar diagnósticos más detallados para la aplicación. El `Trace` nivel genera diagnósticos de nivel muy bajo y rara vez es necesario para diagnosticar problemas en la aplicación.
+Se recomienda usar el nivel `Debug` al recopilar diagnósticos más detallados para la aplicación. El nivel `Trace` genera diagnósticos de nivel muy bajo y rara vez es necesario para diagnosticar problemas en la aplicación.
 
-## <a name="access-server-side-logs"></a>Acceder a los registros del lado servidor
+## <a name="access-server-side-logs"></a>Acceso a los registros del lado servidor
 
-La forma de acceder a los registros del lado servidor depende del entorno en el que se está ejecutando.
+La forma de acceder a los registros del lado servidor depende del entorno que se ejecute.
 
 ### <a name="as-a-console-app-outside-iis"></a>Como aplicación de consola fuera de IIS
 
-Si está ejecutando en una aplicación de consola, el [registrador de consola](xref:fundamentals/logging/index#console-provider) debe estar habilitado de forma predeterminada. Los registros de signalr aparecerán en la consola de.
+Si se ejecuta en una aplicación de consola, el [registrador de la consola](xref:fundamentals/logging/index#console) debe estar habilitado de forma predeterminada. Los registros de signalr aparecerán en la consola de.
 
 ### <a name="within-iis-express-from-visual-studio"></a>Dentro de IIS Express desde Visual Studio
 
@@ -69,22 +69,22 @@ Visual Studio muestra la salida del registro en la ventana de **salida** . Selec
 
 ### <a name="azure-app-service"></a>Azure App Service
 
-Habilite la opción de **registro de aplicaciones (sistema de archivos)** en la sección **registros de diagnóstico** del portal de Azure App Service y configure el **nivel** en `Verbose`. Los registros deben estar disponibles en el servicio de **streaming de registros** y en los registros del sistema de archivos del App Service. Para más información, consulte [Azure log streaming](xref:fundamentals/logging/index#azure-log-streaming).
+Habilite la opción de **registro de aplicaciones (sistema de archivos)** en la sección **registros de diagnóstico** del portal de Azure App Service y configure el **nivel** en `Verbose` . Los registros deben estar disponibles en el servicio de **streaming de registros** y en los registros del sistema de archivos del App Service. Para más información, consulte [Azure log streaming](xref:fundamentals/logging/index#azure-log-streaming).
 
 ### <a name="other-environments"></a>Otros entornos
 
-Si la aplicación se implementa en otro entorno (por ejemplo, Docker, Kubernetes o servicio de Windows), consulte <xref:fundamentals/logging/index> para obtener más información sobre cómo configurar los proveedores de registro adecuados para el entorno.
+Si la aplicación se implementa en otro entorno (por ejemplo, Docker, Kubernetes o un servicio de Windows), vea <xref:fundamentals/logging/index> para obtener más información sobre cómo configurar los proveedores de registro adecuados para el entorno.
 
 ## <a name="javascript-client-logging"></a>Registro de cliente JavaScript
 
 > [!WARNING]
-> Los registros del lado cliente pueden contener información confidencial de la aplicación. No publique **nunca** los registros sin procesar de las aplicaciones de producción en foros públicos como github.
+> Los registros del lado cliente pueden contener información confidencial de la aplicación. **Nunca** publique registros sin procesar de las aplicaciones de producción en foros públicos como GitHub.
 
-Al utilizar el cliente de JavaScript, puede configurar las opciones de registro `configureLogging` mediante el `HubConnectionBuilder`método de:
+Al utilizar el cliente de JavaScript, puede configurar las opciones de registro mediante el `configureLogging` método de `HubConnectionBuilder` :
 
 [!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
-Para deshabilitar el registro por `signalR.LogLevel.None` completo, `configureLogging` especifique en el método.
+Para deshabilitar el registro por completo, especifique `signalR.LogLevel.None` en el `configureLogging` método.
 
 En la tabla siguiente se muestran los niveles de registro disponibles para el cliente JavaScript. Al establecer el nivel de registro en uno de estos valores, se habilita el registro en ese nivel y en todos los niveles situados por encima de él en la tabla.
 
@@ -100,38 +100,38 @@ En la tabla siguiente se muestran los niveles de registro disponibles para el cl
 
 Una vez que haya configurado el nivel de detalle, los registros se escribirán en la consola del explorador (o la salida estándar en una aplicación de NodeJS).
 
-Si desea enviar registros a un sistema de registro personalizado, puede proporcionar un objeto de JavaScript que implemente `ILogger` la interfaz. El único método que debe implementarse es `log`, que toma el nivel del evento y el mensaje asociado al evento. Por ejemplo:
+Si desea enviar registros a un sistema de registro personalizado, puede proporcionar un objeto de JavaScript que implemente la `ILogger` interfaz. El único método que debe implementarse es `log` , que toma el nivel del evento y el mensaje asociado al evento. Por ejemplo:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
 ## <a name="net-client-logging"></a>Registro de cliente .NET
 
 > [!WARNING]
-> Los registros del lado cliente pueden contener información confidencial de la aplicación. No publique **nunca** los registros sin procesar de las aplicaciones de producción en foros públicos como github.
+> Los registros del lado cliente pueden contener información confidencial de la aplicación. **Nunca** publique registros sin procesar de las aplicaciones de producción en foros públicos como GitHub.
 
-Para obtener los registros del cliente .NET, puede usar el `ConfigureLogging` método en. `HubConnectionBuilder` Esto funciona de la misma manera que `ConfigureLogging` el método `WebHostBuilder` en `HostBuilder`y. Puede configurar los mismos proveedores de registro que utiliza en ASP.NET Core. Sin embargo, tiene que instalar y habilitar manualmente los paquetes de NuGet para los proveedores de registro individuales.
+Para obtener los registros del cliente .NET, puede usar el `ConfigureLogging` método en `HubConnectionBuilder` . Esto funciona de la misma manera que el `ConfigureLogging` método en `WebHostBuilder` y `HostBuilder` . Puede configurar los mismos proveedores de registro que utiliza en ASP.NET Core. Sin embargo, tiene que instalar y habilitar manualmente los paquetes de NuGet para los proveedores de registro individuales.
 
 ### <a name="console-logging"></a>Registro de consolas
 
-Para habilitar el registro de la consola, agregue el paquete [Microsoft. Extensions. Logging. Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) . A continuación, use `AddConsole` el método para configurar el registrador de la consola:
+Para habilitar el registro de la consola, agregue el paquete [Microsoft. Extensions. Logging. Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) . A continuación, use el `AddConsole` método para configurar el registrador de la consola:
 
 [!code-csharp[](diagnostics/net-client-console-log.cs?highlight=6)]
 
 ### <a name="debug-output-window-logging"></a>Registro de la ventana de salida de depuración
 
-También puede configurar los registros para ir a la ventana de **salida** de Visual Studio. Instale el paquete [Microsoft. Extensions. Logging. Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) y use `AddDebug` el método:
+También puede configurar los registros para ir a la ventana de **salida** de Visual Studio. Instale el paquete [Microsoft. Extensions. Logging. Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) y use el `AddDebug` método:
 
 [!code-csharp[](diagnostics/net-client-debug-log.cs?highlight=6)]
 
 ### <a name="other-logging-providers"></a>Otros proveedores de registro
 
-SignalRadmite otros proveedores de registro, como Serilog, SEQ, NLog o cualquier otro sistema de registro que se `Microsoft.Extensions.Logging`integre con. Si el sistema de registro proporciona `ILoggerProvider`un, puede registrarlo con `AddProvider`:
+SignalRadmite otros proveedores de registro, como Serilog, SEQ, NLog o cualquier otro sistema de registro que se integre con `Microsoft.Extensions.Logging` . Si el sistema de registro proporciona un `ILoggerProvider` , puede registrarlo con `AddProvider` :
 
 [!code-csharp[](diagnostics/net-client-custom-log.cs?highlight=6)]
 
 ### <a name="control-verbosity"></a>Nivel de detalle del control
 
-Si está registrando desde otros lugares de la aplicación, cambiar el nivel predeterminado a `Debug` puede ser demasiado detallado. Puede usar un filtro para configurar el nivel de registro de SignalR los registros. Esto puede hacerse en el código, de la misma manera que en el servidor:
+Si está registrando desde otros lugares de la aplicación, cambiar el nivel predeterminado a `Debug` puede ser demasiado detallado. Puede usar un filtro para configurar el nivel de registro de los SignalR registros. Esto puede hacerse en el código, de la misma manera que en el servidor:
 
 [!code-csharp[Controlling verbosity in .NET client](diagnostics/logging-config-client-code.cs?highlight=9-10)]
 
@@ -150,7 +150,7 @@ Fiddler es una herramienta muy eficaz para la recopilación de seguimientos HTTP
 
 Si se conecta mediante HTTPS, hay algunos pasos adicionales para asegurarse de que Fiddler puede descifrar el tráfico HTTPS. Para obtener más información, consulte la [documentación de Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
 
-Una vez que haya recopilado el seguimiento, puede exportar el seguimiento eligiendo **archivo** > **Guardar** > **todas las sesiones** en la barra de menús.
+Una vez que haya recopilado el seguimiento, puede exportar el seguimiento eligiendo **archivo**  >  **Guardar**  >  **todas las sesiones** en la barra de menús.
 
 ![Exportar todas las sesiones de Fiddler](diagnostics/fiddler-export.png)
 
@@ -158,13 +158,13 @@ Una vez que haya recopilado el seguimiento, puede exportar el seguimiento eligie
 
 Este método funciona para todas las aplicaciones.
 
-Puede recopilar seguimientos TCP sin formato mediante tcpdump ejecutando el siguiente comando desde un shell de comandos. Es posible que deba ser `root` o agregar el prefijo `sudo` al comando si obtiene un error de permisos:
+Puede recopilar seguimientos TCP sin formato mediante tcpdump ejecutando el siguiente comando desde un shell de comandos. Es posible que deba ser `root` o agregar el prefijo al comando `sudo` si obtiene un error de permisos:
 
 ```console
 tcpdump -i [interface] -w trace.pcap
 ```
 
-Reemplazar `[interface]` por la interfaz de red en la que desea realizar la captura. Normalmente, se trata de algo `/dev/eth0` parecido a (para la interfaz Ethernet estándar `/dev/lo0` ) o (para el tráfico localhost). Para obtener más información, consulte `tcpdump` la página Man en el sistema host.
+Reemplazar `[interface]` por la interfaz de red en la que desea realizar la captura. Normalmente, se trata de algo parecido a `/dev/eth0` (para la interfaz Ethernet estándar) o `/dev/lo0` (para el tráfico localhost). Para obtener más información, consulte la `tcpdump` página Man en el sistema host.
 
 ## <a name="collect-a-network-trace-in-the-browser"></a>Recopilar un seguimiento de red en el explorador
 
@@ -203,7 +203,7 @@ La mayoría del explorador Herramientas de desarrollo tener una pestaña "red" q
 
 ## <a name="attach-diagnostics-files-to-github-issues"></a>Adjuntar archivos de diagnóstico a problemas de GitHub
 
-Puede adjuntar archivos de diagnóstico a problemas de GitHub cambiando su nombre para que `.txt` tengan una extensión y arrastrándolos y colocándolos en el problema.
+Puede adjuntar archivos de diagnóstico a problemas de GitHub cambiando su nombre para que tengan una `.txt` extensión y arrastrándolos y colocándolos en el problema.
 
 > [!NOTE]
 > No pegue el contenido de los archivos de registro o los seguimientos de red en un problema de GitHub. Estos registros y seguimientos pueden ser bastante grandes y GitHub normalmente los trunca.

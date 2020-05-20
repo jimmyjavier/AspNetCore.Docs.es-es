@@ -1,23 +1,11 @@
 ---
-title: Introducción a gRPC en .NET Core
-author: juntaoluo
-description: Obtenga información sobre los servicios gRPC con el servidor de Kestrel y la pila de ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
-ms.date: 09/20/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/index
-ms.openlocfilehash: 2d7d683051fd1eb97f3f57d75bd582109166a6cd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768853"
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="introduction-to-grpc-on-net-core"></a>Introducción a gRPC en .NET Core
 
@@ -36,6 +24,8 @@ Estas ventajas hacen que gRPC sea ideal para:
 * Microservicios ligeros en los que la eficiencia sea fundamental.
 * Sistemas políglotas en los que se requieran varios idiomas para el desarrollo.
 * Servicios en tiempo real de punto a punto que necesitan controlar respuestas o solicitudes de transmisión en secuencias.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="c-tooling-support-for-proto-files"></a>Compatibilidad de herramientas de C# con archivos .proto
 
@@ -126,8 +116,6 @@ Console.WriteLine(response.Message);
 Un cliente gRPC se crea mediante un canal, que representa una conexión de larga duración con un servicio gRPC. Un canal se puede crear mediante `GrpcChannel.ForAddress`.
 
 Para más información sobre cómo crear clientes y llamar a métodos de servicio diferentes, vea <xref:grpc/client>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

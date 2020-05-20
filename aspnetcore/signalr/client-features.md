@@ -1,41 +1,63 @@
 ---
-title: Características de cliente de SignalR
+title: SignalRClientes ASP.net Core
 author: bradygaster
-description: Obtenga información sobre qué características son compatibles con los distintos clientes de Signalr ASP.NET Core.
+description: Obtenga información acerca de qué características son compatibles con los distintos clientes de ASP.NET Core SignalR .
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/18/2019
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: signalr/client-features
-ms.openlocfilehash: 6718722cdbcfae500026fcd429ca6b9de8f0f103
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: a759e473ff7ffaebd0eb9309f37a959d0e06a466
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71925352"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83438971"
 ---
-# <a name="aspnet-core-signalr-client-features"></a>Características de cliente de Signalr ASP.NET Core
+# <a name="aspnet-core-signalr-clients"></a>Clientes de Signalr ASP.NET Core
+
+## <a name="versioning-support-and-compatibility"></a>Control de versiones, compatibilidad y compatibilidad
+
+Los clientes de Signalr se suministran junto con los componentes del servidor y tienen versiones para que coincidan. Cualquier cliente compatible puede conectarse de forma segura a cualquier servidor compatible y se considera que los problemas de compatibilidad se han corregido. Los clientes de signalr se admiten en el mismo ciclo de vida de soporte técnico que el resto de .NET Core. Consulte [la Directiva de soporte técnico de .net Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) para obtener más información.
+
+Muchas características requieren un cliente **y** un servidor compatibles. Consulte a continuación una tabla que muestra las versiones mínimas de las distintas características.
+
+Las versiones 1. x de Signalr se asignan a las versiones 2,1 y 2,2 de .NET Core y tienen la misma duración. En el caso de la versión 3. x y versiones posteriores, la versión de Signalr coincide exactamente con el resto de .NET y tiene el mismo ciclo de vida de soporte técnico.
+
+| Versión de signalr | Versión de .NET Core | Nivel de compatibilidad | Finalización del soporte técnico |
+| - | - | - | - |
+| 1.0. x | 2.1.x | Compatibilidad a largo plazo | 21 de agosto de 2021 |
+| 1.1. x | 2.2.x | Fin de la vida útil | 23 de diciembre de 2019 |
+| 3. x o superior | *igual que la versión de Signalr* | Consulte la [Directiva de soporte técnico de .net Core.](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) |
+
+**Nota:** En ASP.NET Core 3,0, el cliente de JavaScript se ha *migrado* al `@microsoft/signalr` paquete NPM.
 
 ## <a name="feature-distribution"></a>Distribución de características
 
 En la tabla siguiente se muestran las características y la compatibilidad de los clientes que ofrecen compatibilidad en tiempo real. Para cada característica, se muestra la versión *mínima* que admite esta característica. Si no aparece ninguna versión, no se admite la característica.
 
-| Característica | .NET | JavaScript | Java |
-| ---- | :-: | :-: | :-: |
-| Compatibilidad con Azure Signalr Service |1.0.0|1.0.0|1.0.0|
-| [Streaming de servidor a cliente](xref:signalr/streaming)          |1.0.0|1.0.0|1.0.0|
-| [Streaming de cliente a servidor](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|
-| Reconexión automática ([.net](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|❌|
-| Transporte de WebSockets |1.0.0|1.0.0|1.0.0|
-| Transporte de eventos enviados por servidor |1.0.0|1.0.0|❌|
-| Transporte de sondeo prolongado |1.0.0|1.0.0|3.0.0|
-| Protocolo de concentrador de JSON |1.0.0|1.0.0|1.0.0|
-| Protocolo de concentrador MessagePack |1.0.0|1.0.0|❌|
+| Característica | Server | Cliente .NET | Cliente de JavaScript | Cliente de Java |
+| ---- | :-: | :-: | :-: | :-: |
+| SignalRCompatibilidad con servicios de Azure |2.1.0|1.0.0|1.0.0|1.0.0|
+| [Streaming de servidor a cliente](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
+| [Streaming de cliente a servidor](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
+| Reconexión automática ([.net](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
+| Transporte de WebSockets |2.1.0|1.0.0|1.0.0|1.0.0|
+| Transporte de eventos enviados por servidor |2.1.0|1.0.0|1.0.0|❌|
+| Transporte de sondeo prolongado |2.1.0|1.0.0|1.0.0|3.0.0|
+| Protocolo de concentrador de JSON |2.1.0|1.0.0|1.0.0|1.0.0|
+| Protocolo de concentrador MessagePack |2.1.0|1.0.0|1.0.0|❌|
 
-Se realiza un seguimiento de la compatibilidad con la reconexión automática en el cliente de Java en nuestro seguimiento de [problemas](https://github.com/aspnet/AspNetCore/issues/8711).
+Se realiza un seguimiento de la compatibilidad con la habilitación de características de cliente adicionales en [nuestro seguimiento de problemas](https://github.com/dotnet/AspNetCore/issues).
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Introducción a Signalr para ASP.NET Core](xref:tutorials/signalr)
+* [Introducción a SignalR for ASP.net Core](xref:tutorials/signalr)
 * [Plataformas compatibles](xref:signalr/supported-platforms)
 * [Concentradores](xref:signalr/hubs)
 * [Cliente de JavaScript](xref:signalr/javascript-client)
