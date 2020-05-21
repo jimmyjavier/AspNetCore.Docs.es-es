@@ -4,7 +4,7 @@ Título: "proteger ASP.NET Core una Blazor aplicación independiente Webassembly
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- 'SignalR' uid: 
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Protección de una Blazor aplicación independiente ASP.net Core Webassembly con Azure Active Directory
@@ -19,7 +19,7 @@ Registre una aplicación de AAD en **Azure Active Directory**el  >  área de**re
 
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor AAD independiente**).
 1. Elija un **tipo de cuenta compatible**. Puede seleccionar **cuentas en este directorio de la organización solo** para esta experiencia.
-1. Deje la lista desplegable **URI de redirección** establecida en **Web**y proporcione el siguiente URI de redirección: `https://localhost:{PORT}/authentication/login-callback` . El puerto predeterminado para una aplicación que se ejecuta en Kestrel es 5001. Por IIS Express, el puerto generado aleatoriamente se puede encontrar en las propiedades de la aplicación en el panel **depurar** .
+1. Deje la lista desplegable **URI de redirección** establecida en **Web** y proporcione el siguiente URI de redirección: `https://localhost:{PORT}/authentication/login-callback` . El puerto predeterminado para una aplicación que se ejecuta en Kestrel es 5001. Si la aplicación se ejecuta en otro puerto Kestrel, use el puerto de la aplicación. Por IIS Express, el puerto generado de forma aleatoria para la aplicación se puede encontrar en las propiedades de la aplicación en el panel **depurar** . Dado que la aplicación no existe en este momento y no se conoce el puerto IIS Express, vuelva a este paso después de crear la aplicación y actualice el URI de redirección. Más adelante en este tema aparece un comentario para recordar a IIS Express usuarios que actualicen el URI de redirección.
 1. Deshabilite **Permissions**la  >  casilla**conceder permisos Grant admin to OpenID y offline_access permisos** .
 1. Seleccione **Registrar**.
 
@@ -42,6 +42,13 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENA
 ```
 
 Para especificar la ubicación de salida, que crea una carpeta de proyecto si no existe, incluya la opción output en el comando con una ruta de acceso (por ejemplo, `-o BlazorSample` ). El nombre de la carpeta también se convierte en parte del nombre del proyecto.
+
+> [!NOTE]
+> En el Azure portal, el URI de **Authentication**redireccionamiento web de configuración de la plataforma de autenticación de la aplicación  >  **Platform configurations**  >  **Web**  >  **Redirect URI** se configura para el puerto 5001 para las aplicaciones que se ejecutan en el servidor de Kestrel con la configuración predeterminada.
+>
+> Si la aplicación se ejecuta en un puerto de IIS Express aleatorio, el puerto de la aplicación se puede encontrar en las propiedades de la aplicación en el panel de **depuración** .
+>
+> Si el puerto no se configuró anteriormente con el puerto conocido de la aplicación, vuelva al registro de la aplicación en el Azure Portal y actualice el URI de redirección con el puerto correcto.
 
 Después de crear la aplicación, debe poder:
 

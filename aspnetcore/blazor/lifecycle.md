@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: e4fcd86b6e6a84d9e34a83688f9fb80c6907e5f3
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976706"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83438920"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>Ciclo de vida de ASP.NET Core Blazor
 
@@ -50,7 +50,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Las aplicaciones Blazor Server que [representan previamente su contenido](xref:blazor/hosting-model-configuration#render-mode) llaman a `OnInitializedAsync` **_dos veces_** :
+Las aplicaciones Blazor Server que [representan previamente su contenido](xref:blazor/hosting-model-configuration#render-mode) llaman a `OnInitializedAsync` **_dos veces_**:
 
 * Una primera vez cuando el componente se representa inicialmente de forma estática como parte de la página.
 * Una segunda vez cuando el explorador establece una conexión de vuelta al servidor.
@@ -164,6 +164,8 @@ protected override bool ShouldRender()
 Se llama a `ShouldRender` cada vez que se representa el componente.
 
 Aunque se invalide `ShouldRender`, el componente siempre se representa inicialmente.
+
+Para obtener más información, vea <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>.
 
 ## <a name="state-changes"></a>Cambios de estado
 

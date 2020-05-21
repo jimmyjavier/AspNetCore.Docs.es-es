@@ -4,7 +4,7 @@ Título: "proteger una Blazor aplicación hospedada de Webassemble de ASP.net Co
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- 'SignalR' uid: 
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory
@@ -60,7 +60,7 @@ Siga las instrucciones de [Inicio rápido: registro de una aplicación con la pl
 1. En **Azure Active Directory**  >  **registros de aplicaciones**, seleccione **nuevo registro**.
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor cliente AAD**).
 1. Elija un **tipo de cuenta compatible**. Solo puede seleccionar **cuentas en este directorio de la organización** (un solo inquilino) para esta experiencia.
-1. Deje la lista desplegable **URI de redirección** establecida en **Web**y proporcione el siguiente URI de redirección: `https://localhost:{PORT}/authentication/login-callback` . El puerto predeterminado para una aplicación que se ejecuta en Kestrel es 5001. Por IIS Express, el puerto generado aleatoriamente se puede encontrar en las propiedades de la aplicación de servidor en el panel de **depuración** .
+1. Deje la lista desplegable **URI de redirección** establecida en **Web** y proporcione el siguiente URI de redirección: `https://localhost:{PORT}/authentication/login-callback` . El puerto predeterminado para una aplicación que se ejecuta en Kestrel es 5001. Si la aplicación se ejecuta en otro puerto Kestrel, use el puerto de la aplicación. Por IIS Express, el puerto generado de forma aleatoria para la aplicación se puede encontrar en las propiedades de la aplicación de servidor en el panel de **depuración** . Dado que la aplicación no existe en este momento y no se conoce el puerto IIS Express, vuelva a este paso después de crear la aplicación y actualice el URI de redirección. Aparece un Comentario en la sección [creación de la aplicación](#create-the-app) para recordar IIS Express usuarios a actualizar el URI de redirección.
 1. Deshabilite **Permissions**la  >  casilla**conceder permisos Grant admin to OpenID y offline_access permisos** .
 1. Seleccione **Registrar**.
 
@@ -96,6 +96,13 @@ Para especificar la ubicación de salida, que crea una carpeta de proyecto si no
 > [!NOTE]
 > Pase el URI de ID. de aplicación a la `app-id-uri` opción, pero tenga en cuenta que es posible que se requiera un cambio de configuración en la aplicación cliente, que se describe en la sección [ámbitos de token de acceso](#access-token-scopes) .
 
+> [!NOTE]
+> En el Azure portal, el URI de redireccionamiento web de configuración de la plataforma de autenticación de la *aplicación cliente* **Authentication**  >  **Platform configurations**  >  **Web**  >  **Redirect URI** se configura para el puerto 5001 para las aplicaciones que se ejecutan en el servidor Kestrel con la configuración predeterminada.
+>
+> Si la *aplicación cliente* se ejecuta en un puerto de IIS Express aleatorio, el puerto de la aplicación se puede encontrar en las propiedades de la *aplicación de servidor* en el panel **depurar** .
+>
+> Si el puerto no se configuró anteriormente con el puerto conocido *de la aplicación cliente* , vuelva al registro de la *aplicación cliente* en el Azure portal y actualice el URI de redirección con el puerto correcto.
+
 ## <a name="server-app-configuration"></a>Configuración de la aplicación de servidor
 
 *Esta sección pertenece a la aplicación de **servidor** de la solución.*
@@ -106,7 +113,7 @@ La compatibilidad para autenticar y autorizar llamadas a ASP.NET Core API Web la
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-  Version="3.2.0" />
+  Version="3.1.4" />
 ```
 
 ### <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación

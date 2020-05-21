@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 15f68ced99bdaea9ce53db801a4b2a3bfef2f8dd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 33b2ee29830cd3012ff791c949c3a7c23a2e98c7
+ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774683"
+ms.lasthandoff: 05/17/2020
+ms.locfileid: "83444352"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Registro y diagnóstico en gRPC en .NET
 
@@ -83,7 +83,7 @@ La forma de acceder a los registros del lado servidor depende del entorno que se
 
 #### <a name="as-a-console-app"></a>Como aplicación de consola
 
-Si se ejecuta en una aplicación de consola, el [registrador de la consola](xref:fundamentals/logging/index#console-provider) debe estar habilitado de forma predeterminada. Los registros de gRPC aparecerán en la consola.
+Si se ejecuta en una aplicación de consola, el [registrador de la consola](xref:fundamentals/logging/index#console) debe estar habilitado de forma predeterminada. Los registros de gRPC aparecerán en la consola.
 
 #### <a name="other-environments"></a>Otros entornos
 

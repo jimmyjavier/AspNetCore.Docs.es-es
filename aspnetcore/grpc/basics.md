@@ -1,27 +1,17 @@
 ---
-title: Servicios gRPC con C#
-author: juntaoluo
-description: Conozca los conceptos básicos a la hora de escribir servicios gRPC con C#.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
-ms.date: 07/03/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/basics
-ms.openlocfilehash: a55ed90e7c854d1475b1f5d95347505fad0813ab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774761"
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="grpc-services-with-c"></a>Servicios gRPC con C\#
 
 En este documento se describen los conceptos necesarios para escribir de aplicaciones [gRPC](https://grpc.io/docs/guides/) en C#. Los temas aquí tratados son válidos para aplicaciones de gRPC basadas tanto en ASP.NET Core como en [C-core](https://grpc.io/blog/grpc-stacks).
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="proto-file"></a>Archivo .proto
 
@@ -80,8 +70,6 @@ Se generarán activos de servidor y de cliente de forma predeterminada por cada 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
 Y lo mismo sucede en los proyectos de cliente, donde el atributo se establece en `Client`.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
