@@ -30,5 +30,9 @@ Un enfoque para evitar que las cookies persistentes y los datos del sitio interf
 Al probar y solucionar problemas de una aplicación increíblemente hospedada, asegúrese de que está ejecutando la aplicación desde el proyecto de **servidor** . Por ejemplo, en Visual Studio, confirme que el proyecto de servidor se resalta en **Explorador de soluciones** antes de iniciar la aplicación con cualquiera de los métodos siguientes:
 
 * Haga clic en el botón **Ejecutar**.
-* Use **depurar** > **iniciar depuración** en el menú.
+* Use **depurar**  >  **iniciar depuración** en el menú.
 * Presione <kbd>F5</kbd>.
+
+### <a name="inspect-the-content-of-a-json-web-token-jwt"></a>Inspeccionar el contenido de un JSON Web Token (JWT)
+
+Para descodificar un JSON Web Token (JWT), use la herramienta [JWT.ms](https://jwt.ms/) de Microsoft. Los valores de la interfaz de usuario nunca salen del explorador.

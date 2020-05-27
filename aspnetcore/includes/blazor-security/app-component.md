@@ -1,7 +1,7 @@
-El `App` componente (*app. Razor*) es similar al componente `App` que se encuentra en las aplicaciones de servidor increíbles:
+El `App` componente (*app. Razor*) es similar al `App` componente que se encuentra en las aplicaciones de servidor increíbles:
 
-* El `CascadingAuthenticationState` componente administra la exposición del `AuthenticationState` al resto de la aplicación.
-* El `AuthorizeRouteView` componente se asegura de que el usuario actual está autorizado para tener acceso a una página determinada o, `RedirectToLogin` de lo contrario, representa el componente.
+* El <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> componente administra la exposición del <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> al resto de la aplicación.
+* El <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> componente se asegura de que el usuario actual está autorizado para tener acceso a una página determinada o, de lo contrario, representa el `RedirectToLogin` componente.
 * El `RedirectToLogin` componente administra el redireccionamiento de usuarios no autorizados a la página de inicio de sesión.
 
 ```razor

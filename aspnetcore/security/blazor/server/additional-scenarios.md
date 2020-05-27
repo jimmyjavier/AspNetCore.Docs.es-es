@@ -1,24 +1,12 @@
 ---
-title: BlazorEscenarios de seguridad adicionales de ASP.net Core Server
-author: guardrex
-description: Obtenga información acerca de cómo configurar el Blazor servidor para escenarios de seguridad adicionales.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/19/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 9d26cde4d8964a8285241bb0158d8e6f8d5f8dbc
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
-ms.translationtype: MT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444079"
+Título: ' ASP.NET Core Blazor Server escenarios de seguridad adicionales ' Author: Description: ' obtener información sobre cómo configurar el Blazor servidor para escenarios de seguridad adicionales '.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorEscenarios de seguridad adicionales de ASP.net Core Server
 
@@ -171,7 +159,7 @@ Como alternativa, la configuración se puede realizar en el archivo de configura
 }
 ```
 
-Si el seguimiento de un segmento a la autoridad no es apropiado para el proveedor de OIDC de la aplicación, como con proveedores que no son de AAD, establezca la `Authority` propiedad directamente. Establezca la propiedad en <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> o en el archivo de configuración de la aplicación con la `Authority` clave.
+Si el seguimiento de un segmento a la autoridad no es apropiado para el proveedor de OIDC de la aplicación, como con proveedores que no son de AAD, establezca la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> propiedad directamente. Establezca la propiedad en <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> o en el archivo de configuración de la aplicación con la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> clave.
 
 ### <a name="code-changes"></a>Cambios de código
 

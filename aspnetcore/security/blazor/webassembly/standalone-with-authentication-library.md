@@ -4,7 +4,7 @@ Título: ' proteger ASP.NET Core una Blazor aplicación independiente de Webasse
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- 'SignalR' uid: 
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Protección de una Blazor aplicación independiente ASP.net Core Webassembly con la biblioteca de autenticación
@@ -13,7 +13,7 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https:
 
 *Por Azure Active Directory (AAD) y Azure Active Directory B2C (AAD B2C), no siga las instrucciones de este tema. Vea los temas de AAD y AAD B2C en este nodo de tabla de contenido.*
 
-Para crear una Blazor aplicación independiente Webassembly que use `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la biblioteca, ejecute el siguiente comando en un shell de comandos:
+Para crear una Blazor aplicación independiente Webassembly que use la biblioteca [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) , ejecute el siguiente comando en un shell de comandos:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -25,7 +25,7 @@ En Visual Studio, [cree una Blazor aplicación webassembly](xref:blazor/get-star
 
 ## <a name="authentication-package"></a>Paquete de autenticación
 
-Cuando se crea una aplicación para usar cuentas de usuario individuales, la aplicación recibe automáticamente una referencia de paquete para el `Microsoft.AspNetCore.Components.WebAssembly.Authentication` paquete en el archivo de proyecto de la aplicación. El paquete proporciona un conjunto de primitivas que ayudan a la aplicación a autenticar a los usuarios y obtener tokens para llamar a las API protegidas.
+Cuando se crea una aplicación para usar cuentas de usuario individuales, la aplicación recibe automáticamente una referencia de paquete para el paquete [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) en el archivo de proyecto de la aplicación. El paquete proporciona un conjunto de primitivas que ayudan a la aplicación a autenticar a los usuarios y obtener tokens para llamar a las API protegidas.
 
 Si agrega la autenticación a una aplicación, agregue manualmente el paquete al archivo de proyecto de la aplicación:
 
@@ -37,7 +37,7 @@ Si agrega la autenticación a una aplicación, agregue manualmente el paquete al
 
 ## <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación
 
-La compatibilidad con la autenticación de usuarios se registra en el contenedor de servicios con el `AddOidcAuthentication` método de extensión proporcionado por el `Microsoft.AspNetCore.Components.WebAssembly.Authentication` paquete. Este método configura los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
+La compatibilidad con la autenticación de usuarios se registra en el contenedor de servicios con el <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> método de extensión proporcionado por el paquete [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . Este método configura los servicios necesarios para que la aplicación interactúe con el Identity proveedor (IP).
 
 *Program.cs*:
 
@@ -59,11 +59,11 @@ La configuración se proporciona mediante el archivo *wwwroot/appSettings. JSON*
 }
 ```
 
-La compatibilidad con la autenticación para aplicaciones independientes se ofrece mediante Open ID Connect (OIDC). El `AddOidcAuthentication` método acepta una devolución de llamada para configurar los parámetros necesarios para autenticar una aplicación mediante OIDC. Los valores necesarios para configurar la aplicación pueden obtenerse a partir de la dirección IP compatible con OIDC. Obtenga los valores al registrar la aplicación, que suele producirse en su portal en línea.
+La compatibilidad con la autenticación para aplicaciones independientes se ofrece mediante Open ID Connect (OIDC). El <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> método acepta una devolución de llamada para configurar los parámetros necesarios para autenticar una aplicación mediante OIDC. Los valores necesarios para configurar la aplicación pueden obtenerse a partir de la dirección IP compatible con OIDC. Obtenga los valores al registrar la aplicación, que suele producirse en su portal en línea.
 
 ## <a name="access-token-scopes"></a>Ámbitos de token de acceso
 
-La Blazor plantilla Webassembly no configura automáticamente la aplicación para solicitar un token de acceso para una API segura. Para aprovisionar un token de acceso como parte del flujo de inicio de sesión, agregue el ámbito a los ámbitos de token predeterminados de `OidcProviderOptions` :
+La Blazor plantilla Webassembly no configura automáticamente la aplicación para solicitar un token de acceso para una API segura. Para aprovisionar un token de acceso como parte del flujo de inicio de sesión, agregue el ámbito a los ámbitos de token predeterminados de <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
