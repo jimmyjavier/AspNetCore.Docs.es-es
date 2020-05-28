@@ -1,22 +1,11 @@
 ---
-title: Información general de ASP.NET Core MVC
-author: ardalis
-description: Conozca ASP.NET Core MVC, un marco completo para crear aplicaciones web y varias API mediante el patrón de diseño del controlador de vista de modelos.
-ms.author: riande
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: mvc/overview
-ms.openlocfilehash: c6c7fd1d0cb7a462b3a13d5e31a50c704a00c0ef
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775471"
+Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- 'SignalR' uid: 
+
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Información general de ASP.NET Core MVC
 
@@ -68,7 +57,7 @@ ASP.NET Core MVC incluye lo siguiente:
 * [Enrutamiento](#routing)
 * [Enlace de modelos](#model-binding)
 * [Validación de modelos](#model-validation)
-* [Inserción de dependencias](../fundamentals/dependency-injection.md)
+* [Inserción de dependencia](../fundamentals/dependency-injection.md)
 * [Filtros](#filters)
 * [Áreas](#areas)
 * [API web](#web-apis)
@@ -147,7 +136,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 El marco administra los datos de la solicitud de validación en el cliente y en el servidor. La lógica de validación especificada en tipos de modelo se agrega a las vistas representadas como anotaciones discretas y se aplica en el explorador con [Validación de jQuery](https://jqueryvalidation.org/).
 
-### <a name="dependency-injection"></a>Inserción de dependencias
+### <a name="dependency-injection"></a>Inserción de dependencia
 
 ASP.NET Core tiene compatibilidad integrada con la [inserción de dependencias](../fundamentals/dependency-injection.md). En ASP.NET Core MVC, los [controladores](controllers/dependency-injection.md) pueden solicitar los servicios que necesiten a través de sus constructores, lo que les permite seguir el [principio de dependencias explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 
@@ -224,7 +213,7 @@ Por ejemplo, en esta vista se representa un modelo de tipo `IEnumerable<Product>
 
 ### <a name="tag-helpers"></a>Asistentes de etiquetas
 
-Las [aplicaciones auxiliares de etiquetas](views/tag-helpers/intro.md) permiten que el código del lado servidor participe en la creación Razor y representación de elementos HTML en archivos. Puede usar asistentes de etiquetas para definir etiquetas personalizadas (por ejemplo, `<environment>`) o para modificar el comportamiento de etiquetas existentes (por ejemplo, `<label>`). Los asistentes de etiquetas enlazan con elementos específicos, en función del nombre del elemento y sus atributos. Proporcionan las ventajas de la representación del lado servidor, al tiempo que se mantiene una experiencia de edición HTML.
+Las [aplicaciones auxiliares de etiquetas](views/tag-helpers/intro.md) permiten que el código del lado servidor participe en la creación y representación de elementos HTML en Razor archivos. Puede usar asistentes de etiquetas para definir etiquetas personalizadas (por ejemplo, `<environment>`) o para modificar el comportamiento de etiquetas existentes (por ejemplo, `<label>`). Los asistentes de etiquetas enlazan con elementos específicos, en función del nombre del elemento y sus atributos. Proporcionan las ventajas de la representación del lado servidor, al tiempo que se mantiene una experiencia de edición HTML.
 
 Hay muchos asistentes de etiquetas integradas para tareas comunes (como la creación de formularios, vínculos, carga de activos, etc.) y existen muchos más a disposición en repositorios públicos de GitHub y como paquetes NuGet. Los asistentes de etiquetas se crean en C# y tienen como destino elementos HTML en función del nombre de elemento, el nombre de atributo o la etiqueta principal. Por ejemplo, la aplicación auxiliar de etiquetas integrada LinkTagHelper puede usarse para crear un vínculo a la acción `Login` de `AccountsController`:
 
@@ -249,7 +238,7 @@ La aplicación auxiliar de etiquetas `EnvironmentTagHelper` puede usarse para in
 </environment>
 ```
 
-Las aplicaciones auxiliares de etiquetas proporcionan una experiencia de desarrollo compatible con HTML y un completo entorno de IntelliSense Razor para crear HTML y marcado. La mayoría de los asistentes de etiquetas integrados tienen como destino elementos HTML existentes y proporcionan atributos del lado servidor para el elemento.
+Las aplicaciones auxiliares de etiquetas proporcionan una experiencia de desarrollo compatible con HTML y un completo entorno de IntelliSense para crear HTML y Razor marcado. La mayoría de los asistentes de etiquetas integrados tienen como destino elementos HTML existentes y proporcionan atributos del lado servidor para el elemento.
 
 ### <a name="view-components"></a>Componentes de vista
 
@@ -263,5 +252,5 @@ Para obtener más información, vea <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [MyTested.AspNetCore.Mvc: biblioteca fluida de pruebas para ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; Biblioteca de pruebas fuertemente tipada, que ofrece una interfaz fluida para la prueba de aplicaciones MVC y de API web. (*Microsoft no realiza su mantenimiento ni su soporte técnico.*)
+* [MyTest. AspNetCore. Mvc: biblioteca de pruebas fluidas para ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): biblioteca de pruebas unitarias fuertemente tipadas, que proporciona una interfaz fluida para probar MVC y aplicaciones de API Web. (*Microsoft no realiza su mantenimiento ni su soporte técnico.*)
 * <xref:blazor/integrate-components>

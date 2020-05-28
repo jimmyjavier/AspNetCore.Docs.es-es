@@ -34,7 +34,7 @@ Registre la siguiente información:
 
 * *Aplicación de API de servidor* IDENTIFICADOR de aplicación (ID. de cliente) (por ejemplo, `11111111-1111-1111-1111-111111111111` )
 * IDENTIFICADOR de directorio (identificador de inquilino) (por ejemplo, `222222222-2222-2222-2222-222222222222` )
-* Dominio del inquilino de AAD (por ejemplo, `contoso.onmicrosoft.com` ) &ndash; el dominio está disponible como el **dominio del publicador** en la hoja de **personalización de marca** del Azure portal de la aplicación registrada.
+* Dominio del inquilino de AAD (por ejemplo, `contoso.onmicrosoft.com` ): el dominio está disponible como el **dominio del publicador** en la hoja de **Personalización de marca** del Azure portal de la aplicación registrada.
 
 En **permisos**de la API, quite el **Microsoft Graph**  >  **usuario.** permiso de lectura, ya que la aplicación no requiere el inicio de sesión o el acceso de Perfil de usuario.
 

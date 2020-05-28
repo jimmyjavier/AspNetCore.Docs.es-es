@@ -1,11 +1,11 @@
 ---
 Título: ' ASP.NET Core SignalR cliente de JavaScript ' autor: Descripción: ' información general de ASP.net Core SignalR cliente de JavaScript '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- 'SignalR' uid: 
 
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>Cliente de ASP.NET Core SignalR JavaScript
@@ -141,10 +141,10 @@ Encadenar un `catch` método al final del `start` método para controlar los err
 
 Configure el seguimiento del registro del lado cliente pasando un registrador y un tipo de evento al registro cuando se establezca la conexión. Los mensajes se registran con el nivel de registro especificado y superior. Los niveles de registro disponibles son los siguientes:
 
-* `signalR.LogLevel.Error`&ndash;Mensajes de error. `Error`Solo registra mensajes.
-* `signalR.LogLevel.Warning`&ndash;Mensajes de advertencia sobre posibles errores. Registros `Warning` y `Error` mensajes.
-* `signalR.LogLevel.Information`&ndash;Mensajes de estado sin errores. Registra `Information` `Warning` mensajes, y `Error` .
-* `signalR.LogLevel.Trace`&ndash;Mensajes de seguimiento. Registra todo, incluidos los datos transportados entre el concentrador y el cliente.
+* `signalR.LogLevel.Error`: Mensajes de error. `Error`Solo registra mensajes.
+* `signalR.LogLevel.Warning`: Mensajes de advertencia sobre posibles errores. Registros `Warning` y `Error` mensajes.
+* `signalR.LogLevel.Information`: Mensajes de estado sin errores. Registra `Information` `Warning` mensajes, y `Error` .
+* `signalR.LogLevel.Trace`: Mensajes de seguimiento. Registra todo, incluidos los datos transportados entre el concentrador y el cliente.
 
 Use el método [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) en [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) para configurar el nivel de registro. Los mensajes se registran en la consola del explorador.
 

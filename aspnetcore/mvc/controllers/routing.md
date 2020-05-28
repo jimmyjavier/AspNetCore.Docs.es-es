@@ -92,7 +92,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 > El enrutamiento se configura mediante <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> el <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> middleware de y. Para usar controladores:
 >
 > * Llame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> `UseEndpoints` a dentro de para asignar los controladores [enrutados de atributo](#ar) .
-> * Llame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> a o a para asignar controladores [enrutados de Convención](#cr) .
+> * Llame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> a o a para asignar controladores enrutados por [Convención](#cr) y controladores [enrutados por atributo](#ar) .
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
@@ -257,7 +257,7 @@ Las API de REST deben usar el enrutamiento de atributos para modelar la funciona
 
 El enrutamiento mediante atributos utiliza un conjunto de atributos para asignar acciones directamente a las plantillas de ruta. El `StartUp.Configure` código siguiente es típico para una API de REST y se usa en el ejemplo siguiente:
 
-[!code-csharp[](routing/samples/3.x/main/StartupApi.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
 
 En el código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> se llama a dentro de `UseEndpoints` para asignar controladores enrutados de atributo.
 
@@ -272,10 +272,7 @@ La `HomeController.Index` acción se ejecuta para cualquiera de las rutas de dir
 
 Este ejemplo resalta una diferencia de programación clave entre el enrutamiento de atributos y el [enrutamiento convencional](#cr). El enrutamiento de atributos requiere más entradas para especificar una ruta. La ruta predeterminada convencional controla las rutas de forma más concisa. Sin embargo, el enrutamiento de atributos permite y requiere un control preciso de las plantillas de ruta que se aplican a cada [acción](#action).
 
-En el código siguiente:
-
-* El nombre del controlador y los nombres de acción **no juegan ningún** rol en el que coincida con la acción.
-* Coincide con las mismas direcciones URL que en el ejemplo anterior:
+Con el enrutamiento de atributos, los nombres de acción y controlador no juegan ninguna parte en la que se haga coincidir la acción, a menos que se use el [reemplazo de tokens](#routing-token-replacement-templates-ref-label) . El ejemplo siguiente coincide con las mismas direcciones URL que en el ejemplo anterior:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
@@ -655,8 +652,6 @@ Las rutas de atributo admiten la misma sintaxis en línea que las rutas convenci
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
 En el código anterior, `[HttpPost("product/{id:int}")]` aplica una restricción de ruta. La `ProductsController.ShowProduct` acción coincide solo en rutas de dirección URL como `/product/3` . La parte de la plantilla de ruta `{id:int}` restringe ese segmento a solo enteros.
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
 Consulte [Referencia de plantilla de ruta](xref:fundamentals/routing#route-template-reference) para obtener una descripción detallada de la sintaxis de la plantilla de ruta.
 

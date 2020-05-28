@@ -18,8 +18,8 @@ Un enfoque para evitar que las cookies persistentes y los datos del sitio interf
   * Seleccione el botón **Agregar**.
   * Proporcione la ruta de acceso al explorador en el campo **programa** .
   * En el campo **arguments (argumentos** ), proporcione la opción de línea de comandos que utiliza el explorador para abrir en el modo incógnito o Private y la dirección URL de la aplicación. Por ejemplo:
-    * Google Chrome &ndash;`--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox &ndash;`-private -url https://localhost:5001`
+    * Google Chrome:`--incognito --new-window https://localhost:5001`
+    * Mozilla Firefox:`-private -url https://localhost:5001`
   * Proporcione un nombre en el campo **nombre descriptivo** . Por ejemplo, `Firefox Auth Testing`.
   * Seleccione el botón **Aceptar**.
   * Para evitar tener que seleccionar el perfil de explorador para cada iteración de pruebas con una aplicación, establezca el perfil como predeterminado con el botón **establecer como predeterminado** .

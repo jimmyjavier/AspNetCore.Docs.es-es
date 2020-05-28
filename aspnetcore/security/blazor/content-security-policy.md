@@ -1,11 +1,11 @@
 ---
 Título: "exigir una directiva de seguridad de contenido para el ASP.NET Core Blazor ' autor: Descripción: ' aprenda a usar una directiva de seguridad de contenido (CSP) con ASP.net Core Blazor aplicaciones para ayudar a protegerse frente a ataques de scripting entre sitios (XSS) '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- 'SignalR' uid: 
 
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Aplicar una directiva de seguridad de contenido para ASP.NET CoreBlazor
@@ -28,14 +28,14 @@ CSP se admite en la mayoría de los exploradores de escritorio y móviles modern
 
 Como mínimo, especifique las siguientes directivas y orígenes para las Blazor aplicaciones. Agregue directivas y orígenes adicionales según sea necesario. Las directivas siguientes se usan en la sección [aplicar la Directiva](#apply-the-policy) de este artículo, donde se proporcionan las directivas de seguridad de ejemplo para Blazor webassembly y Blazor Server:
 
-* [URI base](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri) &ndash; Restringe las direcciones URL de la etiqueta de una página `<base>` . Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
-* [bloque todo: contenido mixto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content) &ndash; Evita la carga de contenido HTTP y HTTPS mixto.
-* [valor predeterminado: src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src) &ndash; Indica una reserva para las directivas de código fuente que no se especifican explícitamente mediante la Directiva. Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src) &ndash; Indica los orígenes válidos para las imágenes.
+* [base-URI](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): restringe las direcciones URL de la etiqueta de una página `<base>` . Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
+* [Block-All-Mixed-Content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): evita la carga de contenido http y https mixto.
+* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): indica una reserva para las directivas de código fuente que no se especifican explícitamente en la Directiva. Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
+* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): indica orígenes válidos para las imágenes.
   * Especifique `data:` para permitir la carga de imágenes de las `data:` direcciones URL.
   * Especifique `https:` para permitir la carga de imágenes desde puntos de conexión HTTPS.
-* [objeto: src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src) &ndash; Indica los orígenes válidos para las `<object>` `<embed>` etiquetas, y `<applet>` . Especifique `none` para evitar todos los orígenes de direcciones URL.
-* [script: src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) &ndash; Indica los orígenes válidos para los scripts.
+* [Object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): indica los orígenes válidos para las `<object>` `<embed>` etiquetas, y `<applet>` . Especifique `none` para evitar todos los orígenes de direcciones URL.
+* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): indica orígenes válidos para scripts.
   * Especifique el `https://stackpath.bootstrapcdn.com/` origen de host para los scripts de arranque.
   * Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
   * En una Blazor aplicación Webassembly:
@@ -45,11 +45,11 @@ Como mínimo, especifique las siguientes directivas y orígenes para las Blazor 
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
     * Especifique el `unsafe-eval` uso de `eval()` los métodos y para crear código a partir de cadenas.
   * En una Blazor aplicación de servidor, especifique el `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash del script en línea que realiza la detección de reserva para las hojas de estilos.
-* [estilo: src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src) &ndash; Indica los orígenes válidos para las hojas de estilos.
+* [Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica los orígenes válidos para las hojas de estilos.
   * Especifique el `https://stackpath.bootstrapcdn.com/` origen de host para las hojas de estilo bootstrap.
   * Especifique `self` para indicar que el origen de la aplicación, incluido el esquema y el número de puerto, es un origen válido.
   * Especifique `unsafe-inline` para permitir el uso de estilos alineados. La declaración en línea es necesaria para que la interfaz de usuario de las Blazor aplicaciones de servidor reconecte el cliente y el servidor después de la solicitud inicial. En una versión futura, es posible que se eliminen los estilos en línea para que `unsafe-inline` ya no sea necesario.
-* [actualización: inseguras-solicitudes](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests) &ndash; Indica que las direcciones URL de contenido de orígenes no seguros (HTTP) se deben adquirir de forma segura a través de HTTPS.
+* [actualización-no segura-solicitudes](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): indica que las direcciones URL de contenido de los orígenes de no seguros (http) se deben adquirir de forma segura a través de HTTPS.
 
 Todos los exploradores, excepto Microsoft Internet Explorer, admiten las directivas anteriores.
 

@@ -4,11 +4,11 @@ La identidad de ASP.NET Core agrega la funcionalidad de inicio de sesión de la 
 * [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-custom-rest-api-netfw) (Azure AD B2C)
 * [IdentityServer4](https://identityserver.io)
 
-IdentityServer4 es un marco de OpenID Connect y OAuth 2.0 para ASP.NET Core 3.0. IdentityServer4 permite la utilización de las siguientes características de seguridad:
+IdentityServer4 es un marco de OpenID Connect y OAuth 2.0 para ASP.NET Core. IdentityServer4 permite la utilización de las siguientes características de seguridad:
 
 * Autenticación como servicio (AaaS)
 * Inicio de sesión único (SSO) mediante varios tipos de aplicaciones
 * Control de acceso para API
 * Federation Gateway
 
-Para obtener más información, vea [Bienvenida a IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
+Para obtener más información, vea [Bienvenida a IdentityServer4](https://docs.identityserver.io/en/latest/index.html).
