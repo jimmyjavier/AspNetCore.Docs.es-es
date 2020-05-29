@@ -1,40 +1,25 @@
 ---
-title: Enrutamiento de Blazor de ASP.NET Core
-author: guardrex
-description: Obtenga información sobre cómo enrutar solicitudes en aplicaciones y sobre el componente NavLink.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/17/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/routing
-ms.openlocfilehash: 017fd4d3ab45b75355dabb400ff0e5cbf7009d82
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771225"
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-routing"></a>Enrutamiento de Blazor de ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-Obtenga información sobre cómo enrutar solicitudes y cómo usar el componente `NavLink` para crear vínculos de navegación en aplicaciones de Blazor.
+Aprenda a enrutar solicitudes y a usar el componente `NavLink` para crear vínculos de navegación en aplicaciones Blazor.
 
 ## <a name="aspnet-core-endpoint-routing-integration"></a>Integración del enrutamiento de puntos de conexión de ASP.NET Core
 
-El servidor Blazor se integra en el [enrutamiento de puntos de conexión de ASP.NET Core](xref:fundamentals/routing). Una aplicación ASP.NET Core está configurada para aceptar conexiones entrantes de componentes interactivos con `MapBlazorHub` en `Startup.Configure`:
+Blazor Server se integra en el [enrutamiento de puntos de conexión de ASP.NET Core](xref:fundamentals/routing). Una aplicación ASP.NET Core está configurada para aceptar conexiones entrantes de componentes interactivos con `MapBlazorHub` en `Startup.Configure`:
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-La configuración más común consiste en enrutar todas las solicitudes a una página de Razor, que actúa como el host del lado servidor de la aplicación del servidor Blazor. Convencionalmente, la página del *host* se suele llamar *_Host.cshtml*. La ruta especificada en el archivo de host se denomina *ruta de reserva* porque tiene una prioridad baja en la búsqueda de rutas, y se tiene en cuenta solo cuando no se encuentran coincidencias en otras rutas. Esto permite a la aplicación usar otros controladores y páginas sin interferir con la aplicación de servidor Blazor.
+La configuración más común consiste en enrutar todas las solicitudes a una página de Razor, que actúa como el host del lado servidor de la aplicación Blazor Server. Convencionalmente, la página del *host* se suele llamar *_Host.cshtml*. La ruta especificada en el archivo de host se denomina *ruta de reserva* porque tiene una prioridad baja en la búsqueda de rutas, y se tiene en cuenta solo cuando no se encuentran coincidencias en otras rutas. Esto permite a la aplicación usar otros controladores y páginas sin interferir con la aplicación Blazor Server.
 
 ## <a name="route-templates"></a>Plantillas de ruta
 
@@ -70,7 +55,7 @@ Se pueden aplicar varias plantillas de ruta a un componente. El siguiente compon
 ```
 
 > [!IMPORTANT]
-> Para que las direcciones URL se resuelvan correctamente, la aplicación debe incluir una etiqueta `<base>` en su archivo *wwwroot/index.html* (WebAssembly de Blazor) o en su archivo *Pages/_Host.cshtml* (servidor Blazor) con la ruta de acceso base de la aplicación especificada en el atributo `href` (`<base href="/">`). Para obtener más información, vea <xref:host-and-deploy/blazor/index#app-base-path>.
+> Para que las direcciones URL se resuelvan correctamente, la aplicación debe incluir una etiqueta `<base>` en su archivo *wwwroot/index.html* (Blazor WebAssembly) o en su archivo *Pages/_Host.cshtml* (Blazor Server) con la ruta de acceso base de la aplicación especificada en el atributo `href` (`<base href="/">`). Para obtener más información, vea <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Suministro de contenido personalizado cuando no se encuentra contenido
 
@@ -141,22 +126,491 @@ En el siguiente ejemplo, la ruta al componente `Users` solo coincide en estos ca
 En la siguiente tabla figuran las restricciones de ruta que hay disponibles. Para más información sobre las restricciones de ruta que coinciden con la referencia cultural invariable, vea la advertencia que aparece después de la tabla.
 
 | Restricción | Ejemplo           | Coincidencias de ejemplo                                                                  | Invariable<br>referencia cultural<br>coincidencia |
-| ---------- | ----------------- | -------------------------------------------------------------------------------- | :------------------------------: |
-| `bool`     | `{active:bool}`   | `true`, `FALSE`                                                                  | No                               |
-| `datetime` | `{dob:datetime}`  | `2016-12-31`, `2016-12-31 7:32pm`                                                | Sí                              |
-| `decimal`  | `{price:decimal}` | `49.99`, `-1,000.01`                                                             | Sí                              |
-| `double`   | `{weight:double}` | `1.234`, `-1,001.01e8`                                                           | Sí                              |
-| `float`    | `{weight:float}`  | `1.234`, `-1,001.01e8`                                                           | Sí                              |
-| `guid`     | `{id:guid}`       | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No                               |
-| `int`      | `{id:int}`        | `123456789`, `-123456789`                                                        | Sí                              |
-| `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Sí                              |
+| ---
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----- | --- title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------- | --- title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---------------------------------------- | :--- title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---------------: | | `bool`     | `{active:bool}`   | `true`, `FALSE`                                                                  | No                               | | `datetime` | `{dob:datetime}`  | `2016-12-31`, `2016-12-31 7:32pm`                                                | Sí                              | | `decimal`  | `{price:decimal}` | `49.99`, `-1,000.01`                                                             | Sí                              | | `double`   | `{weight:double}` | `1.234`, `-1,001.01e8`                                                           | Sí                              | | `float`    | `{weight:float}`  | `1.234`, `-1,001.01e8`                                                           | Sí                              | | `guid`     | `{id:guid}`       | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No                               | | `int`      | `{id:int}`        | `123456789`, `-123456789`                                                        | Sí                              | | `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Sí                              |
 
 > [!WARNING]
 > Las restricciones de ruta que comprueban la dirección URL y que se convierten en un tipo CLR (como `int` o `DateTime`) usan siempre la referencia cultural invariable. Estas restricciones dan por supuesto que la dirección URL no es localizable.
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Enrutamiento con direcciones URL que contienen puntos
 
-En las aplicaciones de servidor Blazor, la ruta predeterminada en *_Host.cshtml* es `/` (`@page "/"`). Una dirección URL de solicitud que contiene un punto (`.`) no coincide con la ruta predeterminada porque la dirección URL parece que solicita un archivo. Una aplicación Blazor devuelve una respuesta *404 No encontrado* cuando un archivo estático no existe. Para usar rutas que contienen un punto, configure *_Host.cshtml* con la siguiente plantilla de ruta:
+En las aplicaciones Blazor Server, la ruta predeterminada en *_Host.cshtml* es `/` (`@page "/"`). Una dirección URL de solicitud que contiene un punto (`.`) no coincide con la ruta predeterminada porque la dirección URL parece que solicita un archivo. Una aplicación Blazor devuelve una respuesta *404 No encontrado* cuando un archivo estático no existe. Para usar rutas que contienen un punto, configure *_Host.cshtml* con la siguiente plantilla de ruta:
 
 ```cshtml
 @page "/{**path}"
@@ -168,7 +622,7 @@ La plantilla `"/{**path}"` incluye lo siguiente:
 * El nombre del parámetro de ruta `path`
 
 > [!NOTE]
-> La sintaxis de parámetros de *captura general* (`*`/`**`) **no** se admite en los componentes de Razor ( *.razor*).
+> La sintaxis de parámetros *Catch-all* (`*`/`**`) **no** se admite en componentes Razor ( *.razor*).
 
 Para obtener más información, vea <xref:fundamentals/routing>.
 
@@ -204,13 +658,38 @@ Se representa el siguiente marcado HTML:
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> para trabajar con los URI y con la navegación en el código de C#. `NavigationManager` proporciona el evento y los métodos que se muestran en la siguiente tabla.
 
 | Miembro | Descripción |
-| ------ | ----------- |
-| URI | Obtiene el URI absoluto actual. |
-| BaseUri | Obtiene el URI base (con una barra diagonal final) que se puede anteponer a las rutas de acceso de URI relativo para generar un URI absoluto. Normalmente, `BaseUri` corresponde al atributo `href` del elemento `<base>` del documento en *wwwroot/index.html* (WebAssembly de Blazor) o *Pages/_Host.cshtml* (servidor Blazor). |
-| NavigateTo | Navega al URI especificado. Si `forceLoad` es `true`:<ul><li>El enrutamiento del lado cliente se omite.</li><li>Se fuerza al explorador a cargar la nueva página desde el servidor, tanto si el URI suele estar controlado por el enrutador del lado cliente como si no.</li></ul> |
-| LocationChanged | Evento que se desencadena cuando la ubicación de navegación ha cambiado. |
-| ToAbsoluteUri | Convierte un URI relativo en un URI absoluto. |
-| <span style="word-break:normal;word-wrap:normal">ToBaseRelativePath</span> | Dado un URI base (por ejemplo, un URI previamente devuelto por `GetBaseUri`), convierte un URI absoluto en un URI relativo al prefijo de URI base. |
+| ---
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--- | --- title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Enrutamiento de ASP.NET Core Blazor" author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | Uri | Obtiene el URI absoluto actual. | | BaseUri | Obtiene el URI base (con una barra diagonal final) que se puede anteponer a las rutas de acceso de URI relativo para generar un URI absoluto. Normalmente, `BaseUri` corresponde al atributo `href` del elemento `<base>` del documento en *wwwroot/index.html* (WebAssembly de Blazor) o *Pages/_Host.cshtml* (servidor Blazor). | | NavigateTo | Navega al URI especificado. Si `forceLoad` es `true`:<ul><li>El enrutamiento del lado cliente se omite.</li><li>Se fuerza al explorador a cargar la nueva página desde el servidor, tanto si el URI suele estar controlado por el enrutador del lado cliente como si no.</li></ul> | | LocationChanged | Evento que se desencadena cuando la ubicación de navegación ha cambiado. | | ToAbsoluteUri | Convierte un URI relativo en un URI absoluto. | | <span style="word-break:normal;word-wrap:normal">ToBaseRelativePath</span> | Dado un URI base (por ejemplo, un URI previamente devuelto por `GetBaseUri`), convierte un URI absoluto en un URI relativo al prefijo del URI base. |
 
 El siguiente componente navega al componente `Counter` de la aplicación cuando se selecciona el botón:
 

@@ -1,50 +1,36 @@
 ---
-title: Hospedaje e implementación de ASP.NET CoreBlazor WebAssembly
-author: guardrex
-description: Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: e136a401beffe9cc7e29906b3631ab3f068b30fd
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967602"
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
-# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedaje e implementación de Blazor WebAssembly con ASP.NET Core
+# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedaje e implementación de ASP.NET CoreBlazor WebAssembly
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams) y [Safia Abdalla](https://safia.rocks)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+Con el modelo de hospedaje de [Blazor WebAssembly ](xref:blazor/hosting-models#blazor-webassembly):
 
-Con el [modelo de hospedaje de Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly):
-
-* La aplicación Blazor, sus dependencias y el runtime de .NET se descargan en el explorador en paralelo.
+* La aplicación Blazor, sus dependencias y el entorno de ejecución de .NET se descargan en el explorador en paralelo.
 * La aplicación se ejecuta directamente en el subproceso de interfaz de usuario del explorador.
 
 Se admiten las estrategias de implementación siguientes:
 
-* Una aplicación ASP.NET Core proporciona la aplicación Blazor. Esta estrategia se trata en la sección [Implementación hospedada con ASP.NET Core](#hosted-deployment-with-aspnet-core).
-* La aplicación Blazor se coloca en un servicio o servidor web de hospedaje estático, donde no se usa .NET para proporcionar la aplicación Blazor. Esta estrategia se trata en la sección sobre [implementación independiente](#standalone-deployment), que incluye información sobre cómo hospedar una aplicación Blazor WebAssembly como una subaplicación de IIS.
+* Una aplicación ASP.NET Core suministra la aplicación Blazor. Esta estrategia se trata en la sección [Implementación hospedada con ASP.NET Core](#hosted-deployment-with-aspnet-core).
+* La aplicación Blazor se coloca en un servicio o servidor web de hospedaje estático, donde no se usa .NET para suministrar la aplicación Blazor. Esta estrategia se trata en la sección [Implementación independiente](#standalone-deployment), que incluye información sobre cómo hospedar una aplicación Blazor WebAssembly como una subaplicación de IIS.
 
 ## <a name="brotli-precompression"></a>Precompresión de Brotli
 
-Cuando se publica una aplicación Blazor WebAssembly, la salida se comprime previamente mediante el [algoritmo de compresión de Brotli](https://tools.ietf.org/html/rfc7932) en el nivel más alto para reducir el tamaño de la aplicación y eliminar la necesidad de compresión en tiempo de ejecución.
+Cuando se publica una aplicación WebAssembly de Blazor, la salida se comprime mediante el [algoritmo de compresión de Brotli](https://tools.ietf.org/html/rfc7932) en el nivel más alto para reducir el tamaño de la aplicación y quitar la necesidad de compresión en tiempo de ejecución.
 
 Para ver la configuración de compresión de *web.config* de IIS, vea la sección [IIS: compresión Brotli y Gzip](#brotli-and-gzip-compression).
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Reescritura de las URL para conseguir un enrutamiento correcto
 
-Enrutar las solicitudes para los componentes de la página en una aplicación Blazor WebAssembly no es tan sencillo como enrutar las solicitudes en una aplicación Blazor Server hospedada. Le recomendamos usar una aplicación Blazor WebAssembly más ligera con dos componentes:
+Enrutar las solicitudes de los componentes de página de una aplicación Blazor WebAssembly no es tan sencillo como enrutar las solicitudes de una aplicación Blazor Server hospedada. Se recomienda usar una aplicación Blazor WebAssembly con dos componentes:
 
 * *Main.razor*: se carga en la raíz de la aplicación y contiene un vínculo al componente `About` (`href="About"`).
 * *About.razor*: el componente `About`.
@@ -56,7 +42,7 @@ Cuando se solicita el documento predeterminado de la aplicación mediante la bar
 1. *index.html* arranca la aplicación.
 1. Se carga el enrutador de Blazor y se representa el componente `Main` de Razor.
 
-En la página principal, seleccionar el vínculo al componente `About` funciona en el cliente porque el enrutador de Blazor impide que el explorador haga una solicitud en Internet a `www.contoso.com` sobre `About` y presenta el propio componente `About` representado. Todas las solicitudes de puntos de conexión internos *dentro de la aplicación Blazor WebAssembly* funcionan del mismo modo: Las solicitudes no desencadenan solicitudes basadas en el explorador a recursos hospedados en el servidor en Internet. El enrutador controla las solicitudes de forma interna.
+En la página principal, la selección del vínculo al componente `About` funciona en el cliente porque el enrutador de Blazor impide que el explorador haga una solicitud en Internet a `www.contoso.com` sobre `About` y presenta el propio componente `About` representado. Todas las solicitudes de puntos de conexión internos *dentro de la aplicación Blazor WebAssembly* funcionan del mismo modo: Las solicitudes no desencadenan solicitudes basadas en el explorador a recursos hospedados en el servidor en Internet. El enrutador controla las solicitudes de forma interna.
 
 Si se realiza una solicitud mediante la barra de direcciones del explorador para `www.contoso.com/About`, se produce un error. Este recurso no existe en el host de Internet de la aplicación, por lo que se devuelve una respuesta *404 No encontrado*.
 
@@ -66,9 +52,9 @@ Al implementar en un servidor IIS, puede usar el módulo URL Rewrite con el arch
 
 ## <a name="hosted-deployment-with-aspnet-core"></a>Implementación hospedada con ASP.NET Core
 
-Una *implementación hospedada* se encarga de proporcionar la aplicación Blazor WebAssembly a los exploradores desde una [aplicación ASP.NET Core](xref:index) que se ejecuta en un servidor web.
+Una *implementación hospedada* se encarga de suministrar la aplicación Blazor WebAssembly a los exploradores desde una [aplicación ASP.NET Core](xref:index) que se ejecuta en un servidor web.
 
-La aplicación cliente Blazor WebAssembly se publica en la carpeta */bin/Release/{MARCO DE DESTINO}/publish/wwwroot* de la aplicación de servidor, junto con cualquier otro recurso web estático de la aplicación de servidor. Las dos aplicaciones se implementan juntas. Se requiere un servidor web que pueda hospedar una aplicación ASP.NET Core. En el caso de una implementación hospedada, Visual Studio incluye la plantilla de proyecto  **Aplicación WebAssembly de Blazor** (plantilla `blazorwasm` al usar el comando [dotnet new](/dotnet/core/tools/dotnet-new)) con la opción **Hospedado** seleccionada (`-ho|--hosted` al usar el comando `dotnet new`).
+La aplicación WebAssembly del cliente Blazor se publica en la carpeta */bin/Release/{MARCO DE DESTINO}/publish/wwwroot* de la aplicación de servidor, junto con cualquier otro recurso web estático de la aplicación de servidor. Las dos aplicaciones se implementan juntas. Se requiere un servidor web que pueda hospedar una aplicación ASP.NET Core. En el caso de una implementación hospedada, Visual Studio incluye la plantilla de proyecto **Blazor WebAssembly App** (la plantilla `blazorwasm` al usar el comando [dotnet new](/dotnet/core/tools/dotnet-new)) con la opción **Hosted** (Hospedada) seleccionada (`-ho|--hosted` al usar el comando `dotnet new`).
 
 Para obtener más información sobre la implementación y el hospedaje de aplicaciones de ASP.NET Core, consulte <xref:host-and-deploy/index>.
 
@@ -76,19 +62,19 @@ Para obtener información sobre cómo implementar en Azure App Service, vea <xre
 
 ## <a name="standalone-deployment"></a>Implementación independiente
 
-Una *implementación independiente* proporciona la aplicación Blazor WebAssembly como un conjunto de archivos estáticos que los clientes solicitan directamente. Cualquier servidor de archivos estático es capaz de servir a la aplicación Blazor.
+Una *implementación independiente* suministra la aplicación Blazor WebAssembly como un conjunto de archivos estáticos que los clientes solicitan directamente. Cualquier servidor de archivos estático es capaz de suministrar la aplicación Blazor.
 
 Los activos de implementación independientes se publican en la carpeta */bin/Release/{MARCO DE DESTINO}/publish/wwwroot*.
 
 ### <a name="azure-app-service"></a>Azure App Service
 
-Las aplicaciones WebAssembly de Blazor se pueden implementar en Azure App Service en Windows, que hospeda la aplicación en [IIS](#iis).
+Las aplicaciones Blazor WebAssembly se pueden implementar en Azure App Service en Windows, que hospeda la aplicación en [IIS](#iis).
 
-Actualmente no se admite la implementación de una aplicación WebAssembly de Blazor independiente en Azure App Service para Linux. En este momento no hay disponible una imagen de servidor de Linux para hospedar la aplicación. Se está trabajando para habilitar este escenario.
+Actualmente no se admite la implementación de una aplicación Blazor WebAssembly independiente en Azure App Service para Linux. En este momento no hay disponible una imagen de servidor de Linux para hospedar la aplicación. Se está trabajando para habilitar este escenario.
 
 ### <a name="iis"></a>IIS
 
-IIS es un servidor de archivos estáticos compatible con las aplicaciones de Blazor. Para configurar IIS para hospedar Blazor, vea [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis) (Compilación de un sitio web estático en IIS).
+IIS es un servidor de archivos estáticos compatible con las aplicaciones Blazor. Para configurar IIS para hospedar Blazor, consulte [Compilación de un sitio web estático en IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Los recursos publicados se crean en la carpeta */bin/Release/{TARGET FRAMEWORK}/publish*. Hospede el contenido de la carpeta *publish* en el servidor web o el servicio de hospedaje.
 
@@ -133,7 +119,7 @@ Si una aplicación independiente se hospeda como una subaplicación de IIS, real
 
 * Deshabilite el controlador del módulo de ASP.NET Core heredado.
 
-  Para quitar el controlador del archivo *web.config* publicado de la aplicación de Blazor, agregue una sección `<handlers>` al archivo:
+  Para quitar el controlador del archivo Blazorweb.config*publicado de la aplicación*, agregue una sección `<handlers>` al archivo:
 
   ```xml
   <handlers>
@@ -161,11 +147,11 @@ Además de [configurarse la ruta de acceso base de la aplicación](xref:host-and
 
 #### <a name="brotli-and-gzip-compression"></a>Compresión Brotli y Gzip
 
-IIS se puede configurar mediante *web.config* para dar servicio a recursos de Blazor comprimidos con Brotli o Gzip. Para ver una configuración de ejemplo, vea [web.config](webassembly/_samples/web.config?raw=true).
+IIS se puede configurar a través de *web.config* para dar servicio a activos de Blazor comprimidos con Brotli o Gzip. Para ver una configuración de ejemplo, vea [web.config](webassembly/_samples/web.config?raw=true).
 
 #### <a name="troubleshooting"></a>Solución de problemas
 
-Si se recibe un error *500 Error interno del servidor* y el administrador de IIS produce errores al intentar acceder a la configuración del sitio web, confirme que el módulo URL Rewrite está instalado. Si no lo está, IIS no puede analizar el archivo *web.config*. Esto impide que el Administrador de IIS cargue la configuración del sitio web y que el sitio web proporcione los archivos estáticos de Blazor.
+Si se recibe un error *500 Error interno del servidor* y el administrador de IIS produce errores al intentar acceder a la configuración del sitio web, confirme que el módulo URL Rewrite está instalado. Si no lo está, IIS no puede analizar el archivo *web.config*. Esto impide que el Administrador de IIS cargue la configuración del sitio web y que el sitio web suministre los archivos estáticos de Blazor.
 
 Para obtener más información sobre cómo solucionar problemas de las implementaciones en IIS, vea <xref:test/troubleshoot-azure-iis>.
 
@@ -176,7 +162,7 @@ El hospedaje de archivos estáticos de [Azure Storage](/azure/storage/) permite 
 Cuando el servicio de blob está habilitado para el hospedaje de sitios web estáticos en una cuenta de almacenamiento:
 
 * Establece el **nombre de documento de índice** en `index.html`.
-* Establece la **ruta de acceso del documento de error** en `index.html`. Los componentes Razor y otros puntos de conexión que no son de archivo no residen en las rutas de acceso físicas del contenido estático almacenado por el servicio de blob. Cuando se recibe una solicitud de uno de estos recursos que debe controlar el enrutador de Blazor, el error *404: no encontrado* generado por el servicio de blob enruta la solicitud a la **ruta de acceso del documento de error**. Se devuelve el blob *index.html* y el enrutador de Blazor carga y procesa la ruta de acceso.
+* Establece la **ruta de acceso del documento de error** en `index.html`. Los componentes Razor y otros puntos de conexión que no son de archivo no residen en las rutas de acceso físicas del contenido estático almacenado por el servicio de blob. Cuando se recibe una solicitud de uno de estos recursos que debe controlar el enrutador de Blazor, el error *404 - No encontrado* generado por el servicio de blob enruta la solicitud a la **ruta de acceso del documento de error**. Se devuelve el blob *index.html* y el enrutador de Blazor carga y procesa la ruta de acceso.
 
 Para más información, consulte [Hospedaje de sitios web estáticos en Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
@@ -202,7 +188,7 @@ Para obtener más información sobre la configuración del servidor web de produ
 
 ### <a name="nginx-in-docker"></a>Nginx en Docker
 
-Para hospedar Blazor en Docker mediante Nginx, configure el Dockerfile para usar la imagen de Nginx basada en Alpine. Actualice el Dockerfile para copiar el archivo *nginx.config* en el contenedor.
+Para hospedar Blazor en Docker mediante Nginx, configure Dockerfile para usar la imagen de Nginx basada en Alpine. Actualice el Dockerfile para copiar el archivo *nginx.config* en el contenedor.
 
 Agregue una línea al Dockerfile, como se muestra en el ejemplo siguiente:
 
@@ -214,7 +200,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ### <a name="apache"></a>Apache
 
-Para implementar una aplicación WebAssembly de Blazor en CentOS 7 o posterior:
+Para implementar una aplicación Blazor WebAssembly en CentOS 7 o posterior:
 
 1. Cree el archivo de configuración de Apache. El siguiente ejemplo es un archivo de configuración simplificado (*blazorapp.config*):
 
@@ -268,7 +254,7 @@ Al usar un sitio de proyecto en lugar de un sitio de la organización, agregue o
 
 ## <a name="host-configuration-values"></a>Valores de configuración de host
 
-Las [aplicaciones Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) pueden aceptar los siguientes valores de configuración de host como argumentos de línea de comandos en tiempo de ejecución en el entorno de desarrollo.
+Las aplicaciones [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) pueden aceptar los siguientes valores de configuración de host como argumentos de línea de comandos en tiempo de ejecución en el entorno de desarrollo.
 
 ### <a name="content-root"></a>Raíz del contenido
 
@@ -341,7 +327,7 @@ El argumento `--urls` establece las direcciones IP o las direcciones de host con
 
 ## <a name="configure-the-linker"></a>Configurar el enlazador
 
-Blazor realiza una vinculación de lenguaje intermedio (IL) en cada compilación de versión para quitar el IL innecesario de los ensamblados de salida. Para obtener más información, vea <xref:host-and-deploy/blazor/configure-linker>.
+Blazor realiza la vinculación de lenguaje intermedio (IL) en cada compilación de lanzamiento para quitar el IL innecesario de los ensamblados de salida. Para obtener más información, vea <xref:host-and-deploy/blazor/configure-linker>.
 
 ## <a name="custom-boot-resource-loading"></a>Carga de recursos de arranque personalizados
 
@@ -354,11 +340,69 @@ Una aplicación Blazor WebAssembly se puede inicializar con la función `loadBoo
 Los parámetros `loadBootResource` aparecen en la tabla siguiente.
 
 | Parámetro    | Descripción |
-| ------------ | ----------- |
-| `type`       | Tipo de recurso. Tipos permitidos: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
-| `name`       | Nombre del recurso. |
-| `defaultUri` | URI relativo o absoluto del recurso. |
-| `integrity`  | Cadena de integridad que representa el contenido esperado de la respuesta. |
+| ---
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | --- title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Hospedaje e implementación de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a hospedar e implementar una aplicación Blazor con ASP.NET Core, redes de entrega de contenido (CDN), servidores de archivos y páginas de GitHub".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | `type`       | Tipo del recurso. Tipos permitidos: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` | | `name`       | El nombre del recurso. | | `defaultUri` | URI relativo o absoluto del recurso. | | `integrity`  | Cadena de integridad que representa el contenido esperado de la respuesta. |
 
 `loadBootResource` devuelve cualquiera de los siguientes elementos para invalidar el proceso de carga:
 
@@ -427,11 +471,23 @@ dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" 
 ((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
 ```
 
+Si los recursos de trabajo de servicio también están en uso, agregue el siguiente comando:
+
+```powershell
+((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
+```
+
 En Linux o macOS:
 
 ```console
 for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+```
+
+Si los recursos de trabajo de servicio también están en uso, agregue el siguiente comando:
+
+```console
+sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
 ```
    
 Para usar una extensión de archivo diferente a *.bin*, reemplace *.bin* en los comandos anteriores.
@@ -440,6 +496,8 @@ Para manipular los archivos comprimidos *blazor.boot.json.gz* y *blazor.boot.jso
 
 * Quite los archivos comprimidos *blazor.boot.json.gz* y *blazor.boot.json.br*. Con este enfoque, la compresión está deshabilitada.
 * Vuelva a comprimir el archivo *blazor.boot.json* actualizado.
+
+Las instrucciones anteriores también se aplican cuando se usan recursos de trabajo de servicio. Quite o vuelva a comprimir *wwwroot/service-worker-assets.js.br* y *wwwroot/service-worker-assets.js.gz*. De lo contrario, las comprobaciones de integridad de los archivos producirán errores en el explorador.
 
 En el siguiente ejemplo de Windows se usa un script de PowerShell colocado en la raíz del proyecto.
 
@@ -452,6 +510,12 @@ dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { 
 Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 ```
 
+Si los recursos de trabajo de servicio también están en uso, agregue el siguiente comando:
+
+```powershell
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
+```
+
 En el archivo del proyecto, el script se ejecuta después de publicar la aplicación:
 
 ```xml
@@ -461,3 +525,4 @@ En el archivo del proyecto, el script se ejecuta después de publicar la aplicac
 ```
 
 Para proporcionar comentarios, visite [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
+ 

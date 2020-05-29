@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 7601e448a52be5e1064326929281e72ad28a0e65
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: cca4d8ce0c783f26f33cb7b2b1535a4bc53384d6
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967160"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424343"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Control de errores en aplicaciones Blazor de ASP.NET Core
 
@@ -92,7 +92,7 @@ Servidor Blazor es un marco con estado. Mientras los usuarios interactúan con u
 
 Si un usuario abre la aplicación en varias pestañas del explorador, tiene varios circuitos independientes.
 
-Blazor trata la mayoría de las excepciones no controladas como graves para el circuito en el que se producen. Si se finaliza un circuito debido a una excepción no controlada, el usuario solo puede seguir interactuando con la aplicación si recarga la página para crear otro circuito. Los circuitos externos al que se ha finalizado, que son circuitos para otros usuarios u otras pestañas del explorador, no se ven afectados. Este escenario es similar a una aplicación de escritorio que se bloquea; la aplicación bloqueada se tiene que reiniciar, pero otras aplicaciones no se ven afectadas.
+Blazor trata la mayoría de las excepciones no controladas como graves para el circuito en el que se producen. Si se finaliza un circuito debido a una excepción no controlada, el usuario solo puede seguir interactuando con la aplicación si recarga la página para crear otro circuito. Los circuitos externos al que se ha finalizado, que son circuitos para otros usuarios u otras pestañas del explorador, no se ven afectados. Este escenario es parecido a cuando una aplicación de escritorio se bloquea. La aplicación bloqueada debe reiniciarse, pero otras no resultan afectadas.
 
 Un circuito finaliza cuando se produce una excepción no controlada por los siguientes motivos:
 
