@@ -451,8 +451,8 @@ Durante una operación de autenticación, hay casos en los que desea guardar el 
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 <RemoteAuthenticatorViewCore Action="@Action" 
-    AuthenticationState="AuthenticationState" OnLoginSucceded="RestoreState" 
-    OnLogoutSucceded="RestoreState" />
+    AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
+    OnLogOutSucceeded="RestoreState" />
 
 @code {
     [Parameter]
@@ -490,7 +490,7 @@ Durante una operación de autenticación, hay casos en los que desea guardar el 
 
 De forma predeterminada, la biblioteca [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) usa las rutas que se muestran en la tabla siguiente para representar distintos Estados de autenticación.
 
-| Ruta                            | Propósito |
+| Ruta                            | Finalidad |
 | ---
 Título: ' ASP.NET Core Blazor Webassembly escenarios de seguridad adicionales ' Author: Description: ' obtenga información sobre cómo configurar Blazor webassembly para escenarios de seguridad adicionales '.
 monikerRange: ms.author: ms.custom: ms.date: no-loc:
