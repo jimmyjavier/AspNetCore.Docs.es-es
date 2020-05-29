@@ -1,30 +1,16 @@
 ---
-title: Modelos de hospedaje Blazor en ASP.NET Core
-author: guardrex
-description: Comprenda los modelos de hospedaje Blazor WebAssembly y de Servidor Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/31/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/hosting-models
-ms.openlocfilehash: 524fd015278d1a5f784fa306f077d06b865201c4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772092"
+title: "Modelos de hospedaje de ASP.NET Core Blazor" author: description: "Conozca los modelos de hospedaje de Blazor WebAssembly y Blazor Server".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
 
 Por [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor es un marco web diseñado para ejecutar el lado cliente en el explorador en un entorno de tiempo de ejecución de .NET basado en [WebAssembly](https://webassembly.org/) ( *Blazor WebAssembly*) o el lado servidor en ASP.NET Core (*Servidor Blazor* ). Independientemente del modelo de hospedaje, los modelos de la aplicación y los componentes *son los mismos*.
 

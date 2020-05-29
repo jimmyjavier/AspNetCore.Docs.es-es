@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: ec2bc2867acdd1c9be42f77cb38be36abb8c8108
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: d7182594fbc22d056caff0864a053a0a92fa4e84
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967485"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83438894"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Formularios y validación de Blazor de ASP.NET Core
 
@@ -65,7 +65,7 @@ En el ejemplo anterior:
 
 * El formulario valida la entrada del usuario en el campo `name` por medio de la validación definida en el tipo `ExampleModel`. El modelo se crea en el bloque `@code` del componente y se conserva en un campo privado (`exampleModel`). El campo se asigna al atributo `Model` del elemento `<EditForm>`.
 * El elemento `@bind-Value` del componente `InputText` enlaza:
-  * La propiedad del modelo (`exampleModel.Name`) a la propiedad `Value` del componente `InputText`.
+  * La propiedad del modelo (`exampleModel.Name`) a la propiedad `Value` del componente `InputText`. Para más información sobre el enlace de propiedades, consulte <xref:blazor/data-binding#parent-to-child-binding-with-component-parameters>.
   * Un delegado de evento de cambio a la propiedad `ValueChanged` del componente `InputText`.
 * El componente `DataAnnotationsValidator` adjunta la compatibilidad con la validación mediante anotaciones de datos.
 * El componente `ValidationSummary` resume los mensajes de validación.
@@ -202,7 +202,7 @@ En el ejemplo siguiente:
 * Se ejecutará más código en función del resultado de la validación del lado cliente y del lado servidor, mediante la comprobación de `isValid`.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
 
     ...
 

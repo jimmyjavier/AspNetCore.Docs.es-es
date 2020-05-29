@@ -1,30 +1,16 @@
 ---
-title: Depuración de WebAssembly de Blazor en ASP.NET Core
-author: guardrex
-description: Obtenga información sobre cómo depurar aplicaciones Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/16/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/debug
-ms.openlocfilehash: 9acbb8e7b122a8d527d16ce33af01c2e7e7608bf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767543"
+title: "Depuración de ASP.NET Core Blazor WebAssembly" author: description: "Aprenda a depurar aplicaciones Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Depuración de WebAssembly de Blazor en ASP.NET Core
 
 [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Las aplicaciones de Blazor WebAssembly se pueden depurar con las herramientas de desarrollo del explorador en exploradores basados en Chromium (Edge/Chrome).  También puede depurar la aplicación con Visual Studio o Visual Studio Code.
 
@@ -58,8 +44,6 @@ La depuración requiere cualquiera de los exploradores siguientes:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitación de la depuración para Visual Studio y Visual Studio Code
 
-La depuración está habilitada de manera automática para los proyectos nuevos que se crean con la plantilla de proyecto de WebAssembly de Blazor de ASP.NET Core 3.2 Preview 3 o posterior ([la versión actual es 3.2 Preview 4](xref:blazor/get-started)).
-
 Para habilitar la depuración de una aplicación de Blazor WebAssembly existente, actualice el archivo *launchSettings.json* del proyecto de inicio para incluir la propiedad `inspectUri` siguiente en cada perfil de inicio:
 
 ```json
@@ -79,7 +63,6 @@ La propiedad `inspectUri`:
 
 Para depurar una aplicación de Blazor WebAssembly en Visual Studio:
 
-1. Asegúrese de haber [instalado la versión preliminar más reciente de Visual Studio 2019 16.6](https://visualstudio.com/preview) (Preview 2 o posterior).
 1. Cree una nueva aplicación de Blazor WebAssembly hospedada por ASP.NET Core.
 1. Presione <kbd>F5</kbd> para ejecutar la aplicación en el depurador.
 1. Establezca un punto de interrupción en *Counter.razor* en el método `IncrementCount`.

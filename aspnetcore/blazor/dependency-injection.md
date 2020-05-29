@@ -1,34 +1,20 @@
 ---
-title: Inserción de dependencias de Blazor de ASP.NET Core
-author: guardrex
-description: Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/dependency-injection
-ms.openlocfilehash: e96698bd0bd8f3f3b290ba24bc8169efb16f1d03
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967537"
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Inserción de dependencias de Blazor de ASP.NET Core
 
 Por [Rainer Stropek](https://www.timecockpit.com) y [Mike Rousos](https://github.com/mjrousos)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+Blazor admite la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Las aplicaciones pueden usar servicios integrados mediante su inserción en componentes. Las aplicaciones también pueden definir y registrar servicios personalizados y hacer que estén disponibles en toda la aplicación a través de la inserción de dependencias.
 
-Blazor es compatible con la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Las aplicaciones pueden usar servicios integrados mediante su inserción en componentes. Las aplicaciones también pueden definir y registrar servicios personalizados y hacer que estén disponibles en toda la aplicación a través de la inserción de dependencias.
-
-La inserción de dependencias es una técnica para acceder a los servicios configurados en una ubicación central. Esto puede resultar en las aplicaciones Blazor para:
+La inserción de dependencias es una técnica para acceder a los servicios configurados en una ubicación central. Esto puede ser útil en aplicaciones Blazor para:
 
 * Compartir una única instancia de una clase de servicio entre varios componentes, lo que se conoce como servicio *singleton*.
 * Desacoplar componentes de clases de servicio concretas mediante abstracciones de referencia. Por ejemplo, considere una interfaz `IDataAccess` para acceder a los datos de la aplicación. La interfaz se implementa mediante una clase `DataAccess` concreta y se registra como un servicio en el contenedor de servicios de la aplicación. Cuando un componente usa la inserción de dependencias para recibir una implementación de `IDataAccess`, el componente no se acopla al tipo concreto. La implementación se puede intercambiar, posiblemente para una implementación ficticia en pruebas unitarias.
@@ -38,16 +24,65 @@ La inserción de dependencias es una técnica para acceder a los servicios confi
 Los servicios predeterminados se agregan de forma automática a la colección de servicios de la aplicación.
 
 | web de Office | Período de duración | Descripción |
-| ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Transitorio | Proporciona métodos para enviar solicitudes HTTP y recibir respuestas HTTP de un recurso identificado por un URI.<br><br>La instancia de `HttpClient` en una aplicación WebAssembly de Blazor usa el explorador para administrar el tráfico HTTP en segundo plano.<br><br>Las aplicaciones de servidor Blazor no incluyen un objeto `HttpClient` configurado como servicio de forma predeterminada. Proporcione un objeto `HttpClient` a una aplicación de servidor Blazor.<br><br>Para obtener más información, vea <xref:blazor/call-web-api>. |
-| `IJSRuntime` | Singleton (WebAssembly de Blazor)<br>Con ámbito (servidor Blazor) | Representa una instancia de un entorno de ejecución de JavaScript en la que se envían las llamadas de JavaScript. Para obtener más información, vea <xref:blazor/call-javascript-from-dotnet>. |
-| `NavigationManager` | Singleton (WebAssembly de Blazor)<br>Con ámbito (servidor Blazor) | Contiene asistentes para trabajar con URI y el estado de navegación. Para obtener más información, vea [Asistentes de URI y estado de navegación](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| ---
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | <xref:System.Net.Http.HttpClient> | Transient | Proporciona métodos para enviar solicitudes HTTP y recibir respuestas HTTP de un recurso identificado por un URI.<br><br>La instancia `HttpClient` en una aplicación Blazor WebAssembly usa el explorador para administrar el tráfico HTTP en segundo plano.<br><br>Las aplicaciones Blazor Server no incluyen un objeto `HttpClient` configurado como servicio de forma predeterminada. Proporcione un objeto `HttpClient` a una aplicación Blazor Server.<br><br>Para obtener más información, vea <xref:blazor/call-web-api>. | | `IJSRuntime` | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Representa una instancia de un entorno de ejecución de JavaScript en la que se envían las llamadas de JavaScript. Para obtener más información, vea <xref:blazor/call-javascript-from-dotnet>. | | `NavigationManager` | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Contiene asistentes para trabajar con URI y el estado de navegación. Para obtener más información, vea [Asistentes de URI y estado de navegación](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Un proveedor de servicios personalizado no proporciona automáticamente los servicios predeterminados que aparecen en la tabla. Si usa un proveedor de servicios personalizado y necesita cualquiera de los servicios que se muestran en la tabla, agregue los servicios necesarios al nuevo proveedor de servicios.
 
 ## <a name="add-services-to-an-app"></a>Adición de servicios a una aplicación
 
-### <a name="blazor-webassembly"></a>WebAssembly de Blazor
+### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 Configure los servicios de la colección de servicios de la aplicación en el método `Main` de *Program.cs*. En el ejemplo siguiente, la implementación de `MyDependency` se registra para `IMyDependency`:
 
@@ -108,7 +143,7 @@ public class Program
 }
 ```
 
-### <a name="blazor-server"></a>Servidor Blazor
+### <a name="blazor-server"></a>Servidor de Blazor
 
 Después de crear una aplicación, examine el método `Startup.ConfigureServices`:
 
@@ -133,10 +168,51 @@ public void ConfigureServices(IServiceCollection services)
 Los servicios se pueden configurar con las duraciones que se muestran en la tabla siguiente.
 
 | Período de duración | Descripción |
-| -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Las aplicaciones WebAssembly de Blazor no tienen actualmente un concepto de ámbitos de inserción de dependencias. Los servicios registrados con `Scoped` se comportan como servicios `Singleton`. Pero el modelo de hospedaje del servidor Blazor admite la duración `Scoped`. En las aplicaciones de servidor Blazor, el ámbito del registro de un servicio con ámbito es la *conexión*. Por este motivo, se prefiere el uso de servicios con ámbito para los servicios que deben tener el ámbito del usuario actual, aunque la intención actual sea ejecutar el lado cliente en el explorador. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La inserción de dependencias crea una *sola instancia* del servicio. Todos los componentes que requieren un servicio `Singleton` reciben una instancia del mismo servicio. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Cada vez que un componente obtiene una instancia de un servicio `Transient` del contenedor de servicios, recibe una *nueva instancia* del servicio. |
+| ---
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Inserción de dependencias de ASP.NET Core Blazor" author: description: "Vea cómo las aplicaciones Blazor pueden insertar servicios en los componentes".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | Las aplicaciones <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly no tienen actualmente un concepto de ámbitos de inserción de dependencias. Los servicios registrados con `Scoped` se comportan como servicios `Singleton`. Pero el modelo de hospedaje del servidor Blazor admite la duración `Scoped`. En las aplicaciones de servidor Blazor, el ámbito del registro de un servicio con ámbito es la *conexión*. Por este motivo, se prefiere el uso de servicios con ámbito para los servicios que deben tener el ámbito del usuario actual, aunque la intención actual sea ejecutar el lado cliente en el explorador. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La inserción de dependencias crea una *sola instancia* del servicio. Todos los componentes que requieren un servicio `Singleton` reciben una instancia del mismo servicio. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Cada vez que un componente obtiene una instancia de un servicio `Transient` del contenedor de servicios, recibe una *nueva instancia* del servicio. |
 
 El sistema de inserción de dependencias se basa en el sistema de inserción de dependencias de ASP.NET Core. Para obtener más información, vea <xref:fundamentals/dependency-injection>.
 
@@ -153,7 +229,7 @@ Use varias instrucciones `@inject` para insertar distintos servicios.
 
 En el ejemplo siguiente se muestra cómo utilizar `@inject`. El servicio que implementa `Services.IDataAccess` se inserta en la propiedad `DataRepository` del componente. Observe cómo el código solo usa la abstracción de `IDataAccess`:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
+[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
 
 De forma interna, la propiedad generada (`DataRepository`) usa el atributo `InjectAttribute`. Normalmente, este atributo no se usa de manera directa. Si se necesita una clase base para los componentes y las propiedades insertadas también son necesarias para la clase base, agregue manualmente `InjectAttribute`:
 

@@ -1495,7 +1495,7 @@ Adopte los procedimientos siguientes para proteger los datos de configuración c
 Para obtener más información, vea los temas siguientes:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets> &ndash; Se incluyen recomendaciones sobre el uso de variables de entorno para almacenar información confidencial. El Administrador de secretos usa el proveedor de configuración de archivo para almacenar secretos de usuario en un archivo JSON del sistema local. El proveedor de configuración de archivo se describe más adelante en este tema.
+* <xref:security/app-secrets>: incluye recomendaciones sobre el uso de variables de entorno para almacenar información confidencial. El Administrador de secretos usa el proveedor de configuración de archivo para almacenar secretos de usuario en un archivo JSON del sistema local. El proveedor de configuración de archivo se describe más adelante en este tema.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) almacena de forma segura secretos de aplicación para aplicaciones de ASP.NET Core. Para obtener más información, vea <xref:security/key-vault-configuration>.
 
@@ -3028,8 +3028,8 @@ Las sobrecargas permiten especificar:
 
 Se llama automáticamente a `AddJsonFile` dos veces cuando un nuevo generador de host se inicializa con `CreateDefaultBuilder`. Se llama al método para cargar la configuración desde:
 
-* *appsettings.json*: este archivo se lee primero. La versión del entorno del archivo puede invalidar los valores que proporciona el archivo *appsettings.json*.
-* *appsettings.{Environment}.json*: la versión del entorno del archivo se carga en función de [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+* *appsettings.json*: Este archivo se lee primero. La versión del entorno del archivo puede invalidar los valores que proporciona el archivo *appsettings.json*.
+* *appsettings.{Environment}.json*: La versión del entorno del archivo se carga en función de [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 Para obtener más información, vea la sección [Configuración predeterminada](#default-configuration).
 

@@ -1,54 +1,361 @@
 ---
-title: Plataformas admitidas de Blazor de ASP.NET Core
-author: guardrex
-description: Obtenga información sobre las plataformas admitidas en Blazor de ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 12/18/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/supported-platforms
-ms.openlocfilehash: 1c78803e6468f924bf8c8e9403a34565b114006f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771121"
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-supported-platforms"></a>Plataformas admitidas de Blazor de ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 ## <a name="browser-requirements"></a>Requisitos del explorador
 
-### <a name="blazor-webassembly"></a>WebAssembly de Blazor
+### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 | Explorador                          | Versión               |
-| -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Current               |
-| Mozilla Firefox                  | Current               |
-| Google Chrome, incluido Android | Current               |
-| Safari, incluido iOS            | Current               |
-| Microsoft Internet Explorer      | No admitidas&dagger; |
+| ---
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---------------- | :--- title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----------: | | Microsoft Edge                   | Actual               | | Mozilla Firefox                  | Actual               | | Google Chrome, incluido Android | Actual               | | Safari, incluido iOS            | Actual               | | Microsoft Internet Explorer      | No admitido&dagger; |
 
 &dagger;Microsoft Internet Explorer no admite [WebAssembly](https://webassembly.org).
 
-### <a name="blazor-server"></a>Servidor Blazor
+### <a name="blazor-server"></a>Servidor de Blazor
 
 | Explorador                          | Versión    |
-| -------------------------------- | :--------: |
-| Microsoft Edge                   | Current    |
-| Mozilla Firefox                  | Current    |
-| Google Chrome, incluido Android | Current    |
-| Safari, incluido iOS            | Current    |
-| Microsoft Internet Explorer      | 11&dagger; |
+| ---
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---------------- | :--- title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Plataformas admitidas por ASP.NET Core Blazor" author: description: "Conozca las plataformas admitidas en ASP.NET Core Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----: | | Microsoft Edge                   | Actual    | | Mozilla Firefox                  | Actual    | | Google Chrome, incluido Android | Actual    | | Safari, incluido iOS            | Actual    | | Microsoft Internet Explorer      | 11&dagger; |
 
 &dagger;Se requieren más polyfill (por ejemplo, se pueden agregar promesas a través de un paquete [Polyfill.io](https://polyfill.io/v3/)).
 

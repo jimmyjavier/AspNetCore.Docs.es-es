@@ -1,32 +1,18 @@
 ---
-title: Configuración del enlazador de ASP.NET Core Blazor
-author: guardrex
-description: Aprenda a controlar al enlazador de lenguaje intermedio (IL) al crear una aplicación Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: b274752b375f68cca0c0a9adf9c146bc525d9eba
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775185"
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configuración del enlazador para ASP.NET Core Blazor
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configuración del enlazador de ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-WebAssembly de Blazor realiza la vinculación de [lenguaje intermedio (IL)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilación para reducir el IL innecesario de los ensamblados de salida de la aplicación. El enlazador está deshabilitado durante la compilación en la configuración Debug. Las aplicaciones deben compilarse en la configuración Release para habilitar el enlazador. Se recomienda compilar en Release cuando se implementen las aplicaciones WebAssembly de Blazor. 
+Blazor WebAssembly realiza la vinculación de [lenguaje intermedio (IL)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilación para reducir el IL innecesario de los ensamblados de salida de la aplicación. El enlazador está deshabilitado durante la compilación en la configuración Debug. Las aplicaciones deben compilarse en la configuración Release para habilitar el enlazador. Se recomienda compilar en Release cuando se implementen las aplicaciones Blazor WebAssembly. 
 
 La vinculación de una aplicación optimiza el tamaño, pero puede tener efectos perjudiciales. Las aplicaciones que usan la reflexión o características dinámicas relacionadas pueden verse interrumpidas cuando se reduzcan porque el enlazador no conoce este comportamiento dinámico y no puede determinar, en general, qué tipos son necesarios para la reflexión en el entorno de ejecución. Para reducir estas aplicaciones, se debe informar al vinculador de los tipos necesarios para la reflexión en el código y en los paquetes o marcos de trabajo de los que depende la aplicación. 
 
@@ -107,7 +93,7 @@ En el ejemplo siguiente, el archivo *LinkerConfig.xml* se especifica como un rec
 
 ### <a name="configure-the-linker-for-internationalization"></a>Configuración del enlazador para la internacionalización
 
-De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones Blazor WebAssembly quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Al quitar estos ensamblados se minimiza el tamaño de la aplicación.
+De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones WebAssembly de Blazor quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Al quitar estos ensamblados se minimiza el tamaño de la aplicación.
 
 Para controlar qué ensamblados de I18N se conservan, establezca la propiedad `<BlazorWebAssemblyI18NAssemblies>` de MSBuild en el archivo de proyecto:
 
@@ -118,15 +104,146 @@ Para controlar qué ensamblados de I18N se conservan, establezca la propiedad `<
 ```
 
 | Valor de región     | Ensamblado de región de Mono    |
-| ---------------- | ----------------------- |
-| `all`            | Todos los ensamblados incluidos |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
-| `none` (valor predeterminado) | None                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| ---
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-------- | --- title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Configuración del enlazador para ASP.NET Core Blazor" autor: descripción: "Aprenda a controlar al enlazador de lenguaje intermedio (IL) al compilar una aplicación Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------------ | | `all`            | Todos los ensamblados incluidos | | `cjk`            | *I18N.CJK.dll*          | | `mideast`        | *I18N.MidEast.dll*      | | `none` (predeterminado) | Ninguno                    | | `other`          | *I18N.Other.dll*        | | `rare`           | *I18N.Rare.dll*         | | `west`           | *I18N.West.dll*         |
 
 Use una coma para separar varios valores (por ejemplo, `mideast,west`).
 
 Para más información, vea [I18N: biblioteca del marco de internacionalización Pnetlib (repositorio de GitHub mono/mono)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+* <xref:performance/blazor/webassembly-best-practices#intermediate-language-il-linking>

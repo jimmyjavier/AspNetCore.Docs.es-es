@@ -8,12 +8,12 @@ products:
 - aspnet-core
 - vs
 urlFragment: aspnetcore-webapi-mongodb
-ms.openlocfilehash: 09d73e25667822b8748a00cc76ad6d4f0e5fe290
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6f6022bee678af92066f45032b43b6b87e5f901e
+ms.sourcegitcommit: 7a42bc1e594de36c854fd4363c11821548a9efa7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511410"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83608673"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Creación de una API Web con ASP.NET Core y MongoDB
 
@@ -469,7 +469,7 @@ Hay dos detalles que cambiar sobre las respuestas JSON devueltas en la sección 
 
 Para satisfacer los requisitos anteriores, realice los cambios siguientes:
 
-1. JSON.NET se ha quitado de la plataforma compartida de ASP.NET. Agregue una referencia de paquete a [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
+1. JSON.NET se ha quitado de la plataforma compartida de ASP.NET. Agregue una referencia de paquete a [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
 
 1. En `Startup.ConfigureServices`, cambie el código resaltado siguiente en la llamada al método `AddMvc`:
 

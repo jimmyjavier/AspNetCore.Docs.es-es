@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: aa338bbe61eec14bc1e1b3606e11e26bfb0e6a09
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: 610cb9124f59ed07f1fe6193f92052b4513450c8
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967472"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424252"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Control de eventos de Blazor en ASP.NET Core
 
@@ -136,7 +136,7 @@ A menudo resulta cómodo cerrar los valores adicionales, como al recorrer en ite
 
 ## <a name="eventcallback"></a>EventCallback
 
-Un escenario común con los componentes anidados es el deseo de ejecutar el método de un componente primario cuando se produce un evento de componente secundario, por ejemplo, cuando se produce un evento `onclick` en el elemento secundario. Para exponer eventos entre componentes, use un elemento `EventCallback`. Un componente primario puede asignar un método de devolución de llamada al elemento `EventCallback` de un componente secundario.
+Un escenario común con los componentes anidados es el deseo de ejecutar el método de un componente primario cuando se produce un evento de un componente secundario. Un caso habitual es un evento `onclick` que se produce en el componente secundario. Para exponer eventos entre componentes, use un elemento `EventCallback`. Un componente primario puede asignar un método de devolución de llamada al elemento `EventCallback` de un componente secundario.
 
 El elemento `ChildComponent` de la aplicación de ejemplo (*Components/ChildComponent.razor*) muestra cómo se configura el controlador `onclick` de un botón para recibir un delegado de `EventCallback` del objeto `ParentComponent` del ejemplo. El elemento `EventCallback` tiene el tipo `MouseEventArgs`, que es adecuado para un evento `onclick` desde un dispositivo periférico:
 

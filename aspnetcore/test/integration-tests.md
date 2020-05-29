@@ -1,24 +1,11 @@
 ---
-title: Pruebas de integración en ASP.NET Core
-author: rick-anderson
-description: Obtenga información sobre cómo las pruebas de integración garantizan que los componentes de una aplicación, como la base de datos, el sistema de archivos y la red, funcionen correctamente en la infraestructura.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 01/06/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: test/integration-tests
-ms.openlocfilehash: a01d2881133f39c1a26e4724ae25336c54746bc5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766399"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Pruebas de integración en ASP.NET Core
 
@@ -32,11 +19,11 @@ En este artículo se da por hecho un conocimiento básico de las pruebas unitari
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-La aplicación de ejemplo es una aplicación de Razor Pages que da por hecho un conocimiento básico de Razor Pages. Si no está familiarizado con Razor Pages, vea los temas siguientes:
+La aplicación de ejemplo es una aplicación de Razor Pages que da por hecho un conocimiento básico de Razor Pages. Si no está familiarizado con Razor Pages, consulte los temas siguientes:
 
-* [Introducción a las páginas de Razor](xref:razor-pages/index)
-* [Introducción a las páginas de Razor](xref:tutorials/razor-pages/razor-pages-start)
-* [Pruebas unitarias de páginas de Razor](xref:test/razor-pages-tests)
+* [Introducción a Razor Pages](xref:razor-pages/index)
+* [Primeros pasos con Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* Pruebas unitarias de [Razor Pages](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Para probar SPA, se recomienda una herramienta como [Selenium](https://www.seleniumhq.org/), que puede automatizar un explorador.
@@ -103,7 +90,7 @@ En la documentación de las [pruebas unitarias](/dotnet/articles/core/testing/un
 > [!NOTE]
 > Al crear un proyecto de prueba para una aplicación, separe las pruebas unitarias de las pruebas de integración en proyectos diferentes. Esto ayuda a garantizar que los componentes de pruebas de infraestructura no se incluyan accidentalmente en las pruebas unitarias. La separación de las pruebas unitarias y de integración también permite controlar qué conjunto de pruebas se ejecuta.
 
-Prácticamente no hay ninguna diferencia entre la configuración de las pruebas de aplicaciones de Razor Pages y de MVC. La única diferencia es cómo se asigna nombre a las pruebas. En una aplicación de Razor Pages, las pruebas de puntos de conexión de página normalmente se denominan según la clase de modelo de página (por ejemplo, `IndexPageTests` para probar la integración de componentes de la página Index). En una aplicación de MVC, las pruebas suelen organizarse por clases de controlador y denominarse según los controladores que prueban (por ejemplo, `HomeControllerTests` para probar la integración de componentes del controlador Home).
+Prácticamente no hay ninguna diferencia entre la configuración de las pruebas de aplicaciones Razor Pages y MVC. La única diferencia es cómo se asigna nombre a las pruebas. En una aplicación Razor Pages, las pruebas de puntos de conexión de página normalmente se nombran según la clase del modelo de página (por ejemplo, `IndexPageTests` para probar la integración de los componentes de la página Index). En una aplicación de MVC, las pruebas suelen organizarse por clases de controlador y denominarse según los controladores que prueban (por ejemplo, `HomeControllerTests` para probar la integración de componentes del controlador Home).
 
 ## <a name="test-app-prerequisites"></a>Requisitos previos de la aplicación de prueba
 
@@ -155,6 +142,8 @@ La configuración de host web se puede crear independientemente de las clases de
    El método `InitializeDbForTests` realiza la propagación de la base de datos de la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples). El método se describe en la sección [Ejemplo de pruebas de integración: organización de la aplicación de prueba](#test-app-organization).
 
    El contexto de la base de datos del SUT se registra en su método `Startup.ConfigureServices`. La devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *después* de que se ejecute el código `Startup.ConfigureServices` de la aplicación. El orden de ejecución es un cambio importante para el [host genérico](xref:fundamentals/host/generic-host) con la versión de ASP.NET Core 3.0. Para usar una base de datos diferente para las pruebas a la base de datos de la aplicación, el contexto de la base de datos de la aplicación debe reemplazarse en `builder.ConfigureServices`.
+
+   En el caso de sistemas a prueba que todavía usan el [host web}(xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes que* el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
 
    La aplicación de ejemplo busca el descriptor de servicio del contexto de la base de datos y usa el descriptor para quitar el registro del servicio. Luego, la fábrica agrega una nueva instancia de `ApplicationDbContext` que usa una base de datos en memoria para las pruebas.
 
@@ -213,11 +202,45 @@ Dado que otra prueba en la clase `IndexPageTests` realiza una operación que eli
 En la tabla siguiente se muestran los elementos [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) predeterminados disponibles al crear instancias de `HttpClient`.
 
 | Opción | Descripción | Default |
-| ------ | ----------- | ------- |
-| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias de `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` |
-| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias de `HttpClient`. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias de `HttpClient` deben controlar las cookies. | `true` |
-| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias de `HttpClient`. | 7 |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias `HttpClient` deben administrar las cookies. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias `HttpClient`. | 7 |
 
 Cree la clase `WebApplicationFactoryClientOptions` y pásela al método [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (los valores predeterminados se muestran en el ejemplo de código):
 
@@ -289,7 +312,7 @@ Las pruebas de la clase `AuthTests` comprueban que un punto de conexión seguro:
 * Redirige a un usuario no autenticado a la página de inicio de sesión de la aplicación.
 * Devuelve el contenido de un usuario autenticado.
 
-En el SUT, la página `/SecurePage` usa una convención [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) para aplicar un elemento [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) a la página. Para obtener más información, vea [Convenciones de autorización de Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+En el SUT, la página `/SecurePage` usa una convención [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) para aplicar un elemento [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) a la página. Para más información, consulte las convenciones de autorización de [Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -314,16 +337,23 @@ Para obtener más información sobre `WebApplicationFactoryClientOptions`, vea l
 
 ## <a name="set-the-environment"></a>Establecimiento del entorno
 
-De forma predeterminada, el entorno de host y aplicación del SUT se configura para usar el entorno Desarrollo. Para invalidar el entorno del SUT:
+De forma predeterminada, el entorno de host y aplicación del SUT se configura para usar el entorno Desarrollo. Para invalidar el entorno del sistema a prueba al usar `IHostBuilder`:
 
 * Establezca la variable de entorno `ASPNETCORE_ENVIRONMENT` (por ejemplo, `Staging`, `Production` u otro valor personalizado, como `Testing`).
 * Invalide `CreateHostBuilder` en la aplicación de prueba para leer las variables de entorno con el prefijo `ASPNETCORE`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
+protected override IHostBuilder CreateHostBuilder() =>
     base.CreateHostBuilder()
         .ConfigureHostConfiguration(
             config => config.AddEnvironmentVariables("ASPNETCORE"));
+```
+
+Si el sistema a prueba usa el host web (`IWebHostBuilder`), invalide `CreateWebHostBuilder`:
+
+```csharp
+protected override IWebHostBuilder CreateWebHostBuilder() =>
+    base.CreateWebHostBuilder().UseEnvironment("Testing");
 ```
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Cómo deduce la infraestructura de prueba la ruta de acceso raíz del contenido de la aplicación
@@ -351,9 +381,78 @@ Una vez ejecutadas las pruebas de la implementación `IClassFixture`, [TestServe
 La [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) se compone de dos aplicaciones:
 
 | Aplicación | Directorio del proyecto | Descripción |
-| --- | ----------------- | ----------- |
-| Aplicación de mensajes (el SUT) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. |
-| Probar la aplicación | *tests/RazorPagesProject.Tests* | Se usa para probar la integración del SUT. |
+| --- | ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | Aplicación de mensaje (el sistema a prueba) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. | | Aplicación de prueba | *tests/RazorPagesProject.Tests* | Se usa para la prueba de integración del sistema a prueba. |
 
 Las pruebas se pueden ejecutar con las características de prueba integradas de un IDE, como [Visual Studio](https://visualstudio.microsoft.com). Si usa [Visual Studio Code](https://code.visualstudio.com/) o la línea de comandos, ejecute el siguiente comando en un símbolo del sistema del directorio *tests/RazorPagesProject.Tests*:
 
@@ -363,7 +462,7 @@ dotnet test
 
 ### <a name="message-app-sut-organization"></a>Organización de aplicación de mensajes (SUT)
 
-El SUT es un sistema de mensajes de Razor Pages con las siguientes características:
+El sistema a prueba es un sistema de mensajes de Razor Pages con las siguientes características:
 
 * La página Index de la aplicación (*Pages/Index.cshtml* y *Pages/Index.cshtml.cs*) proporciona una interfaz de usuario y métodos de modelo de página para controlar la adición, la eliminación y el análisis de mensajes (promedio de palabras por mensaje).
 * La clase `Message` (*Data/Message.cs*) describe un mensaje con dos propiedades: `Id` (clave) y `Text` (mensaje). Se necesita la propiedad `Text`, que está limitada a 200 caracteres.
@@ -374,18 +473,93 @@ El SUT es un sistema de mensajes de Razor Pages con las siguientes característi
 
 &#8224;En el tema de EF, [Pruebas con InMemory](/ef/core/miscellaneous/testing/in-memory), se explica cómo usar una base de datos en memoria para las pruebas con MSTest. En este tema se usa el marco de pruebas [xUnit](https://xunit.github.io/). Los conceptos y las implementaciones de prueba de diferentes marcos de pruebas son similares, pero no idénticos.
 
-Aunque la aplicación no usa el patrón del repositorio y no es un ejemplo eficaz del [patrón Unit of Work (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages admite estos patrones de desarrollo. Para obtener más información, vea [Diseño del nivel de persistencia de infraestructura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) y [Lógica del controlador de pruebas](/aspnet/core/mvc/controllers/testing) (el ejemplo implementa el patrón del repositorio).
+Aunque la aplicación no usa el patrón del repositorio y no es un buen ejemplo del [patrón de unidad de trabajo (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages admite estos patrones de desarrollo. Para obtener más información, vea [Diseño del nivel de persistencia de infraestructura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) y [Lógica del controlador de pruebas](/aspnet/core/mvc/controllers/testing) (el ejemplo implementa el patrón del repositorio).
 
 ### <a name="test-app-organization"></a>Organización de la aplicación de prueba
 
 La aplicación de prueba es una aplicación de consola dentro del directorio *tests/RazorPagesProject.Tests*.
 
 | Directorio de la aplicación de prueba | Descripción |
-| ------------------ | ----------- |
-| *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> |
-| *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. |
-| *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. |
-| *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> | | *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. | | *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. | | *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
 
 El marco de pruebas es [xUnit](https://xunit.github.io/). Las pruebas de integración se llevan a cabo con [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), que incluye [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Dado que el paquete [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) se usa para configurar el host de prueba y el servidor de pruebas, los paquetes `TestHost` y `TestServer` no requieren referencias de paquete directas en el archivo de proyecto o la configuración de desarrollador de la aplicación de prueba en la aplicación de prueba.
 
@@ -399,6 +573,8 @@ La aplicación de ejemplo propaga la base de datos con tres mensajes en *Utiliti
 
 El contexto de la base de datos del SUT se registra en su método `Startup.ConfigureServices`. La devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *después* de que se ejecute el código `Startup.ConfigureServices` de la aplicación. Para usar otra base de datos para las pruebas, el contexto de la base de datos de la aplicación debe reemplazarse en `builder.ConfigureServices`. Para obtener más información, vea la sección [Personalización de WebApplicationFactory](#customize-webapplicationfactory).
 
+En el caso de sistemas a prueba que todavía usan el [host web}(xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes que* el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -409,11 +585,11 @@ En este artículo se da por hecho un conocimiento básico de las pruebas unitari
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-La aplicación de ejemplo es una aplicación de Razor Pages que da por hecho un conocimiento básico de Razor Pages. Si no está familiarizado con Razor Pages, vea los temas siguientes:
+La aplicación de ejemplo es una aplicación de Razor Pages que da por hecho un conocimiento básico de Razor Pages. Si no está familiarizado con Razor Pages, consulte los temas siguientes:
 
-* [Introducción a las páginas de Razor](xref:razor-pages/index)
-* [Introducción a las páginas de Razor](xref:tutorials/razor-pages/razor-pages-start)
-* [Pruebas unitarias de páginas de Razor](xref:test/razor-pages-tests)
+* [Introducción a Razor Pages](xref:razor-pages/index)
+* [Primeros pasos con Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* Pruebas unitarias de [Razor Pages](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Para probar SPA, se recomienda una herramienta como [Selenium](https://www.seleniumhq.org/), que puede automatizar un explorador.
@@ -480,7 +656,7 @@ En la documentación de las [pruebas unitarias](/dotnet/articles/core/testing/un
 > [!NOTE]
 > Al crear un proyecto de prueba para una aplicación, separe las pruebas unitarias de las pruebas de integración en proyectos diferentes. Esto ayuda a garantizar que los componentes de pruebas de infraestructura no se incluyan accidentalmente en las pruebas unitarias. La separación de las pruebas unitarias y de integración también permite controlar qué conjunto de pruebas se ejecuta.
 
-Prácticamente no hay ninguna diferencia entre la configuración de las pruebas de aplicaciones de Razor Pages y de MVC. La única diferencia es cómo se asigna nombre a las pruebas. En una aplicación de Razor Pages, las pruebas de puntos de conexión de página normalmente se denominan según la clase de modelo de página (por ejemplo, `IndexPageTests` para probar la integración de componentes de la página Index). En una aplicación de MVC, las pruebas suelen organizarse por clases de controlador y denominarse según los controladores que prueban (por ejemplo, `HomeControllerTests` para probar la integración de componentes del controlador Home).
+Prácticamente no hay ninguna diferencia entre la configuración de las pruebas de aplicaciones Razor Pages y MVC. La única diferencia es cómo se asigna nombre a las pruebas. En una aplicación Razor Pages, las pruebas de puntos de conexión de página normalmente se nombran según la clase del modelo de página (por ejemplo, `IndexPageTests` para probar la integración de los componentes de la página Index). En una aplicación de MVC, las pruebas suelen organizarse por clases de controlador y denominarse según los controladores que prueban (por ejemplo, `HomeControllerTests` para probar la integración de componentes del controlador Home).
 
 ## <a name="test-app-prerequisites"></a>Requisitos previos de la aplicación de prueba
 
@@ -519,7 +695,7 @@ De forma predeterminada, las cookies no esenciales no se conservan entre solicit
 
 La configuración de host web se puede crear independientemente de las clases de prueba al heredar de `WebApplicationFactory` para crear una o más fábricas personalizadas:
 
-1. Herede de `WebApplicationFactory` e invalide [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) permite la configuración de la colección de servicios con [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices):
+1. Herede de `WebApplicationFactory` e invalide [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) permite la configuración de la colección de servicios con [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices), que se ejecuta antes del elemento `Startup.ConfigureServices` de la aplicación. [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) permite reemplazar y modificar los servicios registrados en la colección de servicios con [ConfigureTestServices](/dotnet/api/microsoft.aspnetcore.testhost.webhostbuilderextensions.configuretestservices):
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
@@ -567,11 +743,45 @@ Dado que otra prueba en la clase `IndexPageTests` realiza una operación que eli
 En la tabla siguiente se muestran los elementos [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) predeterminados disponibles al crear instancias de `HttpClient`.
 
 | Opción | Descripción | Default |
-| ------ | ----------- | ------- |
-| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias de `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` |
-| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias de `HttpClient`. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias de `HttpClient` deben controlar las cookies. | `true` |
-| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias de `HttpClient`. | 7 |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias `HttpClient` deben administrar las cookies. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias `HttpClient`. | 7 |
 
 Cree la clase `WebApplicationFactoryClientOptions` y pásela al método [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (los valores predeterminados se muestran en el ejemplo de código):
 
@@ -643,7 +853,7 @@ Las pruebas de la clase `AuthTests` comprueban que un punto de conexión seguro:
 * Redirige a un usuario no autenticado a la página de inicio de sesión de la aplicación.
 * Devuelve el contenido de un usuario autenticado.
 
-En el SUT, la página `/SecurePage` usa una convención [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) para aplicar un elemento [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) a la página. Para obtener más información, vea [Convenciones de autorización de Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+En el SUT, la página `/SecurePage` usa una convención [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) para aplicar un elemento [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) a la página. Para más información, consulte las convenciones de autorización de [Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -671,13 +881,38 @@ Para obtener más información sobre `WebApplicationFactoryClientOptions`, vea l
 De forma predeterminada, el entorno de host y aplicación del SUT se configura para usar el entorno Desarrollo. Para invalidar el entorno del SUT:
 
 * Establezca la variable de entorno `ASPNETCORE_ENVIRONMENT` (por ejemplo, `Staging`, `Production` u otro valor personalizado, como `Testing`).
-* Invalide `CreateHostBuilder` en la aplicación de prueba para leer las variables de entorno con el prefijo `ASPNETCORE`.
+* Reemplace `CreateWebHostBuilder` en la aplicación de prueba para leer la variable de entorno `ASPNETCORE_ENVIRONMENT`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
-    base.CreateHostBuilder()
-        .ConfigureHostConfiguration(
-            config => config.AddEnvironmentVariables("ASPNETCORE"));
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override IWebHostBuilder CreateWebHostBuilder()
+    {
+        return base.CreateWebHostBuilder()
+            .UseEnvironment(
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    }
+
+    ...
+}
+```
+
+El entorno también puede establecerse directamente en el generador de hosts en un valor de <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> personalizado:
+
+```csharp
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.UseEnvironment(
+            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    
+        ...
+    }
+
+    ...
 ```
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Cómo deduce la infraestructura de prueba la ruta de acceso raíz del contenido de la aplicación
@@ -715,9 +950,78 @@ Una vez ejecutadas las pruebas de la implementación `IClassFixture`, [TestServe
 La [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) se compone de dos aplicaciones:
 
 | Aplicación | Directorio del proyecto | Descripción |
-| --- | ----------------- | ----------- |
-| Aplicación de mensajes (el SUT) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. |
-| Probar la aplicación | *tests/RazorPagesProject.Tests* | Se usa para probar la integración del SUT. |
+| --- | ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | Aplicación de mensaje (el sistema a prueba) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. | | Aplicación de prueba | *tests/RazorPagesProject.Tests* | Se usa para la prueba de integración del sistema a prueba. |
 
 Las pruebas se pueden ejecutar con las características de prueba integradas de un IDE, como [Visual Studio](https://visualstudio.microsoft.com). Si usa [Visual Studio Code](https://code.visualstudio.com/) o la línea de comandos, ejecute el siguiente comando en un símbolo del sistema del directorio *tests/RazorPagesProject.Tests*:
 
@@ -727,7 +1031,7 @@ dotnet test
 
 ### <a name="message-app-sut-organization"></a>Organización de aplicación de mensajes (SUT)
 
-El SUT es un sistema de mensajes de Razor Pages con las siguientes características:
+El sistema a prueba es un sistema de mensajes de Razor Pages con las siguientes características:
 
 * La página Index de la aplicación (*Pages/Index.cshtml* y *Pages/Index.cshtml.cs*) proporciona una interfaz de usuario y métodos de modelo de página para controlar la adición, la eliminación y el análisis de mensajes (promedio de palabras por mensaje).
 * La clase `Message` (*Data/Message.cs*) describe un mensaje con dos propiedades: `Id` (clave) y `Text` (mensaje). Se necesita la propiedad `Text`, que está limitada a 200 caracteres.
@@ -738,18 +1042,93 @@ El SUT es un sistema de mensajes de Razor Pages con las siguientes característi
 
 &#8224;En el tema de EF, [Pruebas con InMemory](/ef/core/miscellaneous/testing/in-memory), se explica cómo usar una base de datos en memoria para las pruebas con MSTest. En este tema se usa el marco de pruebas [xUnit](https://xunit.github.io/). Los conceptos y las implementaciones de prueba de diferentes marcos de pruebas son similares, pero no idénticos.
 
-Aunque la aplicación no usa el patrón del repositorio y no es un ejemplo eficaz del [patrón Unit of Work (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages admite estos patrones de desarrollo. Para obtener más información, vea [Diseño del nivel de persistencia de infraestructura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) y [Lógica del controlador de pruebas](/aspnet/core/mvc/controllers/testing) (el ejemplo implementa el patrón del repositorio).
+Aunque la aplicación no usa el patrón del repositorio y no es un buen ejemplo del [patrón de unidad de trabajo (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages admite estos patrones de desarrollo. Para obtener más información, vea [Diseño del nivel de persistencia de infraestructura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) y [Lógica del controlador de pruebas](/aspnet/core/mvc/controllers/testing) (el ejemplo implementa el patrón del repositorio).
 
 ### <a name="test-app-organization"></a>Organización de la aplicación de prueba
 
 La aplicación de prueba es una aplicación de consola dentro del directorio *tests/RazorPagesProject.Tests*.
 
 | Directorio de la aplicación de prueba | Descripción |
-| ------------------ | ----------- |
-| *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> |
-| *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. |
-| *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. |
-| *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> | | *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. | | *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. | | *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
 
 El marco de pruebas es [xUnit](https://xunit.github.io/). Las pruebas de integración se llevan a cabo con [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), que incluye [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Dado que el paquete [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) se usa para configurar el host de prueba y el servidor de pruebas, los paquetes `TestHost` y `TestServer` no requieren referencias de paquete directas en el archivo de proyecto o la configuración de desarrollador de la aplicación de prueba en la aplicación de prueba.
 

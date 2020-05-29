@@ -1,36 +1,22 @@
 ---
-title: Administración de estado de Blazor en ASP.NET Core
-author: guardrex
-description: Descubra cómo conservar el estado en las aplicaciones del servidor Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/17/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/state-management
-ms.openlocfilehash: 5e14a0697fbc98575970b93dfa12c68e9f561c56
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967420"
+title: "Administración del estado de ASP.NET Core Blazor" author: description: "Aprenda a conservar el estado en las aplicaciones Blazor Server".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-state-management"></a>Administración de estado de Blazor en ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 El servidor Blazor es un marco para aplicaciones con estado. La mayoría de las veces, la aplicación mantiene una conexión continua con el servidor. El estado del usuario se mantiene en la memoria del servidor en un *circuito*. 
 
 Entre los ejemplos de estado que se mantiene para el circuito de un usuario se incluyen:
 
-* La interfaz de usuario representada&mdash; la jerarquía de instancias del componente y su salida de representación más reciente.
+* La interfaz de usuario representada: la jerarquía de instancias de componente y su salida de representación más reciente.
 * Los valores de los campos y las propiedades de las instancias del componente.
 * Los datos contenidos en las instancias de servicio de la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection) que se encuentran en el ámbito del circuito.
 
@@ -56,7 +42,7 @@ En algunos escenarios, es deseable conservar el estado entre los circuitos. Una 
 
 En general, mantener el estado en los circuitos se aplica a los escenarios en los que los usuarios crean activamente datos, no simplemente leyendo los datos que ya existen.
 
-Para conservar el estado más allá de un solo circuito, *no almacene simplemente los datos en la memoria del servidor*. La aplicación debe conservar los datos en otra ubicación de almacenamiento. La persistencia de estado no es automática: debe seguir los pasos al desarrollar la aplicación para implementar la persistencia de datos con estado.
+Para conservar el estado más allá de un solo circuito, *no almacene simplemente los datos en la memoria del servidor*. La aplicación debe conservar los datos en otra ubicación de almacenamiento. La persistencia del estado no es automática. Debe seguir los pasos al desarrollar la aplicación para implementar la persistencia de datos con estado.
 
 La persistencia de los datos normalmente solo es necesaria para el estado de alto valor que los usuarios han gastado en crear. En los ejemplos siguientes, el estado persistente ahorra tiempo o ayuda en las actividades comerciales:
 
@@ -99,7 +85,7 @@ Para los datos transitorios que representan el estado de navegación, modele los
 Se conserva el contenido de la barra de direcciones del explorador:
 
 * Si el usuario recarga manualmente la página.
-* Si el servidor web deja de estar disponible&mdash;el usuario se ve obligado a volver a cargar la página para conectarse a un servidor diferente.
+* Si el servidor web deja de estar disponible y el usuario se ve obligado a volver a cargar la página para conectarse a un servidor diferente.
 
 Para obtener información sobre cómo definir patrones de direcciones URL con la directiva `@page`, vea <xref:blazor/routing>.
 

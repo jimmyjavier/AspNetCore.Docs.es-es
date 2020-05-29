@@ -4,7 +4,7 @@ author: tratcher
 description: Aprenda a probar middleware de ASP.NET Core con TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/6/2019
+ms.date: 5/12/2020
 no-loc:
 - Blazor
 - Identity
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: 06ff7167e32fbd613c18709e31ecd078b3dfc926
-ms.sourcegitcommit: 30fcf69556b6b6ec54a3879e280d5f61f018b48f
+ms.openlocfilehash: ea7fc0e889ab32cbaf23257b3e866519af0727aa
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82876426"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424537"
 ---
 # <a name="test-aspnet-core-middleware"></a>Prueba del middleware de ASP.NET Core
 
@@ -114,3 +114,20 @@ public async Task TestMiddleware_ExpectedResponse()
 <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permite la configuración directa de un objeto <xref:Microsoft.AspNetCore.Http.HttpContext> en lugar de usar las abstracciones de <xref:System.Net.Http.HttpClient>. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> para manipular estructuras que solo están disponibles en el servidor, como [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) o [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 Como en el ejemplo anterior, en el que se intentaba obtener una respuesta *404 - No encontrado*, compruebe lo contrario a cada instrucción `Assert` de la prueba anterior. La comprobación confirma que se produce un error en la prueba cuando el middleware funciona con normalidad. Una vez que haya confirmado que la prueba de falso positivo funciona, establezca las instrucciones `Assert` finales para las condiciones y los valores esperados de la prueba. Vuelva a ejecutarla para confirmar que se realiza correctamente.
+
+## <a name="testserver-limitations"></a>Limitaciones de TestServer
+
+TestServer:
+
+* se creó para replicar los comportamientos del servidor a fin de probar el middleware.
+* ***No*** intenta replicar todos los comportamientos de <xref:System.Net.Http.HttpClient>.
+* Trata de proporcionar al cliente acceso a tanto control sobre el servidor como sea posible y con tanta visibilidad como sea posible sobre lo que sucede en el servidor. Por ejemplo, puede producir excepciones no iniciadas normalmente por `HttpClient` para comunicar directamente el estado del servidor.
+* No establece de forma predeterminada algunos encabezados específicos de transporte, ya que normalmente no son pertinentes para el middleware. Para obtener más información, vea la siguiente sección.
+
+### <a name="content-length-and-transfer-encoding-headers"></a>Encabezados Content-Length and Transfer-Encoding
+
+TestServer ***no*** establece encabezados de solicitud o respuesta relacionados con el transporte, como [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) o [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Las aplicaciones deben evitar depender de estos encabezados porque su uso varía según el cliente, el escenario y el protocolo. Si `Content-Length` y `Transfer-Encoding` son necesarios para probar un escenario concreto, se pueden especificar en la prueba al crear <xref:System.Net.Http.HttpRequestMessage> o <xref:Microsoft.AspNetCore.Http.HttpContext>. Para más información, consulte los siguientes problemas de GitHub:
+
+* [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
+* [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)
+* [dotnet/aspnetcore#13273](https://github.com/dotnet/aspnetcore/issues/13273)

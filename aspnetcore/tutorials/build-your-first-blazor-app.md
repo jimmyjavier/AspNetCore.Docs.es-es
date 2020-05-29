@@ -1,32 +1,26 @@
 ---
-title: Compilación de la primera aplicación Blazor
-author: guardrex
-description: Cree una aplicación Blazor paso a paso.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/20/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: tutorials/first-blazor-app
-ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776609"
+title: "Creación de la primera aplicación Blazor" author: description: "Cree una aplicación Blazor paso a paso".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="build-your-first-blazor-app"></a>Compilación de la primera aplicación Blazor
 
 Por [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+En este tutorial se muestra cómo crear y modificar una aplicación Blazor. Aprenderá a:
 
-En este tutorial se muestra cómo crear y modificar una aplicación Blazor.
+> [!div class="checklist"]
+> * Crear un proyecto de aplicación Blazor de lista de tareas
+> * Modificar los componentes de Razor
+> * Usar el control de eventos y el enlace de datos en los componentes
+> * Usar la inserción de dependencias (DI) y el enrutamiento en una aplicación Blazor
+
+Al final de este tutorial, tendrá una aplicación de chat funcional.
 
 ## <a name="build-components"></a>Creación de componentes
 
@@ -127,7 +121,7 @@ Si trabaja con una aplicación Blazor WebAssembly, se inserta `HttpClient` para 
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 Se usa un bucle [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) para representar cada instancia de previsión como una fila en la tabla de datos meteorológicos:
 
@@ -213,6 +207,18 @@ Agregue un nuevo componente a la aplicación que implemente una simple lista de 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Recompile y ejecute la aplicación. Agregue elementos de tarea pendiente para probar el nuevo código.
+
+## <a name="next-steps"></a>Pasos siguientes
+
+En este tutorial ha aprendido a:
+
+> [!div class="checklist"]
+> * Crear un proyecto de aplicación Blazor de lista de tareas
+> * Modificar los componentes de Razor
+> * Usar el control de eventos y el enlace de datos en los componentes
+> * Usar la inserción de dependencias (DI) y el enrutamiento en una aplicación Blazor
+
+Aprenda a compilar y usar componentes:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>
