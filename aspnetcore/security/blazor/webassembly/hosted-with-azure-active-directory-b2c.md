@@ -1,10 +1,10 @@
 ---
-Título: "proteger una Blazor aplicación hospedada de Webassemble de ASP.net Core con Azure Active Directory B2C ' Author: Description: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
+Título: ' proteger una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C ' Author: guardrex Description: monikerRange: ' >= aspnetcore-3,1 ' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-LOC:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- 'SignalR' uid: 
+- ' SignalR ' UID: Security/increíbles/webassembly/Hosted-with-Azure-Active-Directory-B2C
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C
@@ -26,7 +26,7 @@ Registre la siguiente información:
 
 ### <a name="register-a-server-api-app"></a>Registrar una aplicación de API de servidor
 
-Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) para registrar una aplicación de AAD para la *aplicación de API de servidor*:
+Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) para registrar una aplicación de AAD para la *aplicación de API de servidor* y, a continuación, haga lo siguiente:
 
 1. En **Azure Active Directory**  >  **registros de aplicaciones**, seleccione **nuevo registro**.
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor servidor AAD B2C**).
@@ -58,7 +58,7 @@ Registre la siguiente información:
 
 ### <a name="register-a-client-app"></a>Registrar una aplicación de cliente
 
-Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C de](/azure/active-directory-b2c/tutorial-register-applications) nuevo para registrar una aplicación de AAD para la *aplicación cliente*:
+Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) de nuevo para registrar una aplicación de AAD para la *aplicación cliente* y, a continuación, haga lo siguiente:
 
 1. En **Azure Active Directory**  >  **registros de aplicaciones**, seleccione **nuevo registro**.
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor cliente AAD B2C**).
@@ -337,7 +337,7 @@ Para obtener más información, consulte las siguientes secciones del artículo 
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Ejecución la aplicación
+## <a name="run-the-app"></a>Ejecutar la aplicación
 
 Ejecute la aplicación desde el proyecto de servidor. Al usar Visual Studio, puede:
 

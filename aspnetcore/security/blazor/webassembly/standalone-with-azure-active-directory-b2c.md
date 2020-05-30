@@ -1,10 +1,10 @@
 ---
-Título: "proteger ASP.NET Core una Blazor aplicación independiente Webassembly con Azure Active Directory B2C ' Author: Description: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
+Título: "proteger ASP.NET Core una Blazor aplicación independiente Webassembly con Azure Active Directory B2C ' Author: guardrex Description: monikerRange: ' >= aspnetcore-3,1 ' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-LOC:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- 'SignalR' uid: 
+- ' SignalR ' UID: Security/increíbles/webassembly/Standalone-with-Azure-Active-Directory-B2C
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación independiente ASP.net Core Webassembly con Azure Active Directory B2C
@@ -22,7 +22,7 @@ Registre la siguiente información:
 * AAD B2C instancia (por ejemplo, `https://contoso.b2clogin.com/` , que incluye la barra diagonal final).
 * AAD B2C dominio del inquilino (por ejemplo, `contoso.onmicrosoft.com` ).
 
-Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C de](/azure/active-directory-b2c/tutorial-register-applications) nuevo para registrar una aplicación de AAD para la *aplicación cliente*:
+Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) de nuevo para registrar una aplicación de AAD para la *aplicación cliente* y, a continuación, haga lo siguiente:
 
 1. En **Azure Active Directory**  >  **registros de aplicaciones**, seleccione **nuevo registro**.
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor AAD B2C independiente**).
