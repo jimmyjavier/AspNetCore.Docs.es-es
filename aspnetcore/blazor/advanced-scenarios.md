@@ -1,24 +1,12 @@
 ---
-title: Escenarios avanzados de ASP.NET Core Blazor
-author: guardrex
-description: Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/18/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/advanced-scenarios
-ms.openlocfilehash: b47e7b1d7ff148bb5a8d299d3d2089999f017863
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967342"
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Escenarios avanzados de ASP.NET Core Blazor
 
@@ -26,7 +14,7 @@ Por [Luke Latham](https://github.com/guardrex) y [Daniel Roth](https://github.co
 
 ## <a name="blazor-server-circuit-handler"></a>Controlador de circuito de Blazor Server
 
-Blazor Server permite que el código defina un *controlador de circuito*, que permite ejecutar el código en los cambios realizados en el estado del circuito de un usuario. Un controlador de circuito se implementa derivando de `CircuitHandler` y registrando la clase en el contenedor de servicios de la aplicación. El ejemplo siguiente de un controlador de circuito realiza un seguimiento de las conexiones abiertas de SignalR:
+Servidor de Blazor permite que el código defina un *controlador de circuito*, que permite ejecutar el código en los cambios realizados en el estado del circuito de un usuario. Un controlador de circuito se implementa derivando de `CircuitHandler` y registrando la clase en el contenedor de servicios de la aplicación. El ejemplo siguiente de un controlador de circuito realiza un seguimiento de las conexiones abiertas de SignalR:
 
 ```csharp
 using System.Collections.Generic;
@@ -74,10 +62,10 @@ Cuando un circuito finaliza porque un usuario se ha desconectado y el marco est�
 
 ## <a name="manual-rendertreebuilder-logic"></a>Lógica Manual RenderTreeBuilder manual
 
-`Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder` proporciona métodos para manipular componentes y elementos, incluida la compilación manual de componentes en código de C#.
+<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> proporciona métodos para manipular componentes y elementos, incluida la compilación manual de componentes en código de C#.
 
 > [!NOTE]
-> El uso de `RenderTreeBuilder` para crear componentes es un escenario avanzado. Un componente con formato incorrecto (por ejemplo, una etiqueta de marcado sin cerrar) puede dar como resultado un comportamiento indefinido.
+> El uso de <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> para crear componentes es un escenario avanzado. Un componente con formato incorrecto (por ejemplo, una etiqueta de marcado sin cerrar) puede dar como resultado un comportamiento indefinido.
 
 Tenga en cuenta el componente `PetDetails` siguiente, que se puede integrar manualmente en otro componente:
 
@@ -93,7 +81,7 @@ Tenga en cuenta el componente `PetDetails` siguiente, que se puede integrar manu
 }
 ```
 
-En el ejemplo siguiente, el bucle en el método `CreateComponent` genera tres componentes `PetDetails`. Al llamar a métodos `RenderTreeBuilder` para crear los componentes (`OpenComponent` y `AddAttribute`), los números de secuencia son números de línea de código fuente. El algoritmo de diferencia Blazor se basa en los números de secuencia correspondientes a líneas de código distintas, no a invocaciones de llamada distintas. Al crear un componente con métodos `RenderTreeBuilder`, codifique los argumentos para los números de secuencia. **El uso de un cálculo o un contador para generar el número de secuencia puede dar lugar a un rendimiento deficiente.** Para obtener más información, vea la sección [Los números de secuencia se relacionan con los números de línea de código y no con el orden de ejecución](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order).
+En el ejemplo siguiente, el bucle en el método `CreateComponent` genera tres componentes `PetDetails`. Al llamar a métodos <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> para crear los componentes (`OpenComponent` y `AddAttribute`), los números de secuencia son números de línea de código fuente. El algoritmo de diferencia Blazor se basa en los números de secuencia correspondientes a líneas de código distintas, no a invocaciones de llamada distintas. Al crear un componente con métodos <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>, codifique los argumentos para los números de secuencia. **El uso de un cálculo o un contador para generar el número de secuencia puede dar lugar a un rendimiento deficiente.** Para obtener más información, vea la sección [Los números de secuencia se relacionan con los números de línea de código y no con el orden de ejecución](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order).
 
 Componente `BuiltContent`:
 
@@ -129,7 +117,7 @@ Componente `BuiltContent`:
 ```
 
 > [!WARNING]
-> Los tipos en `Microsoft.AspNetCore.Components.RenderTree` permiten el procesamiento de los *resultados* de las operaciones de representación. Estos son los detalles internos de la implementación del marco Blazor. Estos tipos se deben considerar *inestables* y deben estar sujetos a cambios en versiones futuras.
+> Los tipos en <xref:Microsoft.AspNetCore.Components.RenderTree> permiten el procesamiento de los *resultados* de las operaciones de representación. Estos son los detalles internos de la implementación del marco Blazor. Estos tipos se deben considerar *inestables* y deben estar sujetos a cambios en versiones futuras.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Los números de secuencia se relacionan con los números de línea de código y no con el orden de ejecución
 
@@ -162,15 +150,73 @@ builder.AddContent(1, "Second");
 Cuando el código se ejecuta por primera vez, si `someFlag` es `true`, el generador recibe lo siguiente:
 
 | Secuencia | Tipo      | Datos   |
-| :------: | --------- | :----: |
-| 0        | Nodo de texto | First  |
-| 1        | Nodo de texto | Second |
+| :---
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---: | --- title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----- | :----: | | 0        | Nodo de texto | Primero  | | 1        | Nodo de texto | Segundo |
 
 Imagine que `someFlag` se convierte en `false` y que el marcado se representa de nuevo. Esta vez, el generador recibe lo siguiente:
 
 | Secuencia | Tipo       | Datos   |
-| :------: | ---------- | :----: |
-| 1        | Nodo de texto  | Second |
+| :---
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---: | --- title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----- | :----: | | 1        | Nodo de texto  | Segundo |
 
 Cuando el runtime realiza una diferencia, se ve que se ha quitado el elemento en la secuencia `0`, por lo que genera el *script de edición* trivial siguiente:
 
@@ -194,15 +240,72 @@ builder.AddContent(seq++, "Second");
 Ahora, la primera salida es la siguiente:
 
 | Secuencia | Tipo      | Datos   |
-| :------: | --------- | :----: |
-| 0        | Nodo de texto | First  |
-| 1        | Nodo de texto | Second |
+| :---
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---: | --- title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----- | :----: | | 0        | Nodo de texto | Primero  | | 1        | Nodo de texto | Segundo |
 
 Este resultado es idéntico al del caso anterior, por lo que no existen incidencias negativas. `someFlag` es `false` en la segunda representación y la salida es la siguiente:
 
 | Secuencia | Tipo      | Datos   |
-| :------: | --------- | ------ |
-| 0        | Nodo de texto | Second |
+| :---
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---: | --- title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+----- | --- title: "Escenarios avanzados de ASP.NET Core Blazor" author: description: "Obtenga información sobre escenarios avanzados en Blazor, incluido cómo incorporar la lógica RenderTreeBuilder manual en una aplicación".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--- | | 0        | Nodo de texto | Segundo |
 
 Esta vez, el algoritmo de diferencia observa que se han producido *dos* cambios y genera el siguiente script de edición:
 
@@ -217,7 +320,7 @@ Este es un ejemplo trivial. En casos más realistas con estructuras complejas y 
 
 * El rendimiento de la aplicación se ve afectado si los números de secuencia se generan dinámicamente.
 * El marco no puede crear sus propios números de secuencia automáticamente en tiempo de ejecución porque la información necesaria no existe a menos que se capture en tiempo de compilación.
-* No escriba bloques grandes de lógica `RenderTreeBuilder` implementada de forma manual. Dele preferencia a archivos *.razor* y permita que el compilador trate los números de secuencia. Si no puede evitar la lógica `RenderTreeBuilder` manual, divida bloques grandes de código en fragmentos más pequeños encapsulados en llamadas `OpenRegion`/`CloseRegion`. Cada región tiene su propio espacio independiente de números de secuencia, por lo que puede reiniciar desde cero (o cualquier otro número arbitrario) en cada región.
+* No escriba bloques grandes de lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> implementada de forma manual. Dele preferencia a archivos *.razor* y permita que el compilador trate los números de secuencia. Si no puede evitar la lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> manual, divida bloques grandes de código en fragmentos más pequeños encapsulados en llamadas <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A>/<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A>. Cada región tiene su propio espacio independiente de números de secuencia, por lo que puede reiniciar desde cero (o cualquier otro número arbitrario) en cada región.
 * Si los números de secuencia están codificados, el algoritmo de diferencia solo requiere que los números de secuencia aumenten de valor. El valor inicial y los intervalos son irrelevantes. Una opción legítima es usar el número de línea de código como el número de secuencia, o comenzar a partir de cero y aumentar en unos o cientos (o cualquier intervalo preferido). 
 * Blazor utiliza los números de secuencia, mientras que otros marcos de la interfaz de usuario de diferencia de árboles no. La comparación es mucho más rápida cuando se utilizan números de secuencia y la ventaja de Blazor es un paso de compilación que trata los números de secuencia automáticamente para desarrolladores que crean archivos *.razor*.
 

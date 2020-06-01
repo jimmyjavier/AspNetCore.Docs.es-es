@@ -1,24 +1,11 @@
 ---
-title: Hospedaje de ASP.NET Core en un servicio de Windows
-author: rick-anderson
-description: Aprenda a hospedar una aplicación ASP.NET Core en un servicio de Windows.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/windows-service
-ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776349"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedaje de ASP.NET Core en un servicio de Windows
 
@@ -66,8 +53,8 @@ Host.CreateDefaultBuilder(args)
 
 Las aplicaciones de ejemplo siguientes acompañan a este tema:
 
-* Ejemplo Background Worker Service &ndash; Un ejemplo de una aplicación que no es para la web basado en la [plantilla Worker Service](#worker-service-template) que usa [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
-* Ejemplo de App Service web &ndash; Un ejemplo de aplicación web de Razor Pages que se ejecuta como un servicio de Windows con [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
+* Ejemplo de Background Worker Service: un ejemplo de una aplicación que no es para la Web basado en la [plantilla Worker Service](#worker-service-template) que usa [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
+* Ejemplo de App Service web: un ejemplo de aplicación web de Razor Pages que se ejecuta como un servicio de Windows con [servicios hospedados](xref:fundamentals/host/hosted-services) para las tareas en segundo plano.
 
 Para obtener instrucciones sobre MVC, vea los artículos en <xref:mvc/overview> y <xref:migration/22-to-30>.
 
@@ -115,7 +102,7 @@ Un [identificador en tiempo de ejecución (RID)](/dotnet/core/rid-catalog) se in
 Para publicar para varios RID:
 
 * Proporcione los RID en una lista delimitada por punto y coma.
-* Utilice el nombre de propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (en plural).
+* Use el nombre de la propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para más información, vea el [Catálogo de identificadores de entorno de ejecución (RID) de .NET Core](/dotnet/core/rid-catalog).
 
@@ -172,14 +159,14 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Nombre de servicio (por ejemplo, `MyService`).
-* `{EXE FILE PATH}` &ndash; Ruta de acceso del ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
-* `{DESCRIPTION}` &ndash; Descripción del servicio (por ejemplo, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Nombre para mostrar del servicio (por ejemplo, `My Service`).
+* `{EXE PATH}`: ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
+* `{DOMAIN OR COMPUTER NAME\USER}`: cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: nombre de servicio (por ejemplo, `MyService`).
+* `{EXE FILE PATH}`: ruta de acceso ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
+* `{DESCRIPTION}`: descripción del servicio (por ejemplo, `My sample service`).
+* `{DISPLAY NAME}`: nombre para mostrar del servicio (por ejemplo, `My Service`).
 
-### <a name="start-a-service"></a>Inicio de un servicio
+### <a name="start-a-service"></a>iniciar un servicio.
 
 Inicie el servicio con el siguiente comando de PowerShell 6:
 
@@ -421,7 +408,7 @@ Un [identificador en tiempo de ejecución (RID)](/dotnet/core/rid-catalog) se in
 Para publicar para varios RID:
 
 * Proporcione los RID en una lista delimitada por punto y coma.
-* Utilice el nombre de propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (en plural).
+* Use el nombre de la propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para más información, vea el [Catálogo de identificadores de entorno de ejecución (RID) de .NET Core](/dotnet/core/rid-catalog).
 
@@ -484,14 +471,14 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Nombre de servicio (por ejemplo, `MyService`).
-* `{EXE FILE PATH}` &ndash; Ruta de acceso del ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
-* `{DESCRIPTION}` &ndash; Descripción del servicio (por ejemplo, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Nombre para mostrar del servicio (por ejemplo, `My Service`).
+* `{EXE PATH}`: ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
+* `{DOMAIN OR COMPUTER NAME\USER}`: cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: nombre de servicio (por ejemplo, `MyService`).
+* `{EXE FILE PATH}`: ruta de acceso ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
+* `{DESCRIPTION}`: descripción del servicio (por ejemplo, `My sample service`).
+* `{DISPLAY NAME}`: nombre para mostrar del servicio (por ejemplo, `My Service`).
 
-### <a name="start-a-service"></a>Inicio de un servicio
+### <a name="start-a-service"></a>iniciar un servicio.
 
 Inicie el servicio con el siguiente comando de PowerShell 6:
 
@@ -758,7 +745,7 @@ Un [identificador en tiempo de ejecución (RID)](/dotnet/core/rid-catalog) se in
 Para publicar para varios RID:
 
 * Proporcione los RID en una lista delimitada por punto y coma.
-* Utilice el nombre de propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (en plural).
+* Use el nombre de la propiedad [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para más información, vea el [Catálogo de identificadores de entorno de ejecución (RID) de .NET Core](/dotnet/core/rid-catalog).
 
@@ -821,14 +808,14 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Nombre de servicio (por ejemplo, `MyService`).
-* `{EXE FILE PATH}` &ndash; Ruta de acceso del ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
-* `{DESCRIPTION}` &ndash; Descripción del servicio (por ejemplo, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Nombre para mostrar del servicio (por ejemplo, `My Service`).
+* `{EXE PATH}`: ruta de acceso a la carpeta de la aplicación en el host (por ejemplo, `d:\myservice`). No incluya el archivo ejecutable de la aplicación en la ruta de acceso. No se requiere una barra diagonal al final.
+* `{DOMAIN OR COMPUTER NAME\USER}`: cuenta de usuario de servicio (por ejemplo, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: nombre de servicio (por ejemplo, `MyService`).
+* `{EXE FILE PATH}`: ruta de acceso ejecutable de la aplicación (por ejemplo, `d:\myservice\myservice.exe`). Incluya el nombre de archivo del ejecutable con la extensión.
+* `{DESCRIPTION}`: descripción del servicio (por ejemplo, `My sample service`).
+* `{DISPLAY NAME}`: nombre para mostrar del servicio (por ejemplo, `My Service`).
 
-### <a name="start-a-service"></a>Inicio de un servicio
+### <a name="start-a-service"></a>iniciar un servicio.
 
 Inicie el servicio con el siguiente comando de PowerShell 6:
 

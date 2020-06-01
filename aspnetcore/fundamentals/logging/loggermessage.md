@@ -1,24 +1,11 @@
 ---
-title: Registro de alto rendimiento con LoggerMessage en ASP.NET Core
-author: rick-anderson
-description: Obtenga información sobre cómo usar LoggerMessage para crear delegados almacenables en caché que requieren menos asignaciones de objetos que los escenarios de registro de alto rendimiento.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 08/26/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: 67281b99f1ed8955ee29eb68b446d71a0c5c7838
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768369"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registro de alto rendimiento con LoggerMessage en ASP.NET Core
 
@@ -102,7 +89,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-La aplicación de ejemplo implementa un patrón [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) para la eliminación de la cita. Se registra un mensaje informativo si se realiza correctamente una operación de eliminación. Se registra un mensaje de error para una operación de eliminación si se produce una excepción. El mensaje de registro de la operación de eliminación con error incluye el seguimiento de la pila de excepciones (*Internal/LoggerExtensions.cs*):
+La aplicación de ejemplo implementa un patrón [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para la eliminación de la cita. Se registra un mensaje informativo si se realiza correctamente una operación de eliminación. Se registra un mensaje de error para una operación de eliminación si se produce una excepción. El mensaje de registro de la operación de eliminación con error incluye el seguimiento de la pila de excepciones (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -112,7 +99,7 @@ Observe cómo se pasa la excepción al delegado en `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-En el modelo de página para la página de índice, una operación correcta de eliminación de cita llama al método `QuoteDeleted` en el registrador. Cuando no se encuentra una cita para su eliminación, se produce una excepción <xref:System.ArgumentNullException>. La excepción se captura mediante la instrucción [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) y se registra mediante una llamada al método `QuoteDeleteFailed` en el registrador en el bloque [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+En el modelo de página para la página de índice, una operación correcta de eliminación de cita llama al método `QuoteDeleted` en el registrador. Cuando no se encuentra una cita para su eliminación, se produce una excepción <xref:System.ArgumentNullException>. La excepción se captura mediante la instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) y se registra mediante una llamada al método `QuoteDeleteFailed` en el registrador en el bloque [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -268,7 +255,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-La aplicación de ejemplo implementa un patrón [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) para la eliminación de la cita. Se registra un mensaje informativo si se realiza correctamente una operación de eliminación. Se registra un mensaje de error para una operación de eliminación si se produce una excepción. El mensaje de registro de la operación de eliminación con error incluye el seguimiento de la pila de excepciones (*Internal/LoggerExtensions.cs*):
+La aplicación de ejemplo implementa un patrón [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para la eliminación de la cita. Se registra un mensaje informativo si se realiza correctamente una operación de eliminación. Se registra un mensaje de error para una operación de eliminación si se produce una excepción. El mensaje de registro de la operación de eliminación con error incluye el seguimiento de la pila de excepciones (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -278,7 +265,7 @@ Observe cómo se pasa la excepción al delegado en `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-En el modelo de página para la página de índice, una operación correcta de eliminación de cita llama al método `QuoteDeleted` en el registrador. Cuando no se encuentra una cita para su eliminación, se produce una excepción <xref:System.ArgumentNullException>. La excepción se captura mediante la instrucción [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) y se registra mediante una llamada al método `QuoteDeleteFailed` en el registrador en el bloque [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+En el modelo de página para la página de índice, una operación correcta de eliminación de cita llama al método `QuoteDeleted` en el registrador. Cuando no se encuentra una cita para su eliminación, se produce una excepción <xref:System.ArgumentNullException>. La excepción se captura mediante la instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) y se registra mediante una llamada al método `QuoteDeleteFailed` en el registrador en el bloque [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 

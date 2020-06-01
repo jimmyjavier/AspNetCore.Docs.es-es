@@ -1,24 +1,12 @@
 ---
-title: Enlace de datos de ASP.NET Core Blazor
-author: guardrex
-description: Obtenga información sobre las características de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/26/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/data-binding
-ms.openlocfilehash: b4951c5eb712b15db3a7c1ccd57ae01c530a23ef
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967173"
+title: "Enlace de datos de ASP.NET Core Blazor" author: description: "Obtenga información sobre las características de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>Enlace de datos de ASP.NET Core Blazor
 
@@ -40,7 +28,7 @@ Cuando el cuadro de texto pierde el foco, se actualiza el valor de la propiedad.
 
 El cuadro de texto se actualiza en la interfaz de usuario solo cuando se representa el componente, no en respuesta al cambio de valor de la propiedad. Como los componentes se representan a sí mismos después de que se ejecute el código del controlador de eventos, las actualizaciones de propiedades *normalmente* se reflejan en la interfaz de usuario justo después de que se desencadene un controlador de eventos.
 
-Usar `@bind` con la propiedad `CurrentValue` (`<input @bind="CurrentValue" />`) es prácticamente igual que usar lo siguiente:
+Usar [`@bind`](xref:mvc/views/razor#bind) con la propiedad `CurrentValue` (`<input @bind="CurrentValue" />`) es prácticamente igual que usar lo siguiente:
 
 ```razor
 <input value="@CurrentValue"
@@ -52,7 +40,7 @@ Usar `@bind` con la propiedad `CurrentValue` (`<input @bind="CurrentValue" />`) 
 }
 ```
 
-Cuando se representa el componente, el valor (`value`) del elemento de entrada procede de la propiedad `CurrentValue`. Cuando el usuario escribe en el cuadro de texto y cambia el foco del elemento, se desencadena el evento `onchange` y la propiedad `CurrentValue` se establece en el valor modificado. En realidad, la generación de código es más compleja, porque `@bind` administra los casos en los que se realizan conversiones de tipos. En principio, `@bind` asocia el valor actual de una expresión con un atributo `value` y controla los cambios mediante el controlador registrado.
+Cuando se representa el componente, el valor (`value`) del elemento de entrada procede de la propiedad `CurrentValue`. Cuando el usuario escribe en el cuadro de texto y cambia el foco del elemento, se desencadena el evento `onchange` y la propiedad `CurrentValue` se establece en el valor modificado. En realidad, la generación de código es más compleja, porque [`@bind`](xref:mvc/views/razor#bind) administra los casos en los que se realizan conversiones de tipos. En principio, [`@bind`](xref:mvc/views/razor#bind) asocia el valor actual de una expresión con un atributo `value` y controla los cambios mediante el controlador registrado.
 
 También puede enlazar una propiedad o un campo con otros eventos incluyendo un atributo `@bind:event` con un parámetro `event`. En el siguiente ejemplo se enlaza la propiedad `CurrentValue` en el evento `oninput`:
 
@@ -84,7 +72,10 @@ Use `@bind-{ATTRIBUTE}` con la sintaxis `@bind-{ATTRIBUTE}:event` para enlazar a
 }
 ```
 
-El enlace de atributos distingue mayúsculas de minúsculas. Por ejemplo, `@bind` no es válido, pero `@Bind` sí.
+El enlace de atributos distingue mayúsculas de minúsculas:
+
+* `@bind` es válido.
+* `@Bind` ni `@BIND` son válidos.
 
 ## <a name="unparsable-values"></a>Valores no analizables
 
@@ -110,13 +101,13 @@ De forma predeterminada, el enlace de datos se aplica al evento `onchange` del e
 
 * No use el evento `oninput`. Use el evento `onchange` predeterminado (especifique solo `@bind="{PROPERTY OR FIELD}"`) para que no se revierta un valor no válido hasta que el elemento pierda el foco.
 * Enlace a un tipo que acepte valores NULL, como `int?` o `string`, y proporcione una lógica personalizada para administrar las entradas no válidas.
-* Use un [componente de validación de formularios](xref:blazor/forms-validation), como `InputNumber` o `InputDate`. Los componentes de validación de formularios tienen compatibilidad integrada para administrar entradas no válidas. Componentes de validación de formularios:
-  * Permiten que el usuario proporcione entradas no válidas y reciba errores de validación en la clase `EditContext` asociada.
+* Use un [componente de validación de formularios](xref:blazor/forms-validation), como <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> o <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Los componentes de validación de formularios tienen compatibilidad integrada para administrar entradas no válidas. Componentes de validación de formularios:
+  * Permiten que el usuario proporcione entradas no válidas y reciba errores de validación en la clase <xref:Microsoft.AspNetCore.Components.Forms.EditContext> asociada.
   * Muestran errores de validación en la interfaz de usuario sin impedir que el usuario escriba datos adicionales en el formulario web.
 
 ## <a name="format-strings"></a>Cadenas de formato
 
-El enlace de datos funciona con cadenas de formato <xref:System.DateTime> mediante [`@bind:format`](xref:mvc/views/razor#bind). Otras expresiones de formato, como los formatos de moneda o número, no están disponibles en este momento.
+El enlace de datos funciona con cadenas de formato <xref:System.DateTime> mediante `@bind:format`. Otras expresiones de formato, como los formatos de moneda o número, no están disponibles en este momento.
 
 ```razor
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
@@ -162,7 +153,7 @@ El siguiente componente secundario (`ChildComponent`) tiene un parámetro de com
 }
 ```
 
-`EventCallback<T>` se explica en <xref:blazor/event-handling#eventcallback>.
+<xref:Microsoft.AspNetCore.Components.EventCallback%601> se explica en <xref:blazor/event-handling#eventcallback>.
 
 El siguiente componente primario usa:
 
@@ -235,7 +226,7 @@ En general, una propiedad se puede enlazar a un controlador de eventos correspon
 
 Un escenario común es encadenar un parámetro enlazado a datos a un elemento de página en la salida del componente. Este escenario se denomina *enlace encadenado* porque se producen varios niveles de enlace simultáneamente.
 
-No se puede implementar un enlace encadenado con sintaxis `@bind` en el elemento de la página. El controlador de eventos y el valor se deben especificar por separado. Sin embargo, un componente primario puede usar la sintaxis `@bind` con el parámetro del componente.
+No se puede implementar un enlace encadenado con sintaxis [`@bind`](xref:mvc/views/razor#bind) en el elemento de la página. El controlador de eventos y el valor se deben especificar por separado. Sin embargo, un componente primario puede usar la sintaxis [`@bind`](xref:mvc/views/razor#bind) con el parámetro del componente.
 
 El siguiente componente `PasswordField` (*PasswordField.razor*):
 

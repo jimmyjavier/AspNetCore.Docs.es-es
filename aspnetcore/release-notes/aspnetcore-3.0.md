@@ -1,23 +1,11 @@
 ---
-title: Novedades de ASP.NET Core 3.0
-author: rick-anderson
-description: Obtenga información sobre las nuevas características de ASP.NET Core 3.0.
-ms.author: riande
-ms.custom: mvc
-ms.date: 12/05/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: aspnetcore-3.0
-ms.openlocfilehash: aa0b2b51632cff729449018f9823c38cc26ce612
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774098"
+title: author: description: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novedades de ASP.NET Core 3.0
 
@@ -322,8 +310,8 @@ Para agregar Json.NET a ASP.NET Core 3.0, consulte [Adición de compatibilidad c
 
 La lista siguiente contiene nuevas directivas de Razor:
 
-* [`@attribute`](xref:mvc/views/razor#attribute) &ndash; La directiva `@attribute` aplica el atributo especificado a la clase de la página o vista generada. Por ejemplo: `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements) &ndash; La directiva `@implements` implementa una interfaz para la clase generada. Por ejemplo: `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute): la directiva `@attribute` aplica el atributo especificado a la clase de la página o vista generada. Por ejemplo: `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements): La directiva `@implements` implementa una interfaz para la clase generada. Por ejemplo: `@implements IDisposable`.
 
 ## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 admite la autenticación y la autorización de SPA y API web
 

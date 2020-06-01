@@ -1,24 +1,11 @@
 ---
-title: Proveedores de archivo en ASP.NET Core
-author: rick-anderson
-description: Obtenga información sobre cómo ASP.NET Core abstrae el acceso al sistema de archivos mediante el uso de proveedores de archivos.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/06/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/file-providers
-ms.openlocfilehash: 2f1151d7854aeeb3e315d0de2b0be5267fe2e8f0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776290"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="file-providers-in-aspnet-core"></a>Proveedores de archivo en ASP.NET Core
 
@@ -60,10 +47,70 @@ La aplicación de ejemplo *FileProviderSample* muestra cómo configurar un prove
 En la tabla siguiente se enumeran las implementaciones de `IFileProvider`.
 
 | Implementación | Descripción |
-| -------------- | ----------- |
-| [CompositeFileProvider](#compositefileprovider) | Se usa para proporcionar acceso combinado a archivos y directorios de uno o más proveedores. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Se usa para tener acceso a archivos insertados en ensamblados. |
-| [PhysicalFileProvider](#physicalfileprovider) | Se usa para tener acceso a los archivos físicos del sistema. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | [CompositeFileProvider](#compositefileprovider) | Se utiliza para proporcionar acceso combinado a archivos y directorios de uno o más proveedores. | | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Se utiliza para acceder a archivos incrustados dentro de ensamblados. | | [PhysicalFileProvider](#physicalfileprovider) | Se utiliza para acceder a los archivos físicos del sistema. |
 
 ### <a name="physicalfileprovider"></a>PhysicalFileProvider
 
@@ -123,10 +170,46 @@ Las sobrecargas adicionales le permiten:
 * Asignar nombre al recurso incrustado que contiene el manifiesto del archivo incrustado.
 
 | Sobrecarga | Descripción |
-| -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Acepta parámetro de ruta de acceso relativa `root` opcional. Especifique `root` para definir el ámbito de las llamadas en <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> en aquellos recursos que se encuentran bajo las rutas de acceso proporcionadas. |
-| `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Acepta un parámetro de ruta de acceso relativa `root` opcional y un parámetro de fecha `lastModified` (<xref:System.DateTimeOffset>). La fecha `lastModified` define el ámbito de la última fecha de modificación para las instancias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> que <xref:Microsoft.Extensions.FileProviders.IFileProvider> devuelve. |
-| `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Acepta una ruta de acceso relativa `root` opcional, una fecha `lastModified` y parámetros `manifestName`. `manifestName` representa el nombre del recurso incrustado que contiene el manifiesto. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | `ManifestEmbeddedFileProvider(Assembly, String)` | Acepta un parámetro de ruta de acceso relativa `root` opcional. Especifique `root` para definir el ámbito de las llamadas en <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> en aquellos recursos que se encuentran bajo las rutas de acceso proporcionadas. | | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Acepta un parámetro de ruta de acceso relativa `root` opcional y un parámetro de fecha `lastModified` (<xref:System.DateTimeOffset>). La fecha `lastModified` define el ámbito de la última fecha de modificación para las instancias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> que <xref:Microsoft.Extensions.FileProviders.IFileProvider> devuelve. | | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Acepta una ruta de acceso relativa `root` opcional, una fecha `lastModified` y parámetros `manifestName`. `manifestName` representa el nombre del recurso incrustado que contiene el manifiesto. |
 
 ### <a name="compositefileprovider"></a>CompositeFileProvider
 
@@ -145,8 +228,8 @@ El método <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?display
 
 El token de cambio resultante expone:
 
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>&ndash;Una propiedad que se puede inspeccionar para determinar si se ha producido un cambio.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash;Se llama cuando se detectan cambios en la cadena de ruta de acceso especificada. Cada token de cambio solo llama a su devolución de llamada asociada en respuesta a un único cambio. Para habilitar la supervisión constante, puede usar <xref:System.Threading.Tasks.TaskCompletionSource`1> (como se muestra a continuación) o volver a crear instancias de `IChangeToken` en respuesta a los cambios.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: una propiedad que se puede inspeccionar para determinar si se ha producido un cambio.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: se llama cuando se detectan cambios en la cadena de ruta de acceso especificada. Cada token de cambio solo llama a su devolución de llamada asociada en respuesta a un único cambio. Para habilitar la supervisión constante, puede usar <xref:System.Threading.Tasks.TaskCompletionSource`1> (como se muestra a continuación) o volver a crear instancias de `IChangeToken` en respuesta a los cambios.
 
 La aplicación de ejemplo *WatchConsole* escribe un mensaje cada vez que se modifica un archivo *.txt* en el directorio *TextFiles*:
 
@@ -167,11 +250,40 @@ Coincide con cualquier elemento de varios niveles de directorios. Puede usarse p
 En la tabla siguiente se proporcionan ejemplos comunes de patrones globales.
 
 |Modelo  |Descripción  |
-|---------|---------|
-|`directory/file.txt`|Coincide con un archivo concreto en un directorio específico.|
-|`directory/*.txt`|Coincide con todos los archivos que tengan la extensión *.txt* en un directorio específico.|
-|`directory/*/appsettings.json`|Coincide con todos los archivos *appsettings.json* que están en directorios exactamente un nivel por debajo de la carpeta *directorio*.|
-|`directory/**/*.txt`|Coincide con todos los archivos con una extensión *.txt* y que se encuentran en cualquier lugar de la carpeta *directorio*.|
+|---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-----|---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-----|
+|`directory/file.txt`|Coincide con un archivo concreto en un directorio específico.| |`directory/*.txt`|Coincide con todos los archivos que tengan la extensión *.txt* en un directorio específico.| |`directory/*/appsettings.json`|Coincide con todos los archivos *appsettings.json* que estén en directorios exactamente un nivel por debajo de la carpeta *directorio*.| |`directory/**/*.txt`|Coincide con todos los archivos que tengan la extensión *.txt* y se encuentren en cualquier lugar de la carpeta *directorio*.|
 
 ::: moniker-end
 
@@ -211,10 +323,70 @@ La aplicación de ejemplo muestra cómo configurar un proveedor de archivos en `
 Hay tres implementaciones de `IFileProvider` disponibles.
 
 | Implementación | Descripción |
-| -------------- | ----------- |
-| [PhysicalFileProvider](#physicalfileprovider) | El proveedor físico se utiliza para acceder a los archivos físicos del sistema. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | El proveedor insertado de manifiestos se utiliza para tener acceder a archivos insertados en ensamblados. |
-| [CompositeFileProvider](#compositefileprovider) | El proveedor compuesto se utiliza para proporcionar acceso combinado a archivos y directorios de uno o más proveedores. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | [PhysicalFileProvider](#physicalfileprovider) | El proveedor físico se utiliza para acceder a los archivos físicos del sistema. | | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | El proveedor insertado de manifiestos se utiliza para tener acceder a archivos insertados en ensamblados. | | [CompositeFileProvider](#compositefileprovider) | El proveedor compuesto se utiliza para proporcionar acceso combinado a archivos y directorios de uno o más proveedores. |
 
 ### <a name="physicalfileprovider"></a>PhysicalFileProvider
 
@@ -270,10 +442,46 @@ Las sobrecargas adicionales le permiten:
 * Asignar nombre al recurso incrustado que contiene el manifiesto del archivo incrustado.
 
 | Sobrecarga | Descripción |
-| -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Acepta parámetro de ruta de acceso relativa `root` opcional. Especifique `root` para definir el ámbito de las llamadas en <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> en aquellos recursos que se encuentran bajo las rutas de acceso proporcionadas. |
-| `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Acepta un parámetro de ruta de acceso relativa `root` opcional y un parámetro de fecha `lastModified` (<xref:System.DateTimeOffset>). La fecha `lastModified` define el ámbito de la última fecha de modificación para las instancias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> que <xref:Microsoft.Extensions.FileProviders.IFileProvider> devuelve. |
-| `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Acepta una ruta de acceso relativa `root` opcional, una fecha `lastModified` y parámetros `manifestName`. `manifestName` representa el nombre del recurso incrustado que contiene el manifiesto. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | `ManifestEmbeddedFileProvider(Assembly, String)` | Acepta un parámetro de ruta de acceso relativa `root` opcional. Especifique `root` para definir el ámbito de las llamadas en <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> en aquellos recursos que se encuentran bajo las rutas de acceso proporcionadas. | | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Acepta un parámetro de ruta de acceso relativa `root` opcional y un parámetro de fecha `lastModified` (<xref:System.DateTimeOffset>). La fecha `lastModified` define el ámbito de la última fecha de modificación para las instancias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> que <xref:Microsoft.Extensions.FileProviders.IFileProvider> devuelve. | | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Acepta una ruta de acceso relativa `root` opcional, una fecha `lastModified` y parámetros `manifestName`. `manifestName` representa el nombre del recurso incrustado que contiene el manifiesto. |
 
 ### <a name="compositefileprovider"></a>CompositeFileProvider
 

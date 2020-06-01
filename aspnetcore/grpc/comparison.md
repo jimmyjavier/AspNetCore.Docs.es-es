@@ -1,23 +1,11 @@
 ---
-title: Comparación entre los servicios gRPC y las API HTTP
-author: jamesnk
-description: Obtenga información sobre cómo se compara gRPC con las API de HTTP y cuáles son los escenarios recomendados.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 12/05/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/comparison
-ms.openlocfilehash: ab103adc20c5332f71d5f6e3348d0b14c69fce34
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774709"
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparación entre los servicios gRPC y las API HTTP
 
@@ -30,15 +18,333 @@ En este artículo se realiza una comparación entre los [servicios gRPC](https:/
 En la tabla siguiente se ofrece una comparación general de las características entre gRPC y las API HTTP con JSON.
 
 | Característica          | gRPC                                               | API HTTP con JSON           |
-| ---------------- | -------------------------------------------------- | ----------------------------- |
-| Contrato         | Obligatorio ( *.proto*)                                | Opcional (OpenAPI)            |
-| Protocolo         | HTTP/2                                             | HTTP                          |
-| Payload          | [Protobuf (pequeño, binario)](#performance)           | JSON (grande, legible para usuarios)  |
-| Carácter preceptivo | [Especificación estricta](#strict-specification)      | Flexible. Cualquier HTTP es válido.     |
-| Streaming        | [Cliente, servidor, bidireccional](#streaming)       | Cliente, servidor                |
-| Compatibilidad con exploradores  | [No (requiere grpc-web)](#limited-browser-support) | Sí                           |
-| Seguridad         | Transporte (TLS)                                    | Transporte (TLS)               |
-| Generación de código de cliente | [Sí](#code-generation)                      | OpenAPI + herramientas de terceros |
+| ---
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-------- | --- title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------------------------- | --- title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+--------------- | | Contrato         | Obligatorio ( *.proto*)                                | Opcional (OpenAPI)            | | Protocolo         | HTTP/2                                             | HTTP                          | | Carga útil          | [Protobuf (pequeño, binario)](#performance)           | JSON (grande, legible para usuarios)  | | Carácter preceptivo | [Especificación estricta](#strict-specification)      | Flexible. Cualquier HTTP es válido.     | | Streaming        | [Cliente, servidor, bidireccional](#streaming)       | Cliente, servidor                | | Compatibilidad con exploradores  | [No (requiere grpc-web)](#limited-browser-support) | Sí                           | | Seguridad         | Transporte (TLS)                                    | Transporte (TLS)               | | Generación de código de cliente | [Sí](#code-generation)                      | OpenAPI + herramientas de terceros |
 
 ## <a name="grpc-strengths"></a>Ventajas de gRPC
 

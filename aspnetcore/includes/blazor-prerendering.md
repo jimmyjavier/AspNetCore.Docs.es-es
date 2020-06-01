@@ -24,7 +24,7 @@ Para retrasar las llamadas de interoperabilidad de JavaScript hasta que se estab
 }
 ```
 
-En el código de ejemplo anterior, proporcione una función de JavaScript `setElementText` dentro del elemento `<head>` de *wwwroot/index.html* (Blazor WebAssembly) o *Pages/_Host.cshtml* (Blazor Server). Se llama a la función con `IJSRuntime.InvokeVoidAsync` y no se devuelve un valor:
+En el código de ejemplo anterior, proporcione una función de JavaScript `setElementText` dentro del elemento `<head>` de *wwwroot/index.html* (Blazor WebAssembly) o *Pages/_Host.cshtml* (Blazor Server). Se llama a la función con <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> y no se devuelve un valor:
 
 ```html
 <script>
@@ -35,9 +35,9 @@ En el código de ejemplo anterior, proporcione una función de JavaScript `setEl
 > [!WARNING]
 > En el ejemplo anterior se modifica el Document Object Model (DOM) directamente solo con fines de demostración. No se recomienda modificar directamente el DOM con JavaScript en la mayoría de los escenarios, ya que JavaScript puede interferir con el seguimiento de cambios de Blazor.
 
-En el componente siguiente se muestra cómo usar la interoperabilidad de JavaScript como parte de la lógica de inicialización de un componente de una manera compatible con la representación previa. El componente muestra que es posible desencadenar una actualización de representación desde dentro de `OnAfterRenderAsync`. El desarrollador debe evitar la creación de un bucle infinito en este escenario.
+En el componente siguiente se muestra cómo usar la interoperabilidad de JavaScript como parte de la lógica de inicialización de un componente de una manera compatible con la representación previa. El componente muestra que es posible desencadenar una actualización de representación desde dentro de <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. El desarrollador debe evitar la creación de un bucle infinito en este escenario.
 
-Cuando se llama a `JSRuntime.InvokeAsync`, `ElementRef` solo se utiliza en `OnAfterRenderAsync` y no en ningún otro método de ciclo de vida anterior porque no existe ningún elemento de JavaScript hasta después de representar el componente.
+Cuando se llama a <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType>, `ElementRef` solo se utiliza en <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> y no en ningún otro método de ciclo de vida anterior porque no existe ningún elemento de JavaScript hasta después de representar el componente.
 
 Se llama a [StateHasChanged](xref:blazor/lifecycle#state-changes) para representar el componente con el nuevo estado obtenido de la llamada de interoperabilidad de JavaScript. El código no crea un bucle infinito porque solo se llama a `StateHasChanged` cuando `null` es `infoFromJs`.
 
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-En el código de ejemplo anterior, proporcione una función de JavaScript `setElementText` dentro del elemento `<head>` de *wwwroot/index.html* (Blazor WebAssembly) o *Pages/_Host.cshtml* (Blazor Server). Se llama a la función con `IJSRuntime.InvokeAsync` y se devuelve un valor:
+En el código de ejemplo anterior, proporcione una función de JavaScript `setElementText` dentro del elemento `<head>` de *wwwroot/index.html* (Blazor WebAssembly) o *Pages/_Host.cshtml* (Blazor Server). Se llama a la función con <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> y se devuelve un valor:
 
 ```html
 <script>

@@ -1,23 +1,11 @@
 ---
-title: Solución de problemas y depuración de proyectos de ASP.NET Core
-author: Rick-Anderson
-description: Conozca y solucione advertencias y errores en proyectos de ASP.NET Core.
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/10/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: test/troubleshoot
-ms.openlocfilehash: 74b494f6d16637a54ab7f1b5c0cf9fbb86248fe7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776622"
+title: author: description: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Solución de problemas y depuración de proyectos de ASP.NET Core
 
@@ -81,7 +69,7 @@ Si una aplicación es capaz de responder a las solicitudes, puede obtener los si
 
 * Solicitud: método, esquema, host, ruta de acceso base, ruta de acceso, cadena de consulta, encabezados
 * Conexión: dirección IP remota, puerto remoto, dirección IP local, puerto local, certificado de cliente
-* Identity &ndash; Nombre, nombre para mostrar
+* Identity: Name, display name
 * Valores de configuración
 * Variables de entorno
 

@@ -1,24 +1,11 @@
 ---
-title: Referencia de errores comunes de Azure App Service e IIS con ASP.NET Core
-author: rick-anderson
-description: Obtenga información sobre cómo solucionar errores comunes al hospedar aplicaciones ASP.NET Core en Azure App Service e IIS.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 7b3454fbd891ca26d44125810a10eb3b3c2c3933
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775211"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referencia de errores comunes de Azure App Service e IIS con ASP.NET Core
 
@@ -32,12 +19,12 @@ Recopile la siguiente información:
 
 * Comportamiento del explorador (código de estado y mensaje de error)
 * Entradas de registro de eventos de la aplicación
-  * Azure App Service : vea <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: Vea <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Seleccione **Inicio** en el menú **Windows**, escriba *Visor de eventos* y presione **Entrar**.
     1. Una vez abierto el **Visor de eventos**, expanda **Registros de Windows** > **Aplicación** en la barra lateral.
 * Entradas de registro de stdout y depuración de módulo ASP.NET Core
-  * Azure App Service : vea <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: Vea <xref:test/troubleshoot-azure-iis>.
   * IIS: siga las instrucciones de las secciones [Creación y redireccionamiento de registros](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) y [Registros de diagnóstico mejorados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) del tema Módulo ASP.NET Core.
 
 Compare la información sobre errores con los siguientes errores comunes. Si se encuentra una coincidencia, siga los consejos de solución de problemas.
@@ -257,7 +244,7 @@ Solución del problema:
 
 Confirme que el grupo de aplicaciones no está en estado *Detenido*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>La aplicación secundaria incluye una sección de \<controladores>
+## <a name="sub-application-includes-a-handlers-section"></a>La aplicación secundaria incluye una sección de \<handlers>
 
 * **Explorador:** error HTTP 500.19: error interno del servidor
 
@@ -320,12 +307,12 @@ Recopile la siguiente información:
 
 * Comportamiento del explorador (código de estado y mensaje de error)
 * Entradas de registro de eventos de la aplicación
-  * Azure App Service : vea <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: Vea <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Seleccione **Inicio** en el menú **Windows**, escriba *Visor de eventos* y presione **Entrar**.
     1. Una vez abierto el **Visor de eventos**, expanda **Registros de Windows** > **Aplicación** en la barra lateral.
 * Entradas de registro de stdout y depuración de módulo ASP.NET Core
-  * Azure App Service : vea <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: Vea <xref:test/troubleshoot-azure-iis>.
   * IIS: siga las instrucciones de las secciones [Creación y redireccionamiento de registros](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) y [Registros de diagnóstico mejorados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) del tema Módulo ASP.NET Core.
 
 Compare la información sobre errores con los siguientes errores comunes. Si se encuentra una coincidencia, siga los consejos de solución de problemas.
@@ -517,7 +504,7 @@ Solución del problema:
 
 Confirme que el grupo de aplicaciones no está en estado *Detenido*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>La aplicación secundaria incluye una sección de \<controladores>
+## <a name="sub-application-includes-a-handlers-section"></a>La aplicación secundaria incluye una sección de \<handlers>
 
 * **Explorador:** error HTTP 500.19: error interno del servidor
 

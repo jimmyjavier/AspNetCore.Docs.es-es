@@ -1,24 +1,11 @@
 ---
-title: Hospedaje de ASP.NET Core en una granja de servidores web
-author: rick-anderson
-description: Obtenga información sobre cómo hospedar varias instancias de una aplicación ASP.NET Core con recursos compartidos en un entorno de granja de servidores web.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 01/13/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/web-farm
-ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776362"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedaje de ASP.NET Core en una granja de servidores web
 
@@ -65,12 +52,78 @@ En un entorno de granja de servidores web, el mecanismo de almacenamiento en cac
 Los escenarios siguientes no requieren configuración adicional, pero dependen de tecnologías que sí requiere configuración para las granjas de servidores web.
 
 | Escenario | Depende de &hellip; |
-| -------- | ------------------- |
-| Autenticación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/authentication/cookie> y <xref:security/cookie-sharing>. |
-| Identity | Autenticación y configuración de base de datos.<br><br>Para obtener más información, vea <xref:security/authentication/identity>. |
-| Sesión | Protección de datos (cookies cifradas) (consulte <xref:security/data-protection/configuration/overview>) y almacenamiento en caché (consulte <xref:performance/caching/distributed>).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state). |
-| TempData | Protección de datos (cookies cifradas; consulte <xref:security/data-protection/configuration/overview>) o sesión (consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state)).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: TempData](xref:fundamentals/app-state#tempdata). |
-| Antifalsificación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/anti-request-forgery>. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+---------- | | Autenticación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/authentication/cookie> y <xref:security/cookie-sharing>. | | Identity | Autenticación y configuración de base de datos.<br><br>Para obtener más información, vea <xref:security/authentication/identity>. | | Sesión | Protección de datos (cookies cifradas) (consulte <xref:security/data-protection/configuration/overview>) y almacenamiento en caché (consulte <xref:performance/caching/distributed>).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state). | | TempData | Protección de datos (cookies cifradas; consulte <xref:security/data-protection/configuration/overview>) o sesión (consulte [Administración del estado y la sesión: Estado de la sesión](xref:fundamentals/app-state#session-state)).<br><br>Para obtener más información, consulte [Administración del estado y la sesión: TempData](xref:fundamentals/app-state#tempdata). | | Antifalsificación | Protección de datos (consulte <xref:security/data-protection/configuration/overview>).<br><br>Para obtener más información, vea <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
@@ -82,12 +135,12 @@ Piense en un usuario que inicia sesión en la aplicación a través de la autent
 
 Cuando cualquiera de los síntomas siguientes se producen de manera **intermitente**, se suele hacer un seguimiento del problema hasta la configuración inadecuada de la protección de datos o del almacenamiento en caché para un entorno de granja de servidores web:
 
-* La autenticación se interrumpe &ndash; La cookie de autenticación está configurada de manera incorrecta o no se puede descifrar. Los inicios de sesión de OAuth (Facebook, Microsoft, Twitter) o de OpenIdConnect presentan el error "Correlation failed" (Error de correlación).
-* La autorización se interrumpe &ndash; Identity se pierde.
+* La autenticación se interrumpe: La cookie de autenticación está configurada de manera incorrecta o no se puede descifrar. Los inicios de sesión de OAuth (Facebook, Microsoft, Twitter) o de OpenIdConnect presentan el error "Correlation failed" (Error de correlación).
+* La autorización se interrumpe: Identity se pierde.
 * El estado de sesión pierde datos.
 * Los elementos en caché desaparecen.
 * Error de TempData.
-* Error de POST &ndash; Error en la comprobación antifalsificación.
+* Error de POST: error en la comprobación antifalsificación.
 
 Para más información sobre la configuración de la protección de datos para las implementaciones de granjas de servidores web, consulte <xref:security/data-protection/configuration/overview>. Para más información sobre la configuración del almacenamiento en caché para las implementaciones de granja de servidores web, consulte <xref:performance/caching/distributed>.
 

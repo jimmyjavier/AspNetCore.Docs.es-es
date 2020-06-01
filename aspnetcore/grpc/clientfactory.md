@@ -1,23 +1,11 @@
 ---
-title: Integración de la fábrica de cliente de gRPC en .NET Core
-author: jamesnk
-description: Aprenda a crear clientes gRPC mediante la fábrica de cliente.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 11/12/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/clientfactory
-ms.openlocfilehash: 42b786b9a4d9b422ccf92d7a329979894a35b275
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774722"
+title: author: description: monikerRange: ms.author: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="grpc-client-factory-integration-in-net-core"></a>Integración de la fábrica de cliente de gRPC en .NET Core
 
@@ -120,6 +108,17 @@ services
         o.Address = new Uri("https://localhost:5001");
     })
     .EnableCallContextPropagation();
+```
+
+De forma predeterminada, `EnableCallContextPropagation` genera un error si el cliente se usa fuera del contexto de una llamada a gRPC. El error se ha diseñado para avisarle de que no hay un contexto de llamada que propagar. Si desea utilizar el cliente fuera de un contexto de llamada, suprima el error cuando el cliente esté configurado con `SuppressContextNotFoundErrors`:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
 Para obtener más información sobre las fechas límite y la cancelación de RPC, vea [Ciclo de vida de RPC](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle).
