@@ -101,7 +101,7 @@ Reemplace el contenido de *Program.cs* por el código siguiente:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
-Probar la aplicación
+Prueba de la aplicación
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -123,7 +123,7 @@ Elimine todos los registros de la base de datos (para que se ejecute el método 
 
 ---
 
-La aplicación muestra los datos de inicialización.
+La aplicación muestra los datos inicializados.
 
 ![La aplicación Movie de MVC se abre en Microsoft Edge y muestra datos de la película](working-with-sql/_static/m55.png)
 
@@ -213,7 +213,7 @@ Reemplace el contenido de *Program.cs* por el código siguiente:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
 
-Probar la aplicación
+Prueba de la aplicación
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -235,7 +235,7 @@ Elimine todos los registros de la base de datos (para que se ejecute el método 
 
 ---
 
-La aplicación muestra los datos de inicialización.
+La aplicación muestra los datos inicializados.
 
 ![La aplicación Movie de MVC se abre en Microsoft Edge y muestra datos de la película](working-with-sql/_static/m55_mac.png)
 

@@ -243,7 +243,7 @@ OWIN depende de un objeto `IDictionary<string,object>` para comunicar informaci√
 
 ### <a name="request-data-owin-v100"></a>Datos de solicitud (OWIN v1.0.0)
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | owin.RequestScheme | `String` |  |
 | owin.RequestMethod  | `String` | |    
@@ -256,29 +256,29 @@ OWIN depende de un objeto `IDictionary<string,object>` para comunicar informaci√
 
 ### <a name="request-data-owin-v110"></a>Datos de solicitud (OWIN v1.1.0)
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
-| owin.RequestId | `String` | Opcional |
+| owin.RequestId | `String` | Optional |
 
 ### <a name="response-data-owin-v100"></a>Datos de respuesta (OWIN v1.0.0)
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
-| owin.ResponseStatusCode | `int` | Opcional |
-| owin.ResponseReasonPhrase | `String` | Opcional |
+| owin.ResponseStatusCode | `int` | Optional |
+| owin.ResponseReasonPhrase | `String` | Optional |
 | owin.ResponseHeaders | `IDictionary<string,string[]>`  | |
 | owin.ResponseBody | `Stream`  | |
 
 ### <a name="other-data-owin-v100"></a>Otros datos (OWIN v1.0.0)
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | owin.CallCancelled | `CancellationToken` |  |
 | owin.Version  | `String` | |   
 
 ### <a name="common-keys"></a>Claves comunes
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | ssl.ClientCertificate | `X509Certificate` |  |
 | ssl.LoadClientCertAsync  | `Func<Task>` | |    
@@ -291,13 +291,13 @@ OWIN depende de un objeto `IDictionary<string,object>` para comunicar informaci√
 
 ### <a name="sendfiles-v030"></a>SendFiles v0.3.0
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | sendfile.SendAsync | Vea [Delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) (Signatura de delegado) | Por solicitud |
 
 ### <a name="opaque-v030"></a>Opaque v0.3.0
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | opaque.Version | `String` |  |
 | opaque.Upgrade | `OpaqueUpgrade` | Vea [Delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) (Signatura de delegado) |
@@ -306,7 +306,7 @@ OWIN depende de un objeto `IDictionary<string,object>` para comunicar informaci√
 
 ### <a name="websocket-v030"></a>WebSocket v0.3.0
 
-| Clave               | Valor (tipo) | Description |
+| Key               | Valor (tipo) | Descripci√≥n |
 | ----------------- | ------------ | ----------- |
 | websocket.Version | `String` |  |
 | websocket.Accept | `WebSocketAccept` | Vea [Delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) (Signatura de delegado) |
@@ -316,8 +316,8 @@ OWIN depende de un objeto `IDictionary<string,object>` para comunicar informaci√
 | websocket.ReceiveAsync | `WebSocketReceiveAsync` | Vea [Delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) (Signatura de delegado)  |
 | websocket.CloseAsync | `WebSocketCloseAsync` | Vea [Delegate signature](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) (Signatura de delegado)  |
 | websocket.CallCancelled | `CancellationToken` |  |
-| websocket.ClientCloseStatus | `int` | Opcional |
-| websocket.ClientCloseDescription | `String` | Opcional |
+| websocket.ClientCloseStatus | `int` | Optional |
+| websocket.ClientCloseDescription | `String` | Optional |
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

@@ -287,7 +287,7 @@ Para más información sobre `IHttpClientFactory` y las integraciones de Polly, 
 
 ## <a name="httpclient-and-lifetime-management"></a>HttpClient y administración de la duración
 
-Cada vez que se llama a `HttpClient` en `CreateClient`, se devuelve una nueva instancia de `IHttpClientFactory`. Se crea un objeto <xref:System.Net.Http.HttpMessageHandler> por cada cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
+Cada vez que se llama a `CreateClient` en `IHttpClientFactory`, se devuelve una nueva instancia de `HttpClient`. Se crea un objeto <xref:System.Net.Http.HttpMessageHandler> por cada cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
 
 `IHttpClientFactory` agrupa las instancias de `HttpMessageHandler` creadas por Factory para reducir el consumo de recursos. Se puede reutilizar una instancia de `HttpMessageHandler` del grupo al crear una instancia de `HttpClient` si su duración aún no ha expirado.
 
@@ -605,7 +605,7 @@ Encontrará más información sobre `IHttpClientFactory` y las integraciones de 
 
 ## <a name="httpclient-and-lifetime-management"></a>HttpClient y administración de la duración
 
-Cada vez que se llama a `HttpClient` en `CreateClient`, se devuelve una nueva instancia de `IHttpClientFactory`. Hay un controlador <xref:System.Net.Http.HttpMessageHandler> por cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
+Cada vez que se llama a `CreateClient` en `IHttpClientFactory`, se devuelve una nueva instancia de `HttpClient`. Hay un controlador <xref:System.Net.Http.HttpMessageHandler> por cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
 
 `IHttpClientFactory` agrupa las instancias de `HttpMessageHandler` creadas por Factory para reducir el consumo de recursos. Se puede reutilizar una instancia de `HttpMessageHandler` del grupo al crear una instancia de `HttpClient` si su duración aún no ha expirado.
 
@@ -913,7 +913,7 @@ Encontrará más información sobre `IHttpClientFactory` y las integraciones de 
 
 ## <a name="httpclient-and-lifetime-management"></a>HttpClient y administración de la duración
 
-Cada vez que se llama a `HttpClient` en `CreateClient`, se devuelve una nueva instancia de `IHttpClientFactory`. Hay un controlador <xref:System.Net.Http.HttpMessageHandler> por cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
+Cada vez que se llama a `CreateClient` en `IHttpClientFactory`, se devuelve una nueva instancia de `HttpClient`. Hay un controlador <xref:System.Net.Http.HttpMessageHandler> por cliente con nombre. La fábrica administra la duración de las instancias de `HttpMessageHandler`.
 
 `IHttpClientFactory` agrupa las instancias de `HttpMessageHandler` creadas por Factory para reducir el consumo de recursos. Se puede reutilizar una instancia de `HttpMessageHandler` del grupo al crear una instancia de `HttpClient` si su duración aún no ha expirado.
 

@@ -155,13 +155,13 @@ npm i -D aspnet-webpack
 
 ### <a name="webpack-dev-middleware-configuration"></a>Configuración del middleware de desarrollo de Webpack
 
-El middleware de desarrollo de Webpack se registra en la canalización de solicitudes HTTP mediante el siguiente código en el método *del archivo*Startup.cs`Configure`:
+El middleware de desarrollo de Webpack se registra en la canalización de solicitudes HTTP mediante el siguiente código en el método `Configure` del archivo *Startup.cs*:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
 Se debe llamar al método de extensión `UseWebpackDevMiddleware` antes de [registrar el hospedaje de archivos estáticos](xref:fundamentals/static-files) mediante el método de extensión `UseStaticFiles`. Por motivos de seguridad, registre el middleware solo cuando la aplicación se ejecute en modo de desarrollo.
 
-La propiedad *del archivo*webpack.config.js`output.publicPath` indica al middleware que observe si se producen cambios en la carpeta `dist`:
+La propiedad `output.publicPath` del archivo *webpack.config.js* indica al middleware que observe si se producen cambios en la carpeta `dist`:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -213,7 +213,7 @@ npm i -S @angular/router
 
 ### <a name="routing-helpers-configuration"></a>Configuración de las aplicaciones auxiliares de enrutamiento
 
-En el método `MapSpaFallbackRoute` se usa un método de extensión denominado `Configure`:
+En el método `Configure` se usa un método de extensión denominado `MapSpaFallbackRoute`:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_MvcRoutingTable&highlight=7-9)]
 
@@ -276,7 +276,7 @@ La aplicación se inicia en localhost según el [modo de configuración de ejecu
 
 Abra el archivo *.csproj* generado por el comando [dotnet new](/dotnet/core/tools/dotnet-new). Los paquetes NuGet y de npm necesarios se restauran automáticamente al abrir el proyecto. Este proceso de restauración puede tardar unos minutos y, cuando se complete, la aplicación estará lista para ejecutarse. Haga clic en el botón verde de ejecución o presione `Ctrl + F5` y el explorador se abrirá en la página de aterrizaje de la aplicación. La aplicación se ejecuta en localhost según el [modo de configuración de ejecución](#set-the-runtime-configuration-mode).
 
-## <a name="test-the-app"></a>Probar la aplicación
+## <a name="test-the-app"></a>Prueba de la aplicación
 
 Las plantillas de SpaServices están preconfiguradas para ejecutar pruebas del lado cliente mediante [Karma](https://karma-runner.github.io/1.0/index.html) y [Jasmine](https://jasmine.github.io/). Jasmine es un conocido marco de pruebas unitarias para JavaScript, mientras que Karma es un ejecutor de pruebas para llevar a cabo estas pruebas. Karma está configurado para funcionar con el [middleware de desarrollo de Webpack](#webpack-dev-middleware) de modo que no es necesario que el desarrollador detenga y ejecute la prueba cada vez que se hagan cambios. La prueba se ejecuta de forma automática, ya sea el código que se ejecuta en el caso de prueba o el caso de prueba en sí.
 
@@ -294,7 +294,7 @@ El script inicia el ejecutor de pruebas de Karma, que lee la configuración defi
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 
-## <a name="publish-the-app"></a>Publicación de la aplicación
+## <a name="publish-the-app"></a>Publicar la aplicación
 
 Consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/12474) para obtener más información sobre cómo publicar en Azure.
 

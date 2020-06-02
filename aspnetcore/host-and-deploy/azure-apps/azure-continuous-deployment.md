@@ -77,7 +77,7 @@ Los pasos siguientes le permiten crear una aplicación web en Azure Portal:
 
 1. Seleccione **Web y móvil** > **Aplicación web**.
 
-   ![Microsoft Azure Portal: Botón Nuevo: Web y móvil en Marketplace: Botón Aplicación web en Aplicaciones destacadas](azure-continuous-deployment/_static/05-azure-newwebapp.png)
+   ![Microsoft Azure Portal: botón Nuevo: Web y móvil en Marketplace: Botón Aplicación web en Aplicaciones destacadas](azure-continuous-deployment/_static/05-azure-newwebapp.png)
 
 1. En la hoja **Aplicación web**, escriba un valor único para el **nombre del servicio de aplicaciones**.
 
@@ -90,7 +90,7 @@ Los pasos siguientes le permiten crear una aplicación web en Azure Portal:
 
 1. Seleccione **Crear**. Azure aprovisionará e iniciará la aplicación web.
 
-   ![Azure Portal: Hoja de Essentials SampleWebAppDemo01](azure-continuous-deployment/_static/07-azure-webappblade.png)
+   ![Azure Portal: Hoja SampleWebAppDemo01 de Essentials](azure-continuous-deployment/_static/07-azure-webappblade.png)
 
 ## <a name="enable-git-publishing-for-the-new-web-app"></a>Habilitar la publicación de Git para la nueva aplicación web
 

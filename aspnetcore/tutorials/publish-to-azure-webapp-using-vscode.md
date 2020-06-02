@@ -125,7 +125,7 @@ Aproveche la extensión de Azure App Service para Visual Studio Code y siga los 
 
 - Haga clic con el botón derecho en la carpeta `publish` y seleccione `Deploy to Web App...`.
 - Seleccione la suscripción que quiera crear en la aplicación web.
-- Seleccione `Create New Web App`
+- Seleccione `Create New Web App`.
 - Escriba un nombre para la aplicación web.
 
 La extensión creará la nueva aplicación web e iniciará automáticamente la implementación del paquete. Una vez que se haya terminado la implementación, haga clic en `Browse Website` para validar la implementación.
