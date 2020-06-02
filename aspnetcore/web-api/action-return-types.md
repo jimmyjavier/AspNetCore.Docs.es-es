@@ -1,23 +1,12 @@
 ---
-title: Tipos de valor devuelto de acción del controlador de la API web de ASP.NET Core
-author: scottaddie
-description: Obtenga información sobre los distintos tipos de valor devuelto de método de acción del controlador de la API web de ASP.NET Core.
-ms.author: scaddie
-ms.custom: mvc
-ms.date: 02/03/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: web-api/action-return-types
-ms.openlocfilehash: 4db553a61ca0eeabe35a08731295333f588ee0fc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774947"
+title: tipos de valor devueltos de la acción del controlador en ASP.NET Core Web API Author: scottaddie Description: Obtenga información sobre el uso de los tipos de valor devueltos del método de acción del controlador en una API Web ASP.NET Core.
+MS. Author: scaddie ms. Custom: MVC ms. Date: 02/03/2020 no-LOC:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: Web-API/Action-Return-Types
+
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Tipos de valor devuelto de acción del controlador de la API web de ASP.NET Core
 
@@ -52,9 +41,9 @@ La acción más sencilla devuelve un tipo de datos primitivo o complejo (por eje
 
 Sin condiciones conocidas de las que haya que protegerse durante la ejecución de la acción, bastaría con que se devolviera un tipo específico. La acción anterior no acepta parámetros, por lo que no se necesita ninguna validación de restricciones de parámetros.
 
-Si existen condiciones conocidas que deban tenerse en cuenta en una acción, se presentan varias rutas de acceso de valor devuelto. En tal caso, lo habitual es mezclar un tipo devuelto <xref:Microsoft.AspNetCore.Mvc.ActionResult> con el tipo de valor devuelto primitivo o complejo. Se necesitará [IActionResult](#iactionresult-type) o [ActionResult\<T>](#actionresultt-type) para dar cabida a este tipo de acción.
+Cuando se pueden utilizar varios tipos de valor devuelto, es habitual mezclar un <xref:Microsoft.AspNetCore.Mvc.ActionResult> tipo de valor devuelto con el tipo de valor devuelto primitivo o complejo. [IActionResult](#iactionresult-type) o [ActionResult \<T> ](#actionresultt-type) son necesarios para acomodar este tipo de acción. En este documento se proporcionan varios ejemplos de varios tipos de valor devueltos.
 
-### <a name="return-ienumerablet-or-iasyncenumerablet"></a>Devuelve IEnumerable\<T> o IAsyncEnumerable\<T>
+### <a name="return-ienumerablet-or-iasyncenumerablet"></a>Devolver IEnumerable \<T> o IAsyncEnumerable\<T>
 
 En ASP.net Core 2.2 y versiones anteriores, la devolución de <xref:System.Collections.Generic.IEnumerable%601> en una acción da como resultado la iteración de la colección sincrónica por parte del serializador. El resultado es el bloqueo de llamadas y una posibilidad de colapso del grupo de subprocesos. Por poner un ejemplo, imagine que se usa Entity Framework (EF) Core para las necesidades de acceso a los datos de la API Web. El tipo de valor devuelto de la acción siguiente se enumera sincrónicamente durante la serialización:
 
@@ -98,7 +87,7 @@ Las dos acciones anteriores no suponen ningún bloqueo a partir de ASP.NET Core�
 
 El tipo de valor devuelto <xref:Microsoft.AspNetCore.Mvc.IActionResult> resulta adecuado cuando existen varios tipos de valor devuelto `ActionResult` posibles en una acción. Los tipos `ActionResult` representan varios códigos de estado HTTP. Cualquier clase no abstracta derivada de `ActionResult` se considera un tipo de valor devuelto válido. Algunos tipos de valor devueltos comunes en esta categoría son <xref:Microsoft.AspNetCore.Mvc.BadRequestResult> (400), <xref:Microsoft.AspNetCore.Mvc.NotFoundResult> (404) y <xref:Microsoft.AspNetCore.Mvc.OkObjectResult> (200). Como alternativa, se pueden usar métodos de conveniencia en la clase <xref:Microsoft.AspNetCore.Mvc.ControllerBase> para devolver tipos `ActionResult` de una acción. Por ejemplo, `return BadRequest();` es una forma abreviada de `return new BadRequestResult();`.
 
-Dado que hay varios tipos de valor devuelto y rutas de acceso en este tipo de acción [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) , es necesario el uso liberal del atributo. Este atributo genera detalles de respuesta más pormenorizados relativos a las páginas de ayuda de API web generadas por herramientas como [Swagger](xref:tutorials/web-api-help-pages-using-swagger). `[ProducesResponseType]` indica los tipos conocidos y los códigos de estado HTTP que la acción va a devolver.
+Dado que hay varios tipos de valor devuelto y rutas de acceso en este tipo de acción, es necesario el uso liberal del [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) atributo. Este atributo genera detalles de respuesta más pormenorizados relativos a las páginas de ayuda de API web generadas por herramientas como [Swagger](xref:tutorials/web-api-help-pages-using-swagger). `[ProducesResponseType]` indica los tipos conocidos y los códigos de estado HTTP que la acción va a devolver.
 
 ### <a name="synchronous-action"></a>Acción sincrónica
 
@@ -148,13 +137,13 @@ Por ejemplo, el siguiente modelo indica que las solicitudes deben incluir las pr
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Si se [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) aplica el atributo en ASP.net Core 2,1 o posterior, los errores de validación del modelo dan como resultado un código de estado 400. Para obtener más información, consulte [Respuestas HTTP 400 automáticas](xref:web-api/index#automatic-http-400-responses).
+Si [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) se aplica el atributo en ASP.NET Core 2,1 o posterior, los errores de validación del modelo dan como resultado un código de estado 400. Para obtener más información, consulte [Respuestas HTTP 400 automáticas](xref:web-api/index#automatic-http-400-responses).
 
-## <a name="actionresultt-type"></a>Tipo ActionResult\<T>
+## <a name="actionresultt-type"></a>\<T>Tipo ActionResult
 
-ASP.NET Core 2.1 incorpora el tipo de valor devuelto [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) para las acciones de controlador de la API web. Permite devolver un tipo que se deriva de <xref:Microsoft.AspNetCore.Mvc.ActionResult> o bien un [tipo específico](#specific-type). `ActionResult<T>` reporta las siguientes ventajas con frente al [tipo IActionResult](#iactionresult-type):
+ASP.NET Core 2,1 presentó el tipo de valor devuelto [ActionResult \<T> ](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) para las acciones del controlador de API Web. Permite devolver un tipo que se deriva de <xref:Microsoft.AspNetCore.Mvc.ActionResult> o bien un [tipo específico](#specific-type). `ActionResult<T>` reporta las siguientes ventajas con frente al [tipo IActionResult](#iactionresult-type):
 
-* Se [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) puede excluir la propiedad del `Type` atributo. Por ejemplo, `[ProducesResponseType(200, Type = typeof(Product))]` se simplifica a `[ProducesResponseType(200)]`. En su lugar, el tipo de valor devuelto esperado de la acción se infiere desde `T` en `ActionResult<T>`.
+* [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) `Type` Se puede excluir la propiedad del atributo. Por ejemplo, `[ProducesResponseType(200, Type = typeof(Product))]` se simplifica a `[ProducesResponseType(200)]`. En su lugar, el tipo de valor devuelto esperado de la acción se infiere desde `T` en `ActionResult<T>`.
 * Los [operadores de conversión implícitos](/dotnet/csharp/language-reference/keywords/implicit) admiten la conversión tanto de `T` como de `ActionResult` en `ActionResult<T>`. `T` se convierte en <xref:Microsoft.AspNetCore.Mvc.ObjectResult>, lo que significa que `return new ObjectResult(T);` se ha simplificado para `return T;`.
 
 C# no admite operadores de conversión implícitos en las interfaces. Por consiguiente, la conversión de la interfaz a un tipo concreto es necesaria para usar `ActionResult<T>`. Por ejemplo, el uso de `IEnumerable` en el siguiente ejemplo no funciona:
@@ -189,7 +178,7 @@ Veamos una acción asincrónica, en la que pueden darse dos tipos de valor devue
 En la acción anterior:
 
 * El entorno de ejecución de ASP.NET Core devuelve un código de estado 400 (<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>) en los casos siguientes:
-  * Se [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) ha aplicado el atributo y se produce un error en la validación del modelo.
+  * Se ha [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) aplicado el atributo y se produce un error en la validación del modelo.
   * La descripción del producto contiene "Widget XYZ".
 * Al crear un producto, el método <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> genera un código de estado 201. En esta ruta de acceso de código, el objeto `Product` se proporciona en el cuerpo de la respuesta. Se proporciona un encabezado de respuesta `Location` que contiene la dirección URL del producto recién creada.
 
