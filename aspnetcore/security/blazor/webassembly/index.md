@@ -1,11 +1,11 @@
 ---
-title: 'Protección de WebAssembly de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre cómo proteger aplicaciones WebAssemlby de Blazor como aplicaciones de página única (SPA).'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
+title: "Protección de ASP.NET Core Blazor WebAssembly" author: guardrex description: 'Obtenga información sobre cómo proteger aplicaciones WebAssemlby de Blazor como aplicaciones de página única (SPA).'
+monikerRange: '>= aspnetcore-3.1' ms.author: riande ms.custom: mvc ms.date: 06/01/2020 no-loc:
 - "Blazor"
 - "Identity"
 - "Let's Encrypt"
 - "Razor"
-- 'SignalR' uid: 
+- "SignalR" uid: security/blazor/webassembly/index
 
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Protección de WebAssembly de Blazor en ASP.NET Core
@@ -41,7 +41,19 @@ La biblioteca [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https
 * Cuando la aplicación WebAssembly de Blazor carga el punto de conexión de devolución de llamada de inicio de sesión (`/authentication/login-callback`), se procesa la respuesta de autenticación.
   * Si el proceso de autenticación se completa correctamente, el usuario se autentica y, opcionalmente, se devuelve a la dirección URL protegida original que haya solicitado.
   * Si por algún motivo se produce un error en el proceso de autenticación, se envía al usuario a la página de inicio de sesión con errores (`/authentication/login-failed`) y se muestra un error.
-  
+
+## <a name="authorization"></a>Autorización
+
+En aplicaciones de Blazor WebAssembly, las comprobaciones de autorización pueden omitirse porque los usuarios pueden modificar todos los códigos del lado cliente. Lo mismo se aplica a todas las tecnologías de aplicaciones del lado cliente, incluidas las plataformas JavaScript SPA o las aplicaciones nativas para cualquier sistema operativo.
+
+**Realice siempre las comprobaciones de autorización en el servidor dentro de cualquier punto de conexión de la API al que acceda su aplicación del lado cliente.**
+
+## <a name="refresh-tokens"></a>Tokens de actualización
+
+Los tokens de actualización no se pueden proteger en el lado cliente en aplicaciones Blazor WebAssembly. Por lo tanto, no se deben enviar a la aplicación para su uso directo.
+
+Los tokens de actualización se pueden mantener y usar en la aplicación del lado servidor en una solución Blazor WebAssembly hospedada para acceder a las API de terceros. Para obtener más información, vea <xref:security/blazor/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+
 ## <a name="implementation-guidance"></a>Guía de implementación
 
 Los artículos de esta *información general* ofrecen detalles sobre la autenticación de usuarios en WebAssembly de Blazor con proveedores específicos.
