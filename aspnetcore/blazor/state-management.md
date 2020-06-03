@@ -147,7 +147,7 @@ Para instalar el paquete de `Microsoft.AspNetCore.ProtectedBrowserStorage`:
 
 ### <a name="save-and-load-data-within-a-component"></a>Guardar y cargar datos dentro de un componente
 
-En cualquier componente que requiera cargar o guardar datos en el almacenamiento del explorador, use [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) para insertar una instancia de uno de los elementos siguientes:
+En cualquier componente que requiera cargar o guardar datos en el almacenamiento del explorador, use [`@inject`](xref:mvc/views/razor#inject) para insertar una instancia de uno de los elementos siguientes:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -184,7 +184,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Si los parámetros del componente incluyen el estado de navegación, llame a `ProtectedSessionStore.GetAsync` y asigne el resultado en `OnParametersSetAsync`, no `OnInitializedAsync`. `OnInitializedAsync` solo se llama una vez la primera vez que se crea una instancia del componente. `OnInitializedAsync` no se llama de nuevo más tarde si el usuario navega a una dirección URL diferente mientras permanece en la misma página. Para obtener más información, vea <xref:blazor/lifecycle>.
+Si los parámetros del componente incluyen el estado de navegación, llame a `ProtectedSessionStore.GetAsync` y asigne el resultado en <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, no <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> solo se llama una vez la primera vez que se crea una instancia del componente. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> no se llama de nuevo más tarde si el usuario navega a una dirección URL diferente mientras permanece en la misma página. Para obtener más información, vea <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > Los ejemplos de esta sección solo funcionan si el servidor no tiene habilitada la representación previa. Con la representación previa habilitada, se genera un error similar al siguiente:
@@ -314,7 +314,7 @@ else
 
 El componente `CounterStateProvider` controla la fase de carga, ya que no representa su contenido secundario hasta que se completa la carga.
 
-Para usar el componente `CounterStateProvider`, encapsule una instancia del componente en torno a cualquier otro componente que requiera acceso al estado del contador. Para que el estado sea accesible a todos los componentes de una aplicación, encapsule el componente `CounterStateProvider` alrededor de `Router` en el componente `App` (*App.razor*):
+Para usar el componente `CounterStateProvider`, encapsule una instancia del componente en torno a cualquier otro componente que requiera acceso al estado del contador. Para que el estado sea accesible a todos los componentes de una aplicación, encapsule el componente `CounterStateProvider` alrededor de <xref:Microsoft.AspNetCore.Components.Routing.Router> en el componente `App` (*App.razor*):
 
 ```razor
 <CounterStateProvider>

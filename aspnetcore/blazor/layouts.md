@@ -1,24 +1,12 @@
 ---
-title: Diseños de ASP.NET Core Blazor
-author: guardrex
-description: Aprenda a crear componentes de diseño reutilizables para aplicaciones de Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/layouts
-ms.openlocfilehash: 09cca9c4af23c35fdbc2ee92169913c960b0a68d
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424334"
+title: 'Diseños de ASP.NET Core Blazor' author: description: 'Aprenda a crear componentes de diseño reutilizables para aplicaciones de Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Diseños de ASP.NET Core Blazor
 
@@ -30,10 +18,10 @@ Técnicamente, un diseño es simplemente otro componente. Un diseño se define e
 
 Para convertir un *componente* en un *diseño*, el componente debe:
 
-* Heredarse de `LayoutComponentBase`, que define una propiedad `Body` para el contenido representado dentro del diseño.
+* Heredarse de <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, que define una propiedad <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> para el contenido representado dentro del diseño.
 * Use la sintaxis `@Body` de Razor para especificar la ubicación en el marcado de diseño donde se representa el contenido.
 
-En el ejemplo de código siguiente se muestra la plantilla de Razor de un componente de diseño, *MainLayout.razor*. El diseño hereda `LayoutComponentBase` y establece `@Body` entre la barra de navegación y el pie de página:
+En el ejemplo de código siguiente se muestra la plantilla de Razor de un componente de diseño, *MainLayout.razor*. El diseño hereda <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> y establece `@Body` entre la barra de navegación y el pie de página:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
@@ -41,21 +29,21 @@ En una aplicación basada en una de las plantillas de aplicación de Blazor, el 
 
 ## <a name="default-layout"></a>Diseño predeterminado
 
-Especifique el diseño predeterminado de la aplicación en el componente `Router` en el archivo *App.razor* de la aplicación. El siguiente componente `Router`, proporcionado por las plantillas predeterminadas de Blazor, determina el diseño predeterminado para el componente `MainLayout`:
+Especifique el diseño predeterminado de la aplicación en el componente <xref:Microsoft.AspNetCore.Components.Routing.Router> en el archivo *App.razor* de la aplicación. El siguiente componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, proporcionado por las plantillas predeterminadas de Blazor, determina el diseño predeterminado para el componente `MainLayout`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
-Para proporcionar un diseño predeterminado para el contenido `NotFound`, especifique un elemento `LayoutView` para el contenido `NotFound`:
+Para proporcionar un diseño predeterminado para el contenido <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>, especifique un elemento <xref:Microsoft.AspNetCore.Components.LayoutView> para el contenido <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-Para obtener más información sobre el componente `Router`, consulte el artículo <xref:blazor/routing>.
+Para obtener más información sobre el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, consulte el artículo <xref:blazor/routing>.
 
 Especificar el diseño como un diseño predeterminado en el enrutador es una práctica útil porque, después, se puede invalidar a nivel de componente o de carpeta. Se recomienda usar el enrutador para establecer el diseño predeterminado de la aplicación, ya que es la técnica más general.
 
 ## <a name="specify-a-layout-in-a-component"></a>Especificación de un diseño en un componente
 
-Use la directiva `@layout` de Razor para aplicar un diseño a un componente. El compilador convierte `@layout` en un atributo `LayoutAttribute`, que se aplica a la clase de componentes.
+Use la directiva `@layout` de Razor para aplicar un diseño a un componente. El compilador convierte `@layout` en un atributo <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, que se aplica a la clase de componentes.
 
 El contenido del siguiente componente `MasterList` se inserta en `MasterLayout` en la posición `@Body`:
 

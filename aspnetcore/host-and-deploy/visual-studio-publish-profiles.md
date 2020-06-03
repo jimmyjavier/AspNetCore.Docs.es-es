@@ -1,24 +1,11 @@
 ---
-title: Perfiles de publicación (.pubxml) de Visual Studio para la implementación de aplicaciones ASP.NET Core
-author: rick-anderson
-description: Aprenda a crear perfiles de publicación en Visual Studio y usarlos para administrar implementaciones de aplicaciones ASP.NET Core en diversos destinos.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/14/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 42d790ad4942ea238fb3bbe56cb92ae4a26ddc2d
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
-ms.translationtype: HT
-ms.contentlocale: es-ES
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83439011"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Perfiles de publicación (.pubxml) de Visual Studio para la implementación de aplicaciones ASP.NET Core
 
@@ -26,7 +13,7 @@ Por [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) y [Rick Anderson](
 
 Este documento se centra en el uso de Visual Studio 2019 o versiones posteriores para crear y usar perfiles de publicación. Los perfiles de publicación creados con Visual Studio se pueden usar con MSBuild y Visual Studio. Para obtener instrucciones sobre la publicación en Azure, consulte <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-Con el comando `dotnet new mvc` se produce un archivo de proyecto que contiene el siguiente [\<Proyecto>elemento](/visualstudio/msbuild/project-element-msbuild) de nivel de raíz:
+El comando `dotnet new mvc` produce un archivo de proyecto que contiene el siguiente [elemento \<Project> de nivel de raíz](/visualstudio/msbuild/project-element-msbuild):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -510,9 +497,174 @@ Agregue la propiedad `<AllowUntrustedCertificate>` con un valor de `True` al per
 Para ver los archivos de la implementación de una aplicación web de Azure App Service, use el [servicio Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Anexe el token `scm` al nombre de la aplicación web. Por ejemplo:
 
 | Resolución                                    | Resultado       |
-| -------------------------------------- | ------------ |
-| `http://mysite.azurewebsites.net/`     | Aplicación web      |
-| `http://mysite.scm.azurewebsites.net/` | Servicio Kudu |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------------------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- "Blazor"
+- "Identity"
+- "Let's Encrypt"
+- "Razor"
+- 'SignalR' uid: 
+
+------ | | `http://mysite.azurewebsites.net/`     | Aplicación web      | | `http://mysite.scm.azurewebsites.net/` | Servicio Kudu |
 
 Seleccione el elemento de menú [Consola de depuración](https://github.com/projectkudu/kudu/wiki/Kudu-console) para ver, editar, eliminar o agregar archivos.
 

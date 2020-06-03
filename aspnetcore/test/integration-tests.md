@@ -143,7 +143,7 @@ La configuración de host web se puede crear independientemente de las clases de
 
    El contexto de la base de datos del SUT se registra en su método `Startup.ConfigureServices`. La devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *después* de que se ejecute el código `Startup.ConfigureServices` de la aplicación. El orden de ejecución es un cambio importante para el [host genérico](xref:fundamentals/host/generic-host) con la versión de ASP.NET Core 3.0. Para usar una base de datos diferente para las pruebas a la base de datos de la aplicación, el contexto de la base de datos de la aplicación debe reemplazarse en `builder.ConfigureServices`.
 
-   En el caso de sistemas a prueba que todavía usan el [host web}(xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes que* el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
+   En el caso de sistemas a prueba que todavía usan el [host de web](xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes* que el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
 
    La aplicación de ejemplo busca el descriptor de servicio del contexto de la base de datos y usa el descriptor para quitar el registro del servicio. Luego, la fábrica agrega una nueva instancia de `ApplicationDbContext` que usa una base de datos en memoria para las pruebas.
 
@@ -178,7 +178,7 @@ Cualquier solicitud POST al SUT debe satisfacer la comprobación antifalsificaci
 
 Los métodos de extensión auxiliares `SendAsync` (*Helpers/HttpClientExtensions.cs*) y el método auxiliar `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) de la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usan el analizador [AngleSharp](https://anglesharp.github.io/) para controlar la comprobación antifalsificación con los métodos siguientes:
 
-* `GetDocumentAsync` &ndash; Recibe [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) y devuelve una instancia de `IHtmlDocument`. `GetDocumentAsync` usa una fábrica que prepara una *respuesta virtual* basada en la instancia de `HttpResponseMessage` original. Para obtener más información, vea la [documentación de AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `GetDocumentAsync`: recibe [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) y devuelve una instancia de `IHtmlDocument`. `GetDocumentAsync` usa una fábrica que prepara una *respuesta virtual* basada en la instancia de `HttpResponseMessage` original. Para obtener más información, vea la [documentación de AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Los métodos de extensión `SendAsync` de `HttpClient` componen una instancia de [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) y llaman a [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) para enviar solicitudes al SUT. Las sobrecargas de `SendAsync` aceptan el formulario HTML (`IHtmlFormElement`) y lo siguiente:
   * Botón Enviar del formulario (`IHtmlElement`)
   * Colección de valores del formulario (`IEnumerable<KeyValuePair<string, string>>`)
@@ -573,7 +573,7 @@ La aplicación de ejemplo propaga la base de datos con tres mensajes en *Utiliti
 
 El contexto de la base de datos del SUT se registra en su método `Startup.ConfigureServices`. La devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *después* de que se ejecute el código `Startup.ConfigureServices` de la aplicación. Para usar otra base de datos para las pruebas, el contexto de la base de datos de la aplicación debe reemplazarse en `builder.ConfigureServices`. Para obtener más información, vea la sección [Personalización de WebApplicationFactory](#customize-webapplicationfactory).
 
-En el caso de sistemas a prueba que todavía usan el [host web}(xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes que* el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
+En el caso de sistemas a prueba que todavía usan el [host de web](xref:fundamentals/host/web-host), la devolución de llamada `builder.ConfigureServices` de la aplicación de prueba se ejecuta *antes* que el código `Startup.ConfigureServices` del sistema a prueba. La devolución de llamada `builder.ConfigureTestServices` de la aplicación de prueba se ejecuta *después*.
 
 ::: moniker-end
 
@@ -719,7 +719,7 @@ Cualquier solicitud POST al SUT debe satisfacer la comprobación antifalsificaci
 
 Los métodos de extensión auxiliares `SendAsync` (*Helpers/HttpClientExtensions.cs*) y el método auxiliar `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) de la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usan el analizador [AngleSharp](https://anglesharp.github.io/) para controlar la comprobación antifalsificación con los métodos siguientes:
 
-* `GetDocumentAsync` &ndash; Recibe [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) y devuelve una instancia de `IHtmlDocument`. `GetDocumentAsync` usa una fábrica que prepara una *respuesta virtual* basada en la instancia de `HttpResponseMessage` original. Para obtener más información, vea la [documentación de AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `GetDocumentAsync`: recibe [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) y devuelve una instancia de `IHtmlDocument`. `GetDocumentAsync` usa una fábrica que prepara una *respuesta virtual* basada en la instancia de `HttpResponseMessage` original. Para obtener más información, vea la [documentación de AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Los métodos de extensión `SendAsync` de `HttpClient` componen una instancia de [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) y llaman a [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) para enviar solicitudes al SUT. Las sobrecargas de `SendAsync` aceptan el formulario HTML (`IHtmlFormElement`) y lo siguiente:
   * Botón Enviar del formulario (`IHtmlElement`)
   * Colección de valores del formulario (`IEnumerable<KeyValuePair<string, string>>`)

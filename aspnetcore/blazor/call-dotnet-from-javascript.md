@@ -20,9 +20,9 @@ En este artículo se describe cómo invocar métodos de .NET desde JavaScript. P
 
 ## <a name="static-net-method-call"></a>Llamada al método estático de .NET
 
-Para invocar un método de .NET estático desde JavaScript, use las funciones `DotNet.invokeMethod` o `DotNet.invokeMethodAsync`. Pase el identificador del método estático al que quiere llamar, el nombre del ensamblado que contiene la función, y los argumentos. La versión asincrónica es preferible para admitir escenarios de Blazor Server. El método de .NET debe ser público y estático y debe tener el atributo `[JSInvokable]`. Actualmente no se admite la llamada a métodos genéricos abiertos.
+Para invocar un método de .NET estático desde JavaScript, use las funciones `DotNet.invokeMethod` o `DotNet.invokeMethodAsync`. Pase el identificador del método estático al que quiere llamar, el nombre del ensamblado que contiene la función, y los argumentos. La versión asincrónica es preferible para admitir escenarios de Blazor Server. El método de .NET debe ser público y estático y debe tener el atributo [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute). Actualmente no se admite la llamada a métodos genéricos abiertos.
 
-La aplicación de ejemplo incluye un método de C# para devolver una matriz `int`. El atributo `JSInvokable` se aplica al método.
+La aplicación de ejemplo incluye un método de C# para devolver una matriz `int`. El atributo [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) se aplica al método.
 
 *Pages/JsInterop.razor*:
 
@@ -57,7 +57,7 @@ Array(4) [ 1, 2, 3, 4 ]
 
 El cuarto valor de matriz se inserta en la matriz (`data.push(4);`) devuelta por `ReturnArrayAsync`.
 
-De forma predeterminada, el identificador del método es su nombre, pero puede especificar un identificador diferente mediante el constructor `JSInvokableAttribute`:
+De forma predeterminada, el identificador del método es su nombre, pero puede especificar un identificador diferente mediante el constructor de atributo [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute):
 
 ```csharp
 @code {
@@ -86,8 +86,8 @@ returnArrayAsyncJs: function () {
 También puede llamar a métodos de instancia de .NET desde JavaScript. Para invocar un método de instancia de .NET desde JavaScript:
 
 * Pase la instancia de .NET por referencia a JavaScript:
-  * Realice una llamada estática a `DotNetObjectReference.Create`.
-  * Encapsule la instancia de en una instancia `DotNetObjectReference` y llame a `Create` en la instancia `DotNetObjectReference`. Elimine los objetos `DotNetObjectReference` (se incluye un ejemplo más adelante en esta sección).
+  * Realice una llamada estática a <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A?displayProperty=nameWithType>.
+  * Encapsule la instancia de en una instancia <xref:Microsoft.JSInterop.DotNetObjectReference> y llame a <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> en la instancia <xref:Microsoft.JSInterop.DotNetObjectReference>. Elimine los objetos <xref:Microsoft.JSInterop.DotNetObjectReference> (se incluye un ejemplo más adelante en esta sección).
 * Invoque métodos de instancia de .NET en la instancia mediante las funciones `invokeMethod` o `invokeMethodAsync`. La instancia de .NET también se puede pasar como argumento al invocar otros métodos de .NET desde JavaScript.
 
 > [!NOTE]
@@ -133,9 +133,9 @@ Salida de la consola en las herramientas de desarrollo web del explorador:
 Hello, Blazor!
 ```
 
-Para evitar una fuga de memoria y permitir la recolección de elementos no utilizados en un componente que crea un objeto `DotNetObjectReference`, adopte uno de los enfoques siguientes:
+Para evitar una fuga de memoria y permitir la recolección de elementos no utilizados en un componente que crea un objeto <xref:Microsoft.JSInterop.DotNetObjectReference>, adopte uno de los enfoques siguientes:
 
-* Elimine el objeto de la clase que ha creado la instancia de `DotNetObjectReference`:
+* Elimine el objeto de la clase que ha creado la instancia de <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
   ```csharp
   public class ExampleJsInterop : IDisposable
@@ -197,7 +197,7 @@ Para evitar una fuga de memoria y permitir la recolección de elementos no utili
   }
   ```
 
-* Si el componente o la clase no elimina el objeto `DotNetObjectReference`, elimínelo en el cliente mediante la llamada a `.dispose()`:
+* Si el componente o la clase no elimina el objeto <xref:Microsoft.JSInterop.DotNetObjectReference>, elimínelo en el cliente mediante la llamada a `.dispose()`:
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
@@ -211,7 +211,7 @@ Para evitar una fuga de memoria y permitir la recolección de elementos no utili
 Para invocar los métodos de .NET de un componente:
 
 * Use la función `invokeMethod` o `invokeMethodAsync` para hacer una llamada de método estático al componente.
-* El método estático del componente encapsula la llamada a su método de instancia como un objeto `Action` invocado.
+* El método estático del componente encapsula la llamada a su método de instancia como un objeto <xref:System.Action> invocado.
 
 En el código JavaScript del lado cliente:
 
@@ -257,11 +257,11 @@ function updateMessageCallerJS() {
 }
 ```
 
-Cuando hay varios componentes, cada uno con métodos de instancia a los que llamar, se usa una clase auxiliar para invocar los métodos de instancia (como objetos `Action`) de cada componente.
+Cuando hay varios componentes, cada uno con métodos de instancia a los que llamar, se usa una clase auxiliar para invocar los métodos de instancia (como objetos <xref:System.Action>) de cada componente.
 
 En el ejemplo siguiente:
 
-* El componente `JSInterop` contiene varios componentes `ListItem`.
+* El componente `JSInteropExample` contiene varios componentes `ListItem`.
 * Cada componente `ListItem` consta de un mensaje y un botón.
 * Cuando se selecciona un botón de componente `ListItem`, el método `UpdateMessage` de ese objeto `ListItem` cambia el texto del elemento de lista y oculta el botón.
 
@@ -332,10 +332,10 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-*Pages/JSInterop.razor*:
+*Pages/JSInteropExample.razor*:
 
 ```razor
-@page "/JSInterop"
+@page "/JSInteropExample"
 
 <h1>List of components</h1>
 

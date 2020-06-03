@@ -95,7 +95,7 @@ Una aplicación Blazor se compone de elementos reutilizables de la interfaz de u
 * Se convierte en texto HTML (durante la representación previa&dagger;).
 * Se usa para actualizar de forma eficaz el marcado durante la representación normal.
 
-&dagger;*Representación previa* &ndash; El componente de Razor solicitado se compila en el servidor en HTML estático y se envía al cliente, donde se representa al usuario. Una vez realizada la conexión entre el cliente y el servidor, los elementos estáticos del componente representados previamente se reemplazan por elementos interactivos. La representación previa hace que la aplicación tenga más capacidad de respuesta respecto al usuario.
+&dagger;*Representación previa*: El componente de Razor solicitado se compila en el servidor en HTML estático y se envía al cliente, donde se representa al usuario. Una vez realizada la conexión entre el cliente y el servidor, los elementos estáticos del componente representados previamente se reemplazan por elementos interactivos. La representación previa hace que la aplicación tenga más capacidad de respuesta respecto al usuario.
 
 Una actualización de la interfaz de usuario en Blazor se desencadena mediante lo siguiente:
 

@@ -69,11 +69,11 @@ Incluya un componente en otro componente mediante una sintaxis HTML.
 
 ## <a name="component-parameters"></a>Parámetros del componente
 
-Los componentes también pueden tener parámetros. Los parámetros de componente se definen mediante propiedades públicas en la clase de componentes con el atributo `[Parameter]`. Use atributos para especificar argumentos para un componente en el marcado.
+Los componentes también pueden tener parámetros. Los parámetros de componente se definen mediante propiedades públicas en la clase de componentes con el atributo [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Use atributos para especificar argumentos para un componente en el marcado.
 
 1. Actualice el código de C# `@code` del componente de la siguiente forma:
 
-   * Agregue una propiedad `IncrementAmount` pública con el atributo `[Parameter]`.
+   * Agregue una propiedad `IncrementAmount` pública con el atributo [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
    * Cambie el método `IncrementCount` para usar la propiedad `IncrementAmount` al aumentar el valor de `currentCount`.
 
    *Pages/Counter.razor*:
@@ -105,7 +105,7 @@ Si va a trabajar con una aplicación Blazor Server, el servicio `WeatherForecast
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-La directiva `@inject` se usa para insertar la instancia del servicio `WeatherForecastService` en el componente `FetchData`.
+La directiva [`@inject`](xref:mvc/views/razor#inject) se usa para insertar la instancia del servicio `WeatherForecastService` en el componente `FetchData`.
 
 *Pages/FetchData.razor*:
 
@@ -117,7 +117,7 @@ El componente `FetchData` usa el servicio insertado, como `ForecastService`, par
 
 ### <a name="blazor-webassembly-experience"></a>Experiencia de Blazor WebAssembly
 
-Si trabaja con una aplicación Blazor WebAssembly, se inserta `HttpClient` para obtener datos de previsión del tiempo del archivo *weather.json* de la carpeta *wwwroot/sample-data*.
+Si trabaja con una aplicación Blazor WebAssembly, se inserta <xref:System.Net.Http.HttpClient> para obtener datos de previsión del tiempo del archivo *weather.json* de la carpeta *wwwroot/sample-data*.
 
 *Pages/FetchData.razor*:
 
