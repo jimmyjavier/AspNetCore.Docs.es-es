@@ -1,11 +1,11 @@
 ---
-Título: ' administrar usuarios y grupos en SignalR ' autor: Descripción: ' información general de ASP.net Core SignalR Administración de usuarios y grupos '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
+title: ' Manage Users and Groups in SignalR ' Author: bradygaster Description: ' Overview of ASP.net Core SignalR User and Group Management '.
+monikerRange: ' >= aspnetcore-2,1 ' ms. Author: bradyg ms. Custom: MVC ms. Date: 05/17/2020 no-LOC:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- ' SignalR ' UID: signalr/Groups
 
 ---
 
@@ -15,7 +15,7 @@ Por [Brennan Conroy](https://github.com/BrennanConroy)
 
 SignalRpermite que los mensajes se envíen a todas las conexiones asociadas a un usuario específico, así como a grupos de conexiones con nombre.
 
-[Ver o descargar el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(cómo descargarlo)](xref:index#how-to-download-a-sample)
+[Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(cómo descargarlo)](xref:index#how-to-download-a-sample).
 
 ## <a name="users-in-signalr"></a>Usuarios deSignalR
 
@@ -46,5 +46,5 @@ Para proteger el acceso a los recursos al usar grupos, use la funcionalidad de [
 ## <a name="related-resources"></a>Recursos relacionados
 
 * [Introducción](xref:tutorials/signalr)
-* [Concentradores](xref:signalr/hubs)
+* [Directorios](xref:signalr/hubs)
 * [Publicar en Azure](xref:signalr/publish-to-azure-web-app)

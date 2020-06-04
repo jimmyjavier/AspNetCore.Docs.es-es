@@ -1,10 +1,11 @@
 ---
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
+title: dar formato a los datos de respuesta en ASP.NET Core Web API Author: ardalis Description: Aprenda a dar formato a los datos de respuesta en ASP.NET Core API Web.
+MS. Author: Riande ms. Custom: H1Hack27Feb2017 ms. Date: 04/17/2020 no-LOC:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID ' ': 
+- ' SignalR ' UID: Web-API/Advanced/Formatting
 
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Aplicación de formato a datos de respuesta en ASP.NET Core Web API
@@ -19,7 +20,7 @@ ASP.NET Core MVC tiene compatibilidad para formatear datos de respuesta. Se pued
 
 Algunos tipos de resultado de acción son específicos de un formato determinado, como <xref:Microsoft.AspNetCore.Mvc.JsonResult> y <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Las acciones pueden devolver resultados con un formato determinado, independientemente de las preferencias del cliente. Por ejemplo, la devolución de `JsonResult` devuelve datos con formato JSON. Al devolver `ContentResult` o una cadena se devuelven datos de cadena con formato de texto sin formato.
 
-No se requiere una acción para devolver ningún tipo específico. ASP.NET Core admite cualquier valor devuelto de objeto.  Los resultados de acciones que devuelven objetos que no son tipos <xref:Microsoft.AspNetCore.Mvc.IActionResult> se serializan con la implementación <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> correspondiente. Para obtener más información, vea <xref:web-api/action-return-types>.
+No se requiere una acción para devolver ningún tipo específico. ASP.NET Core admite cualquier valor devuelto de objeto.  Los resultados de acciones que devuelven objetos que no son tipos <xref:Microsoft.AspNetCore.Mvc.IActionResult> se serializan con la implementación <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> correspondiente. Para más información, consulte <xref:web-api/action-return-types>.
 
 El método auxiliar integrado <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> devuelve datos con formato JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
@@ -136,7 +137,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerOptions
     {
-        options.WriteIndented = true,
+        WriteIndented = true,
     });
 }
 ```
@@ -175,7 +176,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerSettings
     {
-        options.Formatting = Formatting.Indented,
+        Formatting = Formatting.Indented,
     });
 }
 ```
@@ -243,211 +244,7 @@ La asignación de la ruta de acceso de la solicitud debe especificarse en la rut
 Esta ruta anterior permite especificar el formato solicitado como una extensión de archivo opcional. El [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) atributo comprueba la existencia del valor de formato en `RouteData` y asigna el formato de respuesta al formateador adecuado cuando se crea la respuesta.
 
 |           Ruta        |             Formateador              |
-|---
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
-------------|---Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
--
-Título: autor: Descripción: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID ' ': 
-
-------------------| |   `/api/products/5`    |    Formateador de salida predeterminado | | `/api/products/5.json` | Formateador JSON (si está configurado) | | `/api/products/5.xml`  | Formateador XML (si está configurado) |
+|------------------------|------------------------------------|
+|   `/api/products/5`    |    Formateador de salida predeterminado    |
+| `/api/products/5.json` | Formateador JSON (si está configurado) |
+| `/api/products/5.xml`  | Formateador XML (si está configurado)  |
