@@ -5,7 +5,7 @@ description: Obtenga información sobre cómo usar la herramienta global HTTP RE
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/11/2019
+ms.date: 05/20/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4c42ad56bbdb7b66824b290cd118903cbe4311e8
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777103"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452218"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Prueba de las API web HTTP REPL
 
@@ -36,7 +36,7 @@ Se admiten los siguientes [verbos HTTP](https://github.com/microsoft/api-guideli
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
 * [Opciones](#test-http-options-requests)
-* [PATCH](#test-http-patch-requests)
+* [DISTRIBUCIÓN](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
@@ -820,7 +820,23 @@ Para establecer un encabezado de solicitud HTTP, use uno de los métodos siguien
 
 ## <a name="test-secured-endpoints"></a>Prueba de los puntos de conexión seguros
 
-HTTP REPL admite la prueba de los puntos de conexión seguros a través del uso de los encabezados de solicitud HTTP. Algunos ejemplos de esquemas de autenticación y autorización compatibles son la autenticación básica, los tokens de portador de JWT y la autenticación implícita. Por ejemplo, puede enviar un token de portador a un punto de conexión con el comando siguiente:
+HTTP REPL admite las pruebas de puntos de conexión protegidos de dos maneras: mediante las credenciales predeterminadas del usuario que ha iniciado sesión o mediante el uso de encabezados de solicitud HTTP. 
+
+### <a name="default-credentials"></a>Credenciales predeterminadas
+
+Considere un escenario en el que la API Web que está probando se hospeda en IIS y está protegida con la autenticación de Windows. Quiere que las credenciales del usuario que ejecuta la herramienta fluyan entre los puntos de conexión HTTP que se están probando. Para pasar las credenciales predeterminadas del usuario que ha iniciado sesión:
+
+1. Establezca la `httpClient.useDefaultCredentials` preferencia en `true` :
+
+    ```console
+    pref set httpClient.useDefaultCredentials true
+    ```
+
+1. Salga y reinicie la herramienta antes de enviar otra solicitud a la API Web.
+
+### <a name="http-request-headers"></a>Encabezados de solicitud HTTP
+
+Algunos ejemplos de esquemas de autenticación y autorización compatibles son la autenticación básica, los tokens de portador de JWT y la autenticación implícita. Por ejemplo, puede enviar un token de portador a un punto de conexión con el comando siguiente:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
@@ -830,25 +846,25 @@ Para acceder un punto de conexión hospedado por Azure o para usar la [API REST 
 
 1. Inicie sesión en Azure:
 
-    ```azcli
+    ```azurecli
     az login
     ```
 
 1. Obtenga el identificador de suscripción con el comando siguiente:
 
-    ```azcli
+    ```azurecli
     az account show --query id
     ```
 
 1. Copie el identificador de suscripción y ejecute el comando siguiente:
 
-    ```azcli
+    ```azurecli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
 1. Obtenga el token de portador con el comando siguiente:
 
-    ```azcli
+    ```azurecli
     az account get-access-token --query accessToken
     ```
 
