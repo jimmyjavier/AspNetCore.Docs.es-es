@@ -1,11 +1,11 @@
 ---
-title: ASP.NET Core Blazor webassembly con Azure Active Directory grupos y roles
+title: ASP.NET Core Blazor Webassembly con Azure Active Directory grupos y roles
 author: guardrex
-description: Aprenda a configurar Blazor webassembly para usar Azure Active Directory grupos y roles.
+description: Aprenda a configurar Blazor Webassembly para usar Azure Active Directory grupos y roles.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,22 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/aad-groups-roles
-ms.openlocfilehash: afdb5ddc4d4ed08d0f1ecaf7158af283dda6b302
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: 3ed06cca7e20da381b870e642a6c616b2578cd0a
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976886"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451880"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Grupos de Azure AD, roles administrativos y roles definidos por el usuario
 
 Por [Luke Latham](https://github.com/guardrex) y [Javier Calvarro Nelson](https://github.com/javiercn)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-Azure Active Directory (AAD) proporciona varios métodos de autorización que se pueden combinar con ASP.NET Core identidad:
+Azure Active Directory (AAD) proporciona varios métodos de autorización que se pueden combinar con ASP.NET Core Identity :
 
 * Grupos definidos por el usuario
   * Seguridad
@@ -38,7 +34,7 @@ Azure Active Directory (AAD) proporciona varios métodos de autorización que se
   * Roles administrativos integrados
   * Roles definidos por el usuario
 
-Las instrucciones que se describen en este artículo se aplican a los escenarios de implementación de webassembly de increíblemente bajo descritos en los temas siguientes:
+Las instrucciones de este artículo se aplican a los Blazor escenarios de implementación de AAD de Webassembly que se describen en los temas siguientes:
 
 * [Independiente con cuentas de Microsoft](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
 * [Independiente con AAD](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
@@ -53,9 +49,9 @@ Para configurar la aplicación en el Azure Portal para proporcionar una `groups`
 
 En los ejemplos siguientes se supone que un usuario está asignado al rol de *Administrador de facturación* integrado de AAD.
 
-La única `groups` demanda enviada por AAD presenta los grupos y roles del usuario como identificadores de objeto (GUID) en una matriz JSON. La aplicación debe convertir la matriz JSON de grupos y roles en notificaciones individuales `group` con las que la aplicación puede crear [directivas](xref:security/authorization/policies) .
+La única `groups` demanda enviada por AAD presenta los grupos y roles del usuario como identificadores de objeto (GUID) en una matriz JSON. La aplicación debe convertir la matriz JSON de grupos y roles en `group` notificaciones individuales con las que la aplicación puede crear [directivas](xref:security/authorization/policies) .
 
-Extender `RemoteUserAccount` para incluir las propiedades de la matriz para grupos y roles.
+Extender <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> para incluir las propiedades de la matriz para grupos y roles.
 
 *CustomUserAccount.CS*:
 
@@ -117,7 +113,7 @@ public class CustomUserFactory
 }
 ```
 
-No es necesario proporcionar código para quitar la declaración original `groups` , ya que el marco de trabajo la quita automáticamente.
+No es necesario proporcionar código para quitar la declaración original, `groups` ya que el marco de trabajo la quita automáticamente.
 
 Registre el generador en `Program.Main` (*Program.CS*) de la aplicación independiente o la aplicación cliente de una solución hospedada:
 
@@ -135,7 +131,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     CustomUserFactory>();
 ```
 
-Cree una [Directiva](xref:security/authorization/policies) para cada grupo o rol en `Program.Main`. En el ejemplo siguiente se crea una directiva para el rol de *Administrador de facturación* integrado de AAD:
+Cree una [Directiva](xref:security/authorization/policies) para cada grupo o rol en `Program.Main` . En el ejemplo siguiente se crea una directiva para el rol de *Administrador de facturación* integrado de AAD:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -168,7 +164,7 @@ El [componente AuthorizeView](xref:security/blazor/index#authorizeview-component
 </AuthorizeView>
 ```
 
-El acceso a un componente completo puede basarse en la Directiva mediante la Directiva de [ `[Authorize]` Directiva de atributo](xref:security/blazor/index#authorize-attribute) :
+El acceso a un componente completo puede basarse en la Directiva mediante la Directiva [ `[Authorize]` ] Attribute] (XREF: Security/increíbles/index # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
 
 ```razor
 @page "/"
@@ -228,15 +224,15 @@ En el ejemplo siguiente se da por supuesto que una aplicación está configurada
 * `developer`
 
 > [!NOTE]
-> Aunque no puede asignar roles a grupos de seguridad sin una cuenta de Azure AD Premium, puede asignar usuarios a roles y recibir `roles` una demanda de usuarios con una cuenta de Azure estándar. Las instrucciones de esta sección no requieren una cuenta de Azure AD Premium.
+> Aunque no puede asignar roles a grupos de seguridad sin una cuenta de Azure AD Premium, puede asignar usuarios a roles y recibir una `roles` demanda de usuarios con una cuenta de Azure estándar. Las instrucciones de esta sección no requieren una cuenta de Azure AD Premium.
 >
 > Se asignan varios roles en el Azure Portal al **_volver a agregar un usuario_** para cada asignación de roles adicional.
 
-La única `roles` demanda enviada por AAD presenta los roles definidos por el `appRoles`usuario como `value`s en una matriz JSON. La aplicación debe convertir la matriz JSON de roles en notificaciones individuales `role` .
+La única `roles` demanda enviada por AAD presenta los roles definidos por el usuario como `appRoles` `value` s en una matriz JSON. La aplicación debe convertir la matriz JSON de roles en `role` notificaciones individuales.
 
-El `CustomUserFactory` valor que se muestra en la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) está configurado para actuar `roles` en una demanda con un valor de matriz JSON. Agregue y registre `CustomUserFactory` en la aplicación independiente o la aplicación cliente de una solución hospedada, tal como se muestra en la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) . No es necesario proporcionar código para quitar la declaración original `roles` , ya que el marco de trabajo la quita automáticamente.
+El `CustomUserFactory` valor que se muestra en la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) está configurado para actuar en una `roles` demanda con un valor de matriz JSON. Agregue y registre `CustomUserFactory` en la aplicación independiente o la aplicación cliente de una solución hospedada, tal como se muestra en la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) . No es necesario proporcionar código para quitar la declaración original, `roles` ya que el marco de trabajo la quita automáticamente.
 
-En `Program.Main` la aplicación independiente o la aplicación cliente de una solución hospedada, especifique la demanda denominada`role`"" como la demanda de rol:
+En `Program.Main` la aplicación independiente o la aplicación cliente de una solución hospedada, especifique la demanda denominada " `role` " como la demanda de rol:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -247,11 +243,11 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-Los enfoques de autorización de componentes son funcionales en este momento. Cualquiera de los mecanismos de autorización de los componentes puede `admin` usar el rol para autorizar al usuario:
+Los enfoques de autorización de componentes son funcionales en este momento. Cualquiera de los mecanismos de autorización de los componentes puede usar el `admin` rol para autorizar al usuario:
 
-* [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (ejemplo: `<AuthorizeView Roles="admin">`)
-* Attribute Directive (ejemplo: `@attribute [Authorize(Roles = "admin")]`) [ `[Authorize]` ](xref:security/blazor/index#authorize-attribute)
-* [Lógica de procedimiento](xref:security/blazor/index#procedural-logic) (ejemplo `if (user.IsInRole("admin")) { ... }`:)
+* [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (ejemplo: `<AuthorizeView Roles="admin">` )
+* [ `[Authorize]` ] Attribute (Directiva)] (XREF: Security/increíbles/index # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (Ejemplo: `@attribute [Authorize(Roles = "admin")]` )
+* [Lógica de procedimiento](xref:security/blazor/index#procedural-logic) (ejemplo: `if (user.IsInRole("admin")) { ... }` )
 
   Se admiten varias pruebas de rol:
 
@@ -264,7 +260,7 @@ Los enfoques de autorización de componentes son funcionales en este momento. Cu
 
 ## <a name="aad-adminstrative-role-group-ids"></a>Identificadores de grupo de roles administrativos de AAD
 
-Los identificadores de objeto presentados en la tabla siguiente se usan para crear `group` directivas para [las](xref:security/authorization/policies) notificaciones. Las directivas permiten a una aplicación autorizar a los usuarios para distintas actividades en una aplicación. Para obtener más información, consulte la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) .
+Los identificadores de objeto presentados en la tabla siguiente se usan para crear [directivas para las](xref:security/authorization/policies) `group` notificaciones. Las directivas permiten a una aplicación autorizar a los usuarios para distintas actividades en una aplicación. Para obtener más información, consulte la sección [grupos definidos por el usuario y roles administrativos integrados de AAD](#user-defined-groups-and-built-in-administrative-roles) .
 
 Rol administrativo de AAD | Id. de objeto
 --- | ---
@@ -288,7 +284,7 @@ Administrador de análisis de escritorio | c62c4ac5-e4c6-4096-8a2f-1ee3cbaaae15
 Lectores de directorios | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Administrador de Dynamics 365 | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
 Administrador de Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
-Administrador Identity de proveedor externo | febfaeb4-e478-407a-b4b3-f4d9716618a2
+IdentityAdministrador de proveedor externo | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Administrador global | a45ba61b-44db-462c-924b-3b2719152588
 Lector global | f6903b21-6aba-4124-b44c-76671796b9d5
 Administrador de grupos | 158b3e5a-d89d-460b-92b5-3b34985f0197

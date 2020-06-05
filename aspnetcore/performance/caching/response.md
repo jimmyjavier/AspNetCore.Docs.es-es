@@ -1,12 +1,23 @@
 ---
-Título: almacenamiento en caché de respuestas en ASP.NET Core autor: Rick-Anderson Descripción: Aprenda a usar el almacenamiento en caché de respuestas para reducir los requisitos de ancho de banda y aumentar el rendimiento de las aplicaciones de ASP.NET Core.
-monikerRange: ' >= aspnetcore-2,1 ' ms. Author: Riande ms. Date: 11/04/2019 no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: rendimiento/almacenamiento en caché/respuesta
-
+title: Almacenamiento en caché de respuestas en ASP.NET Core
+author: rick-anderson
+description: Obtenga información sobre cómo usar el almacenamiento en caché de respuestas para reducir los requisitos de ancho de banda y aumentar el rendimiento de las aplicaciones de ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.date: 11/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/response
+ms.openlocfilehash: 87ff2633ded612eba2c996583b4a6cf997fe8e18
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84105771"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Almacenamiento en caché de respuestas en ASP.NET Core
 
@@ -36,9 +47,9 @@ La [especificación HTTP 1,1 Caching](https://tools.ietf.org/html/rfc7234) descr
 
 En la tabla siguiente se muestran otros encabezados de caché que desempeñan un rol en el almacenamiento en caché.
 
-| Header                                                     | Función |
+| Encabezado                                                     | Función |
 | ---------------------------------------------------------- | -------- |
-| [Antig](https://tools.ietf.org/html/rfc7234#section-5.1)     | Una estimación de la cantidad de tiempo en segundos transcurrido desde que se generó la respuesta o se validó correctamente en el servidor de origen. |
+| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | Una estimación de la cantidad de tiempo en segundos transcurrido desde que se generó la respuesta o se validó correctamente en el servidor de origen. |
 | [Expira](https://tools.ietf.org/html/rfc7234#section-5.3) | Hora a partir de la cual la respuesta se considera obsoleta. |
 | [Omiti](https://tools.ietf.org/html/rfc7234#section-5.4)  | Existe por compatibilidad con versiones anteriores de caché HTTP/1.0 para establecer el `no-cache` comportamiento. Si el `Cache-Control` encabezado está presente, `Pragma` se omite el encabezado. |
 | [Variaciones](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Especifica que no se debe enviar una respuesta almacenada en caché a menos que todos los `Vary` campos de encabezado coincidan en la solicitud original de la respuesta almacenada en caché y la nueva solicitud. |

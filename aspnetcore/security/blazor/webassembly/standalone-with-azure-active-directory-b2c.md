@@ -1,11 +1,24 @@
 ---
-Título: "proteger ASP.NET Core una Blazor aplicación independiente Webassembly con Azure Active Directory B2C ' Author: guardrex Description: monikerRange: ' >= aspnetcore-3,1 ' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/increíbles/webassembly/Standalone-with-Azure-Active-Directory-B2C
-
+title: Protección de una Blazor aplicación independiente ASP.net Core Webassembly con Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+ms.openlocfilehash: 911eeffbe632d8f285d54ae78b62f17851205e83
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84214958"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación independiente ASP.net Core Webassembly con Azure Active Directory B2C
 
@@ -66,7 +79,7 @@ Para especificar la ubicación de salida, que crea una carpeta de proyecto si no
 Después de crear la aplicación, debe poder:
 
 * Inicie sesión en la aplicación con una cuenta de usuario de AAD.
-* Solicitar tokens de acceso para las API de Microsoft. Para más información, consulte:
+* Solicitar tokens de acceso para las API de Microsoft. Para obtener más información, consulte:
   * [Ámbitos de token de acceso](#access-token-scopes)
   * [Inicio rápido: configurar una aplicación para exponer las API Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 

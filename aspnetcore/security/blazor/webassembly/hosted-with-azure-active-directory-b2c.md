@@ -1,11 +1,24 @@
 ---
-Título: ' proteger una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C ' Author: guardrex Description: monikerRange: ' >= aspnetcore-3,1 ' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/increíbles/webassembly/Hosted-with-Azure-Active-Directory-B2C
-
+title: Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+ms.openlocfilehash: b369bf0e9b20bcb87345e3e10c314ae6227464d1
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84215086"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C
 
@@ -83,7 +96,7 @@ En **permisos de API**:
 1. Abra la lista de **API** .
 1. Habilite el acceso a la API (por ejemplo, `API.Access` ).
 1. Seleccione **Agregar permisos**.
-1. Seleccione el botón **conceder contenido de administración para {nombre de inquilino}** . Seleccione **Sí** para confirmar.
+1. Seleccione el botón **conceder contenido de administración para {nombre de inquilino}** . Seleccione **Sí** para confirmar la acción.
 
 En **Home**  >  **Azure ad B2C**  >  **flujos de usuario**:
 
@@ -337,7 +350,7 @@ Para obtener más información, consulte las siguientes secciones del artículo 
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Ejecutar la aplicación
+## <a name="run-the-app"></a>Ejecución la aplicación
 
 Ejecute la aplicación desde el proyecto de servidor. Al usar Visual Studio, puede:
 

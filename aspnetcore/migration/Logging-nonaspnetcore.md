@@ -1,14 +1,24 @@
 ---
-title: migrar de Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0 Author: pakrym Description: Aprenda a migrar una aplicación non-ASP.NET Core que usa Microsoft. Extensions. Logging from 2,1 a 2,2 o 3,0.
-MS. Author: pakrym ms. Custom: MVC ms. Date: 01/04/2019 no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Migration/Logging-nonaspnetcore
-
+title: Migre desde Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0
+author: pakrym
+description: Obtenga información sobre cómo migrar una aplicación de non-ASP.NET Core que usa Microsoft. Extensions. Logging de 2,1 a 2,2 o 3,0.
+ms.author: pakrym
+ms.custom: mvc
+ms.date: 01/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: migration/logging-nonaspnetcore
+ms.openlocfilehash: 2fd738ed0e0a06d0793e3c624d40a13725b53cd8
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84274237"
 ---
-
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Migre desde Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0
 
 En este artículo se describen los pasos comunes para migrar una aplicación de non-ASP.NET Core que usa `Microsoft.Extensions.Logging` de 2,1 a 2,2 o 3,0.

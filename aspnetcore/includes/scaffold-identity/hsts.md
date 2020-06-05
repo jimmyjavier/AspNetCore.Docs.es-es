@@ -1,1 +1,1 @@
-`UseHsts` es recomendable, pero no es necesario. Consulte [Protocolo de seguridad de transporte estricto http](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) para obtener más información.
+`UseHsts`se recomienda, pero no es necesario. Para obtener más información, vea [Protocolo de seguridad de transporte estricto http](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts).
