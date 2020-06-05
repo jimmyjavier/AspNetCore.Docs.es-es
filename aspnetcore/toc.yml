@@ -1168,7 +1168,7 @@
       uid: performance/performance-best-practices
     - name: Memoria y recolección de elementos no utilizados
       uid: performance/memory
-    - name: Almacenamiento en caché de respuestas
+    - name: Almacenamiento en memoria caché
       items:
         - name: Información general
           uid: performance/caching/response
