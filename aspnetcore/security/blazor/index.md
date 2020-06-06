@@ -1,12 +1,24 @@
 ---
-title: "Autenticación y autorización de ASP.NET Core Blazor" author: description: 'Obtenga información sobre los escenarios de autenticación y autorización de Blazor.'
-monikerRange: '>= aspnetcore-3.1' ms.author: riande ms.custom: mvc ms.date: 05/19/2020 no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- "SignalR" uid: security/blazor/index
-
+title: Autenticación y autorización de ASP.NET Core Blazor
+author: guardrex
+description: Obtenga información sobre los escenarios de autenticación y autorización de Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/index
+ms.openlocfilehash: fb842fe799731a1d7692b24a543ba05e53d04637
+ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454576"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autenticación y autorización de ASP.NET Core Blazor
 
@@ -198,18 +210,19 @@ Si `user.Identity.IsAuthenticated` es `true`, se pueden enumerar las notificacio
 Configure el parámetro en cascada `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` mediante los componentes <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> y <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> en el componente `App` (*App.razor*):
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <CascadingAuthenticationState>
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" 
+                DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
             <LayoutView Layout="@typeof(MainLayout)">
                 <p>Sorry, there's nothing at this address.</p>
             </LayoutView>
-        </CascadingAuthenticationState>
-    </NotFound>
-</Router>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
 ```
 
 En una aplicación WebAssembly de Blazor, agregue servicios para opciones y autorización a `Program.Main`:
@@ -370,29 +383,30 @@ El componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, junto con e
 En la plantilla de proyecto de Blazor Server predeterminada, el componente `App` (*App.razor*) muestra cómo configurar el contenido personalizado:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
-            <NotAuthorized>
-                <h1>Sorry</h1>
-                <p>You're not authorized to reach this page.</p>
-                <p>You may need to log in as a different user.</p>
-            </NotAuthorized>
-            <Authorizing>
-                <h1>Authentication in progress</h1>
-                <p>Only visible while authentication is in progress.</p>
-            </Authorizing>
-        </AuthorizeRouteView>
-    </Found>
-    <NotFound>
-        <CascadingAuthenticationState>
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" 
+                DefaultLayout="@typeof(MainLayout)">
+                <NotAuthorized>
+                    <h1>Sorry</h1>
+                    <p>You're not authorized to reach this page.</p>
+                    <p>You may need to log in as a different user.</p>
+                </NotAuthorized>
+                <Authorizing>
+                    <h1>Authentication in progress</h1>
+                    <p>Only visible while authentication is in progress.</p>
+                </Authorizing>
+            </AuthorizeRouteView>
+        </Found>
+        <NotFound>
             <LayoutView Layout="@typeof(MainLayout)">
                 <h1>Sorry</h1>
                 <p>Sorry, there's nothing at this address.</p>
             </LayoutView>
-        </CascadingAuthenticationState>
-    </NotFound>
-</Router>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
 ```
 
 El contenido de las etiquetas `<NotFound>`, `<NotAuthorized>` y `<Authorizing>` puede incluir elementos arbitrarios, como otros componentes interactivos.

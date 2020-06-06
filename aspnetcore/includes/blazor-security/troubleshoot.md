@@ -16,8 +16,12 @@ Un enfoque para evitar que las cookies persistentes y los datos del sitio interf
 * Use un comando personalizado para abrir un explorador en el modo incógnito o Private en Visual Studio:
   * Abra el cuadro de diálogo **examinar con** del botón **Ejecutar** de Visual Studio.
   * Seleccione el botón **Agregar**.
-  * Proporcione la ruta de acceso al explorador en el campo **programa** .
-  * En el campo **arguments (argumentos** ), proporcione la opción de línea de comandos que utiliza el explorador para abrir en el modo incógnito o Private y la dirección URL de la aplicación. Por ejemplo:
+  * Proporcione la ruta de acceso al explorador en el campo **programa** . Las siguientes rutas de acceso del archivo ejecutable son ubicaciones de instalación típicas para Windows 10. Si el explorador está instalado en una ubicación diferente o no usa Windows 10, proporcione la ruta de acceso al archivo ejecutable del explorador.
+    * Microsoft Edge:`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+    * Google Chrome:`C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
+    * Mozilla Firefox:`C:\Program Files\Mozilla Firefox\firefox.exe`
+  * En el campo **arguments (argumentos** ), proporcione la opción de línea de comandos que utiliza el explorador para abrir en el modo incógnito o Private. Algunos exploradores requieren la dirección URL de la aplicación.
+    * Microsoft Edge:`-inprivate`
     * Google Chrome:`--incognito --new-window https://localhost:5001`
     * Mozilla Firefox:`-private -url https://localhost:5001`
   * Proporcione un nombre en el campo **nombre descriptivo** . Por ejemplo, `Firefox Auth Testing`.
