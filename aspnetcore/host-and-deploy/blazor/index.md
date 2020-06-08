@@ -5,7 +5,7 @@ description: Descubra cómo hospedar e implementar aplicaciones de Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,18 +13,16 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 9d57b81cd813d02a65b6d3a39c7f1a1aa8a069c7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 482b066d347c2c572b0ffb78ccab1ac391195823
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775172"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452244"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedaje e implementación de ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) y [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 ## <a name="publish-the-app"></a>Publicar la aplicación
 
@@ -56,9 +54,9 @@ Al publicar la aplicación se desencadena una [restauración](/dotnet/core/tools
 Ubicaciones de publicación:
 
 * Blazor WebAssembly
-  * Independiente &ndash; La aplicación se publcia en la carpeta */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot*. Para implementar la aplicación como un sitio estático, copie el contenido de la carpeta *wwwroot* en el host del sitio estático.
-  * Hospedada &ndash; La aplicación WebAssembly del cliente Blazor se publica en la carpeta */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* de la aplicación de servidor, junto con cualquier otro activo web estático de la aplicación de servidor. Implemente el contenido de la carpeta *publish* en el host.
-* BlazorServidor&ndash; La aplicación de servidor se publica en la carpeta */bin/Release/{MARCO DE DESTINO}/publish*. Implemente el contenido de la carpeta *publish* en el host.
+  * Independiente: la aplicación se publica en la carpeta */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot*. Para implementar la aplicación como un sitio estático, copie el contenido de la carpeta *wwwroot* en el host del sitio estático.
+  * Hospedada: La aplicación WebAssembly del cliente Blazor se publica en la carpeta */bin/Release/{MARCO DE DESTINO}/publish/wwwroot* de la aplicación de servidor, junto con cualquier otro recurso web estático de la aplicación de servidor. Implemente el contenido de la carpeta *publish* en el host.
+* Blazor Server: la aplicación se publica en la carpeta */bin/Release/{TARGET FRAMEWORK}/publish*. Implemente el contenido de la carpeta *publish* en el host.
 
 Los recursos de la carpeta se implementan en el servidor web. La implementación puede ser un proceso manual o automatizado, en función de las herramientas de desarrollo que se usen.
 
