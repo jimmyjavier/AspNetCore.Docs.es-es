@@ -1,12 +1,24 @@
 ---
-Título: ' registro y diagnósticos en ASP.NET Core SignalR ' autor: Descripción: ' obtenga información sobre cómo recopilar diagnósticos de la SignalR aplicación ASP.net Core '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Registro y diagnósticos en ASP.NET CoreSignalR
+author: anurse
+description: Obtenga información sobre cómo recopilar diagnósticos desde la SignalR aplicación ASP.net Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: anurse
+ms.custom: signalr
+ms.date: 06/08/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/diagnostics
+ms.openlocfilehash: 22e1d24bc9fed5fd8588c852e07f5ca935946596
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507321"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro y diagnósticos en ASP.NET CoreSignalR
 
@@ -77,34 +89,14 @@ Para deshabilitar el registro por completo, especifique `signalR.LogLevel.None` 
 En la tabla siguiente se muestran los niveles de registro disponibles para el cliente JavaScript. Al establecer el nivel de registro en uno de estos valores, se habilita el registro en ese nivel y en todos los niveles situados por encima de él en la tabla.
 
 | Nivel | Descripción |
-| ----- | ---
-Título: ' registro y diagnósticos en ASP.NET Core SignalR ' autor: Descripción: ' obtenga información sobre cómo recopilar diagnósticos de la SignalR aplicación ASP.net Core '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: ' registro y diagnósticos en ASP.NET Core SignalR ' autor: Descripción: ' obtenga información sobre cómo recopilar diagnósticos de la SignalR aplicación ASP.net Core '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: ' registro y diagnósticos en ASP.NET Core SignalR ' autor: Descripción: ' obtenga información sobre cómo recopilar diagnósticos de la SignalR aplicación ASP.net Core '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
------- | | `None` | No se registra ningún mensaje. | | `Critical` | Mensajes que indican un error en toda la aplicación. | | `Error` | Mensajes que indican un error en la operación actual. | | `Warning` | Mensajes que indican un problema no grave. | | `Information` | Mensajes informativos. | | `Debug` | Mensajes de diagnóstico útiles para la depuración. | | `Trace` | Mensajes de diagnóstico muy detallados diseñados para diagnosticar problemas específicos. |
+| ----- | ----------- |
+| `None` | No se registra ningún mensaje. |
+| `Critical` | Mensajes que indican un error en toda la aplicación. |
+| `Error` | Mensajes que indican un error en la operación actual. |
+| `Warning` | Mensajes que indican un problema no grave. |
+| `Information` | Mensajes informativos. |
+| `Debug` | Mensajes de diagnóstico útiles para la depuración. |
+| `Trace` | Mensajes de diagnóstico muy detallados diseñados para diagnosticar problemas específicos. |
 
 Una vez que haya configurado el nivel de detalle, los registros se escribirán en la consola del explorador (o la salida estándar en una aplicación de NodeJS).
 
@@ -217,6 +209,39 @@ Puede adjuntar archivos de diagnóstico a problemas de GitHub cambiando su nombr
 > No pegue el contenido de los archivos de registro o los seguimientos de red en un problema de GitHub. Estos registros y seguimientos pueden ser bastante grandes y GitHub normalmente los trunca.
 
 ![Arrastrar archivos de registro a un problema de GitHub](diagnostics/attaching-diagnostics-files.png)
+
+## <a name="metrics"></a>Métricas
+
+Métricas es una representación de medidas de datos a lo largo de intervalos de tiempo. Por ejemplo, solicitudes por segundo. Los datos de las métricas permiten la observación del estado de una aplicación en un nivel alto. Las métricas gRPC de .NET se emiten mediante <xref:System.Diagnostics.Tracing.EventCounter>.
+
+### <a name="signalr-server-metrics"></a>SignalRmétricas de servidor
+
+SignalRlas métricas del servidor se indican en el <xref:Microsoft.AspNetCore.Http.Connections> origen del evento.
+
+| Nombre                    | Descripción                 |
+|-------------------------|-----------------------------|
+| `connections-started`   | Conexiones totales iniciadas   |
+| `connections-stopped`   | Conexiones totales detenidas   |
+| `connections-timed-out` | Tiempo de espera de conexiones totales agotado |
+| `current-connections`   | Conexiones actuales         |
+| `connections-duration`  | Duración media de la conexión |
+
+### <a name="observe-metrics"></a>Observación de métricas
+
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) es una herramienta de supervisión de rendimiento diseñada para la investigación del rendimiento y la supervisión del estado de primer nivel ad hoc. Supervise una aplicación .NET con `Microsoft.AspNetCore.Http.Connections` como el nombre del proveedor. Por ejemplo:
+
+```console
+> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+
+Press p to pause, r to resume, q to quit.
+    Status: Running
+[Microsoft.AspNetCore.Http.Connections]
+    Average Connection Duration (ms)       16,040.56
+    Current Connections                         1
+    Total Connections Started                   8
+    Total Connections Stopped                   7
+    Total Connections Timed Out                 0
+```
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
