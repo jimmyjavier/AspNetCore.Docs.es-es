@@ -1,11 +1,22 @@
 ---
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Enrutar a acciones de controlador de ASP.NET Core
+author: rick-anderson
+description: Obtenga información sobre cómo ASP.NET Core MVC usa el middleware de enrutamiento para encontrar direcciones URL de las solicitudes entrantes y asignarlas a acciones.
+ms.author: riande
+ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/controllers/routing
+ms.openlocfilehash: 0078ed5d4aa30ff7a7b76af8dffd015f2557e165
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83998658"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Enrutar a acciones de controlador de ASP.NET Core
 
@@ -414,104 +425,11 @@ Las plantillas de ruta aplicadas a una acción que comienzan por `/` o `~/` no s
 En la tabla siguiente se explican los `[Route]` atributos del código anterior:
 
 | Atributo               | Combina con`[Route("Home")]` | Define la plantilla de ruta |
-| ---
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
---------- | ---title: Author: Description: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
------- | ---title: Author: Description: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
------ | | `[Route("")]` | Sí | `"Home"` |
+| ----------------- | ------------ | --------- |
+| `[Route("")]` | Sí | `"Home"` |
 | `[Route("Index")]` | Sí | `"Home/Index"` |
 | `[Route("/")]` | **No** | `""` |
- | `[Route("About")]` | Sí | `"Home/About"`|
+| `[Route("About")]` | Sí | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>

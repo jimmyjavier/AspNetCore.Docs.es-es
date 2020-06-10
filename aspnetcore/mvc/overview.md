@@ -1,11 +1,22 @@
 ---
-Título: autor: Descripción: MS. Author: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Información general de ASP.NET Core MVC
+author: ardalis
+description: Conozca ASP.NET Core MVC, un marco completo para crear aplicaciones web y varias API mediante el patrón de diseño del controlador de vista de modelos.
+ms.author: riande
+ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/overview
+ms.openlocfilehash: ae382feb152f490e46df969887401060965d8c4e
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106538"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Información general de ASP.NET Core MVC
 
@@ -57,7 +68,7 @@ ASP.NET Core MVC incluye lo siguiente:
 * [Enrutamiento](#routing)
 * [Enlace de modelos](#model-binding)
 * [Validación de modelos](#model-validation)
-* [Inserción de dependencia](../fundamentals/dependency-injection.md)
+* [Inserción de dependencias](../fundamentals/dependency-injection.md)
 * [Filtros](#filters)
 * [Áreas](#areas)
 * [API web](#web-apis)
@@ -136,7 +147,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 El marco administra los datos de la solicitud de validación en el cliente y en el servidor. La lógica de validación especificada en tipos de modelo se agrega a las vistas representadas como anotaciones discretas y se aplica en el explorador con [Validación de jQuery](https://jqueryvalidation.org/).
 
-### <a name="dependency-injection"></a>Inserción de dependencia
+### <a name="dependency-injection"></a>Inserción de dependencias
 
 ASP.NET Core tiene compatibilidad integrada con la [inserción de dependencias](../fundamentals/dependency-injection.md). En ASP.NET Core MVC, los [controladores](controllers/dependency-injection.md) pueden solicitar los servicios que necesiten a través de sus constructores, lo que les permite seguir el [principio de dependencias explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 

@@ -1,11 +1,24 @@
 ---
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Azure Key Vault proveedor de configuración en ASP.NET Core
+author: rick-anderson
+description: Aprenda a usar el proveedor de configuración de Azure Key Vault para configurar una aplicación mediante pares de nombre y valor cargados en tiempo de ejecución.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/key-vault-configuration
+ms.openlocfilehash: 4a5689af9ffea175838a869e92752de889cbb227
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106681"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault proveedor de configuración en ASP.NET Core
 
@@ -68,7 +81,7 @@ Las instrucciones que se proporcionan en la guía de [Inicio rápido: establecer
 
 1. Abra Azure Cloud Shell con cualquiera de los métodos siguientes en el [Azure portal](https://portal.azure.com/):
 
-   * Seleccione **pruébelo** en la esquina superior derecha de un bloque de código. Use la cadena de búsqueda "CLI de Azure" en el cuadro de texto.
+   * Seleccione **Pruébelo** en la esquina superior derecha de un bloque de código. Use la cadena de búsqueda "CLI de Azure" en el cuadro de texto.
    * Abra Cloud Shell en el explorador con el botón **iniciar Cloud Shell** .
    * Seleccione el botón **Cloud Shell** en el menú de la esquina superior derecha del Azure portal.
 
@@ -207,78 +220,11 @@ config.AddAzureKeyVault(
 ```
 
 | Propiedad         | Descripción |
-| ---
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--------- | ---title: Author: Description: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
--
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
------- | | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> que se va a usar para recuperar valores. | | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instancia usada para controlar la carga de secretos. | | `ReloadInterval` | `Timespan` para esperar entre los intentos de sondeo del almacén de claves en busca de cambios. El valor predeterminado es `null` (la configuración no se recarga). | | `Vault`          | URI del almacén de claves. |
+| ---------------- | ----------- |
+| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient>que se va a usar para recuperar valores. |
+| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>instancia usada para controlar la carga de secretos. |
+| `ReloadInterval` | `Timespan`para esperar entre los intentos de sondeo del almacén de claves en busca de cambios. El valor predeterminado es `null` (la configuración no se recarga). |
+| `Vault`          | URI del almacén de claves. |
 
 ## <a name="use-a-key-name-prefix"></a>Usar un prefijo de nombre de clave
 
@@ -417,7 +363,7 @@ Cuando la aplicación no carga la configuración mediante el proveedor, se escri
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: documentación de Key Vault](/azure/key-vault/)
-* [Generación y transferencia de claves protegidas con HSM para Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
+* [Cómo generar y transferir claves protegidas con HSM para Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Clase KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)
 * [Guía de inicio rápido: Establecimiento y recuperación de un secreto de Azure Key Vault mediante una aplicación web de .NET](/azure/key-vault/quick-create-net)
 * [Tutorial: Uso de Azure Key Vault con una máquina virtual Windows en .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)
@@ -481,7 +427,7 @@ Las instrucciones que se proporcionan en la guía de [Inicio rápido: establecer
 
 1. Abra Azure Cloud Shell con cualquiera de los métodos siguientes en el [Azure portal](https://portal.azure.com/):
 
-   * Seleccione **pruébelo** en la esquina superior derecha de un bloque de código. Use la cadena de búsqueda "CLI de Azure" en el cuadro de texto.
+   * Seleccione **Pruébelo** en la esquina superior derecha de un bloque de código. Use la cadena de búsqueda "CLI de Azure" en el cuadro de texto.
    * Abra Cloud Shell en el explorador con el botón **iniciar Cloud Shell** .
    * Seleccione el botón **Cloud Shell** en el menú de la esquina superior derecha del Azure portal.
 
@@ -744,7 +690,7 @@ Cuando la aplicación no carga la configuración mediante el proveedor, se escri
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: documentación de Key Vault](/azure/key-vault/)
-* [Generación y transferencia de claves protegidas con HSM para Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
+* [Cómo generar y transferir claves protegidas con HSM para Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Clase KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)
 * [Guía de inicio rápido: Establecimiento y recuperación de un secreto de Azure Key Vault mediante una aplicación web de .NET](/azure/key-vault/quick-create-net)
 * [Tutorial: Uso de Azure Key Vault con una máquina virtual Windows en .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)

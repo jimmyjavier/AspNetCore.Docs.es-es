@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core SignalR cliente de JavaScript ' autor: Descripción: ' información general de ASP.net Core SignalR cliente de JavaScript '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Cliente de ASP.NET Core SignalR JavaScript
+author: bradygaster
+description: Información general de ASP.NET Core SignalR cliente JavaScript.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: bradyg
+ms.custom: mvc
+ms.date: 04/08/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/javascript-client
+ms.openlocfilehash: 4b3a4b2323b7f221d9cd1aab1c56d1d9828eb916
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106460"
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>Cliente de ASP.NET Core SignalR JavaScript
 
@@ -301,7 +313,7 @@ Una implementación del mundo real usaría una interrupción exponencial o reint
 * [Tutorial de JavaScript](xref:tutorials/signalr)
 * [Tutorial de WebPack y TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Concentradores](xref:signalr/hubs)
-* [Cliente de .NET](xref:signalr/dotnet-client)
+* [Cliente .NET](xref:signalr/dotnet-client)
 * [Publicar en Azure](xref:signalr/publish-to-azure-web-app)
 * [Solicitudes entre orígenes (CORS)](xref:security/cors)
 * [Documentación sin servidor del servicio de Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)

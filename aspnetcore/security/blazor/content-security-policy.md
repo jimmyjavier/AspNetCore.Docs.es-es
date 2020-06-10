@@ -1,12 +1,24 @@
 ---
-Título: "exigir una directiva de seguridad de contenido para el ASP.NET Core Blazor ' autor: Descripción: ' aprenda a usar una directiva de seguridad de contenido (CSP) con ASP.net Core Blazor aplicaciones para ayudar a protegerse frente a ataques de scripting entre sitios (XSS) '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Aplicar una directiva de seguridad de contenido para ASP.NET CoreBlazor
+author: guardrex
+description: Aprenda a usar una directiva de seguridad de contenido (CSP) con ASP.NET Core Blazor aplicaciones para ayudar a protegerse frente a ataques de scripting entre sitios (XSS).
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/content-security-policy
+ms.openlocfilehash: 8615b199373ca856c252b9f843e3635770367e4a
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106395"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Aplicar una directiva de seguridad de contenido para ASP.NET CoreBlazor
 

@@ -1,12 +1,24 @@
 ---
-Título: ' Guía de mitigación de amenazas para Blazor el servidor de ASP.net Core ' autor: Descripción: ' obtener información sobre cómo mitigar las amenazas de seguridad para las Blazor aplicaciones de servidor '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Guía de mitigación de amenazas para ASP.NET Core Blazor Server
+author: guardrex
+description: Obtenga información acerca de cómo mitigar las amenazas de seguridad para las Blazor aplicaciones de servidor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/05/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/server/threat-mitigation
+ms.openlocfilehash: 06f9cc2d70367ea90a519ddd508a156e88adcb61
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864636"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Guía de mitigación de amenazas para ASP.NET Core Blazor Server
 

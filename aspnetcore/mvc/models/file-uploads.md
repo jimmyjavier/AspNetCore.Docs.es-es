@@ -1,11 +1,24 @@
 ---
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Carga de archivos en ASP.NET Core
+author: rick-anderson
+description: Cómo usar el enlace de modelos y el streaming para cargar archivos en ASP.NET Core MVC.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/models/file-uploads
+ms.openlocfilehash: 632cc9fafc5daf2923997f0113adee52491acdcc
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83838323"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carga de archivos en ASP.NET Core
 
@@ -707,7 +720,7 @@ El límite predeterminado de solicitudes (`maxAllowedContentLength`) es 30 000�
 </system.webServer>
 ```
 
-Esto solo ocurre en IIS; este comportamiento no sucede de forma predeterminada cuando los archivos se hospedan en Kestrel. Para más información, consulte [Límites de solicitud \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+Esto solo ocurre en IIS; este comportamiento no sucede de forma predeterminada cuando los archivos se hospedan en Kestrel. Para obtener más información, consulte [límites \<requestLimits> de solicitudes ](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 Las limitaciones del módulo ASP.NET Core o la presencia del módulo de filtrado de solicitudes de IIS pueden limitar las cargas a 2 GB o 4 GB. Para obtener más información, consulte el artículo que indica que [no se pueden cargar archivos con un tamaño superior a 2 GB (aspnet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
@@ -1429,7 +1442,7 @@ El límite predeterminado de solicitudes (`maxAllowedContentLength`) es 30 000�
 </system.webServer>
 ```
 
-Esto solo ocurre en IIS; este comportamiento no sucede de forma predeterminada cuando los archivos se hospedan en Kestrel. Para más información, consulte [Límites de solicitud \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+Esto solo ocurre en IIS; este comportamiento no sucede de forma predeterminada cuando los archivos se hospedan en Kestrel. Para obtener más información, consulte [límites \<requestLimits> de solicitudes ](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 Las limitaciones del módulo ASP.NET Core o la presencia del módulo de filtrado de solicitudes de IIS pueden limitar las cargas a 2 GB o 4 GB. Para obtener más información, consulte el artículo que indica que [no se pueden cargar archivos con un tamaño superior a 2 GB (aspnet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 

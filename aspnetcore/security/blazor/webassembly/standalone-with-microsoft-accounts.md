@@ -1,11 +1,24 @@
 ---
-title: "proteger ASP.NET Core una Blazor aplicación independiente de Webassembly con cuentas de Microsoft" Author: Description: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Protección de una Blazor aplicación independiente ASP.net Core Webassembly con cuentas Microsoft
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+ms.openlocfilehash: e4c49f899d5988dc42b16c16eb5114613c7204ba
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83852343"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Protección de una Blazor aplicación independiente ASP.net Core Webassembly con cuentas Microsoft
 
@@ -50,7 +63,7 @@ Para especificar la ubicación de salida, que crea una carpeta de proyecto si no
 Después de crear la aplicación, debe poder:
 
 * Inicie sesión en la aplicación con un cuenta de Microsoft.
-* Solicitar tokens de acceso para las API de Microsoft. Para más información, consulte:
+* Solicitar tokens de acceso para las API de Microsoft. Para obtener más información, consulte:
   * [Ámbitos de token de acceso](#access-token-scopes)
   * [Inicio rápido: configurar una aplicación para exponer las API Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 

@@ -1,11 +1,24 @@
 ---
-Título: autor: Descripción: monikerRange: MS. Author: MS. Custom: MS. Date: no-LOC:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- 'SignalR' uid: 
-
+title: Almacenamiento en caché distribuido en ASP.NET Core
+author: rick-anderson
+description: Aprenda a usar una ASP.NET Core caché distribuida para mejorar el rendimiento y la escalabilidad de las aplicaciones, especialmente en un entorno de granja de servidores o en la nube.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/distributed
+ms.openlocfilehash: d655e48f9504d337b0ffdbd6819f32101730310b
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106707"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Almacenamiento en caché distribuido en ASP.NET Core
 
