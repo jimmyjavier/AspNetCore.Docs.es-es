@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 6939d285838a6dd971f530c1d65d73273b5b14e7
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
+ms.openlocfilehash: 70f5da1dad9b4c0b9526a7688862637291be9a68
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424564"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652575"
 ---
-# <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introducción a las páginas de Razor en ASP.NET Core
+# <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introducción a Razor Pages en ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -29,7 +29,7 @@ Razor Pages facilita la programación de escenarios centrados en páginas y hace
 
 Si busca un tutorial que use el enfoque Model-View-Controller, consulte [Introducción a ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-En este documento se proporciona una introducción a las páginas de Razor. No es un tutorial paso a paso. Si encuentra que alguna sección es demasiado avanzada, consulte [Introducción a las páginas de Razor](xref:tutorials/razor-pages/razor-pages-start). Para obtener información general de ASP.NET Core, vea [Introducción a ASP.NET Core](xref:index).
+En este documento se proporciona una introducción a Razor Pages. No es un tutorial paso a paso. Si encuentra que alguna sección es demasiado avanzada, consulte [Introducción a Razor Pages](xref:tutorials/razor-pages/razor-pages-start). Para obtener información general de ASP.NET Core, vea [Introducción a ASP.NET Core](xref:index).
 
 ## <a name="prerequisites"></a>Requisitos previos
 
@@ -65,9 +65,9 @@ Vea [Introducción a Razor Pages](xref:tutorials/razor-pages/razor-pages-start) 
 
 ---
 
-## <a name="razor-pages"></a>Páginas de Razor
+## <a name="razor-pages"></a>Razor Pages
 
-Páginas de Razor está habilitada en *Startup.cs*:
+Razor Pages está habilitado en *Startup.cs*:
 
 [!code-cs[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 
@@ -75,7 +75,7 @@ Considere la posibilidad de una página básica: <a name="OnGet"></a>
 
 [!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-El código anterior se parece mucho a un [archivo de vista de Razor](xref:tutorials/first-mvc-app/adding-view) que se utiliza en una aplicación ASP.NET Core con controladores y vistas. La directiva [`@page`](xref:mvc/views/razor#page) lo hace diferente. `@page` transforma el archivo en una acción de MVC, lo que significa que administra las solicitudes directamente, sin tener que pasar a través de un controlador. `@page` debe ser la primera directiva de Razor de una página. `@page` afecta al comportamiento de otras construcciones de [Razor](xref:mvc/views/razor). Los nombres de archivo de Razor Pages tienen el sufijo *.cshtml*.
+El código anterior se parece mucho a un [archivo de vista de Razor](xref:tutorials/first-mvc-app/adding-view) que se utiliza en una aplicación ASP.NET Core con controladores y vistas. La directiva [`@page`](xref:mvc/views/razor#page) lo hace diferente. `@page` transforma el archivo en una acción de MVC, lo que significa que administra las solicitudes directamente, sin tener que pasar a través de un controlador. `@page` debe ser la primera directiva de Razorde una página. `@page` afecta al comportamiento de otras construcciones de [Razor](xref:mvc/views/razor). Los nombres de archivo de Razor Pages tienen el sufijo *.cshtml*.
 
 Una página similar, con una clase `PageModel`, se muestra en los dos archivos siguientes. El archivo *Pages/Index2.cshtml*:
 
@@ -85,9 +85,9 @@ Modelo de página *Pages/Index2.cshtml.cs*:
 
 [!code-cs[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-Por convención, el archivo de clase `PageModel` tiene el mismo nombre que el archivo de páginas de Razor con *.cs* anexado. Por ejemplo, la página de Razor anterior es *Pages/Index2.cshtml*. El archivo que contiene la clase `PageModel` se denomina *Pages/Index2.cshtml.cs*.
+Por convención, el archivo de clase `PageModel` tiene el mismo nombre que el archivo de Razor Pages con *.cs* anexado. Por ejemplo, la instancia de Razor Pages anterior es *Pages/Index2.cshtml*. El archivo que contiene la clase `PageModel` se denomina *Pages/Index2.cshtml.cs*.
 
-Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso de página de Razor y la dirección URL correspondiente:
+Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso de Razor Pages y la dirección URL correspondiente:
 
 | Ruta de acceso y nombre de archivo               | URL correspondiente |
 | ----------------- | ------------ |
@@ -98,12 +98,12 @@ Las asociaciones de rutas de dirección URL a páginas se determinan según la u
 
 Notas:
 
-* El runtime busca archivos de páginas de Razor en la carpeta *Páginas* de forma predeterminada.
+* El entorno de ejecución busca archivos de Razor Pages en la carpeta *Páginas* de forma predeterminada.
 * `Index` es la página predeterminada cuando una URL no incluye una página.
 
 ## <a name="write-a-basic-form"></a>Escritura de un formulario básico
 
-Las páginas de Razor están diseñadas para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de página de Razor. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
+Razor Pages están diseñado para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de Razor Pages. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
 
 Para los ejemplos de este documento, `DbContext` se inicializa en el archivo [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24).
 
@@ -134,10 +134,10 @@ La clase `PageModel` permite la separación de la lógica de una página de su p
 
 La página tiene un *método de controlador* `OnPostAsync`, que se ejecuta en solicitudes `POST` (cuando un usuario envía el formulario). Se pueden agregar métodos de controlador para cualquier verbo HTTP. Los controladores más comunes son:
 
-* `OnGet` para inicializar el estado necesario para la página. En el código anterior, el método `OnGet` muestra la página de Razor *CreateModel.cshtml*.
+* `OnGet` para inicializar el estado necesario para la página. En el código anterior, el método `OnGet` muestra la instancia *CreateModel.cshtml* de Razor Pages.
 * `OnPost` para controlar los envíos del formulario.
 
-El sufijo de nombre `Async` es opcional, pero se usa a menudo por convención para funciones asincrónicas. El código anterior es típico de las páginas de Razor.
+El sufijo de nombre `Async` es opcional, pero se usa a menudo por convención para funciones asincrónicas. El código anterior es típico de Razor Pages.
 
 Si está familiarizado con las aplicaciones de ASP.NET con controladores y vistas:
 
@@ -216,7 +216,7 @@ El archivo *Index.cshtml* contiene el siguiente marcado:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-El `<a /a>` [asistente de etiquetas delimitadoras](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usado el atributo `asp-route-{value}` para generar un vínculo a la página de edición. El vínculo contiene datos de ruta con el identificador del contacto. Por ejemplo: `https://localhost:5001/Edit/1`. Los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor.
+El `<a /a>` [asistente de etiquetas delimitadoras](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usado el atributo `asp-route-{value}` para generar un vínculo a la página de edición. El vínculo contiene datos de ruta con el identificador del contacto. Por ejemplo: `https://localhost:5001/Edit/1`. Las [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor.
 
 El archivo *index.cshtml* contiene marcado para crear un botón de eliminar para cada contacto de cliente:
 
@@ -338,13 +338,13 @@ Razor Pages recurre a una llamada al controlador `OnGet` si no se define ningún
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF y páginas de Razor
+## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF y Razor Pages
 
 Razor Pages está protegido mediante [validación antifalsificación](xref:security/anti-request-forgery). El elemento [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) inserta tokens antifalsificación en los elementos de formulario HTML.
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Usar diseños, parciales, plantillas y asistentes de etiquetas con las páginas de Razor
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Usar diseños, parciales, plantillas y asistentes de etiquetas con Razor Pages
 
 Las páginas funcionan con todas las características del motor de vista de Razor. Los diseños, parciales, plantillas, asistentes de etiquetas, *_ViewStart.cshtml* y *_ViewImports.cshtml* funcionan de la misma manera que lo hacen con las vistas de Razor convencionales.
 
@@ -370,9 +370,9 @@ El diseño está en la carpeta *Pages/Shared*. Las páginas buscan otras vistas 
 
 El archivo de diseño debería ir en la carpeta *Pages/Shared*.
 
-Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Las páginas de Razor están diseñadas para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
+Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Razor Pages están diseñado para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
 
-La búsqueda de vistas de una página de Razor incluye la carpeta *Pages*. Los diseños, plantillas y parciales que se usan con los controladores de MVC y las vistas de Razor convencionales *simplemente funcionan*.
+La búsqueda de vistas de una instancia de Razor Pages incluye la carpeta *Pages*. Los diseños, plantillas y parciales que se usan con los controladores de MVC y las vistas de Razor convencionales *simplemente funcionan*.
 
 Agregue un archivo *Pages/_ViewImports.cshtml*:
 
@@ -412,7 +412,7 @@ Archivo de vista actualizado *Pages/Create.cshtml* con *_ViewImports.cshtml* y e
 
 En el código anterior, el elemento *_ViewImports. cshtml* importó el espacio de nombres y los asistentes de etiquetas. El archivo de distribución importó los archivos JavaScript.
 
-El [proyecto de inicio de las páginas de Razor](#rpvs17) contiene *Pages/_ValidationScriptsPartial.cshtml*, que enlaza la validación del lado cliente.
+El [proyecto de inicio de Razor Pages](#rpvs17) contiene *Pages/_ValidationScriptsPartial.cshtml*, que enlaza la validación del lado cliente.
 
 Para más información sobre las vistas parciales, vea <xref:mvc/views/partial>.
 
@@ -583,13 +583,13 @@ Use el elemento <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> par
 
 Para precompilar vistas, consulte la sección sobre la [compilación de vistas de Razor](xref:mvc/views/view-compilation).
 
-### <a name="specify-that-razor-pages-are-at-the-content-root"></a>Especificar que las páginas de Razor se encuentran en la raíz de contenido
+### <a name="specify-that-razor-pages-are-at-the-content-root"></a>Especificación de Razor Pages en la raíz del contenido
 
-De forma predeterminada, la ruta raíz de las páginas de Razor es el directorio */Pages*. Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> para especificar que sus Razor Pages se encuentran en la [raíz de contenido](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) de la aplicación:
+De forma predeterminada, Razor Pages se encuentra en la raíz del directorio */Pages*. Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> para especificar que sus instancias de Razor Pages se encuentran en la [raíz de contenido](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) de la aplicación:
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
 
-### <a name="specify-that-razor-pages-are-at-a-custom-root-directory"></a>Especificar que las páginas de Razor se encuentran en un directorio raíz personalizado
+### <a name="specify-that-razor-pages-are-at-a-custom-root-directory"></a>Especificación de Razor Pages en un directorio raíz personalizado
 
 Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*> para especificar que Razor Pages se encuentra en un directorio raíz personalizado en la aplicación (proporcione una ruta de acceso relativa):
 
@@ -598,6 +598,7 @@ Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuild
 ## <a name="additional-resources"></a>Recursos adicionales
 
 * Consulte [Introducción a Razor Pages](xref:tutorials/razor-pages/razor-pages-start), que se basa en esta introducción.
+* [Autorización de atributos y Razor Pages](xref:security/authorization/simple#aarp)
 * [Descargue o vea el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
 * <xref:index>
 * <xref:mvc/views/razor>
@@ -615,11 +616,11 @@ Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuild
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) y [Ryan Nowak](https://github.com/rynowak)
 
-Las páginas de Razor son una nueva característica de ASP.NET Core MVC que facilita la codificación de escenarios centrados en páginas y hace que sea más productiva.
+RazorPages es una nueva característica de ASP.NET Core MVC que facilita la codificación de escenarios centrados en páginas y hace que sea más productiva.
 
 Si busca un tutorial que use el enfoque Model-View-Controller, consulte [Introducción a ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-En este documento se proporciona una introducción a las páginas de Razor. No es un tutorial paso a paso. Si encuentra que alguna sección es demasiado avanzada, consulte [Introducción a las páginas de Razor](xref:tutorials/razor-pages/razor-pages-start). Para obtener información general de ASP.NET Core, vea [Introducción a ASP.NET Core](xref:index).
+En este documento se proporciona una introducción a Razor Pages. No es un tutorial paso a paso. Si encuentra que alguna sección es demasiado avanzada, consulte [Introducción a Razor Pages](xref:tutorials/razor-pages/razor-pages-start). Para obtener información general de ASP.NET Core, vea [Introducción a ASP.NET Core](xref:index).
 
 ## <a name="prerequisites"></a>Requisitos previos
 
@@ -639,7 +640,7 @@ En este documento se proporciona una introducción a las páginas de Razor. No e
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-razor-pages-project"></a>Creación de un proyecto de Razor Pages
+## <a name="create-a-razor-pages-project"></a>Crear un proyecto de Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -657,9 +658,9 @@ Ejecute `dotnet new webapp` desde la línea de comandos.
 
 ---
 
-## <a name="razor-pages"></a>Páginas de Razor
+## <a name="razor-pages"></a>Razor Pages
 
-Páginas de Razor está habilitada en *Startup.cs*:
+Razor Pages está habilitado en *Startup.cs*:
 
 [!code-cs[](index/sample/RazorPagesIntro/Startup.cs?name=snippet_Startup)]
 
@@ -677,9 +678,9 @@ Modelo de página *Pages/Index2.cshtml.cs*:
 
 [!code-cs[](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-Por convención, el archivo de clase `PageModel` tiene el mismo nombre que el archivo de páginas de Razor con *.cs* anexado. Por ejemplo, la página de Razor anterior es *Pages/Index2.cshtml*. El archivo que contiene la clase `PageModel` se denomina *Pages/Index2.cshtml.cs*.
+Por convención, el archivo de clase `PageModel` tiene el mismo nombre que el archivo de Razor Pages con *.cs* anexado. Por ejemplo, la instancia de Razor Pages anterior es *Pages/Index2.cshtml*. El archivo que contiene la clase `PageModel` se denomina *Pages/Index2.cshtml.cs*.
 
-Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso de página de Razor y la dirección URL correspondiente:
+Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso Razor Pages y la dirección URL correspondiente:
 
 | Ruta de acceso y nombre de archivo               | URL correspondiente |
 | ----------------- | ------------ |
@@ -690,12 +691,12 @@ Las asociaciones de rutas de dirección URL a páginas se determinan según la u
 
 Notas:
 
-* El runtime busca archivos de páginas de Razor en la carpeta *Páginas* de forma predeterminada.
+* El entorno de ejecución busca archivos de páginas de Razor en la carpeta *Pages* de forma predeterminada.
 * `Index` es la página predeterminada cuando una URL no incluye una página.
 
 ## <a name="write-a-basic-form"></a>Escritura de un formulario básico
 
-Las páginas de Razor están diseñadas para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de página de Razor. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
+Razor Pages está diseñado para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de Razor Pages. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
 
 Para los ejemplos de este documento, `DbContext` se inicializa en el archivo [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16).
 
@@ -729,7 +730,7 @@ La página tiene un *método de controlador* `OnPostAsync`, que se ejecuta en so
 * `OnGet` para inicializar el estado necesario para la página. Ejemplo [OnGet](#OnGet).
 * `OnPost` para controlar los envíos del formulario.
 
-El sufijo de nombre `Async` es opcional, pero se usa a menudo por convención para funciones asincrónicas. El código anterior es típico de las páginas de Razor.
+El sufijo de nombre `Async` es opcional, pero se usa a menudo por convención para funciones asincrónicas. El código anterior es típico de Razor Pages.
 
 Si está familiarizado con las aplicaciones de ASP.NET con controladores y vistas:
 
@@ -771,7 +772,7 @@ El archivo *Index.cshtml* contiene el siguiente marcado para crear un vínculo d
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-El `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [asistente de etiquetas delimitadoras](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usado el atributo `asp-route-{value}` para generar un vínculo a la página de edición. El vínculo contiene datos de ruta con el identificador del contacto. Por ejemplo: `https://localhost:5001/Edit/1`. Los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor. Los asistentes de etiquetas se habilitan mediante `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+El `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [asistente de etiquetas delimitadoras](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usado el atributo `asp-route-{value}` para generar un vínculo a la página de edición. El vínculo contiene datos de ruta con el identificador del contacto. Por ejemplo: `https://localhost:5001/Edit/1`. Las [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) permiten que el código de servidor participe en la creación y la representación de elementos HTML en archivos de Razor. Los asistentes de etiquetas se habilitan mediante `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 El archivo *Pages/Edit.cshtml*:
 
@@ -836,14 +837,14 @@ public void OnHead()
 }
 ```
 
-En ASP.NET Core 2.1 o versiones posteriores, Razor Pages recurre a una llamada al controlador `OnGet` si no se define ningún controlador `OnHead`. Este comportamiento se habilita mediante la llamada a [SetCompatibilityVersion](xref:mvc/compatibility-version) en `Startup.ConfigureServices`:
+En ASP.NET Core 2.1 o versiones posteriores, Razor Pages recurre a una llamada al controlador `OnGet` si no se define ningún controlador `OnHead`. Este comportamiento se habilita mediante la llamada a [SetCompatibilityVersion](xref:mvc/compatibility-version) en `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 ```
 
-Las plantillas predeterminadas generan la llamada `SetCompatibilityVersion` en ASP.NET Core 2.1 y 2.2. `SetCompatibilityVersion` define con eficacia la opción de las páginas de Razor `AllowMappingHeadRequestsToGetHandler` como `true`.
+Las plantillas predeterminadas generan la llamada `SetCompatibilityVersion` en ASP.NET Core 2.1 y 2.2. `SetCompatibilityVersion` define con eficacia la opción de Razor Pages `true` como `AllowMappingHeadRequestsToGetHandler`.
 
 En lugar de aceptar todos los comportamientos con `SetCompatibilityVersion`, puede aceptar explícitamente comportamientos *específicos*. El código siguiente permite que las solicitudes `HEAD` se asignen al controlador `OnGet`:
 
@@ -857,13 +858,13 @@ services.AddMvc()
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF y páginas de Razor
+## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF y Razor Pages
 
-No tiene que escribir ningún código para la [validación antifalsificación](xref:security/anti-request-forgery). La validación y generación de tokens antifalsificación se incluyen automáticamente en las páginas de Razor.
+No tiene que escribir ningún código para la [validación antifalsificación](xref:security/anti-request-forgery). La validación y generación de tokens antifalsificación se incluyen automáticamente en Razor Pages.
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Usar diseños, parciales, plantillas y asistentes de etiquetas con las páginas de Razor
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Usar diseños, parciales, plantillas y asistentes de etiquetas con Razor Pages
 
 Las páginas funcionan con todas las características del motor de vista de Razor. Los diseños, parciales, plantillas, asistentes de etiquetas, *_ViewStart.cshtml*, *_ViewImports.cshtml* funcionan de la misma manera que lo hacen con las vistas de Razor convencionales.
 
@@ -888,9 +889,9 @@ El diseño está en la carpeta *Pages/Shared*. Las páginas buscan otras vistas 
 
 El archivo de diseño debería ir en la carpeta *Pages/Shared*.
 
-Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Las páginas de Razor están diseñadas para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
+Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Razor Pages está diseñado para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
 
-La búsqueda de vistas de una página de Razor incluye la carpeta *Pages*. Los diseños, plantillas y parciales que usa con los controladores de MVC y las vistas de Razor convencionales *simplemente funcionan*.
+La búsqueda de vistas de instancia de Razor Pages incluye la carpeta *Pages*. Los diseños, plantillas y parciales que usa con los controladores de MVC y las vistas de Razor convencionales *simplemente funcionan*.
 
 Agregue un archivo *Pages/_ViewImports.cshtml*:
 
@@ -928,7 +929,7 @@ El archivo de vista *Pages/Create.cshtml* actualizado:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
-El [proyecto de inicio de las páginas de Razor](#rpvs17) contiene *Pages/_ValidationScriptsPartial.cshtml*, que enlaza la validación del lado cliente.
+El [proyecto de inicio de Razor Pages](#rpvs17) contiene *Pages/_ValidationScriptsPartial.cshtml*, que enlaza la validación del lado cliente.
 
 Para más información sobre las vistas parciales, vea <xref:mvc/views/partial>.
 
@@ -1119,6 +1120,7 @@ services.AddMvc()
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
+* [Autorización de atributos y Razor Pages](xref:security/authorization/simple#aarp)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
