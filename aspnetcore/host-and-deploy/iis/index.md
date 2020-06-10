@@ -1,11 +1,24 @@
 ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Hospedaje de ASP.NET Core en Windows con IIS
+author: rick-anderson
+description: Obtenga información sobre cómo hospedar aplicaciones de ASP.NET Core en Windows Server Internet Information Services (IIS).
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 5/7/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/iis/index
+ms.openlocfilehash: 878af251a30fe284293e5293d2059199b42de272
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106109"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedaje de ASP.NET Core en Windows con IIS
 
@@ -134,118 +147,11 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. | | `AllowSynchronousIO`           | `false` | Si se permite la E/S sincrónica para `HttpContext.Request` y `HttpContext.Response`. | | `MaxRequestBodySize`           | `30000000`  | Obtiene o establece el tamaño máximo del cuerpo de solicitud para `HttpRequest`. Tenga en cuenta que el propio IIS tiene el límite de `maxAllowedContentLength`, que se procesará antes que el valor de `MaxRequestBodySize` establecido en `IISServerOptions`. El cambio de `MaxRequestBodySize` no afectará a `maxAllowedContentLength`. Para aumentar `maxAllowedContentLength`, agregue una entrada al archivo *web.config* para establecer `maxAllowedContentLength` en un valor superior. Para más información, consulte [Configuración](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante la [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| `AllowSynchronousIO`           | `false` | Si se permiten la E/S sincrónica para `HttpContext.Request` y `HttpContext.Response`. |
+| `MaxRequestBodySize`           | `30000000`  | Obtiene o establece el tamaño máximo del cuerpo de solicitud para `HttpRequest`. Tenga en cuenta que el propio IIS tiene el límite de `maxAllowedContentLength`, que se procesará antes que el valor de `MaxRequestBodySize` establecido en `IISServerOptions`. El cambio de `MaxRequestBodySize` no afectará a `maxAllowedContentLength`. Para aumentar `maxAllowedContentLength`, agregue una entrada al archivo *web.config* para establecer `maxAllowedContentLength` en un valor superior. Para más información, consulte [Configuración](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Modelo de hospedaje fuera de proceso**
 
@@ -259,118 +165,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración de IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. | | `ForwardClientCertificate`     | `true`  | Si es `true` y el encabezado de la solicitud `MS-ASPNETCORE-CLIENTCERT` está presente, se rellena `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración con IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| `ForwardClientCertificate`     | `true`  | Si `HttpContext.Connection.ClientCertificate` y el encabezado de solicitud `true` está presente, se rellena `MS-ASPNETCORE-CLIENTCERT`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Escenarios de servidor proxy y equilibrador de carga
 
@@ -971,118 +769,9 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante la [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
 
 **Modelo de hospedaje fuera de proceso**
 
@@ -1096,118 +785,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración de IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. | | `ForwardClientCertificate`     | `true`  | Si es `true` y el encabezado de la solicitud `MS-ASPNETCORE-CLIENTCERT` está presente, se rellena `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración con IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| `ForwardClientCertificate`     | `true`  | Si `HttpContext.Connection.ClientCertificate` y el encabezado de solicitud `true` está presente, se rellena `MS-ASPNETCORE-CLIENTCERT`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Escenarios de servidor proxy y equilibrador de carga
 
@@ -1758,118 +1339,9 @@ Para más información sobre `CreateDefaultBuilder`, consulte <xref:fundamentals
 ### <a name="iis-options"></a>Opciones de IIS
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-0title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el servidor IIS establece el `HttpContext.User` autenticado mediante la [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el servidor solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para obtener más información, vea [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
 
 Para configurar las opciones de IIS, incluya una configuración de servicio para <xref:Microsoft.AspNetCore.Builder.IISOptions> en <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. En el ejemplo siguiente se impide que la aplicación rellene `HttpContext.Connection.ClientCertificate`:
 
@@ -1881,118 +1353,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opción                         | Default | Parámetro |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración de IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. | | `ForwardClientCertificate`     | `true`  | Si es `true` y el encabezado de la solicitud `MS-ASPNETCORE-CLIENTCERT` está presente, se rellena `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Si es `true`, el [middleware de integración con IIS](#enable-the-iisintegration-components) establece el `HttpContext.User` autenticado mediante [autenticación de Windows](xref:security/authentication/windowsauth). Si es `false`, el middleware solo proporciona una identidad para `HttpContext.User` y responde a los desafíos cuando se le solicita explícitamente mediante el `AuthenticationScheme`. Autenticación de Windows debe estar habilitado en IIS para que `AutomaticAuthentication` funcione. Para más información, consulte el tema [Autenticación de Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Establece el nombre para mostrar que se muestra a los usuarios en las páginas de inicio de sesión. |
+| `ForwardClientCertificate`     | `true`  | Si `HttpContext.Connection.ClientCertificate` y el encabezado de solicitud `true` está presente, se rellena `MS-ASPNETCORE-CLIENTCERT`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Escenarios de servidor proxy y equilibrador de carga
 
