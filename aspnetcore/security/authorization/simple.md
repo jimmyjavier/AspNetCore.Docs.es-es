@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: 4ec31354d7fe11af75fd3a0045b4045f83721cb5
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: b5f97038145ed479c315af50a35d6c64d85425a7
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84272130"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652958"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Autorización simple en ASP.NET Core
 
@@ -79,3 +79,24 @@ Esto permitiría solo a los usuarios autenticados en `AccountController` , a exc
 
 > [!WARNING]
 > `[AllowAnonymous]`omite todas las instrucciones de autorización. Si combina `[AllowAnonymous]` y cualquier `[Authorize]` atributo, `[Authorize]` se omiten los atributos. Por ejemplo, si se aplica `[AllowAnonymous]` en el nivel de controlador, `[Authorize]` se omite cualquier atributo del mismo controlador (o de cualquier acción que contenga).
+
+<a name="aarp"></a>
+
+## <a name="authorize-attribute-and-razor-pages"></a>Autorizar atributos y Razor páginas
+
+<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ***No*** se puede aplicar a los Razor controladores de páginas. Por ejemplo, `[Authorize]` no se puede aplicar a `OnGet` , `OnPost` o a cualquier otro controlador de página.
+
+Se pueden usar los dos enfoques siguientes para aplicar la autorización a Razor métodos de control de páginas:
+
+* Use páginas independientes para los controladores de páginas que requieran una autorización diferente. Se ha pasado el contenido compartido a una o varias [vistas parciales](xref:mvc/views/partial). Siempre que sea posible, este es el enfoque recomendado.
+* En el caso de contenido que debe compartir una página común, escriba un filtro que realice la autorización como parte de [IAsyncPageFilter. OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). En el proyecto [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) de github se muestra este enfoque:
+  * [AuthorizePageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizePageHandlerFilter.cs) implementa el filtro de autorización:[!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs?name=snippet)]
+
+  * El atributo [[AuthorizePageHandler]](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs#L16) se aplica al `OnGet` controlador de página:[!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs?name=snippet)]
+
+> [!WARNING]
+> El [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) enfoque de ejemplo PageHandlerAuth ***no:***
+> * Cree con los atributos de autorización aplicados a la página, al modelo de página o a nivel global. La composición de los atributos de autorización da lugar a la autenticación y autorización que se ejecutan varias veces cuando se tiene una `AuthorizeAttribute` o más `AuthorizeFilter` instancias que también se aplican a la página.
+> * Trabaje junto con el resto de ASP.NET Core sistema de autenticación y autorización. Debe comprobar que el uso de este enfoque funciona correctamente para la aplicación.
+
+No hay planes para admitir en los `AuthorizeAttribute` Razor controladores de páginas. 
