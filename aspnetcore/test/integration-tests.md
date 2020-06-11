@@ -1,11 +1,24 @@
 ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Pruebas de integración en ASP.NET Core
+author: rick-anderson
+description: Obtenga información sobre cómo las pruebas de integración garantizan que los componentes de una aplicación, como la base de datos, el sistema de archivos y la red, funcionen correctamente en la infraestructura.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/20/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: test/integration-tests
+ms.openlocfilehash: ee57843dc79805aed48dbb4d3a6ac97469052f5c
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105186"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Pruebas de integración en ASP.NET Core
 
@@ -202,45 +215,11 @@ Dado que otra prueba en la clase `IndexPageTests` realiza una operación que eli
 En la tabla siguiente se muestran los elementos [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) predeterminados disponibles al crear instancias de `HttpClient`.
 
 | Opción | Descripción | Default |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias `HttpClient` deben administrar las cookies. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias `HttpClient`. | 7 |
+| ------ | ----------- | ------- |
+| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias de `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` |
+| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias de `HttpClient`. | `http://localhost` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias de `HttpClient` deben controlar las cookies. | `true` |
+| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias de `HttpClient`. | 7 |
 
 Cree la clase `WebApplicationFactoryClientOptions` y pásela al método [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (los valores predeterminados se muestran en el ejemplo de código):
 
@@ -381,78 +360,9 @@ Una vez ejecutadas las pruebas de la implementación `IClassFixture`, [TestServe
 La [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) se compone de dos aplicaciones:
 
 | Aplicación | Directorio del proyecto | Descripción |
-| --- | ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | Aplicación de mensaje (el sistema a prueba) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. | | Aplicación de prueba | *tests/RazorPagesProject.Tests* | Se usa para la prueba de integración del sistema a prueba. |
+| --- | ----------------- | ----------- |
+| Aplicación de mensajes (el SUT) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. |
+| Probar la aplicación | *tests/RazorPagesProject.Tests* | Se usa para probar la integración del SUT. |
 
 Las pruebas se pueden ejecutar con las características de prueba integradas de un IDE, como [Visual Studio](https://visualstudio.microsoft.com). Si usa [Visual Studio Code](https://code.visualstudio.com/) o la línea de comandos, ejecute el siguiente comando en un símbolo del sistema del directorio *tests/RazorPagesProject.Tests*:
 
@@ -480,86 +390,11 @@ Aunque la aplicación no usa el patrón del repositorio y no es un buen ejemplo 
 La aplicación de prueba es una aplicación de consola dentro del directorio *tests/RazorPagesProject.Tests*.
 
 | Directorio de la aplicación de prueba | Descripción |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> | | *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. | | *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. | | *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
+| ------------------ | ----------- |
+| *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> |
+| *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. |
+| *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. |
+| *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
 
 El marco de pruebas es [xUnit](https://xunit.github.io/). Las pruebas de integración se llevan a cabo con [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), que incluye [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Dado que el paquete [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) se usa para configurar el host de prueba y el servidor de pruebas, los paquetes `TestHost` y `TestServer` no requieren referencias de paquete directas en el archivo de proyecto o la configuración de desarrollador de la aplicación de prueba en la aplicación de prueba.
 
@@ -743,45 +578,11 @@ Dado que otra prueba en la clase `IndexPageTests` realiza una operación que eli
 En la tabla siguiente se muestran los elementos [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) predeterminados disponibles al crear instancias de `HttpClient`.
 
 | Opción | Descripción | Default |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias `HttpClient` deben administrar las cookies. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias `HttpClient`. | 7 |
+| ------ | ----------- | ------- |
+| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Obtiene o establece si las instancias de `HttpClient` deben seguir automáticamente las respuestas de redireccionamiento. | `true` |
+| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Obtiene o establece la dirección base de las instancias de `HttpClient`. | `http://localhost` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Obtiene o establece si las instancias de `HttpClient` deben controlar las cookies. | `true` |
+| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Obtiene o establece el número máximo de respuestas de redireccionamiento que deben seguir las instancias de `HttpClient`. | 7 |
 
 Cree la clase `WebApplicationFactoryClientOptions` y pásela al método [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (los valores predeterminados se muestran en el ejemplo de código):
 
@@ -950,78 +751,9 @@ Una vez ejecutadas las pruebas de la implementación `IClassFixture`, [TestServe
 La [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) se compone de dos aplicaciones:
 
 | Aplicación | Directorio del proyecto | Descripción |
-| --- | ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | Aplicación de mensaje (el sistema a prueba) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. | | Aplicación de prueba | *tests/RazorPagesProject.Tests* | Se usa para la prueba de integración del sistema a prueba. |
+| --- | ----------------- | ----------- |
+| Aplicación de mensajes (el SUT) | *src/RazorPagesProject* | Permite a un usuario agregar, analizar mensajes y eliminarlos todos o uno solo. |
+| Probar la aplicación | *tests/RazorPagesProject.Tests* | Se usa para probar la integración del SUT. |
 
 Las pruebas se pueden ejecutar con las características de prueba integradas de un IDE, como [Visual Studio](https://visualstudio.microsoft.com). Si usa [Visual Studio Code](https://code.visualstudio.com/) o la línea de comandos, ejecute el siguiente comando en un símbolo del sistema del directorio *tests/RazorPagesProject.Tests*:
 
@@ -1049,86 +781,11 @@ Aunque la aplicación no usa el patrón del repositorio y no es un buen ejemplo 
 La aplicación de prueba es una aplicación de consola dentro del directorio *tests/RazorPagesProject.Tests*.
 
 | Directorio de la aplicación de prueba | Descripción |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
---------- | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> | | *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. | | *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. | | *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
+| ------------------ | ----------- |
+| *AuthTests* | Contiene métodos de prueba para:<ul><li>Acceder a una página segura mediante un usuario no autenticado.</li><li>Acceder a una página segura mediante un usuario autenticado con una simulación <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.</li><li>Obtener un perfil de usuario de GitHub y comprobar el inicio de sesión de usuario del perfil.</li></ul> |
+| *BasicTests* | Contiene un método de prueba para el enrutamiento y el tipo de contenido. |
+| *IntegrationTests* | Contiene las pruebas de integración de la página Index que usa la clase `WebApplicationFactory` personalizada. |
+| *Asistentes o utilidades* | <ul><li>*Utilities.cs* contiene el método `InitializeDbForTests` que se usa para propagar la base de datos con datos de prueba.</li><li>*HtmlHelpers.cs* proporciona un método para devolver un elemento `IHtmlDocument` de AngleSharp para que lo usen los métodos de prueba.</li><li>*HttpClientExtensions.cs* proporciona sobrecargas para que `SendAsync` envíe solicitudes al SUT.</li></ul> |
 
 El marco de pruebas es [xUnit](https://xunit.github.io/). Las pruebas de integración se llevan a cabo con [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), que incluye [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Dado que el paquete [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) se usa para configurar el host de prueba y el servidor de pruebas, los paquetes `TestHost` y `TestServer` no requieren referencias de paquete directas en el archivo de proyecto o la configuración de desarrollador de la aplicación de prueba en la aplicación de prueba.
 

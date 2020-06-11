@@ -1,12 +1,24 @@
 ---
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Integración de componentes de Razor de ASP.NET Core en aplicaciones de Razor Pages y MVC
+author: guardrex
+description: Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/integrate-components
+ms.openlocfilehash: 97515ec519c4bedb0478f510ec9ed739b5d76e4f
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105251"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integración de componentes de Razor de ASP.NET Core en aplicaciones de Razor Pages y MVC
 
@@ -117,60 +129,10 @@ Para admitir componentes Razor enrutables en aplicaciones Razor Pages:
    * Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario.
 
    | Modo de representación | Descripción |
-   | ---
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | --- title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación de Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
 
    Para más información sobre el asistente de etiquetas de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
@@ -241,60 +203,10 @@ Para admitir componentes Razor enrutables en aplicaciones MVC, haga lo siguiente
    * Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario.
 
    | Modo de representación | Descripción |
-   | ---
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | --- title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: "Integración de componentes de ASP.NET Core Razor en aplicaciones de Razor Pages y MVC" author: description: "Obtenga información sobre los escenarios de enlace de datos para componentes y elementos DOM en aplicaciones de Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente `App` en código HTML estático e incluye un marcador para una aplicación de Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente `App` no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente `App` en HTML estático. |
 
    Para más información sobre el asistente de etiquetas de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 

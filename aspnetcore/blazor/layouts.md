@@ -1,12 +1,24 @@
 ---
-title: 'Diseños de ASP.NET Core Blazor' author: description: 'Aprenda a crear componentes de diseño reutilizables para aplicaciones de Blazor.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Diseños de ASP.NET Core Blazor
+author: guardrex
+description: Aprenda a crear componentes de diseño reutilizables para aplicaciones de Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/layouts
+ms.openlocfilehash: ba172282d0cd6371ebc94b4fda1c13aee14d6fbd
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851997"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Diseños de ASP.NET Core Blazor
 

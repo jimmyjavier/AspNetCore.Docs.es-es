@@ -1,12 +1,24 @@
 ---
-title: "Modelos de hospedaje de ASP.NET Core Blazor" author: description: "Conozca los modelos de hospedaje de Blazor WebAssembly y Blazor Server".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Modelos de hospedaje Blazor en ASP.NET Core
+author: guardrex
+description: Comprenda los modelos de hospedaje Blazor WebAssembly y de Servidor Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/hosting-models
+ms.openlocfilehash: 9556fea5319956ce4ae4f4faf90cb405784c733c
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105498"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedaje Blazor en ASP.NET Core
 

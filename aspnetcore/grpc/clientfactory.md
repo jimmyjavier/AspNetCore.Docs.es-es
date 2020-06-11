@@ -1,11 +1,23 @@
 ---
-title: author: description: monikerRange: ms.author: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Integración de la fábrica de cliente de gRPC en .NET Core
+author: jamesnk
+description: Aprenda a crear clientes gRPC mediante la fábrica de cliente.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: jamesnk
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: grpc/clientfactory
+ms.openlocfilehash: ecf2e4ce4375f9e5292f317a15f3b8016ac7daec
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106226"
 ---
 # <a name="grpc-client-factory-integration-in-net-core"></a>Integración de la fábrica de cliente de gRPC en .NET Core
 

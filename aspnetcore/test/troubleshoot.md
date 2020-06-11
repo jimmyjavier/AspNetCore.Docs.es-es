@@ -1,11 +1,23 @@
 ---
-title: author: description: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Solución de problemas y depuración de proyectos de ASP.NET Core
+author: Rick-Anderson
+description: Conozca y solucione advertencias y errores en proyectos de ASP.NET Core.
+ms.author: riande
+ms.custom: mvc
+ms.date: 07/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: test/troubleshoot
+ms.openlocfilehash: bd5e74569717db26496760eaaa2760122d4b49e7
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106499"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Solución de problemas y depuración de proyectos de ASP.NET Core
 

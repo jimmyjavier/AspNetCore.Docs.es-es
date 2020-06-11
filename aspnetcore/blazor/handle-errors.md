@@ -1,12 +1,24 @@
 ---
-title: "Control de errores en aplicaciones Blazor de ASP.NET Core" author: description: Descubra cómo Blazor de ASP.NET Core Blazor administra las excepciones no controladas y cómo desarrollar aplicaciones que detecten y controlen los errores".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Control de errores en aplicaciones Blazor de ASP.NET Core
+author: guardrex
+description: Descubra cómo Blazor de ASP.NET Core administra las excepciones no controladas y cómo desarrollar aplicaciones que detecten y controlen los errores.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/handle-errors
+ms.openlocfilehash: a66075b4c45f2d7767d2ed1950a44a0ba88c7d17
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864558"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Control de errores en aplicaciones Blazor de ASP.NET Core
 
