@@ -5,7 +5,7 @@ description: Aprenda a configurar Blazor Webassembly para escenarios de segurida
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: de752eb180767bbb269107ebc478a4422448f968
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 35038cb7b96afd7c009f1210251e38273aa4aad8
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84272039"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679662"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor escenarios de seguridad adicionales de Webassembly
 
@@ -522,50 +522,140 @@ El ejemplo siguiente muestra cómo:
 
 ## <a name="save-app-state-before-an-authentication-operation"></a>Guardar el estado de la aplicación antes de una operación de autenticación
 
-Durante una operación de autenticación, hay casos en los que desea guardar el estado de la aplicación antes de que el explorador se redirija a la dirección IP. Esto puede ser así cuando se usa algo como un contenedor de estado y se desea restaurar el estado después de que la autenticación se realice correctamente. Puede usar un objeto de estado de autenticación personalizado para conservar el estado específico de la aplicación o una referencia a él y restaurar ese estado una vez que la operación de autenticación se complete correctamente.
+Durante una operación de autenticación, hay casos en los que desea guardar el estado de la aplicación antes de que el explorador se redirija a la dirección IP. Este puede ser el caso cuando se usa un contenedor de estado y se desea restaurar el estado después de que la autenticación se realice correctamente. Puede usar un objeto de estado de autenticación personalizado para conservar el estado específico de la aplicación o una referencia a él y restaurar el estado después de que la operación de autenticación se complete correctamente. En el siguiente ejemplo se muestra el enfoque.
 
-`Authentication`componente (*páginas/autenticación. Razor*):
+Se crea una clase de contenedor de estado en la aplicación con propiedades que contienen los valores de estado de la aplicación. En el ejemplo siguiente, el contenedor se usa para mantener el valor del contador del componente de la plantilla predeterminada `Counter` (*pages/Counter. Razor*). Los métodos para serializar y deserializar el contenedor se basan en <xref:System.Text.Json> .
+
+```csharp
+using System.Text.Json;
+
+public class StateContainer
+{
+    public int CounterValue { get; set; }
+
+    public string GetStateForLocalStorage()
+    {
+        return JsonSerializer.Serialize(this);
+    }
+
+    public void SetStateFromLocalStorage(string locallyStoredState)
+    {
+        var deserializedState = 
+            JsonSerializer.Deserialize<StateContainer>(locallyStoredState);
+
+        CounterValue = deserializedState.CounterValue;
+    }
+}
+```
+
+El `Counter` componente usa el contenedor de estado para mantener el `currentCount` valor fuera del componente:
+
+```razor
+@page "/counter"
+@inject StateContainer State
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    protected override void OnInitialized()
+    {
+        if (State.CounterValue > 0)
+        {
+            currentCount = State.CounterValue;
+        }
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        State.CounterValue = currentCount;
+    }
+}
+```
+
+Cree un `ApplicationAuthenticationState` a partir de <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationState> . Proporcione una `Id` propiedad, que actúa como identificador para el estado almacenado localmente.
+
+*ApplicationAuthenticationState.CS*:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class ApplicationAuthenticationState : RemoteAuthenticationState
+{
+    public string Id { get; set; }
+}
+```
+
+El `Authentication` componente (*pages/Authentication. Razor*) guarda y restaura el estado de la aplicación mediante el almacenamiento de sesión local con los `StateContainer` métodos de serialización y deserialización, `GetStateForLocalStorage` y `SetStateFromLocalStorage` :
 
 ```razor
 @page "/authentication/{action}"
-@inject JSRuntime JS
+@inject IJSRuntime JS
 @inject StateContainer State
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorViewCore Action="@Action" 
-    AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
-    OnLogOutSucceeded="RestoreState" />
+<RemoteAuthenticatorViewCore Action="@Action"
+                             TAuthenticationState="ApplicationAuthenticationState"
+                             AuthenticationState="AuthenticationState"
+                             OnLogInSucceeded="RestoreState"
+                             OnLogOutSucceeded="RestoreState" />
 
 @code {
     [Parameter]
     public string Action { get; set; }
 
-    public class ApplicationAuthenticationState : RemoteAuthenticationState
-    {
-        public string Id { get; set; }
-    }
+    public ApplicationAuthenticationState AuthenticationState { get; set; } =
+        new ApplicationAuthenticationState();
 
     protected async override Task OnInitializedAsync()
     {
-        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn, 
+        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
+            Action) ||
+            RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogOut,
             Action))
         {
             AuthenticationState.Id = Guid.NewGuid().ToString();
-            await JS.InvokeVoidAsync("sessionStorage.setKey", 
-                AuthenticationState.Id, State.Store());
+
+            await JS.InvokeVoidAsync("sessionStorage.setItem",
+                AuthenticationState.Id, State.GetStateForLocalStorage());
         }
     }
 
-    public async Task RestoreState(ApplicationAuthenticationState state)
+    private async Task RestoreState(ApplicationAuthenticationState state)
     {
-        var stored = await JS.InvokeAsync<string>("sessionStorage.getKey", 
-            state.Id);
-        State.FromStore(stored);
-    }
+        if (state.Id != null)
+        {
+            var locallyStoredState = await JS.InvokeAsync<string>(
+                "sessionStorage.getItem", state.Id);
 
-    public ApplicationAuthenticationState AuthenticationState { get; set; } = 
-        new ApplicationAuthenticationState();
+            if (locallyStoredState != null)
+            {
+                State.SetStateFromLocalStorage(locallyStoredState);
+                await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
+            }
+        }
+    }
 }
+```
+
+En este ejemplo se usa Azure Active Directory (AAD) para la autenticación. En `Program.Main` (*Program.CS*):
+
+* `ApplicationAuthenticationState`Está configurado como el tipo de biblioteca autenticación de Microsoft (MSAL) `RemoteAuthenticationState` .
+* El contenedor de estado se registra en el contenedor de servicios.
+
+```csharp
+builder.Services.AddMsalAuthentication<ApplicationAuthenticationState>(options =>
+{
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+});
+
+builder.Services.AddSingleton<StateContainer>();
 ```
 
 ## <a name="customize-app-routes"></a>Personalización de rutas de aplicación
@@ -823,7 +913,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-En el método de la aplicación de servidor `Startup.Configure` , reemplace los [extremos. MapFallbackToFile ("index. html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) con [extremos. MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+En el método de la aplicación de servidor `Startup.Configure` , reemplace los [extremos. MapFallbackToFile ("index.html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) con [extremos. MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -909,7 +999,7 @@ builder.Services.Configure<JwtBearerOptions>(
     });
 ```
 
-Como alternativa, la configuración se puede realizar en el archivo de configuración de la aplicación (*appSettings. JSON*):
+Como alternativa, la configuración se puede realizar en el archivo de configuración de la aplicación (*appsettings.jsen*):
 
 ```json
 {
@@ -920,6 +1010,6 @@ Como alternativa, la configuración se puede realizar en el archivo de configura
 }
 ```
 
-Si el seguimiento de un segmento a la autoridad no es apropiado para el proveedor de OIDC de la aplicación, como con proveedores que no son de AAD, establezca la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> propiedad directamente. Establezca la propiedad en <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> o en el archivo de configuración de la aplicación (*appSettings. JSON*) con la `Authority` clave.
+Si el seguimiento de un segmento a la autoridad no es apropiado para el proveedor de OIDC de la aplicación, como con proveedores que no son de AAD, establezca la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> propiedad directamente. Establezca la propiedad en <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> o en el archivo de configuración de la aplicación (*appsettings.jsen*) con la `Authority` clave.
 
 La lista de notificaciones en el token de identificador cambia para los puntos de conexión v 2.0. Para obtener más información, consulte [¿por qué actualizar a Microsoft Identity Platform (v 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).

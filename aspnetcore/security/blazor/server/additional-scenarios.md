@@ -5,7 +5,7 @@ description: Obtenga información acerca de cómo configurar el Blazor servidor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/04/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: f172df7f2333fd79ba175ec8a3a6925ec07f1113
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 159d418a78caa3954294ad0a1067654d895147f7
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851530"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679675"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorEscenarios de seguridad adicionales de ASP.net Core Server
 
@@ -148,6 +148,18 @@ public class WeatherForecastService
 }
 ```
 
+## <a name="set-the-authentication-scheme"></a>Establecer el esquema de autenticación
+
+Para una aplicación que usa más de un middleware de autenticación y, por tanto, tiene más de un esquema de autenticación, el esquema que Blazor usa se puede establecer explícitamente en la configuración del punto de conexión de `Startup.Configure` . En el ejemplo siguiente se establece el esquema de Azure Active Directory:
+
+```csharp
+endpoints.MapBlazorHub().RequireAuthorization(
+    new AuthorizeAttribute 
+    {
+        AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
+    });
+```
+
 ## <a name="use-open-id-connect-oidc-v20-endpoints"></a>Usar puntos de conexión v 2.0 de Open ID Connect (OIDC)
 
 La biblioteca de autenticación y Blazor las plantillas usan puntos de conexión de Open ID Connect (OIDC) v 1.0. Para usar un punto de conexión v 2.0, configure la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> opción en la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
@@ -160,7 +172,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
     }
 ```
 
-Como alternativa, la configuración se puede realizar en el archivo de configuración de la aplicación (*appSettings. JSON*):
+Como alternativa, la configuración se puede realizar en el archivo de configuración de la aplicación (*appsettings.jsen*):
 
 ```json
 {
