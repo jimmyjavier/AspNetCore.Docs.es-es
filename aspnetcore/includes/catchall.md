@@ -7,12 +7,13 @@
 >
 > Para ver casos de ejemplo relacionados con este error, consulte los errores [18677](https://github.com/dotnet/aspnetcore/issues/18677) y [16579](https://github.com/dotnet/aspnetcore/issues/16579) en GitHub.
 >
-> Se ha previsto una corrección opcional de este error. Cuando se publique dicha corrección, este documento se actualizará. Asimismo, una vez publicada la corrección, el código siguiente establecerá un conmutador interno que corregirá el error:
+> Una corrección opcional para este error se incluye en el [SDK de 3.1.301 de .net Core y versiones posteriores](https://dotnet.microsoft.com/download/dotnet-core/3.1). El código siguiente establece un conmutador interno que corrige este error:
 >
 >```
 >public static void Main(string[] args)
 >{
->    AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
+>    AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", 
+>                          true);
 >    CreateHostBuilder(args).Build().Run();
 >}
 >// Remaining code removed for brevity.

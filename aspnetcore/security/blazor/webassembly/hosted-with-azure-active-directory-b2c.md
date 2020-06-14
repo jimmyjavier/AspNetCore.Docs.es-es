@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: b369bf0e9b20bcb87345e3e10c314ae6227464d1
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 9a63d6ca0ab6b71875212d54035dfb5cf94a8cad
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84215086"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724307"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Azure Active Directory B2C
 
@@ -45,7 +45,7 @@ Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor servidor AAD B2C**).
 1. En **tipos de cuenta compatibles**, seleccione la opción de varios inquilinos: **cuentas en cualquier directorio de la organización o cualquier proveedor de identidades. Para autenticar a los usuarios con Azure AD B2C.**
 1. La *aplicación de API de servidor* no requiere un **URI de redirección** en este escenario, por lo que deje la lista desplegable establecida en **Web** y no escriba un URI de redirección.
-1. Confirme que **permisos**  >  **conceder permisos de administrador a OpenID y offline_access** está habilitado.
+1. Confirme que **permisos**  >  **conceder consentimiento de administrador a OpenID y offline_access permisos** está habilitado.
 1. Seleccione **Registrar**.
 
 Registre la siguiente información:
@@ -77,7 +77,7 @@ Siga las instrucciones de [Tutorial: registro de una aplicación en Azure Active
 1. Proporcione un **nombre** para la aplicación (por ejemplo, ** Blazor cliente AAD B2C**).
 1. En **tipos de cuenta compatibles**, seleccione la opción de varios inquilinos: **cuentas en cualquier directorio de la organización o cualquier proveedor de identidades. Para autenticar a los usuarios con Azure AD B2C.**
 1. Deje la lista desplegable **URI de redirección** establecida en **Web** y proporcione el siguiente URI de redirección: `https://localhost:{PORT}/authentication/login-callback` . El puerto predeterminado para una aplicación que se ejecuta en Kestrel es 5001. Si la aplicación se ejecuta en otro puerto Kestrel, use el puerto de la aplicación. Por IIS Express, el puerto generado de forma aleatoria para la aplicación se puede encontrar en las propiedades de la aplicación de servidor en el panel de **depuración** . Dado que la aplicación no existe en este momento y no se conoce el puerto IIS Express, vuelva a este paso después de crear la aplicación y actualice el URI de redirección. Aparece un Comentario en la sección [creación de la aplicación](#create-the-app) para recordar IIS Express usuarios a actualizar el URI de redirección.
-1. Confirme que **permisos**  >  **conceder permisos de administrador a OpenID y offline_access** está habilitado.
+1. Confirme que **permisos**  >  **conceder consentimiento de administrador a OpenID y offline_access permisos** está habilitado.
 1. Seleccione **Registrar**.
 
 Registre el identificador de aplicación (ID. de cliente) (por ejemplo, `11111111-1111-1111-1111-111111111111` ).
@@ -178,9 +178,9 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Configuración de aplicaciones
+### <a name="app-settings"></a>Configuración de la aplicación
 
-El archivo *appSettings. JSON* contiene las opciones para configurar el controlador de portador JWT que se usa para validar los tokens de acceso.
+El *appsettings.jsen* el archivo contiene las opciones para configurar el controlador de portador JWT que se usa para validar los tokens de acceso.
 
 ```json
 {
@@ -273,7 +273,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 El <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método acepta una devolución de llamada para configurar los parámetros necesarios para autenticar una aplicación. Los valores necesarios para configurar la aplicación pueden obtenerse a partir de la configuración de AAD de Azure portal cuando se registra la aplicación.
 
-La configuración se proporciona mediante el archivo *wwwroot/appSettings. JSON* :
+La configuración se proporciona mediante *wwwroot/appsettings.jsen* el archivo:
 
 ```json
 {
@@ -350,7 +350,7 @@ Para obtener más información, consulte las siguientes secciones del artículo 
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Ejecución la aplicación
+## <a name="run-the-app"></a>Ejecutar la aplicación
 
 Ejecute la aplicación desde el proyecto de servidor. Al usar Visual Studio, puede:
 

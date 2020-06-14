@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 116e5d27e7585e9168db433480c3a5e9d08379f3
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.openlocfilehash: 36afa8ece58843b434ebfba6305bffdb9eb9bca0
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454690"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724294"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Scaffolding Identity en proyectos de ASP.net Core
 
@@ -195,7 +195,7 @@ Los tokens se pueden pasar a los componentes:
 * Cuando los tokens de autenticación se aprovisionan y se guardan en la cookie de autenticación, se pueden pasar a los componentes.
 * Razorlos componentes no pueden usar `HttpContext` directamente, por lo que no hay manera de obtener un [token de falsificación de la solicitud (XSRF)](xref:security/anti-request-forgery) para publicar el Identity punto de conexión de cierre de sesión en `/Identity/Account/Logout` . Un token XSRF se puede pasar a los componentes.
 
-Para obtener más información, vea <xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app>.
+Para obtener más información, vea <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 En el archivo *pages/_Host. cshtml* , establezca el token después de agregarlo a las `InitialApplicationState` `TokenProvider` clases y:
 
@@ -229,7 +229,7 @@ El `TokenProvider` servicio que se muestra en el tema se usa en el `LoginDisplay
 En la `Startup` clase:
 
 * Confirme que Razor se han agregado los servicios de páginas en `Startup.ConfigureServices` .
-* Si usa [TokenProvider](xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app), registre el servicio.
+* Si usa [TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registre el servicio.
 * Llame a `UseDatabaseErrorPage` en el generador de aplicaciones en `Startup.Configure` para el entorno de desarrollo.
 * Llame a `UseAuthentication` y `UseAuthorization` después de `UseRouting` .
 * Agregue un extremo para Razor las páginas.
@@ -253,7 +253,7 @@ Agregue un `RedirectToLogin` componente (*RedirectToLogin. Razor*) a la carpeta 
 }
 ```
 
-Agregue un `LoginDisplay` componente (*LoginDisplay. Razor*) a la carpeta *compartida* de la aplicación. El [servicio TokenProvider](xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app) proporciona el token XSRF para el formulario HTML que se envía al Identity punto de conexión de cierre de sesión:
+Agregue un `LoginDisplay` componente (*LoginDisplay. Razor*) a la carpeta *compartida* de la aplicación. El [servicio TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) proporciona el token XSRF para el formulario HTML que se envía al Identity punto de conexión de cierre de sesión:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -398,7 +398,9 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
-## <a name="disable-register-page"></a>Deshabilitar registro (página)
+## <a name="disable-a-page"></a>Deshabilitar una página
+
+En esta sección se muestra cómo deshabilitar la página de registro, pero se puede usar el enfoque para deshabilitar cualquier página.
 
 Para deshabilitar el registro de usuario:
 
@@ -418,13 +420,13 @@ Para deshabilitar el registro de usuario:
 
 * Comente o quite el vínculo de registro de las *áreas/ Identity /pages/Account/login.cshtml*
 
-```cshtml
-@*
-<p>
-    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-</p>
-*@
-```
+  ```cshtml
+  @*
+  <p>
+      <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+  </p>
+  *@
+  ```
 
 * Actualice la página *áreas/ Identity /pages/Account/RegisterConfirmation* .
 
@@ -482,7 +484,7 @@ Las aplicaciones que **no** incluyen autenticación pueden aplicar el scaffoldin
 
 Aunque el scaffolding genera la mayor parte del código necesario, tendrá que actualizar el proyecto para completar el proceso. En este documento se explican los pasos necesarios para completar una Identity actualización de scaffolding.
 
-Cuando Identity se ejecuta el scaffolding, se crea un archivo *ScaffoldingReadme. txt* en el directorio del proyecto. El archivo *ScaffoldingReadme. txt* contiene instrucciones generales sobre lo que se necesita para completar la Identity actualización de scaffolding. Este documento contiene instrucciones más completas que el archivo *ScaffoldingReadme. txt* .
+Cuando Identity se ejecuta el scaffolding, se crea un archivo de *ScaffoldingReadme.txt* en el directorio del proyecto. El archivo de *ScaffoldingReadme.txt* contiene instrucciones generales sobre lo que se necesita para completar la Identity actualización de scaffolding. Este documento contiene instrucciones más completas que el archivo de *ScaffoldingReadme.txt* .
 
 Se recomienda usar un sistema de control de código fuente que muestre las diferencias de archivos y le permite deshacer los cambios. Inspeccione los cambios después de ejecutar el Identity scaffolding.
 

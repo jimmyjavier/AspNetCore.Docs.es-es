@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: d5e0e3865702fe4e5cbe49e7f452f367a8a53de9
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8d4488b3953a8c87033d3a092b656409a0c6a52d
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451750"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724372"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmación de las cuentas y recuperación de contraseñas en ASP.NET Core
 
@@ -63,7 +63,7 @@ Ejecute la aplicación, seleccione el vínculo **registrar** y registre un usuar
 
 En este tutorial, se usa [SendGrid](https://sendgrid.com) para enviar correo electrónico. Necesita una cuenta y una clave de SendGrid para enviar el correo electrónico. Puede usar otros proveedores de correo electrónico. Se recomienda usar SendGrid u otro servicio de correo electrónico para enviar correo electrónico. SMTP es difícil de proteger y configurar correctamente.
 
-La cuenta SendGrid My requiere [Agregar un remitente](https://sendgrid.com/docs/ui/sending-email/senders/).
+Es posible que la cuenta de SendGrid necesite [Agregar un remitente](https://sendgrid.com/docs/ui/sending-email/senders/).
 
 Cree una clase para capturar la clave de correo electrónico segura. Para este ejemplo, cree *Services/AuthMessageSenderOptions. CS*:
 
@@ -80,9 +80,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-En Windows, el administrador de secretos almacena pares de clave/valor en un archivo *Secrets. JSON* en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
+En Windows, el administrador de secretos almacena pares de clave/valor en un *secrets.jsen* el archivo en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
 
-El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se ha `SendGridKey` quitado el valor.
+No se cifra el contenido de la *secrets.jsen* el archivo. En el marcado siguiente se muestra el *secrets.jsen* el archivo. Se ha `SendGridKey` quitado el valor.
 
 ```json
 {
@@ -286,9 +286,9 @@ C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-En Windows, el administrador de secretos almacena pares de clave/valor en un archivo *Secrets. JSON* en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
+En Windows, el administrador de secretos almacena pares de clave/valor en un *secrets.jsen* el archivo en el `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directorio.
 
-El contenido del archivo *Secrets. JSON* no está cifrado. El marcado siguiente muestra el archivo *Secrets. JSON* . Se ha `SendGridKey` quitado el valor.
+No se cifra el contenido de la *secrets.jsen* el archivo. En el marcado siguiente se muestra el *secrets.jsen* el archivo. Se ha `SendGridKey` quitado el valor.
 
 ```json
 {

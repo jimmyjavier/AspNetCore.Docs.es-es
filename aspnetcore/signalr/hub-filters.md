@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: 26bbd175c9cd4053692d2adeca345891af0ba10e
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: afdb52039c0eff53a421038518c687c78e1d509b
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84680247"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756072"
 ---
 # <a name="use-hub-filters-in-aspnet-core-signalr"></a>Usar filtros de Hub en ASP.NET CoreSignalR
 
@@ -40,7 +40,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         // Global filters will run first
         options.AddFilter<CustomFilter>();
-    }).AddHubOptions<MyHub>(options =>
+    }).AddHubOptions<ChatHub>(options =>
     {
         // Local filters will run second
         options.AddFilter<CustomFilter2>();
@@ -191,7 +191,7 @@ En este ejemplo, suponga que `LanguageFilterAttribute` se define una clase. La c
 
 `HubInvocationContext`Contiene información para la invocación del método del concentrador actual.
 
-| Propiedad. | Descripción | Tipo |
+| Propiedad | Descripción | Tipo |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Contiene información sobre la conexión. | `HubCallerContext` |
 | `Hub` | La instancia del concentrador que se usa para esta invocación de método de concentrador. | `Hub` |
@@ -204,7 +204,7 @@ En este ejemplo, suponga que `LanguageFilterAttribute` se define una clase. La c
 
 `HubLifetimeContext`Contiene información para los `OnConnectedAsync` métodos de `OnDisconnectedAsync` concentrador y.
 
-| Propiedad. | Descripción | Tipo |
+| Propiedad | Descripción | Tipo |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Contiene información sobre la conexión. | `HubCallerContext` |
 | `Hub` | La instancia del concentrador que se usa para esta invocación de método de concentrador. | `Hub` |

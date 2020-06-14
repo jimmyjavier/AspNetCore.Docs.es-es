@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/aad-groups-roles
-ms.openlocfilehash: 3ed06cca7e20da381b870e642a6c616b2578cd0a
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 87cdf02a6f6babc869d90658e6a7cd54db73bb68
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451880"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756033"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Grupos de Azure AD, roles administrativos y roles definidos por el usuario
 
@@ -164,7 +164,7 @@ El [componente AuthorizeView](xref:security/blazor/index#authorizeview-component
 </AuthorizeView>
 ```
 
-El acceso a un componente completo puede basarse en la Directiva mediante la Directiva [ `[Authorize]` ] Attribute] (XREF: Security/increíbles/index # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
+El acceso a un componente completo puede basarse en la Directiva mediante la [ `[Authorize]` Directiva de atributo](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
 
 ```razor
 @page "/"
@@ -246,7 +246,7 @@ builder.Services.AddMsalAuthentication(options =>
 Los enfoques de autorización de componentes son funcionales en este momento. Cualquiera de los mecanismos de autorización de los componentes puede usar el `admin` rol para autorizar al usuario:
 
 * [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (ejemplo: `<AuthorizeView Roles="admin">` )
-* [ `[Authorize]` ] Attribute (Directiva)] (XREF: Security/increíbles/index # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (Ejemplo: `@attribute [Authorize(Roles = "admin")]` )
+* [ `[Authorize]` Attribute](xref:security/blazor/index#authorize-attribute) (directiva <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) () (ejemplo: `@attribute [Authorize(Roles = "admin")]` )
 * [Lógica de procedimiento](xref:security/blazor/index#procedural-logic) (ejemplo: `if (user.IsInRole("admin")) { ... }` )
 
   Se admiten varias pruebas de rol:
