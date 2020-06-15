@@ -1,7 +1,7 @@
 ---
-title: Examinar los métodos Details y Delete de una aplicación ASP.NET Core
+title: Parte 10. Examen de los métodos Details y Delete de una aplicación de ASP.NET Core
 author: rick-anderson
-description: Obtenga información sobre la vista y el método de controlador Details en una aplicación básica ASP.NET Core MVC.
+description: Parte 10 de la serie de tutoriales sobre ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/details
-ms.openlocfilehash: cff8bc0d3506210879974f711a4e665c8549051d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 722112b6fba611e980931ffd3bc4ddf43bc08468
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777559"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653007"
 ---
-# <a name="examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>Examinar los métodos Details y Delete de una aplicación ASP.NET Core
+# <a name="part-10-examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>Parte 10. Examen de los métodos Details y Delete de una aplicación de ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 

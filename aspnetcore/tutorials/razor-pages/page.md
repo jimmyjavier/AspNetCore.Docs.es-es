@@ -1,7 +1,7 @@
 ---
-title: Razor Pages con scaffolding en ASP.NET Core
+title: Parte 3. Razor Pages con scaffolding en ASP.NET Core
 author: rick-anderson
-description: Aquí se explican las instancias de Razor Pages generadas mediante la técnica de scaffolding.
+description: Parte 3 de la serie de tutoriales sobre Razor Pages.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
@@ -11,20 +11,20 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 22afbc729cc73427b3d04bee379534cda38b39bd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6195982f902c17d835d2675c1231eed347d603c2
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774852"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652813"
 ---
-# <a name="scaffolded-razor-pages-in-aspnet-core"></a>Páginas de Razor con scaffolding en ASP.NET Core
+# <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>Parte 3. Razor Pages con scaffolding en ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-En este tutorial se examinan las páginas de Razor creadas por la técnica scaffolding en el [tutorial anterior](xref:tutorials/razor-pages/model).
+En este tutorial se examinan las instancias de Razor Pages creadas con la técnica scaffolding en el [tutorial anterior](xref:tutorials/razor-pages/model).
 
 [!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
@@ -34,23 +34,23 @@ Examine el modelo de página *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
 
-Las páginas de Razor se derivan de `PageModel`. Por convención, la clase derivada de `PageModel` se denomina `<PageName>Model`. El constructor aplica la [inserción de dependencias](xref:fundamentals/dependency-injection) para agregar el `RazorPagesMovieContext` a la página. Todas las páginas con scaffolding siguen este patrón. Vea [Código asincrónico](xref:data/ef-rp/intro#asynchronous-code) para obtener más información sobre programación asincrónica con Entity Framework.
+Las instancias de Razor Pages derivan de `PageModel`. Por convención, la clase derivada de `PageModel` se denomina `<PageName>Model`. El constructor aplica la [inserción de dependencias](xref:fundamentals/dependency-injection) para agregar el `RazorPagesMovieContext` a la página. Todas las páginas con scaffolding siguen este patrón. Vea [Código asincrónico](xref:data/ef-rp/intro#asynchronous-code) para obtener más información sobre programación asincrónica con Entity Framework.
 
-Cuando se efectúa una solicitud para la página, el método `OnGetAsync` devuelve una lista de películas a la página de Razor. Se llama a `OnGetAsync` o `OnGet` para inicializar el estado de la página. En este caso, `OnGetAsync` obtiene una lista de películas y las muestra.
+Cuando se efectúa una solicitud de la página, el método `OnGetAsync` devuelve una lista de películas a la instancia de Razor Pages. Se llama a `OnGetAsync` o `OnGet` para inicializar el estado de la página. En este caso, `OnGetAsync` obtiene una lista de películas y las muestra.
 
 Cuando `OnGet` devuelve `void` o `OnGetAsync` devuelve `Task`, no se utiliza ninguna instrucción de devolución. Cuando el tipo de valor devuelto es `IActionResult` o `Task<IActionResult>`, se debe proporcionar una instrucción return. Por ejemplo, el método `OnPostAsync` *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
-<a name="index"></a> Examine la página de Razor *Pages/Movies/Index.cshtml*:
+<a name="index"></a> Examine la instancia de Razor Pages *Pages/Movies/Index.cshtml*:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml)]
 
-Razor puede realizar la transición de HTML a C# o a un marcado específico de Razor. Cuando el símbolo `@` va seguido de una [palabra clave reservada de Razor](xref:mvc/views/razor#razor-reserved-keywords), realiza una transición a un marcado específico de Razor; en caso contrario, realiza la transición a C#.
+Razor puede realizar la transición de HTML a C# o a un marcado específico de Razor. Cuando el símbolo `@` va seguido de una [palabra clave reservada de Razor](xref:mvc/views/razor#razor-reserved-keywords), se realiza una transición a un marcado específico de Razor; en caso contrario, la transición se realiza a C#.
 
 ### <a name="the-page-directive"></a>La directiva @page
 
-La directiva de Razor `@page` convierte el archivo en una acción de MVC, lo que significa que puede administrar las solicitudes. `@page` debe ser la primera directiva de Razor de una página. `@page` es un ejemplo de la transición a un marcado específico de Razor. Vea [Razor syntax](xref:mvc/views/razor#razor-syntax) (Sintaxis de Razor) para más información.
+La directiva `@page` de Razor convierte el archivo en una acción de MVC, lo que significa que puede administrar las solicitudes. `@page` debe ser la primera directiva de Razor de una página. `@page` es un ejemplo de la transición a un marcado específico de Razor. Vea [Sintaxis de Razor](xref:mvc/views/razor#razor-syntax) para obtener más información.
 
 Examine la expresión lambda usada en el siguiente asistente de HTML:
 
@@ -66,7 +66,7 @@ El asistente de HTML `DisplayNameFor` inspecciona la propiedad `Title` a la que 
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-La directiva `@model` especifica el tipo del modelo que se pasa a la página de Razor. En el ejemplo anterior, la línea `@model` permite que la clase derivada de `PageModel` esté disponible en la página de Razor. El modelo se usa en los [asistentes de HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` y `@Html.DisplayFor` de la página.
+La directiva `@model` especifica el tipo del modelo que se pasa a una instancia de Razor Pages. En el ejemplo anterior, la línea `@model` permite que la clase derivada de `PageModel` esté disponible en la instancia de Razor Pages. El modelo se usa en los [asistentes de HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` y `@Html.DisplayFor` de la página.
 
 ### <a name="the-layout-page"></a>Página de diseño
 
@@ -118,7 +118,7 @@ Reemplace el elemento anterior por el marcado siguiente:
 <a class="navbar-brand" asp-page="/Movies/Index">RpMovie</a>
 ```
 
-El elemento delimitador anterior es un [asistente de etiquetas](xref:mvc/views/tag-helpers/intro). En este caso, se trata de el [asistente de etiquetas Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). El atributo y valor del asistente de etiquetas `asp-page="/Movies/Index"` crea un vínculo a la página de Razor `/Movies/Index`. El valor de atributo `asp-area` está vacío, por lo que no se usa el área del vínculo. Consulte [Áreas](xref:mvc/controllers/areas) para obtener más información.
+El elemento delimitador anterior es un [asistente de etiquetas](xref:mvc/views/tag-helpers/intro). En este caso, se trata de el [asistente de etiquetas Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). El atributo y valor del asistente de etiquetas `asp-page="/Movies/Index"` crea un vínculo a la instancia de Razor Pages `/Movies/Index`. El valor de atributo `asp-area` está vacío, por lo que no se usa el área del vínculo. Consulte [Áreas](xref:mvc/controllers/areas) para obtener más información.
 
 Guarde los cambios y pruebe la aplicación haciendo clic en el vínculo **RpMovie**. Si tiene cualquier problema, consulte el archivo [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) en GitHub.
 
@@ -131,7 +131,7 @@ La propiedad `Layout` se establece en el archivo *Pages/_ViewStart.cshtml*:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/_ViewStart.cshtml)]
 
-El marcado anterior establece el archivo de diseño en *Pages/Shared/_Layout.cshtml* para todos los archivos de Razor en la carpeta *Pages*. Vea [Layout](xref:razor-pages/index#layout) (Diseño) para más información.
+El marcado anterior establece el archivo de diseño de todos los archivos de Razor de la carpeta *Pages* en *Pages/Shared/_Layout.cshtml*. Vea [Layout](xref:razor-pages/index#layout) (Diseño) para más información.
 
 ### <a name="the-create-page-model"></a>Modelo de página Crear
 
@@ -151,9 +151,9 @@ Si hay algún error de modelo, se vuelve a mostrar el formulario, junto con los 
 
 Si no hay ningún error de modelo, los datos se guardan y el explorador se redirige a la página Índice.
 
-### <a name="the-create-razor-page"></a>Página de Razor Crear
+### <a name="the-create-razor-page"></a>La página de creación de instancias de Razor Pages
 
-Examine el archivo de la página de Razor *Pages/Movies/Create.cshtml*:
+Examine el archivo de instancia de Razor Pages *Pages/Movies/Create.cshtml*:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 
@@ -217,7 +217,7 @@ Para obtener más información sobre los asistentes de etiquetas como `<form met
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-En este tutorial se examinan las páginas de Razor creadas por la técnica scaffolding en el [tutorial anterior](xref:tutorials/razor-pages/model).
+En este tutorial se examinan las instancias de Razor Pages creadas con la técnica scaffolding en el [tutorial anterior](xref:tutorials/razor-pages/model).
 
 [Vea o descargue](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22) un ejemplo.
 
@@ -227,21 +227,21 @@ Examine el modelo de página *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
-Las páginas de Razor se derivan de `PageModel`. Por convención, la clase derivada de `PageModel` se denomina `<PageName>Model`. El constructor aplica la [inserción de dependencias](xref:fundamentals/dependency-injection) para agregar el `RazorPagesMovieContext` a la página. Todas las páginas con scaffolding siguen este patrón. Vea [Código asincrónico](xref:data/ef-rp/intro#asynchronous-code) para obtener más información sobre programación asincrónica con Entity Framework.
+Las instancias de Razor Pages derivan de `PageModel`. Por convención, la clase derivada de `PageModel` se denomina `<PageName>Model`. El constructor aplica la [inserción de dependencias](xref:fundamentals/dependency-injection) para agregar el `RazorPagesMovieContext` a la página. Todas las páginas con scaffolding siguen este patrón. Vea [Código asincrónico](xref:data/ef-rp/intro#asynchronous-code) para obtener más información sobre programación asincrónica con Entity Framework.
 
-Cuando se efectúa una solicitud para la página, el método `OnGetAsync` devuelve una lista de películas a la página de Razor. Se llama a `OnGetAsync` o a `OnGet` en una página de Razor para inicializar el estado de la página. En este caso, `OnGetAsync` obtiene una lista de películas y las muestra.
+Cuando se efectúa una solicitud de la página, el método `OnGetAsync` devuelve una lista de películas a la instancia de Razor Pages. `OnGetAsync` o `OnGet` se invocan en una instancia de Razor Pages para inicializar el estado de esa instancia. En este caso, `OnGetAsync` obtiene una lista de películas y las muestra.
 
 Cuando `OnGet` devuelve `void` o `OnGetAsync` devuelve `Task`, no se utiliza ningún método de devolución. Cuando el tipo de valor devuelto es `IActionResult` o `Task<IActionResult>`, se debe proporcionar una instrucción return. Por ejemplo, el método `OnPostAsync` *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
-<a name="index"></a> Examine la página de Razor *Pages/Movies/Index.cshtml*:
+<a name="index"></a> Examine la instancia de Razor Pages *Pages/Movies/Index.cshtml*:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml)]
 
-Razor puede realizar la transición de HTML a C# o a un marcado específico de Razor. Cuando el símbolo `@` va seguido de una [palabra clave reservada de Razor](xref:mvc/views/razor#razor-reserved-keywords), realiza una transición a un marcado específico de Razor; en caso contrario, realiza la transición a C#.
+Razor puede realizar la transición de HTML a C# o a un marcado específico de Razor. Cuando el símbolo `@` va seguido de una [palabra clave reservada de Razor](xref:mvc/views/razor#razor-reserved-keywords), se realiza una transición a un marcado específico de Razor; en caso contrario, la transición se realiza a C#.
 
-La directiva de Razor `@page` convierte el archivo en una acción de MVC, lo que significa que puede controlar las solicitudes. `@page` debe ser la primera directiva de Razor de una página. `@page` es un ejemplo de la transición a un marcado específico de Razor. Vea [Razor syntax](xref:mvc/views/razor#razor-syntax) (Sintaxis de Razor) para más información.
+La directiva de `@page` de Razor convierte el archivo en una acción de MVC, lo que significa que puede controlar las solicitudes. `@page` debe ser la primera directiva de Razor de una página. `@page` es un ejemplo de la transición a un marcado específico de Razor. Vea [Sintaxis de Razor](xref:mvc/views/razor#razor-syntax) para obtener más información.
 
 Examine la expresión lambda usada en el siguiente asistente de HTML:
 
@@ -257,7 +257,7 @@ El asistente de HTML `DisplayNameFor` inspecciona la propiedad `Title` a la que 
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-La directiva `@model` especifica el tipo del modelo que se pasa a la página de Razor. En el ejemplo anterior, la línea `@model` permite que la clase derivada de `PageModel` esté disponible en la página de Razor. El modelo se usa en los [asistentes de HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` y `@Html.DisplayFor` de la página.
+La directiva `@model` especifica el tipo del modelo que se pasa a una instancia de Razor Pages. En el ejemplo anterior, la línea `@model` permite que la clase derivada de `PageModel` esté disponible en la instancia de Razor Pages. El modelo se usa en los [asistentes de HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` y `@Html.DisplayFor` de la página.
 
 ### <a name="the-layout-page"></a>Página de diseño
 
@@ -304,7 +304,7 @@ Reemplace el elemento anterior por el marcado siguiente.
 <a class="navbar-brand" asp-page="/Movies/Index">RpMovie</a>
 ```
 
-El elemento delimitador anterior es un [asistente de etiquetas](xref:mvc/views/tag-helpers/intro). En este caso, se trata de el [asistente de etiquetas Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). El atributo y valor del asistente de etiquetas `asp-page="/Movies/Index"` crea un vínculo a la página de Razor `/Movies/Index`. El valor de atributo `asp-area` está vacío, por lo que no se usa el área del vínculo. Consulte [Áreas](xref:mvc/controllers/areas) para obtener más información.
+El elemento delimitador anterior es un [asistente de etiquetas](xref:mvc/views/tag-helpers/intro). En este caso, se trata de el [asistente de etiquetas Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). El atributo y valor del asistente de etiquetas `asp-page="/Movies/Index"` crea un vínculo a la instancia de Razor Pages `/Movies/Index`. El valor de atributo `asp-area` está vacío, por lo que no se usa el área del vínculo. Consulte [Áreas](xref:mvc/controllers/areas) para obtener más información.
 
 Guarde los cambios y pruebe la aplicación haciendo clic en el vínculo **RpMovie**. Si tiene cualquier problema, consulte el archivo [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) en GitHub.
 
@@ -317,7 +317,7 @@ La propiedad `Layout` se establece en el archivo *Pages/_ViewStart.cshtml*:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/_ViewStart.cshtml)]
 
-El marcado anterior establece el archivo de diseño en *Pages/Shared/_Layout.cshtml* para todos los archivos de Razor en la carpeta *Pages*. Vea [Layout](xref:razor-pages/index#layout) (Diseño) para más información.
+El marcado anterior establece el archivo de diseño de todos los archivos de Razor de la carpeta *Pages* en *Pages/Shared/_Layout.cshtml*. Vea [Layout](xref:razor-pages/index#layout) (Diseño) para más información.
 
 ### <a name="the-create-page-model"></a>Modelo de página Crear
 
@@ -337,9 +337,9 @@ Si hay algún error de modelo, se vuelve a mostrar el formulario, junto con los 
 
 Si no hay ningún error de modelo, los datos se guardan y el explorador se redirige a la página Índice.
 
-### <a name="the-create-razor-page"></a>Página de Razor Crear
+### <a name="the-create-razor-page"></a>La página de creación de instancias de Razor Pages
 
-Examine el archivo de la página de Razor *Pages/Movies/Create.cshtml*:
+Examine el archivo de instancia de Razor Pages *Pages/Movies/Create.cshtml*:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml)]
 

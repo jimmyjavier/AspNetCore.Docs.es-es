@@ -1,7 +1,7 @@
 ---
-title: Agregar una vista a una aplicación de ASP.NET Core MVC
+title: Parte 3. Adición de una vista a una aplicación de ASP.NET Core MVC
 author: rick-anderson
-description: Agregar una vista a una aplicación sencilla de ASP.NET Core MVC
+description: Parte 3 de la serie de tutoriales sobre ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc:
@@ -11,20 +11,20 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: c89e0f0428fa7556fcd6b75cdfc1dd19109ec1c8
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 3976ecba1a6bbf30c3147bf1cef78c5ced5bec62
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774605"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652823"
 ---
-# <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Agregar una vista a una aplicación de ASP.NET Core MVC
+# <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Parte 3. Adición de una vista a una aplicación de ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-En esta sección, se modificará la clase `HelloWorldController` para usar los archivos de vista de [Razor](xref:mvc/views/razor) con el objetivo de encapsular correctamente el proceso de generar respuestas HTML a un cliente.
+En esta sección, se modificará la clase `HelloWorldController` para usar los archivos de vista de [Razor](xref:mvc/views/razor) con el objetivo de encapsular correctamente el proceso de generar respuestas HTML a un cliente.
 
 Para crear un archivo de plantilla de vista se usa Razor. Las plantillas de vista basadas en Razor tienen una extensión de archivo *.cshtml*. Ofrecen una forma elegante de crear un resultado HTML con C#.
 
@@ -46,7 +46,7 @@ El código anterior llama al método <xref:Microsoft.AspNetCore.Mvc.Controller.V
 
   * En el cuadro de búsqueda situado en la esquina superior derecha, escriba *Vista*.
 
-  * Seleccione **Vista de Razor**.
+  * Seleccione **Vista de Razor** .
 
   * Conserve el valor del cuadro **Nombre**, *Index.cshtml*.
 
@@ -76,11 +76,11 @@ Agregue una vista `Index` para el `HelloWorldController`.
 
 ---
 
-Reemplace el contenido del archivo de vista de Razor *Views/HelloWorld/Index.cshtml* con lo siguiente:
+Reemplace el contenido del archivo de vista de Razor *Views/HelloWorld/Index.cshtml* por el siguiente:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue a `https://localhost:{PORT}/HelloWorld`. El método `Index` en `HelloWorldController` no hizo mucho; ejecutó la instrucción `return View();`, que especificaba que el método debe usar un archivo de plantilla de vista para representar una respuesta al explorador. Dado que no se especificó un nombre de archivo de plantilla de vista, MVC usa el archivo de vista predeterminado. Este archivo tiene el mismo nombre que el método (`Index`), por lo que se usa en */Views/HelloWorld/Index.cshtml*. La imagen siguiente muestra la cadena "Hello from our View Template!" (Hola desde nuestra plantilla de vista) codificada de forma rígida en la vista.
+Navegue a `https://localhost:{PORT}/HelloWorld`. El método `Index` en `HelloWorldController` no hizo mucho; ejecutó la instrucción `return View();`, que especificaba que el método debe usar un archivo de plantilla de vista para representar una respuesta al explorador. Dado que no se especificó un nombre de archivo de plantilla de vista, MVC usa el archivo de vista predeterminado. Este archivo tiene el mismo nombre que el método (`Index`), por lo que se usa la plantilla de vista en */Views/HelloWorld/Index.cshtml*. La imagen siguiente muestra la cadena "Hello from our View Template!" (Hola desde nuestra plantilla de vista) codificada de forma rígida en la vista.
 
 ![Ventana del explorador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -181,7 +181,7 @@ En el tutorial siguiente crearemos una base de datos de películas.
 
 ::: moniker range="< aspnetcore-3.0"
 
-En esta sección, se modificará la clase `HelloWorldController` para usar los archivos de vista de [Razor](xref:mvc/views/razor) con el objetivo de encapsular correctamente el proceso de generar respuestas HTML a un cliente.
+En esta sección, se modificará la clase `HelloWorldController` para usar los archivos de vista de [Razor](xref:mvc/views/razor) con el objetivo de encapsular correctamente el proceso de generar respuestas HTML a un cliente.
 
 Para crear un archivo de plantilla de vista se usa Razor. Las plantillas de vista basadas en Razor tienen una extensión de archivo *.cshtml*. Ofrecen una forma elegante de crear un resultado HTML con C#.
 
@@ -203,7 +203,7 @@ El código anterior llama al método <xref:Microsoft.AspNetCore.Mvc.Controller.V
 
   * En el cuadro de búsqueda situado en la esquina superior derecha, escriba *Vista*.
 
-  * Seleccione **Vista de Razor**.
+  * Seleccione **Vista de Razor** .
 
   * Conserve el valor del cuadro **Nombre**, *Index.cshtml*.
 

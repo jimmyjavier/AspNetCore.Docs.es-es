@@ -1,19 +1,25 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: Ordenación, filtrado y paginación (3 de 8)'
+title: 'Página 3. Razor Pages con EF Core en ASP.NET Core: Ordenación, filtrado y paginación'
 author: rick-anderson
-description: En este tutorial se agregará funcionalidad de ordenación, filtrado y paginación a una página de Razor mediante ASP.NET Core y Entity Framework Core.
+description: Parte 3 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 99b14c99cb99d106604f1a4edacf1da0a2d6125c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645497"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652591"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Ordenación, filtrado y paginación (3 de 8)
+# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Página 3. Razor Pages con EF Core en ASP.NET Core: Ordenación, filtrado y paginación
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) y [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -45,7 +51,7 @@ El parámetro `sortOrder` es "Name" o "Date". Opcionalmente, el parámetro `sort
 
 Cuando se solicita la página de índice del vínculo **Students** no hay ninguna cadena de consulta. Los alumnos se muestran en orden ascendente por apellido. El orden ascendente por apellido es el valor predeterminado (caso de paso explícito) en la instrucción `switch`. Cuando el usuario hace clic en un vínculo de encabezado de columna, se proporciona el valor `sortOrder` correspondiente en el valor de la cadena de consulta.
 
-La página de Razor usa `NameSort` y `DateSort` para configurar los hipervínculos del encabezado de columna con los valores de cadena de consulta adecuados:
+La instancia de Razor Pages usa `NameSort` y `DateSort` para configurar los hipervínculos del encabezado de columna con los valores de cadena de consulta adecuados:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
@@ -92,7 +98,7 @@ Para comprobar que la ordenación funciona:
 
 Para agregar un filtro a la página de índice de Students:
 
-* Se agrega un cuadro de texto y un botón de envío a la página de Razor. El cuadro de texto proporciona una cadena de búsqueda de nombre o apellido.
+* Se agregan un cuadro de texto y un botón de envío a la página de Razor. El cuadro de texto proporciona una cadena de búsqueda de nombre o apellido.
 * El modelo de página se actualiza para usar el valor del cuadro de texto.
 
 ### <a name="update-the-ongetasync-method"></a>Actualización del método OnGetAsync
@@ -187,9 +193,9 @@ Todos los parámetros que recibe `OnGetAsync` son NULL cuando:
 
 Cuando se hace clic en un vínculo de paginación, la variable de índice de página contiene el número de página que se tiene que mostrar.
 
-La propiedad `CurrentSort` proporciona a la página de Razor el criterio de ordenación actual. Se debe incluir el criterio de ordenación actual en los vínculos de paginación para mantener el criterio de ordenación durante la paginación.
+La propiedad `CurrentSort` proporciona a la instancia de Razor Pages el criterio de ordenación actual. Se debe incluir el criterio de ordenación actual en los vínculos de paginación para mantener el criterio de ordenación durante la paginación.
 
-La propiedad `CurrentFilter` proporciona a la página de Razor la cadena de filtro actual. El valor `CurrentFilter`:
+La propiedad `CurrentFilter` proporciona a la instancia de Razor Pages la cadena de filtro actual. El valor `CurrentFilter`:
 
 * Debe incluirse en los vínculos de paginación para mantener la configuración del filtro durante la paginación.
 * Debe restaurarse en el cuadro de texto cuando se vuelva a mostrar la página.
@@ -203,7 +209,7 @@ Si se cambia la cadena de búsqueda durante la paginación, la página se restab
 
   Los dos signos de interrogación después de `pageIndex` en la llamada a `PaginatedList.CreateAsync` representan el [operador de uso combinado de NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). El operador de uso combinado de NULL define un valor predeterminado para un tipo que acepta valores NULL. La expresión `(pageIndex ?? 1)` significa devolver el valor de `pageIndex` si tiene un valor. Devuelve 1 si `pageIndex` no tiene ningún valor.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Adición de vínculos de paginación a la página de Razor
+### <a name="add-paging-links-to-the-razor-page"></a>Adición de vínculos de paginación a la instancia de Razor Pages
 
 Reemplace el código de *Students/Index.cshtml* con el código siguiente. Se resaltan los cambios:
 
@@ -239,7 +245,7 @@ Cree *SchoolViewModels/EnrollmentDateGroup.cs* con el código siguiente:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Creación de la página de Razor
+### <a name="create-the-razor-page"></a>Creación de la instancia de Razor Pages
 
 Cree un archivo *Pages/About.cshtml* con el código siguiente:
 
@@ -294,7 +300,7 @@ El parámetro `sortOrder` es "Name" o "Date". Opcionalmente, el parámetro `sort
 
 Cuando se solicita la página de índice del vínculo **Students** no hay ninguna cadena de consulta. Los alumnos se muestran en orden ascendente por apellido. El orden ascendente por apellido es el valor predeterminado (caso de paso explícito) en la instrucción `switch`. Cuando el usuario hace clic en un vínculo de encabezado de columna, se proporciona el valor `sortOrder` correspondiente en el valor de la cadena de consulta.
 
-La página de Razor usa `NameSort` y `DateSort` para configurar los hipervínculos del encabezado de columna con los valores de cadena de consulta adecuados:
+La instancia de Razor Pages usa `NameSort` y `DateSort` para configurar los hipervínculos del encabezado de columna con los valores de cadena de consulta adecuados:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
@@ -354,7 +360,7 @@ Ejecute paso a paso el depurador.
 
 Para agregar un filtro a la página de índice de Students:
 
-* Se agrega un cuadro de texto y un botón de envío a la página de Razor. El cuadro de texto proporciona una cadena de búsqueda de nombre o apellido.
+* Se agregan un cuadro de texto y un botón de envío a la página de Razor. El cuadro de texto proporciona una cadena de búsqueda de nombre o apellido.
 * El modelo de página se actualiza para usar el valor del cuadro de texto.
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Agregar la funcionalidad de filtrado al método Index
@@ -439,9 +445,9 @@ Todos los parámetros son NULL cuando:
 
 Cuando se hace clic en un vínculo de paginación, la variable de índice de página contiene el número de página que se tiene que mostrar.
 
-`CurrentSort` proporciona la página de Razor con el criterio de ordenación actual. Se debe incluir el criterio de ordenación actual en los vínculos de paginación para mantener el criterio de ordenación durante la paginación.
+`CurrentSort` proporciona a la página de Razor el criterio de ordenación actual. Se debe incluir el criterio de ordenación actual en los vínculos de paginación para mantener el criterio de ordenación durante la paginación.
 
-`CurrentFilter` proporciona la página de Razor con la cadena del filtro actual. El valor `CurrentFilter`:
+`CurrentFilter` proporciona a la página de Razor la cadena de filtrado actual. El valor `CurrentFilter`:
 
 * Debe incluirse en los vínculos de paginación para mantener la configuración del filtro durante la paginación.
 * Debe restaurarse en el cuadro de texto cuando se vuelva a mostrar la página.
@@ -459,7 +465,7 @@ El método `PaginatedList.CreateAsync` convierte la consulta del alumno en una s
 
 Los dos signos de interrogación en `PaginatedList.CreateAsync` representan el [operador de uso combinado de NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). El operador de uso combinado de NULL define un valor predeterminado para un tipo que acepta valores NULL. La expresión `(pageIndex ?? 1)` significa devolver el valor de `pageIndex` si tiene un valor. Devuelve 1 si `pageIndex` no tiene ningún valor.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Agregar vínculos de paginación a la página de Razor de alumno
+## <a name="add-paging-links-to-the-student-razor-page"></a>Incorporación de vínculos de paginación a la página de Razor de alumnos
 
 Actualice el marcado en *Students/Index.cshtml*. Se resaltan los cambios:
 
@@ -505,7 +511,7 @@ En la carpeta *SchoolViewModels*, agregue *EnrollmentDateGroup.cs* con el códig
 
 ### <a name="update-the-about-page-model"></a>Actualizar el modelo de la página About
 
-Las plantillas web de ASP.NET Core 2.2 no incluyen la página About. Si usa ASP.NET Core 2.2, cree la página About de Razor Pages.
+Las plantillas web de ASP.NET Core 2.2 no incluyen la página About. Si usa ASP.NET Core 2.2, cree la página de Razor About.
 
 Actualice el archivo *Pages/About.cshtml.cs* con el código siguiente:
 
@@ -513,7 +519,7 @@ Actualice el archivo *Pages/About.cshtml.cs* con el código siguiente:
 
 La instrucción LINQ agrupa las entidades de alumnos por fecha de inscripción, calcula la cantidad de entidades que se incluyen en cada grupo y almacena los resultados en una colección de objetos de modelo de la vista `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Modificar la página de Razor About
+### <a name="modify-the-about-razor-page"></a>Modificación de la página de Razor About
 
 Reemplace el código del archivo *Pages/About.cshtml* por el código siguiente:
 

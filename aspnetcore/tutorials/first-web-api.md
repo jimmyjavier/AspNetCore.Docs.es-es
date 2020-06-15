@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ddc14aba14e31c5530cda14b4792736da001246a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 2fcfd46057935cadac76c558a78729a1c096ffc0
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767244"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451839"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Creación de una API web con ASP.NET Core
 
@@ -108,11 +108,13 @@ En el diagrama siguiente, se muestra el diseño de la aplicación.
 
   ![macOS: Nueva solución](first-web-api-mac/_static/sln.png)
 
-* Seleccione **.NET Core** > **Aplicación** > **API** > **Siguiente**.
+* En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **.NET Core** > **Aplicación** > **API** > **Siguiente**. En la versión 8.6 o posteriores, seleccione **Web y consola** > **Aplicación** > **API** > **Siguiente**.
 
-  ![Cuadro de diálogo de nuevo proyecto de macOS](first-web-api-mac/_static/1.png)
-  
-* En el cuadro de diálogo **Configure your new ASP.NET Core Web API** (Configurar la nueva API web de ASP.NET Core), seleccione **Plataforma de destino** de * *.NET Core 3.1*.
+  ![Selección de plantilla de API de macOS](first-web-api-mac/_static/api_template.png)
+
+* Confirme que **Plataforma de destino** está establecido en **.NET Core 3.1**. Seleccione **Siguiente**.
+
+  ![Selección de .NET Core 3.1 de macOS](first-web-api-mac/_static/api_31_config.png)
 
 * Escriba *TodoApi* en **Nombre del proyecto** y seleccione **Crear**.
 
@@ -422,7 +424,7 @@ En el siguiente método `GetTodoItem`, `"{id}"` es una variable de marcador de p
 
 ## <a name="return-values"></a>Valores devueltos
 
-El tipo de valor devuelto de los métodos `GetTodoItems` y `GetTodoItem` es [ActionResult\<T > type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core serializa automáticamente el objeto a [JSON](https://www.json.org/) y escribe el JSON en el cuerpo del mensaje de respuesta. El código de respuesta para este tipo de valor devuelto es el 200, suponiendo que no haya ninguna excepción no controlada. Las excepciones no controladas se convierten en errores 5xx.
+El tipo de valor devuelto de los métodos `GetTodoItems` y `GetTodoItem` es [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core serializa automáticamente el objeto a [JSON](https://www.json.org/) y escribe el JSON en el cuerpo del mensaje de respuesta. El código de respuesta para este tipo de valor devuelto es el 200, suponiendo que no haya ninguna excepción no controlada. Las excepciones no controladas se convierten en errores 5xx.
 
 Los tipos de valores devueltos `ActionResult` pueden representar una gama amplia de códigos de estado HTTP. Por ejemplo, `GetTodoItem` puede devolver dos valores de estado diferentes:
 
@@ -588,9 +590,7 @@ En el diagrama siguiente, se muestra el diseño de la aplicación.
 
   ![macOS: Nueva solución](first-web-api-mac/_static/sln.png)
 
-* Seleccione **.NET Core** > **Aplicación** > **API** > **Siguiente**.
-
-  ![Cuadro de diálogo de nuevo proyecto de macOS](first-web-api-mac/_static/1.png)
+* En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **.NET Core** > **Aplicación** > **API** > **Siguiente**. En la versión 8.6 o posteriores, seleccione **Web y consola** > **Aplicación** > **API** > **Siguiente**.
   
 * En el cuadro de diálogo **Configurar la nueva API web de ASP.NET Core**, acepte la **plataforma de destino** predeterminada de * *.NET Core 2.2*.
 
@@ -771,7 +771,7 @@ En el siguiente método `GetTodoItem`, `"{id}"` es una variable de marcador de p
 
 ## <a name="return-values"></a>Valores devueltos
 
-El tipo de valor devuelto de los métodos `GetTodoItems` y `GetTodoItem` es [ActionResult\<T > type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core serializa automáticamente el objeto a [JSON](https://www.json.org/) y escribe el JSON en el cuerpo del mensaje de respuesta. El código de respuesta para este tipo de valor devuelto es el 200, suponiendo que no haya ninguna excepción no controlada. Las excepciones no controladas se convierten en errores 5xx.
+El tipo de valor devuelto de los métodos `GetTodoItems` y `GetTodoItem` es [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core serializa automáticamente el objeto a [JSON](https://www.json.org/) y escribe el JSON en el cuerpo del mensaje de respuesta. El código de respuesta para este tipo de valor devuelto es el 200, suponiendo que no haya ninguna excepción no controlada. Las excepciones no controladas se convierten en errores 5xx.
 
 Los tipos de valores devueltos `ActionResult` pueden representar una gama amplia de códigos de estado HTTP. Por ejemplo, `GetTodoItem` puede devolver dos valores de estado diferentes:
 

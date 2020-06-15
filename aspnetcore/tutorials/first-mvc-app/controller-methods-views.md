@@ -1,7 +1,7 @@
 ---
-title: Vistas y métodos de controlador en ASP.NET Core
+title: Parte 6. Vistas y métodos de controlador en ASP.NET Core
 author: rick-anderson
-description: Obtenga información sobre cómo trabajar con métodos de controlador, vistas y DataAnnotations en ASP.NET Core.
+description: Parte 6. Adición de un modelo a una aplicación de ASP.NET Core MVC
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 444c870fcf9e866f0c382e32af174442d11d3af5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 50b527cee19f19316fd9034759c05817010fefbb
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777584"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653020"
 ---
-# <a name="controller-methods-and-views-in-aspnet-core"></a>Vistas y métodos de controlador en ASP.NET Core
+# <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Parte 6. Vistas y métodos de controlador en ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 

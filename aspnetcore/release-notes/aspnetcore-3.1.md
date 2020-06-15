@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 67fc972676549a02265035c129c513f11d303d51
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774052"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507249"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Novedades de ASP.NET Core 3.1
 
@@ -37,7 +37,7 @@ En Blazor con ASP.NET Core 3.0, los componentes se representaban en páginas y 
 
 La aplicación auxiliar de HTML sigue siendo compatible con ASP.NET Core 3.1, pero se recomienda el asistente de etiquetas de componente.
 
-Ahora, las aplicaciones de Blazor Server pueden pasar parámetros a componentes de nivel superior durante la representación inicial. Anteriormente, solo se podían pasar parámetros a un componente de nivel superior por medio de [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). Con esta versión, se admiten tanto [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) como [RenderModel.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Los valores de parámetro especificados se serializan como JSON y se incluyen en la respuesta inicial.
+Ahora, las aplicaciones de Blazor Server pueden pasar parámetros a componentes de nivel superior durante la representación inicial. Anteriormente, solo se podían pasar parámetros a un componente de nivel superior por medio de [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). Con esta versión, se admiten tanto [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) como [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Los valores de parámetro especificados se serializan como JSON y se incluyen en la respuesta inicial.
 
 Por ejemplo, se puede realizar la representación previa de un componente `Counter` con una cantidad de incremento (`IncrementAmount`):
 

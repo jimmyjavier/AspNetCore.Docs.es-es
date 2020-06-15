@@ -1,18 +1,24 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: CRUD (2 de 8)'
+title: 'Parte 2. Razor Pages con EF Core en ASP.NET Core: CRUD'
 author: rick-anderson
-description: Se muestra cómo crear, leer, actualizar y eliminar con EF Core.
+description: Parte 2 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 62e35639d5e3d43bd20c9f92b75fa101d7914f82
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650153"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652361"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: CRUD (2 de 8)
+# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2. Razor Pages con EF Core en ASP.NET Core: CRUD
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -24,7 +30,7 @@ En este tutorial, se revisa y personaliza el código CRUD (crear, leer, actualiz
 
 ## <a name="no-repository"></a>Ningún repositorio
 
-Algunos desarrolladores usan un patrón de capa o de repositorio de servicio para crear una capa de abstracción entre la interfaz de usuario (Razor Pages) y la capa de acceso a datos. En este tutorial no se usa. Para minimizar la complejidad y mantener el tutorial centrado en EF Core, el código de EF Core se agrega directamente a las clases de modelo de página. 
+Algunos desarrolladores usan un patrón de repositorio o capa de servicio para crear una capa de abstracción entre la interfaz de usuario (Razor Pages) y la capa de acceso a datos. En este tutorial no se usa. Para minimizar la complejidad y mantener el tutorial centrado en EF Core, el código de EF Core se agrega directamente a las clases de modelo de página. 
 
 ## <a name="update-the-details-page"></a>Actualización de la página de detalles
 
@@ -90,7 +96,7 @@ El uso de `TryUpdateModel` para actualizar campos con valores enviados es un pro
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Incluso si la aplicación no tiene un campo `Secret` en la página de Razor de creación o actualización, un hacker podría establecer el valor de `Secret` mediante publicación excesiva. Un hacker podría usar una herramienta como Fiddler, o bien escribir código de JavaScript, para publicar un valor de formulario `Secret`. El código original no limita los campos que el enlazador de modelos usa cuando crea una instancia Student.
+Aunque la aplicación no tenga un campo `Secret` en la página de Razor de creación o actualización, un hacker podría establecer el valor `Secret` mediante publicación excesiva. Un hacker podría usar una herramienta como Fiddler, o bien escribir código de JavaScript, para publicar un valor de formulario `Secret`. El código original no limita los campos que el enlazador de modelos usa cuando crea una instancia Student.
 
 El valor que haya especificado el hacker para el campo de formulario `Secret` se actualiza en la base de datos. En la imagen siguiente se muestra cómo la herramienta Fiddler agrega el campo `Secret` (con el valor "OverPost") a los valores de formulario enviados.
 
@@ -104,7 +110,7 @@ Los modelos de vista ofrecen una forma alternativa de evitar la publicación exc
 
 El modelo de aplicación se suele denominar modelo de dominio. El modelo de dominio normalmente contiene todas las propiedades requeridas por la entidad correspondiente en la base de datos. El modelo de vista contiene solo las propiedades necesarias para la interfaz de usuario para la que se usa (por ejemplo, la página Create).
 
-Además del modelo de vista, en algunas aplicaciones se usa un modelo de enlace o de entrada para pasar datos entre la clase del modelo de página de las páginas de Razor y el explorador. 
+Además del modelo de vista, en algunas aplicaciones se usa un modelo de enlace o de entrada para pasar datos entre la clase del modelo de página de Razor Pages y el explorador. 
 
 Tenga en cuenta el modelo de vista `Student` siguiente:
 
@@ -185,9 +191,9 @@ Ejecute la aplicación y elimine un alumno para probar la página Delete.
 
 En este tutorial, se revisa y personaliza el código CRUD (crear, leer, actualizar y eliminar) con scaffolding.
 
-Para minimizar la complejidad y mantener estos tutoriales centrados en EF Core, en los modelos de página se usa código de EF Core. Algunos desarrolladores usan un patrón de capa o repositorio de servicio para crear una capa de abstracción entre la interfaz de usuario (las páginas de Razor) y la capa de acceso a datos.
+Para minimizar la complejidad y mantener estos tutoriales centrados en EF Core, en los modelos de página se usa código de EF Core. Algunos desarrolladores usan un patrón de repositorio o capa de servicio para crear una capa de abstracción entre la interfaz de usuario (Razor Pages) y la capa de acceso a datos.
 
-En este tutorial se examinan las páginas Create, Edit, Delete y Details de Razor Pages de la carpeta *Students*.
+En este tutorial se examinan las páginas de Razor Pages Create, Edit, Delete y Details de la carpeta *Students*.
 
 En el código con scaffolding se usa el modelo siguiente para las páginas Create, Edit y Delete:
 
@@ -298,7 +304,7 @@ El uso de `TryUpdateModel` para actualizar campos con valores enviados es un pro
 
 [!code-csharp[](intro/samples/cu21/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Incluso si la aplicación no tiene un campo `Secret` en la de página de Razor de creación o actualización, un hacker podría establecer el valor de `Secret` mediante publicación excesiva. Un hacker podría usar una herramienta como Fiddler, o bien escribir código de JavaScript, para publicar un valor de formulario `Secret`. El código original no limita los campos que el enlazador de modelos usa cuando crea una instancia Student.
+Aunque la aplicación no tenga un campo `Secret` en la página de Razor de creación o actualización, un hacker podría establecer el valor `Secret` mediante publicación excesiva. Un hacker podría usar una herramienta como Fiddler, o bien escribir código de JavaScript, para publicar un valor de formulario `Secret`. El código original no limita los campos que el enlazador de modelos usa cuando crea una instancia Student.
 
 El valor que haya especificado el hacker para el campo de formulario `Secret` se actualiza en la base de datos. En la imagen siguiente se muestra cómo la herramienta Fiddler agrega el campo `Secret` (con el valor "OverPost") a los valores de formulario enviados.
 
@@ -310,7 +316,7 @@ El valor "OverPost" se ha agregado correctamente a la propiedad `Secret` de la f
 
 ### <a name="view-model"></a>Modelo de vista
 
-Normalmente, un modelo de vista contiene un subconjunto de las propiedades incluidas en el modelo que usa la aplicación. El modelo de aplicación se suele denominar modelo de dominio. El modelo de dominio normalmente contiene todas las propiedades requeridas por la entidad correspondiente en la base de datos. El modelo de vista contiene solo las propiedades necesarias para la capa de interfaz de usuario (por ejemplo, la página Create). Además del modelo de vista, en algunas aplicaciones se usa un modelo de enlace o de entrada para pasar datos entre la clase del modelo de página de las páginas de Razor y el explorador. Tenga en cuenta el modelo de vista `Student` siguiente:
+Normalmente, un modelo de vista contiene un subconjunto de las propiedades incluidas en el modelo que usa la aplicación. El modelo de aplicación se suele denominar modelo de dominio. El modelo de dominio normalmente contiene todas las propiedades requeridas por la entidad correspondiente en la base de datos. El modelo de vista contiene solo las propiedades necesarias para la capa de interfaz de usuario (por ejemplo, la página Create). Además del modelo de vista, en algunas aplicaciones se usa un modelo de enlace o de entrada para pasar datos entre la clase del modelo de página de Razor Pages y el explorador. Tenga en cuenta el modelo de vista `Student` siguiente:
 
 [!code-csharp[](intro/samples/cu21/Models/StudentVM.cs)]
 
@@ -324,7 +330,7 @@ El método [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.
 
 El uso de `StudentVM` requiere que se actualice [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) para usar `StudentVM` en lugar de `Student`.
 
-En las páginas de Razor, la clase derivada `PageModel` es el modelo de vista.
+En Razor Pages, la clase derivada `PageModel` es el modelo de vista.
 
 ## <a name="update-the-edit-page"></a>Actualizar la página Edit
 
@@ -385,7 +391,7 @@ En el código anterior se recupera la entidad seleccionada y después se llama a
 * Se detecta la excepción de base de datos.
 * Se llama al método `OnGetAsync` de las páginas Delete con `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Actualizar la página de Razor Delete
+### <a name="update-the-delete-razor-page"></a>Actualización de la página de Razor Delete
 
 Agregue el siguiente mensaje de error resaltado a la página de Razor Delete.
 <!--
@@ -399,7 +405,7 @@ Pruebe Delete.
 
 Students/Index u otros vínculos no funcionan:
 
-Compruebe que la página de Razor contiene la directiva `@page` correcta. Por ejemplo, la página de Razor Students/Index **no** debe contener una plantilla de ruta:
+Compruebe que la página de Razor contiene la directiva `@page` correcta. Por ejemplo, la página de Razor Students/Index **no** contiene ninguna plantilla de ruta:
 
 ```cshtml
 @page "{id:int}"

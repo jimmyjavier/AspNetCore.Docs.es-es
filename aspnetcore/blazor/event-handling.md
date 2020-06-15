@@ -1,12 +1,24 @@
 ---
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Control de eventos de Blazor en ASP.NET Core
+author: guardrex
+description: Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/event-handling
+ms.openlocfilehash: 2d806413eb66d4c1301df4a0db950e8b919c09a4
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419754"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Control de eventos de Blazor en ASP.NET Core
 
@@ -66,203 +78,19 @@ En algunos eventos, se permiten los tipos de argumento de evento. Solo es necesa
 En la tabla siguiente se muestran los valores <xref:System.EventArgs> admitidos.
 
 | evento            | Clase                | Eventos y notas de DOM |
-| ---
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--------- | --- title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----------- | --- title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
--
-title: 'Control de eventos de Blazor en ASP.NET Core' author: description: 'Obtenga información sobre las características de control de eventos de Blazor, incluidos los tipos de argumento de evento, las devoluciones de llamadas de eventos y la administración de eventos predeterminados del explorador.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
----------- | | Portapapeles        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` | | Arrastrar             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer> y <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> contienen datos de elementos arrastrados. | | Error            | <xref:Microsoft.AspNetCore.Components.Web.ErrorEventArgs> | `onerror` | | Evento            | <xref:System.EventArgs> | *General*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Portapapeles*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit><br><br>*Elementos multimedia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting`<br><br><xref:Microsoft.AspNetCore.Components.Web.EventHandlers> contiene atributos para configurar las asignaciones entre los nombres de evento y los tipos de argumento de evento. | | Foco | <xref:Microsoft.AspNetCore.Components.Web.FocusEventArgs> | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>No incluye compatibilidad con `relatedTarget`. | | Entrada            | <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> | `onchange`, `oninput` | | Teclado         | <xref:Microsoft.AspNetCore.Components.Web.KeyboardEventArgs> | `onkeydown`, `onkeypress`, `onkeyup` | | Mouse            | <xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs> | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` | | Puntero del mouse    | <xref:Microsoft.AspNetCore.Components.Web.PointerEventArgs> | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` | | Rueda del mouse      | <xref:Microsoft.AspNetCore.Components.Web.WheelEventArgs> | `onwheel`, `onmousewheel` | | Progreso         | <xref:Microsoft.AspNetCore.Components.Web.ProgressEventArgs> | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` | | Táctil            | <xref:Microsoft.AspNetCore.Components.Web.TouchEventArgs> | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br><xref:Microsoft.AspNetCore.Components.Web.TouchPoint> representa un único punto de contacto en un dispositivo sensible al tacto. |
+| ---------------- | -------------------- | -------------------- |
+| Portapapeles        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` |
+| Arrastrar             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer> y <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> contienen datos de elementos arrastrados. |
+| Error            | <xref:Microsoft.AspNetCore.Components.Web.ErrorEventArgs> | `onerror` |
+| evento            | <xref:System.EventArgs> | *General*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Portapapeles*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit><br><br>*Elementos multimedia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting`<br><br><xref:Microsoft.AspNetCore.Components.Web.EventHandlers> contiene atributos para configurar las asignaciones entre los nombres de evento y los tipos de argumento de evento. |
+| Foco            | <xref:Microsoft.AspNetCore.Components.Web.FocusEventArgs> | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>No incluye compatibilidad con `relatedTarget`. |
+| Entrada            | <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> | `onchange`, `oninput` |
+| Teclado         | <xref:Microsoft.AspNetCore.Components.Web.KeyboardEventArgs> | `onkeydown`, `onkeypress`, `onkeyup` |
+| Mouse            | <xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs> | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
+| Puntero del mouse    | <xref:Microsoft.AspNetCore.Components.Web.PointerEventArgs> | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
+| Rueda del mouse      | <xref:Microsoft.AspNetCore.Components.Web.WheelEventArgs> | `onwheel`, `onmousewheel` |
+| Progreso         | <xref:Microsoft.AspNetCore.Components.Web.ProgressEventArgs> | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Entrada táctil            | <xref:Microsoft.AspNetCore.Components.Web.TouchEventArgs> | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br><xref:Microsoft.AspNetCore.Components.Web.TouchPoint> representa un único punto de contacto en un dispositivo sensible al tacto. |
 
 Para obtener más información, vea los siguientes recursos:
 
@@ -304,7 +132,7 @@ A menudo resulta cómodo cerrar los valores adicionales, como al recorrer en ite
 ```
 
 > [!NOTE]
-> **No** use la variable de bucle (`i`) en un bucle `for` directamente en una expresión lambda. De lo contrario, todas las expresiones lambda usan la misma variable, lo que hace que el valor de `i` sea el mismo en todas las expresiones lambda. Capture siempre su valor en una variable local (`buttonNumber` en el ejemplo anterior) y, después, úsela.
+> **No** use una variable de bucle directamente en una expresión lambda (como `i` en el ejemplo de bucle `for` anterior) o una variable de referencia en un bucle `foreach`; de lo contrario, todas las expresiones lambda usarán la misma variable, con lo cual se usará el mismo valor en todas las expresiones lambda. Capture siempre el valor de la variable en una variable local y úsela. En el ejemplo anterior, la variable de bucle `i` se asigna a `buttonNumber`.
 
 ## <a name="eventcallback"></a>EventCallback
 

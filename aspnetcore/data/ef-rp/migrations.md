@@ -1,18 +1,24 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: Migraciones (4 de 8)'
+title: 'Parte 4. Razor Pages con EF Core en ASP.NET Core: Migraciones'
 author: rick-anderson
-description: En este tutorial, empezará a usar la característica de EF Core de migraciones para administrar los cambios de modelos de datos en una aplicación de ASP.NET Core MVC.
+description: Parte 4 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 86fd83c898fce8e121e4d259aaca12c59591e606
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74fe8771718647c3adf8288a72b11c30fb097a63
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645557"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652635"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Migraciones (4 de 8)
+# <a name="part-4-razor-pages-with-ef-core-migrations-in-aspnet-core"></a>Parte 4. Razor Pages con migraciones de EF Core en ASP.NET Core
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -82,7 +88,7 @@ dotnet ef database update
 
 ## <a name="up-and-down-methods"></a>Métodos Up y Down
 
-El comando `migrations add` de EF Core ha generado código para crear la base de datos. Este código de migraciones se encuentra en el archivo *Migrations\<marca_de_tiempo>_InitialCreate.cs*. El método `Up` de la clase `InitialCreate` crea las tablas de base de datos que se corresponden a los conjuntos de entidades del modelo de datos. El método `Down` las elimina, tal como se muestra en el ejemplo siguiente:
+El comando `migrations add` de EF Core ha generado código para crear la base de datos. Este código de migraciones se encuentra en el archivo *Migrations\<timestamp>_InitialCreate.cs*. El método `Up` de la clase `InitialCreate` crea las tablas de base de datos que se corresponden a los conjuntos de entidades del modelo de datos. El método `Down` las elimina, tal como se muestra en el ejemplo siguiente:
 
 [!code-csharp[](intro/samples/cu30/Migrations/20190731193522_InitialCreate.cs)]
 
@@ -220,7 +226,7 @@ dotnet ef database update
 
 ### <a name="examine-the-up-and-down-methods"></a>Examinar los métodos Up y Down
 
-El comando `migrations add` de EF Core ha generado código para crear la base de datos. Este código de migraciones se encuentra en el archivo *Migrations\<marca_de_tiempo>_InitialCreate.cs*. El método `Up` de la clase `InitialCreate` crea las tablas de base de datos que corresponden a los conjuntos de entidades del modelo de datos. El método `Down` las elimina, tal como se muestra en el ejemplo siguiente:
+El comando `migrations add` de EF Core ha generado código para crear la base de datos. Este código de migraciones se encuentra en el archivo *Migrations\<timestamp>_InitialCreate.cs*. El método `Up` de la clase `InitialCreate` crea las tablas de base de datos que corresponden a los conjuntos de entidades del modelo de datos. El método `Down` las elimina, tal como se muestra en el ejemplo siguiente:
 
 [!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
 
@@ -306,7 +312,7 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-Solución: ejecute `dotnet ef database update`
+Solución: Ejecute `dotnet ef database update`.
 
 ### <a name="additional-resources"></a>Recursos adicionales
 

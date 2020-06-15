@@ -1,7 +1,7 @@
 ---
-title: Agregar un controlador a una aplicación de ASP.NET Core MVC
+title: Parte 2. Adición de un controlador a una aplicación de ASP.NET Core MVC
 author: rick-anderson
-description: Obtenga información sobre cómo agregar un controlador a una sencilla aplicación de ASP.NET Core MVC.
+description: Parte 2 de la serie de tutoriales sobre ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: ce6248854c738733f75c40ed8ec6100f35ab4971
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1bb2d96d7b58bdd88ce9c2266c33f6e7de9e9209
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776316"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653029"
 ---
-# <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Agregar un controlador a una aplicación de ASP.NET Core MVC
+# <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2. Adición de un controlador a una aplicación de ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -128,7 +128,7 @@ Esta vez el tercer segmento de dirección URL coincide con el parámetro de ruta
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-En estos ejemplos, el controlador ha realizado la parte "VC" de MVC, es decir, el trabajo de **V**ista y de **C**ontrolador. El controlador devuelve HTML directamente. Por lo general, no es aconsejable que los controles devuelvan HTML directamente, porque resulta muy complicado de programar y mantener. En su lugar, se suele usar un archivo de plantilla de vista de Razor independiente para generar la respuesta HTML. Haremos esto en el siguiente tutorial.
+En estos ejemplos, el controlador ha realizado la parte "VC" de MVC, es decir, el trabajo de **V**ista y de **C**ontrolador. El controlador devuelve HTML directamente. Por lo general, no es aconsejable que los controles devuelvan HTML directamente, porque resulta muy complicado de programar y mantener. En vez de ello, se suele usar un archivo de plantilla de vista de Razor independiente para generar la respuesta HTML. Haremos esto en el siguiente tutorial.
 
 > [!div class="step-by-step"]
 > [Anterior](start-mvc.md)

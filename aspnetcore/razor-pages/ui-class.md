@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 2c2a2c1e13b2d511ecf8c1c02c235192861fd486
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 32aa1cdab0e552a1255c01b5135e9a82a0e37c77
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774280"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451906"
 ---
 # <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Creación de una interfaz de usuario reutilizable con el proyecto de biblioteca de clases de Razor en ASP.NET Core
 
@@ -25,20 +25,20 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Las vistas, las páginas, los controladores, los modelos de página, los [componentes](xref:blazor/class-libraries), los modelos de datos y los [componentes de vista](xref:mvc/views/view-components) de Razor se pueden integrar en una biblioteca de clases de Razor (RCL). Las RCL se pueden empaquetar y reutilizar. Las aplicaciones pueden incluir la RCL y reemplazar las vistas y páginas que contienen. Cuando existe una vista, vista parcial o página de Razor tanto en la aplicación web como en la RCL, tendrá prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web.
+Las vistas, páginas, controladores y modelos de página de Razor, los [componentes de Razor](xref:blazor/class-libraries), los [componentes de vista](xref:mvc/views/view-components) y los modelos de datos se pueden integrar en una biblioteca de clases de Razor (RCL). Las RCL se pueden empaquetar y reutilizar. Las aplicaciones pueden incluir la RCL y reemplazar las vistas y páginas que contienen. Si existe una vista,una vista parcial o una página de Razor tanto en la aplicación web como en la RCL, tiene prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Crear una biblioteca de clases que contenga interfaz de usuario de Razor
+## <a name="create-a-class-library-containing-razor-ui"></a>Creación de una biblioteca de clases que contenga interfaz de usuario de Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * En Visual Studio, seleccione **Crear un proyecto nuevo**.
 * Seleccione **Biblioteca de clases de Razor** > **Siguiente**.
 * Asigne un nombre a la biblioteca (por ejemplo, "RazorClassLib") > **Crear**. Para evitar un conflicto de nombres de archivo con la biblioteca de vistas generada, asegúrese de que el nombre de la biblioteca no acaba en `.Views`.
-* Seleccione **Admitir páginas y vistas** si necesita admitir vistas. De forma predeterminada, solo se admiten Razor Pages. Seleccione **Crear**.
+* Seleccione **Admitir páginas y vistas** si necesita admitir vistas. Solo se admite Razor Pages de forma predeterminada. Seleccione **Crear**.
 
-De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) utiliza el desarrollo de componentes de Razor. La opción **Admitir páginas y vistas** proporciona compatibilidad con páginas y vistas.
+De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) usa el desarrollo de componentes de Razor. La opción **Admitir páginas y vistas** proporciona compatibilidad con páginas y vistas.
 
 # <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli)
 
@@ -48,7 +48,7 @@ Ejecute `dotnet new razorclasslib` desde la línea de comandos. Por ejemplo:
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
-De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) utiliza el desarrollo de componentes de Razor. Pase la opción `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`) para proporcionar compatibilidad con páginas y vistas.
+De forma predeterminada, la plantilla de la biblioteca de clases de Razor (RCL) usa el desarrollo de componentes de Razor. Pase la opción `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`) para proporcionar compatibilidad con páginas y vistas.
 
 Para más información, vea [dotnet new](/dotnet/core/tools/dotnet-new). Para evitar un conflicto de nombres de archivo con la biblioteca de vistas generada, asegúrese de que el nombre de la biblioteca no acaba en `.Views`.
 
@@ -67,7 +67,7 @@ Los siguientes elementos pueden hacer referencia a la RCL:
 
 ## <a name="override-views-partial-views-and-pages"></a>Reemplazar vistas, vistas parciales y páginas
 
-Cuando existe una vista, vista parcial o página de Razor tanto en la aplicación web como en la RCL, tendrá prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web. Por ejemplo, si agrega *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* a WebApp1, Page1 en WebApp1 prevalecerá sobre Page1 en la biblioteca de clases de Razor.
+Si existe una vista,una vista parcial o una página de Razor tanto en la aplicación web como en la RCL, tiene prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web. Por ejemplo, si agrega *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* a WebApp1, Page1 en WebApp1 prevalecerá sobre Page1 en la biblioteca de clases de Razor.
 
 En la descarga de ejemplo, cambie el nombre *WebApp1/Areas/MyFeature2* por *WebApp1/Areas/MyFeature* para comprobar la prioridad.
 
@@ -97,6 +97,8 @@ Una RCL puede requerir recursos estáticos complementarios a los que puede hacer
 Para incluir los recursos complementarios como parte de una RCL, cree una carpeta *wwwroot* en la biblioteca de clases e incluya en ella los archivos necesarios.
 
 Al empaquetar una RCL, todos los recursos complementarios de la carpeta *wwwroot* se incluyen automáticamente en el paquete.
+
+Use el comando `dotnet pack` en vez de la versión de NuGet.exe `nuget pack`.
 
 ### <a name="exclude-static-assets"></a>Exclusión de recursos estáticos
 
@@ -190,11 +192,11 @@ Cuando se publica la aplicación, los recursos complementarios de todos los proy
 
 ::: moniker range="< aspnetcore-3.0"
 
-Las vistas, las páginas, los controladores, los modelos de página, los [componentes](xref:blazor/class-libraries), los modelos de datos y los [componentes de vista](xref:mvc/views/view-components) de Razor se pueden integrar en una biblioteca de clases de Razor (RCL). Las RCL se pueden empaquetar y reutilizar. Las aplicaciones pueden incluir la RCL y reemplazar las vistas y páginas que contienen. Cuando existe una vista, vista parcial o página de Razor tanto en la aplicación web como en la RCL, tendrá prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web.
+Las vistas, páginas, controladores y modelos de página de Razor, los [componentes de Razor](xref:blazor/class-libraries), los [componentes de vista](xref:mvc/views/view-components) y los modelos de datos se pueden integrar en una biblioteca de clases de Razor (RCL). Las RCL se pueden empaquetar y reutilizar. Las aplicaciones pueden incluir la RCL y reemplazar las vistas y páginas que contienen. Si existe una vista,una vista parcial o una página de Razor tanto en la aplicación web como en la RCL, tiene prioridad el marcado de Razor (archivo *.cshtml*) de la aplicación web.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Crear una biblioteca de clases que contenga interfaz de usuario de Razor
+## <a name="create-a-class-library-containing-razor-ui"></a>Creación de una biblioteca de clases que contenga interfaz de usuario de Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -231,7 +233,7 @@ Los siguientes elementos pueden hacer referencia a la RCL:
 * Paquete NuGet. Vea [Creación de paquetes NuGet](/nuget/create-packages/creating-a-package), [dotnet add package](/dotnet/core/tools/dotnet-add-package) y [Creación y publicación de un paquete NuGet](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * *{NombreDeProyecto}.csproj*. Vea [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>Tutorial: Creación de un proyecto de RCL y uso de este desde un proyecto de Razor Pages
+## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>Tutorial: Creación y uso de un proyecto de RCL desde un proyecto de Razor Pages
 
 En lugar de crearlo, puede descargar el [proyecto completo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) y comprobarlo. La descarga de ejemplo contiene más código y vínculos que hacen que el proyecto sea fácil de comprobar. Puede dejar sus comentarios en [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/6098) sobre las descargas de ejemplo en comparación con las instrucciones paso a paso.
 
@@ -322,7 +324,7 @@ El archivo *_ViewStart.cshtml* es necesario para poder usar el diseño del proye
 
 El resultado de la compilación contiene *RazorUIClassLib.dll* y *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* incluye el contenido de Razor compilado.
 
-### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Usar la biblioteca de interfaz de usuario de Razor desde un proyecto de páginas de Razor
+### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Uso de la biblioteca de interfaz de usuario de Razor desde un proyecto de Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

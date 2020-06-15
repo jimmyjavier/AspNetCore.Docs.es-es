@@ -1,19 +1,25 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: Lectura de datos relacionados (6 de 8)'
+title: 'Parte 6. Razor Pages con EF Core en ASP.NET Core: Lectura de datos relacionados'
 author: rick-anderson
-description: En este tutorial, leerá y mostrará datos relacionados, es decir, los datos que Entity Framework carga en las propiedades de navegación.
+description: Parte 6 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 0835dbf6b5434e4224d9f56ea3335df4b5d9e119
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277332"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652615"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Lectura de datos relacionados (6 de 8)
+# <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6. Razor Pages con EF Core en ASP.NET Core: Lectura de datos relacionados
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 

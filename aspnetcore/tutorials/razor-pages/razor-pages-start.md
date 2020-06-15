@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Introducción a Razor Pages en ASP.NET Core'
+title: "\"Tutorial: Introducción a Razor Pages en ASP.NET Core\""
 author: rick-anderson
 description: En esta serie de tutoriales se muestra cómo usar Razor Pages en ASP.NET Core. Aprenda a crear un modelo, generar código para Razor Pages, usar Entity Framework Core y SQL Server para el acceso a datos, agregar la funcionalidad de búsqueda, agregar validación de entrada y usar migraciones para actualizar el modelo.
 ms.author: riande
@@ -11,19 +11,19 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 3b8ccf639bb91234f81c67750fffa170e52d636f
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774878"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452359"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introducción a Razor Pages en ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
-Este es el primer tutorial de una serie de varios que enseña los aspectos básicos de la compilación de una aplicación web de Razor Pages de ASP.NET Core.
+Este es el primer tutorial de una serie en la que se enseñan los aspectos básicos de la compilación de una aplicación web de Razor Pages de ASP.NET Core.
 
 [!INCLUDE[](~/includes/advancedRP.md)]
 
@@ -34,11 +34,11 @@ Al final de la serie, tendrá una aplicación que puede administrar una base de 
 En este tutorial ha:
 
 > [!div class="checklist"]
-> * Crear una aplicación web de Razor Pages.
+> * Creará una aplicación web de Razor Pages.
 > * Ejecutar la aplicación.
 > * Examinar los archivos de proyecto.
 
-Al final de este tutorial, tendrá una aplicación web de Razor Pages que compilará en los tutoriales posteriores.
+Al final de este tutorial, tendrá una aplicación web de Razor Pages que compilará en los tutoriales posteriores.
 
 ![Página Inicio o Índice](razor-pages-start/_static/home2.2.png)
 
@@ -58,7 +58,7 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Creación de una aplicación web de páginas de Razor
+## <a name="create-a-razor-pages-web-app"></a>Creación de una aplicación web de Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -89,7 +89,7 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
   code -r RazorPagesMovie
   ```
 
-  * El comando `dotnet new` crea un proyecto de Razor Pages en la carpeta *RazorPagesMovie*.
+  * El comando `dotnet new` crea un proyecto de Razor en la carpeta *RazorPagesMovie*.
   * El comando `code` abre la carpeta *RazorPagesMovie* en la instancia actual de Visual Studio Code.
 
 * Cuando el icono de llama de OmniSharp de la barra de estado se ponga verde, aparecerá un cuadro de diálogo que pregunta **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** (Faltan los activos necesarios para compilar y depurar en "RazorPagesMovie". ¿Desea agregarlos?). Seleccione **Sí**.
@@ -100,19 +100,24 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
 
 * Seleccione **Archivo** > **Nueva solución**.
 
-![macOS: Nueva solución](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+  ![macOS: Nueva solución](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Seleccione **.NET Core** > **Aplicación** > **Aplicación web** > **Siguiente**.
+* En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **.NET Core** > **Aplicación** > **Aplicación web** > **Siguiente**. En la versión 8.6 o posteriores, seleccione **Web y consola** > **Aplicación** > **Aplicación web** > **Siguiente**.
 
-  ![Cuadro de diálogo de nuevo proyecto de macOS](razor-pages-start/_static/webapp.png)
+  ![Selección de plantilla de aplicación web de macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
-* En el cuadro de diálogo **Configure your new Web Application** (Configurar la nueva aplicación web), establezca el **marco de destino** en **.NET Core 3.1**.
+* Confirme las configuraciones siguientes:
+
+  * **Plataforma de destino** establecida en **.NET Core 3.1**.
+  * **Autenticación** establecida en **Sin autenticación**.
+   
+  Seleccione **Siguiente**.
 
   ![Selección de .NET Core 3.1 de macOS](razor-pages-start/_static/targetframework3.png)
 
 * Asigne el nombre **RazorPagesMovie** al proyecto y, después, seleccione **Crear**.
 
-  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
+  ![Nombre del proyecto en macOS](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
@@ -128,9 +133,9 @@ He aquí un resumen de las principales carpetas y archivos del proyecto con los 
 
 ### <a name="pages-folder"></a>Carpeta Pages
 
-Contiene Razor Pages y los archivos auxiliares. Cada página de Razor se compone de un par de archivos:
+Contiene páginas de Razor y archivos auxiliares. Cada página de Razor consta de un par de archivos:
 
-* Archivo *.cshtml* que contiene el marcado HTML con código C# que usa la sintaxis Razor.
+* Un archivo *.cshtml* que contiene marcado HTML con código de C# que usa sintaxis de Razor.
 * Archivo *. cshtml.cs* que contiene C# código que controla los eventos de página.
 
 Los archivos auxiliares tienen nombres que comienzan con un carácter de subrayado. Por ejemplo, el archivo *_Layout.cshtml* configura los elementos de la interfaz de usuario comunes a todas las páginas. Este archivo configura el menú de navegación de la parte superior de la página y el aviso de copyright de la parte inferior de la página. Para obtener más información, vea <xref:mvc/views/layout>.
@@ -175,11 +180,11 @@ Al final de la serie, tendrá una aplicación que puede administrar una base de 
 En este tutorial ha:
 
 > [!div class="checklist"]
-> * Crear una aplicación web de Razor Pages.
+> * Creará una aplicación web de Razor Pages.
 > * Ejecutar la aplicación.
 > * Examinar los archivos de proyecto.
 
-Al final de este tutorial, tendrá una aplicación web de Razor Pages que compilará en los tutoriales posteriores.
+Al final de este tutorial, tendrá una aplicación web de Razor Pages que compilará en los tutoriales posteriores.
 
 ![Página Inicio o Índice](razor-pages-start/_static/home2.2.png)
 
@@ -199,7 +204,7 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Creación de una aplicación web de páginas de Razor
+## <a name="create-a-razor-pages-web-app"></a>Creación de una aplicación web de Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -234,7 +239,7 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
   code -r RazorPagesMovie
   ```
 
-  * El comando `dotnet new` crea un proyecto de Razor Pages en la carpeta *RazorPagesMovie*.
+  * El comando `dotnet new` crea un proyecto de Razor en la carpeta *RazorPagesMovie*.
   * El comando `code` abre la carpeta *RazorPagesMovie* en la instancia actual de Visual Studio Code.
 
 * Cuando el icono de llama de OmniSharp de la barra de estado se ponga verde, aparecerá un cuadro de diálogo que pregunta **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** (Faltan los activos necesarios para compilar y depurar en "RazorPagesMovie". ¿Desea agregarlos?). Seleccione **Sí**.
@@ -247,9 +252,7 @@ Al final de este tutorial, tendrá una aplicación web de Razor Pages que compi
 
 ![macOS: Nueva solución](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Seleccione **.NET Core** > **Aplicación** > **Aplicación web** > **Siguiente**.
-
-  ![Cuadro de diálogo de nuevo proyecto de macOS](razor-pages-start/_static/webapp.png)
+* En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **.NET Core** > **Aplicación** > **Aplicación web** > **Siguiente**. En la versión 8.6 o posteriores, seleccione **Web y consola** > **Aplicación** > **Aplicación web** > **Siguiente**.
 
 * En el cuadro de diálogo **Configure your new ASP.NET Core Web API** (Configurar la nueva API web de ASP.NET Core), establezca la **plataforma de destino** en **.NET Core 3.1**.
 

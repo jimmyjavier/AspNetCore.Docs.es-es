@@ -1,7 +1,7 @@
 ---
-title: Incorporación de un campo nuevo a una página de Razor de ASP.NET Core
+title: Parte 7. Adición de un campo nuevo a una instancia de Razor Pages en ASP.NET Core
 author: rick-anderson
-description: Aquí se muestra cómo agregar un nuevo campo a una página de Razor con Entity Framework Core
+description: Parte 7 de la serie de tutoriales sobre Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 15d4ccbe88c2147210918a3db1416983fb30132b
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769739"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652798"
 ---
-# <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Agregar un campo nuevo a una página de Razor en ASP.NET Core
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Parte 7. Adición de un campo nuevo a una instancia de Razor Pages en ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 

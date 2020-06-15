@@ -5,7 +5,7 @@ description: Aprenda a hospedar e implementar una aplicación Blazor Server con 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 06/04/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/server
-ms.openlocfilehash: e69b91035c65739dde724330e83793c0b8b5481a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8c06d3a4d0d75a3e2fd9f699af38a23833fa8bce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775159"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419949"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Hospedaje e implementación de Blazor Server
 
@@ -147,6 +147,41 @@ Para obtener más información, vea los artículos siguientes:
 * [NGINX como proxy de WebSocket](https://www.nginx.com/blog/websocket-nginx/)
 * [Redirección mediante proxy de Websocket](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
+
+## <a name="linux-with-apache"></a>Linux con Apache
+
+Para hospedar una aplicación de Blazor en Apache en Linux, configure `ProxyPass` para el tráfico HTTP y WebSockets.
+
+En el ejemplo siguiente:
+
+* El servidor de Kestrel se está ejecutando en el equipo host.
+* La aplicación escucha el tráfico en el puerto 5000.
+
+```
+ProxyRequests       On
+ProxyPreserveHost   On
+ProxyPassMatch      ^/_blazor/(.*) http://localhost:5000/_blazor/$1
+ProxyPass           /_blazor ws://localhost:5000/_blazor
+ProxyPass           / http://localhost:5000/
+ProxyPassReverse    / http://localhost:5000/
+```
+
+Habilite los siguientes módulos:
+
+```
+a2enmod   proxy
+a2enmod   proxy_wstunnel
+```
+
+Busque errores de WebSockets en la consola del explorador. Errores de ejemplo:
+
+* Firefox no puede establecer una conexión con el servidor en ws://nombre-del-dominio.tld/_blazor?id=XXX.
+* Error: No se pudo iniciar el transporte 'WebSockets': Error: Error en el transporte.
+* Error: No se pudo iniciar el transporte 'LongPolling': Tipo de error: this.transport no definido
+* Error: No se puede conectar con el servidor con ninguno de los transportes disponibles. Error de WebSockets
+* Error: No se pueden enviar datos si la conexión no está en estado 'Conectado'.
+
+Para más información, vea la [documentación de Apache](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
 ### <a name="measure-network-latency"></a>Medición de la latencia de red
 

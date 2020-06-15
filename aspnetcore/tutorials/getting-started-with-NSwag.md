@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 50096ae6a77d5f8b07e6be795d9401fcbfd421e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cd4cc6778de7d2156243dc91fba64b2bdb79cf08
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776713"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452127"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introducción a NSwag y ASP.NET Core
 
@@ -107,11 +107,11 @@ Para agregar y configurar Swagger en su aplicación de ASP.NET Core, realice los
 
 Para aprovechar las capacidades de generación de código de NSwag, elija una de las siguientes opciones:
 
-* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio): una aplicación de escritorio de Windows que permite generar código de cliente de API en C# o TypeScript.
+* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio): aplicación de escritorio de Windows que permite generar código de cliente de API en C# o TypeScript.
 * Paquetes NuGet [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) o [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) para generar código dentro del proyecto.
 * NSwag desde la [línea de comandos](https://github.com/RicoSuter/NSwag/wiki/CommandLine).
 * Paquete NuGet [NSwag.MSBuild](https://github.com/RicoSuter/NSwag/wiki/NSwag.MSBuild).
-* [Servicio conectado de Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice): un servicio conectado de Visual Studio para generar código de cliente de API en C# o TypeScript. También genera controladores de C# para los servicios de OpenAPI con NSwag.
+* [Servicio conectado de Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice): servicio conectado de Visual Studio para generar código de cliente de API en C# o TypeScript. También genera controladores de C# para los servicios de OpenAPI con NSwag.
 
 ### <a name="generate-code-with-nswagstudio"></a>Generación de código con NSwagStudio
 

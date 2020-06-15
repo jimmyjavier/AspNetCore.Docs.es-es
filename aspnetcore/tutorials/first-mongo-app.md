@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 4d1c2d915c646dd1c8fcadd25bcd420a0a749dc9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 46607fc92670bb46a155ddf3248bc8a36b600a4a
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774774"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452257"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Creación de una API Web con ASP.NET Core y MongoDB
 
@@ -64,7 +64,7 @@ En este tutorial aprenderá a:
 
 ## <a name="configure-mongodb"></a>Configurar MongoDB
 
-Si usa Windows, MongoDB está instalado en *C:\\Archivos de programa\\MongoDB* de forma predeterminada. Agregue *C:\\Archivos de programa\\MongoDB\\Server\\\<número_versión>\\bin* a la variable de entorno `Path`. Este cambio permite el acceso a MongoDB desde cualquier lugar en el equipo de desarrollo.
+Si usa Windows, MongoDB está instalado en *C:\\Archivos de programa\\MongoDB* de forma predeterminada. Agregue *C:\\Archivos de programa\\MongoDB\\Server\\\<version_number>\\bin* a la variable de entorno `Path`. Este cambio permite el acceso a MongoDB desde cualquier lugar en el equipo de desarrollo.
 
 Use el Shell de mongo en los pasos siguientes para crear una base de datos, hacer colecciones y almacenar documentos. Para obtener más información sobre los comandos de Shell de mongo, consulte [Working with the mongo Shell](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell) (Trabajo con el shell de Mongo).
 
@@ -185,9 +185,9 @@ La base de datos está lista. Puede empezar a crear la API web de ASP.NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-1. Vaya a **Archivo** > **Nueva solución** > **.NET Core** > **Aplicación**.
-1. Seleccione la plantilla de proyecto de C# **API web ASP.NET Core** y, luego, **Siguiente**.
-1. Seleccione **.NET Core 3.0** en la lista desplegable **Plataforma de destino** y, luego, **Siguiente**.
+1. En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **Archivo** > **Nueva solución** >  **.NET Core** > **Aplicación** en la barra lateral. En la versión 8.6 o posteriores, seleccione **Archivo** > **Nueva solución** > **Web y consola** > **Aplicación** en la barra lateral.
+1. Seleccione la plantilla de proyecto de C# **ASP.NET Core** > **API** y, luego, **Siguiente**.
+1. Seleccione **.NET Core 3.1** en la lista desplegable **Plataforma de destino** y, luego, **Siguiente**.
 1. Escriba *BooksApi* en **Nombre del proyecto** y seleccione **Crear**.
 1. En el panel **Explorador de soluciones**, haga clic con el botón derecho en el nodo **Dependencias** del proyecto y seleccione **Agregar paquetes**.
 1. Escriba *MongoDB.Driver* en el cuadro de búsqueda, seleccione el paquete *MongoDB.Driver* y, luego, **Agregar paquete**.
@@ -289,10 +289,10 @@ La clase`BookService` usa los miembros `MongoDB.Driver` siguientes para realizar
 
 `GetCollection<TDocument>(collection)` devuelve un objeto [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) que representa la colección. En este tutorial, se invocan los métodos siguientes en la colección:
 
-* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): elimina un único documento que cumpla los criterios de búsqueda proporcionados.
+* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): elimina un único documento que cumple los criterios de búsqueda proporcionados.
 * [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): devuelve todos los documentos de la colección que cumplen los criterios de búsqueda indicados.
 * [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): inserta el objeto proporcionado como un nuevo documento en la colección.
-* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): reemplaza un único documento que cumpla los criterios de búsqueda indicados por el objeto proporcionado.
+* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): reemplaza un único documento que cumple los criterios de búsqueda indicados por el objeto proporcionado.
 
 ## <a name="add-a-controller"></a>Incorporación de un controlador
 
@@ -352,7 +352,7 @@ Hay dos detalles que cambiar sobre las respuestas JSON devueltas en la sección 
 
 Para satisfacer los requisitos anteriores, realice los cambios siguientes:
 
-1. JSON.NET se ha quitado de la plataforma compartida de ASP.NET. Agregue una referencia de paquete a [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
+1. JSON.NET se ha quitado de la plataforma compartida de ASP.NET. Agregue una referencia de paquete a [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
 
 1. En `Startup.ConfigureServices`, cambie el código resaltado siguiente en la llamada al método `AddControllers`:
 
@@ -414,7 +414,7 @@ En este tutorial aprenderá a:
 
 ## <a name="configure-mongodb"></a>Configurar MongoDB
 
-Si usa Windows, MongoDB está instalado en *C:\\Archivos de programa\\MongoDB* de forma predeterminada. Agregue *C:\\Archivos de programa\\MongoDB\\Server\\\<número_versión>\\bin* a la variable de entorno `Path`. Este cambio permite el acceso a MongoDB desde cualquier lugar en el equipo de desarrollo.
+Si usa Windows, MongoDB está instalado en *C:\\Archivos de programa\\MongoDB* de forma predeterminada. Agregue *C:\\Archivos de programa\\MongoDB\\Server\\\<version_number>\\bin* a la variable de entorno `Path`. Este cambio permite el acceso a MongoDB desde cualquier lugar en el equipo de desarrollo.
 
 Use el Shell de mongo en los pasos siguientes para crear una base de datos, hacer colecciones y almacenar documentos. Para obtener más información sobre los comandos de Shell de mongo, consulte [Working with the mongo Shell](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell) (Trabajo con el shell de Mongo).
 
@@ -535,7 +535,7 @@ La base de datos está lista. Puede empezar a crear la API web de ASP.NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-1. Vaya a **Archivo** > **Nueva solución** > **.NET Core** > **Aplicación**.
+1. En las versiones de Visual Studio para Mac anteriores a 8.6, seleccione **Archivo** > **Nueva solución** >  **.NET Core** > **Aplicación** en la barra lateral. En la versión 8.6 o posteriores, seleccione **Archivo** > **Nueva solución** > **Web y consola** > **Aplicación** en la barra lateral.
 1. Seleccione la plantilla de proyecto de C# **API web ASP.NET Core** y, luego, **Siguiente**.
 1. Seleccione **.NET Core 2.2** en la lista desplegable **Plataforma de destino** y, luego, **Siguiente**.
 1. Escriba *BooksApi* en **Nombre del proyecto** y seleccione **Crear**.
@@ -639,10 +639,10 @@ La clase`BookService` usa los miembros `MongoDB.Driver` siguientes para realizar
 
 `GetCollection<TDocument>(collection)` devuelve un objeto [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) que representa la colección. En este tutorial, se invocan los métodos siguientes en la colección:
 
-* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): elimina un único documento que cumpla los criterios de búsqueda proporcionados.
+* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): elimina un único documento que cumple los criterios de búsqueda proporcionados.
 * [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): devuelve todos los documentos de la colección que cumplen los criterios de búsqueda indicados.
 * [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): inserta el objeto proporcionado como un nuevo documento en la colección.
-* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): reemplaza un único documento que cumpla los criterios de búsqueda indicados por el objeto proporcionado.
+* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): reemplaza un único documento que cumple los criterios de búsqueda indicados por el objeto proporcionado.
 
 ## <a name="add-a-controller"></a>Incorporación de un controlador
 

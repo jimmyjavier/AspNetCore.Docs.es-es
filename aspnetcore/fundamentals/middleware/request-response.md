@@ -5,7 +5,7 @@ description: Aprenda a leer el cuerpo de la solicitud y a escribir el cuerpo de 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jukotali
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 5/29/2019
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: f16bc7ec61c10600fe72a763fef96987210fbe76
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fed9e48cdb2b33805cb05243de706b5c86853328
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776004"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84548537"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Operaciones de solicitud y respuesta en ASP.NET Core
 
@@ -26,7 +26,7 @@ Por [Justin Kotalik](https://github.com/jkotalik)
 
 En este artículo se explica cómo leer el cuerpo de la solicitud y escribir el cuerpo de respuesta. El código para estas operaciones podría ser necesario al escribir middleware. Fuera de la escritura de middleware, el código personalizado no suele ser necesario porque las operaciones se controlan mediante MVC and Razor Pages.
 
-Hay dos abstracciones para los cuerpos de solicitud y respuesta: <xref:System.IO.Stream> y <xref:System.IO.Pipelines.Pipe>. Para leer la solicitud, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) es un objeto <xref:System.IO.Stream> y `HttpRequest.BodyReader` es un objeto <xref:System.IO.Pipelines.PipeReader>. Para escribir la respuesta, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) es un objeto <xref:System.IO.Stream> y <xref:System.IO.Pipelines.PipeWriter> es un objeto `HttpResponse.BodyWriter`.
+Hay dos abstracciones para los cuerpos de solicitud y respuesta: <xref:System.IO.Stream> y <xref:System.IO.Pipelines.Pipe>. En la lectura de solicitudes, <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> es <xref:System.IO.Stream> y `HttpRequest.BodyReader` es <xref:System.IO.Pipelines.PipeReader>. En la escritura de respuestas, <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> es <xref:System.IO.Stream> y `HttpResponse.BodyWriter` es <xref:System.IO.Pipelines.PipeWriter>.
 
 Se recomienda el uso de [canalizaciones](/dotnet/standard/io/pipelines) por encima de las secuencias. Las secuencias pueden ser más fáciles de usar en el caso de algunas operaciones sencillas, pero las canalizaciones son más ventajosas para el rendimiento y son más fáciles de usar en la mayoría de los casos. ASP.NET Core está empezando a usar internamente canalizaciones en lugar de secuencias. Ejemplos:
 
@@ -41,7 +41,13 @@ Las secuencias no se quitan del marco. Se seguirán usando en todo .NET, y adem�
 
 Imagine que el objetivo es crear un middleware que lee el cuerpo de la solicitud entero como una lista de cadenas, que se divide en nuevas líneas. Una implementación de secuencias sencilla podría parecerse al ejemplo siguiente:
 
+> [!WARNING]
+> El código siguiente:
+> * Se usa para describir los problemas que se producen al no usar una canalización para leer el cuerpo de la solicitud.
+> * No está pensado para usarse en aplicaciones de producción.
+
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 Este código funciona, pero hay algunos problemas:
@@ -50,6 +56,11 @@ Este código funciona, pero hay algunos problemas:
 * En el ejemplo se lee toda la cadena antes de la división en nuevas líneas. Sería más eficaz buscar nuevas líneas en la matriz de bytes.
 
 En este ejemplo se corrigen algunos de los problemas anteriores:
+
+> [!WARNING]
+> El código siguiente:
+> * Se usa para describir las soluciones a algunos problemas en el código anterior, pero no todos.
+> * No está pensado para usarse en aplicaciones de producción.
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
 
@@ -67,7 +78,7 @@ Estos problemas se pueden corregir, pero el código se vuelve cada vez más comp
 
 ## <a name="pipelines"></a>Canalizaciones
 
-En el ejemplo siguiente se muestra cómo se puede gestionar el mismo escenario mediante un objeto `PipeReader`:
+En el siguiente ejemplo se describe cómo abordar el mismo escenario usando un objeto [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
@@ -75,11 +86,11 @@ En este ejemplo se solucionan muchos problemas que tenían las implementaciones 
 
 * No es necesario un búfer de cadenas porque `PipeReader` controla los bytes que no se han usado.
 * Las cadenas codificadas se agregan directamente a la lista de cadenas devueltas.
-* La creación de cadenas es de libre asignación, además de la memoria usada por la cadena (excepto la llamada `ToArray()`).
+* Aparte de la llamada a `ToArray` y de la memoria que usa la cadena, la creación de cadenas es de libre asignación.
 
 ## <a name="adapters"></a>Adaptadores
 
-Las propiedades `Body` y `BodyReader/BodyWriter` están disponibles para `HttpRequest` y `HttpResponse`. Al establecer `Body` en una secuencia diferente, un nuevo conjunto de adaptadores se adaptan automáticamente al tipo del otro. Si establece `HttpRequest.Body` en una nueva secuencia, `HttpRequest.BodyReader` se establece automáticamente en un nuevo objeto `PipeReader` que encapsula a `HttpRequest.Body`.
+Las propiedades `Body`, `BodyReader` y `BodyWriter` están disponibles para `HttpRequest` y `HttpResponse`. Al establecer `Body` en una secuencia diferente, un nuevo conjunto de adaptadores se adaptan automáticamente al tipo del otro. Si establece `HttpRequest.Body` en una nueva secuencia, `HttpRequest.BodyReader` se establece automáticamente en un nuevo objeto `PipeReader` que encapsula a `HttpRequest.Body`.
 
 ## <a name="startasync"></a>StartAsync
 
@@ -87,5 +98,7 @@ Las propiedades `Body` y `BodyReader/BodyWriter` están disponibles para `HttpRe
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Introducción a System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
+* [System.IO.Pipelines en .NET](/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
+
+<!-- Test with Postman or other tool. See image in static directory. -->

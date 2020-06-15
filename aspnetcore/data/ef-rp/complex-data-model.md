@@ -1,19 +1,25 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: Modelo de datos (5 de 8)'
+title: 'Parte 5. Razor Pages con EF Core en ASP.NET Core: Modelo de datos'
 author: rick-anderson
-description: En este tutorial agregará más entidades y relaciones, y personalizará el modelo de datos especificando reglas de formato, validación y asignación.
+description: Parte 5 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 1d81a0444487c6396bb32381ed2cb26d44312c3a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f44ca9857ea127cf7e662e2712cc6d4b460450e9
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650213"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652504"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Modelo de datos (5 de 8)
+# <a name="part-5-razor-pages-with-ef-core-in-aspnet-core---data-model"></a>Parte 5. Razor Pages con EF Core en ASP.NET Core: Modelo de datos
 
 Por [Tom Dykstra](https://github.com/tdykstra) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -81,7 +87,7 @@ El atributo `DisplayFormat` puede usarse por sí solo. Normalmente se recomienda
 * El explorador puede habilitar características de HTML5. Por ejemplo, mostrar un control de calendario, el símbolo de divisa adecuado según la configuración regional, vínculos de correo electrónico y validación de entradas del lado cliente.
 * De manera predeterminada, el explorador representa los datos con el formato correcto según la configuración regional.
 
-Para obtener más información, vea la [documentación del asistente de etiquetas \<entrada&gt;](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Para obtener más información, vea la [documentación del asistente de etiquetas \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
 ### <a name="the-stringlength-attribute"></a>El atributo StringLength
 
@@ -96,7 +102,7 @@ El atributo `StringLength` también proporciona validación del lado cliente y d
 El atributo `StringLength` no impide que un usuario escriba un espacio en blanco para un nombre. El atributo [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) se puede usar para aplicar restricciones a la entrada. Por ejemplo, el código siguiente requiere que el primer carácter sea una letra mayúscula y el resto de caracteres sean alfabéticos:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -771,7 +777,7 @@ El atributo `DisplayFormat` puede usarse por sí solo. Normalmente se recomienda
 * El explorador puede habilitar características de HTML5. Por ejemplo, mostrar un control de calendario, el símbolo de divisa adecuado según la configuración regional, vínculos de correo electrónico, validación de entradas del lado cliente, etc.
 * De manera predeterminada, el explorador representa los datos con el formato correcto según la configuración regional.
 
-Para obtener más información, vea la [documentación del asistente de etiquetas \<entrada&gt;](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Para obtener más información, vea la [documentación del asistente de etiquetas \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
 Ejecutar la aplicación. Vaya a la página de índice de Students. Ya no se muestran las horas. Todas las vistas que usa el modelo `Student` muestran la fecha sin hora.
 
@@ -788,7 +794,7 @@ Actualice el modelo `Student` con el código siguiente:
 El código anterior limita los nombres a no más de 50 caracteres. El atributo `StringLength` no impide que un usuario escriba un espacio en blanco para un nombre. El atributo [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) se usa para aplicar restricciones a la entrada. Por ejemplo, el código siguiente requiere que el primer carácter sea una letra mayúscula y el resto de caracteres sean alfabéticos:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 Ejecute la aplicación:

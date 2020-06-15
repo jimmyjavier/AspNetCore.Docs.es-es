@@ -5,7 +5,7 @@ description: Obtenga información sobre cómo compilar aplicaciones web progresi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,22 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: cf31c91ddc073498d882b111b597c546e788cc98
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c935f326afb77de5e083829c0bc2494efb20fec3
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771564"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679623"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Compilación de aplicaciones web progresivas con WebAssembly de Blazor para ASP.NET Core
+# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creación de aplicaciones web progresivas con ASP.NET Core Blazor WebAssembly
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-Una aplicación web progresiva (PWA) es una aplicación de página única (SPA) que usa las API y funciones de exploradores modernos para comportarse como una aplicación de escritorio. WebAssembly de Blazor es una plataforma de aplicaciones web del lado cliente basada en estándares, por lo que puede usar cualquier API de explorador, incluidas las de PWA necesarias para las funcionalidades siguientes:
+Una aplicación web progresiva (PWA) es una aplicación de página única (SPA) que usa las API y funciones de exploradores modernos para comportarse como una aplicación de escritorio. WebAssembly de Blazor es una plataforma de aplicaciones web del lado cliente basada en estándares, por lo que puede usar cualquier API de explorador, incluidas las de PWA necesarias para las siguientes funcionalidades:
 
 * Trabajo sin conexión y carga instantánea, con independencia de la velocidad de la red.
 * Ejecución en una ventana de aplicación propia, no solo en una ventana del explorador.
@@ -128,14 +124,14 @@ El servicio de trabajo integrado *service-worker.published.js* resuelve las soli
 
 La estrategia de almacenar primero en caché es valiosa porque:
 
-* **Garantiza la confiabilidad.** : el acceso a la red no es un estado booleano. Un usuario no está simplemente en línea o sin conexión:
+* **Garantiza la confiabilidad.** El acceso a la red no es un estado booleano. Un usuario no está simplemente en línea o sin conexión:
 
   * El dispositivo del usuario puede asumir que está en línea, pero es posible que la red sea tan lenta que no sea factible esperar.
   * Es posible que la red devuelva resultados no válidos para ciertas direcciones URL, como cuando hay un portal Wi-Fi cautivo que bloquea o redirige determinadas solicitudes.
   
   Por este motivo la API `navigator.onLine` del explorador no es confiable y no se debe depender de ella.
 
-* **Garantiza la corrección.** : al compilar una caché de recursos sin conexión, el trabajo de servicio usa el hash de contenido para garantizar que ha capturado una instantánea completa y coherente de los recursos en un solo instante en el tiempo. Después, esta caché se utiliza como unidad atómica. No tiene sentido solicitar a la red recursos más recientes, ya que las únicas versiones necesarias son las que ya se han almacenado en caché. Todo lo demás implica riesgos de incoherencia e incompatibilidad (por ejemplo, intentar usar versiones de ensamblados .NET que no se han compilado de forma conjunta).
+* **Garantiza la corrección.** Al compilar una memoria caché de recursos sin conexión, el trabajo de servicio usa el hash de contenido para garantizar que ha capturado una instantánea completa y autocoherente de los recursos en un solo instante en el tiempo. Después, esta caché se utiliza como unidad atómica. No tiene sentido solicitar a la red recursos más recientes, ya que las únicas versiones necesarias son las que ya se han almacenado en caché. Todo lo demás implica riesgos de incoherencia e incompatibilidad (por ejemplo, intentar usar versiones de ensamblados .NET que no se han compilado de forma conjunta).
 
 ### <a name="background-updates"></a>Actualizaciones en segundo plano
 
@@ -155,7 +151,7 @@ Para personalizar este proceso, modifique la lógica del trabajo de servicio. Ni
 
 Como se ha descrito en la sección [Estrategia de captura desde la caché](#cache-first-fetch-strategy), el trabajo de servicio predeterminado usa una estrategia *desde la caché*, lo que significa que intenta servir contenido almacenado en caché cuando esté disponible. Si no hay contenido en caché para una dirección URL determinada (por ejemplo, cuando se solicitan datos de una API de back-end), el trabajo de servicio recurre a una solicitud de red normal. La solicitud de red se realiza correctamente si se puede acceder al servidor. Esta lógica se implementa dentro de la función `onFetch` en *service-worker.published.js*.
 
-Si los componentes de Razor de la aplicación dependen de la solicitud de datos a las API de back-end y quiere proporcionar una experiencia de usuario sencilla para las solicitudes erróneas por falta de disponibilidad de la red, implemente lógica en los componentes de la aplicación. Por ejemplo, use solicitudes `try/catch` en torno a `HttpClient`.
+Si los componentes de Razor de la aplicación dependen de la solicitud de datos a las API de back-end y quiere proporcionar una experiencia de usuario sencilla para las solicitudes erróneas por falta de disponibilidad de la red, implemente lógica en los componentes de la aplicación. Por ejemplo, use solicitudes `try/catch` en torno a <xref:System.Net.Http.HttpClient>.
 
 ### <a name="support-server-rendered-pages"></a>Compatibilidad de las páginas representadas por el servidor
 
@@ -276,8 +272,27 @@ Implemente lógica arbitraria para controlar qué subconjunto del contenido del 
 
 ### <a name="interaction-with-authentication"></a>Interacción con la autenticación
 
-Se puede usar la opción de plantilla PWA junto con las opciones de autenticación. Un PWA con capacidad sin conexión también puede admitir la autenticación cuando el usuario tiene conectividad de red.
+La plantilla de PWA se puede usar junto con la autenticación. Una PWA que puede ejecutarse sin conexión también puede admitir la autenticación cuando el usuario tiene conectividad de red.
 
-Cuando un usuario no tiene conectividad de red, no puede autenticarse ni obtener tokens de acceso. De forma predeterminada, si se intenta visitar la página de inicio de sesión sin acceso a la red, se genera un mensaje de "error de red".
+Cuando un usuario no tiene conectividad de red, no puede autenticarse ni obtener tokens de acceso. De forma predeterminada, si se intenta visitar la página de inicio de sesión sin acceso a la red, se genera un mensaje de "error de red". Debe diseñar un flujo de interfaz de usuario que permita al usuario realizar tareas útiles mientras está sin conexión sin tener que autenticarse u obtener tokens de acceso. Como alternativa, puede diseñar la aplicación para que genere un error leve cuando la red no esté disponible. Si la aplicación no se puede diseñar para dar cabida a estos escenarios, probablemente no convenga habilitar la compatibilidad para ejecutarse sin conexión.
 
-Tendrá que diseñar un flujo de interfaz de usuario que permita al usuario hacer cosas útiles mientras está sin conexión sin intentar autenticarse ni obtener tokens de acceso. Como alternativa, puede diseñar la aplicación para que genere un error de forma correcta cuando la red no esté disponible. Si esto no se puede hacer en la aplicación, es posible que no quiera habilitar la compatibilidad sin conexión.
+Cuando una aplicación que está diseñada para usarse tanto con conexión como sin ella vuelve a conectarse:
+
+* Puede que la aplicación necesite aprovisionar un nuevo token de acceso.
+* La aplicación debe detectar si un usuario diferente ha iniciado sesión en el servicio para poder realizar las operaciones en la cuenta del usuario que se efectuaron mientras estaba sin conexión.
+
+Para crear una aplicación PWA sin conexión que interactúe con la autenticación:
+
+* Reemplace <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> por una fábrica que almacene el último usuario que inició sesión y use el usuario almacenado cuando la aplicación esté sin conexión.
+* Ponga en cola las operaciones mientras la aplicación está sin conexión y realícelas cuando la aplicación vuelva a estar en línea.
+* Al cerrar sesión, borre el usuario almacenado.
+
+La aplicación de ejemplo [CarChecker](https://github.com/SteveSandersonMS/CarChecker) demuestra los métodos anteriores. Eche un vistazo a las siguientes partes de la aplicación:
+
+* `OfflineAccountClaimsPrincipalFactory` (*Client/Data/OfflineAccountClaimsPrincipalFactory.cs*)
+* `LocalVehiclesStore` (*Client/Data/LocalVehiclesStore.cs*)
+* Componente `LoginStatus` (*Client/Shared/LoginStatus.razor*)
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+* [Negociación entre orígenes de SignalR para la autenticación](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)

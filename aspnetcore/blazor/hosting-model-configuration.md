@@ -1,11 +1,11 @@
 ---
-title: 'title: "Configuración del modelo de hospedaje de ASP.NET Core Blazor" author: guardrex description: "Aprenda sobre la configuración del modelo de hospedaje de Blazor, incluida la integración de componentes de Razor en aplicaciones Razor Pages y MVC".'
+title: Configuración del modelo de hospedaje de Blazor en ASP.NET Core
 author: guardrex
-description: "monikerRange: '>= aspnetcore-3.1' ms.author: riande ms.custom: mvc ms.date: 05/28/2020 no-loc:"
+description: Obtenga información sobre la configuración del modelo de hospedaje de Blazor, incluida la integración de componentes de Razor en aplicaciones de Razor Pages y MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,30 +13,30 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: e3b8b91a570210e77f307c49f7be21eeab714daa
-ms.sourcegitcommit: 829dca1d5a7dcccbfe90644101c6be1d1c94ac62
+ms.openlocfilehash: 3cef67806ce0e2e045122bdc962e93795be68572
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84355115"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679584"
 ---
-# <a name="aspnet-core-blazor-hosting-model-configuration"></a>"Blazor"
+# <a name="aspnet-core-blazor-hosting-model-configuration"></a>Configuración del modelo de hospedaje de Blazor en ASP.NET Core
 
-"Identity"
+Por [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
 
-"Let's Encrypt"
+En este artículo se describe la configuración del modelo de hospedaje.
 
-## <a name="blazor-webassembly"></a>"Razor"
+## <a name="blazor-webassembly"></a>Blazor WebAssembly
 
-### <a name="environment"></a>"SignalR" uid: blazor/hosting-model-configuration
+### <a name="environment"></a>Entorno
 
-Configuración del modelo de hospedaje de Blazor en ASP.NET Core Por [Daniel Roth](https://github.com/danroth27) y [Luke Latham](https://github.com/guardrex)
+Cuando una aplicación se ejecuta de manera local, el entorno se establece de manera predeterminada en Desarrollo. Cuando la aplicación se publica, el entorno se establece de manera predeterminada en Producción.
 
-En este artículo se describe la configuración del modelo de hospedaje. Blazor WebAssembly Entorno Cuando una aplicación se ejecuta de manera local, el entorno se establece de manera predeterminada en Desarrollo.
+Una aplicación Blazor WebAssembly hospedada selecciona el entorno desde el servidor a través de un middleware que comunica el entorno con el explorador mediante la adición del encabezado `blazor-environment`. El valor del encabezado es el entorno. La aplicación Blazor hospedada y la aplicación de servidor comparten el mismo entorno. Para más información, incluida la manera de configurar el entorno, consulte <xref:fundamentals/environments>.
 
-Cuando la aplicación se publica, el entorno se establece de manera predeterminada en Producción. Una aplicación Blazor WebAssembly hospedada selecciona el entorno desde el servidor a través de un middleware que comunica el entorno con el explorador mediante la adición del encabezado `blazor-environment`.
+En el caso de una aplicación independiente que se ejecuta localmente, el servidor de desarrollo agrega el encabezado `blazor-environment` para especificar el entorno de Desarrollo. Para especificar el entorno para otros entornos de hospedaje, agregue el encabezado `blazor-environment`.
 
-El valor del encabezado es el entorno. La aplicación Blazor hospedada y la aplicación de servidor comparten el mismo entorno.
+En el ejemplo siguiente de IIS, agregue el encabezado personalizado al archivo *web.config* publicado. El archivo *web.config* se encuentra en la carpeta *bin/Release/{PLATAFORMA DE DESTINO}/publish*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,9 +55,9 @@ El valor del encabezado es el entorno. La aplicación Blazor hospedada y la apli
 ```
 
 > [!NOTE]
-> Para más información, incluida la manera de configurar el entorno, consulte <xref:fundamentals/environments>.
+> Si quiere usar un archivo *web.config* personalizado para IIS que no se sobrescriba cuando la aplicación se publique en la carpeta *publish*, consulte <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
 
-En el caso de una aplicación independiente que se ejecuta localmente, el servidor de desarrollo agrega el encabezado `blazor-environment` para especificar el entorno de Desarrollo.
+Para obtener el entorno de la aplicación en un componente, inserte <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> y lea la propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>:
 
 ```razor
 @page "/"
@@ -69,7 +69,7 @@ En el caso de una aplicación independiente que se ejecuta localmente, el servid
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
-Para especificar el entorno para otros entornos de hospedaje, agregue el encabezado `blazor-environment`.
+Durante el inicio, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> expone el <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> a través de la propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment>, lo que permite que los desarrolladores tengan una lógica específica del entorno en el código:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -78,7 +78,7 @@ if (builder.HostEnvironment.Environment == "Custom")
 };
 ```
 
-En el ejemplo siguiente de IIS, agregue el encabezado personalizado al archivo *web.config* publicado.
+Los métodos de extensión útiles siguientes permiten comprobar el entorno actual para Desarrollo, Producción, Ensayo y nombres de entornos personalizados:
 
 * `IsDevelopment()`
 * `IsProduction()`
@@ -97,25 +97,25 @@ if (builder.HostEnvironment.IsEnvironment("Custom"))
 };
 ```
 
-El archivo *web.config* se encuentra en la carpeta *bin/Release/{PLATAFORMA DE DESTINO}/publish*:
+La propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> se puede usar durante el inicio cuando el servicio <xref:Microsoft.AspNetCore.Components.NavigationManager> no está disponible.
 
-### <a name="configuration"></a>Si quiere usar un archivo *web.config* personalizado para IIS que no se sobrescriba cuando la aplicación se publique en la carpeta *publish*, consulte <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
+### <a name="configuration"></a>Configuración
 
-Para obtener el entorno de la aplicación en un componente, inserte <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> y lea la propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>:
+Blazor WebAssembly carga la configuración desde:
 
-* Durante el inicio, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> expone el <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> a través de la propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment>, lo que permite que los desarrolladores tengan una lógica específica del entorno en el código:
-  * Los métodos de extensión útiles siguientes permiten comprobar el entorno actual para Desarrollo, Producción, Ensayo y nombres de entornos personalizados:
-  * La propiedad <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> se puede usar durante el inicio cuando el servicio <xref:Microsoft.AspNetCore.Components.NavigationManager> no está disponible.
-* Configuración Blazor WebAssembly carga la configuración desde: Archivos de configuración de aplicaciones de forma predeterminada:
+* Archivos de configuración de aplicaciones de forma predeterminada:
+  * *wwwroot/appsettings.json*
+  * *wwwroot/appsettings.{ENTORNO}.json*
+* Otros [proveedores de configuración](xref:fundamentals/configuration/index) registrados por la aplicación No todos los proveedores son adecuados para las aplicaciones Blazor WebAssembly. En [Explicación de los proveedores de configuración de Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134), se explican los proveedores que se admiten en Blazor WebAssembly.
 
 > [!WARNING]
-> *wwwroot/appsettings.json* *wwwroot/appsettings.{ENTORNO}.json*
+> La configuración de una aplicación Blazor WebAssembly es visible para los demás usuarios. **No almacene credenciales ni secretos de aplicación en la configuración.**
 
-Otros [proveedores de configuración](xref:fundamentals/configuration/index) registrados por la aplicación
+Para más información sobre los proveedores de configuración, vea <xref:fundamentals/configuration/index>.
 
-#### <a name="app-settings-configuration"></a>No todos los proveedores son adecuados para las aplicaciones Blazor WebAssembly.
+#### <a name="app-settings-configuration"></a>Configuración de aplicaciones
 
-En [Explicación de los proveedores de configuración de Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134), se explican los proveedores que se admiten en Blazor WebAssembly.
+*wwwroot/appsettings.json*:
 
 ```json
 {
@@ -123,7 +123,7 @@ En [Explicación de los proveedores de configuración de Blazor WASM (dotnet/Asp
 }
 ```
 
-La configuración de una aplicación Blazor WebAssembly es visible para los demás usuarios.
+Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> en un componente para acceder a los datos de configuración:
 
 ```razor
 @page "/"
@@ -135,11 +135,11 @@ La configuración de una aplicación Blazor WebAssembly es visible para los dem�
 <p>Message: @Configuration["message"]</p>
 ```
 
-#### <a name="provider-configuration"></a>**No almacene credenciales ni secretos de aplicación en la configuración.**
+#### <a name="provider-configuration"></a>Configuración de proveedor
 
-Para más información sobre los proveedores de configuración, vea <xref:fundamentals/configuration/index>.
+En el ejemplo siguiente se usa <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> para proporcionar configuración adicional:
 
-Configuración de aplicaciones
+`Program.Main`:
 
 ```csharp
 using Microsoft.Extensions.Configuration.Memory;
@@ -163,7 +163,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 builder.Configuration.Add(memoryConfig);
 ```
 
-*wwwroot/appsettings.json*:
+Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> en un componente para acceder a los datos de configuración:
 
 ```razor
 @page "/"
@@ -188,9 +188,9 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> en un componente para acceder a los datos de configuración: Configuración de proveedor
+Para leer otros archivos de configuración de la carpeta *wwwroot* en la configuración, use <xref:System.Net.Http.HttpClient> para obtener el contenido del archivo. Al usar este método, el registro del servicio <xref:System.Net.Http.HttpClient> existente puede usar el cliente local creado para leer el archivo, como se muestra en el ejemplo siguiente:
 
-En el ejemplo siguiente se usa <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> para proporcionar configuración adicional:
+*wwwroot/cars.json*:
 
 ```json
 {
@@ -218,9 +218,9 @@ using var stream = await response.Content.ReadAsStreamAsync();
 builder.Configuration.AddJsonStream(stream);
 ```
 
-#### <a name="authentication-configuration"></a>Inserte una instancia <xref:Microsoft.Extensions.Configuration.IConfiguration> en un componente para acceder a los datos de configuración:
+#### <a name="authentication-configuration"></a>Configuración de autenticación
 
-Para leer otros archivos de configuración de la carpeta *wwwroot* en la configuración, use <xref:System.Net.Http.HttpClient> para obtener el contenido del archivo.
+*wwwroot/appsettings.json*:
 
 ```json
 {
@@ -231,22 +231,22 @@ Para leer otros archivos de configuración de la carpeta *wwwroot* en la configu
 }
 ```
 
-Al usar este método, el registro del servicio <xref:System.Net.Http.HttpClient> existente puede usar el cliente local creado para leer el archivo, como se muestra en el ejemplo siguiente:
+`Program.Main`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
     builder.Configuration.Bind("Local", options.ProviderOptions));
 ```
 
-#### <a name="logging-configuration"></a>*wwwroot/cars.json*:
+#### <a name="logging-configuration"></a>Configuración del registro
 
-`Program.Main`:
+Agregue una referencia de paquete para [Microsoft.Extensions.Logging.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-Configuración de autenticación
+*wwwroot/appsettings.json*:
 
 ```json
 {
@@ -260,7 +260,7 @@ Configuración de autenticación
 }
 ```
 
-*wwwroot/appsettings.json*:
+`Program.Main`:
 
 ```csharp
 using Microsoft.Extensions.Logging;
@@ -271,34 +271,65 @@ builder.Logging.AddConfiguration(
     builder.Configuration.GetSection("Logging"));
 ```
 
-#### <a name="host-builder-configuration"></a>`Program.Main`:
+#### <a name="host-builder-configuration"></a>Configuración del generador de host
 
-Configuración del registro
+`Program.Main`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
 ```
 
-#### <a name="cached-configuration"></a>Agregue una referencia de paquete para [Microsoft.Extensions.Logging.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
+#### <a name="cached-configuration"></a>Configuración almacenada en caché
 
-*wwwroot/appsettings.json*: `Program.Main`: Configuración del generador de host
+Los archivos de configuración se almacenan en caché para usarlos sin conexión. Con [Aplicaciones web progresivas (PWA)](xref:blazor/progressive-web-app), solo puede actualizar los archivos de configuración al crear una implementación nueva. Editar los archivos de configuración entre las implementaciones no tiene ningún efecto, debido a lo siguiente:
 
-* `Program.Main`:
-* Configuración almacenada en caché
+* Los usuarios tienen versiones en caché de los archivos que siguen usando.
+* Los archivos *service-worker.js* y *service-worker-assets.js* de PWA se deben recompilar en la compilación, lo que indica a la aplicación en la próxima visita en línea del usuario que la aplicación se volvió a implementar.
 
-Los archivos de configuración se almacenan en caché para usarlos sin conexión.
+Para más información sobre cómo PWA administra las actualizaciones en segundo plano, consulte <xref:blazor/progressive-web-app#background-updates>.
 
-### <a name="logging"></a>Con [Aplicaciones web progresivas (PWA)](xref:blazor/progressive-web-app), solo puede actualizar los archivos de configuración al crear una implementación nueva.
-
-Editar los archivos de configuración entre las implementaciones no tiene ningún efecto, debido a lo siguiente:
-
-## <a name="blazor-server"></a>Los usuarios tienen versiones en caché de los archivos que siguen usando.
-
-### <a name="reflect-the-connection-state-in-the-ui"></a>Los archivos *service-worker.js* y *service-worker-assets.js* de PWA se deben recompilar en la compilación, lo que indica a la aplicación en la próxima visita en línea del usuario que la aplicación se volvió a implementar.
-
-Para más información sobre cómo PWA administra las actualizaciones en segundo plano, consulte <xref:blazor/progressive-web-app#background-updates>. Registro
+### <a name="logging"></a>Registro
 
 Para información sobre la compatibilidad con el registro de Blazor WebAssembly, consulte <xref:fundamentals/logging/index#create-logs-in-blazor>.
+
+### <a name="signalr-cross-origin-negotiation-for-authentication"></a>Negociación entre orígenes de SignalR para la autenticación
+
+Para configurar el cliente subyacente de SignalR para que envíe credenciales, como cookies o encabezados de autenticación HTTP:
+
+* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> para establecer <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> en solicitudes de [fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) entre orígenes:
+
+  ```csharp
+  public class IncludeRequestCredentialsMessagHandler : DelegatingHandler
+  {
+      protected override Task<HttpResponseMessage> SendAsync(
+          HttpRequestMessage request, CancellationToken cancellationToken)
+      {
+          request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+          return base.SendAsync(request, cancellationToken);
+      }
+  }
+  ```
+
+* Asigne <xref:System.Net.Http.HttpMessageHandler> a la opción <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory>:
+
+  ```csharp
+  var client = new HubConnectionBuilder()
+      .WithUrl(new Uri("http://signalr.example.com"), options =>
+      {
+          options.HttpMessageHandlerFactory = innerHandler => 
+              new IncludeRequestCredentialsMessagHandler { InnerHandler = innerHandler };
+      }).Build();
+  ```
+
+Para obtener más información, vea <xref:signalr/configuration#configure-additional-options>.
+
+## <a name="blazor-server"></a>Servidor de Blazor
+
+### <a name="reflect-the-connection-state-in-the-ui"></a>Reflejo del estado de la conexión en la interfaz de usuario
+
+Cuando el cliente detecta que se ha perdido la conexión, se muestra al usuario una interfaz de usuario predeterminada mientras el cliente intenta volver a conectarse. Si se produce un error en la reconexión, se proporciona al usuario la opción de volver a intentarlo.
+
+Para personalizar la interfaz de usuario, defina un elemento con un valor de `id` de `components-reconnect-modal` en el elemento `<body>` de la página de *_Host.cshtml* Razor:
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -306,18 +337,18 @@ Para información sobre la compatibilidad con el registro de Blazor WebAssembly,
 </div>
 ```
 
-Servidor de Blazor
+En la tabla siguiente se describen las clases de CSS aplicadas al elemento `components-reconnect-modal`.
 
-| Reflejo del estado de la conexión en la interfaz de usuario                       | Cuando el cliente detecta que se ha perdido la conexión, se muestra al usuario una interfaz de usuario predeterminada mientras el cliente intenta volver a conectarse. |
+| Clase de CSS                       | Indica&hellip; |
 | ------------------------------- | ----------------- |
-| `components-reconnect-show`     | Si se produce un error en la reconexión, se proporciona al usuario la opción de volver a intentarlo. Para personalizar la interfaz de usuario, defina un elemento con un valor de `id` de `components-reconnect-modal` en el elemento `<body>` de la página de *_Host.cshtml* Razor: En la tabla siguiente se describen las clases de CSS aplicadas al elemento `components-reconnect-modal`. |
-| `components-reconnect-hide`     | Clase de CSS Indica&hellip; |
-| `components-reconnect-failed`   | Una conexión perdida. El cliente intenta volver a conectarse. |
-| `components-reconnect-rejected` | Se muestra el modal. Se restablece una conexión activa con el servidor. Se oculta el modal. Error de reconexión, probablemente debido a un error de la red.<ul><li>Para intentar la reconexión, llame a `window.Blazor.reconnect()`.</li><li>Reconexión rechazada. Se ha alcanzado el servidor pero se ha rechazado la conexión y se ha perdido el estado del usuario en el servidor.</li><li>Para volver a cargar la aplicación, llame a `location.reload()`.</li></ul> |
+| `components-reconnect-show`     | Una conexión perdida. El cliente intenta volver a conectarse. Se muestra el modal. |
+| `components-reconnect-hide`     | Se restablece una conexión activa con el servidor. Se oculta el modal. |
+| `components-reconnect-failed`   | Error de reconexión, probablemente debido a un error de la red. Para intentar la reconexión, llame a `window.Blazor.reconnect()`. |
+| `components-reconnect-rejected` | Reconexión rechazada. Se ha alcanzado el servidor pero se ha rechazado la conexión y se ha perdido el estado del usuario en el servidor. Para volver a cargar la aplicación, llame a `location.reload()`. Este estado de conexión se puede producir cuando:<ul><li>Se produce un bloqueo en el circuito del lado servidor.</li><li>El cliente se desconecta el tiempo suficiente para que el servidor quite el estado del usuario. Se eliminan las instancias de los componentes con las que el usuario interactúa.</li><li>El servidor se reinicia o se recicla el proceso de trabajo de la aplicación.</li></ul> |
 
-### <a name="render-mode"></a>Este estado de conexión se puede producir cuando:
+### <a name="render-mode"></a>Modo de representación
 
-Se produce un bloqueo en el circuito del lado servidor. El cliente se desconecta el tiempo suficiente para que el servidor quite el estado del usuario.
+Las aplicaciones Blazor Server se configuran de forma predeterminada para realizar una representación previa de la interfaz de usuario en el servidor antes de que se establezca la conexión del cliente con él. Esto se configura en la página *_Host.cshtml* Razor:
 
 ```cshtml
 <body>
@@ -329,27 +360,27 @@ Se produce un bloqueo en el circuito del lado servidor. El cliente se desconecta
 </body>
 ```
 
-Se eliminan las instancias de los componentes con las que el usuario interactúa.
+<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configura si el componente:
 
-* El servidor se reinicia o se recicla el proceso de trabajo de la aplicación.
-* Modo de representación
+* Se representa previamente en la página.
+* Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario.
 
-| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Las aplicaciones Blazor Server se configuran de forma predeterminada para realizar una representación previa de la interfaz de usuario en el servidor antes de que se establezca la conexión del cliente con él. |
+| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Descripción |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esto se configura en la página *_Host.cshtml* Razor: <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configura si el componente: |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Se representa previamente en la página. Se representa como HTML estático en la página o si incluye la información necesaria para arrancar una aplicación Blazor desde el agente de usuario. Descripción |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente en código HTML estático e incluye un marcador para una aplicación Blazor Server. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Representa el componente en código HTML estático e incluye un marcador para una aplicación Blazor Server. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Representa un marcador para una aplicación Blazor Server. La salida del componente no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Representa el componente en HTML estático. |
 
-Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor.
+No se admite la representación de componentes de servidor desde una página HTML estática.
 
-### <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Representa un marcador para una aplicación Blazor Server.
+### <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Configuración del cliente de SignalR para aplicaciones de servidor Blazor
 
-La salida del componente no está incluida. Cuando se inicia el agente de usuario, este marcador se usa para arrancar una aplicación Blazor.
+En ocasiones tendrá que configurar el cliente de SignalR que usan las aplicaciones de servidor Blazor. Por ejemplo, es posible que quiera configurar el registro en el cliente de SignalR para diagnosticar un problema de conexión.
 
-Representa el componente en HTML estático.
+Para configurar el cliente de SignalR en el archivo *Pages/_Host.cshtml*:
 
-* No se admite la representación de componentes de servidor desde una página HTML estática.
-* Configuración del cliente de SignalR para aplicaciones de servidor Blazor
+* Agregue un atributo `autostart="false"` a la etiqueta `<script>` para el script `blazor.server.js`.
+* Llame a `Blazor.start` y pase un objeto de configuración que especifique el generador de SignalR.
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
@@ -362,6 +393,6 @@ Representa el componente en HTML estático.
 </script>
 ```
 
-### <a name="logging"></a>En ocasiones tendrá que configurar el cliente de SignalR que usan las aplicaciones de servidor Blazor.
+### <a name="logging"></a>Registro
 
-Por ejemplo, es posible que quiera configurar el registro en el cliente de SignalR para diagnosticar un problema de conexión.
+Para más información sobre la compatibilidad de registro de servidor de Blazor, vea <xref:fundamentals/logging/index#create-logs-in-blazor>.

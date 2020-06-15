@@ -1,7 +1,7 @@
 ---
-title: Agregar búsqueda a una aplicación de ASP.NET Core MVC
+title: Parte 7. Adición de búsqueda a una aplicación de ASP.NET Core MVC
 author: rick-anderson
-description: Se muestra cómo agregar la búsqueda a una aplicación ASP.NET Core MVC básica
+description: Parte 7 de la serie de tutoriales sobre ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: 00213f9ffab13f23099e60240fa236bd1b41427f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 83bd904f90190456d42453653d3420c4c572fe8c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775341"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652763"
 ---
-# <a name="add-search-to-an-aspnet-core-mvc-app"></a>Agregar búsqueda a una aplicación de ASP.NET Core MVC
+# <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Parte 7. Adición de búsqueda a una aplicación de ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 

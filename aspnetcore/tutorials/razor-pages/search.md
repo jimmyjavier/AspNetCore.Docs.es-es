@@ -1,7 +1,7 @@
 ---
-title: Incorporación de búsqueda a Razor Pages de ASP.NET Core
+title: Parte 6. Adición de búsqueda a Razor Pages de ASP.NET Core
 author: rick-anderson
-description: Aquí se muestra cómo agregar funcionalidad de búsqueda a Razor Pages de ASP.NET Core
+description: Parte 6 de la serie de tutoriales sobre Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8c5fba8596f401f1232e8dcb4659041c2a413151
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775003"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652562"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Incorporación de búsqueda a Razor Pages de ASP.NET Core
+# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>Parte 6. Adición de búsqueda a Razor Pages de ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/class-libraries
-ms.openlocfilehash: 57f3494fd825b6549c40f56962da2c8076e8fd51
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b7819404066267003a340629979f2339c66724b0
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767101"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452023"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>Bibliotecas de clases de componentes de Razor de ASP.NET Core
 
@@ -34,13 +34,13 @@ Del mismo modo que los componentes son tipos normales de .NET, los componentes p
 
 ## <a name="create-an-rcl"></a>Creación de una RCL
 
-Siga las instrucciones del artículo <xref:blazor/get-started> para configurar su entorno para Blazor.
+Siga las instrucciones del artículo <xref:blazor/get-started> para configurar el entorno para Blazor.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Cree un nuevo proyecto.
-1. Seleccione **Biblioteca de clases de Razor**. Seleccione **Siguiente**.
-1. En el cuadro de diálogo **Crear una biblioteca de clases de Razor**, seleccione **Crear**.
+1. Seleccione **Biblioteca de clases de Razor** . Seleccione **Siguiente**.
+1. En el cuadro de diálogo **Crear una biblioteca de clases de Razor** , seleccione **Crear**.
 1. Proporcione un nombre para el proyecto en el campo **Nombre del proyecto** o acepte el predeterminado. En los ejemplos de este tema se usa el nombre de proyecto `MyComponentLib1`. Seleccione **Crear**.
 1. Agregue la RCL a una solución:
    1. Haga clic con el botón derecho en la solución. Seleccione **Agregar** > **Proyecto existente**.
@@ -89,7 +89,7 @@ Siga las instrucciones del artículo <xref:blazor/get-started> para configurar s
 Para consumir los componentes definidos en una biblioteca de otro proyecto, siga cualquiera de los métodos siguientes:
 
 * Use el nombre de tipo completo con el espacio de nombres.
-* Use la directiva [\@using](xref:mvc/views/razor#using) de Razor. Los componentes individuales se pueden agregar por nombre.
+* Use la directiva [`@using`](xref:mvc/views/razor#using) de Razor. Los componentes individuales se pueden agregar por nombre.
 
 En los ejemplos siguientes, `MyComponentLib1` es una biblioteca de componentes que contiene un componente `SalesReport`.
 

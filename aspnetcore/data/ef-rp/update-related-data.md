@@ -1,18 +1,24 @@
 ---
-title: 'Páginas de Razor con EF Core en ASP.NET Core: Actualización de datos relacionados (7 de 8)'
+title: 'Parte 7. Razor Pages con EF Core en ASP.NET Core: Actualización de datos relacionados'
 author: rick-anderson
-description: En este tutorial, se actualizan datos relacionados mediante la actualización de campos de clave externa y propiedades de navegación.
+description: Parte 7 de la serie de tutoriales sobre Razor Pages y Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d86e57d50c414e4baabd00ca9675aa66266342ca
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645461"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652604"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas de Razor con EF Core en ASP.NET Core: Actualización de datos relacionados (7 de 8)
+# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7. Razor Pages con EF Core en ASP.NET Core: Actualización de datos relacionados
 
 Por [Tom Dykstra](https://github.com/tdykstra) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -55,7 +61,7 @@ El código anterior:
 
 * Deriva de `DepartmentNamePageModel`.
 * Usa `TryUpdateModelAsync` para evitar la [publicación excesiva](xref:data/ef-rp/crud#overposting).
-* Quita `ViewData["DepartmentID"]`. `DepartmentNameSL` de la clase base es un modelo fuertemente tipado que usará la página de Razor. Los modelos fuertemente tipados son preferibles a los de establecimiento flexible de tipos. Para obtener más información, vea [Establecimiento flexible de datos (ViewData y ViewBag)](xref:mvc/views/overview#VD_VB).
+* Quita `ViewData["DepartmentID"]`. `DepartmentNameSL` de la clase base es un modelo fuertemente tipado que usa la página de Razor. Los modelos fuertemente tipados son preferibles a los de establecimiento flexible de tipos. Para obtener más información, vea [Establecimiento flexible de datos (ViewData y ViewBag)](xref:mvc/views/overview#VD_VB).
 
 ### <a name="update-the-course-create-razor-page"></a>Actualización de la página de Razor Course Create
 
@@ -66,11 +72,11 @@ Actualice *Pages/Courses/Create.cshtml* con el código siguiente:
 En el código anterior se realizan los cambios siguientes:
 
 * Se cambia el título de **DepartmentID** a **Department**.
-* Reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
+* Se reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
 * Se agrega la opción "Select Department" (Seleccionar departamento). Este cambio representa "Select Department" (Seleccionar departamento) en la lista desplegable cuando todavía no se ha seleccionado ningún departamento, en lugar del primer departamento.
 * Se agrega un mensaje de validación cuando el departamento no está seleccionado.
 
-La página de Razor usa la [Asistente de etiquetas de selección](xref:mvc/views/working-with-forms#the-select-tag-helper):
+La página de Razor usa el [Asistente de etiquetas de selección](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -94,7 +100,7 @@ En el código anterior se realizan los cambios siguientes:
 
 * Se muestra el identificador del curso. Por lo general no se muestra la clave principal (PK) de una entidad. Las PK normalmente no tienen sentido para los usuarios. En este caso, la clave principal es el número de curso.
 * Se cambia el título para la lista desplegable Department de **DepartmentID** a **Department**.
-* Reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
+* Se reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
 
 La página contiene un campo oculto (`<input type="hidden">`) para el número de curso. Agregar un asistente de etiquetas `<label>` con `asp-for="Course.CourseID"` no elimina la necesidad del campo oculto. Se requiere `<input type="hidden">` para que el número de curso se incluya en los datos enviados cuando el usuario hace clic en **Guardar**.
 
@@ -150,7 +156,7 @@ Cree la clase base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 `InstructorCoursesPageModel` es la clase base que se usará para los modelos de página de Edit y Create. `PopulateAssignedCourseData` lee todas las entidades `Course` para rellenar `AssignedCourseDataList`. Para cada curso, el código establece el `CourseID`, el título y si el instructor está asignado o no al curso. Se usa una instancia de [HashSet](/dotnet/api/system.collections.generic.hashset-1) para realizar búsquedas eficaces.
 
-Como la página de Razor no tiene una colección de entidades Course, el enlazador de modelos no puede actualizar de forma automática la propiedad de navegación `CourseAssignments`. En lugar de usar el enlazador de modelos para actualizar la propiedad de navegación `CourseAssignments`, lo hace en el nuevo método `UpdateInstructorCourses`. Por lo tanto, tendrá que excluir la propiedad `CourseAssignments` del enlace de modelos. Esto no requiere ningún cambio en el código que llama a `TryUpdateModel` porque está usando la sobrecarga de la creación de listas de permitidos y `CourseAssignments` no se encuentra en la lista de inclusión.
+Puesto que la página de Razor no tiene una colección de entidades Course, el enlazador de modelos no puede actualizar automáticamente la propiedad de navegación `CourseAssignments`. En lugar de usar el enlazador de modelos para actualizar la propiedad de navegación `CourseAssignments`, lo hace en el nuevo método `UpdateInstructorCourses`. Por lo tanto, tendrá que excluir la propiedad `CourseAssignments` del enlace de modelos. Esto no requiere ningún cambio en el código que llama a `TryUpdateModel` porque está usando la sobrecarga de la creación de listas de permitidos y `CourseAssignments` no se encuentra en la lista de inclusión.
 
 Si no se ha seleccionado ninguna casilla, el código en `UpdateInstructorCourses` inicializa la propiedad de navegación `CourseAssignments` con una colección vacía y devuelve:
 
@@ -205,7 +211,7 @@ Ejecute la aplicación y pruebe la página de edición de instructores actualiza
 
 ### <a name="update-the-instructor-create-page"></a>Actualización de la página de creación de instructores
 
-Actualice el modelo de la página de creación de instructores y la página de Razor con código similar al de la página Edit:
+Actualice el modelo de la página Instructor Create y la página de Razor con código similar al de la página Edit:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -283,11 +289,11 @@ Actualice *Pages/Courses/Create.cshtml* con el código siguiente:
 En el marcado anterior se realizan los cambios siguientes:
 
 * Se cambia el título de **DepartmentID** a **Department**.
-* Reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
+* Se reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
 * Se agrega la opción "Select Department" (Seleccionar departamento). Este cambio representa "Select Department" en lugar del primer departamento.
 * Se agrega un mensaje de validación cuando el departamento no está seleccionado.
 
-La página de Razor usa la [Asistente de etiquetas de selección](xref:mvc/views/working-with-forms#the-select-tag-helper):
+La página de Razor usa el [Asistente de etiquetas de selección](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -309,7 +315,7 @@ En el marcado anterior se realizan los cambios siguientes:
 
 * Se muestra el identificador del curso. Por lo general no se muestra la clave principal (PK) de una entidad. Las PK normalmente no tienen sentido para los usuarios. En este caso, la clave principal es el número de curso.
 * Se cambia el título de **DepartmentID** a **Department**.
-* Reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
+* Se reemplaza `"ViewBag.DepartmentID"` con `DepartmentNameSL` (de la clase base).
 
 La página contiene un campo oculto (`<input type="hidden">`) para el número de curso. Agregar un asistente de etiquetas `<label>` con `asp-for="Course.CourseID"` no elimina la necesidad del campo oculto. Se requiere `<input type="hidden">` para que el número de curso se incluya en los datos enviados cuando el usuario hace clic en **Guardar**.
 
@@ -402,13 +408,13 @@ Actualice el modelo de página de edición de instructores con el código siguie
 
 El código anterior controla los cambios de asignación de oficina.
 
-Actualice la vista de Razor del instructor:
+Actualice la vista de Razor Instructor:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
 <a id="notepad"></a>
 > [!NOTE]
-> Al pegar el código en Visual Studio, se cambian los saltos de línea de tal forma que el código se interrumpe. Presione Ctrl+Z una vez para deshacer el formato automático. Ctrl+Z corrige los saltos de línea para que se muestren como se ven aquí. No es necesario que la sangría sea perfecta, pero las líneas `@:</tr><tr>`, `@:<td>`, `@:</td>` y `@:</tr>` deben estar en una única línea tal y como se muestra. Con el bloque de código nuevo seleccionado, presione tres veces la tecla TAB para alinearlo con el código existente. Puede votar o revisar el estado de este error [con este vínculo](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
+> Al pegar el código en Visual Studio, se cambian los saltos de línea de tal forma que el código se interrumpe. Presione Ctrl+Z una vez para deshacer el formato automático. Ctrl+Z corrige los saltos de línea para que se muestren como se ven aquí. No es necesario que la sangría sea perfecta, pero las líneas `@:</tr><tr>`, `@:<td>`, `@:</td>` y `@:</tr>` deben estar en una única línea tal y como se muestra. Con el bloque de código nuevo seleccionado, presione tres veces la tecla Tab para alinearlo con el código existente. Puede votar o revisar el estado de este error [con este vínculo](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
 
 En el código anterior se crea una tabla HTML que tiene tres columnas. Cada columna tiene una casilla y una leyenda que contiene el número y el título del curso. Todas las casillas tienen el mismo nombre ("selectedCourses"). Al usar el mismo nombre se informa al enlazador de modelos que las trate como un grupo. El atributo de valor de cada casilla se establece en `CourseID`. Cuando se envía la página, el enlazador de modelos pasa una matriz formada solo por los valores `CourseID` de las casillas activadas.
 
@@ -426,7 +432,7 @@ Actualice el modelo de página de creación de instructores con el código sigui
 
 El código anterior es similar al de *Pages/Instructors/Edit.cshtml.cs*.
 
-Actualice la página de Razor de creación de instructores con el marcado siguiente:
+Actualice la página de Razor Instructor Create con el marcado siguiente:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 

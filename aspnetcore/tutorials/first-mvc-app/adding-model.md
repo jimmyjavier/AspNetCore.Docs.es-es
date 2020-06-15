@@ -1,7 +1,7 @@
 ---
-title: Agregar un modelo a una aplicación de ASP.NET Core MVC
+title: Parte 4. Adición de un modelo a una aplicación de ASP.NET Core MVC
 author: rick-anderson
-description: Agregue un modelo a una aplicación sencilla de ASP.NET Core.
+description: Parte 4 de la serie de tutoriales sobre ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 1347659ee25e2b85b0a479f6bbcc5eb1a956fab2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776765"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652387"
 ---
-# <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Agregar un modelo a una aplicación de ASP.NET Core MVC
+# <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4. Adición de un modelo a una aplicación de ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) y [Tom Dykstra](https://github.com/tdykstra)
 
@@ -113,13 +113,13 @@ Agregue un archivo *Data/MvcMovieContext.cs* con el código siguiente:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-En el código anterior se crea una propiedad [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para el conjunto de entidades. En la terminología de Entity Framework, un conjunto de entidades suele corresponder a una tabla de base de datos. Una entidad se corresponde con una fila de la tabla.
+En el código anterior se crea una propiedad [DbSet/\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para el conjunto de entidades. En la terminología de Entity Framework, un conjunto de entidades suele corresponder a una tabla de base de datos. Una entidad se corresponde con una fila de la tabla.
 
 <a name="reg"></a>
 
 ## <a name="register-the-database-context"></a>Registro del contexto de base de datos
 
-ASP.NET Core integra la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se deben registrar con la inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como las páginas de Razor) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial. En esta sección, se registra el contexto de base de datos con el contenedor de inserción de dependencias.
+ASP.NET Core integra la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se deben registrar con la inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como Razor Pages) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial. En esta sección, se registra el contexto de base de datos con el contenedor de inserción de dependencias.
 
 Agregue las instrucciones `using` siguientes en la parte superior de *Startup.cs*:
 
@@ -188,7 +188,7 @@ Rellene el cuadro de diálogo **Agregar controlador**:
 Visual Studio crea:
 
 * Un controlador de películas (*Controllers/MoviesController.cs*)
-* Archivos de vistas Razor para las páginas de creación, eliminación, detalles, edición e índice (*Views/Movies/\*.cshtml*)
+* Archivos de vistas de Razor para las páginas de creación, eliminación, detalles, edición e índice (*Views/Movies/\*.cshtml*)
 
 La creación automática de estos archivos se conoce como *scaffolding*.
 
@@ -466,7 +466,7 @@ Visual Studio crea:
 
 * Una [clase de contexto de base de datos](xref:data/ef-mvc/intro#create-the-database-context) de Entity Framework Core (*Data/MvcMovieContext.cs*)
 * Un controlador de películas (*Controllers/MoviesController.cs*)
-* Archivos de vistas Razor para las páginas de creación, eliminación, detalles, edición e índice (*Views/Movies/\*.cshtml*)
+* Archivos de vistas de Razor para las páginas de creación, eliminación, detalles, edición e índice (*Views/Movies/\*.cshtml*)
 
 La creación automática del contexto de base de datos y de vistas y métodos de acción [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (crear, leer, actualizar y eliminar) se conoce como *scaffolding*.
 
@@ -585,7 +585,7 @@ El esquema de la base de datos se basa en el modelo especificado en la clase `Mv
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar el contexto registrado con la inserción de dependencias
 
-ASP.NET Core integra la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como las páginas de Razor) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
+ASP.NET Core integra la [inserción de dependencias (DI)](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como Razor Pages) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -599,7 +599,7 @@ El elemento `MvcMovieContext` coordina la funcionalidad de EF Core (creación, l
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Data/MvcMovieContext.cs)]
 
-En el código anterior se crea una propiedad [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para el conjunto de entidades. En la terminología de Entity Framework, un conjunto de entidades suele corresponder a una tabla de base de datos. Una entidad se corresponde con una fila de la tabla.
+En el código anterior se crea una propiedad [DbSet/\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para el conjunto de entidades. En la terminología de Entity Framework, un conjunto de entidades suele corresponder a una tabla de base de datos. Una entidad se corresponde con una fila de la tabla.
 
 El nombre de la cadena de conexión se pasa al contexto mediante una llamada a un método en un objeto [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). Para el desarrollo local, el [sistema de configuración de ASP.NET Core](xref:fundamentals/configuration/index) lee la cadena de conexión desde el archivo *appsettings.json*.
 

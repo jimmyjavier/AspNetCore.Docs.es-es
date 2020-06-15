@@ -1,12 +1,24 @@
 ---
-title: "Globalización y localización de ASP.NET Core Blazor" author: description: "Aprenda a poner los componentes de Razor a disposición de los usuarios de diferentes referencias culturales e idiomas".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- "Blazor"
-- "Identity"
-- "Let's Encrypt"
-- "Razor"
-- 'SignalR' uid: 
-
+title: Globalización y localización de Blazor de ASP.NET Core
+author: guardrex
+description: Aprenda a poner los componentes de Razor a disposición de los usuarios de diferentes referencias culturales e idiomas.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/globalization-localization
+ms.openlocfilehash: 94faaa57cc6dd3df9e4a7c3c090fe01527399658
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419741"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>Globalización y localización de Blazor de ASP.NET Core
 
@@ -74,34 +86,39 @@ Para obtener más información y ejemplos, vea <xref:fundamentals/localization>.
 
 #### <a name="cookies"></a>Cookies
 
-Una cookie de referencia cultural de localización puede conservar la referencia cultural del usuario. La cookie se crea a través del método `OnGet` de la página host de la aplicación (*Pages/Host.cshtml.cs*). El middleware de localización lee la cookie en solicitudes posteriores para establecer la referencia cultural del usuario. 
+Una cookie de referencia cultural de localización puede conservar la referencia cultural del usuario. El middleware de localización lee la cookie en solicitudes posteriores para establecer la referencia cultural del usuario. 
 
 El uso de una cookie garantiza que la conexión WebSocket puede propagar correctamente la referencia cultural. Si los esquemas de localización se basan en la ruta de acceso URL o en la cadena de consulta, puede que el esquema no funcione con WebSockets, por lo que no se podrá conservar la referencia cultural. Por lo tanto, el uso de una cookie de referencia cultural de localización es el método recomendado.
 
 Se puede usar cualquier técnica para asignar una referencia cultural si la referencia cultural se conserva en una cookie de localización. Si la aplicación ya tiene un esquema de localización establecido para ASP.NET Core del lado servidor, siga usando la infraestructura de localización existente de la aplicación y establezca la cookie de cultura de localización en el esquema de la aplicación.
 
-En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree un archivo *Pages/_Host.cshtml.cs* con el contenido siguiente en la aplicación de Blazor Server:
+En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree una expresión de Razor en el archivo *P*, justo dentro de la etiqueta de apertura `<body>`:
 
-```csharp
-public class HostModel : PageModel
-{
-    public void OnGet()
-    {
-        HttpContext.Response.Cookies.Append(
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+<body>
+    @{
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
                     CultureInfo.CurrentCulture,
                     CultureInfo.CurrentUICulture)));
     }
-}
+
+    ...
+</body>
 ```
 
 La aplicación controla la localización en la siguiente secuencia de eventos:
 
 1. El explorador envía una solicitud HTTP inicial a la aplicación.
 1. El middleware de localización asigna la referencia cultural.
-1. El método `OnGet` de *_Host.cshtml.cs* conserva la referencia cultural en una cookie como parte de la respuesta.
+1. La expresión Razor de la página `_Host` ( *_Host.cshtml*) conserva la referencia cultural en una cookie como parte de la respuesta.
 1. El explorador abre una conexión WebSocket para crear una sesión de servidor Blazor interactiva.
 1. El middleware de localización lee la cookie y asigna la referencia cultural.
 1. La sesión del servidor Blazor comienza con la referencia cultural correcta.
@@ -135,6 +152,25 @@ public class CultureController : Controller
 
 > [!WARNING]
 > Use el resultado de la acción <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> para evitar ataques de redireccionamiento abierto. Para obtener más información, vea <xref:security/preventing-open-redirects>.
+
+Si la aplicación no está configurada para procesar acciones del controlador:
+
+* Agregue servicios de MVC a la colección de servicios en `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddControllers();
+  ```
+
+* Agregue un enrutamiento de punto de conexión del controlador en `Startup.Configure`:
+
+  ```csharp
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapBlazorHub();
+      endpoints.MapFallbackToPage("/_Host");
+  });
+  ```
 
 El siguiente componente muestra un ejemplo sobre cómo realizar el redireccionamiento inicial cuando el usuario selecciona una referencia cultural:
 

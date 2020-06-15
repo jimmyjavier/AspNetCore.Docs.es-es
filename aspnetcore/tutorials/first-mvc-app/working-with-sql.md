@@ -1,7 +1,7 @@
 ---
-title: Trabajo con SQL en una aplicación ASP.NET Core MVC
+title: Parte 5. Trabajo con una base de datos en una aplicación de ASP.NET Core MVC
 author: rick-anderson
-description: Obtenga información sobre cómo usar SQL Server LocalDB o SQLite en una aplicación ASP.NET Core MVC.
+description: Parte 5. Adición de un modelo a una aplicación de ASP.NET Core MVC
 ms.author: riande
 ms.date: 8/16/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: 54b10f10fb048819fced223f77f06a32102512d0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7fdd147f4de00a593a77977d2b53e5369667fe78
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776212"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652520"
 ---
-# <a name="work-with-sql-in-aspnet-core"></a>Trabajo con SQL en ASP.NET Core
+# <a name="part-5-work-with-a-database-in-an-aspnet-core-mvc-app"></a>Parte 5. Trabajo con una base de datos en una aplicación de ASP.NET Core MVC
 
 ::: moniker range=">= aspnetcore-3.0"
 
