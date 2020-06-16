@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: 2d806413eb66d4c1301df4a0db950e8b919c09a4
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 66430fe45d74fadf46dff3798215ae3ac6e10a40
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84419754"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776402"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Control de eventos de Blazor en ASP.NET Core
 
@@ -184,7 +184,7 @@ Cuando el botón se selecciona en `ChildComponent`:
 Invoque <xref:Microsoft.AspNetCore.Components.EventCallback> o <xref:Microsoft.AspNetCore.Components.EventCallback%601> con <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> y espere a <xref:System.Threading.Tasks.Task>:
 
 ```csharp
-await callback.InvokeAsync(arg);
+await OnClickCallback.InvokeAsync(arg);
 ```
 
 Use <xref:Microsoft.AspNetCore.Components.EventCallback> y <xref:Microsoft.AspNetCore.Components.EventCallback%601> para el control de eventos y el enlace de parámetros de componentes.

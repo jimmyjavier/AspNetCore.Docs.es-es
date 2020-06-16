@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: 3cef67806ce0e2e045122bdc962e93795be68572
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 74501c70df5ad33d5a2478b2ec359713e29292d8
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679584"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84755786"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Configuración del modelo de hospedaje de Blazor en ASP.NET Core
 
@@ -313,7 +313,7 @@ Para configurar el cliente subyacente de SignalR para que envíe credenciales, c
 * Asigne <xref:System.Net.Http.HttpMessageHandler> a la opción <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory>:
 
   ```csharp
-  var client = new HubConnectionBuilder()
+  var connection = new HubConnectionBuilder()
       .WithUrl(new Uri("http://signalr.example.com"), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
