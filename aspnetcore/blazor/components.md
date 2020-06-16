@@ -5,7 +5,7 @@ description: Aprenda a crear y usar componentes de Razor, lo que incluye cómo e
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 06/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: 59b0c51e0006db0eb748b14b82a114a8bad986e8
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 2a6de1a39737f98cb151a0556f36c223d86f9752
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105158"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84723956"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creación y uso de componentes de Razor de ASP.NET Core
 
@@ -365,7 +365,7 @@ Registre el elemento `NotifierService` como un singleton:
 * En el servidor Blazor, registre el servicio en `Startup.ConfigureServices`:
 
   ```csharp
-  services.AddSingleton<NotifierService>();
+  services.AddScoped<NotifierService>();
   ```
 
 Use el elemento `NotifierService` para actualizar un componente:
