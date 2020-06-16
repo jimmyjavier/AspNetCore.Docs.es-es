@@ -2,7 +2,7 @@
 title: Aplicación auxiliar de etiquetas de componentes en ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Aprenda a usar la aplicación auxiliar de etiquetas de componentes de ASP.NET Core Razor para representar componentes en páginas y vistas.
+description: Aprenda a usar la aplicación auxiliar de etiquetas de componentes de ASP.NET Core para representar Razor componentes en páginas y vistas.
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 4e003e5ed5e7863d8a218c0f02bb37e214e31910
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b6e3890e13ef5ad20098d3907b6895046087aeca
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773934"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776506"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Aplicación auxiliar de etiquetas de componentes en ASP.NET Core
 
@@ -31,7 +31,7 @@ Siga las instrucciones de la sección *preparación de la aplicación para usar 
 
 ## <a name="component-tag-helper"></a>Aplicación auxiliar de etiquetas de componentes
 
-La siguiente aplicación auxiliar de etiquetas de componentes representa `Counter` el componente en una página o vista:
+La siguiente aplicación auxiliar de etiquetas de componentes representa el `Counter` componente en una página o vista:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -42,7 +42,7 @@ La siguiente aplicación auxiliar de etiquetas de componentes representa `Counte
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-En el ejemplo anterior se supone `Counter` que el componente está en la carpeta *páginas* de la aplicación.
+En el ejemplo anterior se supone que el `Counter` componente está en la carpeta *páginas* de la aplicación. El marcador de posición `{APP ASSEMBLY}` es el nombre de ensamblado de la aplicación (por ejemplo, `@using BlazorSample.Pages` ).
 
 La aplicación auxiliar de etiquetas de componente también puede pasar parámetros a los componentes. Considere el siguiente `ColorfulCheckbox` componente que establece el color y el tamaño de la etiqueta de casilla:
 
@@ -72,7 +72,7 @@ La aplicación auxiliar de etiquetas de componente también puede pasar parámet
 }
 ```
 
-Los `Size` parámetros`int`de `Color` [componente](xref:blazor/components#component-parameters) (`string`) y () se pueden establecer mediante la aplicación auxiliar de etiquetas de componentes:
+Los `Size` `int` parámetros de componente () y `Color` ( `string` ) se pueden establecer mediante la aplicación auxiliar de etiquetas de componentes: [component parameters](xref:blazor/components#component-parameters)
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -84,7 +84,7 @@ Los `Size` parámetros`int`de `Color` [componente](xref:blazor/components#compon
     param-Size="14" param-Color="@("blue")" />
 ```
 
-En el ejemplo anterior se supone `ColorfulCheckbox` que el componente está en la carpeta *compartida* de la aplicación.
+En el ejemplo anterior se supone que el `ColorfulCheckbox` componente está en la carpeta *compartida* de la aplicación. El marcador de posición `{APP ASSEMBLY}` es el nombre de ensamblado de la aplicación (por ejemplo, `@using BlazorSample.Shared` ).
 
 El siguiente código HTML se representa en la página o la vista:
 
@@ -95,9 +95,9 @@ El siguiente código HTML se representa en la página o la vista:
 </label>
 ```
 
-El paso de una cadena entrecomillada requiere una [expresión de Razor explícita](xref:mvc/views/razor#explicit-razor-expressions), `param-Color` tal como se muestra en el ejemplo anterior. El comportamiento de análisis de Razor `string` para un valor de tipo no `param-*` se aplica a un atributo porque `object` el atributo es un tipo.
+El paso de una cadena entrecomillada requiere una [ Razor expresión explícita](xref:mvc/views/razor#explicit-razor-expressions), como se muestra `param-Color` en el ejemplo anterior. El Razor comportamiento de análisis de un `string` valor de tipo no se aplica a un `param-*` atributo porque el atributo es un `object` tipo.
 
-El tipo de parámetro debe ser serializable de JSON, lo que normalmente significa que el tipo debe tener un constructor predeterminado y las propiedades configurables. Por ejemplo, puede especificar `Size` un valor para y `Color` en el ejemplo anterior porque los tipos de `Size` y `Color` son tipos primitivos (`int` y `string`), que son compatibles con el serializador JSON.
+El tipo de parámetro debe ser serializable de JSON, lo que normalmente significa que el tipo debe tener un constructor predeterminado y las propiedades configurables. Por ejemplo, puede especificar un valor para `Size` y `Color` en el ejemplo anterior porque los tipos de `Size` y `Color` son tipos primitivos ( `int` y `string` ), que son compatibles con el serializador JSON.
 
 En el ejemplo siguiente, se pasa un objeto de clase al componente:
 
@@ -151,7 +151,7 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-En el ejemplo anterior se supone `MyComponent` que el componente está en la carpeta *compartida* de la aplicación. `MyClass`está en el espacio de nombres de`{APP ASSEMBLY}`la aplicación ().
+En el ejemplo anterior se supone que el `MyComponent` componente está en la carpeta *compartida* de la aplicación. El marcador de posición `{APP ASSEMBLY}` es el nombre de ensamblado de la aplicación (por ejemplo, `@using BlazorSample` y `@using BlazorSample.Shared` ). `MyClass`está en el espacio de nombres de la aplicación.
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configura si el componente:
 

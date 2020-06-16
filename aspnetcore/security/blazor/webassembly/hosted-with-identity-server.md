@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ade2d88c6a2d59e169c9019e871982a74ae46b33
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c85843c04688beefe7ea87d9e8b281d14ab85bc5
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452322"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776519"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Protección de una Blazor aplicación hospedada en Webassembly ASP.net Core con Identity Server
 
@@ -132,7 +132,7 @@ En `OidcConfigurationController` (*Controllers/OidcConfigurationController. CS*)
 
 ### <a name="app-settings-files"></a>Archivos de configuración de la aplicación
 
-En el archivo de configuración de la aplicación (*appSettings. JSON*) en la raíz del proyecto, en la `IdentityServer` sección se describe la lista de clientes configurados. En el ejemplo siguiente, hay un solo cliente. El nombre de cliente se corresponde con el nombre de la aplicación y se asigna por Convención al parámetro de OAuth `ClientId` . El perfil indica el tipo de aplicación que se está configurando. El perfil se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+En el archivo de configuración de la aplicación (*appsettings.jsen*) en la raíz del proyecto, en la `IdentityServer` sección se describe la lista de clientes configurados. En el ejemplo siguiente, hay un solo cliente. El nombre de cliente se corresponde con el nombre de la aplicación y se asigna por Convención al parámetro de OAuth `ClientId` . El perfil indica el tipo de aplicación que se está configurando. El perfil se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -143,6 +143,8 @@ En el archivo de configuración de la aplicación (*appSettings. JSON*) en la ra
   }
 }
 ```
+
+El marcador de posición `{APP ASSEMBLY}` es el nombre de ensamblado de la aplicación (por ejemplo, `BlazorSample.Client` ).
 
 ## <a name="client-app-configuration"></a>Configuración de la aplicación cliente
 
