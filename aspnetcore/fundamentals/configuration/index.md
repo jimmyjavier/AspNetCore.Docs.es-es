@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: ead9cb8c852ac768c8fe1f9066eb73ac1203c4ce
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.openlocfilehash: 9b34125fdf6c6d451a11a53874944f5d8b44aa29
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454706"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776545"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuración en ASP.NET Core
 
@@ -56,7 +56,7 @@ Las aplicaciones web de ASP.NET Core creadas con [dotnet new](/dotnet/core/tools
 1. Variables de entorno con el [proveedor de configuración de variables de entorno](#evcp).
 1. Argumentos de la línea de comandos con el [proveedor de configuración de línea de comandos](#command-line).
 
-Los proveedores de configuración que se agregan posteriormente invalidan los ajustes de configuración de la clave anteriores. Por ejemplo, si se establece `MyKey` tanto en *appsettings.json* como en el entorno, se usa el valor del entorno. Con los proveedores de configuración predeterminados, el [proveedor de configuración de línea de comandos](#command-line-configuration-provider) reemplaza al resto de proveedores.
+Los proveedores de configuración que se agregan posteriormente invalidan los ajustes de configuración de la clave anteriores. Por ejemplo, si se establece `MyKey` tanto en *appsettings.json* como en el entorno, se usa el valor del entorno. Con los proveedores de configuración predeterminados, el [proveedor de configuración de línea de comandos](#clcp) reemplaza al resto de proveedores.
 
 Para obtener más información sobre `CreateDefaultBuilder`, consulte el artículo [Configuración predeterminada del generador](xref:fundamentals/host/generic-host#default-builder-settings).
 
