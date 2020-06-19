@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 26d371161bf5f926e50cbc141ccfaac40ee96977
-ms.sourcegitcommit: ff5c47beded9264c1395beb9c905f826261f3ba3
+ms.openlocfilehash: 6d9d8cf6ca9ca3afc570c2c68510125200b96c60
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83440183"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074452"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticación y autorización para spa
 
 ASP.NET Core 3,0 o posterior ofrece autenticación en aplicaciones de una sola página (Spa) mediante la compatibilidad con la autorización de la API. ASP.NET Core Identity para la autenticación y el almacenamiento de usuarios se combinan con [IdentityServer](https://identityserver.io/) para implementar Open ID Connect.
 
-Se ha agregado un parámetro de autenticación a las plantillas de proyecto **angular** y **reAct** que es similar al parámetro de autenticación en las plantillas de proyecto **aplicación web (controlador de vista de modelos)** (MVC) y **aplicación web** ( Razor páginas). Los valores de parámetro permitidos son **None** y **individual**. En este momento, la plantilla de proyecto **reAct. js y Redux** no admite el parámetro de autenticación.
+Se ha agregado un parámetro de autenticación a las plantillas de proyecto **angular** y **reAct** que es similar al parámetro de autenticación en las plantillas de proyecto **aplicación web (controlador de vista de modelos)** (MVC) y **aplicación web** ( Razor páginas). Los valores de parámetro permitidos son **None** y **individual**. La plantilla de proyecto **React.js y Redux** no admite el parámetro de autenticación en este momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Creación de una aplicación con compatibilidad con la autorización de API
 
@@ -49,6 +49,8 @@ El comando anterior crea una aplicación ASP.NET Core con un directorio *ClientA
 En las secciones siguientes se describen las adiciones al proyecto cuando se incluye compatibilidad con la autenticación:
 
 ### <a name="startup-class"></a>Clase Startup
+
+Los ejemplos de código siguientes se basan en el paquete NuGet [Microsoft. AspNetCore. ApiAuthorization. IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) . En los ejemplos se configura la autenticación y autorización de API mediante los <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> métodos de extensión y. Los proyectos que usan las plantillas de proyecto reAct o angular SPA con autenticación incluyen una referencia a este paquete.
 
 La `Startup` clase tiene las siguientes adiciones:
 
@@ -115,7 +117,7 @@ En el archivo *Controllers\OidcConfigurationController.CS* , observe el punto de
 
 ### <a name="appsettingsjson"></a>appsettings.json
 
-En el archivo *appSettings. JSON* de la raíz del proyecto, hay una nueva `IdentityServer` sección en la que se describe la lista de clientes configurados. En el ejemplo siguiente, hay un solo cliente. El nombre de cliente se corresponde con el nombre de la aplicación y se asigna por Convención al parámetro de OAuth `ClientId` . El perfil indica el tipo de aplicación que se está configurando. Se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. Hay varios perfiles disponibles, como se explica en la sección [perfiles de aplicación](#application-profiles) .
+En el *appsettings.jsen* el archivo de la raíz del proyecto, hay una nueva `IdentityServer` sección en la que se describe la lista de clientes configurados. En el ejemplo siguiente, hay un solo cliente. El nombre de cliente se corresponde con el nombre de la aplicación y se asigna por Convención al parámetro de OAuth `ClientId` . El perfil indica el tipo de aplicación que se está configurando. Se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. Hay varios perfiles disponibles, como se explica en la sección [perfiles de aplicación](#application-profiles) .
 
 ```json
 "IdentityServer": {
@@ -127,9 +129,9 @@ En el archivo *appSettings. JSON* de la raíz del proyecto, hay una nueva `Ident
 }
 ```
 
-### <a name="appsettingsdevelopmentjson"></a>appSettings. Desarrollo. JSON
+### <a name="appsettingsdevelopmentjson"></a>appsettings.Development.jsen
 
-En el *appSettings. Archivo Development. JSON* de la raíz del proyecto, hay una `IdentityServer` sección que describe la clave que se usa para firmar los tokens. Al realizar la implementación en producción, es necesario aprovisionar e implementar una clave junto con la aplicación, como se explica en la sección [implementación en producción](#deploy-to-production) .
+En el *appsettings.Development.jsen* el archivo de la raíz del proyecto, hay una `IdentityServer` sección que describe la clave que se usa para firmar los tokens. Al realizar la implementación en producción, es necesario aprovisionar e implementar una clave junto con la aplicación, como se explica en la sección [implementación en producción](#deploy-to-production) .
 
 ```json
 "IdentityServer": {
@@ -159,12 +161,12 @@ La compatibilidad con la autenticación y la autorización de API en la plantill
 La compatibilidad con la autenticación y la autorización de API en la plantilla reAct reside en el directorio *ClientApp\src\components\api-Authorization* Se compone de los siguientes elementos:
 
 * 4 componentes:
-  * *Login. js*: controla el flujo de inicio de sesión de la aplicación.
-  * *Logout. js*: controla el flujo de cierre de sesión de la aplicación.
-  * *LoginMenu. js*: un widget que muestra uno de los siguientes conjuntos de vínculos:
+  * *Login.js*: controla el flujo de inicio de sesión de la aplicación.
+  * *Logout.js*: controla el flujo de cierre de sesión de la aplicación.
+  * *LoginMenu.js*: un widget que muestra uno de los siguientes conjuntos de vínculos:
     * Los vínculos de administración de perfiles de usuario y cierre de sesión cuando el usuario está autenticado.
     * Los vínculos registro e inicio de sesión cuando el usuario no está autenticado.
-  * *AuthorizeRoute. js*: componente de ruta que requiere que un usuario se autentique antes de representar el componente indicado en el `Component` parámetro.
+  * *AuthorizeRoute.js*: componente de ruta que requiere que un usuario se autentique antes de representar el componente indicado en el `Component` parámetro.
 * Instancia exportada `authService` de la clase `AuthorizeService` que controla los detalles de nivel inferior del proceso de autenticación y expone información sobre el usuario autenticado al resto de la aplicación para su consumo.
 
 Ahora que ha visto los componentes principales de la solución, puede profundizar en los escenarios individuales de la aplicación.
@@ -280,7 +282,7 @@ Para implementar la aplicación en producción, se deben aprovisionar los siguie
 
 En esta sección se describe la implementación de la aplicación en Azure App Service mediante un certificado almacenado en el almacén de certificados. Para modificar la aplicación para cargar un certificado desde el almacén de certificados, se requiere un plan de servicio de nivel estándar o superior cuando se configura la aplicación en el Azure Portal en un paso posterior.
 
-En el archivo *appSettings. JSON* de la aplicación, modifique la `IdentityServer` sección para incluir los detalles de la clave:
+En elappsettings.jsde la aplicación *en* el archivo, modifique la `IdentityServer` sección para incluir los detalles de la clave:
 
 ```json
 "IdentityServer": {

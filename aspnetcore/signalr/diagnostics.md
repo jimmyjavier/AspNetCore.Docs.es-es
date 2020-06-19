@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: d26bb71a8ae06764b58a094b28d5e6f9eb581ecd
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: 7d7ea0fe69f258c01177c7755eaee61ab42400ce
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84755968"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102949"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro y diagnósticos en ASP.NET CoreSignalR
 
@@ -111,7 +111,7 @@ Si desea enviar registros a un sistema de registro personalizado, puede proporci
 
 Para obtener los registros del cliente .NET, puede usar el `ConfigureLogging` método en `HubConnectionBuilder` . Esto funciona de la misma manera que el `ConfigureLogging` método en `WebHostBuilder` y `HostBuilder` . Puede configurar los mismos proveedores de registro que utiliza en ASP.NET Core. Sin embargo, tiene que instalar y habilitar manualmente los paquetes de NuGet para los proveedores de registro individuales.
 
-Para agregar el registro de cliente .NET a una Blazor aplicación Webassembly, vea <xref:fundamentals/logging/index#blazor-webassembly-signalr-net-client-logging> .
+Para agregar el registro de cliente .NET a una Blazor aplicación Webassembly, vea <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> .
 
 ### <a name="console-logging"></a>Registro de consolas
 

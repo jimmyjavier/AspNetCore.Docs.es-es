@@ -11,18 +11,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: de8ab915e6a8529c7401f89fad067ec33d5d0713
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 41e19896e9c43ca67aa8b1af1c6c88c9c9c20373
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774423"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074488"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Autorización basada en notificaciones en ASP.NET Core
 
 <a name="security-authorization-claims-based"></a>
 
-Cuando se crea una identidad, se le puede asignar una o varias notificaciones emitidas por una entidad de confianza. Una demanda es un par de valor de nombre que representa lo que es el sujeto, no lo que puede hacer el sujeto. Por ejemplo, puede tener una licencia de controlador, emitida por una entidad de licencia de conducción local. La licencia de su controlador tiene su fecha de nacimiento. En este caso, el nombre de la `DateOfBirth`demanda sería, el valor de la demanda sería su fecha de nacimiento `8th June 1970` , por ejemplo, y el emisor sería la autoridad de la licencia de conducción. La autorización basada en notificaciones, en su forma más simple, comprueba el valor de una notificación y permite el acceso a un recurso en función de ese valor. Por ejemplo, si desea tener acceso a un club nocturno, el proceso de autorización podría ser:
+Cuando se crea una identidad, se le puede asignar una o varias notificaciones emitidas por una entidad de confianza. Una demanda es un par de valor de nombre que representa lo que es el sujeto, no lo que puede hacer el sujeto. Por ejemplo, puede tener una licencia de controlador, emitida por una entidad de licencia de conducción local. La licencia de su controlador tiene su fecha de nacimiento. En este caso, el nombre de la demanda sería `DateOfBirth` , el valor de la demanda sería su fecha de nacimiento, por ejemplo, `8th June 1970` y el emisor sería la autoridad de la licencia de conducción. La autorización basada en notificaciones, en su forma más simple, comprueba el valor de una notificación y permite el acceso a un recurso en función de ese valor. Por ejemplo, si desea tener acceso a un club nocturno, el proceso de autorización podría ser:
 
 El responsable de seguridad de la puerta evaluaría el valor de la demanda de la fecha de nacimiento y si confía en el emisor (la entidad de la licencia de conducción) antes de concederle acceso.
 
@@ -34,7 +34,7 @@ Las comprobaciones de autorización basadas en notificaciones son declarativas: 
 
 El tipo más sencillo de la Directiva de notificaciones busca la presencia de una demanda y no comprueba el valor.
 
-En primer lugar, debe compilar y registrar la Directiva. Esto se produce como parte de la configuración del servicio de autorización, que normalmente participa `ConfigureServices()` en el archivo *Startup.CS* .
+En primer lugar, debe compilar y registrar la Directiva. Esto se produce como parte de la configuración del servicio de autorización, que normalmente participa en `ConfigureServices()` el archivo *Startup.CS* .
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -69,9 +69,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-En este caso, `EmployeeOnly` la Directiva comprueba la presencia de una `EmployeeNumber` demanda en la identidad actual.
+En este caso, la `EmployeeOnly` Directiva comprueba la presencia de una `EmployeeNumber` demanda en la identidad actual.
 
-A continuación, aplique la Directiva mediante `Policy` la propiedad del `AuthorizeAttribute` atributo para especificar el nombre de la Directiva;
+A continuación, aplique la Directiva mediante la `Policy` propiedad del `AuthorizeAttribute` atributo para especificar el nombre de la Directiva;
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -148,7 +148,7 @@ public void ConfigureServices(IServiceCollection services)
 ::: moniker-end
 ### <a name="add-a-generic-claim-check"></a>Agregar una comprobación de notificaciones genéricas
 
-Si el valor de la petición no es un valor único o se requiere una transformación, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). Para obtener más información, vea [usar un FUNC para cumplir una directiva](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
+Si el valor de la petición no es un valor único o se requiere una transformación, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). Para obtener más información, vea [usar un FUNC para cumplir una directiva](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
 
 ## <a name="multiple-policy-evaluation"></a>Evaluación de varias directivas
 
@@ -169,6 +169,6 @@ public class SalaryController : Controller
 }
 ```
 
-En el ejemplo anterior, cualquier identidad que cumpla la `EmployeeOnly` Directiva puede tener acceso `Payslip` a la acción, ya que esa Directiva se aplica en el controlador. Sin embargo, para poder llamar `UpdateSalary` a la acción, la identidad debe `EmployeeOnly` cumplir la directiva `HumanResources` *y la Directiva* .
+En el ejemplo anterior, cualquier identidad que cumpla la `EmployeeOnly` Directiva puede tener acceso a la `Payslip` acción, ya que esa Directiva se aplica en el controlador. Sin embargo, para poder llamar a la `UpdateSalary` acción, la *both* identidad debe cumplir la `EmployeeOnly` Directiva y la `HumanResources` Directiva.
 
 Si desea directivas más complicadas, como tomar una demanda de fecha de nacimiento, calcular una edad a partir de ella y comprobar la edad es 21 o anterior, debe escribir [controladores de directivas personalizados](xref:security/authorization/policies).

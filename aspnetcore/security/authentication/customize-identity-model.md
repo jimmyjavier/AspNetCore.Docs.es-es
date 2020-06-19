@@ -1,26 +1,32 @@
 ---
-title: Personalización del modelo de identidad en ASP.NET Core
+title: IdentityPersonalización del modelo en ASP.NET Core
 author: ajcvickers
-description: En este artículo se describe cómo personalizar el modelo de datos Entity Framework Core subyacente para la identidad de ASP.NET Core.
+description: En este artículo se describe cómo personalizar el modelo de datos Entity Framework Core subyacente para ASP.NET Core Identity .
 ms.author: avickers
 ms.date: 07/01/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: f549fdff4a416b5fadcb2b1078b051bbab8e402e
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 96ee703da4ced69c5d9c703139e33b76b5dcdff1
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651461"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074151"
 ---
-# <a name="identity-model-customization-in-aspnet-core"></a>Personalización del modelo de identidad en ASP.NET Core
+# <a name="identity-model-customization-in-aspnet-core"></a>IdentityPersonalización del modelo en ASP.NET Core
 
 Por [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.NET Core identidad proporciona un marco para administrar y almacenar cuentas de usuario en ASP.NET Core aplicaciones. La identidad se agrega al proyecto cuando se selecciona **cuentas de usuario individuales** como mecanismo de autenticación. De forma predeterminada, la identidad hace uso de un modelo de datos básico de Entity Framework (EF). En este artículo se describe cómo personalizar el modelo de identidad.
+ASP.NET Core Identity proporciona un marco para administrar y almacenar cuentas de usuario en ASP.net Core aplicaciones. Identityse agrega al proyecto cuando se selecciona **cuentas de usuario individuales** como mecanismo de autenticación. De forma predeterminada, Identity hace uso de un modelo de datos básico de Entity Framework (EF). En este artículo se describe cómo personalizar el Identity modelo.
 
-## <a name="identity-and-ef-core-migrations"></a>Migraciones de identidad y EF Core
+## <a name="identity-and-ef-core-migrations"></a>Identityy EF Core migraciones
 
-Antes de examinar el modelo, resulta útil entender cómo funciona la identidad con [EF Core migraciones](/ef/core/managing-schemas/migrations/) para crear y actualizar una base de datos. En el nivel superior, el proceso es:
+Antes de examinar el modelo, es útil entender cómo Identity funciona con migraciones de [EF Core](/ef/core/managing-schemas/migrations/) para crear y actualizar una base de datos. En el nivel superior, el proceso es:
 
 1. Definir o actualizar un [modelo de datos en el código](/ef/core/modeling/).
 1. Agregue una migración para traducir este modelo a los cambios que se pueden aplicar a la base de datos.
@@ -36,21 +42,21 @@ Use uno de los métodos siguientes para agregar y aplicar migraciones:
 
 ASP.NET Core tiene un controlador de página de errores en tiempo de desarrollo. El controlador puede aplicar migraciones cuando se ejecuta la aplicación. Normalmente, las aplicaciones de producción generan scripts SQL desde las migraciones e implementan cambios de base de datos como parte de una implementación controlada de una aplicación y una base de datos.
 
-Cuando se crea una nueva aplicación con la identidad, los pasos 1 y 2 anteriores ya se han completado. Es decir, el modelo de datos inicial ya existe y la migración inicial se ha agregado al proyecto. Todavía es necesario aplicar la migración inicial a la base de datos. La migración inicial puede aplicarse mediante uno de los métodos siguientes:
+Cuando se crea una nueva aplicación con Identity , los pasos 1 y 2 anteriores ya se han completado. Es decir, el modelo de datos inicial ya existe y la migración inicial se ha agregado al proyecto. Todavía es necesario aplicar la migración inicial a la base de datos. La migración inicial puede aplicarse mediante uno de los métodos siguientes:
 
-* Ejecute `Update-Database` en PMC.
+* Ejecutar `Update-Database` en PMC.
 * Ejecute `dotnet ef database update` en un shell de comandos.
 * Haga clic en el botón **aplicar migraciones** en la página de error cuando se ejecute la aplicación.
 
 Repita los pasos anteriores a medida que se realicen cambios en el modelo.
 
-## <a name="the-identity-model"></a>El modelo de identidad
+## <a name="the-identity-model"></a>El Identity modelo
 
 ### <a name="entity-types"></a>Tipos de entidades
 
-El modelo de identidad se compone de los siguientes tipos de entidad.
+El Identity modelo consta de los siguientes tipos de entidad.
 
-|Tipo de entidad|Descripción                                                  |
+|Tipo de entidad|Description                                                  |
 |-----------|-------------------------------------------------------------|
 |`User`     |Representa al usuario.                                         |
 |`Role`     |Representa un rol.                                           |
@@ -64,15 +70,15 @@ El modelo de identidad se compone de los siguientes tipos de entidad.
 
 Los [tipos de entidad](#entity-types) se relacionan entre sí de las siguientes maneras:
 
-* Cada `User` puede tener muchos `UserClaims`.
-* Cada `User` puede tener muchos `UserLogins`.
-* Cada `User` puede tener muchos `UserTokens`.
-* Cada `Role` puede tener muchos `RoleClaims`asociados.
-* Cada `User` puede tener muchos `Roles`asociados y cada `Role` se puede asociar a muchos `Users`. Se trata de una relación de varios a varios que requiere una tabla de combinación en la base de datos. La tabla de combinación está representada por la entidad `UserRole`.
+* Cada `User` puede tener muchos `UserClaims` .
+* Cada `User` puede tener muchos `UserLogins` .
+* Cada `User` puede tener muchos `UserTokens` .
+* Cada `Role` puede tener varios asociados `RoleClaims` .
+* Cada `User` puede tener varios asociados `Roles` , y cada uno `Role` de ellos puede asociarse a muchos `Users` . Se trata de una relación de varios a varios que requiere una tabla de combinación en la base de datos. La entidad representa la tabla de combinación `UserRole` .
 
 ### <a name="default-model-configuration"></a>Configuración de modelo predeterminada
 
-Identity define muchas *clases de contexto* que heredan de [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) para configurar y usar el modelo. Esta configuración se realiza mediante el [EF Core Code First API fluida](/ef/core/modeling/) en el método [OnModelCreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) de la clase de contexto. La configuración predeterminada es la siguiente:
+Identitydefine muchas *clases de contexto* que heredan de [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) para configurar y usar el modelo. Esta configuración se realiza mediante el [EF Core Code First API fluida](/ef/core/modeling/) en el método [OnModelCreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) de la clase de contexto. La configuración predeterminada es la siguiente:
 
 ```csharp
 builder.Entity<TUser>(b =>
@@ -197,7 +203,7 @@ builder.Entity<TUserRole>(b =>
 
 ### <a name="model-generic-types"></a>Tipos genéricos de modelo
 
-Identity define los tipos de [Common Language Runtime](/dotnet/standard/glossary#clr) (CLR) predeterminados para cada uno de los tipos de entidad enumerados anteriormente. Todos estos tipos tienen el prefijo *identidad*:
+Identitydefine los tipos de [Common Language Runtime](/dotnet/standard/glossary#clr) (CLR) predeterminados para cada uno de los tipos de entidad enumerados anteriormente. Todos estos tipos tienen el prefijo *Identity* :
 
 * `IdentityUser`
 * `IdentityRole`
@@ -207,9 +213,9 @@ Identity define los tipos de [Common Language Runtime](/dotnet/standard/glossary
 * `IdentityRoleClaim`
 * `IdentityUserRole`
 
-En lugar de usar estos tipos directamente, los tipos se pueden usar como clases base para los propios tipos de la aplicación. Las clases de `DbContext` definidas por la identidad son genéricas, de modo que se pueden usar diferentes tipos CLR para uno o varios de los tipos de entidad del modelo. Estos tipos genéricos también permiten cambiar el tipo de datos de la clave principal (PK) de `User`.
+En lugar de usar estos tipos directamente, los tipos se pueden usar como clases base para los propios tipos de la aplicación. Las `DbContext` clases definidas por Identity son genéricas, de modo que se pueden usar diferentes tipos CLR para uno o varios de los tipos de entidad del modelo. Estos tipos genéricos también permiten `User` cambiar el tipo de datos de la clave principal (PK).
 
-Al usar la identidad compatible con los roles, se debe usar una clase <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>. Por ejemplo:
+Cuando Identity se usa con compatibilidad con roles, <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> se debe usar una clase. Por ejemplo:
 
 ```csharp
 // Uses all the built-in Identity types
@@ -253,7 +259,7 @@ public abstract class IdentityDbContext<
          where TUserToken : IdentityUserToken<TKey>
 ```
 
-También es posible usar la identidad sin roles (solo notificaciones), en cuyo caso se debe usar una clase de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext%601>:
+También se puede usar Identity sin roles (solo notificaciones), en cuyo caso <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext%601> se debe usar una clase:
 
 ```csharp
 // Uses the built-in non-role Identity types except with a custom User type
@@ -289,14 +295,14 @@ public abstract class IdentityUserContext<
 
 ## <a name="customize-the-model"></a>Personalizar el modelo
 
-El punto de partida para la personalización del modelo es derivar del tipo de contexto adecuado. Vea la sección [tipos genéricos de modelo](#model-generic-types) . Este tipo de contexto se denomina normalmente `ApplicationDbContext` y lo crean las plantillas de ASP.NET Core.
+El punto de partida para la personalización del modelo es derivar del tipo de contexto adecuado. Vea la sección [tipos genéricos de modelo](#model-generic-types) . Este tipo de contexto se denomina habitualmente `ApplicationDbContext` y lo crean las plantillas de ASP.net Core.
 
 El contexto se utiliza para configurar el modelo de dos maneras:
 
 * Proporcionar tipos de entidad y clave para los parámetros de tipo genérico.
 * Reemplazar `OnModelCreating` para modificar la asignación de estos tipos.
 
-Al reemplazar `OnModelCreating`, se debe llamar primero a `base.OnModelCreating`. la configuración de invalidación debe llamarse a continuación. Por lo general, EF Core tiene una directiva de el último de uno a WINS para la configuración. Por ejemplo, si se llama primero al método `ToTable` para un tipo de entidad con un nombre de tabla y después de nuevo con un nombre de tabla diferente, se utiliza el nombre de tabla de la segunda llamada.
+Al reemplazar `OnModelCreating` , `base.OnModelCreating` se debe llamar primero a; a continuación, se debe llamar a la configuración de reemplazo. Por lo general, EF Core tiene una directiva de el último de uno a WINS para la configuración. Por ejemplo, si `ToTable` se llama primero al método para un tipo de entidad con un nombre de tabla y después de nuevo con un nombre de tabla diferente, se utiliza el nombre de tabla de la segunda llamada.
 
 ### <a name="custom-user-data"></a>Datos de usuario personalizados
 
@@ -310,7 +316,7 @@ dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
  -->
 
-Los [datos de usuario personalizados](xref:security/authentication/add-user-data) se admiten heredando de `IdentityUser`. Es un nombre personalizado para denominar este tipo `ApplicationUser`:
+Los [datos de usuario personalizados](xref:security/authentication/add-user-data) se admiten heredando de `IdentityUser` . El nombre de este tipo es personalizado `ApplicationUser` :
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -319,7 +325,7 @@ public class ApplicationUser : IdentityUser
 }
 ```
 
-Use el tipo de `ApplicationUser` como argumento genérico para el contexto:
+Use el `ApplicationUser` tipo como argumento genérico para el contexto:
 
 ```csharp
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -336,9 +342,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 }
 ```
 
-No es necesario invalidar `OnModelCreating` en la clase `ApplicationDbContext`. EF Core asigna la propiedad `CustomTag` por Convención. Sin embargo, es necesario actualizar la base de datos para crear una nueva `CustomTag` columna. Para crear la columna, agregue una migración y, a continuación, actualice la base de datos como se describe en el artículo sobre las [migraciones de identidad y EF Core](#identity-and-ef-core-migrations).
+No es necesario invalidar `OnModelCreating` en la `ApplicationDbContext` clase. EF Core asigna la `CustomTag` propiedad por Convención. Sin embargo, es necesario actualizar la base de datos para crear una nueva `CustomTag` columna. Para crear la columna, agregue una migración y, a continuación, actualice la base de datos como se describe en [ Identity y EF Core migraciones](#identity-and-ef-core-migrations).
 
-Actualice *pages/Shared/_LoginPartial. cshtml* y reemplace `IdentityUser` por `ApplicationUser`:
+Actualice *pages/Shared/_LoginPartial. cshtml* y reemplace `IdentityUser` por `ApplicationUser` :
 
 ```cshtml
 @using Microsoft.AspNetCore.Identity
@@ -347,18 +353,18 @@ Actualice *pages/Shared/_LoginPartial. cshtml* y reemplace `IdentityUser` por `A
 @inject UserManager<ApplicationUser> UserManager
 ```
 
-Actualice *areas/Identity/IdentityHostingStartup. CS* o `Startup.ConfigureServices` y reemplace `IdentityUser` por `ApplicationUser`.
+Actualice *areas/ Identity /IdentityHostingStartup.CS* o `Startup.ConfigureServices` y reemplace `IdentityUser` por `ApplicationUser` .
 
 ```csharp
-services.AddDefaultIdentity<ApplicationUser>()
+services.AddIdentity<ApplicationUser>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultUI();
 ```
 
-En ASP.NET Core 2,1 o posterior, la identidad se proporciona como una biblioteca de clases de Razor. Para más información, consulte <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. Si el scaffolding de identidad se utilizó para agregar archivos de identidad al proyecto, quite la llamada a `AddDefaultUI`. Para más información, consulte:
+En ASP.NET Core 2,1 o posterior, Identity se proporciona como una Razor biblioteca de clases. Para obtener más información, vea <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Si el Identity scaffolding se utilizó para agregar Identity archivos al proyecto, quite la llamada a `AddDefaultUI` . Para más información, consulte:
 
-* [Identidad de scaffolding](xref:security/authentication/scaffold-identity)
-* [Agregar, descargar y eliminar datos de usuario personalizados a la identidad](xref:security/authentication/add-user-data)
+* [ScaffoldIdentity](xref:security/authentication/scaffold-identity)
+* [Agregar, descargar y eliminar datos de usuario personalizados aIdentity](xref:security/authentication/add-user-data)
 
 ### <a name="change-the-primary-key-type"></a>Cambiar el tipo de clave principal
 
@@ -366,9 +372,9 @@ Un cambio en el tipo de datos de la columna PK después de crear la base de dato
 
 Siga estos pasos para cambiar el tipo de PK:
 
-1. Si la base de datos se creó antes del cambio de la PK, ejecute `Drop-Database` (PMC) o `dotnet ef database drop` (CLI de .NET Core) para eliminarla.
-2. Después de confirmar la eliminación de la base de datos, quite la migración inicial con `Remove-Migration` (PMC) o `dotnet ef migrations remove` (CLI de .NET Core).
-3. Actualice la clase `ApplicationDbContext` para que se derive de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603>. Especifique el nuevo tipo de clave para `TKey`. Por ejemplo, para usar un tipo de clave `Guid`:
+1. Si la base de datos se creó antes del cambio de la PK, ejecute `Drop-Database` (PMC) o `dotnet ef database drop` (CLI de .net Core) para eliminarla.
+2. Después de confirmar la eliminación de la base de datos, quite la migración inicial con `Remove-Migration` (PMC) o `dotnet ef migrations remove` (CLI de .net Core).
+3. Actualice la `ApplicationDbContext` clase para que se derive de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603> . Especifique el nuevo tipo de clave para `TKey` . Por ejemplo, para usar un `Guid` tipo de clave:
 
     ```csharp
     public class ApplicationDbContext
@@ -383,24 +389,23 @@ Siga estos pasos para cambiar el tipo de PK:
 
     ::: moniker range=">= aspnetcore-2.0"
 
-    En el código anterior, se deben especificar las clases genéricas <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> y <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> para usar el nuevo tipo de clave.
+    En el código anterior, las clases genéricas <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> y <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> deben especificarse para usar el nuevo tipo de clave.
 
     ::: moniker-end
 
     ::: moniker range="<= aspnetcore-1.1"
 
-    En el código anterior, se deben especificar las clases genéricas <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser%601> y <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole%601> para usar el nuevo tipo de clave.
+    En el código anterior, las clases genéricas <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser%601> y <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole%601> deben especificarse para usar el nuevo tipo de clave.
 
     ::: moniker-end
 
-    `Startup.ConfigureServices` debe actualizarse para usar el usuario genérico:
+    `Startup.ConfigureServices`debe actualizarse para usar el usuario genérico:
 
     ::: moniker range=">= aspnetcore-2.1"
 
     ```csharp
     services.AddDefaultIdentity<IdentityUser<Guid>>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
     ::: moniker-end
@@ -425,7 +430,7 @@ Siga estos pasos para cambiar el tipo de PK:
 
     ::: moniker-end
 
-4. Si se utiliza una clase de `ApplicationUser` personalizada, actualice la clase para que herede de `IdentityUser`. Por ejemplo:
+4. Si `ApplicationUser` se utiliza una clase personalizada, actualice la clase para que herede de `IdentityUser` . Por ejemplo:
 
     ::: moniker range="<= aspnetcore-1.1"
 
@@ -439,7 +444,7 @@ Siga estos pasos para cambiar el tipo de PK:
 
     ::: moniker-end
 
-    Actualice `ApplicationDbContext` para hacer referencia a la clase de `ApplicationUser` personalizada:
+    Actualice `ApplicationDbContext` para hacer referencia a la `ApplicationUser` clase personalizada:
 
     ```csharp
     public class ApplicationDbContext
@@ -452,12 +457,12 @@ Siga estos pasos para cambiar el tipo de PK:
     }
     ```
 
-    Registre la clase de contexto de base de datos personalizada al agregar el servicio de identidad en `Startup.ConfigureServices`:
+    Registre la clase de contexto de base de datos personalizada al agregar el Identity servicio en `Startup.ConfigureServices` :
 
     ::: moniker range=">= aspnetcore-2.1"
 
     ```csharp
-    services.AddDefaultIdentity<ApplicationUser>()
+    services.AddIdentity<ApplicationUser>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
@@ -465,7 +470,7 @@ Siga estos pasos para cambiar el tipo de PK:
 
     El tipo de datos de la clave principal se deduce mediante el análisis del objeto [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) .
 
-    En ASP.NET Core 2,1 o posterior, la identidad se proporciona como una biblioteca de clases de Razor. Para más información, consulte <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. Si el scaffolding de identidad se utilizó para agregar archivos de identidad al proyecto, quite la llamada a `AddDefaultUI`.
+    En ASP.NET Core 2,1 o posterior, Identity se proporciona como una Razor biblioteca de clases. Para obtener más información, vea <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Si el Identity scaffolding se utilizó para agregar Identity archivos al proyecto, quite la llamada a `AddDefaultUI` .
 
     ::: moniker-end
 
@@ -489,27 +494,27 @@ Siga estos pasos para cambiar el tipo de PK:
             .AddDefaultTokenProviders();
     ```
 
-    El método <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> acepta un tipo `TKey` que indica el tipo de datos de la clave principal.
+    El <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> método acepta un `TKey` tipo que indica el tipo de datos de la clave principal.
 
     ::: moniker-end
 
-5. Si se utiliza una clase de `ApplicationRole` personalizada, actualice la clase para que herede de `IdentityRole<TKey>`. Por ejemplo:
+5. Si `ApplicationRole` se utiliza una clase personalizada, actualice la clase para que herede de `IdentityRole<TKey>` . Por ejemplo:
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationRole.cs?name=snippet_ApplicationRole&highlight=4)]
 
-    Actualice `ApplicationDbContext` para hacer referencia a la clase de `ApplicationRole` personalizada. Por ejemplo, la clase siguiente hace referencia a un `ApplicationUser` personalizado y a un `ApplicationRole`personalizado:
+    Actualice `ApplicationDbContext` para hacer referencia a la `ApplicationRole` clase personalizada. Por ejemplo, la siguiente clase hace referencia a un personalizado `ApplicationUser` y a un personalizado `ApplicationRole` :
 
     ::: moniker range=">= aspnetcore-2.1"
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
 
-    Registre la clase de contexto de base de datos personalizada al agregar el servicio de identidad en `Startup.ConfigureServices`:
+    Registre la clase de contexto de base de datos personalizada al agregar el Identity servicio en `Startup.ConfigureServices` :
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=13-16)]
 
     El tipo de datos de la clave principal se deduce mediante el análisis del objeto [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) .
 
-    En ASP.NET Core 2,1 o posterior, la identidad se proporciona como una biblioteca de clases de Razor. Para más información, consulte <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. Si el scaffolding de identidad se utilizó para agregar archivos de identidad al proyecto, quite la llamada a `AddDefaultUI`.
+    En ASP.NET Core 2,1 o posterior, Identity se proporciona como una Razor biblioteca de clases. Para obtener más información, vea <xref:security/authentication/scaffold-identity>. Por consiguiente, el código anterior requiere una llamada a <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Si el Identity scaffolding se utilizó para agregar Identity archivos al proyecto, quite la llamada a `AddDefaultUI` .
 
     ::: moniker-end
 
@@ -517,7 +522,7 @@ Siga estos pasos para cambiar el tipo de PK:
 
     [!code-csharp[](customize-identity-model/samples/2.0/RazorPagesSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
 
-    Registre la clase de contexto de base de datos personalizada al agregar el servicio de identidad en `Startup.ConfigureServices`:
+    Registre la clase de contexto de base de datos personalizada al agregar el Identity servicio en `Startup.ConfigureServices` :
 
     [!code-csharp[](customize-identity-model/samples/2.0/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
 
@@ -529,11 +534,11 @@ Siga estos pasos para cambiar el tipo de PK:
 
     [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
 
-    Registre la clase de contexto de base de datos personalizada al agregar el servicio de identidad en `Startup.ConfigureServices`:
+    Registre la clase de contexto de base de datos personalizada al agregar el Identity servicio en `Startup.ConfigureServices` :
 
     [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
 
-    El método <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> acepta un tipo `TKey` que indica el tipo de datos de la clave principal.
+    El <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> método acepta un `TKey` tipo que indica el tipo de datos de la clave principal.
 
     ::: moniker-end
 
@@ -552,9 +557,9 @@ builder.Entity<TUser>(b =>
 });
 ```
 
-El parámetro FK para esta relación se especifica como la propiedad `UserClaim.UserId`. se llama a `HasMany` y `WithOne` sin argumentos para crear la relación sin las propiedades de navegación.
+El parámetro FK para esta relación se especifica como la `UserClaim.UserId` propiedad. `HasMany``WithOne`se llama a y sin argumentos para crear la relación sin las propiedades de navegación.
 
-Agregue una propiedad de navegación a `ApplicationUser` que permita que el usuario pueda hacer referencia a `UserClaims` asociados:
+Agregue una propiedad de navegación a `ApplicationUser` que permita que `UserClaims` se haga referencia a la clase asociada desde el usuario:
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -563,9 +568,9 @@ public class ApplicationUser : IdentityUser
 }
 ```
 
-La `TKey` para `IdentityUserClaim<TKey>` es el tipo especificado para la clave principal de los usuarios. En este caso, `TKey` se `string` porque se usan los valores predeterminados. **No** es el tipo PK del tipo de entidad `UserClaim`.
+La `TKey` para `IdentityUserClaim<TKey>` es el tipo especificado para la clave principal de los usuarios. En este caso, `TKey` se `string` debe a que se usan los valores predeterminados. **No** es el tipo PK del tipo de `UserClaim` entidad.
 
-Ahora que la propiedad de navegación existe, debe configurarse en `OnModelCreating`:
+Ahora que la propiedad de navegación existe, debe configurarse en `OnModelCreating` :
 
 ```csharp
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -591,9 +596,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 }
 ```
 
-Observe que la relación se configura exactamente como estaba antes, solo con una propiedad de navegación especificada en la llamada a `HasMany`.
+Observe que la relación se configura exactamente como estaba antes, solo con una propiedad de navegación especificada en la llamada a `HasMany` .
 
-Las propiedades de navegación solo existen en el modelo EF, no en la base de datos. Dado que el FK de la relación no ha cambiado, este tipo de cambio de modelo no requiere que se actualice la base de datos. Para comprobarlo, agregue una migración después de realizar el cambio. Los métodos `Up` y `Down` están vacíos.
+Las propiedades de navegación solo existen en el modelo EF, no en la base de datos. Dado que el FK de la relación no ha cambiado, este tipo de cambio de modelo no requiere que se actualice la base de datos. Para comprobarlo, agregue una migración después de realizar el cambio. Los `Up` `Down` métodos y están vacíos.
 
 ### <a name="add-all-user-navigation-properties"></a>Agregar todas las propiedades de navegación de usuario
 
@@ -734,9 +739,9 @@ public class ApplicationDbContext
 
 Notas:
 
-* En este ejemplo también se incluye la entidad `UserRole` join, que es necesaria para navegar por la relación de varios a varios entre usuarios y roles.
-* Recuerde cambiar los tipos de las propiedades de navegación para reflejar que ahora se usan tipos de `ApplicationXxx` en lugar de tipos de `IdentityXxx`.
-* Recuerde usar el `ApplicationXxx` en la definición de `ApplicationContext` genérico.
+* En este ejemplo también se incluye la `UserRole` entidad de combinación, que es necesaria para navegar por la relación de varios a varios entre usuarios y roles.
+* Recuerde cambiar los tipos de las propiedades de navegación para reflejar que `ApplicationXxx` ahora se usan tipos en lugar de `IdentityXxx` tipos.
+* Recuerde usar `ApplicationXxx` en la `ApplicationContext` definición genérica.
 
 ### <a name="add-all-navigation-properties"></a>Agregar todas las propiedades de navegación
 
@@ -847,11 +852,11 @@ public class ApplicationDbContext
 
 ### <a name="use-composite-keys"></a>Usar claves compuestas
 
-En las secciones anteriores se mostró cómo cambiar el tipo de clave que se usa en el modelo de identidad. No se admite ni se recomienda cambiar el modelo de clave de identidad para utilizar claves compuestas. El uso de una clave compuesta con identidad implica cambiar el modo en que el código de Identity Manager interactúa con el modelo. Esta personalización está fuera del ámbito de este documento.
+En las secciones anteriores se mostró cómo cambiar el tipo de clave utilizado en el Identity modelo. IdentityNo se admite ni se recomienda cambiar el modelo de clave para utilizar claves compuestas. El uso de una clave compuesta con Identity implica cambiar el modo en que el Identity código del administrador interactúa con el modelo. Esta personalización está fuera del ámbito de este documento.
 
 ### <a name="change-tablecolumn-names-and-facets"></a>Cambiar los nombres de tabla/columna y las caras
 
-Para cambiar los nombres de tablas y columnas, llame a `base.OnModelCreating`. A continuación, agregue la configuración para invalidar cualquiera de los valores predeterminados. Por ejemplo, para cambiar el nombre de todas las tablas de identidad:
+Para cambiar los nombres de tablas y columnas, llame a `base.OnModelCreating` . A continuación, agregue la configuración para invalidar cualquiera de los valores predeterminados. Por ejemplo, para cambiar el nombre de todas las Identity tablas:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -895,7 +900,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-En estos ejemplos se usan los tipos de identidad predeterminados. Si usa un tipo de aplicación como `ApplicationUser`, configure ese tipo en lugar del tipo predeterminado.
+En estos ejemplos se usan los tipos predeterminados Identity . Si usa un tipo de aplicación como `ApplicationUser` , configure ese tipo en lugar del tipo predeterminado.
 
 En el ejemplo siguiente se cambian algunos nombres de columna:
 
@@ -917,7 +922,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-Algunos tipos de columnas de base de datos se pueden configurar con ciertas *caras* (por ejemplo, la longitud máxima de `string` permitida). En el ejemplo siguiente se establecen las longitudes máximas de columna para varias propiedades de `string` del modelo:
+Algunos tipos de columnas de base de datos se pueden configurar con ciertas *caras* (por ejemplo, la `string` longitud máxima permitida). En el ejemplo siguiente se establecen las longitudes máximas de columna para varias `string` propiedades del modelo:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -957,15 +962,15 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ### <a name="lazy-loading"></a>Carga diferida
 
-En esta sección, se agrega compatibilidad con los proxies de carga diferida en el modelo de identidad. La carga diferida resulta útil, ya que permite usar las propiedades de navegación sin asegurarse primero de que se cargan.
+En esta sección, se agrega compatibilidad con los proxies de carga diferida en el Identity modelo. La carga diferida resulta útil, ya que permite usar las propiedades de navegación sin asegurarse primero de que se cargan.
 
 Los tipos de entidad se pueden hacer adecuados para la carga diferida de varias maneras, como se describe en la [documentación EF Core](/ef/core/querying/related-data#lazy-loading). Para simplificar, use servidores proxy de carga diferida, que requiere:
 
 * Instalación del paquete [Microsoft. EntityFrameworkCore. Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) .
-* Una llamada a <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> dentro de [AddDbContext\<TContext >](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext).
-* Tipos de entidad pública con propiedades de navegación de `public virtual`.
+* Una llamada a <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> dentro [de \<TContext> AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext).
+* Tipos de entidad pública con `public virtual` propiedades de navegación.
 
-En el ejemplo siguiente se muestra cómo llamar a `UseLazyLoadingProxies` en `Startup.ConfigureServices`:
+En el ejemplo siguiente se muestra cómo llamar a `UseLazyLoadingProxies` en `Startup.ConfigureServices` :
 
 ```csharp
 services

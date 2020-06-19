@@ -15,4 +15,4 @@ La manera recomendada de pasar el estado de la solicitud a la aplicación Blazor
 * Defina un parámetro en el componente raíz para que contenga los datos que se pasan a la aplicación.
 * Use los datos específicos del usuario dentro de la aplicación; o bien, copie esos datos en un servicio con ámbito dentro de <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> para que se puedan usar en la aplicación.
 
-Para obtener más información y un código de ejemplo, vea <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Para obtener más información y un código de ejemplo, vea <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.

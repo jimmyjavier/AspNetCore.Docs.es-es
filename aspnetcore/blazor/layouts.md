@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: ba172282d0cd6371ebc94b4fda1c13aee14d6fbd
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: fe35645aafe29838818dcaaf7c2b42ed428ac6cc
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851997"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102255"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Diseños de ASP.NET Core Blazor
 
@@ -26,7 +26,7 @@ Por [Rainer Stropek](https://www.timecockpit.com) y [Luke Latham](https://github
 
 Algunos elementos de la aplicación, como los menús, los mensajes de copyright y los logotipos de la empresa, normalmente forman parte del diseño general de la aplicación y se usan en todos sus componentes. Copiar el código de estos elementos en todos los componentes de una aplicación no es una estrategia eficaz. Cada vez que uno de los elementos necesita una actualización, todos los componentes deben actualizarse. Esta duplicación es difícil de mantener y puede dar lugar a contenido incoherente con el tiempo. Los *diseños* solucionan este problema.
 
-Técnicamente, un diseño es simplemente otro componente. Un diseño se define en una plantilla de Razor o en código de C# y puede usar el [enlace de datos](xref:blazor/data-binding), la [inserción de dependencias](xref:blazor/dependency-injection) y otros escenarios de componente.
+Técnicamente, un diseño es simplemente otro componente. Un diseño se define en una plantilla de Razor o en código de C# y puede usar el [enlace de datos](xref:blazor/components/data-binding), la [inserción de dependencias](xref:blazor/fundamentals/dependency-injection) y otros escenarios de componente.
 
 Para convertir un *componente* en un *diseño*, el componente debe:
 
@@ -49,7 +49,7 @@ Para proporcionar un diseño predeterminado para el contenido <xref:Microsoft.As
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-Para obtener más información sobre el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, consulte el artículo <xref:blazor/routing>.
+Para obtener más información sobre el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, consulte el artículo <xref:blazor/fundamentals/routing>.
 
 Especificar el diseño como un diseño predeterminado en el enrutador es una práctica útil porque, después, se puede invalidar a nivel de componente o de carpeta. Se recomienda usar el enrutador para establecer el diseño predeterminado de la aplicación, ya que es la técnica más general.
 
@@ -97,7 +97,7 @@ Por último, `MasterLayout` en *MasterLayout.razor* contiene los elementos de di
 
 ## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Uso compartido de un diseño de Razor Pages con componentes integrados
 
-Si los componentes enrutables se integran en una aplicación de Razor Pages, el diseño compartido de la aplicación se puede usar con los componentes. Para obtener más información, vea <xref:blazor/integrate-components>.
+Si los componentes enrutables se integran en una aplicación de Razor Pages, el diseño compartido de la aplicación se puede usar con los componentes. Para obtener más información, vea <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

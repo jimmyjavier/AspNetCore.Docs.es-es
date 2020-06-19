@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 7272e05b408ac6f8daeda586c6f40fcc5bd1f6eb
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 407583533939ec1077af8e1a1511ed187ef9de69
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776791"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103011"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros en ASP.NET Core
 
@@ -34,7 +34,7 @@ Los filtros integrados se encargan de tareas como las siguientes:
 
 Se pueden crear filtros personalizados que se encarguen de cuestiones transversales. Entre los ejemplos de cuestiones transversales se incluyen el control de errores, el almacenamiento en caché, la configuración, la autorización y el registro.  Los filtros evitan la duplicación de código. Así, por ejemplo, un filtro de excepción de control de errores puede consolidar el control de errores.
 
-Este documento se aplica a Razor Pages, a los controladores de API y a los controladores con vistas. Los filtros no funcionan directamente con [componentes de Razor](xref:blazor/components). Un filtro solo puede afectar indirectamente a un componente cuando:
+Este documento se aplica a Razor las páginas, controladores de API y controladores con vistas. Los filtros no funcionan directamente con [ Razor los componentes](xref:blazor/components/index)de. Un filtro solo puede afectar indirectamente a un componente cuando:
 
 * El componente está insertado en una página o vista.
 * La página o el controlador o la vista utiliza el filtro.
@@ -64,7 +64,7 @@ Cada tipo de filtro se ejecuta en una fase diferente dentro de la canalización 
   * Ejecutan código inmediatamente antes y después de llamar a un método de acción.
   * Pueden cambiar los argumentos pasados a una acción.
   * Pueden cambiar el resultado devuelto de la acción.
-  * **No** se admiten en Razor Pages.
+  * **No** se admiten en Razor las páginas de.
 
 * Los [filtros de excepciones](#exception-filters) aplican directivas globales a las excepciones no controladas que se producen antes de que se escriba el cuerpo de respuesta.
 
@@ -110,7 +110,7 @@ Los atributos permiten a los filtros aceptar argumentos, como se muestra en el e
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-Use una herramienta como las [herramientas de desarrollo del explorador](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) para examinar los encabezados. En **encabezados de respuesta**, `author: Rick Anderson` se muestra.
+Use una herramienta como las [herramientas de desarrollo del explorador](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) para examinar los encabezados. En **Encabezados de respuesta**, se muestra `author: Rick Anderson`.
 
 El código siguiente implementa un atributo `ActionFilterAttribute` que:
 
@@ -138,13 +138,13 @@ El siguiente código aplica el atributo `MyActionFilterAttribute` al método `In
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
 
-En **encabezados de respuesta**, `author: Rick Anderson`y `Editor: Joe Smith` se muestra cuando se llama `Sample/Index2` al extremo.
+En **encabezados de respuesta**, `author: Rick Anderson` y `Editor: Joe Smith` se muestra cuando `Sample/Index2` se llama al extremo.
 
-El siguiente código aplica los atributos `MyActionFilterAttribute` y `AddHeaderAttribute` a la página de Razor Pages:
+El código siguiente aplica `MyActionFilterAttribute` y `AddHeaderAttribute` a la Razor página:
 
 [!code-csharp[](filters/3.1sample/FiltersSample/Pages/Movies/Index.cshtml.cs?name=snippet)]
 
-Los filtros no se pueden usar con métodos de controlador de páginas de Razor Pages. Se pueden usar con el modelo de página de Razor Pages o globalmente.
+Los filtros no se pueden aplicar a Razor métodos de control de páginas. Se pueden aplicar al Razor modelo de página o globalmente.
 
 Algunas de las interfaces de filtro tienen atributos correspondientes que se pueden usar como clases base en las implementaciones personalizadas.
 
@@ -161,9 +161,9 @@ Atributos de filtro:
 
 Un filtro se puede agregar a la canalización en uno de tres *ámbitos* posibles:
 
-* Mediante un atributo en una acción del controlador. Los atributos de filtro no se pueden usar con métodos de controlador de páginas de Razor Pages.
-* Mediante un atributo en un controlador o una página de Razor Pages.
-* Globalmente para todos los controladores, las acciones y las páginas de Razor Pages tal como se muestra en el siguiente código:
+* Mediante un atributo en una acción del controlador. Los atributos de filtro no se pueden aplicar a Razor los métodos de control de páginas.
+* Usar un atributo en un controlador o una Razor página.
+* Globalmente para todos los controladores, acciones y Razor páginas, tal y como se muestra en el código siguiente:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet)]
 
@@ -174,10 +174,10 @@ Cuando hay varios filtros en una determinada fase de la canalización, el ámbit
 Como resultado de este anidamiento de filtros, el código de filtros *posterior* se ejecuta en el orden inverso al código *anterior*. La secuencia de filtro:
 
 * El código *anterior* de los filtros globales.
-  * El código *anterior* de los filtros de controlador y página de Razor Pages.
+  * El código *anterior* de los filtros de controlador y de Razor página.
     * El código *anterior* de los filtros de métodos de acción.
     * El código *posterior* de los filtros de métodos de acción.
-  * El código *posterior* de los filtros de controlador y página de Razor Pages.
+  * *Después* del código de los filtros de controlador y de Razor página.
 * El código *posterior* de los filtros globales.
   
 El ejemplo siguiente que ilustra el orden en el que se llama a los métodos de filtro relativos a filtros de acciones sincrónicos.
@@ -185,10 +185,10 @@ El ejemplo siguiente que ilustra el orden en el que se llama a los métodos de f
 | Secuencia | Ámbito del filtro | Método de filtro |
 |:--------:|:------------:|:-------------:|
 | 1 | Global | `OnActionExecuting` |
-| 2 | Controlador o página de Razor Pages| `OnActionExecuting` |
+| 2 | Controlador o Razor Página| `OnActionExecuting` |
 | 3 | Método | `OnActionExecuting` |
 | 4 | Método | `OnActionExecuted` |
-| 5 | Controlador o página de Razor Pages | `OnActionExecuted` |
+| 5 | Controlador o Razor Página | `OnActionExecuted` |
 | 6 | Global | `OnActionExecuted` |
 
 ### <a name="controller-level-filters"></a>Filtros de nivel de controlador
@@ -224,7 +224,7 @@ Si se dirige a `https://localhost:5001/Test2/FilterTest2`, se ejecuta el código
 
 Los filtros de nivel de controlador establecen la propiedad [Order](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) en `int.MinValue`. Los filtros de nivel de controlador **no** pueden establecerse para ejecutarse tras aplicarse los filtros a los métodos. Order se explica en la sección siguiente.
 
-Para Razor Pages, consulte [Implementar filtros de páginas de Razor globalmente](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
+Para Razor las páginas, consulte [implementar Razor filtros de página mediante la invalidación de métodos de filtro](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
 
 ### <a name="overriding-the-default-order"></a>Invalidación del orden predeterminado
 
@@ -282,7 +282,7 @@ Por tanto, el filtro `AddHeader` nunca se ejecuta en relación con la acción `S
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-## <a name="dependency-injection"></a>Inserción de dependencias
+## <a name="dependency-injection"></a>Inserción de dependencia
 
 Los filtros se pueden agregar por tipo o por instancia. Si se agrega una instancia, esta se utiliza para todas las solicitudes. Si se agrega un tipo, se activa por tipo. Un filtro activado por tipo significa:
 
@@ -400,7 +400,7 @@ Ejemplos de filtros de recursos:
 
 ## <a name="action-filters"></a>Filtros de acciones
 
-Los filtros de acción **no** se aplican a Razor Pages. Razor Pages admite <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> y <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. Para más información, vea [Filter methods for Razor Pages](xref:razor-pages/filter) (Métodos de filtrado para páginas de Razor).
+Los filtros de acción **no** se aplican a Razor las páginas. RazorPages admite <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> y <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Para obtener más información, vea [Métodos de filtrado de Razor Pages](xref:razor-pages/filter).
 
 Filtros de acciones:
 
@@ -476,7 +476,7 @@ Los filtros de excepciones:
 
 * No tienen eventos anteriores ni posteriores.
 * Implementan <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> o <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
-* Controlan las excepciones sin controlar que se producen en Razor Pages, al crear controladores, en el [enlace de modelos](xref:mvc/models/model-binding), en los filtros de acciones o en los métodos de acción.
+* Controlar las excepciones no controladas que se producen en la Razor creación de páginas o controladores, [enlace de modelos](xref:mvc/models/model-binding), filtros de acción o métodos de acción.
 * **No** detectan aquellas excepciones que se produzcan en los filtros de recursos, en los filtros de resultados o en la ejecución de resultados de MVC.
 
 Para controlar una excepción, establezca la propiedad <xref:System.Web.Mvc.ExceptionContext.ExceptionHandled> en `true` o escriba una respuesta. Esto detiene la propagación de la excepción. Un filtro de excepciones no tiene capacidad para convertir una excepción en un proceso "correcto". Eso solo lo pueden hacer los filtros de acciones.
@@ -553,7 +553,7 @@ El filtro se aplica en el código siguiente:
 Pruebe el código anterior mediante la ejecución del [ejemplo de descarga](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample):
 
 * Invoque las herramientas de desarrollador de F12.
-* Vaya a `https://localhost:5001/Sample/HeaderWithFactory`.
+* Navegue a `https://localhost:5001/Sample/HeaderWithFactory`.
 
 Las herramientas de desarrollador F12 muestran los siguientes encabezados de respuesta agregados por el código de ejemplo:
 
@@ -601,7 +601,7 @@ Los filtros de middleware se ejecutan en la misma fase de la canalización de fi
 
 ## <a name="next-actions"></a>Siguientes acciones
 
-* Vea [métodos de filtro para obtener Razor pages](xref:razor-pages/filter).
+* Vea [métodos de filtro para Razor páginas](xref:razor-pages/filter).
 * Para experimentar con los filtros, [descargue, pruebe y modifique el ejemplo de GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample).
 
 ::: moniker-end
@@ -619,7 +619,7 @@ Los filtros integrados se encargan de tareas como las siguientes:
 
 Se pueden crear filtros personalizados que se encarguen de cuestiones transversales. Entre los ejemplos de cuestiones transversales se incluyen el control de errores, el almacenamiento en caché, la configuración, la autorización y el registro.  Los filtros evitan la duplicación de código. Así, por ejemplo, un filtro de excepción de control de errores puede consolidar el control de errores.
 
-Este documento se aplica a Razor Pages, a los controladores de API y a los controladores con vistas.
+Este documento se aplica a Razor las páginas, controladores de API y controladores con vistas.
 
 [Vea o descargue el ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample) ([cómo descargarlo](xref:index#how-to-download-a-sample)).
 
@@ -641,7 +641,7 @@ Cada tipo de filtro se ejecuta en una fase diferente dentro de la canalización 
   * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> puede ejecutar código antes que el resto de la canalización del filtro. Por ejemplo, `OnResourceExecuting` puede ejecutar código antes que el enlace de modelos.
   * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> puede ejecutar el código una vez que el resto de la canalización se haya completado.
 
-* Los [filtros de acciones](#action-filters) pueden ejecutar código inmediatamente antes y después de llamar a un método de acción individual. Se pueden usar para manipular los argumentos pasados a una acción y el resultado obtenido de la acción. Los filtros de acciones **no** se admiten en Razor Pages.
+* Los [filtros de acciones](#action-filters) pueden ejecutar código inmediatamente antes y después de llamar a un método de acción individual. Se pueden usar para manipular los argumentos pasados a una acción y el resultado obtenido de la acción. **No** se admiten filtros de acción en Razor las páginas.
 
 * Los [filtros de excepciones](#exception-filters) sirven para aplicar directivas globales a las excepciones no controladas que se producen antes de que se escriba algo en el cuerpo de respuesta.
 
@@ -737,7 +737,7 @@ Esta secuencia pone de manifiesto lo siguiente:
 * El filtro de método está anidado en el filtro de controlador.
 * El filtro de controlador está anidado en el filtro global.
 
-### <a name="controller-and-razor-page-level-filters"></a>Filtros de nivel de controlador y de páginas de Razor
+### <a name="controller-and-razor-page-level-filters"></a>Filtros de Razor nivel de página y controlador
 
 Cada controlador que hereda de la clase base <xref:Microsoft.AspNetCore.Mvc.Controller> incluye los métodos [Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*), [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*) y [ Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted`. Estos métodos:
@@ -766,7 +766,7 @@ Si se dirige a `https://localhost:5001/Test/FilterTest2`, se ejecuta el código 
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
 
-Para Razor Pages, consulte [Implementar filtros de páginas de Razor globalmente](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
+Para Razor las páginas, consulte [implementar Razor filtros de página mediante la invalidación de métodos de filtro](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
 
 ### <a name="overriding-the-default-order"></a>Invalidación del orden predeterminado
 
@@ -783,7 +783,7 @@ La propiedad `Order` se puede establecer con un parámetro de constructor:
 
 Considere los mismos tres filtros de acción que se muestran en el ejemplo anterior. Si la propiedad `Order` del controlador y de los filtros globales está establecida en 1 y 2 respectivamente, el orden de ejecución se invierte.
 
-| Secuencia | Ámbito del filtro | Propiedad`Order` | Método de filtro |
+| Secuencia | Ámbito del filtro | Propiedad `Order` | Método de filtro |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Método | 0 | `OnActionExecuting` |
 | 2 | Controller | 1  | `OnActionExecuting` |
@@ -811,7 +811,7 @@ Por tanto, el filtro `AddHeader` nunca se ejecuta en relación con la acción `S
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1,9)]
 
-## <a name="dependency-injection"></a>Inserción de dependencias
+## <a name="dependency-injection"></a>Inserción de dependencia
 
 Los filtros se pueden agregar por tipo o por instancia. Si se agrega una instancia, esta se utiliza para todas las solicitudes. Si se agrega un tipo, se activa por tipo. Un filtro activado por tipo significa:
 
@@ -931,7 +931,7 @@ Ejemplos de filtros de recursos:
 ## <a name="action-filters"></a>Filtros de acciones
 
 > [!IMPORTANT]
-> Los filtros de acción **no** se Razor aplican a las páginas. RazorPages <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> admite <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> y. Para obtener más información, vea [métodos de Razor filtro para páginas](xref:razor-pages/filter).
+> Los filtros de acción **no** se aplican a Razor las páginas. RazorPages admite <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> y <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Para obtener más información, vea [Métodos de filtrado de Razor Pages](xref:razor-pages/filter).
 
 Filtros de acciones:
 
@@ -1003,7 +1003,7 @@ Los filtros de excepciones:
 
 * No tienen eventos anteriores ni posteriores.
 * Implementan <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> o <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
-* Controlar las excepciones no controladas que se Razor producen en la creación de páginas o controladores, [enlace de modelos](xref:mvc/models/model-binding), filtros de acción o métodos de acción.
+* Controlar las excepciones no controladas que se producen en la Razor creación de páginas o controladores, [enlace de modelos](xref:mvc/models/model-binding), filtros de acción o métodos de acción.
 * **No** detectan aquellas excepciones que se produzcan en los filtros de recursos, en los filtros de resultados o en la ejecución de resultados de MVC.
 
 Para controlar una excepción, establezca la propiedad <xref:System.Web.Mvc.ExceptionContext.ExceptionHandled> en `true` o escriba una respuesta. Esto detiene la propagación de la excepción. Un filtro de excepciones no tiene capacidad para convertir una excepción en un proceso "correcto". Eso solo lo pueden hacer los filtros de acciones.
@@ -1076,7 +1076,7 @@ Puede implementar `IFilterFactory` con las implementaciones de atributos persona
 El código anterior se puede probar mediante la ejecución del [ejemplo de descargar](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Invoque las herramientas de desarrollador de F12.
-* Vaya a `https://localhost:5001/Sample/HeaderWithFactory`.
+* Navegue a `https://localhost:5001/Sample/HeaderWithFactory`.
 
 Las herramientas de desarrollador F12 muestran los siguientes encabezados de respuesta agregados por el código de ejemplo:
 
@@ -1124,7 +1124,7 @@ Los filtros de middleware se ejecutan en la misma fase de la canalización de fi
 
 ## <a name="next-actions"></a>Siguientes acciones
 
-* Vea [métodos de filtro Razor para páginas](xref:razor-pages/filter).
+* Vea [métodos de filtro para Razor páginas](xref:razor-pages/filter).
 * Para experimentar con los filtros, [descargue, pruebe y modifique el ejemplo de GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
 
 ::: moniker-end

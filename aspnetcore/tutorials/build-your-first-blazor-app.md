@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: ce3f20f7ee4ccfa73afc5f80a4429d9f4fe05591
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 0b9854b3848a204b28d0427bef08364be0139069
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507262"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102859"
 ---
 # <a name="build-your-first-blazor-app"></a>Compilación de la primera aplicación Blazor
 
@@ -233,4 +233,4 @@ En este tutorial ha aprendido a:
 Aprenda a compilar y usar componentes:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/components>
+> <xref:blazor/components/index>

@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 865b2e58b38c16a54815ce0923a78ac98f2247f1
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 46a1ccbb3b5eeaf1beb3e33bca1b6c7065d6d56a
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84355375"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074227"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Aplicación de formato a datos de respuesta en ASP.NET Core Web API
 
@@ -40,7 +40,7 @@ La descarga de ejemplo devuelve la lista de autores. Con las herramientas para d
 * Se muestra el encabezado de respuesta que contiene **content-type:** `application/json; charset=utf-8`.
 * Se muestran los encabezados de solicitud. Por ejemplo, el encabezado `Accept`. El código anterior omite el encabezado `Accept`.
 
-Para devolver datos con formato de texto sin formato, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> y el método del asistente <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content>:
+Para devolver datos con formato de texto sin formato, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> y el método del asistente <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A>:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_about)]
 

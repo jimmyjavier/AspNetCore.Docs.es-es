@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 8195702a3de93bafc76dff61939dfc70d4e896b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cc12dc2bc6720652866227dc2bbcbcf4e8af793d
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775250"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074238"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implementar aplicaciones de ASP.NET Core en Azure App Service
 
@@ -87,17 +87,20 @@ Los paquetes anteriores no están disponibles en el [metapaquete Microsoft.AspNe
 
 ## <a name="override-app-configuration-using-the-azure-portal"></a>Invalidación de la configuración de la aplicación mediante Azure Portal
 
-La configuración de la aplicación en Azure Portal le permite establecer variables de entorno para la aplicación. El [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables-configuration-provider) puede consumir las variables de entorno.
+::: moniker range=">= aspnetcore-3.0"
+
+La configuración de la aplicación en Azure Portal le permite establecer variables de entorno para la aplicación. El [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables) puede consumir las variables de entorno.
 
 Cuando una configuración de aplicación se crea o modifica en Azure Portal y el botón **Guardar** está seleccionado, se reinicia la aplicación de Azure. La variable de entorno está disponible para la aplicación después de que se reinicie el servicio.
 
-::: moniker range=">= aspnetcore-3.0"
-
-Cuando una aplicación usa el [host genérico](xref:fundamentals/host/generic-host), las variables de entorno se cargan en la configuración de la aplicación cuando se llama a <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> para compilar el host. Para más información, consulte <xref:fundamentals/host/generic-host> y el [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+Cuando una aplicación usa el [host genérico](xref:fundamentals/host/generic-host), las variables de entorno se cargan en la configuración de la aplicación cuando se llama a <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> para compilar el host. Para más información, consulte <xref:fundamentals/host/generic-host> y el [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables).
 
 ::: moniker-end
-
 ::: moniker range="< aspnetcore-3.0"
+
+La configuración de la aplicación en Azure Portal le permite establecer variables de entorno para la aplicación. El [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables-configuration-provider) puede consumir las variables de entorno.
+
+Cuando una configuración de aplicación se crea o modifica en Azure Portal y el botón **Guardar** está seleccionado, se reinicia la aplicación de Azure. La variable de entorno está disponible para la aplicación después de que se reinicie el servicio.
 
 Cuando una aplicación usa el [host web](xref:fundamentals/host/web-host), las variables de entorno se cargan en la configuración de la aplicación cuando se llama a <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> para compilar el host. Para más información, consulte <xref:fundamentals/host/web-host> y el [proveedor de configuración de variables de entorno](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 

@@ -11,18 +11,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 53ca2a650eb6a3be0ff137953df5a546e9f0b282
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: e85c9d384361f9169035e6a3ab8770e1a96b8650
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84756137"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102726"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Razorreferencia de sintaxis para ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)y [dan Vicarel](https://github.com/Rabadash8820)
 
-Razores una sintaxis de marcado para insertar código basado en servidor en páginas Web. La Razor Sintaxis consta de Razor marcado, C# y HTML. Los archivos que contienen Razor generalmente tienen una extensión de archivo *. cshtml* . Razortambién se encuentra en archivos de [ Razor componentes](xref:blazor/components) (*. Razor*).
+Razores una sintaxis de marcado para insertar código basado en servidor en páginas Web. La Razor Sintaxis consta de Razor marcado, C# y HTML. Los archivos que contienen Razor generalmente tienen una extensión de archivo *. cshtml* . Razortambién se encuentra en archivos de [ Razor componentes](xref:blazor/components/index) (*. Razor*).
 
 ## <a name="rendering-html"></a>Representación de HTML
 
@@ -465,7 +465,7 @@ La directiva `@attribute` agrega el atributo especificado a la clase de la pági
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-El `@code` bloque permite a un [ Razor componente](xref:blazor/components) agregar miembros de C# (campos, propiedades y métodos) a un componente:
+El `@code` bloque permite a un [ Razor componente](xref:blazor/components/index) agregar miembros de C# (campos, propiedades y métodos) a un componente:
 
 ```razor
 @code {
@@ -489,7 +489,7 @@ La directiva `@functions` permite agregar miembros de C# (campos, propiedades y 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-En [ Razor componentes](xref:blazor/components), use `@code` `@functions` para agregar miembros de C#.
+En [ Razor componentes](xref:blazor/components/index), use `@code` `@functions` para agregar miembros de C#.
 
 ::: moniker-end
 
@@ -683,7 +683,7 @@ Si la carpeta *EvenMorePages* del ejemplo anterior tiene un archivo de importaci
 La directiva `@page` tiene efectos diferentes en función del tipo de archivo en el que aparece. Directiva:
 
 * En en un archivo *. cshtml* indica que el archivo es una Razor página. Para más información, consulte [Rutas personalizadas](xref:razor-pages/index#custom-routes) y <xref:razor-pages/index>.
-* Especifica que un Razor componente debe controlar las solicitudes directamente. Para obtener más información, vea <xref:blazor/routing>.
+* Especifica que un Razor componente debe controlar las solicitudes directamente. Para obtener más información, vea <xref:blazor/fundamentals/routing>.
 
 ::: moniker-end
 
@@ -707,7 +707,7 @@ La directiva `@using` agrega la directiva `using` de C# a la vista generada:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-En [ Razor Components](xref:blazor/components), `@using` también controla qué componentes están en el ámbito.
+En [ Razor Components](xref:blazor/components/index), `@using` también controla qué componentes están en el ámbito.
 
 ::: moniker-end
 
@@ -721,19 +721,19 @@ Razorlos atributos de Directiva se representan mediante expresiones implícitas 
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-`@attributes` permite que un componente represente atributos no declarados. Para obtener más información, vea <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
+`@attributes` permite que un componente represente atributos no declarados. Para obtener más información, vea <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 ### `@bind`
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-El enlace de datos en los componentes se logra mediante el atributo `@bind`. Para obtener más información, vea <xref:blazor/data-binding>.
+El enlace de datos en los componentes se logra mediante el atributo `@bind`. Para obtener más información, vea <xref:blazor/components/data-binding>.
 
 ### `@on{EVENT}`
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-Razorproporciona características de control de eventos para los componentes de. Para obtener más información, vea <xref:blazor/event-handling>.
+Razorproporciona características de control de eventos para los componentes de. Para obtener más información, vea <xref:blazor/components/event-handling>.
 
 ::: moniker-end
 
@@ -759,19 +759,19 @@ Detiene la propagación de eventos para el evento.
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-El atributo de directiva `@key` hace que el algoritmo de comparación de componentes garantice la preservación de elementos o componentes en función del valor de la clave. Para obtener más información, vea <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
+El atributo de directiva `@key` hace que el algoritmo de comparación de componentes garantice la preservación de elementos o componentes en función del valor de la clave. Para obtener más información, vea <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
 
 ### `@ref`
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-Las referencias de componentes (`@ref`) proporcionan una forma de hacer referencia a la instancia de un componente para poder emitir comandos a dicha instancia. Para obtener más información, vea <xref:blazor/components#capture-references-to-components>.
+Las referencias de componentes (`@ref`) proporcionan una forma de hacer referencia a la instancia de un componente para poder emitir comandos a dicha instancia. Para obtener más información, vea <xref:blazor/components/index#capture-references-to-components>.
 
 ### `@typeparam`
 
 *Este escenario solo se aplica a Razor los componentes de (. Razor).*
 
-La directiva `@typeparam` declara un parámetro de tipo genérico para la clase de componente generada. Para obtener más información, vea <xref:blazor/templated-components#generic-typed-components>.
+La directiva `@typeparam` declara un parámetro de tipo genérico para la clase de componente generada. Para obtener más información, vea <xref:blazor/components/templated-components#generic-typed-components>.
 
 ::: moniker-end
 

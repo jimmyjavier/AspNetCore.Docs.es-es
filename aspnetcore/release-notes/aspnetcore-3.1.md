@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507249"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102581"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Novedades de ASP.NET Core 3.1
 
@@ -25,7 +25,7 @@ En este artículo se resaltan los cambios más importantes de ASP.NET Core 3.1
 
 ## <a name="partial-class-support-for-razor-components"></a>Compatibilidad de clases parciales con componentes de Razor
 
-Ahora los componentes de Razor se generan como clases parciales. El código de un componente de Razor se puede escribir con un archivo de código subyacente definido como una clase parcial en lugar de definir todo el código del componente en un solo archivo. Para más información, vea [Compatibilidad de clases parciales](xref:blazor/components#partial-class-support).
+Ahora los componentes de Razor se generan como clases parciales. El código de un componente de Razor se puede escribir con un archivo de código subyacente definido como una clase parcial en lugar de definir todo el código del componente en un solo archivo. Para más información, vea [Compatibilidad de clases parciales](xref:blazor/components/index#partial-class-support).
 
 ## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>El Asistente de etiquetas de componente de Blazor y transferencia de parámetros a componentes de nivel superior
 
@@ -46,7 +46,7 @@ Por ejemplo, se puede realizar la representación previa de un componente `Count
     param-IncrementAmount="10" />
 ```
 
-Para obtener más información, vea [Integración de componentes en aplicaciones Razor Pages y MVC](xref:blazor/integrate-components).
+Para obtener más información, vea [Integración de componentes en aplicaciones Razor Pages y MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Compatibilidad con las colas compartidas en HTTP.sys
 
@@ -66,7 +66,7 @@ Use el atributo de directiva `@on{EVENT}:preventDefault` para evitar la acción 
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-Para más información, vea [Impedir acciones predeterminadas](xref:blazor/event-handling#prevent-default-actions).
+Para más información, vea [Impedir acciones predeterminadas](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## <a name="stop-event-propagation-in-blazor-apps"></a>Detener la propagación de eventos en aplicaciones Blazor
 
@@ -86,7 +86,7 @@ Use el atributo de directiva `@on{EVENT}:stopPropagation` para detener la propag
 }
 ```
 
-Para más información, vea [Detener la propagación de eventos](xref:blazor/event-handling#stop-event-propagation).
+Para más información, vea [Detener la propagación de eventos](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## <a name="detailed-errors-during-blazor-app-development"></a>Errores detallados durante el desarrollo de aplicaciones Blazor
 
@@ -95,4 +95,4 @@ Cuando una aplicación Blazor no funciona correctamente durante el desarrollo, r
 * Durante el desarrollo, la barra dorada le dirige a la consola del explorador, donde puede ver la excepción.
 * En producción, la barra dorada informa al usuario de que se ha producido un error y recomienda actualizar el explorador.
 
-Para más información, vea [Errores detallados durante el desarrollo](xref:blazor/handle-errors#detailed-errors-during-development).
+Para más información, vea [Errores detallados durante el desarrollo](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

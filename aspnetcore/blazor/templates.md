@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f582e8201a3393b848cf3f2c21ce3a7df5554100
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 3a491e43aec8291fcf03696b53240bd33e0deda1
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105537"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102487"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Plantillas de Blazor de ASP.NET Core
 
@@ -80,7 +80,7 @@ Los siguientes archivos y carpetas componen una aplicación Blazor generada a pa
 
 * Carpeta *Shared*: contiene otros componentes de interfaz de usuario ( *.razor*) que la aplicación usa:
   * `MainLayout` (*MainLayout.razor*): componente de diseño de la aplicación.
-  * `NavMenu` (*NavMenu.razor*): implementa la navegación de barra lateral. Incluye el [componente NavLink](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), que representa los vínculos de navegación a otros componentes de Razor. El componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> indica automáticamente un estado seleccionado cuando su componente se carga, lo que ayuda al usuario a saber qué componente se está mostrando actualmente.
+  * `NavMenu` (*NavMenu.razor*): implementa la navegación de barra lateral. Incluye el [componente NavLink](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), que representa los vínculos de navegación a otros componentes de Razor. El componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> indica automáticamente un estado seleccionado cuando su componente se carga, lo que ayuda al usuario a saber qué componente se está mostrando actualmente.
 
 * *_Imports.razor*: Engloba las directivas de Razor comunes que se van a incluir en los componentes de la aplicación ( *.razor*), como las directivas [`@using`](xref:mvc/views/razor#using) de los espacios de nombres.
 

@@ -2,7 +2,7 @@
 ---
 Durante la representación previa de una aplicación Blazor Server, no es posible realizar ciertas acciones (como llamar a JavaScript), ya que no se ha establecido una conexión con el explorador. Es posible que los componentes tengan que representarse de forma diferente cuando se representen previamente.
 
-Para retrasar las llamadas de interoperabilidad de JavaScript hasta que se establezca la conexión con el explorador, puede usar el [evento de ciclo de vida del componente OnAfterRenderAsync](xref:blazor/lifecycle#after-component-render). Solo se llama a este evento después de que la aplicación se represente por completo y se establezca la conexión con el cliente.
+Para retrasar las llamadas de interoperabilidad de JavaScript hasta que se establezca la conexión con el explorador, puede usar el [evento de ciclo de vida del componente OnAfterRenderAsync](xref:blazor/components/lifecycle#after-component-render). Solo se llama a este evento después de que la aplicación se represente por completo y se establezca la conexión con el cliente.
 
 ```cshtml
 @using Microsoft.JSInterop
@@ -39,7 +39,7 @@ En el componente siguiente se muestra cómo usar la interoperabilidad de JavaScr
 
 Cuando se llama a <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType>, `ElementRef` solo se utiliza en <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> y no en ningún otro método de ciclo de vida anterior porque no existe ningún elemento de JavaScript hasta después de representar el componente.
 
-Se llama a [StateHasChanged](xref:blazor/lifecycle#state-changes) para representar el componente con el nuevo estado obtenido de la llamada de interoperabilidad de JavaScript. El código no crea un bucle infinito porque solo se llama a `StateHasChanged` cuando `null` es `infoFromJs`.
+Se llama a [StateHasChanged](xref:blazor/components/lifecycle#state-changes) para representar el componente con el nuevo estado obtenido de la llamada de interoperabilidad de JavaScript. El código no crea un bucle infinito porque solo se llama a `StateHasChanged` cuando `null` es `infoFromJs`.
 
 ```cshtml
 @page "/prerendered-interop"

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 9b34125fdf6c6d451a11a53874944f5d8b44aa29
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: 51c86639ef904aae1730a698758cd6b8867a445a
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776545"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074291"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuración en ASP.NET Core
 
@@ -730,7 +730,7 @@ Antes de configurar e iniciar la aplicación, se configura e inicia un *host*. E
 Para obtener más información sobre la configuración predeterminada al usar el [host de web](xref:fundamentals/host/web-host), vea la [versión de este tema para ASP.NET Core 2.2](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * La configuración del host la proporcionan los siguientes elementos:
-  * Las variables de entorno con el prefijo `DOTNET_` (por ejemplo, `DOTNET_ENVIRONMENT`) mediante el [proveedor de configuración de variables de entorno](#environment-variables-configuration-provider). El prefijo (`DOTNET_`) se quita cuando se cargan los pares clave-valor de configuración.
+  * Las variables de entorno con el prefijo `DOTNET_` (por ejemplo, `DOTNET_ENVIRONMENT`) mediante el [proveedor de configuración de variables de entorno](#environment-variables). El prefijo (`DOTNET_`) se quita cuando se cargan los pares clave-valor de configuración.
   * Argumentos de la línea de comandos con el [proveedor de configuración de línea de comandos](#command-line-configuration-provider).
 * La configuración predeterminada del host de web se ha establecido (`ConfigureWebHostDefaults`):
   * Kestrel se usa como el servidor web y se ha configurado mediante los proveedores de configuración de la aplicación.

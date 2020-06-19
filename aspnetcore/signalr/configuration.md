@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 09866f1fd56a4d0747ef3814c85ab5070cfb8d59
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: 809bdc777b6307314a7bcde82ab5e0c6888db99b
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84756124"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074467"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configuración de ASP.NET Core SignalR
 
@@ -196,8 +196,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -352,6 +352,8 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 | Opción de JavaScript | Valor predeterminado | Descripción |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
+| `headers` | `null` | Diccionario de encabezados enviados con cada solicitud HTTP. El envío de encabezados en el explorador no funciona con WebSockets ni con el <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> flujo. |
+| `logMessageContent` | `null` | Establezca en `true` para registrar los bytes/caracteres de los mensajes enviados y recibidos por el cliente. |
 | `skipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
 | `withCredentials` | `true` | Especifica si las credenciales se enviarán con la solicitud de CORS. Azure App Service usa cookies para sesiones permanentes y necesita que esta opción esté habilitada para funcionar correctamente. Para obtener más información sobre CORS con SignalR , vea <xref:signalr/security#cross-origin-resource-sharing> . |
 
@@ -582,8 +584,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -688,7 +690,7 @@ En el propio objeto están disponibles opciones adicionales para configurar el c
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `ServerTimeout` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `Closed` evento ( `onclose` en JavaScript). Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 | `HandshakeTimeout` | 15 segundos | Tiempo de espera para el protocolo de enlace inicial del servidor. Si el servidor no envía una respuesta de protocolo de enlace en este intervalo, el cliente cancela el protocolo de enlace y desencadena el `Closed` evento ( `onclose` en JavaScript). Se trata de una configuración avanzada que solo se debe modificar si se producen errores de tiempo de espera del Protocolo de enlace debido a una latencia de red grave. Para obtener más información sobre el proceso de enlace, consulte la [ SignalR especificación del Protocolo de concentrador](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -698,7 +700,7 @@ En el cliente de .NET, los valores de tiempo de espera se especifican como `Time
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `serverTimeoutInMilliseconds` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `onclose` evento. Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 | `keepAliveIntervalInMilliseconds` | 15 segundos (15.000 milisegundos) | Determina el intervalo en el que el cliente envía mensajes de ping. Al enviar cualquier mensaje desde el cliente, se restablece el temporizador al inicio del intervalo. Si el cliente no ha enviado un mensaje en el `ClientTimeoutInterval` conjunto del servidor, el servidor considera que el cliente está desconectado. |
@@ -719,7 +721,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción de .NET |  Valor predeterminado | Descripción |
+| Opción de .NET |  Valor predeterminado | Description |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
@@ -738,6 +740,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 | Opción de JavaScript | Valor predeterminado | Descripción |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
+| `logMessageContent` | `null` | Establezca en `true` para registrar los bytes/caracteres de los mensajes enviados y recibidos por el cliente. |
 | `skipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -966,8 +969,8 @@ En la tabla siguiente se enumeran los niveles de registro disponibles. El valor 
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -1122,6 +1125,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 | Opción de JavaScript | Valor predeterminado | Descripción |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
+| `logMessageContent` | `null` | Establezca en `true` para registrar los bytes/caracteres de los mensajes enviados y recibidos por el cliente. |
 | `skipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -1420,7 +1424,7 @@ En el propio objeto están disponibles opciones adicionales para configurar el c
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `ServerTimeout` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `Closed` evento ( `onclose` en JavaScript). Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 | `HandshakeTimeout` | 15 segundos | Tiempo de espera para el protocolo de enlace inicial del servidor. Si el servidor no envía una respuesta de protocolo de enlace en este intervalo, el cliente cancela el protocolo de enlace y desencadena el `Closed` evento ( `onclose` en JavaScript). Se trata de una configuración avanzada que solo se debe modificar si se producen errores de tiempo de espera del Protocolo de enlace debido a una latencia de red grave. Para obtener más información sobre el proceso de enlace, consulte la [ SignalR especificación del Protocolo de concentrador](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -1430,7 +1434,7 @@ En el cliente de .NET, los valores de tiempo de espera se especifican como `Time
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `serverTimeoutInMilliseconds` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `onclose` evento. Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 | `keepAliveIntervalInMilliseconds` | 15 segundos (15.000 milisegundos) | Determina el intervalo en el que el cliente envía mensajes de ping. Al enviar cualquier mensaje desde el cliente, se restablece el temporizador al inicio del intervalo. Si el cliente no ha enviado un mensaje en el `ClientTimeoutInterval` conjunto del servidor, el servidor considera que el cliente está desconectado. |
@@ -1451,7 +1455,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción de .NET |  Valor predeterminado | Descripción |
+| Opción de .NET |  Valor predeterminado | Description |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
@@ -1470,6 +1474,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 | Opción de JavaScript | Valor predeterminado | Descripción |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
+| `logMessageContent` | `null` | Establezca en `true` para registrar los bytes/caracteres de los mensajes enviados y recibidos por el cliente. |
 | `skipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -1765,7 +1770,7 @@ En el propio objeto están disponibles opciones adicionales para configurar el c
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `ServerTimeout` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `Closed` evento ( `onclose` en JavaScript). Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 | `HandshakeTimeout` | 15 segundos | Tiempo de espera para el protocolo de enlace inicial del servidor. Si el servidor no envía una respuesta de protocolo de enlace en este intervalo, el cliente cancela el protocolo de enlace y desencadena el `Closed` evento ( `onclose` en JavaScript). Se trata de una configuración avanzada que solo se debe modificar si se producen errores de tiempo de espera del Protocolo de enlace debido a una latencia de red grave. Para obtener más información sobre el proceso de enlace, consulte la [ SignalR especificación del Protocolo de concentrador](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -1774,7 +1779,7 @@ En el cliente de .NET, los valores de tiempo de espera se especifican como `Time
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opción | Valor predeterminado | Descripción |
+| Opción | Valor predeterminado | Description |
 | ------ | ------------- | ----------- |
 | `serverTimeoutInMilliseconds` | 30 segundos (30.000 milisegundos) | Tiempo de espera para la actividad del servidor. Si el servidor no ha enviado un mensaje en este intervalo, el cliente considera que el servidor está desconectado y desencadena el `onclose` evento. Este valor debe ser lo suficientemente grande como para que se envíe un mensaje ping desde el servidor **y** el cliente lo reciba dentro del intervalo de tiempo de espera. El valor recomendado es un número, como mínimo, el doble del valor del servidor `KeepAliveInterval` para dejar tiempo para que lleguen los ping. |
 
@@ -1793,7 +1798,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Opción de .NET |  Valor predeterminado | Descripción |
+| Opción de .NET |  Valor predeterminado | Description |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
 | `SkipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
@@ -1812,6 +1817,7 @@ Se pueden configurar opciones adicionales en el `WithUrl` `withUrl` método (en 
 | Opción de JavaScript | Valor predeterminado | Descripción |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Función que devuelve una cadena que se proporciona como un token de autenticación de portador en solicitudes HTTP. |
+| `logMessageContent` | `null` | Establezca en `true` para registrar los bytes/caracteres de los mensajes enviados y recibidos por el cliente. |
 | `skipNegotiation` | `false` | Establézcalo en `true` para omitir el paso de negociación. **Solo se admite cuando el transporte de WebSockets es el único transporte habilitado**. Esta configuración no se puede habilitar cuando se usa el servicio de Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)

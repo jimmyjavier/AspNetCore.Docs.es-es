@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 08229283882928c4cc733de19840d25872846c97
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c90c3bf7ccef420101c66fe04d579920209b066c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452036"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102338"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introducción a ASP.NET Core Blazor
 
@@ -162,7 +162,7 @@ Agregue un componente a otro mediante sintaxis HTML. Por ejemplo, para agregar e
 
 Ejecutar la aplicación. La página principal tiene su propio contador que proporciona el componente `Counter`.
 
-Los parámetros del componente se especifican mediante atributos o [contenido secundario](xref:blazor/components#child-content), que permiten establecer propiedades en el componente secundario. Para agregar un parámetro al componente `Counter`, actualice el bloque `@code` del componente:
+Los parámetros del componente se especifican mediante atributos o [contenido secundario](xref:blazor/components/index#child-content), que permiten establecer propiedades en el componente secundario. Para agregar un parámetro al componente `Counter`, actualice el bloque `@code` del componente:
 
 * Agregue una propiedad pública para `IncrementAmount` con un atributo [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
 * Cambie el método `IncrementCount` para usar `IncrementAmount` al aumentar el valor de `currentCount`.

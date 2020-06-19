@@ -6,4 +6,4 @@ La biblioteca de clases controla la inserción de recursos de JavaScript en el e
 
 Se hace referencia al paquete NuGet compilado en el archivo de proyecto de la aplicación de la misma manera que se hace referencia a cualquier paquete NuGet. Una vez restaurado el paquete, el código de la aplicación puede llamar a JavaScript como si fuera C#.
 
-Para obtener más información, consulta <xref:blazor/class-libraries>.
+Para obtener más información, consulta <xref:blazor/components/class-libraries>.
