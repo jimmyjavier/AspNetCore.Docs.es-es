@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 70f5da1dad9b4c0b9526a7688862637291be9a68
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 52c3dc82e51cb4375954a603a1bfde60fd667b56
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652575"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103045"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introducción a Razor Pages en ASP.NET Core
 
@@ -49,7 +49,7 @@ En este documento se proporciona una introducción a Razor Pages. No es un tutor
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-razor-pages-project"></a>Creación de un proyecto de Razor Pages
+## <a name="create-a-razor-pages-project"></a>Crear un proyecto de Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -87,7 +87,7 @@ Modelo de página *Pages/Index2.cshtml.cs*:
 
 Por convención, el archivo de clase `PageModel` tiene el mismo nombre que el archivo de Razor Pages con *.cs* anexado. Por ejemplo, la instancia de Razor Pages anterior es *Pages/Index2.cshtml*. El archivo que contiene la clase `PageModel` se denomina *Pages/Index2.cshtml.cs*.
 
-Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso de Razor Pages y la dirección URL correspondiente:
+Las asociaciones de rutas de dirección URL a páginas se determinan según la ubicación de la página en el sistema de archivos. En la tabla siguiente, se muestra una ruta de acceso Razor Pages y la dirección URL correspondiente:
 
 | Ruta de acceso y nombre de archivo               | URL correspondiente |
 | ----------------- | ------------ |
@@ -98,12 +98,12 @@ Las asociaciones de rutas de dirección URL a páginas se determinan según la u
 
 Notas:
 
-* El entorno de ejecución busca archivos de Razor Pages en la carpeta *Páginas* de forma predeterminada.
+* El entorno de ejecución busca archivos de páginas de Razor en la carpeta *Pages* de forma predeterminada.
 * `Index` es la página predeterminada cuando una URL no incluye una página.
 
 ## <a name="write-a-basic-form"></a>Escritura de un formulario básico
 
-Razor Pages están diseñado para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de Razor Pages. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
+Razor Pages está diseñado para facilitar la implementación de patrones comunes que se usan con exploradores web al compilar una aplicación. Los [enlaces de modelos](xref:mvc/models/model-binding), los [asistentes de etiquetas](xref:mvc/views/tag-helpers/intro) y los asistentes de HTML *simplemente funcionan* con las propiedades definidas en una clase de Razor Pages. Considere la posibilidad de una página que implementa un formulario básico del estilo "Póngase en contacto con nosotros" para el modelo `Contact`:
 
 Para los ejemplos de este documento, `DbContext` se inicializa en el archivo [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24).
 
@@ -370,7 +370,7 @@ El diseño está en la carpeta *Pages/Shared*. Las páginas buscan otras vistas 
 
 El archivo de diseño debería ir en la carpeta *Pages/Shared*.
 
-Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Razor Pages están diseñado para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
+Le recomendamos que **no** coloque el archivo de diseño en la carpeta *Views/Shared*. *Views/Shared* es un patrón de vistas de MVC. Razor Pages está diseñado para basarse en la jerarquía de carpetas, no en las convenciones de ruta de acceso.
 
 La búsqueda de vistas de una instancia de Razor Pages incluye la carpeta *Pages*. Los diseños, plantillas y parciales que se usan con los controladores de MVC y las vistas de Razor convencionales *simplemente funcionan*.
 
@@ -608,7 +608,7 @@ Agregue <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuild
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
-* <xref:blazor/integrate-components>
+* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>
 
 ::: moniker-end
 
