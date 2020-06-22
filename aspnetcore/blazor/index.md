@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, una forma de compilar la interfaz de u
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 05/19/2020
+ms.date: 06/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: feca504a39624282961fbc6405876e970a20b5d4
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 086629f88ad04faed812bd16683e7d073f3e8ede
+ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102284"
+ms.lasthandoff: 06/20/2020
+ms.locfileid: "85122079"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introducción a ASP.NET Core Blazor
 
@@ -149,7 +149,7 @@ En el caso de aplicaciones que necesitan bibliotecas de JavaScript de terceros y
 
 ## <a name="code-sharing-and-net-standard"></a>Uso compartido de código y .NET Standard
 
-Blazor implementa [.NET Standard 2.0](/dotnet/standard/net-standard). .NET Standard es una especificación formal de las API de .NET comunes entre las implementaciones de .NET. Las bibliotecas de clase .NET Standard pueden compartirse a través de diferentes plataformas .NET, como Blazor, .NET Framework, .NET Core, Xamarin, Mono y Unity.
+Blazor implementa [.NET Standard 2.1](/dotnet/standard/net-standard), que permite a los proyectos de Blazor hacer referencia a las bibliotecas que cumplen con ese estándar o con especificaciones anteriores. .NET Standard es una especificación formal de las API de .NET comunes entre las implementaciones de .NET. Las bibliotecas de clase .NET Standard pueden compartirse a través de diferentes plataformas .NET, como Blazor, .NET Framework, .NET Core, Xamarin, Mono y Unity.
 
 Las API que no pueden aplicarse dentro de un explorador web (por ejemplo, para acceder al sistema de archivos, abrir un socket y ejecutar subprocesos) generan una excepción <xref:System.PlatformNotSupportedException>.
 

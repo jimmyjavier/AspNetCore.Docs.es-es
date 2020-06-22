@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: ae33218d6944c62a08e677592ac0c66f9026b15f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a54861945d97728336149d5ffb39952c3d61b7bd
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766555"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724268"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Realización de solicitudes HTTP mediante IHttpClientFactory en ASP.NET Core
 
@@ -189,6 +189,44 @@ public class ValuesController : ControllerBase
     }
 }
 ```
+
+## <a name="make-post-put-and-delete-requests"></a>Realización de solicitudes POST, PUT y DELETE
+
+En los ejemplos anteriores, todas las solicitudes HTTP usan el verbo HTTP de GET. `HttpClient` también admite otros verbos HTTP; por ejemplo:
+
+* POST
+* PUT
+* SUPRIMIR
+* PATCH
+
+Para obtener una lista completa de los verbos HTTP admitidos, vea <xref:System.Net.Http.HttpMethod>.
+
+En el ejemplo siguiente se muestra cómo hacer una solicitud POST HTTP:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+
+En el código anterior, el método `CreateItemAsync`:
+
+* Serializa el parámetro `TodoItem` en JSON mediante `System.Text.Json`. Usa una instancia de <xref:System.Text.Json.JsonSerializerOptions> para configurar el proceso de serialización.
+* Crea una instancia de <xref:System.Net.Http.StringContent> a fin de empaquetar el JSON serializado para enviarlo en el cuerpo de la solicitud de HTTP.
+* Llama a <xref:System.Net.Http.HttpClient.PostAsync%2A> para enviar el contenido de JSON a la URL especificada. Se trata de una URL relativa que se agrega a [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Llama a <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> para iniciar una excepción si el código de estado de la respuesta no indica que la operación se ha procesado correctamente.
+
+`HttpClient` también admite otros tipos de contenido. Por ejemplo, <xref:System.Net.Http.MultipartContent> y <xref:System.Net.Http.StreamContent>. Para obtener una lista completa del contenido admitido, vea <xref:System.Net.Http.HttpContent>.
+
+En el ejemplo siguiente se muestra una solicitud PUT HTTP:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+
+El código anterior es muy similar al ejemplo de POST. El método `SaveItemAsync` llama a <xref:System.Net.Http.HttpClient.PutAsync%2A> en lugar de `PostAsync`.
+
+En el ejemplo siguiente se muestra una solicitud DELETE HTTP:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+
+En el código anterior, el método `DeleteItemAsync` llama a <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Debido a que las solicitudes DELETE HTTP normalmente no contienen ningún cuerpo, el método `DeleteAsync` no proporciona ninguna sobrecarga que acepte una instancia de `HttpContent`.
+
+Para obtener más información sobre el uso de verbos HTTP diferentes con `HttpClient`, vea <xref:System.Net.Http.HttpClient>.
 
 ## <a name="outgoing-request-middleware"></a>Middleware de solicitud saliente
 

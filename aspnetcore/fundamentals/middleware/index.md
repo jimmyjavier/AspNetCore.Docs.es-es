@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 745eca9788d95c9a123e51a737b34dccdc65d8d4
-ms.sourcegitcommit: 30fcf69556b6b6ec54a3879e280d5f61f018b48f
+ms.openlocfilehash: b2468220d0c059a94a085357f2be7bbb3b89adc4
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82876236"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074201"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware de ASP.NET Core
 
@@ -78,7 +78,7 @@ En el diagrama siguiente se muestra la canalización de procesamiento de solicit
 
 ![Canalización de middleware de ASP.NET Core](index/_static/middleware-pipeline.svg)
 
-El middleware **Punto de conexión** del diagrama anterior ejecuta la canalización de filtro para el tipo de aplicación correspondiente&mdash;MVC o Razor Pages.
+El middleware **Punto de conexión** del diagrama anterior ejecuta la canalización de filtro para el tipo de aplicación correspondiente &mdash;MVC o Razor Pages.
 
 ![Canalización de filtro de ASP.NET Core](index/_static/mvc-endpoint.svg)
 
@@ -183,6 +183,10 @@ En el caso de las aplicaciones de página única (SPA), el middleware de SPA <xr
 * Para permitir que SPA con enrutamiento del lado cliente se ejecuten para todas las rutas que no reconoce la aplicación de servidor.
 
 Para obtener más información sobre las SPA, consulte las guías de las plantillas de proyecto [React](xref:spa/react) y [Angular](xref:spa/angular).
+
+### <a name="forwarded-headers-middleware-order"></a>Orden del middleware de encabezados reenviados
+
+[!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
 ## <a name="branch-the-middleware-pipeline"></a>Creación de una rama de la canalización de middleware
 
