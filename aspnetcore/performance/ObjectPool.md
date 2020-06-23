@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: f29d15fc1e2d2ad84526598be14638110f08614e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 004ca5724517bf3fbf6512c0b9653793f4e0f702
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774787"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241006"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Reutilización de objetos con ObjectPool en ASP.NET Core
 
@@ -31,7 +31,7 @@ Es posible que desee usar el grupo de objetos si los objetos que se están admin
 - Representan algún recurso limitado.
 - Se utiliza de forma predecible y frecuente.
 
-Por ejemplo, el marco de ASP.NET Core usa el grupo de objetos en algunos lugares <xref:System.Text.StringBuilder> para reutilizar las instancias. `StringBuilder`asigna y administra sus propios búferes para contener datos de caracteres. ASP.NET Core usa `StringBuilder` con regularidad para implementar características y su reutilización proporciona una ventaja de rendimiento.
+Por ejemplo, el marco de ASP.NET Core usa el grupo de objetos en algunos lugares para reutilizar <xref:System.Text.StringBuilder> las instancias. `StringBuilder`asigna y administra sus propios búferes para contener datos de caracteres. ASP.NET Core usa `StringBuilder` con regularidad para implementar características y su reutilización proporciona una ventaja de rendimiento.
 
 La agrupación de objetos no siempre mejora el rendimiento:
 
@@ -40,7 +40,7 @@ La agrupación de objetos no siempre mejora el rendimiento:
 
 Use la agrupación de objetos solo después de recopilar datos de rendimiento mediante escenarios realistas para la aplicación o biblioteca.
 
-**ADVERTENCIA: `ObjectPool` no implementa `IDisposable`. No se recomienda su uso con tipos que necesitan la eliminación.**
+**ADVERTENCIA: `ObjectPool` no implementa `IDisposable` . No se recomienda su uso con tipos que necesitan la eliminación.**
 
 **Nota: ObjectPool no impone ningún límite en cuanto al número de objetos que asignará, sino que establece un límite en el número de objetos que se conservarán.**
 
@@ -61,7 +61,7 @@ El ObjectPool se puede usar en una aplicación de varias maneras:
 
 ## <a name="how-to-use-objectpool"></a>Cómo usar ObjectPool
 
-Llame <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> a para obtener un objeto <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> y devolver el objeto.  No es necesario que devuelva todos los objetos. Si no devuelve un objeto, se recolectará como elemento no utilizado.
+Llame <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> a para obtener un objeto y <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> devolver el objeto.  No es necesario que devuelva todos los objetos. Si no devuelve un objeto, se recolectará como elemento no utilizado.
 
 ## <a name="objectpool-sample"></a>Ejemplo de ObjectPool
 
@@ -69,10 +69,12 @@ El código siguiente:
 
 * Agrega `ObjectPoolProvider` al contenedor de [inserción de dependencias](xref:fundamentals/dependency-injection) (di).
 * Agrega y configura `ObjectPool<StringBuilder>` en el contenedor de di.
-* Agrega el `BirthdayMiddleware`.
+* Agrega el `BirthdayMiddleware` .
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 El código siguiente implementa`BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
