@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: c935f326afb77de5e083829c0bc2494efb20fec3
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: b55619889c294a0cd6ab98ffdf228d86ee60cd7c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679623"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102305"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creación de aplicaciones web progresivas con ASP.NET Core Blazor WebAssembly
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Una aplicación web progresiva (PWA) es una aplicación de página única (SPA) que usa las API y funciones de exploradores modernos para comportarse como una aplicación de escritorio. WebAssembly de Blazor es una plataforma de aplicaciones web del lado cliente basada en estándares, por lo que puede usar cualquier API de explorador, incluidas las de PWA necesarias para las siguientes funcionalidades:
+Una aplicación web progresiva suele ser una aplicación de página única que usa las API y funciones de exploradores modernos para comportarse como una aplicación de escritorio. WebAssembly de Blazor es una plataforma de aplicaciones web del lado cliente basada en estándares, por lo que puede usar cualquier API de explorador, incluidas las de PWA necesarias para las siguientes funcionalidades:
 
 * Trabajo sin conexión y carga instantánea, con independencia de la velocidad de la red.
 * Ejecución en una ventana de aplicación propia, no solo en una ventana del explorador.
@@ -89,7 +89,7 @@ De forma predeterminada, las aplicaciones creadas mediante la plantilla PWA tien
 
 Para ver cómo funciona la compatibilidad sin conexión:
 
-1. Publique la aplicación. Para obtener más información, vea <xref:host-and-deploy/blazor/index#publish-the-app>.
+1. Publique la aplicación. Para obtener más información, vea <xref:blazor/host-and-deploy/index#publish-the-app>.
 1. Implemente la aplicación en un servidor que admita HTTPS y acceda a la aplicación en un explorador mediante su dirección HTTPS segura.
 1. Abra las herramientas de desarrollo del explorador y, en la pestaña **Aplicación**, compruebe que se ha registrado un *trabajo de servicio* para el host:
 
@@ -295,4 +295,4 @@ La aplicación de ejemplo [CarChecker](https://github.com/SteveSandersonMS/CarCh
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Negociación entre orígenes de SignalR para la autenticación](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [Negociación entre orígenes de SignalR para la autenticación](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
