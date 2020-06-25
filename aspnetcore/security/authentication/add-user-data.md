@@ -1,7 +1,7 @@
 ---
-title: Agregar, descargar y eliminar datos Identity de usuario en un proyecto de ASP.net Core
+title: Agregar, descargar y eliminar datos de usuario en Identity un proyecto de ASP.net Core
 author: rick-anderson
-description: Obtenga información sobre cómo agregar datos de usuario Identity personalizados a en un proyecto de ASP.net Core. Elimine los datos por RGPD.
+description: Obtenga información sobre cómo agregar datos de usuario personalizados a Identity en un proyecto de ASP.net Core. Elimine los datos por RGPD.
 ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
@@ -12,23 +12,23 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: 29c23e10d11eb1042b64fc071c221a9ead857fcc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6b4de0a47cd7882852512040a08832942f20aa4c
+ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777337"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85347117"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Agregar, descargar y eliminar datos de usuario personalizados en una identidad en un proyecto de ASP.NET Core
+# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Agregar, descargar y eliminar datos de usuario personalizados Identity en un proyecto de ASP.net Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 En este artículo se muestra cómo:
 
 * Agregue datos de usuario personalizados a una aplicación Web de ASP.NET Core.
-* Marque el modelo de datos de usuario personalizado <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> con el atributo para que esté disponible automáticamente para su descarga y eliminación. Hacer que los datos se puedan descargar y eliminar ayuda a cumplir los requisitos de [RGPD](xref:security/gdpr) .
+* Marque el modelo de datos de usuario personalizado con el <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> atributo para que esté disponible automáticamente para su descarga y eliminación. Hacer que los datos se puedan descargar y eliminar ayuda a cumplir los requisitos de [RGPD](xref:security/gdpr) .
 
-El ejemplo de proyecto se crea a partir de una aplicación Web de Razor Pages, pero las instrucciones son similares para una aplicación Web de ASP.NET Core MVC.
+El ejemplo de proyecto se crea a partir de una Razor aplicación Web de páginas, pero las instrucciones son similares para una aplicación web MVC ASP.net Core.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -46,16 +46,16 @@ El ejemplo de proyecto se crea a partir de una aplicación Web de Razor Pages, p
 
 ::: moniker-end
 
-## <a name="create-a-razor-web-app"></a>Creación de una aplicación web de Razor
+## <a name="create-a-razor-web-app"></a>Creación de una Razor aplicación Web
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 * En el menú **Archivo** de Visual Studio, seleccione **Nuevo** > **Proyecto**. Asigne al proyecto el nombre **WebApp1** si desea que coincida con el espacio de nombres del código de [ejemplo de descarga](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
-* Seleccionar **ASP.net Core aplicación** > Web **correcta**
+* Seleccionar **ASP.net Core aplicación web** > **correcta**
 * Seleccione **ASP.NET Core 3,0** en la lista desplegable.
-* Seleccionar **aplicación** > Web **correcta**
+* Seleccionar **aplicación web** > **correcta**
 * Compile y ejecute el proyecto.
 
 ::: moniker-end
@@ -63,9 +63,9 @@ El ejemplo de proyecto se crea a partir de una aplicación Web de Razor Pages, p
 ::: moniker range="< aspnetcore-3.0"
 
 * En el menú **Archivo** de Visual Studio, seleccione **Nuevo** > **Proyecto**. Asigne al proyecto el nombre **WebApp1** si desea que coincida con el espacio de nombres del código de [ejemplo de descarga](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
-* Seleccionar **ASP.net Core aplicación** > Web **correcta**
+* Seleccionar **ASP.net Core aplicación web** > **correcta**
 * Seleccione **ASP.NET Core 2,2** en la lista desplegable.
-* Seleccionar **aplicación** > Web **correcta**
+* Seleccionar **aplicación web** > **correcta**
 * Compile y ejecute el proyecto.
 
 ::: moniker-end
@@ -79,13 +79,13 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-identity-scaffolder"></a>Ejecutar el scaffolding de identidad
+## <a name="run-the-identity-scaffolder"></a>Ejecutar el Identity scaffolding
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* En **Explorador de soluciones**, haga clic con el botón derecho en el proyecto > **Agregar** > **nuevo elemento con scaffolding**.
-* En el panel izquierdo del cuadro de diálogo **Agregar scaffold** , **Seleccione Identity** > **Add (agregar**identidad).
-* En el cuadro de diálogo **Agregar identidad** , las siguientes opciones:
+* En **Explorador de soluciones**, haga clic con el botón derecho en el proyecto > **Agregar**  >  **nuevo elemento con scaffolding**.
+* En el panel izquierdo del cuadro de diálogo **Agregar scaffold** , seleccione **Identity**  >  **Agregar**.
+* En el cuadro de diálogo **agregar Identity ** , las siguientes opciones:
   * Seleccione el archivo de diseño existente *~/Pages/Shared/_Layout. cshtml*
   * Seleccione los siguientes archivos para invalidar:
     * **Cuenta/registro**
@@ -109,13 +109,13 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
-Ejecute el siguiente comando para enumerar las opciones del scaffolding de identidad:
+Ejecute el siguiente comando para enumerar las Identity Opciones del scaffolding:
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
 
-En la carpeta del proyecto, ejecute el scaffolding de identidad:
+En la carpeta del proyecto, ejecute el Identity scaffolding:
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
@@ -132,12 +132,12 @@ Siga las instrucciones de [migraciones, UseAuthentication y diseño](xref:securi
   * Registrar un usuario
   * Seleccione el nuevo nombre de usuario (junto al vínculo de **cierre de sesión** ). Es posible que necesite expandir la ventana o seleccionar el icono de la barra de navegación para mostrar el nombre de usuario y otros vínculos.
   * Seleccione la pestaña **datos personales** .
-  * Seleccione el botón **Descargar** y examine el archivo *PersonalData. JSON* .
+  * Seleccione el botón **Descargar** y examine el *PersonalData.jsen* el archivo.
   * Pruebe el botón **eliminar** , que elimina el usuario que ha iniciado sesión.
 
-## <a name="add-custom-user-data-to-the-identity-db"></a>Agregar datos de usuario personalizados a la base de datos de identidad
+## <a name="add-custom-user-data-to-the-identity-db"></a>Agregar datos de usuario personalizados a la base de datos Identity
 
-Actualice la `IdentityUser` clase derivada con propiedades personalizadas. Si ha llamado al proyecto WebApp1, el archivo se denomina *areas/Identity/Data/WebApp1User. CS*. Actualice el archivo con el código siguiente:
+Actualice la `IdentityUser` clase derivada con propiedades personalizadas. Si ha llamado al proyecto WebApp1, el archivo se denomina *areas/ Identity /Data/WebApp1User.CS*. Actualice el archivo con el código siguiente:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -153,18 +153,18 @@ Actualice la `IdentityUser` clase derivada con propiedades personalizadas. Si ha
 
 Las propiedades con el atributo [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) son:
 
-* Se elimina cuando se llama a `UserManager.Delete`la página de Razor *areas/Identity/pages/Account/Manage/DeletePersonalData. cshtml* .
-* Se incluye en los datos descargados mediante la página de Razor *areas/Identity/pages/Account/Manage/DownloadPersonalData. cshtml* .
+* Se elimina cuando la página *areas/ Identity /pages/Account/Manage/DeletePersonalData.cshtml* Razor llama a `UserManager.Delete` .
+* Incluido en los datos descargados en la página *áreas/ Identity /pages/Account/Manage/DownloadPersonalData.cshtml* Razor .
 
 ### <a name="update-the-accountmanageindexcshtml-page"></a>Actualización de la página Account/Manage/index. cshtml
 
-Actualice `InputModel` en *areas/Identity/pages/Account/Manage/index. cshtml. CS* con el siguiente código resaltado:
+Actualice `InputModel` en *areas/ Identity /pages/Account/Manage/index.cshtml.CS* con el siguiente código resaltado:
 
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
 
-Actualice las *áreas/Identity/pages/Account/Manage/index. cshtml* con el siguiente marcado resaltado:
+Actualice las *áreas/ Identity /pages/Account/Manage/index.cshtml* con el siguiente marcado resaltado:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
@@ -174,7 +174,7 @@ Actualice las *áreas/Identity/pages/Account/Manage/index. cshtml* con el siguie
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
-Actualice las *áreas/Identity/pages/Account/Manage/index. cshtml* con el siguiente marcado resaltado:
+Actualice las *áreas/ Identity /pages/Account/Manage/index.cshtml* con el siguiente marcado resaltado:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
@@ -182,13 +182,13 @@ Actualice las *áreas/Identity/pages/Account/Manage/index. cshtml* con el siguie
 
 ### <a name="update-the-accountregistercshtml-page"></a>Actualización de la página cuenta/registro. cshtml
 
-Actualice `InputModel` en *areas/Identity/pages/Account/Register. cshtml. CS* con el siguiente código resaltado:
+Actualice `InputModel` en *areas/ Identity /pages/Account/Register.cshtml.CS* con el siguiente código resaltado:
 
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
-Actualice las *áreas/Identity/pages/Account/Register. cshtml* con el siguiente marcado resaltado:
+Actualice las *áreas/ Identity /pages/Account/Register.cshtml* con el siguiente marcado resaltado:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -198,7 +198,7 @@ Actualice las *áreas/Identity/pages/Account/Register. cshtml* con el siguiente 
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
 
-Actualice las *áreas/Identity/pages/Account/Register. cshtml* con el siguiente marcado resaltado:
+Actualice las *áreas/ Identity /pages/Account/Register.cshtml* con el siguiente marcado resaltado:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -232,12 +232,15 @@ dotnet ef database update
 Pruebe la aplicación:
 
 * Registra un nuevo usuario.
-* Vea los datos de usuario personalizados en `/Identity/Account/Manage` la página.
-* Descargue y vea los datos personales de los usuarios `/Identity/Account/Manage/PersonalData` en la página.
+* Vea los datos de usuario personalizados en la `/Identity/Account/Manage` página.
+* Descargue y vea los datos personales de los usuarios en la `/Identity/Account/Manage/PersonalData` página.
 
-## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Adición de notificaciones al uso de Identity IUserClaimsPrincipalFactory<ApplicationUser>
+## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Adición de notificaciones al Identity uso de IUserClaimsPrincipalFactory<ApplicationUser>
 
-Se pueden agregar notificaciones adicionales a Identity ASP.net Core mediante la `IUserClaimsPrincipalFactory<T>` interfaz. Esta clase se puede Agregar a la aplicación en el `Startup.ConfigureServices` método. Agregue la implementación personalizada de la clase como se indica a continuación:
+> [!NOTE]
+> Esta sección no es una extensión del tutorial anterior. Para aplicar los pasos siguientes a la aplicación compilada con el tutorial, consulte [este problema de github](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
+
+Se pueden agregar notificaciones adicionales a ASP.NET Core mediante Identity la `IUserClaimsPrincipalFactory<T>` interfaz. Esta clase se puede Agregar a la aplicación en el `Startup.ConfigureServices` método. Agregue la implementación personalizada de la clase como se indica a continuación:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -250,7 +253,7 @@ public void ConfigureServices(IServiceCollection services)
         AdditionalUserClaimsPrincipalFactory>();
 ```
 
-El código de demostración utiliza `ApplicationUser` la clase. Esta clase agrega una `IsAdmin` propiedad que se usa para agregar la demanda adicional.
+El código de demostración utiliza la `ApplicationUser` clase. Esta clase agrega una `IsAdmin` propiedad que se usa para agregar la demanda adicional.
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -259,7 +262,7 @@ public class ApplicationUser : IdentityUser
 }
 ```
 
-`AdditionalUserClaimsPrincipalFactory` implementa la interfaz `UserClaimsPrincipalFactory`. Se agrega una nueva demanda de rol a `ClaimsPrincipal`.
+`AdditionalUserClaimsPrincipalFactory` implementa la interfaz `UserClaimsPrincipalFactory`. Se agrega una nueva demanda de rol a `ClaimsPrincipal` .
 
 ```csharp
 public class AdditionalUserClaimsPrincipalFactory 
