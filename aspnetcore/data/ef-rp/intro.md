@@ -1,14 +1,31 @@
 ---
-title: Razor Pages con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8 author: rick-anderson description: Aquí se muestra cómo crear una aplicación de Razor Pages con Entity Framework Core ms.author: riande ms.custom: "mvc, seodec18" ms.date: 09/26/2019 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR] uid: data/ef-rp/intro
+title: 'Razor Pages con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8'
+author: rick-anderson
+description: Se muestra cómo crear una aplicación de Razor Pages mediante Entity Framework Core
+ms.author: riande
+ms.custom: mvc, seodec18
+ms.date: 09/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: data/ef-rp/intro
+ms.openlocfilehash: a6915da23124b7ed4bfaa982692635f9fc75f96a
+ms.sourcegitcommit: 726b8c5cf92e6f6a4d0205787b19307e889d6240
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "82967523"
 ---
-
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas de Razor con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8
+# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages con Entity Framework Core en ASP.NET Core: Tutorial 1 de 8
 
 Por [Tom Dykstra](https://github.com/tdykstra) y [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Este es el primero de una serie de tutoriales en los que se muestra cómo usar Entity Framework (EF) Core en una aplicación [Razor Pages en ASP.NET Core](xref:razor-pages/index). En el tutorial se crea un sitio web de una universidad ficticia, Contoso University. El sitio incluye funciones como la admisión de alumnos, la creación de cursos y las asignaciones de instructores. En el tutorial se usa el enfoque de Code First. Para obtener información sobre cómo seguir este tutorial mediante el enfoque de Database First, consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+Este es el primero de una serie de tutoriales en los que se muestra cómo usar Entity Framework (EF) Core en una [aplicación Razor Pages](xref:razor-pages/index) en ASP.NET Core. En el tutorial se crea un sitio web de una universidad ficticia, Contoso University. El sitio incluye funciones como la admisión de alumnos, la creación de cursos y las asignaciones de instructores. En el tutorial se usa el enfoque de Code First. Para obtener información sobre cómo seguir este tutorial mediante el enfoque de Database First, consulte [este problema de GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
 [Descargue o vea la aplicación completa.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instrucciones de descarga](xref:index#how-to-download-a-sample).
 
@@ -193,14 +210,14 @@ Compile el proyecto para comprobar que no hay errores de compilación.
 En esta sección, se usa la herramienta de scaffolding de ASP.NET Core para generar lo siguiente:
 
 * Una clase de *contexto* de EF Core. El contexto es la clase principal que coordina la funcionalidad de Entity Framework para un modelo de datos determinado. Se deriva de la clase `Microsoft.EntityFrameworkCore.DbContext`.
-* Páginas de Razor que controlan las operaciones de creación, lectura, actualización y eliminación (CRUD) de la entidad `Student`.
+* Razor Pages que controlan las operaciones de creación, lectura, actualización y eliminación (CRUD) de la entidad `Student`.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Cree una carpeta *Students* en la carpeta *Pages*.
 * En el **Explorador de soluciones**, haga clic con el botón derecho en la carpeta *Pages/Students* y seleccione **Agregar** > **Nuevo elemento con scaffold**.
 * En el cuadro de diálogo **Agregar scaffold**, seleccione **Páginas de Razor que usan Entity Framework (CRUD)** > **AGREGAR**.
-* En el cuadro de diálogo para **agregar páginas de Razor Pages que usan Entity Framework (CRUD)** :
+* En el cuadro de diálogo para **agregar instancias de Razor Pages que usan Entity Framework (CRUD)** :
   * En la lista desplegable **Clase de modelo**, seleccione **Student (ContosoUniversity.Models)** .
   * En la fila **Clase de contexto de datos**, seleccione el signo **+** (más).
   * Cambie el nombre del contexto de datos *ContosoUniversity.Models.ContosoUniversityContext* por *ContosoUniversity.Data.SchoolContext*.
@@ -259,7 +276,7 @@ Si tiene un problema con el paso anterior, compile el proyecto y vuelva a intent
 
 El proceso de scaffolding:
 
-* Crea páginas de Razor en la carpeta *Pages/Students*:
+* Crea Razor Pages en la carpeta *Pages/Students*:
   * *Create.cshtml* y *Create.cshtml.cs*
   * *Delete.cshtml* y *Delete.cshtml.cs*
   * *Details.cshtml* y *Details.cshtml.cs*
@@ -295,7 +312,7 @@ Actualice *SchoolContext.cs* con el código siguiente:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-El código resaltado crea una propiedad [DbSet\<TEntity >](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. En la terminología de EF Core:
+El código resaltado crea una propiedad [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. En la terminología de EF Core:
 
 * Un conjunto de entidades normalmente se corresponde a una tabla de base de datos.
 * Una entidad se corresponde con una fila de la tabla.
@@ -308,7 +325,7 @@ Compile el proyecto para comprobar que no haya errores del compilador.
 
 ## <a name="startupcs"></a>Startup.cs
 
-ASP.NET Core integra la [inserción de dependencias](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con la inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como las páginas de Razor) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
+ASP.NET Core integra la [inserción de dependencias](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con la inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como Razor Pages) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
 
 La herramienta de scaffolding ha registrado de forma automática la clase de contexto con el contenedor de inserción de dependencias.
 
@@ -461,7 +478,7 @@ La aplicación de ejemplo es un sitio web de una universidad ficticia, Contoso U
 
 ---
 
-Familiaridad con las [Páginas de Razor](xref:razor-pages/index). Los programadores nuevos deben completar [Introducción a las páginas de Razor en ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start) antes de empezar esta serie.
+Familiaridad con [Razor Pages](xref:razor-pages/index). Los programadores nuevos deben completar [Introducción a Razor Pages en ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start) antes de empezar esta serie.
 
 ## <a name="troubleshooting"></a>Solución de problemas
 
@@ -477,7 +494,7 @@ Los usuarios pueden ver y actualizar la información de estudiantes, cursos e in
 
 ![Página de edición de estudiantes](intro/_static/student-edit.png)
 
-El estilo de la interfaz de usuario de este sitio se mantiene fiel a lo que generan las plantillas integradas. El tutorial se centra en EF Core con páginas de Razor, no en la interfaz de usuario.
+El estilo de la interfaz de usuario de este sitio se mantiene fiel a lo que generan las plantillas integradas. El tutorial se centra en EF Core con Razor Pages, no en la interfaz de usuario.
 
 ## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Creación de la aplicación web de Razor Pages ContosoUniversity
 
@@ -582,7 +599,7 @@ En esta sección, se aplica scaffolding al modelo de alumnos. Es decir, la herra
 * En el **Explorador de soluciones**, haga clic con el botón derecho en la carpeta *Pages/Students* > **Agregar** > **Nuevo elemento con scaffold**.
 * En el cuadro de diálogo **Agregar scaffold**, seleccione **Páginas de Razor que usan Entity Framework (CRUD)** > **AGREGAR**.
 
-Complete el cuadro de diálogo para **agregar páginas de Razor Pages que usan Entity Framework (CRUD)** :
+Complete el cuadro de diálogo para **agregar instancias de Razor Pages que usan Entity Framework (CRUD)** :
 
 * En la lista desplegable **Clase de modelo**, seleccione **Student (ContosoUniversity.Models)** .
 * En la fila **Clase de contexto de datos**, haga clic en el signo **+** (más) y cambie el nombre generado por **ContosoUniversity.Models.SchoolContext**.
@@ -619,7 +636,7 @@ El proceso de scaffolding ha creado y cambiado los archivos siguientes:
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar el contexto registrado con la inserción de dependencias
 
-ASP.NET Core integra la [inserción de dependencias](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como las páginas de Razor) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
+ASP.NET Core integra la [inserción de dependencias](xref:fundamentals/dependency-injection). Los servicios (como el contexto de base de datos de EF Core) se registran con inserción de dependencias durante el inicio de la aplicación. Estos servicios se proporcionan a los componentes que los necesitan (como Razor Pages) a través de parámetros de constructor. El código de constructor que obtiene una instancia de contexto de base de datos se muestra más adelante en el tutorial.
 
 La herramienta de scaffolding creó de forma automática un contexto de base de datos y lo registró con el contenedor de inserción de dependencias.
 
@@ -667,7 +684,7 @@ Actualice *SchoolContext.cs* con el código siguiente:
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_Intro&highlight=12-14)]
 
-El código resaltado crea una propiedad [DbSet\<TEntity >](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. En la terminología de EF Core:
+El código resaltado crea una propiedad [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. En la terminología de EF Core:
 
 * Un conjunto de entidades normalmente se corresponde a una tabla de base de datos.
 * Una entidad se corresponde con una fila de la tabla.

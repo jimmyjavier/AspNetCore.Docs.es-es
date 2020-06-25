@@ -13,16 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: a8604ca6ea60386bb3c54c950205ee695d37c689
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2811e08fd2f6c66112ffa0bb40f474158f4c7a59
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103142"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292690"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Protección de aplicaciones de ASP.NET Core Blazor Server
 
 Por [Luke Latham](https://github.com/guardrex)
+
+Blazor Las aplicaciones de servidor se configuran para que sean seguras de la misma forma que las aplicaciones de ASP.NET Core. Para obtener más información, vea los artículos en <xref:security/index>. Los temas de esta información general se aplican específicamente a Blazor Server. 
 
 ## <a name="blazor-server-project-template"></a>Plantilla de proyecto de Blazor Server
 
@@ -67,7 +69,7 @@ Con la opción `-o|--output`, el comando usa el valor proporcionado para el marc
 * Cree una carpeta para el proyecto.
 * Asigne el nombre al proyecto.
 
-Para más información, consulte el comando [dotnet new](/dotnet/core/tools/dotnet-new) de la guía de .NET Core.
+Para más información, consulte el comando [`dotnet new`](/dotnet/core/tools/dotnet-new) de la guía de .NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -101,13 +103,9 @@ Con la opción `-o|--output`, el comando usa el valor proporcionado para el marc
 * Cree una carpeta para el proyecto.
 * Asigne el nombre al proyecto.
 
-Para más información, consulte el comando [dotnet new](/dotnet/core/tools/dotnet-new) de la guía de .NET Core.
+Para más información, consulte el comando [`dotnet new`](/dotnet/core/tools/dotnet-new) de la guía de .NET Core.
 
 ---
-
-## <a name="secure-an-existing-app"></a>Protección de una aplicación existente
-
-Blazor Las aplicaciones de servidor se configuran para que sean seguras de la misma forma que las aplicaciones de ASP.NET Core. Para obtener más información, vea los artículos en <xref:security/index>.
 
 ## <a name="scaffold-identity"></a>Scaffolding para Identity
 

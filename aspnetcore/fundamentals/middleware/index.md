@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: b2468220d0c059a94a085357f2be7bbb3b89adc4
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 81a0da65215bc41f6dfad0de28a95bdc455bd8fb
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074201"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292794"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware de ASP.NET Core
 
@@ -91,7 +91,9 @@ El método `Startup.Configure` siguiente agrega componentes de middleware relaci
 En el código anterior:
 
 * El middleware que no se agrega al crear una aplicación web con [cuentas de usuario individuales](xref:security/authentication/identity) se convierte en comentario.
-* No todo el middleware tiene que ir en este orden exacto, pero gran parte sí lo hace. Por ejemplo, `UseCors`, `UseAuthentication` y `UseAuthorization` deben ir en el orden mostrado.
+* No todo el middleware tiene que ir en este orden exacto, pero gran parte sí lo hace. Por ejemplo:
+  * Por ejemplo, `UseCors`, `UseAuthentication` y `UseAuthorization` deben ir en el orden mostrado.
+  * `UseCors` actualmente debe ir antes de `UseResponseCaching` debido a [este error](https://github.com/dotnet/aspnetcore/issues/23218).
 
 El siguiente método `Startup.Configure` agrega los componentes de middleware para escenarios de aplicaciones comunes:
 
@@ -248,7 +250,7 @@ ASP.NET Core incluye los componentes de software intermedio siguientes. En la co
 | [Autenticación](xref:security/authentication/identity) | Proporciona compatibilidad con autenticación. | Antes de que se necesite `HttpContext.User`. Terminal para devoluciones de llamadas OAuth. |
 | [Autorización](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Proporciona compatibilidad con la autorización. | Inmediatamente después del middleware de autenticación. |
 | [Directiva de cookies](xref:security/gdpr) | Realiza un seguimiento del consentimiento de los usuarios para almacenar información personal y aplica los estándares mínimos para los campos de las cookies, como `secure` y `SameSite`. | Antes del middleware que emite las cookies. Ejemplos: autenticación, sesión y MVC (TempData). |
-| [CORS](xref:security/cors) | Configura el uso compartido de recursos entre orígenes. | Antes de los componentes que usan CORS. |
+| [CORS](xref:security/cors) | Configura el uso compartido de recursos entre orígenes. | Antes de los componentes que usan CORS. `UseCors` actualmente debe ir antes de `UseResponseCaching` debido a [este error](https://github.com/dotnet/aspnetcore/issues/23218).|
 | [Diagnóstico](xref:fundamentals/error-handling) | Varios middleware independientes que proporcionan una página de excepciones para el desarrollador, control de excepciones, páginas de códigos de estado y la página web predeterminada para las nuevas aplicaciones. | Antes de los componentes que generan errores. Terminal para excepciones o con el fin de proporcionar la página web predeterminada para las nuevas aplicaciones. |
 | [Encabezados reenviados](xref:host-and-deploy/proxy-load-balancer) | Reenvía encabezados con proxy a la solicitud actual. | Antes de los componentes que consumen los campos actualizados. Ejemplos: esquema, host, IP de cliente y método. |
 | [Comprobación de estado](xref:host-and-deploy/health-checks) | Comprueba el estado de una aplicación ASP.NET Core y sus dependencias, como la comprobación de disponibilidad de base de datos. | Terminal si una solicitud coincide con un punto de conexión de comprobación de estado. |
@@ -258,7 +260,7 @@ ASP.NET Core incluye los componentes de software intermedio siguientes. En la co
 | [Seguridad de transporte estricta de HTTP (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Middleware de mejora de seguridad que agrega un encabezado de respuesta especial. | Antes de que se envíen las respuestas y después de los componentes que modifican las solicitudes. Ejemplos: encabezados reenviados y reescritura de URL. |
 | [MVC](xref:mvc/overview) | Procesa las solicitudes con MVC/Razor Pages. | Si hay una solicitud que coincida con una ruta, será final. |
 | [OWIN](xref:fundamentals/owin) | Puede interoperar con aplicaciones, servidores y software intermedio basados en OWIN. | Si el software intermedio de OWIN procesa completamente la solicitud, será final. |
-| [Almacenamiento en caché de respuestas](xref:performance/caching/middleware) | Proporciona compatibilidad con la captura de respuestas. | Antes de los componentes que requieren el almacenamiento en caché. |
+| [Almacenamiento en caché de respuestas](xref:performance/caching/middleware) | Proporciona compatibilidad con la captura de respuestas. | Antes de los componentes que requieren el almacenamiento en caché. `UseCORS` debe ser anterior a `UseResponseCaching`.|
 | [Compresión de respuesta](xref:performance/response-compression) | Proporciona compatibilidad con la compresión de respuestas. | Antes de los componentes que requieren compresión. |
 | [Localización de solicitudes](xref:fundamentals/localization) | Proporciona compatibilidad con ubicación. | Antes de los componentes que dependen de la ubicación. |
 | [Enrutamiento de punto de conexión](xref:fundamentals/routing) | Define y restringe las rutas de la solicitud. | Terminal para rutas que coincidan. |

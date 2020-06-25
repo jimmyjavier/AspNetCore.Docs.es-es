@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 5b20ab96f5419a86ab162fdcf7a57020f6aa7227
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 877b2bb4b055cca25d64258383cdb39d812e2d6a
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103166"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243244"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Protección de WebAssembly de Blazor en ASP.NET Core
 
@@ -28,9 +28,9 @@ Las aplicaciones WebAssembly de Blazor se protegen de la misma manera que las ap
 
 ## <a name="authentication-library"></a>Biblioteca de autenticación
 
-Blazor Webassembly admite la autenticación y autorización de aplicaciones con OIDC a través de la biblioteca [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). La biblioteca proporciona un conjunto de primitivas para la autenticación sin problemas en back-ends de ASP.NET Core. La biblioteca integra ASP.NET Core Identity con compatibilidad con la autorización de API basada en [Identity Server](https://identityserver.io/). La biblioteca puede realizar la autenticación sobre cualquier proveedor de Identity (IP) de terceros que admita OIDC, que se denominan proveedores de OpenID (OP).
+WebAssembly de Blazor permite autenticar y autorizar aplicaciones mediante OIDC a través de la biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). La biblioteca proporciona un conjunto de primitivas para la autenticación sin problemas en back-ends de ASP.NET Core. La biblioteca integra ASP.NET Core Identity con compatibilidad con la autorización de API basada en [Identity Server](https://identityserver.io/). La biblioteca puede realizar la autenticación sobre cualquier proveedor de Identity (IP) de terceros que admita OIDC, que se denominan proveedores de OpenID (OP).
 
-La compatibilidad con la autenticación en WebAssembly de Blazor se basa en la biblioteca *oidc-client.js*, que se usa para administrar los detalles del protocolo de autenticación subyacente.
+La compatibilidad con la autenticación en WebAssembly de Blazor se basa en la biblioteca `oidc-client.js`, que se usa para administrar los detalles del protocolo de autenticación subyacente.
 
 Existen otras opciones para la autenticación de las SPA, como el uso de cookies de SameSite. Sin embargo, el diseño de ingeniería de WebAssembly de Blazor se limita a OAuth y OIDC como mejor opción para la autenticación en las aplicaciones WebAssembly de Blazor. Se ha elegido la [autenticación basada en tokens](xref:security/anti-request-forgery#token-based-authentication) basada en [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) antes que la [autenticación basada en cookies](xref:security/anti-request-forgery#cookie-based-authentication) por razones funcionales y de seguridad:
 
@@ -44,7 +44,7 @@ Existen otras opciones para la autenticación de las SPA, como el uso de cookies
 
 ## <a name="authentication-process-with-oidc"></a>Proceso de autenticación con OIDC
 
-La biblioteca [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ofrece varios primitivos para implementar la autenticación y la autorización con OIDC. En términos generales, la autenticación funciona de la siguiente manera:
+La biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ofrece varias primitivas para implementar la autenticación y autorización mediante OIDC. En términos generales, la autenticación funciona de la siguiente manera:
 
 * Cuando un usuario anónimo selecciona el botón de inicio de sesión o solicita una página con el atributo [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) aplicado, se le redirige a la página de inicio de sesión de la aplicación (`/authentication/login`).
 * En la página de inicio de sesión, la biblioteca de autenticación se prepara para un redireccionamiento al punto de conexión de autorización. El punto de conexión de autorización está fuera de la aplicación WebAssembly de Blazor y se puede hospedar en un origen independiente. El punto de conexión es responsable de determinar si el usuario está autenticado y de emitir uno o más tokens en respuesta. La biblioteca de autenticación proporciona una devolución de llamada de inicio de sesión para recibir la respuesta de autenticación.

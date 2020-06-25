@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: b0448d5f6e5e16a726eb2274dcacb4dfa8314b5d
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 841c4021d9217312b2601b0e775542c6455cca82
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103436"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240881"
 ---
 # <a name="aspnet-core-blazor-logging"></a>Registro de Blazor en ASP.NET Core
 
@@ -39,7 +39,7 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 La propiedad `Logging` es del tipo <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, de modo que todos los métodos de extensión disponibles en <xref:Microsoft.Extensions.Logging.ILoggingBuilder> también lo están en `Logging`.
 
-La configuración de registro se puede cargar desde archivos de configuración de la aplicación. Para obtener más información, vea <xref:blazor/fundamentals/logging>.
+La configuración de registro se puede cargar desde archivos de configuración de la aplicación. Para obtener más información, vea <xref:blazor/fundamentals/configuration#logging-configuration>.
 
 ## <a name="blazor-server"></a>Servidor de Blazor
 
