@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 155bdfbeea06022d35bbb551d5b2d0ee5a51a093
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103033"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400822"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Scaffolding Identity en proyectos de ASP.net Core
 
@@ -178,7 +180,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Scaffolding Identity en un Blazor proyecto de servidor sin autorización existente
+## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Scaffolding Identity en un Blazor Server proyecto sin autorización existente
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -289,11 +291,11 @@ En el `MainLayout` componente (*Shared/MainLayout. Razor*), agregue el `LoginDis
 
 ### <a name="style-authentication-endpoints"></a>Extremos de autenticación de estilo
 
-Dado Blazor que el servidor usa páginas Razor Identity de páginas, el estilo de la interfaz de usuario cambia cuando un visitante navega entre Identity páginas y componentes. Tiene dos opciones para abordar los estilos de Incongruous:
+Dado Blazor Server que utiliza páginas Razor Identity de páginas, el estilo de la interfaz de usuario cambia cuando un visitante navega entre Identity páginas y componentes. Tiene dos opciones para abordar los estilos de Incongruous:
 
 #### <a name="build-identity-components"></a>Componentes de compilación Identity
 
-Un enfoque para utilizar los componentes de en Identity lugar de las páginas es crear Identity componentes de. Dado `SignInManager` `UserManager` que y no se admiten en Razor componentes, use puntos de conexión de API en la Blazor aplicación de servidor para procesar las acciones de la cuenta de usuario.
+Un enfoque para utilizar los componentes de en Identity lugar de las páginas es crear Identity componentes de. Dado `SignInManager` `UserManager` que y no se admiten en Razor los componentes, use puntos de conexión de API en la Blazor Server aplicación para procesar las acciones de la cuenta de usuario.
 
 #### <a name="use-a-custom-layout-with-blazor-app-styles"></a>Usar un diseño personalizado con Blazor estilos de aplicación
 
@@ -360,7 +362,7 @@ En el archivo *pages/Shared/layout. cshtml* , realice los cambios siguientes:
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Scaffolding Identity en un Blazor proyecto de servidor con autorización
+## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Scaffolding Identity en un Blazor Server proyecto con autorización
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 

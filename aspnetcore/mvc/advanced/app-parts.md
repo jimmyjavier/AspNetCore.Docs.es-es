@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 11/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 68991a3df5e09b63dc52bdadae55f055a721ad3c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cb1f8b045b8f2b143afc7895234733fbfb02cb07
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774410"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399756"
 ---
 # <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Comparta controladores, vistas, Razor páginas, etc. con los elementos de la aplicación
 
@@ -26,9 +28,9 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares Razor de etiquetas, páginas, orígenes de compilación de Razor, etc. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> es un elemento de una aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
+Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares de etiquetas, Razor páginas, orígenes de compilación de Razor, etc. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> es un elemento de una aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
 
-Los [proveedores de características](#fp) trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que Razor contiene controladores, vistas, páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
+Los [proveedores de características](#fp) trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que contiene controladores, vistas, Razor páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
 
 Las aplicaciones ASP.NET Core cargan características de <xref:System.Web.WebPages.ApplicationPart>. La clase <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> representa un elemento de aplicación que está respaldado por un ensamblado.
 
@@ -116,9 +118,9 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
-Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares Razor de etiquetas, páginas, orígenes de compilación de Razor, etc. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is un elemento de aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
+Un *elemento de aplicación* es una abstracción sobre los recursos de una aplicación. Los elementos de aplicación permiten a ASP.NET Core detectar controladores, ver componentes, aplicaciones auxiliares de etiquetas, Razor páginas, orígenes de compilación de Razor, etc. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is un elemento de aplicación. `AssemblyPart` encapsula una referencia de ensamblado y expone los tipos y las referencias de compilación.
 
-Los *proveedores de características* trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que Razor contiene controladores, vistas, páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
+Los *proveedores de características* trabajan con los elementos de aplicación para rellenar las características de una aplicación de ASP.NET Core. El caso de uso principal de los elementos de aplicación es configurar una aplicación para detectar (o evitar cargar) características de ASP.NET Core de un ensamblado. Por ejemplo, puede que desee compartir la funcionalidad común entre varias aplicaciones. Mediante el uso de elementos de aplicación, puede compartir un ensamblado (DLL) que contiene controladores, vistas, Razor páginas, orígenes de compilación de Razor, aplicaciones auxiliares de etiquetas y mucho más con varias aplicaciones. Es preferible compartir un ensamblado a duplicar el código en varios proyectos.
 
 Las aplicaciones ASP.NET Core cargan características de <xref:System.Web.WebPages.ApplicationPart>. La clase <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> representa un elemento de aplicación que está respaldado por un ensamblado.
 

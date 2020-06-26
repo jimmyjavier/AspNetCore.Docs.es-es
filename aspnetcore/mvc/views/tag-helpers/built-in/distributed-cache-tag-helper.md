@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/24/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-ms.openlocfilehash: df1daa68a3e18f7aad4507ce9526d76ff6a2114d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4b8e393542c56502a825000773bbf714d91e4128
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773921"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399236"
 ---
 # <a name="distributed-cache-tag-helper-in-aspnet-core"></a>Asistente de etiquetas de caché distribuida en ASP.NET Core
 
@@ -25,7 +27,7 @@ Por [Peter Kellner](https://peterkellner.net)
 
 El asistente de etiquetas de caché distribuida proporciona la capacidad de mejorar drásticamente el rendimiento de la aplicación ASP.NET Core al permitir almacenar en caché su contenido en un origen de caché distribuida.
 
-Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
 
 El asistente de etiquetas de caché distribuida hereda de la misma clase base que el asistente de etiquetas de caché. Todos los atributos del [asistente de etiquetas de caché](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper) están disponibles para el asistente de etiquetas distribuidas.
 
@@ -54,7 +56,7 @@ El asistente de etiquetas de caché distribuida hereda de la misma clase que el 
 | -------------- | ------------------------------------- |
 | String         | `my-distributed-cache-unique-key-101` |
 
-`name` es obligatorio. El atributo `name` se usa como clave para cada instancia de caché almacenada. A diferencia de la aplicación auxiliar de etiquetas de caché que asigna una clave de caché a cada instancia en Razor función del nombre y la ubicación Razor de la página en la página, la aplicación auxiliar de etiquetas de caché distribuida solo basa su clave en el atributo `name`.
+`name` es obligatorio. El atributo `name` se usa como clave para cada instancia de caché almacenada. A diferencia de la aplicación auxiliar de etiquetas de caché que asigna una clave de caché a cada instancia en función del Razor nombre y la ubicación de la página en la Razor página, la aplicación auxiliar de etiquetas de caché distribuida solo basa su clave en el atributo `name` .
 
 Ejemplo:
 

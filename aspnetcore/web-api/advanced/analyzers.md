@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 530ce2d2a7f67f549f6d188a0c571a5d58518377
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1f44fd65836cc42ffb2303890eefb053b61c4c30
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776251"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399470"
 ---
 # <a name="use-web-api-analyzers"></a>Uso de analizadores de API web
 
@@ -54,9 +56,9 @@ Instale el paquete de NuGet [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 En la ventana **Consola del Administrador de paquetes**:
-  * Vaya a **Vista** > **Otras ventanas** > **Consola del Administrador de paquetes**.
+  * Vaya a **Ver** > **otra** > **consola del administrador de paquetes**de Windows.
   * Vaya al directorio en el que esté el archivo *ApiConventions.csproj*.
-  * Ejecute el comando siguiente:
+  * Ejecute el siguiente comando:
 
     ```powershell
     Install-Package Microsoft.AspNetCore.Mvc.Api.Analyzers

@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 04/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/compatibility/replacing-machinekey
-ms.openlocfilehash: 72e736f820ec243a7ad1461fc70e2711ac8b76ee
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: db041ab4939fc7c39ac01cc02e350aca2fbee93e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777467"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400549"
 ---
 # <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a>Reemplace ASP.NET machineKey en ASP.NET Core
 
@@ -29,16 +31,16 @@ La implementación del `<machineKey>` elemento en ASP.net [es reemplazable](http
 > [!NOTE]
 > El nuevo sistema de protección de datos solo se puede instalar en una aplicación existente de ASP.NET que tenga como destino .NET 4.5.1 o posterior. Se producirá un error en la instalación si la aplicación tiene como destino .NET 4,5 o versiones anteriores.
 
-Para instalar el nuevo sistema de protección de datos en un proyecto existente de ASP.NET 4.5.1 +, instale el paquete Microsoft. AspNetCore. bioprotection. SystemWeb. Esto creará una instancia del sistema de protección de datos con los valores de [configuración predeterminados](xref:security/data-protection/configuration/default-settings) .
+Para instalar el nuevo sistema de protección de datos en un proyecto existente de ASP.NET 4.5.1 +, instale el paquete Microsoft.AspNetCore.DataProtection.SystemWeb. Esto creará una instancia del sistema de protección de datos con los valores de [configuración predeterminados](xref:security/data-protection/configuration/default-settings) .
 
-Al instalar el paquete, inserta una línea en el *archivo Web. config* que indica a ASP.net que lo use para [la mayoría de las operaciones de cifrado](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), como la autenticación de formularios, el estado de vista y las llamadas a MachineKey. Protect. La línea que se inserta es como se indica a continuación.
+Al instalar el paquete, inserta una línea en *Web.config* que indica a ASP.net que lo use para [la mayoría de las operaciones de cifrado](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), como la autenticación de formularios, el estado de vista y las llamadas a MachineKey. Protect. La línea que se inserta es como se indica a continuación.
 
 ```xml
 <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
 ```
 
 >[!TIP]
-> Puede saber si el nuevo sistema de protección de datos está activo mediante la inspección de `__VIEWSTATE`campos como, que deben comenzar por "CfDJ8" como se muestra en el ejemplo siguiente. "CfDJ8" es la representación en base64 del encabezado Magic "09 F0 C9 F0" que identifica una carga protegida por el sistema de protección de datos.
+> Puede saber si el nuevo sistema de protección de datos está activo mediante la inspección de campos como `__VIEWSTATE` , que deben comenzar por "CfDJ8" como se muestra en el ejemplo siguiente. "CfDJ8" es la representación en base64 del encabezado Magic "09 F0 C9 F0" que identifica una carga protegida por el sistema de protección de datos.
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk...">
@@ -75,7 +77,7 @@ namespace DataProtectionDemo
 >[!TIP]
 > También puede usar `<machineKey applicationName="my-app" ... />` en lugar de una llamada explícita a SetApplicationName. Este es un mecanismo de comodidad para evitar obligar al desarrollador a crear un tipo derivado de DataProtectionStartup si todos querían configurar el nombre de la aplicación.
 
-Para habilitar esta configuración personalizada, vuelva a Web. config y busque el `<appSettings>` elemento que la instalación del paquete ha agregado al archivo de configuración. Tendrá un aspecto similar al siguiente marcado:
+Para habilitar esta configuración personalizada, vuelva a Web.config y busque el `<appSettings>` elemento que la instalación del paquete ha agregado al archivo de configuración. Tendrá un aspecto similar al siguiente marcado:
 
 ```xml
 <appSettings>

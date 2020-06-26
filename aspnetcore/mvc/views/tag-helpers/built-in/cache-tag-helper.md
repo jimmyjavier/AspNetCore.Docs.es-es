@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65d8bbcdaed76a308b924ba024219e8f520bb585
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773947"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399288"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Asistente de etiquetas de caché en ASP.NET Core MVC
 
@@ -25,9 +27,9 @@ Por [Peter Kellner](https://peterkellner.net)
 
 El asistente de etiquetas de caché proporciona la capacidad para mejorar el rendimiento de la aplicación de ASP.NET Core al permitir almacenar en memoria caché su contenido en el proveedor de caché interno de ASP.NET Core.
 
-Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
 
-Este marcado de Razor almacena en caché la fecha actual:
+El siguiente Razor marcado almacena en caché la fecha actual:
 
 ```cshtml
 <cache>@DateTime.Now</cache>
@@ -41,7 +43,7 @@ La primera solicitud a la página que contiene el asistente de etiquetas muestra
 
 | Tipo de atributo  | Ejemplos        | Default |
 | --------------- | --------------- | ------- |
-| Booleano         | `true`, `false` | `true`  |
+| Boolean         | `true`, `false` | `true`  |
 
 `enabled` determina si se almacena en caché el contenido incluido por el asistente de etiquetas de caché. De manera predeterminada, es `true`. Si establece en `false`, el resultado representado **no** se almacena en caché.
 
@@ -85,7 +87,7 @@ Ejemplo:
 </cache>
 ```
 
-El motor de vistas de Razor establece el valor predeterminado `expires-after` en veinte minutos.
+El Razor motor de vista establece el `expires-after` valor predeterminado en veinte minutos.
 
 ### <a name="expires-sliding"></a>expires-sliding
 
@@ -145,7 +147,7 @@ En este ejemplo se supervisan los valores de `Make` y `Model`. En el ejemplo se 
 
 Ejemplo:
 
-*Startup.CS*:
+*Startup.cs*:
 
 ```csharp
 routes.MapRoute(
@@ -169,7 +171,7 @@ routes.MapRoute(
 
 `vary-by-cookie` acepta una lista delimitada por comas de nombres de cookies que desencadenan una actualización de la caché cuando los valores de las cookies cambian.
 
-En este ejemplo se supervisa la cookie asociada con ASP.NET Core Identity. Cuando se autentica un usuario, un cambio en la cookie de identidad desencadena una actualización de caché:
+En el siguiente ejemplo se supervisa la cookie asociada a ASP.NET Core Identity . Cuando se autentica un usuario, un cambio en la Identity Cookie desencadena una actualización de la memoria caché:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -181,9 +183,9 @@ En este ejemplo se supervisa la cookie asociada con ASP.NET Core Identity. Cuand
 
 | Tipo de atributo  | Ejemplos        | Default |
 | --------------- | --------------- | ------- |
-| Booleano         | `true`, `false` | `true`  |
+| Boolean         | `true`, `false` | `true`  |
 
-`vary-by-user` especifica la memoria caché se restablece o no cuando cambia el usuario que ha iniciado la sesión (o la entidad de seguridad del contexto). El usuario actual también se conoce como entidad de seguridad del contexto de solicitud y puede verse en una vista Razor mediante una referencia a `@User.Identity.Name`.
+`vary-by-user` especifica la memoria caché se restablece o no cuando cambia el usuario que ha iniciado la sesión (o la entidad de seguridad del contexto). El usuario actual también se conoce como la entidad de seguridad del contexto de la solicitud y se puede ver en una Razor vista haciendo referencia a `@User.Identity.Name` .
 
 En este ejemplo se supervisa el usuario actual que ha iniciado sesión para desencadenar una actualización de caché:
 

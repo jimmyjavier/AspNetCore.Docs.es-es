@@ -6,27 +6,29 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: bda00a416ac34883e0a70a265156fa3ddcde3c6f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b646908c070a51aac2e376c2acaa8e0e091790b0
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777142"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400471"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Vistas de ASP.NET Core MVC
 
 Por [Steve Smith](https://ardalis.com/)
 
-En este documento se explican las vistas utilizadas en las aplicaciones de ASP.NET Core MVC. Para obtener información sobre las páginas de Razor, consulte [Introducción a las páginas Razor](xref:razor-pages/index).
+En este documento se explican las vistas utilizadas en las aplicaciones de ASP.NET Core MVC. Para obtener información sobre Razor las páginas, consulte [Introducción a Razor las páginas](xref:razor-pages/index).
 
-En el patrón de controlador de vista de modelos (MVC), la *vista* se encarga de la presentación de los datos y de la interacción del usuario. Una vista es una plantilla HTML con [marcado de Razor](xref:mvc/views/razor) insertado. El marcado de Razor es código que interactúa con el formato HTML para generar una página web que se envía al cliente.
+En el patrón de controlador de vista de modelos (MVC), la *vista* se encarga de la presentación de los datos y de la interacción del usuario. Una vista es una plantilla HTML con [ Razor marcado](xref:mvc/views/razor)incrustado. Razorel marcado es código que interactúa con el marcado HTML para generar una página web que se envía al cliente.
 
-En ASP.NET Core MVC, las vistas son archivos *.cshtml* que usan el [lenguaje de programación C#](/dotnet/csharp/) en el marcado de Razor. Por lo general, los archivos de vistas se agrupan en carpetas con el nombre de cada uno de los [controladores](xref:mvc/controllers/actions) de la aplicación. Las carpetas se almacenan en una carpeta llamada *Views* que está ubicada en la raíz de la aplicación:
+En ASP.NET Core MVC, las vistas son archivos *. cshtml* que usan el [lenguaje de programación C#](/dotnet/csharp/) en el Razor marcado. Por lo general, los archivos de vistas se agrupan en carpetas con el nombre de cada uno de los [controladores](xref:mvc/controllers/actions) de la aplicación. Las carpetas se almacenan en una carpeta llamada *Views* que está ubicada en la raíz de la aplicación:
 
 ![Carpeta Views del Explorador de soluciones de Visual Studio abierta con la carpeta Home mostrando los archivos About.cshtml, Contact.cshtml y Index.cshtml](overview/_static/views_solution_explorer.png)
 
@@ -53,7 +55,7 @@ Las vistas que son específicas de un controlador se crean en la carpeta *Views/
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
-El marcado de *Razor* comienza con el símbolo `@`. Ejecute instrucciones de C# mediante la colocación de código C# en los [bloques de código Razor](xref:mvc/views/razor#razor-code-blocks) activados por llaves (`{ ... }`). Por ejemplo, vea la asignación de "About" en `ViewData["Title"]` mostrada anteriormente. Para mostrar valores en HTML, simplemente haga referencia al valor con el símbolo `@`. Ver el contenido de los elementos `<h2>` y `<h3>` anteriores.
+*Razor* el marcado comienza con el `@` símbolo. Ejecute instrucciones de C# colocando código C# dentro de [ Razor bloques de código](xref:mvc/views/razor#razor-code-blocks) establecidos por llaves ( `{ ... }` ). Por ejemplo, vea la asignación de "About" en `ViewData["Title"]` mostrada anteriormente. Para mostrar valores en HTML, simplemente haga referencia al valor con el símbolo `@`. Ver el contenido de los elementos `<h2>` y `<h3>` anteriores.
 
 El contenido de la vista mostrado anteriormente es solo una parte de toda la página web que se presenta al usuario. El resto del diseño de la página y otros aspectos comunes de la vista se especifican en otros archivos de vista. Para obtener más información, consulte el [tema Diseño](xref:mvc/views/layout).
 
@@ -198,17 +200,17 @@ Nada le impide usar las mismas clases tanto para los tipos de modelo de vista co
 
 ### <a name="weakly-typed-data-viewdata-viewdata-attribute-and-viewbag"></a>Datos débilmente tipados (ViewData, atributo ViewData y ViewBag)
 
-`ViewBag` *no está disponible en las páginas de Razor.*
+`ViewBag`*no está disponible en Razor Páginas.*
 
 Además de las vistas fuertemente tipadas, las vistas tienen acceso a una colección de datos *débilmente tipados*, también denominados *imprecisos*. A diferencia de los tipos fuertes, en los *tipos débiles* (o *débilmente tipados*) no se declara explícitamente el tipo de datos que se está utilizando. Puede usar la colección de datos débilmente tipados para pasar pequeñas cantidades de datos de los controladores y las vistas, tanto en dirección de entrada como de salida.
 
 | Pasar datos entre...                        | Ejemplo                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
 | Un controlador y una vista                             | Rellenar una lista desplegable con datos.                                          |
-| Una vista y una [vista de diseño](xref:mvc/views/layout)   | Establecer el ** \<título>** el contenido del elemento en la vista de diseño desde un archivo de vista.  |
+| Una vista y una [vista de diseño](xref:mvc/views/layout)   | Establecer el **\<title>** contenido del elemento en la vista de diseño desde un archivo de vista.  |
 | Una [vista parcial](xref:mvc/views/partial) y una vista | Un widget que muestra datos basados en la página web que el usuario solicitó.      |
 
-Puede hacer referencia a esta colección a través de las propiedades `ViewData` o `ViewBag` en controladores y vistas. La propiedad `ViewData` es un diccionario de objetos débilmente tipados. La propiedad `ViewBag` es un contenedor alrededor de `ViewData` que proporciona propiedades dinámicas para la colección `ViewData` subyacente. Nota: las búsquedas de clave no distinguen mayúsculas de `ViewData` minúsculas para y `ViewBag`.
+Puede hacer referencia a esta colección a través de las propiedades `ViewData` o `ViewBag` en controladores y vistas. La propiedad `ViewData` es un diccionario de objetos débilmente tipados. La propiedad `ViewBag` es un contenedor alrededor de `ViewData` que proporciona propiedades dinámicas para la colección `ViewData` subyacente. Nota: las búsquedas de clave no distinguen mayúsculas de minúsculas para `ViewData` y `ViewBag` .
 
 `ViewData` y `ViewBag` se resuelven de forma dinámica en tiempo de ejecución. Debido a que no ofrecen la comprobación de tipos en tiempo de compilación, ambas son generalmente más propensas a errores que el uso de un modelo de vista. Por esta razón, algunos desarrolladores prefieren prescindir de `ViewData` y `ViewBag` o usarlos lo menos posible.
 
@@ -258,7 +260,7 @@ Trabajar con los datos en una vista:
 
 **Atributo ViewData**
 
-Otro método en el que se usa [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) es [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Las propiedades de los Razor controladores o modelos de página `[ViewData]` marcados con el atributo tienen sus valores almacenados y cargados desde el diccionario.
+Otro método en el que se usa [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) es [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Las propiedades de los controladores o Razor modelos de página marcados con el `[ViewData]` atributo tienen sus valores almacenados y cargados desde el diccionario.
 
 En el siguiente ejemplo, el controlador Home contiene una propiedad `Title` marcada con `[ViewData]`. El método `About` establece el título de la vista About:
 
@@ -292,7 +294,7 @@ En el diseño, el título se lee desde el diccionario ViewData:
 
 **ViewBag**
 
-`ViewBag`*no está disponible Razor en las páginas.*
+`ViewBag`*no está disponible en Razor Páginas.*
 
 `ViewBag` es un objeto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) que proporciona acceso dinámico a los objetos almacenados en `ViewData`. `ViewBag` puede ser más cómodo de trabajar con él, ya que no requiere conversión. En el ejemplo siguiente se muestra cómo usar `ViewBag` con el mismo resultado que al usar `ViewData` anteriormente:
 
@@ -325,7 +327,7 @@ public IActionResult SomeAction()
 
 **Uso simultáneo de ViewData y ViewBag**
 
-`ViewBag`*no está disponible Razor en las páginas.*
+`ViewBag`*no está disponible en Razor Páginas.*
 
 Puesto que `ViewData` y `ViewBag` hacen referencia a la misma colección `ViewData` subyacente, se pueden utilizar `ViewData` y `ViewBag`, y combinarlos entre ellos al leer y escribir valores.
 
@@ -365,10 +367,10 @@ Es posible utilizar `ViewData` y `ViewBag` al mismo tiempo, al igual que combina
 
 **Resumen de las diferencias entre ViewData y ViewBag**
 
- `ViewBag`no está disponible en Razor las páginas.
+ `ViewBag`no está disponible en las Razor páginas.
 
 * `ViewData`
-  * Se deriva de [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), por lo que tiene propiedades de diccionario que pueden ser útiles, `ContainsKey`como `Add`, `Remove`, y `Clear`.
+  * Se deriva de [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), por lo que tiene propiedades de diccionario que pueden ser útiles, como `ContainsKey` ,, `Add` `Remove` y `Clear` .
   * Las claves del diccionario son cadenas, por lo que se permiten espacios en blanco. Ejemplo: `ViewData["Some Key With Whitespace"]`
   * Todos los tipos excepto `string` deben convertirse en la vista que usa `ViewData`.
 * `ViewBag`
