@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: bc1597f75d8c5f786d46e59ac027d01ffca077c0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d8c83ca46b1993af1f5e7985571ff012d90b1e01
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768616"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408375"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>Limitar la duración de las cargas protegidas en ASP.NET Core
 
@@ -26,11 +28,11 @@ Para facilitar esta tarea a los desarrolladores, el paquete [Microsoft. AspNetCo
 
 ## <a name="api-usage"></a>Uso de API
 
-La `ITimeLimitedDataProtector` interfaz es la interfaz principal para proteger y desproteger las cargas de tiempo limitado o de expiración automática. Para crear una instancia de `ITimeLimitedDataProtector`, primero necesitará una instancia de un [IDataProtector](xref:security/data-protection/consumer-apis/overview) regular construido con un propósito específico. Una vez `IDataProtector` que la instancia esté disponible, `IDataProtector.ToTimeLimitedDataProtector` llame al método de extensión para obtener un protector con capacidades de expiración integradas.
+La `ITimeLimitedDataProtector` interfaz es la interfaz principal para proteger y desproteger las cargas de tiempo limitado o de expiración automática. Para crear una instancia de `ITimeLimitedDataProtector` , primero necesitará una instancia de un [IDataProtector](xref:security/data-protection/consumer-apis/overview) regular construido con un propósito específico. Una vez que la `IDataProtector` instancia esté disponible, llame al `IDataProtector.ToTimeLimitedDataProtector` método de extensión para obtener un protector con capacidades de expiración integradas.
 
 `ITimeLimitedDataProtector`expone los siguientes métodos de extensión y superficie de API:
 
-* CreateProtector (propósito de cadena): ITimeLimitedDataProtector: esta API es similar a la `IDataProtectionProvider.CreateProtector` existente, ya que se puede usar para crear [cadenas de propósito](xref:security/data-protection/consumer-apis/purpose-strings) a partir de un protector de hora raíz limitado.
+* CreateProtector (propósito de cadena): ITimeLimitedDataProtector: esta API es similar a la existente, ya `IDataProtectionProvider.CreateProtector` que se puede usar para crear [cadenas de propósito](xref:security/data-protection/consumer-apis/purpose-strings) a partir de un protector de hora raíz limitado.
 
 * Proteger (Byte [] texto simple, expiración de DateTimeOffset): Byte []
 
@@ -44,7 +46,7 @@ La `ITimeLimitedDataProtector` interfaz es la interfaz principal para proteger y
 
 * Protect (cadena sin formato): cadena
 
-Además de los métodos básicos `Protect` que toman solo el texto simple, hay nuevas sobrecargas que permiten especificar la fecha de expiración de la carga. La fecha de expiración se puede especificar como una fecha absoluta ( `DateTimeOffset`a través de) o como un tiempo relativo (de la hora del sistema `TimeSpan`actual, a través de). Si se llama a una sobrecarga que no toma una expiración, se supone que la carga no expira nunca.
+Además de los métodos básicos `Protect` que toman solo el texto simple, hay nuevas sobrecargas que permiten especificar la fecha de expiración de la carga. La fecha de expiración se puede especificar como una fecha absoluta (a través de `DateTimeOffset` ) o como un tiempo relativo (de la hora del sistema actual, a través de `TimeSpan` ). Si se llama a una sobrecarga que no toma una expiración, se supone que la carga no expira nunca.
 
 * Unprotect (Byte [] protectedData, out DateTimeOffset de salida): Byte []
 

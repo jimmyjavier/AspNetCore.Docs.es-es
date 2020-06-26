@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 08/14/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 42ddddeaa329ac5ff5b2b40cbf9ebffa68f6d4cf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4ed5a550b5d3ca00179ae0492bf61e7fe91e324c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774436"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408778"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Habilitar la generación de código QR para las aplicaciones de TOTP Authenticator en ASP.NET Core
 
@@ -36,22 +38,22 @@ La autenticación en dos fases no se realiza mediante un proveedor de autenticac
 
 ## <a name="adding-qr-codes-to-the-2fa-configuration-page"></a>Agregar códigos QR a la página de configuración de 2FA
 
-En estas instrucciones se usa *qrcode. js* desde el https://davidshimjs.github.io/qrcodejs/ repositorio.
+Estas instrucciones usan *qrcode.js* del https://davidshimjs.github.io/qrcodejs/ repositorio.
 
-* Descargue la [biblioteca de JavaScript de qrcode. js](https://davidshimjs.github.io/qrcodejs/) en la `wwwroot\lib` carpeta del proyecto.
+* Descargue el [qrcode.js biblioteca de JavaScript](https://davidshimjs.github.io/qrcodejs/) en la `wwwroot\lib` carpeta del proyecto.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Siga las instrucciones de [scaffolding Identity ](xref:security/authentication/scaffold-identity) para generar */areas/Identity/pages/Account/Manage/EnableAuthenticator.cshtml*.
-* En */areas/Identity/pages/Account/Manage/EnableAuthenticator.cshtml*, busque la `Scripts` sección al final del archivo:
+* Siga las instrucciones de [scaffolding Identity ](xref:security/authentication/scaffold-identity) para generar */areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml*.
+* En */areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml*, busque la `Scripts` sección al final del archivo:
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-* En *pages/Account/Manage/EnableAuthenticator. cshtml* (Razor pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC) `Scripts` , busque la sección al final del archivo:
+* En *pages/Account/Manage/EnableAuthenticator. cshtml* ( Razor pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC), busque la `Scripts` sección al final del archivo:
 
 ::: moniker-end
 
@@ -91,13 +93,13 @@ Ejecute la aplicación y asegúrese de que puede examinar el código QR y valida
 
 ::: moniker range=">= aspnetcore-2.1"
 
-El nombre del sitio en el código QR se toma del nombre del proyecto elegido al crear inicialmente el proyecto. Puede cambiarlo si busca el `GenerateQrCodeUri(string email, string unformattedKey)` método en */areas/Identity/pages/Account/Manage/EnableAuthenticator.cshtml.CS*.
+El nombre del sitio en el código QR se toma del nombre del proyecto elegido al crear inicialmente el proyecto. Puede cambiarlo si busca el `GenerateQrCodeUri(string email, string unformattedKey)` método en */areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml.CS*.
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-El nombre del sitio en el código QR se toma del nombre del proyecto elegido al crear inicialmente el proyecto. Puede cambiarlo `GenerateQrCodeUri(string email, string unformattedKey)` si busca el método en el archivo *pages/Account/Manage/EnableAuthenticator. cshtml. CS* (Razor pages) o el archivo *Controllers/ManageController. CS* (MVC).
+El nombre del sitio en el código QR se toma del nombre del proyecto elegido al crear inicialmente el proyecto. Puede cambiarlo si busca el `GenerateQrCodeUri(string email, string unformattedKey)` método en el archivo *pages/Account/Manage/EnableAuthenticator. cshtml. CS* ( Razor pages) o el archivo *Controllers/ManageController. CS* (MVC).
 
 ::: moniker-end
 
@@ -120,7 +122,7 @@ El segundo parámetro de la llamada a `string.Format` es el nombre del sitio, to
 
 ## <a name="using-a-different-qr-code-library"></a>Usar una biblioteca de códigos QR diferente
 
-Puede reemplazar la biblioteca de códigos QR por su biblioteca preferida. El código HTML contiene `qrCode` un elemento en el que se puede colocar un código QR por cualquier mecanismo que proporcione la biblioteca.
+Puede reemplazar la biblioteca de códigos QR por su biblioteca preferida. El código HTML contiene un `qrCode` elemento en el que se puede colocar un código QR por cualquier mecanismo que proporcione la biblioteca.
 
 La dirección URL con el formato correcto para el código QR está disponible en:
 

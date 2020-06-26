@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/02/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 5a14042db6250d5f7a47acaf4083b44272c606ab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a94fe1612c023468238f09a91ddb0346b65d52ba
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777493"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408024"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Impedir el scripting entre sitios (XSS) en ASP.NET Core
 
@@ -30,17 +32,17 @@ En un nivel básico, XSS funciona engañando a la aplicación para insertar una 
 
 1. No coloque nunca los datos que no son de confianza en la entrada HTML, a menos que siga el resto de los pasos que se indican a continuación. Los datos que no son de confianza son aquellos que pueden ser controlados por un atacante, entradas de formulario HTML, cadenas de consulta, encabezados HTTP, incluso los datos procedentes de una base de datos como atacante pueden infringir la base de datos incluso si no pueden infringir la aplicación.
 
-2. Antes de colocar los datos que no son de confianza dentro de un elemento HTML, asegúrese de que está codificado en HTML. La codificación HTML toma caracteres como &lt; y los cambia de forma segura como &amp;lt;
+2. Antes de colocar los datos que no son de confianza dentro de un elemento HTML, asegúrese de que está codificado en HTML. La codificación HTML toma caracteres como &lt; y los cambia de forma segura como &amp; lt;
 
 3. Antes de colocar los datos que no son de confianza en un atributo HTML, asegúrese de que está codificado en HTML. La codificación de atributos HTML es un supraconjunto de codificación HTML y codifica caracteres adicionales como "y".
 
-4. Antes de colocar los datos que no son de confianza en JavaScript, coloque los datos en un elemento HTML cuyo contenido recupera en tiempo de ejecución. Si esto no es posible, asegúrese de que los datos están codificados con JavaScript. La codificación de JavaScript toma caracteres peligrosos para JavaScript y los reemplaza por su hexadecimal, por &lt; ejemplo, se codificaría como `\u003C`.
+4. Antes de colocar los datos que no son de confianza en JavaScript, coloque los datos en un elemento HTML cuyo contenido recupera en tiempo de ejecución. Si esto no es posible, asegúrese de que los datos están codificados con JavaScript. La codificación de JavaScript toma caracteres peligrosos para JavaScript y los reemplaza por su hexadecimal, por ejemplo, &lt; se codificaría como `\u003C` .
 
 5. Antes de colocar los datos que no son de confianza en una cadena de consulta de dirección URL, asegúrese de que su dirección URL está codificada.
 
 ## <a name="html-encoding-using-razor"></a>Codificación HTML medianteRazor
 
-El Razor motor usado en MVC codifica automáticamente todas las salidas que se han generado a partir de variables, a menos que trabaje realmente difícil para evitar que lo haga. Usa reglas de codificación de atributos HTML siempre que se usa *@* la Directiva. Como la codificación de atributos HTML es un supraconjunto de codificación HTML, esto significa que no tiene que preocuparse de si debe usar la codificación HTML o la codificación de atributos HTML. Debe asegurarse de que solo usa @ en un contexto HTML, no cuando intenta insertar una entrada que no es de confianza directamente en JavaScript. Las aplicaciones auxiliares de etiquetas también codificarán la entrada que se usa en los parámetros de etiqueta.
+El Razor motor usado en MVC codifica automáticamente todas las salidas que se han generado a partir de variables, a menos que trabaje realmente difícil para evitar que lo haga. Usa reglas de codificación de atributos HTML siempre que se usa la *@* Directiva. Como la codificación de atributos HTML es un supraconjunto de codificación HTML, esto significa que no tiene que preocuparse de si debe usar la codificación HTML o la codificación de atributos HTML. Debe asegurarse de que solo usa @ en un contexto HTML, no cuando intenta insertar una entrada que no es de confianza directamente en JavaScript. Las aplicaciones auxiliares de etiquetas también codificarán la entrada que se usa en los parámetros de etiqueta.
 
 Tome la siguiente Razor vista:
 
@@ -52,7 +54,7 @@ Tome la siguiente Razor vista:
    @untrustedInput
    ```
 
-Esta vista genera el contenido de la variable *untrustedInput* . Esta variable incluye algunos caracteres que se usan en ataques XSS, es decir &lt;, "y &gt;". Al examinar el origen se muestra la salida representada como:
+Esta vista genera el contenido de la variable *untrustedInput* . Esta variable incluye algunos caracteres que se usan en ataques XSS, es decir &lt; , "y" &gt; . Al examinar el origen se muestra la salida representada como:
 
 ```html
 &lt;&quot;123&quot;&gt;
@@ -144,11 +146,11 @@ Esto se representará en el explorador de la siguiente manera:
 ```
 
 >[!WARNING]
-> No concatene la entrada que no es de confianza en JavaScript para crear elementos DOM. Debe `createElement()` usar y asignar los valores de propiedad de forma `node.TextContent=`adecuada como, o `element.SetAttribute()` / `element[attribute]=` bien usar de otro modo se expone a través de XSS basado en Dom.
+> No concatene la entrada que no es de confianza en JavaScript para crear elementos DOM. Debe usar `createElement()` y asignar los valores de propiedad de forma adecuada como `node.TextContent=` , o bien usar de `element.SetAttribute()` / `element[attribute]=` otro modo se expone a través de XSS basado en Dom.
 
 ## <a name="accessing-encoders-in-code"></a>Obtener acceso a codificadores en el código
 
-Los codificadores HTML, JavaScript y URL están disponibles para el código de dos maneras: puede inyectarlos a través de la [inserción de dependencias](xref:fundamentals/dependency-injection) o puede usar los codificadores predeterminados `System.Text.Encodings.Web` contenidos en el espacio de nombres. Si usa los codificadores predeterminados, los que aplique a los intervalos de caracteres que se tratarán como seguros no surtirán efecto: los codificadores predeterminados usan las reglas de codificación más seguras posibles.
+Los codificadores HTML, JavaScript y URL están disponibles para el código de dos maneras: puede inyectarlos a través de la [inserción de dependencias](xref:fundamentals/dependency-injection) o puede usar los codificadores predeterminados contenidos en el `System.Text.Encodings.Web` espacio de nombres. Si usa los codificadores predeterminados, los que aplique a los intervalos de caracteres que se tratarán como seguros no surtirán efecto: los codificadores predeterminados usan las reglas de codificación más seguras posibles.
 
 Para usar los codificadores configurables a través de DI, los constructores deben tomar un parámetro *HtmlEncoder*, *JavaScriptEncoder* y *UrlEncoder* , según corresponda. Por ejemplo:
 
@@ -172,14 +174,14 @@ public class HomeController : Controller
 
 ## <a name="encoding-url-parameters"></a>Parámetros de URL de codificación
 
-Si desea crear una cadena de consulta de dirección URL con una entrada que no sea de confianza como `UrlEncoder` valor, use para codificar el valor. Por ejemplo,
+Si desea crear una cadena de consulta de dirección URL con una entrada que no sea de confianza como valor, use `UrlEncoder` para codificar el valor. Por ejemplo,
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";
    var encodedValue = _urlEncoder.Encode(example);
    ```
 
-Después de la codificación, la variable encodedValue `%22Quoted%20Value%20with%20spaces%20and%20%26%22`contendrá. Los espacios, las comillas, los signos de puntuación y otros caracteres no seguros se codificarán por porcentaje en su valor hexadecimal; por ejemplo, un carácter de espacio se convertirá en %20.
+Después de la codificación, la variable encodedValue contendrá `%22Quoted%20Value%20with%20spaces%20and%20%26%22` . Los espacios, las comillas, los signos de puntuación y otros caracteres no seguros se codificarán por porcentaje en su valor hexadecimal; por ejemplo, un carácter de espacio se convertirá en %20.
 
 >[!WARNING]
 > No utilice la entrada que no sea de confianza como parte de una ruta de dirección URL. Pase siempre la entrada que no sea de confianza como un valor de cadena de consulta.
@@ -188,13 +190,13 @@ Después de la codificación, la variable encodedValue `%22Quoted%20Value%20with
 
 ## <a name="customizing-the-encoders"></a>Personalización de los codificadores
 
-De forma predeterminada, los codificadores usan una lista segura limitada al intervalo de Unicode latín básico y codifican todos los caracteres que se encuentran fuera de ese intervalo como sus equivalentes en el código de carácter. Este comportamiento también afecta Razor a la representación de TagHelper y HtmlHelper, ya que usará los codificadores para generar las cadenas.
+De forma predeterminada, los codificadores usan una lista segura limitada al intervalo de Unicode latín básico y codifican todos los caracteres que se encuentran fuera de ese intervalo como sus equivalentes en el código de carácter. Este comportamiento también afecta a Razor la representación de TagHelper y HtmlHelper, ya que usará los codificadores para generar las cadenas.
 
 La razón de esto es proteger frente a errores desconocidos o futuros del explorador (los errores anteriores del explorador se han recorrido en el análisis en función del procesamiento de caracteres que no estén en inglés). Si el sitio web hace un uso intensivo de caracteres no latinos, como chino, cirílico u otros, es probable que no sea el comportamiento deseado.
 
-Puede personalizar las listas seguras del codificador para incluir los intervalos Unicode adecuados para la aplicación durante el inicio, `ConfigureServices()`en.
+Puede personalizar las listas seguras del codificador para incluir los intervalos Unicode adecuados para la aplicación durante el inicio, en `ConfigureServices()` .
 
-Por ejemplo, si usa la configuración predeterminada, puede usar Razor una HtmlHelper como tal;
+Por ejemplo, si usa la configuración predeterminada, puede usar una Razor HtmlHelper como tal;
 
 ```html
 <p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
@@ -206,7 +208,7 @@ Al ver el origen de la página web, verá que se ha representado como sigue, con
 <p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
    ```
 
-Para ampliar los caracteres que el codificador trata como seguros, debe insertar la siguiente línea en el `ConfigureServices()` método de; `startup.cs`
+Para ampliar los caracteres que el codificador trata como seguros, debe insertar la siguiente línea en el `ConfigureServices()` método de `startup.cs` ;
 
 ```csharp
 services.AddSingleton<HtmlEncoder>(
@@ -223,7 +225,7 @@ Este ejemplo amplía la lista segura para incluir el intervalo Unicode CjkUnifie
 Los intervalos de la lista segura se especifican como gráficos de códigos Unicode, no como lenguajes. El [estándar Unicode](https://unicode.org/) tiene una lista de [gráficos de código](https://www.unicode.org/charts/index.html) que puede usar para buscar el gráfico que contiene los caracteres. Cada codificador, HTML, JavaScript y URL, debe configurarse por separado.
 
 > [!NOTE]
-> La personalización de la lista segura solo afecta a los codificadores que tienen el origen a través de DI. Si obtiene acceso directamente a un codificador a `System.Text.Encodings.Web.*Encoder.Default` través de, se usará la configuración de la base de datos de solo latín básica básica.
+> La personalización de la lista segura solo afecta a los codificadores que tienen el origen a través de DI. Si obtiene acceso directamente a un codificador a través `System.Text.Encodings.Web.*Encoder.Default` de, se usará la configuración de la base de datos de solo latín básica básica.
 
 ## <a name="where-should-encoding-take-place"></a>¿Dónde se debe realizar la codificación?
 

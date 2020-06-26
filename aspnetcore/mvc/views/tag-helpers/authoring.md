@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775094"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407595"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Crear asistentes de etiquetas en ASP.NET Core
 
@@ -55,9 +57,9 @@ Es decir, una etiqueta delimitadora lo convierte en un vínculo de correo electr
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Los asistentes de etiquetas usan una convención de nomenclatura que tiene como destino los elementos de la clase raíz (menos la parte *TagHelper* del nombre de clase). En este ejemplo, el nombre de raíz de **EmailTagHelper** es *email*, por `<email>` lo que se usará la etiqueta como destino. Esta convención de nomenclatura debería funcionar para la mayoría de los asistentes de etiquetas. Más adelante veremos cómo invalidarla.
+   * Los asistentes de etiquetas usan una convención de nomenclatura que tiene como destino los elementos de la clase raíz (menos la parte *TagHelper* del nombre de clase). En este ejemplo, el nombre de raíz de **EmailTagHelper** es *email*, por lo que se usará la `<email>` etiqueta como destino. Esta convención de nomenclatura debería funcionar para la mayoría de los asistentes de etiquetas. Más adelante veremos cómo invalidarla.
 
-   * La clase `EmailTagHelper` se deriva de `TagHelper`. La clase `TagHelper` proporciona métodos y propiedades para escribir asistentes de etiquetas.
+   * La clase `EmailTagHelper` deriva de `TagHelper`. La clase `TagHelper` proporciona métodos y propiedades para escribir asistentes de etiquetas.
 
    * El método `Process` invalidado controla lo que hace el asistente de etiquetas cuando se ejecuta. La clase `TagHelper` también proporciona una versión asincrónica (`ProcessAsync`) con los mismos parámetros.
 
@@ -71,11 +73,11 @@ Es decir, una etiqueta delimitadora lo convierte en un vínculo de correo electr
    public class Email : TagHelper
    ```
 
-1. Para que la `EmailTagHelper` clase esté disponible para todas Razor nuestras vistas, agregue `addTagHelper` la directiva al archivo *views/_ViewImports. cshtml* :
+1. Para que la `EmailTagHelper` clase esté disponible para todas nuestras Razor vistas, agregue la `addTagHelper` Directiva al archivo *views/_ViewImports. cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
-   El código anterior usa la sintaxis de comodines para especificar que todos los asistentes de etiquetas del ensamblado estarán disponibles. La primera cadena después de `@addTagHelper` especifica el asistente de etiquetas que se va a cargar (use "*" para todos los asistentes de etiquetas), mientras que la segunda cadena "AuthoringTagHelpers" especifica el ensamblado en el que se encuentra el asistente de etiquetas. Además, tenga en cuenta que la segunda línea incluye las aplicaciones auxiliares de etiquetas de ASP.NET Core MVC que usan la sintaxis de caracteres comodín (esas aplicaciones auxiliares se describen en [Introducción a las aplicaciones auxiliares de etiquetas](intro.md)). Se trata de `@addTagHelper` la Directiva que hace que la aplicación auxiliar de etiquetas Razor esté disponible para la vista. Como alternativa, puede proporcionar el nombre completo (FQN) de un asistente de etiquetas como se muestra a continuación:
+   El código anterior usa la sintaxis de comodines para especificar que todos los asistentes de etiquetas del ensamblado estarán disponibles. La primera cadena después de `@addTagHelper` especifica el asistente de etiquetas que se va a cargar (use "*" para todos los asistentes de etiquetas), mientras que la segunda cadena "AuthoringTagHelpers" especifica el ensamblado en el que se encuentra el asistente de etiquetas. Además, tenga en cuenta que la segunda línea incluye las aplicaciones auxiliares de etiquetas de ASP.NET Core MVC que usan la sintaxis de caracteres comodín (esas aplicaciones auxiliares se describen en [Introducción a las aplicaciones auxiliares de etiquetas](intro.md)). Se trata de la `@addTagHelper` Directiva que hace que la aplicación auxiliar de etiquetas esté disponible para la Razor vista. Como alternativa, puede proporcionar el nombre completo (FQN) de un asistente de etiquetas como se muestra a continuación:
 
 ```csharp
 @using AuthoringTagHelpers
@@ -163,7 +165,7 @@ En esta sección, escribiremos un asistente de correo electrónico asincrónico.
 
    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
-1. Ejecutar la aplicación. Puede usar el explorador que prefiera para inspeccionar el origen y comprobar el marcado.
+1. Ejecute la aplicación. Puede usar el explorador que prefiera para inspeccionar el origen y comprobar el marcado.
 
    El atributo `[HtmlTargetElement]` anterior solo tiene como destino el marcado HTML que proporciona el nombre de atributo "bold". El asistente de etiquetas no ha modificado el elemento `<bold>`.
 
@@ -199,7 +201,7 @@ También puede usar `[HtmlTargetElement]` para cambiar el nombre del elemento de
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Como se ha indicado anteriormente, los asistentes de etiquetas convierten las propiedades y nombres de clase de C# con grafía Pascal para asistentes de etiquetas en [grafía kebab](https://wiki.c2.com/?KebabCase). Por lo tanto, para `WebsiteInformationTagHelper` usar Razoren, escribirá `<website-information />`.
+   * Como se ha indicado anteriormente, los asistentes de etiquetas convierten las propiedades y nombres de clase de C# con grafía Pascal para asistentes de etiquetas en [grafía kebab](https://wiki.c2.com/?KebabCase). Por lo tanto, para usar `WebsiteInformationTagHelper` en Razor , escribirá `<website-information />` .
 
    * No está identificando de manera explícita el elemento de destino con el atributo `[HtmlTargetElement]`, por lo que el destino será el valor predeterminado de `website-information`. Si ha aplicado el atributo siguiente (tenga en cuenta que no tiene grafía kebab, pero coincide con el nombre de clase):
 
@@ -230,7 +232,7 @@ También puede usar `[HtmlTargetElement]` para cambiar el nombre del elemento de
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razorsabe que `info` el atributo es una clase, no una cadena, y desea escribir código de C#. Todos los atributos de asistentes de etiquetas que no sean una cadena deben escribirse sin el carácter `@`.
+   > Razorsabe que el `info` atributo es una clase, no una cadena, y desea escribir código de C#. Todos los atributos de asistentes de etiquetas que no sean una cadena deben escribirse sin el carácter `@`.
 
 1. Ejecute la aplicación y vaya a la vista About para ver la información del sitio web.
 
@@ -287,7 +289,7 @@ Dado que estos dos asistentes están estrechamente relacionados y tal vez las re
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs?highlight=15-34&range=7-34)]
 
-1. Ejecutar la aplicación. Observe que el texto www se representa como un vínculo, a diferencia del texto HTTP. Si coloca un punto de interrupción en ambas clases, verá que la clase del asistente de etiquetas HTTP se ejecuta primero. El problema es que la salida del asistente de etiquetas se almacena en caché y, cuando se ejecuta el asistente de etiquetas WWW, sobrescribe la salida almacenada en caché desdel asistente de etiquetas HTTP. Más adelante en el tutorial veremos cómo se controla el orden en el que se ejecutan los asistentes de etiquetas. Corregiremos el código con lo siguiente:
+1. Ejecute la aplicación. Observe que el texto www se representa como un vínculo, a diferencia del texto HTTP. Si coloca un punto de interrupción en ambas clases, verá que la clase del asistente de etiquetas HTTP se ejecuta primero. El problema es que la salida del asistente de etiquetas se almacena en caché y, cuando se ejecuta el asistente de etiquetas WWW, sobrescribe la salida almacenada en caché desdel asistente de etiquetas HTTP. Más adelante en el tutorial veremos cómo se controla el orden en el que se ejecutan los asistentes de etiquetas. Corregiremos el código con lo siguiente:
 
    [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10,21,22,26&range=8-37)]
 

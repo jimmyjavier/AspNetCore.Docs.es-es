@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/roles
-ms.openlocfilehash: 01d4239377b128f711a110a821e1afea58ca14a7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5d2ea6b9be0c993d62fa75fb8b471b5923747bac
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776544"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407868"
 ---
 # <a name="role-based-authorization-in-aspnet-core"></a>Autorización basada en roles en ASP.NET Core
 
@@ -26,7 +28,7 @@ Cuando se crea una identidad, puede pertenecer a uno o varios roles. Por ejemplo
 
 ## <a name="adding-role-checks"></a>Agregar comprobaciones de roles
 
-Las comprobaciones de autorización basadas en&mdash;roles son declarativas el desarrollador las inserta en el código, en un controlador o una acción dentro de un controlador, especificando los roles de los que el usuario actual debe ser miembro para tener acceso al recurso solicitado.
+Las comprobaciones de autorización basadas en roles son declarativas &mdash; el desarrollador las inserta en el código, en un controlador o una acción dentro de un controlador, especificando los roles de los que el usuario actual debe ser miembro para tener acceso al recurso solicitado.
 
 Por ejemplo, el código siguiente limita el acceso a las acciones de `AdministrationController` a los usuarios que son miembros del `Administrator` rol:
 
@@ -48,7 +50,7 @@ public class SalaryController : Controller
 
 Este controlador solo es accesible para los usuarios que son miembros del `HRManager` rol o del `Finance` rol.
 
-Si aplica varios atributos, el acceso de un usuario debe ser miembro de todos los roles especificados. en el ejemplo siguiente se requiere que un usuario deba ser miembro del rol `PowerUser` y `ControlPanelUser` .
+Si aplica varios atributos, el acceso de un usuario debe ser miembro de todos los roles especificados. en el ejemplo siguiente se requiere que un usuario deba ser miembro del `PowerUser` rol y `ControlPanelUser` .
 
 ```csharp
 [Authorize(Roles = "PowerUser")]
@@ -75,7 +77,7 @@ public class ControlPanelController : Controller
 }
 ```
 
-En los miembros del fragmento de código anterior `Administrator` del rol o `PowerUser` el rol puede tener acceso al controlador `SetTime` y a la acción, pero solo `Administrator` los miembros del rol `ShutDown` pueden tener acceso a la acción.
+En los miembros del fragmento de código anterior del `Administrator` rol o el `PowerUser` rol puede tener acceso al controlador y a la `SetTime` acción, pero solo los miembros del `Administrator` rol pueden tener acceso a la `ShutDown` acción.
 
 También puede bloquear un controlador, pero permitir el acceso anónimo y no autenticado a acciones individuales.
 
@@ -96,7 +98,7 @@ public class ControlPanelController : Controller
 
 ::: moniker range=">= aspnetcore-2.0"
 
-En Razor el `AuthorizeAttribute` caso de las páginas, puede aplicarse mediante:
+En Razor el caso de las páginas, `AuthorizeAttribute` puede aplicarse mediante:
 
 * Mediante una [Convención](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), o
 * Aplicar `AuthorizeAttribute` a la `PageModel` instancia de:
@@ -112,7 +114,7 @@ public class UpdateModel : PageModel
 ```
 
 > [!IMPORTANT]
-> Los atributos de filtro `AuthorizeAttribute`, incluido, solo se pueden aplicar a PageModel y no se pueden aplicar a métodos de control de página específicos.
+> Los atributos de filtro, incluido `AuthorizeAttribute` , solo se pueden aplicar a PageModel y no se pueden aplicar a métodos de control de página específicos.
 ::: moniker-end
 
 <a name="security-authorization-role-policy"></a>
@@ -152,7 +154,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 ::: moniker-end
 
-Las directivas se aplican `Policy` mediante la propiedad `AuthorizeAttribute` en el atributo:
+Las directivas se aplican mediante la `Policy` propiedad en el `AuthorizeAttribute` atributo:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -169,7 +171,7 @@ options.AddPolicy("ElevatedRights", policy =>
                   policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 ```
 
-Este ejemplo autoriza a los usuarios que pertenecen a `Administrator`los `PowerUser` roles `BackupAdministrator` , o.
+Este ejemplo autoriza a los usuarios que pertenecen a `Administrator` los `PowerUser` roles, o `BackupAdministrator` .
 
 ### <a name="add-role-services-to-identity"></a>Agregar servicios de función aIdentity
 

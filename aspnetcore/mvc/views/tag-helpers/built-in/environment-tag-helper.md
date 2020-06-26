@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: 144cc8988ba5797265b38f0f7364f528e0dbb97e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 23ddad23214d3e1a66415fc8706c30de838357fa
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777428"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407439"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Asistente de etiquetas de entorno en ASP.NET Core
 
@@ -25,7 +27,7 @@ Por [Peter Kellner](https://peterkellner.net) y [Hisham Bin Ateya](https://twitt
 
 La aplicación auxiliar de etiquetas de entorno representa condicionalmente el contenido incluido en función del [entorno de hospedaje](xref:fundamentals/environments)actual. El único atributo del asistente de etiquetas de entorno, `names`, es una lista de nombres de entorno separados por comas. Si alguno de los nombres de entorno proporcionados coincide con el entorno actual, se representa el contenido incluido.
 
-Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
 
 ## <a name="environment-tag-helper-attributes"></a>Atributos del asistente de etiquetas de entorno
 
@@ -47,7 +49,7 @@ En este ejemplo se usa un asistente de etiquetas de entorno. El contenido se rep
 
 ## <a name="include-and-exclude-attributes"></a>Atributos include y exclude
 
-`include`& los atributos controlan la representación del contenido incluido en función de los nombres de entorno de hospedaje incluidos o excluidos `exclude` .
+`include`& `exclude` los atributos controlan la representación del contenido incluido en función de los nombres de entorno de hospedaje incluidos o excluidos.
 
 ### <a name="include"></a>include
 

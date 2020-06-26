@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 09/24/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: 1efd7c1a63baea4312a4a01cd9cd9c7582375d97
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c767ff4c2a1e0d5d10ccb3ff855126f541c04f64
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777359"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408245"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Asistente de etiquetas de vínculo en ASP.NET Core
 
@@ -29,7 +31,7 @@ El [asistente de etiquetas de vínculo](xref:Microsoft.AspNetCore.Mvc.TagHelpers
 
 El asistente de etiquetas de vínculo permite especificar una red CDN para el archivo CSS y una reserva cuando dicha red no está disponible. El asistente de etiquetas de vínculo proporciona la ventaja de rendimiento de una red CDN con la solidez del hospedaje local.
 
-En el Razor marcado siguiente se `head` muestra el elemento de un archivo de diseño creado con la plantilla de aplicación Web de ASP.net Core:
+En el Razor marcado siguiente se muestra el `head` elemento de un archivo de diseño creado con la plantilla de aplicación web de ASP.net Core:
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 

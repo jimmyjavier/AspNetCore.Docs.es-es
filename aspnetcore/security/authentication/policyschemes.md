@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a8bde9633f06f41ebcb55480eb2322544db4b4da
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767322"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408765"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de directiva en ASP.NET Core
 
@@ -25,7 +27,7 @@ Los esquemas de directivas de autenticación facilitan que un único esquema de 
 * Es fácil reenviar cualquier acción de autenticación a otro esquema.
 * Reenviar dinámicamente según la solicitud.
 
-Todos los esquemas de autenticación <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> que usan las [>ciones\< ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)derivadas y asociadas:
+Todos los esquemas de autenticación que usan derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> y el [AuthenticationHandler \<TOptions> ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)asociado:
 
 * Son esquemas de directivas automáticamente en ASP.NET Core 2,1 y versiones posteriores.
 * Se puede habilitar mediante la configuración de las opciones del esquema.

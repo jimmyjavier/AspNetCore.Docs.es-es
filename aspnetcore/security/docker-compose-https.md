@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/28/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: 533d86fb17e3c89fdca59685b090645a11ba5473
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b282af3b9c657bda4432f0d60f100f65fa7cbae9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775146"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408622"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>Hospedaje de imágenes de ASP.NET Core con Docker Compose a través de HTTPS
 
@@ -39,14 +41,14 @@ El [SDK de .net Core 2,2](https://dotnet.microsoft.com/download) o posterior es 
 
 Se requiere un certificado de una [entidad de certificación](https://wikipedia.org/wiki/Certificate_authority) para el [hospedaje de producción](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) en un dominio. [Let's Encrypt](https://letsencrypt.org/)es una entidad de certificación que ofrece certificados gratuitos.
 
-En este documento se usan [certificados de desarrollo autofirmados](https://wikipedia.org/wiki/Self-signed_certificate) para hospedar imágenes `localhost`pregeneradas en. Las instrucciones son similares a usar certificados de producción.
+En este documento se usan [certificados de desarrollo autofirmados](https://wikipedia.org/wiki/Self-signed_certificate) para hospedar imágenes pregeneradas en `localhost` . Las instrucciones son similares a usar certificados de producción.
 
 Para los certificados de producción:
 
 * La `dotnet dev-certs` herramienta no es necesaria.
 * Los certificados no tienen que almacenarse en la ubicación usada en las instrucciones. Almacene los certificados en cualquier ubicación fuera del directorio del sitio.
 
-Las instrucciones contenidas en la sección siguiente desmontan certificados en `volumes` contenedores mediante la propiedad de *Docker-Compose. yml.* Puede agregar certificados a las imágenes de contenedor con `COPY` un comando en un *Dockerfile*, pero no se recomienda. No se recomienda copiar certificados en una imagen por los siguientes motivos:
+Las instrucciones contenidas en la sección siguiente desmontan certificados en contenedores mediante la `volumes` propiedad de *Docker-Compose. yml.* Puede agregar certificados a las imágenes de contenedor con un `COPY` comando en un *Dockerfile*, pero no se recomienda. No se recomienda copiar certificados en una imagen por los siguientes motivos:
 
 * Dificulta el uso de la misma imagen para realizar pruebas con certificados de desarrollador.
 * Dificulta el uso de la misma imagen para hospedar con certificados de producción.

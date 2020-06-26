@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773970"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408258"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Asistente de etiquetas delimitadoras en ASP.NET Core
 
@@ -25,7 +27,7 @@ De [Peter Kellner](https://peterkellner.net) y [Scott Addie](https://github.com/
 
 El [asistente de etiquetas delimitadoras](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) mejora la etiqueta delimitadora de código HTML estándar (`<a ... ></a>`) agregando nuevos atributos. Por convención, los nombres de atributo tienen el prefijo `asp-`. El valor de atributo `href` del elemento delimitador representado se determina mediante los valores de los atributos `asp-`.
 
-Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -191,11 +193,11 @@ Tenga en cuenta la siguiente jerarquía de directorios:
     * **Sesiones**
       * **Páginas**
         * *\_ViewStart. cshtml*
-        * *Index. cshtml*
+        * *Index.cshtml*
         * *Index.cshtml.cs*
   * **Páginas**
 
-El marcado para hacer referencia a la página de *Índice* Razor del área de *sesiones* es:
+El marcado para hacer referencia a la página de *Índice* del área de *sesiones* Razor es:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -206,7 +208,7 @@ El código HTML generado:
 ```
 
 > [!TIP]
-> Para admitir áreas en una Razor aplicación de páginas, realice una de las siguientes `Startup.ConfigureServices`acciones en:
+> Para admitir áreas en una Razor aplicación de páginas, realice una de las siguientes acciones en `Startup.ConfigureServices` :
 >
 > * Establezca la [versión de compatibilidad](xref:mvc/compatibility-version) en 2.1 o posterior.
 > * Establezca la propiedad [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) en `true`:
@@ -226,7 +228,7 @@ Tenga en cuenta la siguiente jerarquía de directorios:
       * **Vistas**
         * **Inicio**
           * *AboutBlog.cshtml*
-          * *Index. cshtml*
+          * *Index.cshtml*
         * *\_ViewStart. cshtml*
   * **Controladores**
 
@@ -275,7 +277,7 @@ El código HTML generado:
 
 El atributo [asp-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) se usa con Razor las páginas. Úselo para establecer el valor del atributo `href` de una etiqueta delimitadora en una página específica. La dirección URL se crea al prefijar el nombre de la página con una barra diagonal ("/").
 
-El siguiente ejemplo señala a la Razor página de asistentes:
+El siguiente ejemplo señala a la página de asistentes Razor :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -297,7 +299,7 @@ El código HTML generado:
 
 ### <a name="asp-page-handler"></a>asp-page-handler
 
-El atributo [asp-Page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) se usa Razor con las páginas. Está diseñado para crear un vínculo con controladores de página específicos.
+El atributo [asp-Page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) se usa con Razor las páginas. Está diseñado para crear un vínculo con controladores de página específicos.
 
 Observe el siguiente controlador de página:
 

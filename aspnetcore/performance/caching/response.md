@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 11/04/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 87ff2633ded612eba2c996583b4a6cf997fe8e18
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 25d6bdae0fce7821ec7b9195817dc07ef9aed40f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84105771"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408193"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Almacenamiento en caché de respuestas en ASP.NET Core
 
@@ -47,7 +49,7 @@ La [especificación HTTP 1,1 Caching](https://tools.ietf.org/html/rfc7234) descr
 
 En la tabla siguiente se muestran otros encabezados de caché que desempeñan un rol en el almacenamiento en caché.
 
-| Encabezado                                                     | Función |
+| Header                                                     | Función |
 | ---------------------------------------------------------- | -------- |
 | [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | Una estimación de la cantidad de tiempo en segundos transcurrido desde que se generó la respuesta o se validó correctamente en el servidor de origen. |
 | [Expira](https://tools.ietf.org/html/rfc7234#section-5.3) | Hora a partir de la cual la respuesta se considera obsoleta. |
@@ -99,7 +101,7 @@ Para obtener más información, vea <xref:mvc/views/tag-helpers/builtin-th/distr
 
 El [middleware de almacenamiento en caché de respuestas](xref:performance/caching/middleware) debe estar habilitado para establecer la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> propiedad. De lo contrario, se produce una excepción en tiempo de ejecución. No hay un encabezado HTTP correspondiente para la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> propiedad. La propiedad es una característica de HTTP administrada por middleware de almacenamiento en caché de respuestas. Para que el middleware atienda una respuesta almacenada en caché, la cadena de consulta y el valor de la cadena de consulta deben coincidir con una solicitud anterior. Por ejemplo, considere la secuencia de solicitudes y los resultados que se muestran en la tabla siguiente.
 
-| Solicitud                          | Resultado                    |
+| Request                          | Resultado                    |
 | -------------------------------- | ------------------------- |
 | `http://example.com?key1=value1` | Se devuelve desde el servidor. |
 | `http://example.com?key1=value1` | Se devuelve desde middleware. |

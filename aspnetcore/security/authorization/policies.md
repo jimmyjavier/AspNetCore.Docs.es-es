@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 533bddc9c4499dad99cfdb3089045ea10aed4548
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 8c68f2a15d07909d4576a2426d92f9beaa91fbb7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074164"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408076"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorización basada en directivas en ASP.NET Core
 
@@ -127,7 +129,9 @@ Las directivas se aplican a Razor las páginas mediante el `[Authorize]` atribut
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Las directivas también se pueden aplicar a Razor las páginas mediante una [Convención de autorización](xref:security/authorization/razor-pages-authorization).
+Las directivas ***no*** se pueden aplicar en el Razor nivel de controlador de páginas, deben aplicarse a la página.
+
+Las directivas se pueden aplicar a Razor las páginas mediante una [Convención de autorización](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisitos
 

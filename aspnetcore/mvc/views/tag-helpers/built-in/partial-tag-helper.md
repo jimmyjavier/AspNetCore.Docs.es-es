@@ -8,23 +8,25 @@ ms.custom: mvc
 ms.date: 04/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: d3207969dfbeb9a81e0da88f38a38c6889bbfba9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d92707ff06125a4b65f1ec18e402f5fe86547b5e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775874"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407920"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Asistente de etiquetas parciales en ASP.NET Core
 
 Por [Scott Addie](https://github.com/scottaddie)
 
-Para obtener información general de asistentes de etiquetas, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obtener información general sobre asistentes de etiquetas, vea <xref:mvc/views/tag-helpers/intro>.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -57,7 +59,7 @@ En el siguiente marcado se usa una ruta de acceso explícita, lo que indica que 
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Name)]
 
-## <a name="for"></a>for
+## <a name="for"></a>para
 
 El atributo `for` asigna una [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) para que se evalúe según el modelo actual. `ModelExpression` deduce la sintaxis de `@Model.`. Por ejemplo, se puede usar `for="Product"` en lugar de `for="@Model.Product"`. Este comportamiento predeterminado de deducción queda invalidado si se usa el símbolo `@` para definir una expresión insertada.
 

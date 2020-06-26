@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-management
-ms.openlocfilehash: 0f54ceedf3558fb4fa2349903461fdfdb4dc02e6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 68913d13c97ba6be73dabf79e03c146a37388ad3
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776908"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408947"
 ---
 # <a name="key-management-in-aspnet-core"></a>Administración de claves en ASP.NET Core
 
@@ -65,7 +67,7 @@ services.AddDataProtection()
        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 ```
 
-Un administrador también puede cambiar el valor predeterminado de todo el sistema, aunque una llamada `SetDefaultKeyLifetime` explícita a invalidará cualquier directiva de todo el sistema. La duración de la clave predeterminada no puede ser inferior a 7 días.
+Un administrador también puede cambiar el valor predeterminado de todo el sistema, aunque una llamada explícita a `SetDefaultKeyLifetime` invalidará cualquier directiva de todo el sistema. La duración de la clave predeterminada no puede ser inferior a 7 días.
 
 ## <a name="automatic-key-ring-refresh"></a>Actualización automática de Key Ring
 
@@ -74,11 +76,11 @@ Cuando el sistema de protección de datos se inicializa, lee el anillo de claves
 >[!WARNING]
 > En raras ocasiones, los desarrolladores deben usar las API de administración de claves directamente. El sistema de protección de datos llevará a cabo la administración automática de claves como se describió anteriormente.
 
-El sistema de protección de datos expone una `IKeyManager` interfaz que se puede usar para inspeccionar y realizar cambios en el anillo de claves. El sistema DI que proporcionó la instancia `IDataProtectionProvider` de también puede proporcionar una instancia `IKeyManager` de para su consumo. Como alternativa, puede extraer el `IKeyManager` directo de `IServiceProvider` como en el ejemplo siguiente.
+El sistema de protección de datos expone una interfaz `IKeyManager` que se puede usar para inspeccionar y realizar cambios en el anillo de claves. El sistema DI que proporcionó la instancia de `IDataProtectionProvider` también puede proporcionar una instancia de `IKeyManager` para su consumo. Como alternativa, puede extraer el `IKeyManager` directo de `IServiceProvider` como en el ejemplo siguiente.
 
-Cualquier operación que modifique el anillo clave (al crear una nueva clave explícitamente o realizar una revocación) invalidará la caché en memoria. La siguiente llamada a `Protect` o `Unprotect` hará que el sistema de protección de datos vuelva a leer el anillo de claves y vuelva a crear la memoria caché.
+Cualquier operación que modifique el anillo clave (al crear una nueva clave explícitamente o realizar una revocación) invalidará la caché en memoria. La siguiente llamada a `Protect` o hará `Unprotect` que el sistema de protección de datos vuelva a leer el anillo de claves y vuelva a crear la memoria caché.
 
-En el ejemplo siguiente se muestra `IKeyManager` cómo usar la interfaz para inspeccionar y manipular el anillo de claves, incluida la revocación de las claves existentes y la generación manual de una nueva clave.
+En el ejemplo siguiente se muestra cómo usar la `IKeyManager` interfaz para inspeccionar y manipular el anillo de claves, incluida la revocación de las claves existentes y la generación manual de una nueva clave.
 
 [!code-csharp[](key-management/samples/key-management.cs)]
 

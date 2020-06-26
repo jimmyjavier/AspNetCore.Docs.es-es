@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/implementation/subkeyderivation
-ms.openlocfilehash: c4b4076d532e33b48b3438f842507a8cda2d71b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f373c37a5ea4dab91463d011d3ecd6799ae6d014
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776856"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408037"
 ---
 # <a name="subkey-derivation-and-authenticated-encryption-in-aspnet-core"></a>Derivación de subclaves y cifrado autenticado en ASP.NET Core
 
@@ -31,15 +33,15 @@ La mayoría de las claves del anillo clave contendrán alguna forma de entropía
 
 ## <a name="additional-authenticated-data-and-subkey-derivation"></a>Derivación de subclaves y datos autenticados adicionales
 
-La `IAuthenticatedEncryptor` interfaz actúa como la interfaz principal para todas las operaciones de cifrado autenticadas. Su `Encrypt` método toma dos búferes: Plaintext y ADDITIONALAUTHENTICATEDDATA (AAD). El contenido de texto no cifrado fluye sin modificar `IDataProtector.Protect`la llamada a, pero el sistema genera AAD y consta de tres componentes:
+La `IAuthenticatedEncryptor` interfaz actúa como la interfaz principal para todas las operaciones de cifrado autenticadas. Su `Encrypt` método toma dos búferes: Plaintext y additionalAuthenticatedData (AAD). El contenido de texto no cifrado fluye sin modificar la llamada a `IDataProtector.Protect` , pero el sistema genera AAD y consta de tres componentes:
 
 1. El encabezado mágico de 32 bits 09 F0 C9 F0 que identifica esta versión del sistema de protección de datos.
 
 2. Identificador de clave de 128 bits.
 
-3. Cadena de longitud variable formada a partir de la cadena propósito que creó `IDataProtector` el objeto que está realizando esta operación.
+3. Cadena de longitud variable formada a partir de la cadena propósito que creó el objeto `IDataProtector` que está realizando esta operación.
 
-Dado que AAD es único para la tupla de los tres componentes, podemos usarlo para derivar nuevas claves de KM en lugar de usar KM en todas nuestras operaciones criptográficas. Para cada llamada a `IAuthenticatedEncryptor.Encrypt`, se produce el siguiente proceso de derivación de claves:
+Dado que AAD es único para la tupla de los tres componentes, podemos usarlo para derivar nuevas claves de KM en lugar de usar KM en todas nuestras operaciones criptográficas. Para cada llamada a `IAuthenticatedEncryptor.Encrypt` , se produce el siguiente proceso de derivación de claves:
 
 (K_E, K_H) = SP800_108_CTR_HMACSHA512 (K_M, AAD, contextHeader | | keyModifier)
 
@@ -53,7 +55,7 @@ Aquí, llamamos a NIST SP800-108 KDF en el modo de contador (consulte [NIST SP80
 
 * contexto = contextHeader | | keyModifier
 
-El encabezado de contexto es de longitud variable y básicamente sirve como huella digital de los algoritmos para los que se van a derivar K_E y K_H. El modificador de clave es una cadena de 128 bits generada aleatoriamente para cada `Encrypt` llamada a y sirve para garantizar una probabilidad abrumadora de que ke y KH sean únicos para esta operación de cifrado de autenticación específica, aunque todas las demás entradas de KdF sean constantes.
+El encabezado de contexto es de longitud variable y básicamente sirve como huella digital de los algoritmos para los que se van a derivar K_E y K_H. El modificador de clave es una cadena de 128 bits generada aleatoriamente para cada llamada a `Encrypt` y sirve para garantizar una probabilidad abrumadora de que ke y KH sean únicos para esta operación de cifrado de autenticación específica, aunque todas las demás entradas de KdF sean constantes.
 
 Para el cifrado de modo CBC y las operaciones de validación HMAC, | K_E | es la longitud de la clave de cifrado de bloques simétricos y | K_H | es el tamaño de síntesis de la rutina HMAC. Para el cifrado y las operaciones de validación de GCM, | K_H | = 0.
 

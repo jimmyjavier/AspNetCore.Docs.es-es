@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: 7bc3b9535055e3fccf23ffa4638bd29676910348
-ms.sourcegitcommit: e87dfa08fec0be1008249b1be678e5f79dcc5acb
+ms.openlocfilehash: bf5fff213b2cd7db0b3227922a8c5babba2fc904
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382574"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409090"
 ---
 # <a name="host-aspnet-core-signalr-in-background-services"></a>ASP.NET Core host SignalR en los servicios en segundo plano
 
@@ -31,12 +33,12 @@ En este artículo se proporcionan instrucciones para:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Ver o descargar el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) [(cómo descargarlo)](xref:index#how-to-download-a-sample)
+[Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) [(cómo descargarlo)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.2"
 
-[Ver o descargar el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) [(cómo descargarlo)](xref:index#how-to-download-a-sample)
+[Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) [(cómo descargarlo)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 
@@ -62,7 +64,7 @@ En el ejemplo anterior, la `ClockHub` clase implementa la `Hub<T>` clase para cr
 Para obtener más información sobre los concentradores fuertemente tipados, consulte [uso de hubs en SignalR para ASP.net Core](xref:signalr/hubs#strongly-typed-hubs).
 
 > [!NOTE]
-> Esta funcionalidad no se limita a la clase de [ \<>Hub t](xref:Microsoft.AspNetCore.SignalR.Hub`1) . Cualquier clase que herede de [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), como [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), funciona.
+> Esta funcionalidad no se limita a la clase [Hub \<T> ](xref:Microsoft.AspNetCore.SignalR.Hub`1) . Cualquier clase que herede de [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), como [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), funciona.
 
 ::: moniker range=">= aspnetcore-3.0"
 
