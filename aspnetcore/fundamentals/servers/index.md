@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 9d57fcd5883a869c5421b88321d4a279f3f938c9
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 6ddb786b8f03a7256aeca6605c48467a297b0855
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452153"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408752"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementaciones de servidores web en ASP.NET Core
 
