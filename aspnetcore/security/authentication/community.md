@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/28/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/community
-ms.openlocfilehash: 425382781d6d35f6706aa9337280b0fdede4eac3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8f99294b6aa51eae350b3fa3f356b0b4807d0e58
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774631"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403136"
 ---
 # <a name="community-oss-authentication-options-for-aspnet-core"></a>Opciones de autenticación de OSS de la comunidad para ASP.NET Core
 
@@ -26,7 +28,7 @@ Esta página contiene opciones de autenticación de código abierto proporcionad
 
 La siguiente lista está ordenada alfabéticamente.
 
-| Nombre | Descripción |
+| NOMBRE | Descripción |
 | ---- | ----------- |
 | [AspNet. Security. OpenIdConnect. Server (ASOS)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | ASOS es un marco de trabajo de servidor de bajo nivel de OpenID Connect para ASP.NET Core y OWIN/Katana. |
 | [Servidor de Gluu](https://gluu.org/) | Software de código abierto listo para la empresa para identidad, administración de acceso (IAM) e inicio de sesión único (SSO). Para obtener más información, consulte la [documentación del producto de Gluu](https://gluu.org/docs/). |

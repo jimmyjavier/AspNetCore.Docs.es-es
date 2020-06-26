@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 4c42ad56bbdb7b66824b290cd118903cbe4311e8
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ead745ae8843173bb25b94672005cc6ce295db2e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452218"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403383"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Prueba de las API web HTTP REPL
 
@@ -36,7 +38,7 @@ Se admiten los siguientes [verbos HTTP](https://github.com/microsoft/api-guideli
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
 * [Opciones](#test-http-options-requests)
-* [DISTRIBUCIÓN](#test-http-patch-requests)
+* [PATCH](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
@@ -371,9 +373,9 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 De forma predeterminada, HTTP REPL tiene un conjunto de rutas de acceso relativas que usa para buscar el documento de Swagger al ejecutar el comando `connect` sin la opción `--swagger`. Estas rutas de acceso relativas se combinan con las rutas de acceso raíz y base especificadas en el comando `connect`. Las rutas de acceso relativas predeterminadas son:
 
-- *Swagger. JSON*
-- *Swagger/v1/Swagger. JSON*
-- */swagger.json*
+- *swagger.jsen*
+- *Swagger/v1/swagger.jsactivado*
+- */swagger.jsen*
 - */swagger/v1/swagger.json*
 
 Para usar un conjunto diferente de rutas de acceso de búsqueda en el entorno, establezca la preferencia `swagger.searchPaths`. El valor debe ser una lista delimitada por canalizaciones de rutas de acceso relativas. Por ejemplo:

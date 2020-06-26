@@ -1,24 +1,26 @@
 ---
-title: Migrar la autenticación Identity y ASP.net Core
+title: Migrar la autenticación y Identity ASP.net Core
 author: ardalis
 description: Obtenga información sobre cómo migrar la autenticación y la identidad de un proyecto de MVC de ASP.NET a un proyecto de MVC de ASP.NET Core.
 ms.author: riande
 ms.date: 3/22/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 0474d0d4f430d587acac5fdd8f391220f825ccee
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 995de894bc77c4db5e5683b36e691b0c5a3463d3
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775536"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403760"
 ---
-# <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Migrar la autenticación Identity y ASP.net Core
+# <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Migrar la autenticación y Identity ASP.net Core
 
 Por [Steve Smith](https://ardalis.com/)
 
@@ -26,7 +28,7 @@ En el artículo anterior, se [migró la configuración de un proyecto de ASP.NET
 
 ## <a name="configure-identity-and-membership"></a>Configurar Identity y pertenencia
 
-En ASP.NET MVC, las características de autenticación e identidad se configuran con Identity ASP.NET en *Startup.auth.CS* y *IdentityConfig.CS*, que se encuentra en la carpeta *App_Start* . En ASP.NET Core MVC, estas características se configuran en *Startup.CS*.
+En ASP.NET MVC, las características de autenticación e identidad se configuran con ASP.NET Identity en *Startup.Auth.cs* y *IdentityConfig.CS*, que se encuentra en la carpeta *App_Start* . En ASP.NET Core MVC, estas características se configuran en *Startup.CS*.
 
 Instale los siguientes paquetes NuGet:
 
@@ -51,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-En este momento, hay dos tipos a los que se hace referencia en el código anterior que todavía no se han migrado desde el `ApplicationDbContext` proyecto `ApplicationUser`ASP.NET MVC: y. Cree una nueva carpeta *Models* en el proyecto de ASP.net Core y agregue dos clases a ella que se correspondan con estos tipos. Encontrará las versiones de ASP.NET MVC de estas clases en */Models/IdentityModels.CS*, pero usaremos un archivo por clase en el proyecto migrado, ya que eso es más claro.
+En este momento, hay dos tipos a los que se hace referencia en el código anterior que todavía no se han migrado desde el proyecto ASP.NET MVC: `ApplicationDbContext` y `ApplicationUser` . Cree una nueva carpeta *Models* en el proyecto de ASP.net Core y agregue dos clases a ella que se correspondan con estos tipos. Encontrará las versiones de ASP.NET MVC de estas clases en */Models/IdentityModels.CS*, pero usaremos un archivo por clase en el proyecto migrado, ya que eso es más claro.
 
 *ApplicationUser.CS*:
 
@@ -92,9 +94,9 @@ namespace NewMvcProject.Models
 }
 ```
 
-El proyecto Web de inicio de MVC de ASP.NET Core no incluye gran personalización de usuarios `ApplicationDbContext`o. Al migrar una aplicación real, también debe migrar todas las propiedades y métodos personalizados del usuario y `DbContext` las clases de la aplicación, así como cualquier otra clase de modelo que use la aplicación. Por ejemplo, si su `DbContext` tiene un `DbSet<Album>`, debe migrar la `Album` clase.
+El proyecto Web de inicio de MVC de ASP.NET Core no incluye gran personalización de usuarios o `ApplicationDbContext` . Al migrar una aplicación real, también debe migrar todas las propiedades y métodos personalizados del usuario y las clases de la aplicación `DbContext` , así como cualquier otra clase de modelo que use la aplicación. Por ejemplo, si su `DbContext` tiene un `DbSet<Album>` , debe migrar la `Album` clase.
 
-Con estos archivos en su lugar, se puede realizar el archivo *Startup.CS* para compilar `using` mediante la actualización de sus instrucciones:
+Con estos archivos en su lugar, se puede realizar el archivo *Startup.CS* para compilar mediante la actualización de sus `using` instrucciones:
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -105,13 +107,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 ```
 
-Nuestra aplicación ya está lista para admitir la autenticación Identity y los servicios. Solo es necesario que estas características se expongan a los usuarios.
+Nuestra aplicación ya está lista para admitir la autenticación y los Identity servicios. Solo es necesario que estas características se expongan a los usuarios.
 
 ## <a name="migrate-registration-and-login-logic"></a>Migración de la lógica de inicio de sesión y registro
 
 Con Identity los servicios configurados para la aplicación y el acceso a los datos configurados con Entity Framework y SQL Server, estamos preparados para agregar compatibilidad con el registro y el inicio de sesión en la aplicación. Recuerde que [anteriormente en el proceso de migración](xref:migration/mvc#migrate-the-layout-file) hemos comentado una referencia a *_LoginPartial* en *_Layout. cshtml*. Ahora es el momento de volver a ese código, quitar su comentario y agregar los controladores y las vistas necesarios para admitir la funcionalidad de inicio de sesión.
 
-Quite la marca `@Html.Partial` de comentario de la línea en *_Layout. cshtml*:
+Quite la marca de comentario de la `@Html.Partial` línea en *_Layout. cshtml*:
 
 ```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -155,4 +157,4 @@ En este punto, debería poder actualizar el sitio en el explorador.
 
 ## <a name="summary"></a>Resumen
 
-ASP.NET Core introduce cambios en las características Identity de ASP.net. En este artículo, ha aprendido a migrar las características de autenticación y administración de usuarios de ASP.NET Identity a ASP.net Core.
+ASP.NET Core introduce cambios en las características de ASP.NET Identity . En este artículo, ha aprendido a migrar las características de autenticación y administración de usuarios de ASP.NET Identity a ASP.net Core.

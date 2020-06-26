@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 26e6fb38cf31b5a2d5c88c19347c867641eb55df
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8247d66900a0c15b3b386dca021c5c5922d26e71
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451737"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404567"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Aplicación de HTTPS en ASP.NET Core
 
@@ -108,7 +110,7 @@ Especifique el Puerto HTTPS mediante cualquiera de los métodos siguientes:
 
   * En configuración de host.
   * Estableciendo la `ASPNETCORE_HTTPS_PORT` variable de entorno.
-  * Agregando una entrada de nivel superior en *appSettings. JSON*:
+  * Agregando una entrada de nivel superior en *appsettings.js*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -122,7 +124,7 @@ Especifique el Puerto HTTPS mediante cualquiera de los métodos siguientes:
 
   * En configuración de host.
   * Estableciendo la `ASPNETCORE_HTTPS_PORT` variable de entorno.
-  * Agregando una entrada de nivel superior en *appSettings. JSON*:
+  * Agregando una entrada de nivel superior en *appsettings.js*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -130,16 +132,16 @@ Especifique el Puerto HTTPS mediante cualquiera de los métodos siguientes:
 
 ::: moniker-end
 
-* En desarrollo, establezca una dirección URL HTTPS en *launchsettings. JSON*. Habilite HTTPS cuando se use IIS Express.
+* En desarrollo, establezca una dirección URL HTTPS en *launchsettings.jsen*. Habilite HTTPS cuando se use IIS Express.
 
-* Configure un punto de conexión de dirección URL HTTPS para una implementación perimetral de acceso público del servidor [Kestrel](xref:fundamentals/servers/kestrel) o [http. sys](xref:fundamentals/servers/httpsys) . La aplicación solo usa **un puerto https** . El middleware detecta el puerto a través de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
+* Configure un punto de conexión de dirección URL HTTPS para una implementación perimetral de acceso público del servidor [Kestrel](xref:fundamentals/servers/kestrel) o [HTTP.sys](xref:fundamentals/servers/httpsys) Server. La aplicación solo usa **un puerto https** . El middleware detecta el puerto a través de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
 > [!NOTE]
 > Cuando una aplicación se ejecuta en una configuración de proxy inverso, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> no está disponible. Establezca el puerto con uno de los otros enfoques descritos en esta sección.
 
 ### <a name="edge-deployments"></a>Implementaciones de Edge 
 
-Cuando Kestrel o HTTP. sys se usa como un servidor perimetral de acceso público, se debe configurar Kestrel o HTTP. sys para que escuche en ambos:
+Cuando se usa Kestrel o HTTP.sys como servidor perimetral de acceso público, se debe configurar Kestrel o HTTP.sys para que escuche en ambos:
 
 * El puerto seguro al que se redirige el cliente (normalmente, 443 en producción y 5001 en desarrollo).
 * El puerto no seguro (normalmente, 80 en producción y 5000 en desarrollo).
@@ -319,7 +321,7 @@ Desactive la casilla **configurar para https** .
 
 # <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli) 
 
-Use la opción `--no-https`. Por ejemplo:
+Use la opción `--no-https`. Por ejemplo
 
 ```dotnetcli
 dotnet new webapp --no-https

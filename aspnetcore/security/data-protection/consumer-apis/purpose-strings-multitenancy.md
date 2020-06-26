@@ -6,25 +6,27 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
-ms.openlocfilehash: 73edb8082d2df263bc1e6d73fee1360fa6840514
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8f069da500e7bc06e4b8712fbf7b86d90a815758
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776778"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404384"
 ---
 # <a name="purpose-hierarchy-and-multi-tenancy-in-aspnet-core"></a>Jerarquía de propósito y multiinquilino en ASP.NET Core
 
-Puesto que `IDataProtector` también es implícitamente un `IDataProtectionProvider`, los propósitos se pueden encadenar juntos. En este sentido, `provider.CreateProtector([ "purpose1", "purpose2" ])` es equivalente a `provider.CreateProtector("purpose1").CreateProtector("purpose2")`.
+Puesto que `IDataProtector` también es implícitamente un `IDataProtectionProvider` , los propósitos se pueden encadenar juntos. En este sentido, `provider.CreateProtector([ "purpose1", "purpose2" ])` es equivalente a `provider.CreateProtector("purpose1").CreateProtector("purpose2")` .
 
-Esto permite algunas relaciones jerárquicas interesantes a través del sistema de protección de datos. En el ejemplo anterior de [contoso. Messaging. SecureMessage](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose), el componente SecureMessage puede llamar `provider.CreateProtector("Contoso.Messaging.SecureMessage")` al principio y almacenar en caché el resultado en un campo `_myProvider` privado. Después, los protectores futuros se pueden crear a través `_myProvider.CreateProtector("User: username")`de llamadas a, y estos protectores se utilizarían para proteger los mensajes individuales.
+Esto permite algunas relaciones jerárquicas interesantes a través del sistema de protección de datos. En el ejemplo anterior de [contoso. Messaging. SecureMessage](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose), el componente SecureMessage puede llamar al `provider.CreateProtector("Contoso.Messaging.SecureMessage")` principio y almacenar en caché el resultado en un `_myProvider` campo privado. Después, los protectores futuros se pueden crear a través `_myProvider.CreateProtector("User: username")` de llamadas a, y estos protectores se utilizarían para proteger los mensajes individuales.
 
-También se puede voltear. Considere una única aplicación lógica que hospede varios inquilinos (un CMS parece razonable) y cada inquilino se puede configurar con su propio sistema de administración de estado y autenticación. La aplicación paraguas tiene un único proveedor maestro y llama `provider.CreateProtector("Tenant 1")` a y `provider.CreateProtector("Tenant 2")` para dar a cada inquilino su propio segmento aislado del sistema de protección de datos. Después, los inquilinos pueden derivar sus propios protectores individuales en función de sus propias necesidades, pero independientemente de lo difícil que intenten no crear protectores que entren en conflicto con cualquier otro inquilino del sistema. Gráficamente, esto se representa como se indica a continuación.
+También se puede voltear. Considere una única aplicación lógica que hospede varios inquilinos (un CMS parece razonable) y cada inquilino se puede configurar con su propio sistema de administración de estado y autenticación. La aplicación paraguas tiene un único proveedor maestro y llama a `provider.CreateProtector("Tenant 1")` y `provider.CreateProtector("Tenant 2")` para dar a cada inquilino su propio segmento aislado del sistema de protección de datos. Después, los inquilinos pueden derivar sus propios protectores individuales en función de sus propias necesidades, pero independientemente de lo difícil que intenten no crear protectores que entren en conflicto con cualquier otro inquilino del sistema. Gráficamente, esto se representa como se indica a continuación.
 
 ![Propósitos de varios inquilinos](purpose-strings-multitenancy/_static/purposes-multi-tenancy.png)
 

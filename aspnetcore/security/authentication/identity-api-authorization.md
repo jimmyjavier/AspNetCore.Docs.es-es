@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/08/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 6d9d8cf6ca9ca3afc570c2c68510125200b96c60
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 86f9b0a3efea5315092d1c6435a1b764fbec0a1d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074452"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402993"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticación y autorización para spa
 
@@ -73,7 +75,7 @@ La `Startup` clase tiene las siguientes adiciones:
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Autenticación con un `AddIdentityServerJwt` método auxiliar adicional que configura la aplicación para validar los tokens JWT generados por IdentityServer:
+  * Autenticación con un método auxiliar `AddIdentityServerJwt` adicional que configura la aplicación para validar los tokens JWT generados por IdentityServer:
 
     ```csharp
     services.AddAuthentication()
@@ -95,11 +97,11 @@ La `Startup` clase tiene las siguientes adiciones:
 
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
-Este método auxiliar configura IdentityServer para usar la configuración admitida. IdentityServer es un marco de trabajo eficaz y extensible para controlar los problemas de seguridad de las aplicaciones. Al mismo tiempo, esto expone una complejidad innecesaria para los escenarios más comunes. Por lo tanto, se le proporciona un conjunto de convenciones y opciones de configuración que se consideran un buen punto de partida. Una vez que cambie la autenticación, toda la capacidad de IdentityServer sigue estando disponible para personalizar la autenticación para satisfacer sus necesidades.
+Este método auxiliar configura IdentityServer para usar la configuración admitida. IdentityServer es un marco eficaz y extensible que sirve para abordar los problemas de seguridad de las aplicaciones. Al mismo tiempo, esto expone una complejidad innecesaria para los escenarios más comunes. Por lo tanto, se le proporciona un conjunto de convenciones y opciones de configuración que se consideran un buen punto de partida. Una vez que cambie la autenticación, toda la capacidad de IdentityServer sigue estando disponible para personalizar la autenticación para satisfacer sus necesidades.
 
 ### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
 
-Este método auxiliar configura un esquema de directiva para la aplicación como el controlador de autenticación predeterminado. La Directiva está configurada para permitir que Identity todas las solicitudes se enruten a cualquier subruta en el espacio de la Identity dirección URL "/ Identity ". `JwtBearerHandler`Controla todas las demás solicitudes. Además, este método registra un `<<ApplicationName>>API` recurso de API con IdentityServer con un ámbito predeterminado de `<<ApplicationName>>API` y configura el middleware de token de portador de JWT para validar los tokens emitidos por IdentityServer para la aplicación.
+Este método auxiliar configura un esquema de directiva para la aplicación como el controlador de autenticación predeterminado. La Directiva está configurada para permitir que Identity todas las solicitudes se enruten a cualquier subruta en el espacio de la Identity dirección URL "/ Identity ". `JwtBearerHandler` se encarga de todas las demás solicitudes. Además, este método registra un `<<ApplicationName>>API` recurso de API con IdentityServer con un ámbito predeterminado de `<<ApplicationName>>API` y configura el middleware de token de portador de JWT para validar los tokens emitidos por IdentityServer para la aplicación.
 
 ### <a name="weatherforecastcontroller"></a>WeatherForecastController
 
@@ -117,7 +119,7 @@ En el archivo *Controllers\OidcConfigurationController.CS* , observe el punto de
 
 ### <a name="appsettingsjson"></a>appsettings.json
 
-En el *appsettings.jsen* el archivo de la raíz del proyecto, hay una nueva `IdentityServer` sección en la que se describe la lista de clientes configurados. En el ejemplo siguiente, hay un solo cliente. El nombre de cliente se corresponde con el nombre de la aplicación y se asigna por Convención al parámetro de OAuth `ClientId` . El perfil indica el tipo de aplicación que se está configurando. Se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. Hay varios perfiles disponibles, como se explica en la sección [perfiles de aplicación](#application-profiles) .
+En el *appsettings.jsen* el archivo de la raíz del proyecto, hay una nueva `IdentityServer` sección en la que se describe la lista de clientes configurados. En el siguiente ejemplo hay un solo cliente, cuyo nombre corresponde al nombre de la aplicación y se asigna por convención al parámetro `ClientId` de OAuth. El perfil señala el tipo de aplicación que se está configurando. Se usa internamente para controlar las convenciones que simplifican el proceso de configuración del servidor. Hay varios perfiles disponibles, como se explica en la sección [perfiles de aplicación](#application-profiles) .
 
 ```json
 "IdentityServer": {
