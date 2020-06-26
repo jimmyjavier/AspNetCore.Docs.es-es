@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 70f379b3b0e48dbb340f319f3346bbbf44588740
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 43fbaa6284fa45dee46a693ed858ed06130600b6
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103477"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242386"
 ---
 # <a name="aspnet-core-blazor-cascading-values-and-parameters"></a>Valores y parámetros en cascada de Blazor en ASP.NET Core
 
@@ -30,7 +30,7 @@ En algunos escenarios, no es conveniente que los datos fluyan desde un component
 
 En el siguiente ejemplo de la aplicación de muestra, la clase `ThemeInfo` especifica la información de tema que va a fluir hacia abajo en la jerarquía de componentes para que todos los botones de una parte determinada de la aplicación compartan el mismo estilo.
 
-*UIThemeClasses/ThemeInfo.cs*:
+`UIThemeClasses/ThemeInfo.cs`:
 
 ```csharp
 public class ThemeInfo
@@ -144,7 +144,7 @@ En un componente descendiente, los parámetros en cascada reciben sus valores de
 
 ### <a name="tabset-example"></a>Ejemplo de TabSet
 
-Los parámetros en cascada también permiten que los componentes colaboren a lo largo de la jerarquía de componentes. Veamos el siguiente ejemplo de *TabSet* en la aplicación de muestra.
+Los parámetros en cascada también permiten que los componentes colaboren a lo largo de la jerarquía de componentes. Por ejemplo, valore el siguiente ejemplo de `TabSet` en la aplicación de muestra.
 
 La aplicación de muestra tiene una interfaz `ITab` que las pestañas implementan:
 
