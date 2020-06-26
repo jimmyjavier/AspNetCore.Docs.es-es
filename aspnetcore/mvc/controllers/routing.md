@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 3/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 0078ed5d4aa30ff7a7b76af8dffd015f2557e165
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: b917671053313c74acfff36518e8f36d5ef2eb22
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83998658"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405489"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Enrutar a acciones de controlador de ASP.NET Core
 
@@ -429,7 +431,7 @@ En la tabla siguiente se explican los `[Route]` atributos del código anterior:
 | `[Route("")]` | Sí | `"Home"` |
 | `[Route("Index")]` | Sí | `"Home/Index"` |
 | `[Route("/")]` | **No** | `""` |
-| `[Route("About")]` | Sí | `"Home/About"` |
+| `[Route("About")]` | Yes | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -719,7 +721,7 @@ Si `{ d = Donovan }` se agrega el valor:
 
 Podría esperar que se produzca este problema con la ruta predeterminada `{controller}/{action}/{id?}` . Este problema es raro en la práctica porque `Url.Action` siempre especifica explícitamente un `controller` valor de y `action` .
 
-Varias sobrecargas de [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) toman un objeto de valores de ruta para proporcionar valores para los parámetros de ruta distintos de `controller` y `action` . El objeto Route Values se usa con frecuencia con `id` . Por ejemplo, `Url.Action("Buy", "Products", new { id = 17 })`. Objeto de valores de ruta:
+Varias sobrecargas de [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) toman un objeto de valores de ruta para proporcionar valores para los parámetros de ruta distintos de `controller` y `action` . El objeto Route Values se usa con frecuencia con `id` . Por ejemplo: `Url.Action("Buy", "Products", new { id = 17 })`. Objeto de valores de ruta:
 
 * Por Convención suele ser un objeto de tipo anónimo.
 * Puede ser un `IDictionary<>` o un [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).

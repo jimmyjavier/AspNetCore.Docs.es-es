@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/application-model
-ms.openlocfilehash: 5e31d2e6611321bec7442534ce41350de10478e0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 61503a1a87b5d5eea36586108b65304236cf799a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768668"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405645"
 ---
 # <a name="work-with-the-application-model-in-aspnet-core"></a>Trabajar con el modelo de aplicación en ASP.NET Core
 
@@ -69,7 +71,7 @@ Después, (`Order=-990`):
 * Agregar parámetros de métodos de acción al contexto
 * Aplicar la ruta y otros atributos
 
-Algunos comportamientos integrados se implementan mediante `DefaultApplicationModelProvider`. Este proveedor es [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel)responsable de construir, que a su vez hace referencia [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel)a [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel)las instancias [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel) de, y. La clase `DefaultApplicationModelProvider` es un detalle de implementación del marco de trabajo interno que cambiará en el futuro. 
+Algunos comportamientos integrados se implementan mediante `DefaultApplicationModelProvider`. Este proveedor es responsable de construir [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel) , que a su vez hace referencia a las [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel) instancias de, [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel) y [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel) . La clase `DefaultApplicationModelProvider` es un detalle de implementación del marco de trabajo interno que cambiará en el futuro. 
 
 `AuthorizationApplicationModelProvider` se encarga de aplicar el comportamiento asociado a los atributos `AuthorizeFilter` y `AllowAnonymousFilter`. [Más información sobre estos atributos](xref:security/authorization/simple).
 
@@ -86,7 +88,7 @@ Están disponibles las convenciones siguientes:
 * [`IActionModelConvention`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.iactionmodelconvention)
 * [`IParameterModelConvention`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.iparametermodelconvention)
 
-Las convenciones se aplican agregándolas a las opciones de MVC o `Attribute`implementando s y aplicándolos a los controladores, acciones o parámetros de acción ( [`Filters`](xref:mvc/controllers/filters)similar a). A diferencia de los filtros, las convenciones solo se ejecutan cuando se inicia la aplicación, no como parte de cada solicitud.
+Las convenciones se aplican agregándolas a las opciones de MVC o implementando `Attribute` s y aplicándolos a los controladores, acciones o parámetros de acción (similar a [`Filters`](xref:mvc/controllers/filters) ). A diferencia de los filtros, las convenciones solo se ejecutan cuando se inicia la aplicación, no como parte de cada solicitud.
 
 ### <a name="sample-modifying-the-applicationmodel"></a>Ejemplo: modificar ApplicationModel
 

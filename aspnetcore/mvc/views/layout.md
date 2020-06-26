@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 07/30/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 08e6284a6c5fc8e8926651f6fe873a71df449acb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766490"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406659"
 ---
 # <a name="layout-in-aspnet-core"></a>Diseño en ASP.NET Core
 
@@ -28,7 +30,7 @@ Las páginas y las vistas a menudo comparten elementos visuales y elementos medi
 * Compartir directivas.
 * Ejecutar código común antes de representar páginas o vistas.
 
-En este documento se describen los diseños de los dos enfoques diferentes para ASP.NET Core MVC Razor : páginas y controladores con vistas. Para este tema, las diferencias son mínimas:
+En este documento se describen los diseños de los dos enfoques diferentes para ASP.NET Core MVC: Razor páginas y controladores con vistas. Para este tema, las diferencias son mínimas:
 
 * RazorLas páginas se encuentran en la carpeta *pages* .
 * Los controladores con vistas usan una carpeta *Vistas* para las vistas.
@@ -59,7 +61,7 @@ Este código muestra el archivo de diseño para un proyecto creado mediante plan
 
 ## <a name="specifying-a-layout"></a>Especificar un diseño
 
-Razorlas vistas tienen `Layout` una propiedad. Las vistas individuales especifican un diseño al configurar esta propiedad:
+Razorlas vistas tienen una `Layout` propiedad. Las vistas individuales especifican un diseño al configurar esta propiedad:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
@@ -79,9 +81,9 @@ Opcionalmente, un diseño puede hacer referencia a una o varias *secciones* medi
 @RenderSection("Scripts", required: false)
 ```
 
-Si no se encuentra una sección obligatoria, se produce una excepción. Las vistas individuales especifican el contenido que se va a representar dentro de `@section` Razor una sección mediante la sintaxis. Si una página o una vista define una sección, se debe representar (o se producirá un error).
+Si no se encuentra una sección obligatoria, se produce una excepción. Las vistas individuales especifican el contenido que se va a representar dentro de una sección mediante la `@section` Razor Sintaxis. Si una página o una vista define una sección, se debe representar (o se producirá un error).
 
-Una definición `@section` de ejemplo Razor en la vista páginas:
+Una `@section` definición de ejemplo en la Razor vista páginas:
 
 ```html
 @section Scripts {
@@ -109,13 +111,13 @@ De forma predeterminada, el cuerpo y todas las secciones de una página de conte
 
 Para indicar al motor de vistas que pase por alto el cuerpo o las secciones, llame a los métodos `IgnoreBody` y `IgnoreSection`.
 
-El cuerpo y todas las secciones de Razor una página deben representarse o pasarse por alto.
+El cuerpo y todas las secciones de una Razor Página deben representarse o pasarse por alto.
 
 <a name="viewimports"></a>
 
 ## <a name="importing-shared-directives"></a>Importar directivas compartidas
 
-Las vistas y las páginas Razor pueden utilizar directivas para importar espacios de nombres y usar la [inserción de dependencias](dependency-injection.md). Se pueden especificar varias directivas compartidas por muchas vistas en un archivo *_ViewImports.cshtml* común. El archivo `_ViewImports` es compatible con estas directivas:
+Las vistas y las páginas pueden utilizar Razor directivas para importar espacios de nombres y usar la [inserción de dependencias](dependency-injection.md). Se pueden especificar varias directivas compartidas por muchas vistas en un archivo *_ViewImports.cshtml* común. El archivo `_ViewImports` es compatible con estas directivas:
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -125,7 +127,7 @@ Las vistas y las páginas Razor pueden utilizar directivas para importar espacio
 * `@inherits`
 * `@inject`
 
-El archivo no es compatible Razor con otras características, como las funciones y las definiciones de la sección.
+El archivo no es compatible con otras Razor características, como las funciones y las definiciones de la sección.
 
 Archivo `_ViewImports.cshtml` de ejemplo:
 

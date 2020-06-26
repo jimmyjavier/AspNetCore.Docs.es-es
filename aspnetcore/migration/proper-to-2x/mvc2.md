@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/mvc2
-ms.openlocfilehash: 98b93731d40b47be8d7d5050afc7c74d25a7e1dc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c51098ec02e5a337fd6607e970d3bf78ffcd568a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776277"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405528"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core-20"></a>Migración de ASP.NET a ASP.NET Core 2.0
 
@@ -72,7 +74,7 @@ Este enfoque acopla la aplicación y el servidor en el que está implementada de
 
 Esto configura las rutas predeterminadas y tiene como valor predeterminado XmlSerialization a través de Json. Agregue otro middleware a esta canalización según sea necesario (carga de servicios, opciones de configuración, archivos estáticos, etcétera).
 
-ASP.NET Core usa un enfoque similar, pero no depende de OWIN para controlar la entrada. En su lugar, esto se realiza a través del método *Program.CS* `Main` (similar a las aplicaciones `Startup` de consola) y se carga a través de ahí.
+ASP.NET Core usa un enfoque similar, pero no depende de OWIN para controlar la entrada. En su lugar, se usa el método `Main` de *Program.cs* (similar a las aplicaciones de consola), y `Startup` se carga a través de ahí.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -88,7 +90,7 @@ ASP.NET Core usa un enfoque similar, pero no depende de OWIN para controlar la e
 
 El host y la aplicación se han desacoplado, lo que proporciona la flexibilidad de pasar a una plataforma diferente en el futuro.
 
-Para obtener una referencia más detallada sobre el inicio y el middleware de ASP.NET Core <xref:fundamentals/startup>, consulte.
+Para obtener una referencia más detallada sobre el inicio y el middleware de ASP.NET Core, consulte <xref:fundamentals/startup> .
 
 ## <a name="storing-configurations"></a>Almacenamiento de configuraciones
 
@@ -119,7 +121,7 @@ Existen extensiones de este enfoque para lograr que el proceso sea más sólido,
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 ```
 
-**Nota:** Para obtener una referencia más detallada sobre la configuración de ASP.NET Core, <xref:fundamentals/configuration/index>vea.
+**Nota:** Para obtener una referencia más detallada sobre la configuración de ASP.NET Core, vea <xref:fundamentals/configuration/index> .
 
 ## <a name="native-dependency-injection"></a>Inserción de dependencias nativa
 
@@ -127,7 +129,7 @@ Un objetivo importante al compilar aplicaciones grandes y escalables es lograr e
 
 En las aplicaciones de ASP.NET, los desarrolladores confían en una biblioteca de terceros para implementar la inserción de dependencias. Una de estas bibliotecas es [Unity](https://github.com/unitycontainer/unity), suministrada por Microsoft Patterns & Practices.
 
-Un ejemplo de configuración de la inserción de dependencias con `IDependencyResolver` Unity es la `UnityContainer`implementación de que incluye:
+Un ejemplo de configuración de la inserción de dependencias con Unity es la implementación de `IDependencyResolver` que incluye `UnityContainer` :
 
 [!code-csharp[](samples/sample8.cs)]
 
@@ -139,13 +141,13 @@ Inserte `IProductRepository` cuando sea necesario:
 
 [!code-csharp[](samples/sample5.cs)]
 
-Dado que la inserción de dependencias forma parte de ASP.NET Core, puede Agregar el `Startup.ConfigureServices`servicio en el:
+Dado que la inserción de dependencias forma parte de ASP.NET Core, puede Agregar el servicio en el `Startup.ConfigureServices` :
 
 [!code-csharp[](samples/configure-services.cs)]
 
 El repositorio se puede insertar en cualquier lugar, como ocurría con Unity.
 
-Para obtener más información sobre la inserción de dependencias <xref:fundamentals/dependency-injection>en ASP.net Core, vea.
+Para obtener más información sobre la inserción de dependencias en ASP.NET Core, vea <xref:fundamentals/dependency-injection> .
 
 ## <a name="serving-static-files"></a>Trabajar con archivos estáticos
 
@@ -153,7 +155,7 @@ Una parte importante del desarrollo web es la capacidad de trabajar con activos 
 
 En ASP.NET, los archivos estáticos se almacenan en directorios distintos y se hace referencia a ellos en las vistas.
 
-En ASP.net Core, los archivos estáticos se almacenan en la "raíz Web" (*&lt;&gt;raíz de contenido/wwwroot*), a menos que se configure de otra manera. Los archivos se cargan en la canalización de solicitud mediante la invocación del método de extensión `UseStaticFiles` desde `Startup.Configure`:
+En ASP.NET Core, los archivos estáticos se almacenan en la "raíz web" ( *&lt;raíz del contenido&gt;/wwwroot*), a menos que se configuren de otra manera. Los archivos se cargan en la canalización de solicitud mediante la invocación del método de extensión `UseStaticFiles` desde `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -161,7 +163,7 @@ En ASP.net Core, los archivos estáticos se almacenan en la "raíz Web" (*&lt;&g
 
 Por ejemplo, el explorador puede acceder a un recurso de imagen en la carpeta *wwwroot/images* en una ubicación como `http://<app>/images/<imageFileName>`.
 
-**Nota:** Para obtener una referencia más detallada sobre cómo servir archivos estáticos en ASP.NET Core, <xref:fundamentals/static-files>vea.
+**Nota:** Para obtener una referencia más detallada sobre cómo servir archivos estáticos en ASP.NET Core, vea <xref:fundamentals/static-files> .
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

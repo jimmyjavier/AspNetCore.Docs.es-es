@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/dependencyinjection
-ms.openlocfilehash: 16285f6f731455d6e45a04f82437793891a77668
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d12253ad1c1442c0db5cd497393daabe280fae8d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775125"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406360"
 ---
 # <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a>Inserción de dependencias en controladores de requisitos en ASP.NET Core
 
@@ -26,7 +28,7 @@ Los [controladores de autorización deben registrarse](xref:security/authorizati
 
 Supongamos que tiene un repositorio de reglas que desea evaluar dentro de un controlador de autorización y que ese repositorio se registró en la colección de servicios. La autorización se resolverá y se insertará en el constructor.
 
-Por ejemplo, si desea utilizar ASP. La infraestructura de registro de la red que se `ILoggerFactory` desea insertar en el controlador. Este tipo de controlador podría ser similar al siguiente:
+Por ejemplo, si desea utilizar ASP. La infraestructura de registro de la red que se desea insertar `ILoggerFactory` en el controlador. Este tipo de controlador podría ser similar al siguiente:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -47,7 +49,7 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-Registraría el controlador con `services.AddSingleton()`:
+Registraría el controlador con `services.AddSingleton()` :
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();

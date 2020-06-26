@@ -1,32 +1,34 @@
 ---
 title: Introducción a ASP.NET Core SignalR
 author: bradygaster
-description: Obtenga información sobre cómo SignalR la biblioteca de ASP.net Core simplifica la incorporación de funcionalidad en tiempo real a las aplicaciones.
+description: Obtenga información sobre cómo la biblioteca de ASP.NET Core SignalR simplifica la incorporación de funcionalidad en tiempo real a las aplicaciones.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 4e968659d23330c4b1403ab998dda9c9e6ebe080
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 816ecfc5d23e8e1d2901a8c35c657cc968fa95df
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775783"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404956"
 ---
 # <a name="introduction-to-aspnet-core-signalr"></a>Introducción a ASP.NET Core SignalR
 
-## <a name="what-is-signalr"></a>¿Qué SignalRes?
+## <a name="what-is-signalr"></a>¿Qué es SignalR?
 
 ASP.NET Core SignalR es una biblioteca de código abierto que simplifica la incorporación de funcionalidades Web en tiempo real a las aplicaciones. La funcionalidad web en tiempo real permite que el código del lado servidor Inserte contenido a los clientes al instante.
 
-Buenos candidatos para SignalR:
+Buenos candidatos para SignalR :
 
 * Aplicaciones que requieren actualizaciones desde el servidor con mucha frecuencia. Algunos ejemplos son juegos, redes sociales, aplicaciones de votación, subastas, mapas y GPS.
 * Paneles y aplicaciones de supervisión. Los ejemplos incluyen paneles empresariales, actualizaciones de venta instantáneas o alertas de viaje.
@@ -48,7 +50,7 @@ El origen se hospeda en un [ SignalR repositorio de github](https://github.com/d
 
 SignalRadmite las siguientes técnicas para controlar la comunicación en tiempo real (en orden de reserva correcta):
 
-* [Websocket](https://tools.ietf.org/html/rfc7118)
+* [WebSockets](https://tools.ietf.org/html/rfc7118)
 * Eventos enviados por el servidor
 * Sondeo largo
 

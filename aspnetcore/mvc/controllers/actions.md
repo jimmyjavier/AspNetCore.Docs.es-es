@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0c91edc947b1a17f2dd36b281afe348aa8611bd7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774202"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406919"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Control de solicitudes con controladores en ASP.NET Core MVC
 
@@ -71,7 +73,7 @@ Hay dos tipos de resultados en esta categoría: redireccionamiento y código de 
 
     Este tipo devuelve un código de estado HTTP. `BadRequest`, `NotFound` y `Ok` son ejemplos de métodos del asistente de este tipo. Por ejemplo, `return BadRequest();` genera un código de estado 400 cuando se ejecuta. Cuando métodos como `BadRequest`, `NotFound` y `Ok` están sobrecargados, ya no se consideran respondedores de código de estado HTTP, dado que se lleva a cabo una negociación de contenido.
 
-* **Redirigir**
+* **Redirect**
 
     Este tipo devuelve un redireccionamiento a una acción o destino (mediante `Redirect`, `LocalRedirect`, `RedirectToAction` o `RedirectToRoute`). Por ejemplo, `return RedirectToAction("Complete", new {id = 123});` pasa un objeto anónimo y redirige a `Complete`.
 
@@ -83,7 +85,7 @@ La mayoría de los métodos del asistente de esta categoría incluye una propied
 
 Hay dos tipos de resultados en esta categoría: [vista](xref:mvc/views/overview) y [respuesta con formato](xref:web-api/advanced/formatting).
 
-* **Ver**
+* **Vista**
 
     Este tipo devuelve una vista que usa un modelo para representar HTML. Por ejemplo, `return View(customer);` pasa un modelo a la vista para el enlace de datos.
 

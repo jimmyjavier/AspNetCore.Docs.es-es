@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/10/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: 7c641fb12e0d06ebd7bb3ce9f878f0469b4a3d8e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f756d9abfb92fd4d6d51d8762967ac2288b54b2a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775068"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405762"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Control de errores en API web de ASP.NET Core
 
@@ -121,7 +123,7 @@ La respuesta con formato HTML resulta útil al realizar pruebas mediante herrami
 ::: moniker-end
 
 > [!WARNING]
-> Habilite la página de excepción **para desarrolladores solo cuando la aplicación se ejecute en el entorno de desarrollo**. No le interesa compartir públicamente información detallada sobre las excepciones cuando la aplicación se ejecute en producción. Para más información sobre la configuración de entornos, consulte <xref:fundamentals/environments>.
+> Habilite la página de excepciones para el desarrollador **solo cuando la aplicación se ejecute en el entorno de desarrollo**. No le interesa compartir públicamente información detallada sobre las excepciones cuando la aplicación se ejecute en producción. Para más información sobre la configuración de entornos, consulte <xref:fundamentals/environments>.
 
 ## <a name="exception-handler"></a>Controlador de excepciones
 

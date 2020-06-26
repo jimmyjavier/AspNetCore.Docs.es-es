@@ -7,23 +7,25 @@ ms.custom: mvc
 ms.date: 11/15/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/resourcebased
-ms.openlocfilehash: 5af4dd6a33e43191dbb5e7a8431fd8468a5fa11b
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 35d8521227d82bb066cfbf2badf4a1e1f30bfd8e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774319"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405632"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>Autorización basada en recursos en ASP.NET Core
 
 La estrategia de autorización depende del recurso al que se tiene acceso. Considere un documento que tiene una propiedad Author. Solo el autor puede actualizar el documento. Por consiguiente, el documento se debe recuperar del almacén de datos antes de que se pueda realizar la evaluación de la autorización.
 
-La evaluación de atributos se produce antes del enlace de datos y antes de la ejecución del controlador de páginas o la acción que carga el documento. Por estos motivos, la autorización declarativa con `[Authorize]` un atributo no basta. En su lugar, puede invocar un método&mdash;de autorización personalizado que sea un estilo conocido como *autorización imperativa*.
+La evaluación de atributos se produce antes del enlace de datos y antes de la ejecución del controlador de páginas o la acción que carga el documento. Por estos motivos, la autorización declarativa con un `[Authorize]` atributo no basta. En su lugar, puede invocar un método de autorización personalizado que &mdash; sea un estilo conocido como *autorización imperativa*.
 
 ::: moniker range=">= aspnetcore-3.0"
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/3_0) ([cómo descargarlo](xref:index#how-to-download-a-sample)).
@@ -41,7 +43,7 @@ La evaluación de atributos se produce antes del enlace de datos y antes de la e
 
 ## <a name="use-imperative-authorization"></a>Usar autorización imperativa
 
-La autorización se implementa como un servicio [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) y se registra en la colección de servicios `Startup` dentro de la clase. El servicio está disponible a través de la [inserción de dependencias](xref:fundamentals/dependency-injection) en los controladores o acciones de página.
+La autorización se implementa como un servicio [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) y se registra en la colección de servicios dentro de la `Startup` clase. El servicio está disponible a través de la [inserción de dependencias](xref:fundamentals/dependency-injection) en los controladores o acciones de página.
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
@@ -75,10 +77,10 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 <a name="security-authorization-resource-based-imperative"></a>
 
-En el ejemplo siguiente, el recurso que se va a proteger se carga en `Document` un objeto personalizado. Se `AuthorizeAsync` invoca una sobrecarga para determinar si el usuario actual tiene permiso para editar el documento proporcionado. Una directiva de autorización "EditPolicy" personalizada se factoriza en la decisión. Consulte [autorización personalizada basada en directivas](xref:security/authorization/policies) para obtener más información sobre la creación de directivas de autorización.
+En el ejemplo siguiente, el recurso que se va a proteger se carga en un `Document` objeto personalizado. `AuthorizeAsync`Se invoca una sobrecarga para determinar si el usuario actual tiene permiso para editar el documento proporcionado. Una directiva de autorización "EditPolicy" personalizada se factoriza en la decisión. Consulte [autorización personalizada basada en directivas](xref:security/authorization/policies) para obtener más información sobre la creación de directivas de autorización.
 
 > [!NOTE]
-> En los ejemplos de código siguientes se asume que la autenticación `User` se ha ejecutado y se ha establecido la propiedad.
+> En los ejemplos de código siguientes se asume que la autenticación se ha ejecutado y se ha establecido la `User` propiedad.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -110,9 +112,9 @@ La clase de controlador especifica el requisito y el tipo de recurso. Por ejempl
 
 ::: moniker-end
 
-En el ejemplo anterior, Imagine que `SameAuthorRequirement` es un caso especial de una clase más `SpecificAuthorRequirement` genérica. La `SpecificAuthorRequirement` clase (no se muestra) contiene `Name` una propiedad que representa el nombre del autor. La `Name` propiedad se puede establecer en el usuario actual.
+En el ejemplo anterior, Imagine que `SameAuthorRequirement` es un caso especial de una clase más genérica `SpecificAuthorRequirement` . La `SpecificAuthorRequirement` clase (no se muestra) contiene una `Name` propiedad que representa el nombre del autor. La `Name` propiedad se puede establecer en el usuario actual.
 
-Registre el requisito y el controlador `Startup.ConfigureServices`en:
+Registre el requisito y el controlador en `Startup.ConfigureServices` :
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=4-8,10)]
@@ -145,22 +147,22 @@ El controlador se implementa como sigue, mediante un `OperationAuthorizationRequ
 
 ::: moniker-end
 
-El controlador anterior valida la operación mediante el recurso, la identidad del usuario y la propiedad del `Name` requisito.
+El controlador anterior valida la operación mediante el recurso, la identidad del usuario y la propiedad del requisito `Name` .
 
 ## <a name="challenge-and-forbid-with-an-operational-resource-handler"></a>Desafío y prohibido con un controlador de recursos operativos
 
 En esta sección se muestra cómo se procesan los resultados de las acciones de desafío y de prohibido y cómo difieren desafío y prohibido.
 
-Para llamar a un controlador de recursos operativo, especifique la operación al `AuthorizeAsync` invocar en el controlador de páginas o en la acción. En el ejemplo siguiente se determina si se permite al usuario autenticado ver el documento proporcionado.
+Para llamar a un controlador de recursos operativo, especifique la operación al invocar `AuthorizeAsync` en el controlador de páginas o en la acción. En el ejemplo siguiente se determina si se permite al usuario autenticado ver el documento proporcionado.
 
 > [!NOTE]
-> En los ejemplos de código siguientes se asume que la autenticación `User` se ha ejecutado y se ha establecido la propiedad.
+> En los ejemplos de código siguientes se asume que la autenticación se ha ejecutado y se ha establecido la `User` propiedad.
 
 ::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Pages/Document/View.cshtml.cs?name=snippet_DocumentViewHandler&highlight=10-11)]
 
-Si la autorización se realiza correctamente, se devuelve la página para ver el documento. Si se produce un error en la autorización pero el usuario `ForbidResult` está autenticado, al devolver se informa a cualquier middleware de autenticación de que se ha producido un error de autorización. Se `ChallengeResult` devuelve un cuando se debe realizar la autenticación. En el caso de los clientes de explorador interactivos, puede ser adecuado redirigir al usuario a una página de inicio de sesión.
+Si la autorización se realiza correctamente, se devuelve la página para ver el documento. Si se produce un error en la autorización pero el usuario está autenticado, al devolver se `ForbidResult` informa a cualquier middleware de autenticación de que se ha producido un error de autorización. `ChallengeResult`Se devuelve un cuando se debe realizar la autenticación. En el caso de los clientes de explorador interactivos, puede ser adecuado redirigir al usuario a una página de inicio de sesión.
 
 ::: moniker-end
 
@@ -168,6 +170,6 @@ Si la autorización se realiza correctamente, se devuelve la página para ver el
 
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11-12)]
 
-Si la autorización se realiza correctamente, se devuelve la vista para el documento. Si se produce un error `ChallengeResult` en la autorización, la devolución informa al middleware de autenticación de que se produjo un error en la autorización y el middleware puede tomar la respuesta adecuada. Una respuesta adecuada podría devolver un código de estado 401 o 403. En el caso de los clientes interactivos del explorador, podría significar redirigir al usuario a una página de inicio de sesión.
+Si la autorización se realiza correctamente, se devuelve la vista para el documento. Si se produce un error en la autorización, `ChallengeResult` la devolución informa al middleware de autenticación de que se produjo un error en la autorización y el middleware puede tomar la respuesta adecuada. Una respuesta adecuada podría devolver un código de estado 401 o 403. En el caso de los clientes interactivos del explorador, podría significar redirigir al usuario a una página de inicio de sesión.
 
 ::: moniker-end

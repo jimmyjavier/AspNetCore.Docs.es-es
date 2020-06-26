@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 03/21/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: 00071b91f2ef374668b74a41190d49b0be83e817
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f4471f54e92b940ecb0eabab82f03e0c77a0509f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774306"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406412"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas de ASP.NET Core
 
@@ -27,11 +29,11 @@ Por [Dhananjay Kumar](https://twitter.com/debug_mode) y [Rick Anderson](https://
 Las áreas son una característica ASP.NET que se usa para organizar la funcionalidad relacionada en un grupo como independiente:
 
 * Espacio de nombres para el enrutamiento.
-* Estructura de carpetas para vistas Razor y páginas.
+* Estructura de carpetas para vistas y Razor páginas.
 
-El uso de áreas crea una jerarquía para el enrutamiento mediante la adición de otro parámetro `area`de ruta `controller` , `action` , a Razor y `page`o a una página.
+El uso de áreas crea una jerarquía para el enrutamiento mediante la adición de otro parámetro de ruta, `area` , a `controller` y `action` o a una Razor página `page` .
 
-Las áreas proporcionan una manera de particionar una aplicación Web ASP.NET Core en grupos funcionales más pequeños, cada uno con Razor su propio conjunto de páginas, controladores, vistas y modelos. Un área es en realidad una estructura dentro de una aplicación. En un proyecto web ASP.NET Core, los componentes lógicos como Páginas, Modelo, Vista y Controlador se mantienen en carpetas diferentes. El runtime de ASP.NET Core usa convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como las de finalización de la compra, facturación y búsqueda. Cada una de estas unidades tiene su propia área para contener vistas, controladores Razor , páginas y modelos.
+Las áreas proporcionan una manera de particionar una aplicación Web ASP.NET Core en grupos funcionales más pequeños, cada uno con su propio conjunto de Razor páginas, controladores, vistas y modelos. Un área es en realidad una estructura dentro de una aplicación. En un proyecto web ASP.NET Core, los componentes lógicos como Páginas, Modelo, Vista y Controlador se mantienen en carpetas diferentes. El runtime de ASP.NET Core usa convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como las de finalización de la compra, facturación y búsqueda. Cada una de estas unidades tiene su propia área para contener vistas, controladores, Razor páginas y modelos.
 
 Considere el uso de áreas en un proyecto en los casos siguientes:
 
@@ -66,7 +68,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
         * HomeController.cs
         * ManageController.cs
       * Vistas
-        * Inicio
+        * Página principal
           * Index.cshtml
         * Administrar
           * Index.cshtml
@@ -75,7 +77,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
       * Controladores
         * HomeController.cs
       * Vistas
-        * Inicio
+        * Página principal
           * Index.cshtml
 
 Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos de vista tienen que usar esta estructura de carpetas. La detección de vista busca un archivo de vista de área coincidente en el orden siguiente:
@@ -91,7 +93,7 @@ Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos d
 
 ### <a name="associate-the-controller-with-an-area"></a>Asociación del controlador a un área
 
-Los controladores de área se designan con el atributo de [ &lbrack;área&rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
+Los controladores de área se designan con el atributo de [ &lbrack; área &rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
 
 [!code-csharp[](areas/31samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
@@ -103,10 +105,10 @@ Se puede `{area:...}` usar como un token en las plantillas de ruta, si el espaci
 
 [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
 
-En el código anterior, `exists` aplica la restricción de que la ruta debe coincidir con un área. Usar `{area:...}` con `MapControllerRoute`:
+En el código anterior, `exists` aplica la restricción de que la ruta debe coincidir con un área. Usar `{area:...}` con `MapControllerRoute` :
 
 * Es el mecanismo menos complicado para agregar enrutamiento a las áreas.
-* Coincide con todos los controladores `[Area("Area name")]` con el atributo.
+* Coincide con todos los controladores con el `[Area("Area name")]` atributo.
 
 En el código siguiente se usa <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> para crear dos rutas de área con nombre:
 
@@ -123,7 +125,7 @@ En el código siguiente de la [descarga de ejemplo](https://github.com/dotnet/As
 La descarga de ejemplo incluye una [vista parcial](xref:mvc/views/partial) que contiene:
 
 * Los vínculos anteriores.
-* No se especifican vínculos similares `area` a los anteriores, excepto.
+* No se especifican vínculos similares a los anteriores, excepto `area` .
 
 En el [archivo de diseño](xref:mvc/views/layout) se hace referencia a la vista parcial, por lo que en todas las páginas de la aplicación se muestran los vínculos generados. Los vínculos generados sin especificar el área solo son válidos cuando se les hace referencia desde una página en el mismo área y controlador.
 
@@ -148,7 +150,7 @@ La carpeta raíz de la aplicación es la carpeta que contiene *Startup.CS* en la
 * Agregue *_ViewImports. cshtml* a la [carpeta raíz](#arf)de la aplicación. Un *_ViewImports. cshtml* en la carpeta raíz de la aplicación se aplicará a todas las vistas de la aplicación.
 * Copie el archivo *_ViewImports. cshtml* en la carpeta vista adecuada en áreas.
 
-El archivo *_ViewImports. cshtml* normalmente contiene las importaciones de [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) , `@using`y `@inject` . Para obtener más información, vea [importar directivas compartidas](xref:mvc/views/layout#importing-shared-directives).
+El archivo *_ViewImports. cshtml* normalmente contiene las importaciones de [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro) , `@using` y `@inject` . Para obtener más información, vea [importar directivas compartidas](xref:mvc/views/layout#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -162,22 +164,22 @@ En el código siguiente se cambia la carpeta de área predeterminada de `"Areas"
 
 ## <a name="areas-with-razor-pages"></a>Áreas con Razor páginas
 
-Las áreas Razor con páginas requieren `Areas/<area name>/Pages` una carpeta en la raíz de la aplicación. La siguiente estructura de carpetas se usa con la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
+Las áreas con Razor páginas requieren una `Areas/<area name>/Pages` carpeta en la raíz de la aplicación. La siguiente estructura de carpetas se usa con la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
 
 * Nombre de proyecto
   * Áreas
     * Productos
       * Páginas
         * _ViewImports
-        * Información
+        * Acerca de
         * Índice
     * Servicios
       * Páginas
         * Administrar
-          * Información
+          * Acerca de
           * Índice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generación de vínculos Razor con páginas y áreas
+### <a name="link-generation-with-razor-pages-and-areas"></a>Generación de vínculos con Razor páginas y áreas
 
 El código siguiente de la [descarga de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) muestra la generación de vínculos con el área especificada (por ejemplo, `asp-area="Products"`):
 
@@ -197,7 +199,7 @@ En el código anterior:
 
 ### <a name="import-namespace-and-tag-helpers-with-_viewimports-file"></a>Importación del espacio de nombres y los asistentes de etiquetas con el archivo _ViewImports
 
-Se puede Agregar un archivo *_ViewImports. cshtml* a cada carpeta de *páginas* de área para importar las aplicaciones auxiliares de espacio de Razor nombres y etiquetas a cada página de la carpeta.
+Se puede Agregar un archivo *_ViewImports. cshtml* a cada carpeta de *páginas* de área para importar las aplicaciones auxiliares de espacio de nombres y etiquetas a cada Razor Página de la carpeta.
 
 Tenga en cuenta el área *Services* del código de ejemplo, que no contiene un archivo *_ViewImports.cshtml*. En el marcado siguiente se muestra la página */Services/Manage/about* Razor :
 
@@ -231,9 +233,9 @@ Todos los archivos *.cshtml y los archivos que formen parte del directorio *wwwr
 
 ::: moniker range="< aspnetcore-3.0"
 
-Las áreas son una característica de ASP.NET que se usa para organizar funciones relacionadas en un grupo como un espacio de nombres independiente (para el enrutamiento) y una estructura de carpetas (para las vistas). El uso de áreas crea una jerarquía para el enrutamiento mediante la adición de otro parámetro `area`de ruta `controller` , `action` , a Razor y `page`o a una página.
+Las áreas son una característica de ASP.NET que se usa para organizar funciones relacionadas en un grupo como un espacio de nombres independiente (para el enrutamiento) y una estructura de carpetas (para las vistas). El uso de áreas crea una jerarquía para el enrutamiento mediante la adición de otro parámetro de ruta, `area` , a `controller` y `action` o a una Razor página `page` .
 
-Las áreas proporcionan una manera de particionar una aplicación Web ASP.NET Core en grupos funcionales más pequeños, cada uno con Razor su propio conjunto de páginas, controladores, vistas y modelos. Un área es en realidad una estructura dentro de una aplicación. En un proyecto web ASP.NET Core, los componentes lógicos como Páginas, Modelo, Vista y Controlador se mantienen en carpetas diferentes. El runtime de ASP.NET Core usa convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como las de finalización de la compra, facturación y búsqueda. Cada una de estas unidades tiene su propia área para contener vistas, controladores Razor , páginas y modelos.
+Las áreas proporcionan una manera de particionar una aplicación Web ASP.NET Core en grupos funcionales más pequeños, cada uno con su propio conjunto de Razor páginas, controladores, vistas y modelos. Un área es en realidad una estructura dentro de una aplicación. En un proyecto web ASP.NET Core, los componentes lógicos como Páginas, Modelo, Vista y Controlador se mantienen en carpetas diferentes. El runtime de ASP.NET Core usa convenciones de nomenclatura para crear la relación entre estos componentes. Para una aplicación grande, puede ser conveniente dividir la aplicación en distintas áreas de funciones de alto nivel. Por ejemplo, una aplicación de comercio electrónico con varias unidades de negocio, como las de finalización de la compra, facturación y búsqueda. Cada una de estas unidades tiene su propia área para contener vistas, controladores, Razor páginas y modelos.
 
 Considere el uso de áreas en un proyecto en los casos siguientes:
 
@@ -268,7 +270,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
         * HomeController.cs
         * ManageController.cs
       * Vistas
-        * Inicio
+        * Página principal
           * Index.cshtml
         * Administrar
           * Index.cshtml
@@ -277,7 +279,7 @@ Considere una aplicación que tiene dos grupos lógicos, *Productos* y *Servicio
       * Controladores
         * HomeController.cs
       * Vistas
-        * Inicio
+        * Página principal
           * Index.cshtml
 
 Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos de vista tienen que usar esta estructura de carpetas. La detección de vista busca un archivo de vista de área coincidente en el orden siguiente:
@@ -293,7 +295,7 @@ Aunque el diseño anterior es típico cuando se usan áreas, solo los archivos d
 
 ### <a name="associate-the-controller-with-an-area"></a>Asociación del controlador a un área
 
-Los controladores de área se designan con el atributo de [ &lbrack;área&rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
+Los controladores de área se designan con el atributo de [ &lbrack; área &rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
 
 [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
@@ -335,7 +337,7 @@ Para compartir un diseño común para toda la aplicación, mueva el archivo *_Vi
 
 ### <a name="_viewimportscshtml"></a>_ViewImports.cshtml
 
-En su ubicación estándar, */Views/_ViewImports.cshtml* no se aplica a las áreas. Para usar [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro)comunes `@using`, o `@inject` en su área, asegúrese de que se aplica un archivo *_ViewImports. cshtml* adecuado [a las vistas de área](xref:mvc/views/layout#importing-shared-directives). Si quiere el mismo comportamiento en todas las vistas, mueva */Views/_ViewImports.cshtml* a la raíz de la aplicación.
+En su ubicación estándar, */Views/_ViewImports.cshtml* no se aplica a las áreas. Para usar [aplicaciones auxiliares de etiquetas](xref:mvc/views/tag-helpers/intro)comunes, `@using` o `@inject` en su área, asegúrese de que se aplica un archivo *_ViewImports. cshtml* adecuado [a las vistas de área](xref:mvc/views/layout#importing-shared-directives). Si quiere el mismo comportamiento en todas las vistas, mueva */Views/_ViewImports.cshtml* a la raíz de la aplicación.
 
 <a name="rename"></a>
 
@@ -349,22 +351,22 @@ En el código siguiente se cambia la carpeta de área predeterminada de `"Areas"
 
 ## <a name="areas-with-razor-pages"></a>Áreas con Razor páginas
 
-Las áreas Razor con páginas requieren `Areas/<area name>/Pages` una carpeta en la raíz de la aplicación. La siguiente estructura de carpetas se usa con la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
+Las áreas con Razor páginas requieren una `Areas/<area name>/Pages` carpeta en la raíz de la aplicación. La siguiente estructura de carpetas se usa con la [aplicación de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
 
 * Nombre de proyecto
   * Áreas
     * Productos
       * Páginas
         * _ViewImports
-        * Información
+        * Acerca de
         * Índice
     * Servicios
       * Páginas
         * Administrar
-          * Información
+          * Acerca de
           * Índice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generación de vínculos Razor con páginas y áreas
+### <a name="link-generation-with-razor-pages-and-areas"></a>Generación de vínculos con Razor páginas y áreas
 
 El código siguiente de la [descarga de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) muestra la generación de vínculos con el área especificada (por ejemplo, `asp-area="Products"`):
 
@@ -386,7 +388,7 @@ En el código anterior:
 
 ### <a name="import-namespace-and-tag-helpers-with-_viewimports-file"></a>Importación del espacio de nombres y los asistentes de etiquetas con el archivo _ViewImports
 
-Se puede Agregar un archivo *_ViewImports. cshtml* a cada carpeta de *páginas* de área para importar las aplicaciones auxiliares de espacio de Razor nombres y etiquetas a cada página de la carpeta.
+Se puede Agregar un archivo *_ViewImports. cshtml* a cada carpeta de *páginas* de área para importar las aplicaciones auxiliares de espacio de nombres y etiquetas a cada Razor Página de la carpeta.
 
 Tenga en cuenta el área *Services* del código de ejemplo, que no contiene un archivo *_ViewImports.cshtml*. En el marcado siguiente se muestra la página */Services/Manage/about* Razor :
 

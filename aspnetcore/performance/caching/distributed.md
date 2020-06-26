@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: d655e48f9504d337b0ffdbd6819f32101730310b
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 56c67178bd5c63f08a812357a4f8e672dd483994
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106707"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405398"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Almacenamiento en caché distribuido en ASP.NET Core
 
@@ -107,7 +109,7 @@ La aplicación de ejemplo implementa <xref:Microsoft.Extensions.Caching.SqlServe
 [!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appSettings. JSON* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
+> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appsettings.jsen* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
 
 ### <a name="distributed-redis-cache"></a>Redis Cache distribuido
 
@@ -277,7 +279,7 @@ La aplicación de ejemplo implementa <xref:Microsoft.Extensions.Caching.SqlServe
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appSettings. JSON* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
+> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appsettings.jsen* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
 
 ### <a name="distributed-redis-cache"></a>Redis Cache distribuido
 
@@ -447,7 +449,7 @@ La aplicación de ejemplo implementa <xref:Microsoft.Extensions.Caching.SqlServe
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appSettings. JSON* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
+> Un <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (y, opcionalmente, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> y <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) se almacena normalmente fuera del control de código fuente (por ejemplo, lo almacena el [Administrador secreto](xref:security/app-secrets) o en *appsettings.jsen* / *appSettings. { ENVIRONMENT}. JSON* files). La cadena de conexión puede contener credenciales que deben mantenerse fuera de los sistemas de control de código fuente.
 
 ### <a name="distributed-redis-cache"></a>Redis Cache distribuido
 

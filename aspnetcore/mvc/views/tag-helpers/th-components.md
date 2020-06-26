@@ -7,17 +7,19 @@ ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: df118cdc8346b99e4e5c60c9f0441c963543f4b4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 58781880764b26a67d71e70c225ab4ed4e5da109
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767517"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406711"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes del asistente de etiquetas en ASP.NET Core
 
@@ -25,7 +27,7 @@ Por [Scott Addie](https://twitter.com/Scott_Addie) y [Fiyaz Bin Hasan](https://g
 
 El componente de un asistente de etiquetas es un asistente de etiquetas que permite modificar o agregar con condiciones elementos HTML a partir del código del lado servidor. Esta característica está disponible en ASP.NET Core 2.0 o versiones posteriores.
 
-ASP.NET Core incluye dos componentes de asistente de etiquetas integrados: `head` y `body`. Están ubicados en el <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> espacio de nombres y se pueden usar en MVC y Razor en páginas. Los componentes de asistente de etiquetas no requieren el registro en la aplicación en *_ViewImports.cshtml*.
+ASP.NET Core incluye dos componentes de asistente de etiquetas integrados: `head` y `body`. Están ubicados en el <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> espacio de nombres y se pueden usar en MVC y en Razor páginas. Los componentes de asistente de etiquetas no requieren el registro en la aplicación en *_ViewImports.cshtml*.
 
 [Vea o descargue el código de ejemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([cómo descargarlo](xref:index#how-to-download-a-sample))
 
@@ -33,8 +35,8 @@ ASP.NET Core incluye dos componentes de asistente de etiquetas integrados: `head
 
 Dos casos de uso comunes de componentes de asistente de etiquetas incluyen:
 
-1. [Inyectar `<link>` en `<head>`.](#inject-into-html-head-element)
-1. [Inyectar `<script>` en `<body>`.](#inject-into-html-body-element)
+1. [Inyectar `<link>` en `<head>` .](#inject-into-html-head-element)
+1. [Inyectar `<script>` en `<body>` .](#inject-into-html-body-element)
 
 En las secciones siguientes se describen estos casos de uso.
 
@@ -69,7 +71,7 @@ El código anterior enlaza un [widget de información sobre herramientas de arra
 Se debe agregar un componente de asistente de etiquetas a la colección de componentes de asistente de etiquetas de la aplicación. Hay tres maneras de agregarlo a la colección:
 
 * [Registro mediante el contenedor de servicios](#registration-via-services-container)
-* [Registro a Razor través de archivo](#registration-via-razor-file)
+* [Registro a través de Razor archivo](#registration-via-razor-file)
 * [Registro con el modelo de página o controlador](#registration-via-page-model-or-controller)
 
 ### <a name="registration-via-services-container"></a>Registro mediante el contenedor de servicios
@@ -78,9 +80,9 @@ Si la clase de componente de asistente de etiquetas no se administran con <xref:
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
-### <a name="registration-via-razor-file"></a>Registro a Razor través de archivo
+### <a name="registration-via-razor-file"></a>Registro a través de Razor archivo
 
-Si el componente de aplicación auxiliar de etiquetas no está registrado con DI, se puede registrar Razor en una página de páginas o en una vista de MVC. Esta técnica se utiliza para controlar el marcado insertado y el orden de ejecución de los Razor componentes desde un archivo.
+Si el componente de aplicación auxiliar de etiquetas no está registrado con DI, se puede registrar en una Razor Página de páginas o en una vista de MVC. Esta técnica se utiliza para controlar el marcado insertado y el orden de ejecución de los componentes desde un Razor archivo.
 
 `ITagHelperComponentManager` se usa para agregar componentes de asistente de etiquetas o para quitarlos de la aplicación. El código siguiente demuestra esta técnica con `AddressTagHelperComponent`:
 
@@ -88,7 +90,7 @@ Si el componente de aplicación auxiliar de etiquetas no está registrado con DI
 
 En el código anterior:
 
-* La directiva `@inject` proporciona una instancia de `ITagHelperComponentManager`. La instancia de se asigna a una variable `manager` denominada para el acceso descendente Razor en el archivo.
+* La directiva `@inject` proporciona una instancia de `ITagHelperComponentManager`. La instancia de se asigna a una variable denominada `manager` para el acceso descendente en el Razor archivo.
 * Se agrega una instancia de `AddressTagHelperComponent` a la colección de componentes de asistente de etiquetas de la aplicación.
 
 `AddressTagHelperComponent` se modifica para alojar un constructor que acepta los parámetros `markup` y `order`:
@@ -101,9 +103,9 @@ El parámetro `markup` proporcionado se utiliza en `ProcessAsync` como sigue:
 
 ### <a name="registration-via-page-model-or-controller"></a>Registro con el modelo de página o controlador
 
-Si el componente de aplicación auxiliar de etiquetas no está registrado con DI, se puede registrar Razor desde un modelo de página de páginas o un controlador de MVC. Esta técnica es útil para separar la lógica de C# Razor de los archivos.
+Si el componente de aplicación auxiliar de etiquetas no está registrado con DI, se puede registrar desde un Razor modelo de página de páginas o un controlador de MVC. Esta técnica es útil para separar la lógica de C# de Razor los archivos.
 
-La inserción del constructor se utiliza para acceder a una instancia de `ITagHelperComponentManager`. El componente de asistente de etiquetas se agrega a la colección de componentes de asistente de etiquetas de la instancia. En el Razor modelo de página de páginas siguiente se `AddressTagHelperComponent`muestra esta técnica con:
+La inserción del constructor se utiliza para acceder a una instancia de `ITagHelperComponentManager`. El componente de asistente de etiquetas se agrega a la colección de componentes de asistente de etiquetas de la instancia. En el Razor modelo de página de páginas siguiente se muestra esta técnica con `AddressTagHelperComponent` :
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 

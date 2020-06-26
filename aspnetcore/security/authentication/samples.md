@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/31/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/samples
-ms.openlocfilehash: 7cd0fe60d7917abda7d8ac0e071deca13a4136ce
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95915c28b132a1a48fb772b2663794754006627f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776557"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405359"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Ejemplos de autenticación para ASP.NET Core
 
@@ -39,7 +41,7 @@ El [repositorio ASP.net Core](https://github.com/dotnet/AspNetCore) contiene los
 * Seleccione una [rama](https://github.com/dotnet/AspNetCore). Por ejemplo: `release/3.1`
 * Clone o descargue el [repositorio de ASP.net Core](https://github.com/dotnet/AspNetCore).
 * Compruebe que ha instalado la versión [SDK de .net Core](https://dotnet.microsoft.com/download/dotnet-core) que coincide con el clon del repositorio de ASP.net Core.
-* Navegue a un ejemplo en *AspNetCore/src/Security/samples* y ejecute el ejemplo `dotnet run`con.
+* Navegue a un ejemplo en *AspNetCore/src/Security/samples* y ejecute el ejemplo con `dotnet run` .
 
 ::: moniker-end
 
@@ -60,6 +62,6 @@ El [repositorio ASP.net Core](https://github.com/dotnet/AspNetCore) contiene los
 * Seleccione una [rama](https://github.com/dotnet/AspNetCore). Por ejemplo: `release/2.2`
 * Clone o descargue el [repositorio de ASP.net Core](https://github.com/dotnet/AspNetCore).
 * Compruebe que ha instalado la versión [SDK de .net Core](https://dotnet.microsoft.com/download/dotnet-core) que coincide con el clon del repositorio de ASP.net Core.
-* Navegue a un ejemplo en *AspNetCore/src/Security/samples* y ejecute el ejemplo `dotnet run`con.
+* Navegue a un ejemplo en *AspNetCore/src/Security/samples* y ejecute el ejemplo con `dotnet run` .
 
 ::: moniker-end

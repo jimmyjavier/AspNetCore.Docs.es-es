@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/configuration/non-di-scenarios
-ms.openlocfilehash: 31013e97038338d72c98151e23a5caa68008ce4f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9ae3d1ec039768b1008702a7a29f4d9a716cb99c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776830"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404852"
 ---
 # <a name="non-di-aware-scenarios-for-data-protection-in-aspnet-core"></a>Escenarios no compatibles con DI para la protección de datos en ASP.NET Core
 
@@ -28,7 +30,7 @@ Para admitir estos escenarios, el paquete [Microsoft. AspNetCore. bioprotection.
 
 [!code-csharp[](non-di-scenarios/_static/nodisample1.cs)]
 
-De forma predeterminada, `DataProtectionProvider` el tipo concreto no cifra el material de clave sin formato antes de guardarlo en el sistema de archivos. Esto es para admitir escenarios en los que el desarrollador apunta a un recurso compartido de red y el sistema de protección de datos no puede deducir automáticamente un mecanismo de cifrado de claves en reposo adecuado.
+De forma predeterminada, el `DataProtectionProvider` tipo concreto no cifra el material de clave sin formato antes de guardarlo en el sistema de archivos. Esto es para admitir escenarios en los que el desarrollador apunta a un recurso compartido de red y el sistema de protección de datos no puede deducir automáticamente un mecanismo de cifrado de claves en reposo adecuado.
 
 Además, el `DataProtectionProvider` tipo concreto no [aísla las aplicaciones](xref:security/data-protection/configuration/overview#per-application-isolation) de forma predeterminada. Todas las aplicaciones que usan el mismo directorio de claves pueden compartir cargas, siempre y cuando sus [parámetros de propósito](xref:security/data-protection/consumer-apis/purpose-strings) coincidan.
 

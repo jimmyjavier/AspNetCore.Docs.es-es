@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/using-data-protection
-ms.openlocfilehash: d5e9e61db39a67e8ccb7b345dfa4c97353312857
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1b0dc6756de55d9ce35eb08ca037e4d4b1fede75
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774267"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405619"
 ---
 # <a name="get-started-with-the-data-protection-apis-in-aspnet-core"></a>Introducción a las API de protección de datos en ASP.NET Core
 
@@ -30,13 +32,13 @@ En su forma más sencilla, la protección de datos consta de los siguientes paso
 
 3. Llame al `Unprotect` método con los datos que desea volver a convertir en texto sin formato.
 
-La mayoría de los marcos y modelos de aplicación, como SignalRASP.net Core o, ya configuran el sistema de protección de datos y lo agregan a un contenedor de servicio al que se accede a través de la inserción de dependencias. En el ejemplo siguiente se muestra la configuración de un contenedor de servicios para la inserción de dependencias y el registro de la pila de protección de datos, la recepción del proveedor de protección de datos a través de DI, la creación de un protector y la protección de los datos.
+La mayoría de los marcos y modelos de aplicación, como ASP.NET Core o SignalR , ya configuran el sistema de protección de datos y lo agregan a un contenedor de servicio al que se accede a través de la inserción de dependencias. En el ejemplo siguiente se muestra la configuración de un contenedor de servicios para la inserción de dependencias y el registro de la pila de protección de datos, la recepción del proveedor de protección de datos a través de DI, la creación de un protector y la protección de los datos.
 
 [!code-csharp[](../../security/data-protection/using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
 Al crear un protector, debe proporcionar una o más [cadenas de propósito](xref:security/data-protection/consumer-apis/purpose-strings). Una cadena de propósito proporciona aislamiento entre los consumidores. Por ejemplo, un protector creado con una cadena de propósito de "verde" no podría desproteger los datos proporcionados por un protector con un propósito de "púrpura".
 
 >[!TIP]
-> Las instancias `IDataProtectionProvider` de `IDataProtector` y son seguras para subprocesos para varios llamadores. Está previsto que, una vez que un componente obtiene una referencia `IDataProtector` a a través de `CreateProtector`una llamada a, usará esa referencia para varias llamadas `Protect` a `Unprotect`y.
+> Las instancias de `IDataProtectionProvider` y `IDataProtector` son seguras para subprocesos para varios llamadores. Está previsto que, una vez que un componente obtiene una referencia a a `IDataProtector` través de una llamada a `CreateProtector` , usará esa referencia para varias llamadas a `Protect` y `Unprotect` .
 >
->Una llamada a `Unprotect` producirá CryptographicException si la carga protegida no se puede comprobar o descifrar. Algunos componentes pueden querer omitir los errores durante las operaciones de desprotección; un componente que lee las cookies de autenticación podría controlar este error y tratar la solicitud como si no tuviera cookies en absoluto, en lugar de que se produzca un error en la solicitud. Los componentes que quieren este comportamiento deben detectar específicamente CryptographicException en lugar de admitir todas las excepciones.
+>Una llamada a producirá `Unprotect` CryptographicException si la carga protegida no se puede comprobar o descifrar. Algunos componentes pueden querer omitir los errores durante las operaciones de desprotección; un componente que lee las cookies de autenticación podría controlar este error y tratar la solicitud como si no tuviera cookies en absoluto, en lugar de que se produzca un error en la solicitud. Los componentes que quieren este comportamiento deben detectar específicamente CryptographicException en lugar de admitir todas las excepciones.
