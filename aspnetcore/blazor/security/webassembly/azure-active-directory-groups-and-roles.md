@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 99ebe43da191153aa98cce6bae8fe98035bc7d6f
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: ed49ba13842f2b5805250d8c12535397c542cfd4
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103514"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242880"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Grupos de Azure AD, roles administrativos y roles definidos por el usuario
 
@@ -45,7 +45,7 @@ Las instrucciones de este artículo atañen a los escenarios de implementación 
 Para configurar la aplicación en Azure Portal para proporcionar una notificación de pertenencia de tipo `groups`, vea los siguientes artículos sobre Azure. Asigne usuarios a grupos de AAD definidos por el usuario y a roles administrativos integrados.
 
 * [Roles que usan grupos de seguridad de Azure AD](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
-* [Atributo groupMembershipClaims](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
+* [Atributo `groupMembershipClaims`](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
 En los siguientes ejemplos se da por hecho que un usuario está asignado al rol integrado de AAD *Administrador de facturación*.
 
@@ -53,7 +53,7 @@ La notificación `groups` única enviada por AAD presenta los grupos y roles del
 
 Extienda <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> para incluir las propiedades de la matriz de grupos y roles.
 
-*CustomUserAccount.cs*:
+`CustomUserAccount.cs`:
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -115,7 +115,7 @@ public class CustomUserFactory
 
 No es necesario incluir código para quitar la notificación `groups` original, ya que el marco la quitará automáticamente.
 
-Registre la fábrica en el archivo `Program.Main` (*Program.cs*) de la aplicación independiente o la aplicación cliente de una solución hospedada:
+Registre la fábrica en el archivo `Program.Main` (`Program.cs`) de la aplicación independiente o la aplicación cliente de una solución hospedada:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -145,7 +145,7 @@ Para obtener una lista completa de los identificadores de objeto de rol de AAD, 
 
 En los siguientes ejemplos, la aplicación usa la directiva anterior para autorizar al usuario.
 
-El [componente AuthorizeView](xref:blazor/security/index#authorizeview-component) funciona con la directiva:
+El [componente `AuthorizeView`](xref:blazor/security/index#authorizeview-component) funciona con la directiva:
 
 ```razor
 <AuthorizeView Policy="BillingAdministrator">
@@ -245,7 +245,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Los métodos de autorización de componentes son funcionales en este momento. Cualquiera de los mecanismos de autorización de los componentes puede usar un rol `admin` para autorizar al usuario:
 
-* [Componente AuthorizeView](xref:blazor/security/index#authorizeview-component) (ejemplo: `<AuthorizeView Roles="admin">`)
+* [Componente `AuthorizeView`](xref:blazor/security/index#authorizeview-component) (ejemplo: `<AuthorizeView Roles="admin">`)
 * [Directiva de atributo `[Authorize]`](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (ejemplo: `@attribute [Authorize(Roles = "admin")]`)
 * [Lógica de procedimientos](xref:blazor/security/index#procedural-logic) (ejemplo: `if (user.IsInRole("admin")) { ... }`)
 

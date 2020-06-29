@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: b4ac0dbc6dabdeff4689544f2e11278b8302c553
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 24cd5ae837eeb4c89a15bab2948dde2eface0c0d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103445"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242802"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Inserción de dependencias de Blazor de ASP.NET Core
 
@@ -47,7 +47,7 @@ Un proveedor de servicios personalizado no proporciona automáticamente los serv
 
 ### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
-Configure los servicios de la colección de servicios de la aplicación en el método `Main` de *Program.cs*. En el ejemplo siguiente, la implementación de `MyDependency` se registra para `IMyDependency`:
+Configure los servicios de la colección de servicios de la aplicación en el método `Main` de `Program.cs`. En el ejemplo siguiente, la implementación de `MyDependency` se registra para `IMyDependency`:
 
 ```csharp
 public class Program
@@ -84,7 +84,7 @@ public class Program
 }
 ```
 
-El host también proporciona una instancia de configuración central para la aplicación. En función del ejemplo anterior, la dirección URL del servicio meteorológico se pasa de un origen de configuración predeterminado (por ejemplo, *appsettings.json*) a `InitializeWeatherAsync`:
+El host también proporciona una instancia de configuración central para la aplicación. En función del ejemplo anterior, la dirección URL del servicio meteorológico se pasa de un origen de configuración predeterminado (por ejemplo, `appsettings.json`) a `InitializeWeatherAsync`:
 
 ```csharp
 public class Program
@@ -193,7 +193,7 @@ public class DataAccess : IDataAccess
 Requisitos previos para la inserción de constructores:
 
 * Debe existir un constructor cuyos argumentos se puedan cumplir mediante la inserción de dependencias. Se permiten parámetros adicionales que no estén incluidos en la inserción de dependencias si especifican valores predeterminados.
-* El constructor aplicable debe ser *público*.
+* El constructor aplicable debe ser `public`.
 * Debe existir un constructor aplicable. En caso de ambigüedad, la inserción de dependencias inicia una excepción.
 
 ## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Clases de componentes base de utilidad para administrar un ámbito de inserción de dependencias
@@ -346,5 +346,5 @@ Si es posible que un único componente use un objeto <xref:Microsoft.EntityFrame
 ## <a name="additional-resources"></a>Recursos adicionales
 
 * <xref:fundamentals/dependency-injection>
-* [Instrucciones de IDisposable para instancias transitorias y compartidas](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [Instrucciones de `IDisposable` para instancias transitorias y compartidas](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: c5169231eec67a43830f761bff7585deff774613
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2b6d4e706856cb28f26c2502feca4f959ca4abac
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103490"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243036"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Procedimientos recomendados de rendimiento de WebAssembly de Blazor en ASP.NET Core
 
@@ -76,10 +76,10 @@ Para obtener más información, vea <xref:blazor/components/lifecycle#after-comp
 
 Los componentes constituyen un método práctico para generar fragmentos de código y marcado reutilizables. En general, se recomienda crear componentes individuales que se ajusten más adecuadamente a los requisitos de la aplicación. Una advertencia que hacer a este respecto es que cada componente secundario adicional contribuye al tiempo total necesario para representar un componente primario. En la mayoría de las aplicaciones, esta sobrecarga adicional es insignificante. Las aplicaciones que generan un gran número de componentes deben considerar el uso de estrategias para reducir la sobrecarga de procesamiento, como limitar el número de componentes representados.
 
-Por ejemplo, una cuadrícula o una lista que representa cientos de filas que contienen componentes hace un uso intensivo del procesador para lograr la representación. Así pues, considere la posibilidad de virtualizar un diseño de lista o cuadrícula para que solo se represente un subconjunto de los componentes en un momento determinado. Para obtener un ejemplo de representación de un subconjunto de componentes, vea los siguientes componentes en la [aplicación de ejemplo de virtualización (repositorio de GitHub aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
+Por ejemplo, una cuadrícula o una lista que representa cientos de filas que contienen componentes hace un uso intensivo del procesador para lograr la representación. Así pues, considere la posibilidad de virtualizar un diseño de lista o cuadrícula para que solo se represente un subconjunto de los componentes en un momento determinado. Para obtener un ejemplo de representación de un subconjunto de componentes, vea los siguientes componentes en la [aplicación de ejemplo de `Virtualization` (repositorio de GitHub aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
 
-* Componente `Virtualize` ([Shared/virtualizate.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): componente escrito en C# que implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> para representar un conjunto de filas de datos meteorológicos en función el desplazamiento del usuario con el ratón.
-* Componente `FetchData`([Pages/FetchData.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): usa el componente `Virtualize` para mostrar 25 filas de datos meteorológicos a la vez.
+* Componente `Virtualize` ([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): componente escrito en C# que implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> para representar un conjunto de filas de datos meteorológicos en función el desplazamiento del usuario con el ratón.
+* Componente `FetchData` ([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): usa el componente `Virtualize` para mostrar 25 filas de datos meteorológicos a la vez.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Evitar la interoperabilidad de JavaScript para serializar datos
 
@@ -89,7 +89,7 @@ En WebAssembly de Blazor, una llamada de interoperabilidad de JavaScript debe at
 
 La implementación de interoperabilidad de JavaScript de Blazor se basa en <xref:System.Text.Json>, que es una biblioteca de serialización de JSON de alto rendimiento con una asignación de memoria reducida. El uso de <xref:System.Text.Json> no da como resultado un mayor tamaño de carga de aplicación frente a la adición de una o varias bibliotecas JSON alternativas.
 
-Para obtener instrucciones sobre la migración, vea [Migración desde Newtonsoft.json a System.Text.Json](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+Para obtener instrucciones sobre la migración, vea [Procedimiento para realizar la migración de `Newtonsoft.Json` a `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Uso de API de interoperabilidad de JavaScript sincrónicas y no serializadas cuando sea necesario
 
@@ -138,7 +138,7 @@ WebAssembly de Blazor ofrece dos versiones más de <xref:Microsoft.JSInterop.IJS
 
 ### <a name="intermediate-language-il-linking"></a>Vinculación de lenguaje intermedio
 
-[Cuando una aplicación WebAssembly de Blazor se vincula](xref:blazor/host-and-deploy/configure-linker), el tamaño de la aplicación se reduce recortando el código que no se usa en los archivos binarios de la aplicación. El vinculador solo está habilitado de forma predeterminada cuando se compila en la configuración `Release`. Para sacar partido de esto, publique la aplicación de implementación con el comando [dotnet publish](/dotnet/core/tools/dotnet-publish), con la opción [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) establecida en `Release`:
+[Cuando una aplicación WebAssembly de Blazor se vincula](xref:blazor/host-and-deploy/configure-linker), el tamaño de la aplicación se reduce recortando el código que no se usa en los archivos binarios de la aplicación. El vinculador solo está habilitado de forma predeterminada cuando se compila en la configuración `Release`. Para sacar partido de esto, publique la aplicación de implementación con el comando [`dotnet publish`](/dotnet/core/tools/dotnet-publish), con la opción [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) establecida en `Release`:
 
 ```dotnetcli
 dotnet publish -c Release

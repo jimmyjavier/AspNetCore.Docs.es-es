@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: ba6b3a333a021184ad8a42d6292915e908cc6eb7
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5a05543c77f1ebaebadc27236aa8f7634e84f1fd
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103498"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243424"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Protección de una aplicación independiente WebAssembly de Blazor de ASP.NET Core con la Biblioteca de autenticación
 
@@ -26,7 +26,7 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn) y [Luke Latham](https:
 
 *No siga las instrucciones de este tema con Azure Active Directory (AAD) ni Azure Active Directory B2C (AAD B2C). Vea los temas relativos a AAD y AAD B2C del índice.*
 
-Para crear una aplicación independiente WebAssembly de Blazor que use la biblioteca [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/), ejecute el siguiente comando en un shell de comandos:
+Para crear una aplicación independiente WebAssembly de Blazor que use la biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/), ejecute el siguiente comando en un shell de comandos:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -38,7 +38,7 @@ En Visual Studio, [cree una aplicación WebAssembly de Blazor](xref:blazor/get-
 
 ## <a name="authentication-package"></a>Paquete de autenticación
 
-Cuando una aplicación se crea para usar cuentas de usuario individuales, dicha aplicación recibe automáticamente una referencia de paquete del paquete [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) en el archivo de proyecto de la aplicación. El paquete proporciona un conjunto de primitivas que ayudan a la aplicación a autenticar usuarios y a obtener tokens para llamar a API protegidas.
+Cuando una aplicación se crea para usar cuentas de usuario individuales, dicha aplicación recibe automáticamente una referencia de paquete del paquete [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) en el archivo de proyecto de la aplicación. El paquete proporciona un conjunto de primitivas que ayudan a la aplicación a autenticar usuarios y a obtener tokens para llamar a API protegidas.
 
 Si agrega autenticación a una aplicación, agregue el paquete manualmente al archivo de proyecto de la aplicación:
 
@@ -50,9 +50,9 @@ Si agrega autenticación a una aplicación, agregue el paquete manualmente al ar
 
 ## <a name="authentication-service-support"></a>Compatibilidad con el servicio de autenticación
 
-La compatibilidad para autenticar usuarios se registra en el contenedor de servicios con el método de extensión <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> proporcionado por el paquete [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Este método configura los servicios necesarios para que la aplicación interactúe con el proveedor de Identity.
+La compatibilidad para autenticar usuarios se registra en el contenedor de servicios con el método de extensión <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> proporcionado por el paquete [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Este método configura los servicios necesarios para que la aplicación interactúe con el proveedor de Identity.
 
-*Program.cs*:
+`Program.cs`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -61,7 +61,7 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-La configuración se suministra a través del archivo *wwwroot/appsettings.json*:
+La configuración se suministra a través del archivo `wwwroot/appsettings.json`:
 
 ```json
 {
@@ -111,7 +111,7 @@ Para más información, vea las siguientes secciones del artículo *Otros escena
 
 ## <a name="logindisplay-component"></a>Componente LoginDisplay
 
-El componente `LoginDisplay` (*Shared/LoginDisplay.Razor*) se representa en el componente `MainLayout` (*Shared/MainLayout.razor*) y administra los siguientes comportamientos:
+El componente `LoginDisplay` (`Shared/LoginDisplay.razor`) se representa en el componente `MainLayout` (`Shared/MainLayout.razor`) y administra los siguientes comportamientos:
 
 * En el caso de los usuarios autenticados:
   * Muestra el nombre de usuario actual.

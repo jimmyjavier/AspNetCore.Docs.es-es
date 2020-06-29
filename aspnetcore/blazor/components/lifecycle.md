@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: c67903809de60b4b0ce7a98455b6917192512b5d
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 61c1dc383728f42c5dac6742fd19d1d22c988913
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103465"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242698"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>Ciclo de vida de ASP.NET Core Blazor
 
@@ -45,9 +45,9 @@ public override async Task SetParametersAsync(ParameterView parameters)
 
 La implementación predeterminada de <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> establece el valor de cada propiedad con el atributo [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) o [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), que tiene un valor correspondiente en <xref:Microsoft.AspNetCore.Components.ParameterView>. Los parámetros que no tienen un valor correspondiente en <xref:Microsoft.AspNetCore.Components.ParameterView> se dejan sin cambios.
 
-Si no se invoca [base.SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A), el código personalizado puede interpretar el valor de los parámetros entrantes de cualquier manera que sea necesaria. Por ejemplo, no hay ningún requisito para asignar los parámetros entrantes a las propiedades de la clase.
+Si no se invoca [`base.SetParametersAync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A), el código personalizado puede interpretar el valor de los parámetros entrantes de cualquier manera que sea necesaria. Por ejemplo, no hay ningún requisito para asignar los parámetros entrantes a las propiedades de la clase.
 
-Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con IDisposable](#component-disposal-with-idisposable).
+Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con `IDisposable`](#component-disposal-with-idisposable).
 
 ### <a name="component-initialization-methods"></a>Métodos de inicialización de componentes
 
@@ -64,7 +64,7 @@ protected override void OnInitialized()
 }
 ```
 
-Para realizar una operación asincrónica, invalide <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> y use el operador [await](/dotnet/csharp/language-reference/operators/await) en la operación:
+Para realizar una operación asincrónica, invalide <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> y use el operador [`await`](/dotnet/csharp/language-reference/operators/await) en la operación:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -82,7 +82,7 @@ Para evitar que el código de desarrollador en <xref:Microsoft.AspNetCore.Compon
 
 Durante la representación previa de una aplicación de Blazor Server, no es posible realizar ciertas acciones (como llamar a JavaScript), ya que no se ha establecido una conexión con el explorador. Es posible que los componentes tengan que representarse de forma diferente cuando se representen previamente. Para obtener más información, vea la sección [Detección de cuándo se está obteniendo una representación previa de una aplicación](#detect-when-the-app-is-prerendering).
 
-Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con IDisposable](#component-disposal-with-idisposable).
+Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con `IDisposable`](#component-disposal-with-idisposable).
 
 ### <a name="after-parameters-are-set"></a>Después de establecer los parámetros
 
@@ -110,7 +110,7 @@ protected override void OnParametersSet()
 }
 ```
 
-Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con IDisposable](#component-disposal-with-idisposable).
+Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con `IDisposable`](#component-disposal-with-idisposable).
 
 ### <a name="after-component-render"></a>Después de representar el componente
 
@@ -148,7 +148,7 @@ protected override void OnAfterRender(bool firstRender)
 
 *No se llama a <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> y <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> al representarse previamente en el servidor.*
 
-Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con IDisposable](#component-disposal-with-idisposable).
+Si hay algún controlador de eventos configurado, desenlácelo durante la eliminación. Para obtener más información, vea la sección [Eliminación de componentes con `IDisposable`](#component-disposal-with-idisposable).
 
 ### <a name="suppress-ui-refreshing"></a>Supresión de la actualización de la interfaz de usuario
 
@@ -179,13 +179,13 @@ Es posible que las acciones asincrónicas realizadas en eventos de ciclo de vida
 
 En el componente `FetchData` de las plantillas de Blazor, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> se invalida para recibir de forma asincrónica datos de previsión (`forecasts`). Cuando `forecasts` es `null`, se muestra al usuario un mensaje de carga. Una vez que se completa el elemento `Task` que devuelve <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, el componente se representará con el estado actualizado.
 
-*Pages/FetchData.razor* en la plantilla de Blazor Server:
+`Pages/FetchData.razor` en la plantilla de Blazor Server:
 
 [!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
 ## <a name="component-disposal-with-idisposable"></a>Eliminación de componentes con IDisposable
 
-Si un componente implementa <xref:System.IDisposable>, se llama al [método Dispose](/dotnet/standard/garbage-collection/implementing-dispose) cuando se quita el componente de la interfaz de usuario. El componente siguiente utiliza `@implements IDisposable` y el método `Dispose`:
+Si un componente implementa <xref:System.IDisposable>, se llama al [método `Dispose`](/dotnet/standard/garbage-collection/implementing-dispose) cuando se quita el componente de la interfaz de usuario. El componente siguiente utiliza `@implements IDisposable` y el método `Dispose`:
 
 ```razor
 @using System
@@ -220,7 +220,7 @@ Para obtener información sobre cómo controlar los errores durante la ejecució
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Reconexión con estado después de la representación previa
 
-En una aplicación Blazor Server, cuando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> es <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, el componente se representa inicialmente de forma estática como parte de la página. Una vez que el explorador vuelve a establecer una conexión con el servidor, el componente se representa *otra vez* y el componente ahora es interactivo. Si el método de ciclo de vida [OnInitialized{Async}](#component-initialization-methods) para inicializar el componente está presente, el método se ejecuta *dos veces*:
+En una aplicación Blazor Server, cuando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> es <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, el componente se representa inicialmente de forma estática como parte de la página. Una vez que el explorador vuelve a establecer una conexión con el servidor, el componente se representa *otra vez* y el componente ahora es interactivo. Si el método de ciclo de vida [`OnInitialized{Async}`](#component-initialization-methods) para inicializar el componente está presente, el método se ejecuta *dos veces*:
 
 * Cuando el componente se representa previamente de forma estática.
 * Después de establecerse la conexión con el servidor.
@@ -297,7 +297,7 @@ Entre otras de las razones por las que los elementos de trabajo en segundo plano
 Para implementar un patrón de trabajo en segundo plano cancelable en un componente:
 
 * Use <xref:System.Threading.CancellationTokenSource> y <xref:System.Threading.CancellationToken>.
-* Durante la [eliminación del componente](#component-disposal-with-idisposable), y en cualquier momento en que interese cancelar mediante la cancelación manual del token, llame a [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) para indicar que se debe cancelar el trabajo en segundo plano.
+* Durante la [eliminación del componente](#component-disposal-with-idisposable), y en cualquier momento en el que interese realizar la cancelación mediante la cancelación manual del token, llame a [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) para indicar que se debe cancelar el trabajo en segundo plano.
 * Cuando se devuelva la llamada asincrónica, llame a <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> en el token.
 
 En el ejemplo siguiente:

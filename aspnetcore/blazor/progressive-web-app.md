@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: b55619889c294a0cd6ab98ffdf228d86ee60cd7c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: f56fb0f09845ded6ef6907221a27f71621a155d1
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102305"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242815"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creación de aplicaciones web progresivas con ASP.NET Core Blazor WebAssembly
 
@@ -75,7 +75,7 @@ Una vez instalada, la aplicación aparece en una ventana propia, sin ninguna bar
 
 ![La aplicación "MyBlazorPwa" se ejecuta en Google Chrome sin una barra de direcciones.](progressive-web-app/_static/image3.png)
 
-Para personalizar el título, la combinación de colores, el icono u otros detalles de la ventana, vea el archivo *manifest.json* del directorio *wwwroot* del proyecto. El esquema de este archivo se define mediante los estándares web. Para obtener más información, vea [Documentación web de MDN: Manifiesto de aplicación web](https://developer.mozilla.org/docs/Web/Manifest).
+Para personalizar el título, la combinación de colores, el icono u otros detalles de la ventana, vea el archivo `manifest.json` del directorio `wwwroot` del proyecto. El esquema de este archivo se define mediante los estándares web. Para obtener más información, vea [Documentación web de MDN: Manifiesto de aplicación web](https://developer.mozilla.org/docs/Web/Manifest).
 
 ## <a name="offline-support"></a>Compatibilidad sin conexión
 
@@ -110,17 +110,17 @@ La compatibilidad sin conexión mediante un trabajo de servicio es un estándar 
 
 La plantilla de PWA de Blazor genera dos archivos de trabajo de servicio:
 
-* *wwwroot/service-worker.js*, que se usa durante el desarrollo.
-* *wwwroot/service-worker.published.js*, que se usa después de publicar la aplicación.
+* `wwwroot/service-worker.js`, que se usa durante el desarrollo.
+* `wwwroot/service-worker.published.js`, que se usa después de publicar la aplicación.
 
 Para compartir la lógica entre los dos archivos de trabajo de servicio, tenga en cuenta el enfoque siguiente:
 
 * Agregue un tercer archivo de JavaScript para contener la lógica común.
-* Use [self.importScripts](https://developer.mozilla.org/docs/Web/API/WorkerGlobalScope/importScripts) para cargar la lógica común en los dos archivos de trabajo de servicio.
+* Use [`self.importScripts`](https://developer.mozilla.org/docs/Web/API/WorkerGlobalScope/importScripts) para cargar la lógica común en los dos archivos de trabajo de servicio.
 
 ### <a name="cache-first-fetch-strategy"></a>Estrategia de captura desde la caché
 
-El servicio de trabajo integrado *service-worker.published.js* resuelve las solicitudes mediante una estrategia *desde la caché*. Esto significa que el trabajo de servicio prefiere devolver el contenido almacenado en caché, con independencia de si el usuario tiene acceso de red o de si hay contenido más reciente disponible en el servidor.
+El servicio de trabajo integrado `service-worker.published.js` resuelve las solicitudes mediante una estrategia *desde la caché*. Esto significa que el trabajo de servicio prefiere devolver el contenido almacenado en caché, con independencia de si el usuario tiene acceso de red o de si hay contenido más reciente disponible en el servidor.
 
 La estrategia de almacenar primero en caché es valiosa porque:
 
@@ -139,9 +139,9 @@ Como modelo mental, puede pensar que una PWA primero sin conexión se comporta c
 
 La plantilla de PWA Blazor genera aplicaciones que intentan actualizarse de forma automática en segundo plano cada vez que el usuario realiza una visita y tiene una conexión de red operativa. Así es como funciona:
 
-* Durante la compilación, el proyecto genera un *manifiesto de recursos de trabajo de servicio*. De forma predeterminada, se denomina *service-worker-assets.js*. En el manifiesto se enumeran todos los recursos estáticos que la aplicación necesita para funcionar sin conexión, como los ensamblados .NET, los archivos JavaScript y CSS, incluidos sus hash de contenido. Esta lista la carga el trabajo de servicio para saber qué recursos almacenar en la caché.
-* Cada vez que el usuario visita la aplicación, el explorador vuelve a solicitar *service-worker.js* y *service-worker-assets.js* en segundo plano. Los archivos se comparan byte a byte con el trabajo de servicio instalado existente. Si el servidor devuelve contenido cambiado para cualquiera de estos archivos, el trabajo de servicio intenta instalar una nueva versión de sí mismo.
-* Al instalar una versión nueva de sí mismo, el trabajo de servicio crea una caché independiente para los recursos sin conexión y comienza a rellenarla con los recursos enumerados en *service-worker-assets.js*. Esta lógica se implementa en la `onInstall`función dentro de *service-worker.published.js*.
+* Durante la compilación, el proyecto genera un *manifiesto de recursos de trabajo de servicio*. De forma predeterminada, se denomina `service-worker-assets.js`. En el manifiesto se enumeran todos los recursos estáticos que la aplicación necesita para funcionar sin conexión, como los ensamblados .NET, los archivos JavaScript y CSS, incluidos sus hash de contenido. Esta lista la carga el trabajo de servicio para saber qué recursos almacenar en la caché.
+* Cada vez que el usuario visita la aplicación, el explorador vuelve a solicitar `service-worker.js` y `service-worker-assets.js` en segundo plano. Los archivos se comparan byte a byte con el trabajo de servicio instalado existente. Si el servidor devuelve contenido cambiado para cualquiera de estos archivos, el trabajo de servicio intenta instalar una nueva versión de sí mismo.
+* Al instalar una versión nueva de sí mismo, el trabajo de servicio crea una caché independiente para los recursos sin conexión y comienza a rellenarla con los recursos enumerados en `service-worker-assets.js`. Esta lógica se implementa en la función `onInstall` dentro de `service-worker.published.js`.
 * El proceso se completa correctamente cuando todos los recursos se cargan sin errores y todos los hashes de contenido coinciden. Si se realiza correctamente, el nuevo trabajo de servicio entra en un estado de *espera de la activación*. En cuanto el usuario cierra la aplicación (no quedan pestañas de aplicación ni ventanas), el nuevo trabajo de servicio se *activa* y se usa para las posteriores visitas a la aplicación. El trabajo de servicio anterior y su memoria caché se eliminan.
 * Si el proceso no se completa correctamente, se descarta la nueva instancia del trabajo de servicio. El proceso de actualización se vuelve a intentar en la próxima visita del usuario; con suerte, tendrá una mejor conexión de red que permita completar las solicitudes.
 
@@ -149,7 +149,7 @@ Para personalizar este proceso, modifique la lógica del trabajo de servicio. Ni
 
 ### <a name="how-requests-are-resolved"></a>Procedimientos para resolver las solicitudes
 
-Como se ha descrito en la sección [Estrategia de captura desde la caché](#cache-first-fetch-strategy), el trabajo de servicio predeterminado usa una estrategia *desde la caché*, lo que significa que intenta servir contenido almacenado en caché cuando esté disponible. Si no hay contenido en caché para una dirección URL determinada (por ejemplo, cuando se solicitan datos de una API de back-end), el trabajo de servicio recurre a una solicitud de red normal. La solicitud de red se realiza correctamente si se puede acceder al servidor. Esta lógica se implementa dentro de la función `onFetch` en *service-worker.published.js*.
+Como se ha descrito en la sección [Estrategia de captura desde la caché](#cache-first-fetch-strategy), el trabajo de servicio predeterminado usa una estrategia *desde la caché*, lo que significa que intenta servir contenido almacenado en caché cuando esté disponible. Si no hay contenido en caché para una dirección URL determinada (por ejemplo, cuando se solicitan datos de una API de back-end), el trabajo de servicio recurre a una solicitud de red normal. La solicitud de red se realiza correctamente si se puede acceder al servidor. Esta lógica se implementa dentro de la función `onFetch` en `service-worker.published.js`.
 
 Si los componentes de Razor de la aplicación dependen de la solicitud de datos a las API de back-end y quiere proporcionar una experiencia de usuario sencilla para las solicitudes erróneas por falta de disponibilidad de la red, implemente lógica en los componentes de la aplicación. Por ejemplo, use solicitudes `try/catch` en torno a <xref:System.Net.Http.HttpClient>.
 
@@ -157,12 +157,12 @@ Si los componentes de Razor de la aplicación dependen de la solicitud de datos 
 
 Tenga en cuenta lo que sucede cuando el usuario navega por primera vez a una dirección URL como `/counter` o cualquier otro vínculo profundo de la aplicación. En estos casos, no le interesa devolver el contenido en caché como `/counter`, sino que necesita que el explorador cargue el contenido en caché como `/index.html` para iniciar la aplicación WebAssembly de Blazor. Estas solicitudes iniciales se conocen como solicitudes de *navegación*, en lugar de:
 
-* Solicitudes de *subrecurso* para imágenes, hojas de estilo u otros archivos.
-* Solicitudes *fetch/XHR* para datos de API.
+* Solicitudes de `subresource` para imágenes, hojas de estilo u otros archivos.
+* Solicitudes de `fetch/XHR` para datos de API.
 
-El trabajo de servicio predeterminado contiene lógica de casos especiales para las solicitudes de navegación. Para resolver las solicitudes, el trabajo de servicio devuelve el contenido en caché para `/index.html`, independientemente de la dirección URL solicitada. Esta lógica se implementa en la `onFetch`función dentro de *service-worker.published.js*.
+El trabajo de servicio predeterminado contiene lógica de casos especiales para las solicitudes de navegación. Para resolver las solicitudes, el trabajo de servicio devuelve el contenido en caché para `/index.html`, independientemente de la dirección URL solicitada. Esta lógica se implementa en la función `onFetch` dentro de `service-worker.published.js`.
 
-Si la aplicación tiene determinadas direcciones URL que deben devolver el código HTML representado por el servidor (y no servir `/index.html` desde la caché), tendrá que editar la lógica en el trabajo de servicio. Si todas las direcciones URL que contienen `/Identity/` se deben controlar como solicitudes normales solo en línea en el servidor, modifique la lógica `onFetch` de *service-worker.published.js*. Busque el código siguiente:
+Si la aplicación tiene determinadas direcciones URL que deben devolver el código HTML representado por el servidor (y no servir `/index.html` desde la caché), tendrá que editar la lógica en el trabajo de servicio. Si todas las direcciones URL que contienen `/Identity/` se deben controlar como solicitudes normales solo en línea en el servidor, modifique la lógica `onFetch` de `service-worker.published.js`. Busque el código siguiente:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';
@@ -185,16 +185,16 @@ Si el proyecto define la propiedad `ServiceWorkerAssetsManifest` de MSBuild, las
 <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 ```
 
-El archivo se coloca en el directorio de salida *wwwroot*, por lo que el explorador puede recuperar este archivo solicitando `/service-worker-assets.js`. Para ver el contenido de este archivo, abra */bin/Debug/{MARCO DE DESTINO}/wwwroot/service-worker-assets.js* en un editor de texto. Pero no edite el archivo, ya que se vuelve a generar en cada compilación.
+El archivo se coloca en el directorio de salida `wwwroot`, por lo que el explorador puede recuperar este archivo solicitando `/service-worker-assets.js`. Para ver el contenido de este archivo, abra `/bin/Debug/{TARGET FRAMEWORK}/wwwroot/service-worker-assets.js` en un editor de texto. Pero no edite el archivo, ya que se vuelve a generar en cada compilación.
 
 De forma predeterminada, este manifiesto muestra:
 
 * Los recursos administrados por Blazor, como los ensamblados .NET y los archivos de runtime de WebAssembly .NET necesarios para funcionar sin conexión.
-* Todos los recursos para publicar en el directorio *wwwroot* de la aplicación, como imágenes, hojas de estilos y archivos JavaScript, incluidos los recursos web estáticos proporcionados por los proyectos externos y los paquetes NuGet.
+* Todos los recursos para publicar contenido en el directorio `wwwroot` de la aplicación, como imágenes, hojas de estilos y archivos JavaScript, incluidos los recursos web estáticos proporcionados por los proyectos externos y los paquetes NuGet.
 
-Puede controlar cuál de estos recursos captura y almacena en caché el trabajo de servicio mediante la edición de la lógica de `onInstall` en *service-worker.published.js*. De forma predeterminada, el trabajo de servicio captura y almacena en caché los archivos que coinciden con las extensiones de nombre de archivo web típicas, como *.html*, *.css*, *.js* y *.wasm*, además de tipos de archivo específicos de WebAssembly de Blazor ( *.dll*, *.pdb*).
+Puede controlar cuál de estos recursos captura y almacena en caché el trabajo de servicio mediante la edición de la lógica `onInstall` en `service-worker.published.js`. De forma predeterminada, el trabajo de servicio captura y almacena en caché los archivos que coinciden con las extensiones de nombre de archivo web típicas, como `.html`, `.css`, `.js` y `.wasm`, además de tipos de archivo específicos de WebAssembly de Blazor (`.dll`, `.pdb`).
 
-Para incluir recursos adicionales que no están presentes en el directorio *wwwroot* de la aplicación, defina entradas `ItemGroup` de MSBuild adicionales, como se muestra en el ejemplo siguiente:
+Para incluir recursos adicionales que no están presentes en el directorio `wwwroot` de la aplicación, defina entradas `ItemGroup` de MSBuild adicionales, como se muestra en el ejemplo siguiente:
 
 ```xml
 <ItemGroup>
@@ -206,7 +206,7 @@ Para incluir recursos adicionales que no están presentes en el directorio *wwwr
 Los metadatos de `AssetUrl` especifican la dirección URL de base relativa que debe usar el explorador al capturar el recurso en la memoria caché. Puede ser independiente del nombre del archivo de origen en el disco.
 
 > [!IMPORTANT]
-> Agregar un elemento `ServiceWorkerAssetsManifestItem` no hace que el archivo se publique en el directorio *wwwroot* de la aplicación. La salida de la publicación se debe controlar por separado. El elemento `ServiceWorkerAssetsManifestItem` solo hace que aparezca una entrada adicional en el manifiesto de recursos de trabajo de servicio.
+> Agregar un elemento `ServiceWorkerAssetsManifestItem` no hace que el archivo se publique en el directorio `wwwroot` de la aplicación. La salida de la publicación se debe controlar por separado. El elemento `ServiceWorkerAssetsManifestItem` solo hace que aparezca una entrada adicional en el manifiesto de recursos de trabajo de servicio.
 
 ## <a name="push-notifications"></a>Notificaciones de inserción
 
@@ -264,11 +264,11 @@ Como se ha descrito en la sección [Compatibilidad de las páginas representadas
 
 ### <a name="all-service-worker-asset-manifest-contents-are-cached-by-default"></a>Almacenamiento en caché de todos los contenidos del manifiesto de recursos del trabajo de servicio de forma predeterminada
 
-Como se ha descrito en la sección [Control del almacenamiento en caché de recursos](#control-asset-caching), el archivo *service-worker-assets.js* se genera durante la compilación y enumera todos los recursos que el trabajo de servicio debe capturar y almacenar en caché.
+Como se ha descrito en la sección [Control del almacenamiento en caché de recursos](#control-asset-caching), el archivo `service-worker-assets.js` se genera durante la compilación y enumera todos los recursos que el trabajo de servicio debe capturar y almacenar en caché.
 
-Como en esta lista se incluye de forma predeterminada todo lo que se emite para *wwwroot* (incluido el contenido proporcionado por paquetes y proyectos externos) debe tener cuidado de no incluir demasiado contenido en él. Si el directorio *wwwroot* contiene millones de imágenes, el trabajo de servicio intenta recuperarlas y almacenarlas en caché, lo que consume un ancho de banda excesivo y probablemente no se complete de forma correcta.
+Como en esta lista se incluye de forma predeterminada todo lo que se emite para `wwwroot` (incluido el contenido proporcionado por paquetes y proyectos externos), debe tener cuidado de no incluir demasiado contenido en él. Si el directorio `wwwroot` contiene millones de imágenes, el trabajo de servicio intenta recuperarlas y almacenarlas en caché, lo que consume un ancho de banda excesivo y probablemente no se complete de forma correcta.
 
-Implemente lógica arbitraria para controlar qué subconjunto del contenido del manifiesto se debe capturar y almacenar en caché mediante la edición de la función `onInstall` de *service-worker.published.js*.
+Implemente lógica arbitraria para controlar qué subconjunto del contenido del manifiesto se debe capturar y almacenar en caché mediante la edición de la función `onInstall` de `service-worker.published.js`.
 
 ### <a name="interaction-with-authentication"></a>Interacción con la autenticación
 
@@ -287,11 +287,11 @@ Para crear una aplicación PWA sin conexión que interactúe con la autenticaci�
 * Ponga en cola las operaciones mientras la aplicación está sin conexión y realícelas cuando la aplicación vuelva a estar en línea.
 * Al cerrar sesión, borre el usuario almacenado.
 
-La aplicación de ejemplo [CarChecker](https://github.com/SteveSandersonMS/CarChecker) demuestra los métodos anteriores. Eche un vistazo a las siguientes partes de la aplicación:
+La aplicación de ejemplo [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) demuestra los métodos anteriores. Eche un vistazo a las siguientes partes de la aplicación:
 
-* `OfflineAccountClaimsPrincipalFactory` (*Client/Data/OfflineAccountClaimsPrincipalFactory.cs*)
-* `LocalVehiclesStore` (*Client/Data/LocalVehiclesStore.cs*)
-* Componente `LoginStatus` (*Client/Shared/LoginStatus.razor*)
+* `OfflineAccountClaimsPrincipalFactory` (`Client/Data/OfflineAccountClaimsPrincipalFactory.cs`)
+* `LocalVehiclesStore` (`Client/Data/LocalVehiclesStore.cs`)
+* Componente `LoginStatus` (`Client/Shared/LoginStatus.razor`)
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

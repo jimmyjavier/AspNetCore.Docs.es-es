@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 073a2a85369a100352a163693c5cba907203059e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a94dcd818c3f4e19ace57fad6390a84e704192bd
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103426"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242971"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Guía de mitigación de amenazas para ASP.NET Core Blazor Server
 
@@ -134,7 +134,7 @@ En las llamadas a funciones de JavaScript desde métodos de .NET:
 
 Tome las siguientes precauciones para protegerse frente a los escenarios anteriores:
 
-* Encapsule las llamadas de interoperabilidad de JS dentro de instrucciones [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para tener en cuenta los errores que pueden producirse durante las invocaciones. Para obtener más información, vea <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Encapsule las llamadas de interoperabilidad de JS dentro de instrucciones [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) para tener en cuenta los errores que pueden producirse durante las invocaciones. Para obtener más información, vea <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 * Valide los datos devueltos por las invocaciones de interoperabilidad de JS, incluidos los mensajes de error, antes de realizar cualquier acción.
 
 ### <a name="net-methods-invoked-from-the-browser"></a>Métodos de .NET invocados desde el explorador
@@ -302,7 +302,7 @@ El error del lado cliente no incluye la pila de llamadas y no proporciona detall
 Habilite los errores detallados en JavaScript con:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* La clave de configuración `DetailedErrors` establecida en `true`, la cual se puede establecer en el archivo de configuración de la aplicación (*appsettings.json*). La clave también se puede establecer mediante la variable de entorno `ASPNETCORE_DETAILEDERRORS` con un valor `true`.
+* Clave de configuración `DetailedErrors` establecida en `true`, la cual se puede establecer en el archivo de configuración de la aplicación (`appsettings.json`). La clave también se puede establecer mediante la variable de entorno `ASPNETCORE_DETAILEDERRORS` con un valor `true`.
 
 > [!WARNING]
 > La exposición de información de errores a los clientes en Internet es un riesgo de seguridad que debe evitarse siempre.
@@ -348,7 +348,7 @@ Además de las medidas de seguridad que implementa el marco, el desarrollador de
 * No confiar en la entrada de las llamadas de interoperabilidad de JS entre los métodos de .NET y JavaScript y viceversa.
 * La aplicación se encarga de validar que el contenido de los argumentos y de los resultados es válido, incluso si los argumentos o los resultados están correctamente deserializados.
 
-Para que exista una vulnerabilidad frente a ataques de scripts entre sitios (XSS), la aplicación debe incorporar los datos proporcionados por el usuario en la página representada. Los componentes de Blazor Server ejecutan un paso en tiempo de compilación en el que el marcado de un archivo *.razor* se transforma en una lógica de procedimientos de C#. En tiempo de ejecución, la lógica de C# crea un *árbol de representación* que describe los elementos, el texto y los componentes secundarios. Esto se aplica al DOM del explorador a través de una secuencia de instrucciones de JavaScript (o se serializa a HTML en el caso de realizar una representación previa):
+Para que exista una vulnerabilidad frente a ataques de scripts entre sitios (XSS), la aplicación debe incorporar los datos proporcionados por el usuario en la página representada. Los componentes de Blazor Server ejecutan un paso en tiempo de compilación en el que el marcado de un archivo `.razor` se transforma en una lógica de procedimientos de C#. En tiempo de ejecución, la lógica de C# crea un *árbol de representación* que describe los elementos, el texto y los componentes secundarios. Esto se aplica al DOM del explorador a través de una secuencia de instrucciones de JavaScript (o se serializa a HTML en el caso de realizar una representación previa):
 
 * Los datos proporcionados por el usuario mediante la sintaxis normal de Razor (por ejemplo, `@someStringValue`) no exponen una vulnerabilidad frente a ataques de scripts entre sitios (XSS) porque la sintaxis de Razor se agrega al DOM a través de comandos que solo pueden escribir texto. Aunque el valor incluya marcado HTML, se muestra como texto estático. Al generar una representación previa, la salida está codificada en HTML, que también muestra el contenido como texto estático.
 * No se permiten etiquetas de script y no se deben incluir en el árbol de representación de componentes de la aplicación. Si se incluye una etiqueta de script en el marcado de un componente, se genera un error en tiempo de compilación.
