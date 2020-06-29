@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 25d6bdae0fce7821ec7b9195817dc07ef9aed40f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5c3314991d05ea868fe9190bb3a0206b27fd920f
+ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408193"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85459771"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Almacenamiento en caché de respuestas en ASP.NET Core
 
@@ -176,7 +176,17 @@ En lugar de duplicar la configuración de la caché de respuestas en muchos atri
 
 Configure un perfil de caché. En el ejemplo siguiente se muestra un perfil de caché de 30 segundos en la aplicación de ejemplo `Startup.ConfigureServices` :
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 El modelo de página Cache4 de la aplicación de ejemplo hace referencia al `Default30` Perfil de caché:
 
@@ -184,9 +194,9 @@ El modelo de página Cache4 de la aplicación de ejemplo hace referencia al `Def
 
 <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Se puede aplicar a:
 
-* RazorControladores de páginas (clases): los atributos no se pueden aplicar a los métodos de controlador.
-* Controladores MVC (clases).
-* Acciones de MVC (métodos): los atributos de nivel de método reemplazan a los valores especificados en los atributos de nivel de clase.
+* RazorPáginas: no se pueden aplicar atributos a los métodos de controlador.
+* Controladores MVC.
+* Métodos de acción de MVC: los atributos de nivel de método invalidan los valores especificados en atributos de nivel de clase.
 
 El encabezado resultante aplicado a la respuesta de la página Cache4 por el `Default30` Perfil de caché:
 
