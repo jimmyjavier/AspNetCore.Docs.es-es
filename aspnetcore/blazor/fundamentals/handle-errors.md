@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: f0362fbce7f1fafb413d526809ec9191c603e494
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: e777991f4cbfd22b441fb198144bbdf023b4df6b
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103438"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242789"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Control de errores en aplicaciones Blazor de ASP.NET Core
 
@@ -35,7 +35,7 @@ Cuando una aplicación Blazor no funciona correctamente durante el desarrollo, r
 
 La interfaz de usuario para esta experiencia de control de errores forma parte de las plantillas de proyecto de Blazor.
 
-En una aplicación WebAssembly de Blazor, personalice la experiencia en el archivo *wwwroot/index.html*:
+En una aplicación WebAssembly de Blazor, personalice la experiencia en el archivo `wwwroot/index.html`:
 
 ```html
 <div id="blazor-error-ui">
@@ -45,7 +45,7 @@ En una aplicación WebAssembly de Blazor, personalice la experiencia en el archi
 </div>
 ```
 
-En una aplicación de servidor Blazor, personalice la experiencia en el archivo *Pages/_Host.cshtml*:
+En una aplicación Blazor Server, personalice la experiencia en el archivo `Pages/_Host.cshtml`:
 
 ```cshtml
 <div id="blazor-error-ui">
@@ -60,7 +60,7 @@ En una aplicación de servidor Blazor, personalice la experiencia en el archivo 
 </div>
 ```
 
-Los estilos incluidos en las plantillas de Blazor (*wwwroot/css/site.css*) ocultan el elemento `blazor-error-ui` y, luego, se muestra cuando se produce un error:
+Los estilos incluidos en las plantillas de Blazor (`wwwroot/css/site.css`) ocultan el elemento `blazor-error-ui`, que se muestra posteriormente cuando se produce un error:
 
 ```css
 #blazor-error-ui {
@@ -140,7 +140,7 @@ Cuando Blazor crea una instancia de un componente:
 * Se invoca el constructor del componente.
 * Se invocan los constructores de cualquier servicio de inserción de dependencias que no sea singleton proporcionado al constructor del componente a través de la directiva [`@inject`](xref:mvc/views/razor#inject) o el atributo [`[Inject]`](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component).
 
-Se produce un error en un circuito de servidor Blazor cuando cualquier constructor ejecutado o un establecedor de cualquier propiedad `[Inject]` inicia una excepción no controlada. La excepción es grave porque el marco no puede crear una instancia del componente. Si la lógica del constructor puede iniciar excepciones, la aplicación debe interceptarlas mediante una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
+Se produce un error en un circuito de servidor Blazor cuando cualquier constructor ejecutado o un establecedor de cualquier propiedad `[Inject]` inicia una excepción no controlada. La excepción es grave porque el marco no puede crear una instancia del componente. Si la lógica del constructor puede iniciar excepciones, la aplicación debe interceptarlas mediante una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
 
 ### <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
@@ -155,7 +155,7 @@ Si cualquier método de ciclo de vida inicia una excepción, de forma sincrónic
 
 En el ejemplo siguiente, donde <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> llama a un método para obtener un producto:
 
-* Una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) controla una excepción que se inicia en el método `ProductRepository.GetProductByIdAsync`.
+* Una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) controla una excepción que se inicia en el método `ProductRepository.GetProductByIdAsync`.
 * Cuando se ejecuta el bloque `catch`:
   * `loadFailed` se establece en `true`, que se usa para mostrar un mensaje de error al usuario.
   * El error no se registra.
@@ -185,7 +185,7 @@ El código del lado cliente desencadena invocaciones de código de C# cuando se 
 
 Es posible que el código del controlador de eventos inicie una excepción no controlada en estos escenarios.
 
-Si un controlador de eventos inicia una excepción no controlada (por ejemplo, se produce un error en una consulta de base de datos), la excepción es grave para un circuito de servidor Blazor. Si la aplicación llama a código que podría generar un error por motivos externos, capture las excepciones mediante una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
+Si un controlador de eventos inicia una excepción no controlada (por ejemplo, se produce un error en una consulta de base de datos), la excepción es grave para un circuito de servidor Blazor. Si la aplicación llama a código que podría generar un error por motivos externos, capture las excepciones mediante una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
 
 Si el código de usuario no captura y controla la excepción, el marco de trabajo registra la excepción y finaliza el circuito.
 
@@ -193,7 +193,7 @@ Si el código de usuario no captura y controla la excepción, el marco de trabaj
 
 Un componente se puede quitar de la interfaz de usuario, por ejemplo, porque el usuario ha navegado a otra página. Cuando un componente que implementa <xref:System.IDisposable?displayProperty=fullName> se quita de la interfaz de usuario, el marco de trabajo llama al método <xref:System.IDisposable.Dispose%2A> del componente.
 
-Si el método `Dispose` del componente inicia una excepción no controlada, la excepción es grave para un circuito de servidor Blazor. Si la lógica de eliminación puede iniciar excepciones, la aplicación debe interceptarlas mediante una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
+Si el método `Dispose` del componente inicia una excepción no controlada, la excepción es grave para un circuito de servidor Blazor. Si la lógica de eliminación puede iniciar excepciones, la aplicación debe interceptarlas mediante una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
 
 Para obtener más información sobre la eliminación de componentes, vea <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
@@ -204,10 +204,10 @@ Para obtener más información sobre la eliminación de componentes, vea <xref:b
 Se aplican las condiciones siguientes al control de errores con <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
 * Si una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> produce un error de forma sincrónica, se produce una excepción de .NET. Se puede producir un error en una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>, por ejemplo, porque no se puedan serializar los argumentos proporcionados. El código del desarrollador debe detectar la excepción. Si el código de la aplicación en un controlador de eventos o en un método de ciclo de vida de componente no controla una excepción, la excepción resultante es grave para un circuito de servidor Blazor.
-* Si se produce un error en una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> de forma asincrónica, se produce un error en el objeto <xref:System.Threading.Tasks.Task> de .NET. Se puede producir un error en una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>, por ejemplo, porque el código de JavaScript inicia una excepción o devuelve un objeto `Promise` que se ha completado como `rejected`. El código del desarrollador debe detectar la excepción. Si usa el operador [await](/dotnet/csharp/language-reference/keywords/await), considere la posibilidad de encapsular la llamada de método en una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro. De lo contrario, el código con error provoca una excepción no controlada que es grave para un circuito de servidor Blazor.
+* Si se produce un error en una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> de forma asincrónica, se produce un error en el objeto <xref:System.Threading.Tasks.Task> de .NET. Se puede producir un error en una llamada a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>, por ejemplo, porque el código de JavaScript inicia una excepción o devuelve un objeto `Promise` que se ha completado como `rejected`. El código del desarrollador debe detectar la excepción. Si usa el operador [`await`](/dotnet/csharp/language-reference/keywords/await), considere la posibilidad de encapsular la llamada de método en una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro. De lo contrario, el código con error provoca una excepción no controlada que es grave para un circuito de servidor Blazor.
 * De forma predeterminada, las llamadas a <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> se deben completar en un período determinado o, de lo contrario, se agota el tiempo de espera de la llamada. El período de tiempo de expiración predeterminado es de un minuto. El tiempo de expiración protege al código de una pérdida en la conectividad de red o de código JavaScript que nunca devuelve un mensaje de finalización. Si se agota el tiempo de espera de la llamada, se produce un error en el objeto <xref:System.Threading.Tasks> resultante con una excepción <xref:System.OperationCanceledException>. Capture y procese la excepción con el registro.
 
-Del mismo modo, el código de JavaScript puede iniciar llamadas a métodos de .NET indicados por el atributo [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute)](xref:blazor/call-dotnet-from-javascript). Si estos métodos de .NET inician una excepción no controlada:
+Del mismo modo, el código de JavaScript puede iniciar llamadas a métodos de .NET indicados por el atributo [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript). Si estos métodos de .NET inician una excepción no controlada:
 
 * La excepción no se trata como grave para un circuito de servidor Blazor.
 * Se rechaza el objeto `Promise` del lado de JavaScript.
@@ -234,7 +234,7 @@ Si algún componente inicia una excepción no controlada durante la representaci
 
 En circunstancias normales, cuando se produce un error en la representación previa, continuar con la generación y representación del componente no tiene sentido, ya que un componente en funcionamiento no se puede representar.
 
-Para tolerar los errores que se puedan producir durante la representación previa, se debe colocar la lógica de control de errores dentro de un componente que pueda iniciar excepciones. Use instrucciones [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro. En lugar de encapsular el asistente de etiquetas <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> en una instrucción [try-catch](/dotnet/csharp/language-reference/keywords/try-catch), coloque la lógica de control de errores en el componente representado por el asistente de etiquetas <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
+Para tolerar los errores que se puedan producir durante la representación previa, se debe colocar la lógica de control de errores dentro de un componente que pueda iniciar excepciones. Use instrucciones [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro. En lugar de encapsular el asistente de etiquetas <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> en una instrucción [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch), coloque la lógica de control de errores en el componente representado por el asistente de etiquetas <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 ## <a name="advanced-scenarios"></a>Escenarios avanzados
 
@@ -262,7 +262,7 @@ Para evitar patrones de recursión, asegúrese de que el código de representaci
 
 ### <a name="custom-render-tree-logic"></a>Lógica de árbol de representación personalizada
 
-La mayoría de los componentes Blazor se implementan como archivos *.razor* y se compilan para generar lógica que opere en un objeto <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> para representar su salida. Un desarrollador puede implementar de forma manual lógica de <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> mediante código de C# por procedimientos. Para obtener más información, vea <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
+La mayoría de los componentes Blazor se implementan como archivos `.razor` y se compilan para generar lógica que opere en un objeto <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> y representar su salida. Un desarrollador puede implementar de forma manual lógica de <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> mediante código de C# por procedimientos. Para obtener más información, vea <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > El uso de la lógica del generador de árboles de representación manual se considera un escenario avanzado y no seguro, no recomendado para el desarrollo de componentes generales.

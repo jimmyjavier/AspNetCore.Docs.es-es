@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 3a491e43aec8291fcf03696b53240bd33e0deda1
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: ce46d562285b95ff656ed43b3a63ca5e7315f4c8
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102487"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243218"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Plantillas de Blazor de ASP.NET Core
 
@@ -33,7 +33,7 @@ Para más información sobre los modelos de hospedaje de Blazor, vea <xref:blazo
 
 Para obtener instrucciones paso a paso sobre cómo crear una aplicación Blazor a partir de una plantilla, vea <xref:blazor/get-started>.
 
-Las opciones de plantilla están disponibles si se pasa la opción `--help` al comando [dotnet new](/dotnet/core/tools/dotnet-new) de la CLI:
+Las opciones de plantilla están disponibles si se pasa la opción `--help` al comando [`dotnet new`](/dotnet/core/tools/dotnet-new) de la CLI:
 
 ```dotnetcli
 dotnet new blazorwasm --help
@@ -44,7 +44,7 @@ dotnet new blazorserver --help
 
 Los siguientes archivos y carpetas componen una aplicación Blazor generada a partir de una plantilla de Blazor:
 
-* *Program.cs*: El punto de entrada de la aplicación que configura lo siguiente:
+* `Program.cs`: El punto de entrada de la aplicación que configura lo siguiente:
 
   * [Host](xref:fundamentals/host/generic-host) de ASP.NET Core (servidor Blazor)
   * Host de WebAssembly (WebAssembly Blazor): el código de este archivo es único en las aplicaciones creadas a partir de la plantilla de WebAssembly Blazor (`blazorwasm`).
@@ -52,40 +52,40 @@ Los siguientes archivos y carpetas componen una aplicación Blazor generada a pa
     * Los servicios se pueden configurar con el método `ConfigureServices` en el generador del host (por ejemplo, `builder.Services.AddSingleton<IMyDependency, MyDependency>();`).
     * La configuración se puede proporcionar a través del generador del host (`builder.Configuration`).
 
-* *Startup.cs* (Blazor Server): contiene la lógica de inicio de la aplicación. La clase `Startup` define dos métodos:
+* `Startup.cs` (Blazor Server): contiene la lógica de inicio de la aplicación. La clase `Startup` define dos métodos:
 
   * `ConfigureServices`: configura los servicios de [inserción de dependencias](xref:fundamentals/dependency-injection) de la aplicación. En las aplicaciones del servidor Blazor, los servicios se agregan llamando a <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, y el elemento `WeatherForecastService` se agrega al contenedor de servicios para que lo use el componente `FetchData` de ejemplo.
   * `Configure`: configura la canalización de administración de solicitudes de la aplicación:
     * Se llama a <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> para configurar un punto de conexión para la conexión en tiempo real con el explorador. La conexión se crea con [SignalR](xref:signalr/introduction), que es un marco para agregar funcionalidad web a las aplicaciones en tiempo real.
-    * Se llama a [MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) para configurar la página raíz de la aplicación (*Pages/_Host.cshtml*) y habilitar la navegación.
+    * Se llama a [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) para configurar la página raíz de la aplicación (`Pages/_Host.cshtml`) y habilitar la navegación.
 
-* *wwwroot/index.html* (WebAssembly de Blazor): página raíz de la aplicación implementada como página HTML:
+* `wwwroot/index.html` (WebAssembly de Blazor): página raíz de la aplicación implementada como página HTML:
   * Cuando se solicita inicialmente cualquier página de la aplicación, esta página se representa y se devuelve en la respuesta.
-  * La página especifica dónde se va a representar el componente `App` raíz. El componente `App` (*App.Razor*) se especifica como el elemento DOM `app` del método `AddComponent` en `Startup.Configure`.
+  * La página especifica dónde se va a representar el componente `App` raíz. El componente `App` (`App.razor`) se especifica como el elemento DOM `app` del método `AddComponent` en `Startup.Configure`.
   * Se carga el archivo JavaScript `_framework/blazor.webassembly.js`, que hace lo siguiente:
     * Descarga el runtime de .NET, la aplicación y las dependencias de la aplicación.
     * Inicializa el runtime para ejecutar la aplicación.
 
-* *App.razor*: componente raíz de la aplicación que configura el enrutamiento del lado cliente mediante el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>. El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> intercepta la navegación del explorador y representa la página que coincide con la dirección solicitada.
+* `App.razor`: componente raíz de la aplicación que configura el enrutamiento del lado cliente mediante el componente <xref:Microsoft.AspNetCore.Components.Routing.Router>. El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> intercepta la navegación del explorador y representa la página que coincide con la dirección solicitada.
 
-* Carpeta *Pages*: contiene las páginas o componentes enrutables ( *.razor*) que conforman la aplicación Blazor y la página raíz de Razor de una aplicación Blazor Server. La ruta de cada página se especifica usando la directiva [`@page`](xref:mvc/views/razor#page). En la plantilla se incluye lo siguiente:
-  * *_Host.cshtml* (Blazor Server): página raíz de la aplicación implementada como página Razor:
+* Carpeta `Pages`: contiene las páginas o componentes enrutables (`.razor`) que conforman la aplicación Blazor y la página raíz de Razor de una aplicación Blazor Server. La ruta de cada página se especifica usando la directiva [`@page`](xref:mvc/views/razor#page). En la plantilla se incluye lo siguiente:
+  * `_Host.cshtml` (Blazor Server): página raíz de la aplicación implementada como página Razor:
     * Cuando se solicita inicialmente cualquier página de la aplicación, esta página se representa y se devuelve en la respuesta.
     * Se carga el archivo JavaScript `_framework/blazor.server.js`, que configura la conexión de SignalR en tiempo real entre el explorador y el servidor.
-    * La página Host especifica dónde se va a representar el componente `App` raíz (*App.razor*).
-  * `Counter` (*Counter.razor*): implementa la página Counter.
-  * `Error` (solo aplicación de *Error.razor*, Blazor Server): se representa cuando se produce una excepción no controlada en la aplicación.
-  * `FetchData` (*FetchData.razor*): implementa la página Fetch data (Recuperar datos).
-  * `Index` (*Index.razor*): implementa la página principal.
+    * La página Host especifica dónde se va a representar el componente `App` raíz (`App.razor`).
+  * `Counter` (`Pages/Counter.razor`): implementa la página Counter.
+  * `Error` (`Error.razor`, solo aplicación Blazor Server): se representa cuando se produce una excepción no controlada en la aplicación.
+  * `FetchData` (`Pages/FetchData.razor`): implementa la página Fetch data (Recuperar datos).
+  * `Index` (`Pages/Index.razor`): implementa la página principal.
 
-* Carpeta *Shared*: contiene otros componentes de interfaz de usuario ( *.razor*) que la aplicación usa:
-  * `MainLayout` (*MainLayout.razor*): componente de diseño de la aplicación.
-  * `NavMenu` (*NavMenu.razor*): implementa la navegación de barra lateral. Incluye el [componente NavLink](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), que representa los vínculos de navegación a otros componentes de Razor. El componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> indica automáticamente un estado seleccionado cuando su componente se carga, lo que ayuda al usuario a saber qué componente se está mostrando actualmente.
+* Carpeta `Shared`: contiene otros componentes de interfaz de usuario (`.razor`) que la aplicación usa:
+  * `MainLayout` (`MainLayout.razor`): componente de diseño de la aplicación.
+  * `NavMenu` (`NavMenu.razor`): implementa la navegación de barra lateral. Incluye el [componente `NavLink`](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), que representa los vínculos de navegación a otros componentes Razor. El componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> indica automáticamente un estado seleccionado cuando su componente se carga, lo que ayuda al usuario a saber qué componente se está mostrando actualmente.
 
-* *_Imports.razor*: Engloba las directivas de Razor comunes que se van a incluir en los componentes de la aplicación ( *.razor*), como las directivas [`@using`](xref:mvc/views/razor#using) de los espacios de nombres.
+* `_Imports.razor`: Engloba las directivas de Razor comunes que se van a incluir en los componentes de la aplicación (`.razor`), como las directivas [`@using`](xref:mvc/views/razor#using) de los espacios de nombres.
 
-* Carpeta *Data* (Blazor Server): contiene la clase `WeatherForecast` y la implementación de `WeatherForecastService`, que proporcionan datos meteorológicos de ejemplo al componente `FetchData` de la aplicación.
+* Carpeta `Data` (Blazor Server): contiene la clase `WeatherForecast` y la implementación de `WeatherForecastService`, que proporcionan datos meteorológicos de ejemplo al componente `FetchData` de la aplicación.
 
-* *wwwroot*: carpeta [Web Root](xref:fundamentals/index#web-root) de la aplicación que contiene los recursos estáticos públicos de la aplicación.
+* `wwwroot`: carpeta [Web Root](xref:fundamentals/index#web-root) de la aplicación que contiene los recursos estáticos públicos de la aplicación.
 
-* *appsettings.json* (Blazor Server): Opciones de configuración de la aplicación.
+* `appsettings.json` (Blazor Server): Opciones de configuración de la aplicación.
