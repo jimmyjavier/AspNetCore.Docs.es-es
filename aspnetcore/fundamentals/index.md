@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: 0f0e97246b6e1381b85866bd831ee9b4b150650d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c797ce8bcb22aec2b56df2f3b108da4cbfde263d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774332"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403305"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceptos básicos de ASP.NET Core
 
@@ -223,7 +225,7 @@ La raíz web es la ruta de acceso base para los archivos de recursos estáticos 
 
 De manera predeterminada, los archivos estáticos solo se sirven desde el directorio raíz web y sus subdirectorios. La ruta de acceso raíz web se establece de manera predeterminada en *{raíz del contenido}/wwwroot*. Para especificar otra raíz web, establezca su ruta de acceso al [compilar el host](#host). Para obtener más información, vea [Raíz web](xref:fundamentals/host/generic-host#webroot).
 
-Evite la publicación de archivos en *wwwroot* con el [\<Content> elemento de proyecto](/visualstudio/msbuild/common-msbuild-project-items#content) en el archivo de proyecto. En el ejemplo siguiente se impide la publicación de contenido en *wwwroot/local* y sus subdirectorios:
+Evite la publicación de archivos en *wwwroot* con el elemento del proyecto [\<Content> ](/visualstudio/msbuild/common-msbuild-project-items#content) del archivo de proyecto. En el ejemplo siguiente se impide la publicación de contenido en *wwwroot/local* y sus subdirectorios:
 
 ```xml
 <ItemGroup>
@@ -231,7 +233,7 @@ Evite la publicación de archivos en *wwwroot* con el [\<Content> elemento de pr
 </ItemGroup>
 ```
 
-En los archivos *.cshtml* de Razor, la virgulilla `~/` apunta a la raíz web. Una ruta de acceso que empieza por `~/` se conoce como *ruta de acceso virtual*.
+En los archivos Razor *.cshtml*, la virgulilla (`~/`) apunta a la raíz web. Una ruta de acceso que empieza por `~/` se conoce como *ruta de acceso virtual*.
 
 Para obtener más información, vea <xref:fundamentals/static-files>.
 
@@ -481,7 +483,7 @@ De forma predeterminada, los archivos estáticos se atienden solo desde el direc
 
 El valor predeterminado de la ruta de acceso de la raíz web es *{raíz del contenido}/wwwroot*, pero se puede especificar una raíz web diferente [al crear el host](#host). Para obtener más información, vea [Raíz web](xref:fundamentals/host/web-host#web-root).
 
-Evite la publicación de archivos en *wwwroot* con el [\<Content> elemento de proyecto](/visualstudio/msbuild/common-msbuild-project-items#content) en el archivo de proyecto. En el ejemplo siguiente se impide la publicación de contenido en el directorio *wwwroot/local* y en los subdirectorios:
+Evite la publicación de archivos en *wwwroot* con el elemento del proyecto [\<Content> ](/visualstudio/msbuild/common-msbuild-project-items#content) del archivo de proyecto. En el ejemplo siguiente se impide la publicación de contenido en el directorio *wwwroot/local* y en los subdirectorios:
 
 ```xml
 <ItemGroup>

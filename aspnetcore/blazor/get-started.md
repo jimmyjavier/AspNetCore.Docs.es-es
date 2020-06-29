@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: c90c3bf7ccef420101c66fe04d579920209b066c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 63fee0b6a3152640a5483c2a682eec7d04742145
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102338"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243608"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introducción a ASP.NET Core Blazor
 
@@ -70,7 +70,7 @@ Para empezar a trabajar con Blazor, siga las instrucciones correspondientes a la
 
    Para más información sobre los dos modelos de hospedaje de Blazor (*WebAssembly de Blazor*  y *Blazor Server*), vea <xref:blazor/hosting-models>.
 
-1. Abra la carpeta *WebApplication1* en Visual Studio Code.
+1. Abra la carpeta `WebApplication1` en Visual Studio Code.
 
 1. El IDE solicita que agregue recursos para compilar y depurar el proyecto. Seleccione **Sí**.
 
@@ -137,15 +137,15 @@ Hay varias páginas disponibles en las pestañas de la barra lateral:
 * Contador
 * Captura de datos
 
-En la página Contador, seleccione el botón **Click me** para aumentar el contador sin una actualización de página. Para incrementar un contador en una página web suele ser necesario escribir JavaScript, pero con Blazor se puede usar C#.
+En la página Contador, seleccione el botón para aumentar el contador sin una actualización de página. Para incrementar un contador en una página web suele ser necesario escribir JavaScript, pero con Blazor se puede usar C#.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
 Una solicitud de `/counter` en el explorador, tal y como se especifica en la directiva de `@page` en la parte superior, hace que el componente `Counter` represente su contenido. Los componentes se representan en una representación en memoria del árbol de representación que se puede usar para actualizar la interfaz de usuario de una manera eficaz y flexible.
 
-Cada vez que se selecciona el botón **Hacer clic aquí**, ocurre lo siguiente:
+Cada vez que se selecciona el botón, ocurre lo siguiente:
 
 * Se desencadena el evento `onclick`.
 * Se llama al método `IncrementCount` .
@@ -156,7 +156,7 @@ El tiempo de ejecución compara el contenido nuevo con el anterior y solo aplica
 
 Agregue un componente a otro mediante sintaxis HTML. Por ejemplo, para agregar el componente `Counter` a la página de inicio de la aplicación, incorpore un elemento `<Counter />` al componente `Index`.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
@@ -167,17 +167,17 @@ Los parámetros del componente se especifican mediante atributos o [contenido se
 * Agregue una propiedad pública para `IncrementAmount` con un atributo [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
 * Cambie el método `IncrementCount` para usar `IncrementAmount` al aumentar el valor de `currentCount`.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
 Especifique `IncrementAmount` en el elemento `<Counter>` del componente `Index` mediante un atributo.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Ejecutar la aplicación. El componente `Index` tiene su propio contador que se incrementa en diez cada vez que se selecciona el botón **Hacer clic aquí**. El componente `Counter` (*Counter.razor*) en `/counter` sigue incrementándose en uno.
+Ejecutar la aplicación. El componente `Index` tiene su propio contador que se incrementa en diez cada vez que se selecciona el botón. El componente `Counter` (`Pages/Counter.razor`) en `/counter` sigue incrementándose en uno.
 
 ## <a name="next-steps"></a>Pasos siguientes
 

@@ -1,5 +1,5 @@
 ---
-title: Protección de WebAssembly de Blazor en ASP.NET Core
+title: Protección de ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Obtenga información sobre cómo proteger aplicaciones WebAssemlby de Blazor como aplicaciones de página única (SPA).
 monikerRange: '>= aspnetcore-3.1'
@@ -8,34 +8,36 @@ ms.custom: mvc
 ms.date: 06/01/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 877b2bb4b055cca25d64258383cdb39d812e2d6a
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 3fdea9f553cbd37f2c27740487cfe030ebd81937
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243244"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402096"
 ---
-# <a name="secure-aspnet-core-blazor-webassembly"></a>Protección de WebAssembly de Blazor en ASP.NET Core
+# <a name="secure-aspnet-core-blazor-webassembly"></a>Protección de ASP.NET Core Blazor WebAssembly
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
-Las aplicaciones WebAssembly de Blazor se protegen de la misma manera que las aplicaciones de página única (SPA). Hay varios métodos para autenticar a los usuarios en las SPA, pero el enfoque más común y completo consiste en usar una implementación basada en el [protocolo OAuth 2.0](https://oauth.net/), como [Open ID Connect (OIDC)](https://openid.net/connect/).
+Las aplicaciones de Blazor WebAssembly se protegen de la misma manera que las aplicaciones de página única (SPA). Hay varios métodos para autenticar a los usuarios en las SPA, pero el enfoque más común y completo consiste en usar una implementación basada en el [protocolo OAuth 2.0](https://oauth.net/), como [Open ID Connect (OIDC)](https://openid.net/connect/).
 
 ## <a name="authentication-library"></a>Biblioteca de autenticación
 
-WebAssembly de Blazor permite autenticar y autorizar aplicaciones mediante OIDC a través de la biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). La biblioteca proporciona un conjunto de primitivas para la autenticación sin problemas en back-ends de ASP.NET Core. La biblioteca integra ASP.NET Core Identity con compatibilidad con la autorización de API basada en [Identity Server](https://identityserver.io/). La biblioteca puede realizar la autenticación sobre cualquier proveedor de Identity (IP) de terceros que admita OIDC, que se denominan proveedores de OpenID (OP).
+Blazor WebAssembly permite autenticar y autorizar las aplicaciones mediante OIDC a través de la biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). La biblioteca proporciona un conjunto de primitivas para la autenticación sin problemas en back-ends de ASP.NET Core. La biblioteca integra ASP.NET Core Identity con compatibilidad con la autorización de API basada en [Identity Server](https://identityserver.io/). La biblioteca puede realizar la autenticación sobre cualquier proveedor de Identity (IP) de terceros que admita OIDC, que se denominan proveedores de OpenID (OP).
 
-La compatibilidad con la autenticación en WebAssembly de Blazor se basa en la biblioteca `oidc-client.js`, que se usa para administrar los detalles del protocolo de autenticación subyacente.
+La compatibilidad con la autenticación en Blazor WebAssembly se basa en la biblioteca `oidc-client.js`, que se usa para administrar los detalles del protocolo de autenticación subyacente.
 
-Existen otras opciones para la autenticación de las SPA, como el uso de cookies de SameSite. Sin embargo, el diseño de ingeniería de WebAssembly de Blazor se limita a OAuth y OIDC como mejor opción para la autenticación en las aplicaciones WebAssembly de Blazor. Se ha elegido la [autenticación basada en tokens](xref:security/anti-request-forgery#token-based-authentication) basada en [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) antes que la [autenticación basada en cookies](xref:security/anti-request-forgery#cookie-based-authentication) por razones funcionales y de seguridad:
+Existen otras opciones para la autenticación de las SPA, como el uso de cookies de SameSite. Sin embargo, el diseño de ingeniería de Blazor WebAssembly se limita a OAuth y OIDC como mejor opción para la autenticación en las aplicaciones de Blazor WebAssembly. Se ha elegido la [autenticación basada en tokens](xref:security/anti-request-forgery#token-based-authentication) basada en [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) antes que la [autenticación basada en cookies](xref:security/anti-request-forgery#cookie-based-authentication) por razones funcionales y de seguridad:
 
 * El uso de un protocolo basado en tokens ofrece una superficie expuesta a ataques más pequeña, ya que los tokens no se envían en todas las solicitudes.
-* Los puntos de conexión de servidor no requieren protección contra la [Falsificación de solicitudes entre sitios (CSRF)](xref:security/anti-request-forgery), ya que los tokens se envían de forma explícita. Esto permite hospedar aplicaciones WebAssembly de Blazor junto con aplicaciones de páginas de Razor Pages o MVC.
+* Los puntos de conexión de servidor no requieren protección contra la [Falsificación de solicitudes entre sitios (CSRF)](xref:security/anti-request-forgery), ya que los tokens se envían de forma explícita. Esto permite hospedar aplicaciones de Blazor WebAssembly junto con aplicaciones de páginas de Razor o de MVC.
 * Los tokens tienen permisos más restringidos que las cookies. Por ejemplo, los tokens no se pueden usar para administrar la cuenta de usuario o cambiar su contraseña a menos que esa funcionalidad se implemente de forma explícita.
 * Los tokens tienen una duración corta, una hora de forma predeterminada, lo que limita la ventana de ataque. Los tokens también se pueden revocar en cualquier momento.
 * Los JWT independientes ofrecen garantías al cliente y al servidor sobre el proceso de autenticación. Por ejemplo, un cliente tiene los medios para detectar y validar que los tokens que recibe son legítimos y se han emitido como parte de un proceso de autenticación determinado. Si un tercero intenta cambiar un token en medio del proceso de autenticación, el cliente puede detectar el token cambiado y evitar usarlo.
@@ -47,10 +49,10 @@ Existen otras opciones para la autenticación de las SPA, como el uso de cookies
 La biblioteca [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ofrece varias primitivas para implementar la autenticación y autorización mediante OIDC. En términos generales, la autenticación funciona de la siguiente manera:
 
 * Cuando un usuario anónimo selecciona el botón de inicio de sesión o solicita una página con el atributo [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) aplicado, se le redirige a la página de inicio de sesión de la aplicación (`/authentication/login`).
-* En la página de inicio de sesión, la biblioteca de autenticación se prepara para un redireccionamiento al punto de conexión de autorización. El punto de conexión de autorización está fuera de la aplicación WebAssembly de Blazor y se puede hospedar en un origen independiente. El punto de conexión es responsable de determinar si el usuario está autenticado y de emitir uno o más tokens en respuesta. La biblioteca de autenticación proporciona una devolución de llamada de inicio de sesión para recibir la respuesta de autenticación.
+* En la página de inicio de sesión, la biblioteca de autenticación se prepara para un redireccionamiento al punto de conexión de autorización. El punto de conexión de autorización está fuera de la aplicación de Blazor WebAssembly y se puede hospedar en un origen independiente. El punto de conexión es responsable de determinar si el usuario está autenticado y de emitir uno o más tokens en respuesta. La biblioteca de autenticación proporciona una devolución de llamada de inicio de sesión para recibir la respuesta de autenticación.
   * Si el usuario no está autenticado, se le redirige al sistema de autenticación subyacente, que normalmente es ASP.NET Core Identity.
   * Si el usuario ya se ha autenticado, el punto de conexión de autorización genera los tokens adecuados y devuelve al explorador al punto de conexión de devolución de llamada de inicio de sesión (`/authentication/login-callback`).
-* Cuando la aplicación WebAssembly de Blazor carga el punto de conexión de devolución de llamada de inicio de sesión (`/authentication/login-callback`), se procesa la respuesta de autenticación.
+* Cuando la aplicación de Blazor WebAssembly carga el punto de conexión de devolución de llamada de inicio de sesión (`/authentication/login-callback`), se procesa la respuesta de autenticación.
   * Si el proceso de autenticación se completa correctamente, el usuario se autentica y, opcionalmente, se devuelve a la dirección URL protegida original que haya solicitado.
   * Si por algún motivo se produce un error en el proceso de autenticación, se envía al usuario a la página de inicio de sesión con errores (`/authentication/login-failed`) y se muestra un error.
 
@@ -62,22 +64,22 @@ En aplicaciones de Blazor WebAssembly, las comprobaciones de autorización puede
 
 ## <a name="refresh-tokens"></a>Tokens de actualización
 
-Los tokens de actualización no se pueden proteger en el lado cliente en aplicaciones Blazor WebAssembly. Por lo tanto, no se deben enviar a la aplicación para su uso directo.
+Los tokens de actualización no se pueden proteger en el lado cliente en aplicaciones de Blazor WebAssembly. Por lo tanto, no se deben enviar a la aplicación para su uso directo.
 
 Los tokens de actualización se pueden mantener y usar en la aplicación del lado servidor en una solución Blazor WebAssembly hospedada para acceder a las API de terceros. Para obtener más información, vea <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
 
 ## <a name="implementation-guidance"></a>Guía de implementación
 
-Los artículos de esta *información general* ofrecen detalles sobre la autenticación de usuarios en WebAssembly de Blazor con proveedores específicos.
+En los artículos de esta *introducción* se ofrecen detalles sobre la autenticación de usuarios en aplicaciones de Blazor WebAssembly con proveedores específicos.
 
-Aplicaciones WebAssembly Blazor independientes:
+Aplicaciones de Blazor WebAssembly independientes:
 
 * [Instrucciones generales para los proveedores de OIDC y la biblioteca de autenticación WebAssembly](xref:blazor/security/webassembly/standalone-with-authentication-library)
 * [Cuentas de Microsoft](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
 
-Aplicaciones WebAssembly Blazor hospedadas:
+Aplicaciones de Blazor WebAssembly hospedadas:
 
 * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)

@@ -1,7 +1,7 @@
-El `RedirectToLogin` componente (*Shared/RedirectToLogin. Razor*):
+El componente `RedirectToLogin` (`Shared/RedirectToLogin.razor`):
 
-* Administra la redirección de usuarios no autorizados a la página de inicio de sesión.
-* Conserva la dirección URL actual a la que el usuario intenta tener acceso para que se pueda devolver a esa página si la autenticación se realiza correctamente.
+* Administra el redireccionamiento de usuarios no autorizados a la página de inicio de sesión.
+* Conserva la dirección URL actual a la que el usuario intenta tener acceso para que pueda volver a esa página si la autenticación se realiza correctamente.
 
 ```razor
 @inject NavigationManager Navigation

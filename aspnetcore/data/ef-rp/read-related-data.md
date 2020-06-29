@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 5ffb57f21c89e21fcbb14b933cb0d0cb29d9c71b
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652615"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240936"
 ---
 # <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6. Razor Pages con EF Core en ASP.NET Core: Lectura de datos relacionados
 
@@ -52,7 +52,7 @@ EF Core puede cargar datos relacionados en las propiedades de navegación de una
 
   ![Ejemplo de consultas independientes](read-related-data/_static/separate-queries.png)
 
-  Nota: EF Core corrige automáticamente las propiedades de navegación para todas las entidades que se cargaron previamente en la instancia del contexto. Incluso si los datos de una propiedad de navegación *no* se incluyen explícitamente, es posible que la propiedad se siga rellenando si algunas o todas las entidades relacionadas se cargaron previamente.
+  **Nota:** EF Core corrige automáticamente las propiedades de navegación para todas las entidades que se cargaron previamente en la instancia del contexto. Incluso si los datos de una propiedad de navegación *no* se incluyen explícitamente, es posible que la propiedad se siga rellenando si algunas o todas las entidades relacionadas se cargaron previamente.
 
 * [Carga explícita](/ef/core/querying/related-data#explicit-loading). Cuando la entidad se lee por primera vez, no se recuperan datos relacionados. Se debe escribir código para recuperar los datos relacionados cuando sea necesario. La carga explícita con consultas independientes da como resultado varias consultas que se envían a la base de datos. Con la carga explícita, el código especifica las propiedades de navegación que se van a cargar. Use el método `Load` para realizar la carga explícita. Por ejemplo:
 
@@ -231,7 +231,7 @@ El código siguiente se ejecuta cuando se selecciona un instructor (`id != null`
 
 El instructor seleccionado se recupera de la lista de instructores del modelo de vista. Se carga la propiedad `Courses` del modelo de vista con las entidades `Course` de la propiedad de navegación `CourseAssignments` de ese instructor.
 
-El método `Where` devuelve una colección. Pero en este caso, el filtro seleccionará una sola entidad. Por tanto, se llama al método `Single` para convertir la colección en una sola entidad `Instructor`. La entidad `Instructor` proporciona acceso a la propiedad `CourseAssignments`. `CourseAssignments` proporciona acceso a las entidades `Course` relacionadas.
+El método `Where` devuelve una colección. Sin embargo, en este caso, el filtro seleccionará una sola entidad, por lo que se llamará al método `Single` para convertir la colección en una sola entidad `Instructor`. La entidad `Instructor` proporciona acceso a la propiedad `CourseAssignments`. `CourseAssignments` proporciona acceso a las entidades `Course` relacionadas.
 
 ![Relación de varios a varios Instructor-to-Courses](complex-data-model/_static/courseassignment.png)
 

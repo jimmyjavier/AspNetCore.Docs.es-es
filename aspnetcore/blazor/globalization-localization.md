@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 42b61c9af0c1809ecb7d9a45ec8edfa815e2df22
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102318"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243595"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>Globalización y localización de Blazor de ASP.NET Core
 
@@ -71,7 +71,7 @@ Para configurar explícitamente la referencia cultural, establezca <xref:System.
 
 De forma predeterminada, la configuración del enlazador de Blazor para aplicaciones WebAssembly de Blazor quita información de internacionalización, excepto para las configuraciones regionales solicitadas de forma explícita. Para obtener más información e instrucciones sobre cómo controlar el comportamiento del enlazador, vea <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
-Si bien la referencia cultural que Blazor selecciona de manera predeterminada puede ser suficiente para la mayoría de los usuarios, considere la posibilidad de ofrecer una manera para que los usuarios especifiquen su configuración regional preferida. Para una aplicación de ejemplo de Blazor WebAssembly con un selector de referencia cultural, consulte la aplicación de ejemplo de localización [LocSample](https://github.com/pranavkm/LocSample).
+Si bien la referencia cultural que Blazor selecciona de manera predeterminada puede ser suficiente para la mayoría de los usuarios, considere la posibilidad de ofrecer una manera para que los usuarios especifiquen su configuración regional preferida. Para una aplicación de ejemplo WebAssembly de Blazor con un selector de referencia cultural, consulte la aplicación de ejemplo de localización [`LocSample`](https://github.com/pranavkm/LocSample).
 
 ### <a name="blazor-server"></a>Servidor de Blazor
 
@@ -92,7 +92,7 @@ El uso de una cookie garantiza que la conexión WebSocket puede propagar correct
 
 Se puede usar cualquier técnica para asignar una referencia cultural si la referencia cultural se conserva en una cookie de localización. Si la aplicación ya tiene un esquema de localización establecido para ASP.NET Core del lado servidor, siga usando la infraestructura de localización existente de la aplicación y establezca la cookie de cultura de localización en el esquema de la aplicación.
 
-En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree una expresión de Razor en el archivo *P*, justo dentro de la etiqueta de apertura `<body>`:
+En el siguiente ejemplo se muestra cómo establecer la referencia cultural actual en una cookie que el middleware de localización puede leer. Cree una expresión de Razor en el archivo `Pages/_Host.cshtml`, justo dentro de la etiqueta de apertura `<body>`:
 
 ```cshtml
 @using System.Globalization
@@ -118,7 +118,7 @@ La aplicación controla la localización en la siguiente secuencia de eventos:
 
 1. El explorador envía una solicitud HTTP inicial a la aplicación.
 1. El middleware de localización asigna la referencia cultural.
-1. La expresión Razor de la página `_Host` ( *_Host.cshtml*) conserva la referencia cultural en una cookie como parte de la respuesta.
+1. La expresión Razor de la página `_Host` (`_Host.cshtml`) conserva la referencia cultural en una cookie como parte de la respuesta.
 1. El explorador abre una conexión WebSocket para crear una sesión de servidor Blazor interactiva.
 1. El middleware de localización lee la cookie y asigna la referencia cultural.
 1. La sesión del servidor Blazor comienza con la referencia cultural correcta.

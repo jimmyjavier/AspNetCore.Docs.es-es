@@ -1,9 +1,9 @@
-El `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) se representa en el `MainLayout` componente (*Shared/MainLayout. Razor*) y administra los comportamientos siguientes:
+El componente `LoginDisplay` (`Shared/LoginDisplay.razor`) se representa en el componente `MainLayout` (`Shared/MainLayout.razor`) y administra los siguientes comportamientos:
 
-* Para usuarios autenticados:
+* En el caso de los usuarios autenticados:
   * Muestra el nombre de usuario actual.
-  * Ofrece un botón para cerrar la sesión de la aplicación.
-* En el caso de los usuarios anónimos, ofrece la opción de iniciar sesión.
+  * Proporciona un botón para cerrar la sesión de la aplicación.
+* En el caso de los usuarios anónimos, ofrece la posibilidad de iniciar sesión.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization

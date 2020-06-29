@@ -5,7 +5,7 @@ description: Obtenga información sobre cómo configurar las comprobaciones de e
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 06/22/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: ca5540b4920bc92e968dcbc22a9407453041b01c
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074436"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292703"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Comprobaciones de estado en ASP.NET Core
 
@@ -442,10 +442,10 @@ Unhealthy
 
 En algunos escenarios de hospedaje, se usa un par de comprobaciones de estado que distinguen los dos estados de la aplicación:
 
-* La aplicación está funcionando, pero aún no está preparada para recibir solicitudes. Este estado es la *preparación* de la aplicación.
-* La aplicación está funcionando y responde a las solicitudes. Este estado es la *ejecución* de la aplicación.
+* *Preparación* indica si la aplicación se ejecuta con normalidad, pero no está lista para recibir solicitudes.
+* *Ejecución* indica si una aplicación se ha bloqueado y debe reiniciarse.
 
-Normalmente, la comprobación de preparación realiza un conjunto más amplio de comprobaciones, que requieren mucho tiempo, para determinar si están disponibles todos los subsistemas y los recursos de la aplicación. Una comprobación de ejecución simplemente realiza una comprobación rápida para determinar si la aplicación está disponible para procesar las solicitudes. Después de que la aplicación pase la comprobación de preparación, no es necesario sobrecargar aún más la aplicación con el conjunto amplio de comprobaciones de preparación; en las comprobaciones siguientes solo se requiere comprobar la ejecución.
+Considere el ejemplo siguiente: Antes de estar lista para procesar solicitudes, una aplicación debe descargar un archivo de configuración de gran tamaño. No queremos que se reinicie la aplicación si se produce un error en la descarga inicial, dado que la aplicación puede volver a intentar descargar el archivo varias veces. Usamos un *sondeo de ejecución* para describir la ejecución del proceso, sin realizar ninguna otra comprobación. También queremos evitar que las solicitudes se envíen a la aplicación antes de que finalice la descarga del archivo de configuración. Hasta que no finaliza la descarga y la aplicación está lista para recibir solicitudes, usamos un *sondeo de preparación* para indicar un estado "no preparado".
 
 La aplicación de ejemplo contiene una comprobación de estado para notificar la finalización de la tarea de inicio de ejecución prolongada en un [servicio hospedado](xref:fundamentals/host/hosted-services). El elemento `StartupHostedServiceHealthCheck` expone una propiedad, `StartupTaskCompleted`, que el servicio hospedado puede establecer en `true` al terminar su tarea de ejecución prolongada (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1155,10 +1155,10 @@ Unhealthy
 
 En algunos escenarios de hospedaje, se usa un par de comprobaciones de estado que distinguen los dos estados de la aplicación:
 
-* La aplicación está funcionando, pero aún no está preparada para recibir solicitudes. Este estado es la *preparación* de la aplicación.
-* La aplicación está funcionando y responde a las solicitudes. Este estado es la *ejecución* de la aplicación.
+* *Preparación* indica si la aplicación se ejecuta con normalidad, pero no está lista para recibir solicitudes.
+* *Ejecución* indica si una aplicación se ha bloqueado y debe reiniciarse.
 
-Normalmente, la comprobación de preparación realiza un conjunto más amplio de comprobaciones, que requieren mucho tiempo, para determinar si están disponibles todos los subsistemas y los recursos de la aplicación. Una comprobación de ejecución simplemente realiza una comprobación rápida para determinar si la aplicación está disponible para procesar las solicitudes. Después de que la aplicación pase la comprobación de preparación, no es necesario sobrecargar aún más la aplicación con el conjunto amplio de comprobaciones de preparación; en las comprobaciones siguientes solo se requiere comprobar la ejecución.
+Considere el ejemplo siguiente: Antes de estar lista para procesar solicitudes, una aplicación debe descargar un archivo de configuración de gran tamaño. No queremos que se reinicie la aplicación si se produce un error en la descarga inicial, dado que la aplicación puede volver a intentar descargar el archivo varias veces. Usamos un *sondeo de ejecución* para describir la ejecución del proceso, sin realizar ninguna otra comprobación. También queremos evitar que las solicitudes se envíen a la aplicación antes de que finalice la descarga del archivo de configuración. Hasta que no finaliza la descarga y la aplicación está lista para recibir solicitudes, usamos un *sondeo de preparación* para indicar un estado "no preparado".
 
 La aplicación de ejemplo contiene una comprobación de estado para notificar la finalización de la tarea de inicio de ejecución prolongada en un [servicio hospedado](xref:fundamentals/host/hosted-services). El elemento `StartupHostedServiceHealthCheck` expone una propiedad, `StartupTaskCompleted`, que el servicio hospedado puede establecer en `true` al terminar su tarea de ejecución prolongada (*StartupHostedServiceHealthCheck.cs*):
 

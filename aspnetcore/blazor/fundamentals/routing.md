@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 9668077d9b59ff20b1aab0b496278f2460e5ad2a
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: fde30109395065014433bebde52a9eb22458c451
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103450"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242750"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Enrutamiento de Blazor de ASP.NET Core
 
@@ -32,11 +32,11 @@ Blazor Server se integra en el [enrutamiento de puntos de conexión de ASP.NET C
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-La configuración más común consiste en enrutar todas las solicitudes a una página de Razor, que actúa como el host del lado servidor de la aplicación Blazor Server. Convencionalmente, la página del *host* se suele llamar *_Host.cshtml*. La ruta especificada en el archivo de host se denomina *ruta de reserva* porque tiene una prioridad baja en la búsqueda de rutas, y se tiene en cuenta solo cuando no se encuentran coincidencias en otras rutas. Esto permite a la aplicación usar otros controladores y páginas sin interferir con la aplicación Blazor Server.
+La configuración más común consiste en enrutar todas las solicitudes a una página de Razor, que actúa como el host del lado servidor de la aplicación Blazor Server. Convencionalmente, la página del *host* se suele llamar `_Host.cshtml`. La ruta especificada en el archivo de host se denomina *ruta de reserva* porque tiene una prioridad baja en la búsqueda de rutas, y se tiene en cuenta solo cuando no se encuentran coincidencias en otras rutas. Esto permite a la aplicación usar otros controladores y páginas sin interferir con la aplicación Blazor Server.
 
 ## <a name="route-templates"></a>Plantillas de ruta
 
-El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> permite el enrutamiento a cada componente con una ruta especificada. El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> aparece en el archivo *App.razor*:
+El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> permite el enrutamiento a cada componente con una ruta especificada. El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> aparece en el archivo `App.razor`:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -49,14 +49,14 @@ El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> permite el e
 </Router>
 ```
 
-Cuando se compila un archivo *.razor* con una directiva `@page`, la clase generada recibe un elemento <xref:Microsoft.AspNetCore.Components.RouteAttribute>, donde se especifica la plantilla de ruta.
+Cuando se compila un archivo `.razor` con una directiva `@page`, la clase generada recibe un elemento <xref:Microsoft.AspNetCore.Components.RouteAttribute>, donde se especifica la plantilla de ruta.
 
 En tiempo de ejecución, el componente <xref:Microsoft.AspNetCore.Components.RouteView>:
 
 * Recibe el elemento <xref:Microsoft.AspNetCore.Components.RouteData> de <xref:Microsoft.AspNetCore.Components.Routing.Router> junto con los parámetros deseados.
 * Representa el componente especificado con su diseño (o un diseño predeterminado opcional) por medio de los parámetros especificados.
 
-Opcionalmente, se puede especificar un parámetro <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> con una clase de diseño para usarlo con aquellos componentes que no tengan especificado un diseño. Las plantillas de Blazor predeterminadas especifican el componente `MainLayout`. *MainLayout.razor* está en la carpeta *Shared* del proyecto de plantilla. Para más información sobre los diseños, vea <xref:blazor/layouts>.
+Opcionalmente, se puede especificar un parámetro <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> con una clase de diseño para usarlo con aquellos componentes que no tengan especificado un diseño. Las plantillas de Blazor predeterminadas especifican el componente `MainLayout`. `MainLayout.razor` está en la carpeta `Shared` del proyecto de plantilla. Para más información sobre los diseños, vea <xref:blazor/layouts>.
 
 Se pueden aplicar varias plantillas de ruta a un componente. El siguiente componente atiende las solicitudes de `/BlazorRoute` y `/DifferentBlazorRoute`:
 
@@ -68,13 +68,13 @@ Se pueden aplicar varias plantillas de ruta a un componente. El siguiente compon
 ```
 
 > [!IMPORTANT]
-> Para que las direcciones URL se resuelvan correctamente, la aplicación debe incluir una etiqueta `<base>` en su archivo *wwwroot/index.html* (Blazor WebAssembly) o en su archivo *Pages/_Host.cshtml* (Blazor Server) con la ruta de acceso base de la aplicación especificada en el atributo `href` (`<base href="/">`). Para obtener más información, vea <xref:blazor/host-and-deploy/index#app-base-path>.
+> Para que las direcciones URL se resuelvan correctamente, la aplicación debe incluir una etiqueta `<base>` en su archivo `wwwroot/index.html` (WebAssembly de Blazor) o en su archivo `Pages/_Host.cshtml` (Blazor Server) con la ruta de acceso base de la aplicación especificada en el atributo `href` (`<base href="/">`). Para obtener más información, vea <xref:blazor/host-and-deploy/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Suministro de contenido personalizado cuando no se encuentra contenido
 
 El componente <xref:Microsoft.AspNetCore.Components.Routing.Router> permite a la aplicación especificar contenido personalizado si no se encuentra contenido para la ruta solicitada.
 
-En el archivo *App.razor*, establezca el contenido personalizado en el parámetro de plantilla <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> del componente <xref:Microsoft.AspNetCore.Components.Routing.Router>:
+En el archivo `App.razor`, establezca el contenido personalizado en el parámetro de plantilla <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> del componente <xref:Microsoft.AspNetCore.Components.Routing.Router>:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -154,7 +154,7 @@ En la siguiente tabla figuran las restricciones de ruta que hay disponibles. Par
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Enrutamiento con direcciones URL que contienen puntos
 
-En las aplicaciones Blazor Server, la ruta predeterminada en *_Host.cshtml* es `/` (`@page "/"`). Una dirección URL de solicitud que contiene un punto (`.`) no coincide con la ruta predeterminada porque la dirección URL parece que solicita un archivo. Una aplicación Blazor devuelve una respuesta *404 No encontrado* cuando un archivo estático no existe. Para usar rutas que contienen un punto, configure *_Host.cshtml* con la siguiente plantilla de ruta:
+En las aplicaciones Blazor Server, la ruta predeterminada en `_Host.cshtml` es `/` (`@page "/"`). Una dirección URL de solicitud que contiene un punto (`.`) no coincide con la ruta predeterminada porque la dirección URL parece que solicita un archivo. Una aplicación Blazor devuelve una respuesta *404 No encontrado* cuando un archivo estático no existe. Para usar rutas que contienen un punto, configure `_Host.cshtml` con la siguiente plantilla de ruta:
 
 ```cshtml
 @page "/{**path}"
@@ -166,7 +166,7 @@ La plantilla `"/{**path}"` incluye lo siguiente:
 * El nombre del parámetro de ruta `path`
 
 > [!NOTE]
-> La sintaxis de parámetros *Catch-all* (`*`/`**`) **no** se admite en componentes Razor ( *.razor*).
+> La sintaxis de parámetro *Catch-all* (`*`/`**`) **no** se admite en componentes Razor (`.razor`).
 
 Para obtener más información, vea <xref:fundamentals/routing>.
 
@@ -174,7 +174,7 @@ Para obtener más información, vea <xref:fundamentals/routing>.
 
 Use un componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> en lugar de los elementos de hipervínculo HTML (`<a>`) cuando cree vínculos de navegación. Un componente <xref:Microsoft.AspNetCore.Components.Routing.NavLink> se comporta igual que un elemento `<a>`, salvo que alterna una clase CSS `active` en función de si su elemento `href` coincide con la dirección URL actual. La clase `active` ayuda a un usuario a entender qué página es la página activa entre los vínculos de navegación mostrados.
 
-El siguiente componente `NavMenu` crea una barra de navegación de [Bootstrap](https://getbootstrap.com/docs/) que muestra cómo usar componentes <xref:Microsoft.AspNetCore.Components.Routing.NavLink>:
+El siguiente componente `NavMenu` crea una barra de navegación de [`Bootstrap`](https://getbootstrap.com/docs/) que muestra cómo usar componentes <xref:Microsoft.AspNetCore.Components.Routing.NavLink>:
 
 [!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
@@ -204,7 +204,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> para trabajar con l
 | Miembro | Descripción |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Obtiene el URI absoluto actual. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Obtiene el URI base (con una barra diagonal final) que se puede anteponer a las rutas de acceso de URI relativo para generar un URI absoluto. Normalmente, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponde al atributo `href` del elemento `<base>` del documento en *wwwroot/index.html* (WebAssembly de Blazor) o *Pages/_Host.cshtml* (servidor Blazor). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Obtiene el URI base (con una barra diagonal final) que se puede anteponer a las rutas de acceso de URI relativo para generar un URI absoluto. Normalmente, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponde al atributo `href` del elemento `<base>` del documento en `wwwroot/index.html` (WebAssembly de Blazor) o `Pages/_Host.cshtml` (Blazor Server). |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navega al URI especificado. Si `forceLoad` es `true`:<ul><li>El enrutamiento del lado cliente se omite.</li><li>Se fuerza al explorador a cargar la nueva página desde el servidor, tanto si el URI suele estar controlado por el enrutador del lado cliente como si no.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | Evento que se desencadena cuando la ubicación de navegación ha cambiado. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Convierte un URI relativo en un URI absoluto. |

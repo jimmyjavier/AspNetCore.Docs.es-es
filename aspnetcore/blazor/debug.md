@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 193dc656c2ee0154f0ae534bc00f8dc29bab3258
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: 75db5d5e69cb200ebf3bd1dc1e0afed0300214cc
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84239202"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242776"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Depuración de WebAssembly de Blazor en ASP.NET Core
 
@@ -51,13 +51,13 @@ La depuración requiere cualquiera de los exploradores siguientes:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitación de la depuración para Visual Studio y Visual Studio Code
 
-Para habilitar la depuración de una aplicación de Blazor WebAssembly existente, actualice el archivo *launchSettings.json* del proyecto de inicio para incluir la propiedad `inspectUri` siguiente en cada perfil de inicio:
+Para habilitar la depuración de una aplicación WebAssembly de Blazor existente, actualice el archivo `launchSettings.json` del proyecto de inicio para incluir la propiedad `inspectUri` siguiente en cada perfil de inicio:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-Una vez que lo actualice, el archivo *launchSettings.json* debe ser similar a este ejemplo:
+Una vez que lo actualice, el archivo `launchSettings.json` debe ser similar a este ejemplo:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
@@ -74,8 +74,8 @@ Para depurar una aplicación de Blazor WebAssembly en Visual Studio:
 
 1. Cree una nueva aplicación de Blazor WebAssembly hospedada por ASP.NET Core.
 1. Presione <kbd>F5</kbd> para ejecutar la aplicación en el depurador.
-1. Establezca un punto de interrupción en *Counter.razor* en el método `IncrementCount`.
-1. Vaya a la pestaña **Contador** y seleccione el botón para alcanzar el punto de interrupción:
+1. Establezca un punto de interrupción en `Pages/Counter.razor` en el método `IncrementCount`.
+1. Vaya a la pestaña **`Counter`** y seleccione el botón para alcanzar el punto de interrupción:
 
    ![Depuración del contador](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-counter.png)
 
@@ -87,9 +87,9 @@ Para depurar una aplicación de Blazor WebAssembly en Visual Studio:
 
 Al depurar la aplicación de Blazor WebAssembly, también puede depurar el código del servidor:
 
-1. Establezca un punto de interrupción en la página *FetchData.razor* en <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+1. Establezca un punto de interrupción en la página `Pages/FetchData.razor` de <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
 1. Establezca un punto de interrupción en `WeatherForecastController` en el método de acción `Get`.
-1. Vaya a la pestaña **Capturar datos** para alcanzar el primer punto de recuperación en el componente `FetchData` justo antes de que emita una solicitud HTTP al servidor:
+1. Vaya a la pestaña **`Fetch Data`** para alcanzar el primer punto de recuperación en el componente `FetchData` justo antes de que emita una solicitud HTTP al servidor:
 
    ![Depuración de captura de datos](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-fetch-data.png)
 
@@ -145,11 +145,11 @@ Instale la [extensión de C#](https://marketplace.visualstudio.com/items?itemNam
 
 1. En la ventana de selección, seleccione el proyecto *Servidor* dentro de la solución hospedada.
 
-Se genera un archivo *launch.json* con la configuración de inicio para iniciar el depurador.
+Se genera un archivo `launch.json` con la configuración de inicio para iniciar el depurador.
 
 ### <a name="attach-to-an-existing-debugging-session"></a>Adjuntar a una sesión de depuración existente
 
-Para adjuntar a una aplicación Blazor en ejecución, cree un archivo *launch.json* con la configuración siguiente:
+Para adjuntar a una aplicación Blazor en ejecución, cree un archivo `launch.json` con la configuración siguiente:
 
 ```json
 {
@@ -222,7 +222,7 @@ Estas opciones de configuración de inicio son compatibles con el tipo de depura
 
 1. El explorador se debe ejecutar con la depuración remota habilitada. Si la depuración remota está deshabilitada, se genera una página de error en la que se indica que **no se puede encontrar la pestaña del explorador depurable**. La página de error contiene instrucciones para ejecutar el explorador con el puerto de depuración abierto para que el proxy de depuración de Blazor se pueda conectar a la aplicación. *Cierre todas las instancias del explorador* y reinicie el explorador, tal como se indica.
 
-Una vez que el explorador se ejecute con la depuración remota habilitada, el método abreviado de teclado de depuración abre una nueva pestaña del depurador. Tras unos instantes, en la pestaña **Orígenes** se mostrará una lista de los ensamblados .NET en la aplicación. Expanda cada ensamblado y busque los archivos de origen *.cs*/ *.razor* disponibles para la depuración. Establezca puntos de interrupción, vuelva a la pestaña de la aplicación y los puntos de interrupción se alcanzarán cuando se ejecute el código. Una vez que se haya alcanzado un punto de interrupción, examine el código una vez (<kbd>F10</kbd>) o reanude (<kbd>F8</kbd>) la ejecución del código con normalidad.
+Una vez que el explorador se ejecute con la depuración remota habilitada, el método abreviado de teclado de depuración abre una nueva pestaña del depurador. Tras unos instantes, en la pestaña **Orígenes** se mostrará una lista de los ensamblados .NET en la aplicación. Expanda cada ensamblado y busque los archivos de origen `.cs`/`.razor` disponibles para la depuración. Establezca puntos de interrupción, vuelva a la pestaña de la aplicación y los puntos de interrupción se alcanzarán cuando se ejecute el código. Una vez que se haya alcanzado un punto de interrupción, examine el código una vez (<kbd>F10</kbd>) o reanude (<kbd>F8</kbd>) la ejecución del código con normalidad.
 
 Blazor proporciona un proxy de depuración que implementa el [protocolo Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/) y aumenta el protocolo con información específica de .NET. Cuando se presiona el método abreviado de teclado de depuración, Blazor apunta a Chrome DevTools en el proxy. El proxy se conecta a la ventana del explorador que se quiere depurar (de ahí la necesidad de habilitar la depuración remota).
 

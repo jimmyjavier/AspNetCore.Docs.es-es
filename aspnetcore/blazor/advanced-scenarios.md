@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 3345f545e230ada78e6c66fc9eb049060d5794d6
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: d4ebab0d8fc2ee48fa4d9c8b1f1b8e5cbf43cab9
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851164"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242450"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Escenarios avanzados de ASP.NET Core Blazor
 
@@ -68,7 +68,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Si los métodos de un controlador de circuito personalizado producen una excepción no controlada, la excepción es grave para el circuito de Blazor Server. Para tolerar excepciones en el código de un controlador o en métodos llamados, encapsule el código en una o varias instrucciones [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
+Si los métodos de un controlador de circuito personalizado producen una excepción no controlada, la excepción es grave para el circuito de Blazor Server. Para tolerar excepciones en el código de un controlador o en los métodos llamados, encapsule el código en una o varias instrucciones [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) con control de errores y registro.
 
 Cuando un circuito finaliza porque un usuario se ha desconectado y el marco está limpiando el estado del circuito, el marco desecha el ámbito de DI del circuito. Al desechar el ámbito, se eliminan también todos los servicios de DI con ámbito del circuito que implementan <xref:System.IDisposable?displayProperty=fullName>. Si un servicio de DI produce una excepción no controlada durante la eliminación, el marco registra la excepción.
 
@@ -133,11 +133,11 @@ Componente `BuiltContent`:
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Los números de secuencia se relacionan con los números de línea de código y no con el orden de ejecución
 
-Los archivos de componente Razor ( *.razor*) siempre se compilan. La compilación es una ventaja potencial sobre la interpretación de código porque el paso de compilación se puede usar para insertar información que mejore el rendimiento de las aplicaciones en tiempo de ejecución.
+Los archivos de componentes Razor (`.razor`) siempre se compilan. La compilación es una ventaja potencial sobre la interpretación de código porque el paso de compilación se puede usar para insertar información que mejore el rendimiento de las aplicaciones en tiempo de ejecución.
 
 Un ejemplo clave de estas mejoras implica *números de secuencia*. Los números de secuencia indican al runtime qué resultados proceden a partir de qué líneas de código distintas y ordenadas. El runtime utiliza esta información con el fin de generar diferencias de árbol eficientes en tiempo lineal, que es mucho más rápido de lo que normalmente es posible para un algoritmo general de diferencia de árboles.
 
-Considere el archivo de componente Razor ( *.razor*) siguiente:
+Considere el componente Razor siguiente (`.razor`):
 
 ```razor
 @if (someFlag)
@@ -217,9 +217,9 @@ Este es un ejemplo trivial. En casos más realistas con estructuras complejas y 
 
 * El rendimiento de la aplicación se ve afectado si los números de secuencia se generan dinámicamente.
 * El marco no puede crear sus propios números de secuencia automáticamente en tiempo de ejecución porque la información necesaria no existe a menos que se capture en tiempo de compilación.
-* No escriba bloques grandes de lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> implementada de forma manual. Dele preferencia a archivos *.razor* y permita que el compilador trate los números de secuencia. Si no puede evitar la lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> manual, divida bloques grandes de código en fragmentos más pequeños encapsulados en llamadas <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A>/<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A>. Cada región tiene su propio espacio independiente de números de secuencia, por lo que puede reiniciar desde cero (o cualquier otro número arbitrario) en cada región.
+* No escriba bloques grandes de lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> implementada de forma manual. Dé preferencia a los archivos `.razor` y permita que el compilador trate los números de secuencia. Si no puede evitar la lógica <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> manual, divida bloques grandes de código en fragmentos más pequeños encapsulados en llamadas <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A>/<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A>. Cada región tiene su propio espacio independiente de números de secuencia, por lo que puede reiniciar desde cero (o cualquier otro número arbitrario) en cada región.
 * Si los números de secuencia están codificados, el algoritmo de diferencia solo requiere que los números de secuencia aumenten de valor. El valor inicial y los intervalos son irrelevantes. Una opción legítima es usar el número de línea de código como el número de secuencia, o comenzar a partir de cero y aumentar en unos o cientos (o cualquier intervalo preferido). 
-* Blazor utiliza los números de secuencia, mientras que otros marcos de la interfaz de usuario de diferencia de árboles no. La comparación es mucho más rápida cuando se utilizan números de secuencia y la ventaja de Blazor es un paso de compilación que trata los números de secuencia automáticamente para desarrolladores que crean archivos *.razor*.
+* Blazor utiliza los números de secuencia, mientras que otros marcos de la interfaz de usuario de diferencia de árboles no. La comparación es mucho más rápida cuando se utilizan números de secuencia, y la ventaja de Blazor es un paso de compilación que trata los números de secuencia automáticamente para desarrolladores que crean archivos `.razor`.
 
 ## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Realización de transferencias de datos grandes en aplicaciones Blazor Server
 

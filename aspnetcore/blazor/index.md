@@ -8,17 +8,19 @@ ms.custom: mvc, seoapril2019
 ms.date: 06/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 694be6317aaac211f5099dfca749ff8a69d146d1
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 30f11a137e711b1cf7a8b036af92fbb5fa2a1f05
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243517"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402577"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introducción a ASP.NET Core Blazor
 
@@ -108,21 +110,21 @@ Cuando este componente se usa en la aplicación, IntelliSense en [Visual Studio]
 
 Los componentes se representan en una representación en memoria de la especificación Document Object Model (DOM) del explorador llamada *árbol de representación*, que se usa para actualizar la interfaz de usuario de una manera eficaz y flexible.
 
-## <a name="blazor-webassembly"></a>Blazor WebAssembly
+## Blazor WebAssembly
 
-Blazor WebAssembly es una plataforma de trabajo de aplicaciones de página única para la creación de aplicaciones web interactivas del lado cliente con. NET. Blazor WebAssembly usa estándares web abiertos sin complementos ni transpilación de código, y funciona en todos los exploradores web modernos, incluidos los exploradores para dispositivos móviles.
+Blazor WebAssembly es un marco de aplicaciones de una sola página para compilar aplicaciones web interactivas del lado cliente con. NET. Blazor WebAssembly usa estándares web abiertos sin complementos ni transpilación de código, y funciona en todos los exploradores web modernos, incluidos los exploradores para dispositivos móviles.
 
 La ejecución de código .NET dentro de exploradores web se consigue mediante [WebAssembly](https://webassembly.org) (abreviado como `wasm`). WebAssembly es un formato de código de bytes compacto optimizado para descargas rápidas y una velocidad de ejecución máxima. WebAssembly es un estándar web abierto y se admite en exploradores web sin complementos.
 
 El código de WebAssembly puede acceder a toda la funcionalidad del explorador mediante la *interoperabilidad de JavaScript* *.* El código de .NET que se ejecuta a través de WebAssembly en el explorador se ejecuta a su vez en el espacio aislado de JavaScript del explorador con las protecciones que proporciona dicho espacio aislado contra acciones malintencionadas en la máquina cliente.
 
-WebAssembly de ![Blazor ejecuta código de .NET en el explorador con WebAssembly.](index/_static/blazor-webassembly.png)
+![Blazor WebAssembly ejecuta código de .NET en el explorador con WebAssembly.](index/_static/blazor-webassembly.png)
 
 Cuando se compila y ejecuta una aplicación de Blazor WebAssembly en un explorador:
 
 * Los archivos de código C# y los archivos de Razor se compilan en ensamblados de .NET.
 * Los ensamblados y el entorno de ejecución de .NET se descargan en el explorador.
-* Blazor WebAssembly arranca el entorno de ejecución de .NET y lo configura para cargar los ensamblados de la aplicación. El entorno de ejecución de Blazor WebAssembly emplea la interoperabilidad de JavaScript para gestionar la manipulación de DOM y las llamadas API del explorador.
+* Blazor WebAssembly arranca el entorno de ejecución .NET y lo configura para cargar los ensamblados de la aplicación. El entorno de ejecución de Blazor WebAssembly emplea la interoperabilidad de JavaScript para gestionar la manipulación de DOM y las llamadas API del explorador.
 
 El tamaño de la aplicación publicada, su *tamaño de carga*, es un factor de rendimiento crítico para la facilidad de uso de una aplicación. Una aplicación grande tarda un tiempo relativamente largo en descargarse en un explorador, lo que repercute en la experiencia del usuario. Blazor WebAssembly optimiza el tamaño de carga para reducir los tiempos de descarga:
 
@@ -130,15 +132,15 @@ El tamaño de la aplicación publicada, su *tamaño de carga*, es un factor de r
 * Las respuestas HTTP se comprimen.
 * El entorno de ejecución .NET y los ensamblados se almacenan en caché en el explorador.
 
-## <a name="blazor-server"></a>Servidor de Blazor
+## Blazor Server
 
 Blazor separa la lógica de representación de componentes del modo en el que se aplican las actualizaciones de la interfaz de usuario. Blazor Server admite el hospedaje de componentes de Razor en el servidor de una aplicación de ASP.NET Core. Las actualizaciones de la interfaz de usuario se controlan mediante una conexión de [SignalR](xref:signalr/introduction).
 
 El entorno de ejecución controla el envío de eventos de la interfaz de usuario del explorador al servidor y, después de ejecutar los componentes, vuelve a aplicar al explorador las actualizaciones de la interfaz de usuario enviadas por el servidor.
 
-La conexión que usa el servidor de Blazor para comunicarse con el explorador también se emplea para controlar las llamadas de interoperabilidad de JavaScript.
+La conexión que usa el servidor de Blazor Server para comunicarse con el explorador también se emplea para administrar las llamadas de interoperabilidad de JavaScript.
 
-El servidor ![Blazor ejecuta código de .NET en el servidor e interactúa con Document Object Model en el cliente mediante una conexión de SignalR](index/_static/blazor-server.png).
+![Blazor Server ejecuta código de .NET en el servidor e interactúa con Document Object Model en el cliente mediante una conexión de SignalR](index/_static/blazor-server.png).
 
 ## <a name="javascript-interop"></a>Interoperabilidad de JavaScript
 

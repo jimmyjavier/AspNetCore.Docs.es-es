@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: c901ba0cbcd79bb14cb32a6a56a2595d159f8678
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1654c0ce40d44ad4cc679c151ef99f155e31b514
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103469"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242503"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>Enlace de datos de ASP.NET Core Blazor
 
@@ -240,10 +240,10 @@ Un escenario común es encadenar un parámetro enlazado a datos a un elemento de
 
 No se puede implementar un enlace encadenado con sintaxis [`@bind`](xref:mvc/views/razor#bind) en el elemento de la página. El controlador de eventos y el valor se deben especificar por separado. Sin embargo, un componente primario puede usar la sintaxis [`@bind`](xref:mvc/views/razor#bind) con el parámetro del componente.
 
-El siguiente componente `PasswordField` (*PasswordField.razor*):
+El siguiente componente `PasswordField` (`PasswordField.razor`):
 
 * Establece el valor del elemento `<input>` en una propiedad `Password`.
-* Expone los cambios de la propiedad `Password` en un componente primario con [EventCallback](xref:blazor/components/event-handling#eventcallback).
+* Expone los cambios de la propiedad `Password` en un componente primario con [`EventCallback`](xref:blazor/components/event-handling#eventcallback).
 * Usa el evento `onclick` para desencadenar el método `ToggleShowPassword`. Para obtener más información, vea <xref:blazor/components/event-handling>.
 
 ```razor

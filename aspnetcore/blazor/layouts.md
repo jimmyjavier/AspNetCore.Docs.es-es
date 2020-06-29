@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: fe35645aafe29838818dcaaf7c2b42ed428ac6cc
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 6103a2e8173ccbb78372e01bd799d1bb47da4fa2
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102255"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243062"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Diseños de ASP.NET Core Blazor
 
@@ -33,15 +33,15 @@ Para convertir un *componente* en un *diseño*, el componente debe:
 * Heredarse de <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, que define una propiedad <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> para el contenido representado dentro del diseño.
 * Use la sintaxis `@Body` de Razor para especificar la ubicación en el marcado de diseño donde se representa el contenido.
 
-En el ejemplo de código siguiente se muestra la plantilla de Razor de un componente de diseño, *MainLayout.razor*. El diseño hereda <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> y establece `@Body` entre la barra de navegación y el pie de página:
+En el ejemplo de código siguiente se muestra la plantilla de Razor de un componente de diseño, `MainLayout.razor`. El diseño hereda <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> y establece `@Body` entre la barra de navegación y el pie de página:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
-En una aplicación basada en una de las plantillas de aplicación de Blazor, el componente de `MainLayout` (*MainLayout.razor*) se encuentra en la carpeta *compartida* de la aplicación.
+En una aplicación basada en una de las plantillas de aplicación de Blazor, el componente de `MainLayout` (`MainLayout.razor`) se encuentra en la carpeta `Shared` de la aplicación.
 
 ## <a name="default-layout"></a>Diseño predeterminado
 
-Especifique el diseño predeterminado de la aplicación en el componente <xref:Microsoft.AspNetCore.Components.Routing.Router> en el archivo *App.razor* de la aplicación. El siguiente componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, proporcionado por las plantillas predeterminadas de Blazor, determina el diseño predeterminado para el componente `MainLayout`:
+Especifique el diseño predeterminado de la aplicación en el componente <xref:Microsoft.AspNetCore.Components.Routing.Router> en el archivo `App.razor` de la aplicación. El siguiente componente <xref:Microsoft.AspNetCore.Components.Routing.Router>, proporcionado por las plantillas predeterminadas de Blazor, determina el diseño predeterminado para el componente `MainLayout`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
@@ -61,13 +61,13 @@ El contenido del siguiente componente `MasterList` se inserta en `MasterLayout` 
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-Al especificar el diseño directamente en un componente, se invalida el *diseño predeterminado* establecido en el enrutador o la directiva `@layout` importada desde *_Imports.razor*.
+Al especificar el diseño directamente en un componente, se invalida el *diseño predeterminado* establecido en el enrutador o en una directiva `@layout` importada desde `_Imports.razor`.
 
 ## <a name="centralized-layout-selection"></a>Selección de diseño centralizada
 
-Cada una de las carpetas de una aplicación puede contener opcionalmente un archivo de plantilla denominado *_Imports.razor*. El compilador incluye las directivas especificadas en el archivo de importaciones de todas las plantillas de Razor de la misma carpeta y, de forma recurrente, de todas sus subcarpetas. Por lo tanto, un archivo *_Imports.razor* que contiene `@layout MyCoolLayout` garantiza que todos los componentes de una carpeta usen `MyCoolLayout`. No es necesario agregar continuamente `@layout MyCoolLayout` a todos los archivos *.razor* dentro de la carpeta y las subcarpetas. Las directivas `@using` también se aplican a los componentes de la misma manera.
+Cada una de las carpetas de una aplicación puede contener opcionalmente un archivo de plantilla denominado `_Imports.razor`. El compilador incluye las directivas especificadas en el archivo de importaciones de todas las plantillas de Razor de la misma carpeta y, de forma recurrente, de todas sus subcarpetas. Por lo tanto, un archivo `_Imports.razor` que contiene `@layout MyCoolLayout` garantiza que todos los componentes de una carpeta usen `MyCoolLayout`. No es necesario agregar continuamente `@layout MyCoolLayout` a todos los archivos `.razor` dentro de la carpeta y las subcarpetas. Las directivas `@using` también se aplican a los componentes de la misma manera.
 
-El siguiente archivo *_Imports.razor* importa:
+El archivo `_Imports.razor` siguiente importa estos elementos:
 
 * `MyCoolLayout`.
 * Todos los componentes de Razor de la misma carpeta y cualquier subcarpeta.
@@ -75,23 +75,23 @@ El siguiente archivo *_Imports.razor* importa:
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
-El archivo *_Imports.razor* es similar al [archivo _ViewImports.cshtml de las vistas y las páginas de Razor](xref:mvc/views/layout#importing-shared-directives), aunque se aplica específicamente a los archivos de componentes de Razor.
+El archivo `_Imports.razor` es similar al archivo [_ViewImports.cshtml de las vistas y las páginas de Razor](xref:mvc/views/layout#importing-shared-directives), aunque se aplica específicamente a los archivos de componentes de Razor.
 
-Al especificar un diseño en *_Imports.razor*, se invalida un diseño especificado como *diseño predeterminado* para el enrutador.
+Al especificar un diseño en `_Imports.razor`, se invalida un diseño especificado como *diseño predeterminado* del enrutador.
 
 ## <a name="nested-layouts"></a>Diseños anidados
 
 Las aplicaciones pueden estar formadas por diseños anidados. Un componente puede hacer referencia a un diseño que, a su vez, hace referencia a otro diseño. Por ejemplo, los diseños anidados se usan para crear una estructura de menú de varios niveles.
 
-En el ejemplo siguiente se muestra cómo usar los diseños anidados. El archivo *EpisodesComponent.razor* es el componente que se va a mostrar. El componente hace referencia a `MasterListLayout`:
+En el ejemplo siguiente se muestra cómo usar los diseños anidados. El archivo `EpisodesComponent.razor` es el componente que se va a mostrar. El componente hace referencia a `MasterListLayout`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
-El archivo *MasterListLayout.razor* proporciona el diseño `MasterListLayout`. Este diseño hace referencia a otro diseño, `MasterLayout`, en el que se representa. `EpisodesComponent` se representa donde aparece `@Body`:
+El archivo `MasterListLayout.razor` proporciona `MasterListLayout`. Este diseño hace referencia a otro diseño, `MasterLayout`, en el que se representa. `EpisodesComponent` se representa donde aparece `@Body`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Por último, `MasterLayout` en *MasterLayout.razor* contiene los elementos de diseño de nivel superior, como el encabezado, el menú principal y el pie de página. `MasterListLayout` con el componente `EpisodesComponent` se representa donde aparece `@Body`:
+Por último, `MasterLayout` en `MasterLayout.razor` contiene los elementos de diseño de nivel superior, como el encabezado, el menú principal y el pie de página. `MasterListLayout` con el componente `EpisodesComponent` se representa donde aparece `@Body`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
