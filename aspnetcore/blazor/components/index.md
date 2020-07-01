@@ -45,7 +45,7 @@ Al acceder al contenido de la sintaxis Razor, preste especial atención a las si
 
 ### <a name="names"></a>Nombres
 
-El nombre de un componente debe empezar por mayúsculas. Por ejemplo, `MyCoolComponent.razor` no es válido, pero `myCoolComponent.razor` sí.
+El nombre de un componente debe empezar por mayúsculas. Por ejemplo, `MyCoolComponent.razor` es válido, pero `myCoolComponent.razor` no.
 
 ### <a name="routing"></a>Enrutamiento
 
